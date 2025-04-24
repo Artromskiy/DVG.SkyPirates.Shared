@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35323.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DVG.SkyPirates.Shared", "DVG.SkyPirates.Shared.csproj", "{21190B84-B025-4AE4-9F14-2211B216BDB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21190B84-B025-4AE4-9F14-2211B216BDB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21190B84-B025-4AE4-9F14-2211B216BDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21190B84-B025-4AE4-9F14-2211B216BDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21190B84-B025-4AE4-9F14-2211B216BDB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {381EE6A1-8645-486E-A108-A0C830CE017A}
+	EndGlobalSection
+EndGlobal
