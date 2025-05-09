@@ -14,6 +14,8 @@ namespace DVG.SkyPirates.Shared.Messages
             typeof(RegisterUnit),
             typeof(UnitUnregister),
             typeof(UnitGhost),
+            typeof(InputGhost),
+            typeof(SpawnUnit)
         };
 
         static MessageIds()
