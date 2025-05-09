@@ -2,9 +2,9 @@
 {
     public struct UnregisterUnitCommand
     {
-        public uint id;
+        public int id;
 
-        public UnregisterUnitCommand(uint id)
+        public UnregisterUnitCommand(int id)
         {
             this.id = id;
         }

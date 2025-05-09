@@ -2,9 +2,9 @@
 {
     public struct RegisterUnitCommand
     {
-        public uint id;
+        public int id;
 
-        public RegisterUnitCommand(uint id)
+        public RegisterUnitCommand(int id)
         {
             this.id = id;
         }

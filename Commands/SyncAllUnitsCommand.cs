@@ -2,9 +2,9 @@
 {
     public struct SyncAllUnitsCommand
     {
-        public uint[] ids;
+        public int[] ids;
 
-        public SyncAllUnitsCommand(uint[] ids)
+        public SyncAllUnitsCommand(int[] ids)
         {
             this.ids = ids;
         }
