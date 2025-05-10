@@ -6,9 +6,4 @@
         public float rotation;
         public bool fixation;
     }
-
-    public struct SpawnUnitCommand
-    {
-        public int id;
-    }
 }
