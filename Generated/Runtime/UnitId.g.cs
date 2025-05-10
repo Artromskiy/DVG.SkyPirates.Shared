@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Ids
     partial struct UnitId : IStringId, IEquatable<UnitId>, IComparable<UnitId>
     {
         public readonly string value;
-        public string Value => value;
+        string IStringId.Value => value;
         private const string NoneValue = "None";
         public static readonly UnitId None = new UnitId(NoneValue);
 
@@ -41,6 +41,8 @@ namespace DVG.SkyPirates.Shared.Ids
         public override readonly int GetHashCode() => IsNone ? 0 : value.GetHashCode();
         public static bool operator ==(UnitId a, UnitId b) => a.value == b.value || (a.IsNone && b.IsNone);
         public static bool operator !=(UnitId a, UnitId b) => !(a == b);
+
+        public static implicit operator string(UnitId id) => id.value;
 
         private class IdTypeConverter : IdTypeConverter<UnitId>
         {
