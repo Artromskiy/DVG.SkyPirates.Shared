@@ -1,10 +1,10 @@
 ﻿namespace DVG.SkyPirates.Shared.Commands
 {
-    public struct SyncAllUnitsCommand
+    public struct SyncAllSquadUnitsCommand
     {
         public int[] ids;
 
-        public SyncAllUnitsCommand(int[] ids)
+        public SyncAllSquadUnitsCommand(int[] ids)
         {
             this.ids = ids;
         }

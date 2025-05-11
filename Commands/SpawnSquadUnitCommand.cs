@@ -1,10 +1,10 @@
 ﻿namespace DVG.SkyPirates.Shared.Commands
 {
-    public struct UnregisterUnitCommand
+    public struct SpawnSquadUnitCommand
     {
         public int id;
 
-        public UnregisterUnitCommand(int id)
+        public SpawnSquadUnitCommand(int id)
         {
             this.id = id;
         }
