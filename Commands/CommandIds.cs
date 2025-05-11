@@ -15,6 +15,7 @@ namespace DVG.SkyPirates.Shared.Commands
 
             typeof(SyncAllSquadUnitsCommand),
             typeof(SpawnSquadUnitCommand),
+            typeof(RegisterUnitCommand),
             typeof(RegisterSquadUnitCommand),
             typeof(UpdateUnitCommand),
             typeof(UnregisterSquadUnitCommand),
