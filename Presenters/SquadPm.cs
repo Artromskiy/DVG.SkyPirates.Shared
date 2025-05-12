@@ -46,7 +46,10 @@ namespace DVG.SkyPirates.Shared.Presenters
         public void Tick()
         {
             for (int i = 0; i < _targetPositions.Length; i++)
-                _targetPositions[i] = Position + rotate(_packedCircles.points[i] * 0.5f, Maths.Radians(Rotation)).x_y;
+            {
+                //_targetPositions[i] = Position + rotate(_packedCircles.points[i] * 0.5f, Maths.Radians(Rotation)).x_y;
+                _targetPositions[i] = Position + (_packedCircles.points[i] * 0.5f).x_y;
+            }
 
             //ReorderUnitsToNearest(_targetPositions);
             for (int i = 0; i < _units.Count; i++)
