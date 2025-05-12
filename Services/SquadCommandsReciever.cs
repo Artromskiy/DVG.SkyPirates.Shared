@@ -12,7 +12,6 @@ namespace DVG.SkyPirates.Shared.Services
     internal class SquadCommandsReciever : ITickable
     {
         private readonly Dictionary<int, SquadPm> _squads = new Dictionary<int, SquadPm>();
-        private readonly int _lastAdded = 0;
 
         private readonly ICommandRecieveService _commandService;
         private readonly IPathFactory<PackedCirclesModel> _packedCirclesFactory;

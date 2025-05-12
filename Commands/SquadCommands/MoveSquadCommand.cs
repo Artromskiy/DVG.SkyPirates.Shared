@@ -1,8 +1,15 @@
 ﻿namespace DVG.SkyPirates.Shared.Commands.SquadCommands
 {
-    public struct MoveSquadCommand
+    public readonly struct MoveSquadCommand
     {
-        public int squadId;
-        public float3 position;
+        public readonly int squadId;
+
+        public readonly float3 position;
+
+        public MoveSquadCommand(int squadId, float3 position)
+        {
+            this.squadId = squadId;
+            this.position = position;
+        }
     }
 }

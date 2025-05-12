@@ -12,14 +12,16 @@ namespace DVG.SkyPirates.Shared.Commands
 
         private static readonly Type[] _messages = new Type[]
         {
-            typeof(UpdateInputCommand),
             typeof(RegisterSquadCommand),
+            typeof(UnregisterSquadCommand),
+            typeof(MoveSquadCommand),
+            typeof(RotateSquadCommand),
+            typeof(FixateSquadCommand),
 
             typeof(SyncAllSquadUnitsCommand),
-            typeof(RegisterUnitCommand),
             typeof(RegisterSquadUnitCommand),
-            typeof(UpdateUnitCommand),
             typeof(UnregisterSquadUnitCommand),
+            typeof(ReorderSquadUnitCommand),
         };
 
         static CommandIds()
