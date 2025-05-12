@@ -4,12 +4,12 @@ using Riptide;
 using System;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Server.Services
+namespace DVG.SkyPirates.Shared.Services
 {
-    internal class CommandRecieveService : ICommandRecieveService
+    public class CommandRecieveService : ICommandRecieveService
     {
-        private readonly Riptide.Server? _server;
-        private readonly Riptide.Client? _client;
+        private readonly Server? _server;
+        private readonly Client? _client;
         private readonly ICommandSerializer _commandSerializer;
 
         private readonly Dictionary<int, IActionContainer> _registeredRecievers;
@@ -23,7 +23,7 @@ namespace DVG.SkyPirates.Server.Services
             _registeredRecievers = new Dictionary<int, IActionContainer>();
         }
 
-        public CommandRecieveService(Riptide.Client client, ICommandSerializer commandSerializer)
+        public CommandRecieveService(Client client, ICommandSerializer commandSerializer)
         {
             _commandSerializer = commandSerializer;
             _client = client;
