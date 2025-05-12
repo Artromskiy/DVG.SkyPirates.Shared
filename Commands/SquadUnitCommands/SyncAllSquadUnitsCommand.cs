@@ -1,4 +1,4 @@
-﻿namespace DVG.SkyPirates.Shared.Commands
+﻿namespace DVG.SkyPirates.Shared.Commands.SquadUnitCommands
 {
     public struct SyncAllSquadUnitsCommand
     {

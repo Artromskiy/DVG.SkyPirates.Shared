@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DVG.SkyPirates.Shared.Commands.SquadCommands;
+using DVG.SkyPirates.Shared.Commands.SquadUnitCommands;
+using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Commands
@@ -14,7 +16,6 @@ namespace DVG.SkyPirates.Shared.Commands
             typeof(RegisterSquadCommand),
 
             typeof(SyncAllSquadUnitsCommand),
-            typeof(SpawnSquadUnitCommand),
             typeof(RegisterUnitCommand),
             typeof(RegisterSquadUnitCommand),
             typeof(UpdateUnitCommand),
