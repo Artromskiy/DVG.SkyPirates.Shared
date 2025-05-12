@@ -17,9 +17,4 @@
     <ProjectReference Include="..\..\Json\Json.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="DataTypes\" />
-  </ItemGroup>
-
 </Project>

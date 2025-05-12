@@ -18,7 +18,6 @@ namespace DVG.SkyPirates.Shared.Commands
             typeof(RotateSquadCommand),
             typeof(FixateSquadCommand),
 
-            typeof(SyncAllSquadUnitsCommand),
             typeof(RegisterSquadUnitCommand),
             typeof(UnregisterSquadUnitCommand),
             typeof(ReorderSquadUnitCommand),
