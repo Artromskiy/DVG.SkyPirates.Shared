@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services
 {
-    internal class SquadCommandsReciever : ITickable
+    public class SquadCommandsReciever : ITickable
     {
         private readonly Dictionary<int, SquadPm> _squads = new Dictionary<int, SquadPm>();
 

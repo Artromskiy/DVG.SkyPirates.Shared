@@ -48,7 +48,7 @@ namespace DVG.SkyPirates.Shared.Presenters
             for (int i = 0; i < _targetPositions.Length; i++)
                 _targetPositions[i] = Position + rotate(_packedCircles.points[i] * 0.5f, Maths.Radians(Rotation)).x_y;
 
-            ReorderUnitsToNearest(_targetPositions);
+            //ReorderUnitsToNearest(_targetPositions);
             for (int i = 0; i < _units.Count; i++)
             {
                 _units[i].TargetPosition = _targetPositions[i];
