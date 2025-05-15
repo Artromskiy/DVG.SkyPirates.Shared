@@ -25,6 +25,7 @@ namespace DVG.SkyPirates.Shared.Presenters
         {
             _circlesModelFactory = circlesModelFactory;
             _packedCircles = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + 1);
+            _order = new int[1] { 0 };
         }
 
         public void AddUnit(UnitPm unit, int unitId)
@@ -63,23 +64,24 @@ namespace DVG.SkyPirates.Shared.Presenters
                 Reorder(_packedCircles.points, _order, _quantizedRotation, newRotation);
             _quantizedRotation = newRotation;
             _rotation = _quantizedRotation * 360 / 16;
+            Console.WriteLine(string.Join(", ", _order));
         }
 
-        private static void Reorder(float2[] _targetPositions, int[] order, float oldRotation, float newRotation)
+        private static void Reorder(float2[] positions, int[] order, float oldRotation, float newRotation)
         {
-            int count = _targetPositions.Length;
+            int count = positions.Length;
             for (int i = 0; i < count; i++)
             {
-                var posI = RotatePoint(_targetPositions[order[i]], Maths.Radians(newRotation));
-                var oldPosI = RotatePoint(_targetPositions[order[i]], Maths.Radians(oldRotation));
+                var posI = RotatePoint(positions[order[i]], Maths.Radians(newRotation));
+                var oldPosI = RotatePoint(positions[order[i]], Maths.Radians(oldRotation));
                 float firstDist = float2.SqrDistance(posI, oldPosI);
 
                 int swapIndex = -1;
                 float minSwap = float.MaxValue;
                 for (int j = i + 1; j < count; j++)
                 {
-                    var posJ = RotatePoint(_targetPositions[order[j]], Maths.Radians(newRotation));
-                    var oldPosJ = RotatePoint(_targetPositions[order[j]], Maths.Radians(oldRotation));
+                    var posJ = RotatePoint(positions[order[j]], Maths.Radians(newRotation));
+                    var oldPosJ = RotatePoint(positions[order[j]], Maths.Radians(oldRotation));
                     var swapSum = float2.SqrDistance(posI, oldPosJ) + float2.SqrDistance(posJ, oldPosI);
                     if (swapSum < minSwap && swapSum < firstDist + float2.SqrDistance(posJ, oldPosJ))
                     {
