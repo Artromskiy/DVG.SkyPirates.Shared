@@ -77,8 +77,8 @@ namespace DVG.SkyPirates.Shared.Presenters
             {
                 var posI = RotatePoint(positions[order[i]], Maths.Radians(newRotation));
                 var oldPosI = RotatePoint(positions[order[i]], Maths.Radians(oldRotation));
-                float firstDist = float2.SqrDistance(posI, oldPosI);
-                if (firstDist < MinSwapDistance * MinSwapDistance)
+                float firstDist = float2.Distance(posI, oldPosI);
+                if (firstDist < MinSwapDistance)
                     continue;
 
                 int swapIndex = -1;
@@ -87,8 +87,8 @@ namespace DVG.SkyPirates.Shared.Presenters
                 {
                     var posJ = RotatePoint(positions[order[j]], Maths.Radians(newRotation));
                     var oldPosJ = RotatePoint(positions[order[j]], Maths.Radians(oldRotation));
-                    var swapSum = float2.SqrDistance(posI, oldPosJ) + float2.SqrDistance(posJ, oldPosI);
-                    if (swapSum < minSwap && firstDist + float2.SqrDistance(posJ, oldPosJ) - swapSum > MinSwapDistance * MinSwapDistance)
+                    var swapSum = float2.Distance(posI, oldPosJ) + float2.Distance(posJ, oldPosI);
+                    if (swapSum < minSwap && firstDist + float2.Distance(posJ, oldPosJ) - swapSum > MinSwapDistance) // prevent nearly equal swap
                     {
                         minSwap = swapSum;
                         swapIndex = j;
