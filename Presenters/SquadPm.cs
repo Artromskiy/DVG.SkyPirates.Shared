@@ -60,8 +60,9 @@ namespace DVG.SkyPirates.Shared.Presenters
         public void Rotate(float rotation)
         {
             var newRotation = (int)Maths.Round(rotation * 16 / 360);
-            if(_quantizedRotation != newRotation)
-                Reorder(_packedCircles.points, _order, _quantizedRotation, newRotation);
+            if (_quantizedRotation == newRotation)
+                return;
+            Reorder(_packedCircles.points, _order, _quantizedRotation, newRotation);
             _quantizedRotation = newRotation;
             _rotation = _quantizedRotation * 360 / 16;
             Console.WriteLine(string.Join(", ", _order));
