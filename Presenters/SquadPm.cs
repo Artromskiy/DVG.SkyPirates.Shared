@@ -8,7 +8,6 @@ namespace DVG.SkyPirates.Shared.Presenters
     internal class SquadPm : Presenter, ITickable
     {
         public float3 Position;
-        public float Rotation;
         public bool Fixation;
 
         private readonly List<UnitPm> _units = new List<UnitPm>();
@@ -17,13 +16,15 @@ namespace DVG.SkyPirates.Shared.Presenters
         public int UnitsCount => _units.Count;
 
         private readonly IPathFactory<PackedCirclesModel> _circlesModelFactory;
+        private int[] _order = Array.Empty<int>();
 
-        private float3[] _targetPositions = Array.Empty<float3>();
+        private int _quantizedRotation = 0;
+        private float _rotation = 0;
 
         public SquadPm(IPathFactory<PackedCirclesModel> circlesModelFactory)
         {
             _circlesModelFactory = circlesModelFactory;
-            UpdatePackedCircles(1);
+            _packedCircles = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + 1);
         }
 
         public void AddUnit(UnitPm unit, int unitId)
@@ -40,53 +41,61 @@ namespace DVG.SkyPirates.Shared.Presenters
         private void UpdatePackedCircles(int count)
         {
             _packedCircles = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
-            _targetPositions = new float3[count];
+            Array.Resize(ref _order, count);
+            _order[count - 1] = count - 1;
         }
 
         public void Tick()
         {
-            for (int i = 0; i < _targetPositions.Length; i++)
-            {
-                //_targetPositions[i] = Position + rotate(_packedCircles.points[i] * 0.5f, Maths.Radians(Rotation)).x_y;
-                _targetPositions[i] = Position + (_packedCircles.points[i] * 0.5f).x_y;
-            }
-
-            //ReorderUnitsToNearest(_targetPositions);
             for (int i = 0; i < _units.Count; i++)
             {
-                _units[i].TargetPosition = _targetPositions[i];
+                _units[i].TargetPosition = Position + RotatePoint(_packedCircles.points[_order[i]] * 0.5f, Maths.Radians(_rotation)).x_y;
             }
 
             foreach (var item in _units)
                 item.Tick();
         }
 
-        private void ReorderUnitsToNearest(float3[] targets)
+        public void Rotate(float rotation)
         {
-            int count = Maths.Min(targets.Length, _units.Count);
+            var newRotation = (int)Maths.Round(rotation * 16 / 360);
+            if(_quantizedRotation != newRotation)
+                Reorder(_packedCircles.points, _order, _quantizedRotation, newRotation);
+            _quantizedRotation = newRotation;
+            _rotation = _quantizedRotation * 360 / 16;
+        }
+
+        private static void Reorder(float2[] _targetPositions, int[] order, float oldRotation, float newRotation)
+        {
+            int count = _targetPositions.Length;
             for (int i = 0; i < count; i++)
             {
-                var posI = _units[i].View.Position;
-                float firstDist = float2.SqrDistance(posI.xz, targets[i].xz);
+                var posI = RotatePoint(_targetPositions[order[i]], Maths.Radians(newRotation));
+                var oldPosI = RotatePoint(_targetPositions[order[i]], Maths.Radians(oldRotation));
+                float firstDist = float2.SqrDistance(posI, oldPosI);
 
                 int swapIndex = -1;
                 float minSwap = float.MaxValue;
                 for (int j = i + 1; j < count; j++)
                 {
-                    var posJ = _units[j].View.Position;
-                    var swapSum = float2.SqrDistance(posI.xz, targets[j].xz) + float2.SqrDistance(posJ.xz, targets[i].xz);
-                    if (swapSum < minSwap && swapSum < firstDist + float2.SqrDistance(posJ.xz, targets[j].xz))
+                    var posJ = RotatePoint(_targetPositions[order[j]], Maths.Radians(newRotation));
+                    var oldPosJ = RotatePoint(_targetPositions[order[j]], Maths.Radians(oldRotation));
+                    var swapSum = float2.SqrDistance(posI, oldPosJ) + float2.SqrDistance(posJ, oldPosI);
+                    if (swapSum < minSwap && swapSum < firstDist + float2.SqrDistance(posJ, oldPosJ))
                     {
                         minSwap = swapSum;
                         swapIndex = j;
                     }
                 }
                 if (swapIndex != -1)
-                    (_units[swapIndex], _units[i]) = (_units[i], _units[swapIndex]);
+                {
+                    (order[swapIndex], order[i]) = (order[i], order[swapIndex]);
+                }
             }
         }
 
-        public static float2 rotate(float2 vec, float radians)
+
+        public static float2 RotatePoint(float2 vec, float radians)
         {
             var cs = Maths.Cos(radians);
             var sn = Maths.Sin(radians);

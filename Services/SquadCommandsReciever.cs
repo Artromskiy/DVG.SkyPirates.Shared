@@ -71,7 +71,7 @@ namespace DVG.SkyPirates.Shared.Services
         {
             if (_squads.TryGetValue(cmd.squadId, out var squad))
             {
-                squad.Rotation = cmd.rotation;
+                squad.Rotate(cmd.rotation);
             }
         }
 
