@@ -2,6 +2,7 @@
 using DVG.SkyPirates.Shared.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DVG.SkyPirates.Shared.Presenters
 {
@@ -65,29 +66,31 @@ namespace DVG.SkyPirates.Shared.Presenters
                 return;
             _quantizedRotation = newQuantizedRotation;
             var newRotation = _quantizedRotation * 360 / 16;
-            Reorder(_packedCircles.points, _order, _rotation, newRotation);
+            int[] newOrder = Enumerable.Range(0, _order.Length).ToArray();
+            Reorder(_packedCircles.points, _order, newOrder, _rotation, newRotation);
+            _order = newOrder;
             _rotation = newRotation;
             Console.WriteLine(string.Join(", ", _order));
         }
 
-        private static void Reorder(float2[] positions, int[] order, float oldRotation, float newRotation)
+        private static void Reorder(float2[] positions, int[] oldOrder, int[] newOrder, float oldRotation, float newRotation)
         {
             int count = positions.Length;
             for (int i = 0; i < count; i++)
             {
-                var posI = RotatePoint(positions[order[i]], Maths.Radians(newRotation));
-                var oldPosI = RotatePoint(positions[order[i]], Maths.Radians(oldRotation));
-                float firstDist = float2.Distance(posI, oldPosI);
+                var posI = RotatePoint(positions[newOrder[i]], Maths.Radians(newRotation));
+                var oldPosI = RotatePoint(positions[oldOrder[i]], Maths.Radians(oldRotation));
+                float currentDistance = float2.SqrDistance(posI, oldPosI);
 
                 int swapIndex = -1;
                 float minSwap = float.MaxValue;
                 for (int j = i + 1; j < count; j++)
                 {
-                    var posJ = RotatePoint(positions[order[j]], Maths.Radians(newRotation));
-                    var oldPosJ = RotatePoint(positions[order[j]], Maths.Radians(oldRotation));
-                    var swapSum = float2.Distance(posI, oldPosJ) + float2.Distance(posJ, oldPosI);
+                    var posJ = RotatePoint(positions[newOrder[j]], Maths.Radians(newRotation));
+                    var oldPosJ = RotatePoint(positions[oldOrder[j]], Maths.Radians(oldRotation));
+                    var swapSum = float2.SqrDistance(posI, oldPosJ) + float2.SqrDistance(posJ, oldPosI);
                     if (swapSum < minSwap &&
-                        swapSum < firstDist + float2.Distance(posJ, oldPosJ)) // prevent nearly equal swap
+                        swapSum < currentDistance + float2.SqrDistance(posJ, oldPosJ)) // prevent nearly equal swap
                     {
                         minSwap = swapSum;
                         swapIndex = j;
@@ -95,7 +98,7 @@ namespace DVG.SkyPirates.Shared.Presenters
                 }
                 if (swapIndex != -1)
                 {
-                    (order[swapIndex], order[i]) = (order[i], order[swapIndex]);
+                    (newOrder[swapIndex], newOrder[i]) = (newOrder[i], newOrder[swapIndex]);
                 }
             }
         }
