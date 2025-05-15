@@ -7,6 +7,7 @@ namespace DVG.SkyPirates.Shared.Presenters
 {
     internal class SquadPm : Presenter, ITickable
     {
+        const float MinSwapDistance = 0.1f;
         public float3 Position;
         public bool Fixation;
 
@@ -77,6 +78,8 @@ namespace DVG.SkyPirates.Shared.Presenters
                 var posI = RotatePoint(positions[order[i]], Maths.Radians(newRotation));
                 var oldPosI = RotatePoint(positions[order[i]], Maths.Radians(oldRotation));
                 float firstDist = float2.SqrDistance(posI, oldPosI);
+                if (firstDist < MinSwapDistance * MinSwapDistance)
+                    continue;
 
                 int swapIndex = -1;
                 float minSwap = float.MaxValue;
