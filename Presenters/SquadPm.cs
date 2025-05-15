@@ -78,8 +78,6 @@ namespace DVG.SkyPirates.Shared.Presenters
                 var posI = RotatePoint(positions[order[i]], Maths.Radians(newRotation));
                 var oldPosI = RotatePoint(positions[order[i]], Maths.Radians(oldRotation));
                 float firstDist = float2.Distance(posI, oldPosI);
-                if (firstDist < MinSwapDistance)
-                    continue;
 
                 int swapIndex = -1;
                 float minSwap = float.MaxValue;
