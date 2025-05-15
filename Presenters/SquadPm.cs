@@ -80,15 +80,15 @@ namespace DVG.SkyPirates.Shared.Presenters
             {
                 var posI = RotatePoint(positions[newOrder[i]], Maths.Radians(newRotation));
                 var posI2 = RotatePoint(positions[oldOrder[i]], Maths.Radians(oldRotation));
-                float firstDist = float2.SqrDistance(posI, posI2);
+                float firstDist = float2.Distance(posI, posI2);
                 int swapIndex = -1;
                 float minSwap = float.MaxValue;
                 for (int j = i + 1; j < count; j++)
                 {
                     var posJ = RotatePoint(positions[newOrder[j]], Maths.Radians(newRotation));
                     var posJ2 = RotatePoint(positions[oldOrder[j]], Maths.Radians(oldRotation));
-                    var swapSum = float2.SqrDistance(posI, posJ2) + float2.SqrDistance(posJ, posI2);
-                    if (swapSum < minSwap && swapSum < firstDist + float2.SqrDistance(posJ, posJ2))
+                    var swapSum = float2.Distance(posI, posJ2) + float2.Distance(posJ, posI2);
+                    if (swapSum < minSwap && swapSum < firstDist + float2.Distance(posJ, posJ2))
                     {
                         minSwap = swapSum;
                         swapIndex = j;
