@@ -67,38 +67,41 @@ namespace DVG.SkyPirates.Shared.Presenters
             _quantizedRotation = newQuantizedRotation;
             var newRotation = _quantizedRotation * 360 / 16;
             var newOrder = Enumerable.Range(0, _order.Length).ToArray();
-            Reorder(_packedCircles.points, _order, newOrder, _rotation, newRotation);
-            _order = newOrder;
+
+            _order = FindOptimalOrdering(_packedCircles.points, _order, _rotation, newRotation);
             _rotation = newRotation;
             Console.WriteLine(string.Join(", ", _order));
+            Console.WriteLine(string.Join(", ", _packedCircles.points.Select((p) => RotatePoint(p, Maths.Radians(_rotation)).ToString())));
         }
 
-        private static void Reorder(float2[] positions, int[] oldOrder, int[] newOrder, float oldRotation, float newRotation)
+        public static int[] FindOptimalOrdering(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
         {
-            int count = positions.Length;
-            for (int i = 0; i < count; i++)
+            int length = points.Length;
+            var order = Enumerable.Range(0, length).ToArray();
+            double minDistance = double.MaxValue;
+            for (int shiftFrom = 0; shiftFrom < length; shiftFrom++)
             {
-                var posI = RotatePoint(positions[newOrder[i]], Maths.Radians(newRotation));
-                var posI2 = RotatePoint(positions[oldOrder[i]], Maths.Radians(oldRotation));
-                float firstDist = float2.Distance(posI, posI2);
-                int swapIndex = -1;
-                float minSwap = float.MaxValue;
-                for (int j = i + 1; j < count; j++)
+                for (int shift = 0; shift < length; shift++)
                 {
-                    var posJ = RotatePoint(positions[newOrder[j]], Maths.Radians(newRotation));
-                    var posJ2 = RotatePoint(positions[oldOrder[j]], Maths.Radians(oldRotation));
-                    var swapSum = float2.Distance(posI, posJ2) + float2.Distance(posJ, posI2);
-                    if (swapSum < minSwap && swapSum < firstDist + float2.Distance(posJ, posJ2))
-                    {
-                        minSwap = swapSum;
-                        swapIndex = j;
-                    }
-                }
-                if (swapIndex != -1)
-                    (newOrder[swapIndex], newOrder[i]) = (newOrder[i], newOrder[swapIndex]);
-            }
-        }
+                    int shiftTo = (shiftFrom + shift) % length;
+                    (order[shiftFrom], order[shiftTo]) = (order[shiftTo], order[shiftFrom]);
 
+                    float totalDistance = 0;
+                    for (int j = 0; j < length; j++)
+                    {
+                        var originalPoint = RotatePoint(points[oldOrder[j]], Maths.Radians(oldRotation));
+                        var newPoint = RotatePoint(points[order[j]], Maths.Radians(newRotation));
+                        totalDistance += float2.Distance(originalPoint, newPoint);
+                    }
+
+                    if (minDistance - totalDistance > MinSwapDistance)
+                        minDistance = totalDistance;
+                    else
+                        (order[shiftFrom], order[shiftTo]) = (order[shiftTo], order[shiftFrom]);
+                }
+            }
+            return order;
+        }
 
         public static float2 RotatePoint(float2 vec, float radians)
         {
