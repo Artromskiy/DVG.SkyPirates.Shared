@@ -66,12 +66,9 @@ namespace DVG.SkyPirates.Shared.Presenters
                 return;
             _quantizedRotation = newQuantizedRotation;
             var newRotation = _quantizedRotation * 360 / 16;
-            var newOrder = Enumerable.Range(0, _order.Length).ToArray();
-
             _order = GetOrder(_packedCircles.points, _order, _rotation, newRotation);
             _rotation = newRotation;
             Console.WriteLine(string.Join(", ", _order));
-            Console.WriteLine(string.Join(", ", _packedCircles.points.Select((p) => RotatePoint(p, Maths.Radians(_rotation)).ToString())));
         }
 
         public static int[] GetOrder(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
@@ -79,7 +76,10 @@ namespace DVG.SkyPirates.Shared.Presenters
             // Rotate towards old, for better swap rotation
             newRotation = Maths.RotateTowards(newRotation, oldRotation, 360f / 32);
             int length = points.Length;
-            var order = Enumerable.Range(0, length).ToArray();
+            int[] order = new int[length];
+            for (int i = 0; i < length; i++)
+                order[i] = i;
+
             float minDistance = float.MaxValue;
             for (int swapFrom = 0; swapFrom < length; swapFrom++)
             {
