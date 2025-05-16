@@ -83,9 +83,8 @@ namespace DVG.SkyPirates.Shared.Presenters
             float minDistance = float.MaxValue;
             for (int swapFrom = 0; swapFrom < length; swapFrom++)
             {
-                for (int shift = 0; shift < length; shift++)
+                for (int swapTo = 0; swapTo < length; swapTo++)
                 {
-                    int swapTo = (swapFrom + shift) % length;
                     (order[swapFrom], order[swapTo]) = (order[swapTo], order[swapFrom]);
                     float totalDistance = 0;
 
