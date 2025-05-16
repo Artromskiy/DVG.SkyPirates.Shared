@@ -80,7 +80,7 @@ namespace DVG.SkyPirates.Shared.Presenters
             newRotation = Maths.RotateTowards(newRotation, oldRotation, 360f / 32);
             int length = points.Length;
             var order = Enumerable.Range(0, length).ToArray();
-            double minDistance = double.MaxValue;
+            float minDistance = float.MaxValue;
             for (int swapFrom = 0; swapFrom < length; swapFrom++)
             {
                 for (int shift = 0; shift < length; shift++)
