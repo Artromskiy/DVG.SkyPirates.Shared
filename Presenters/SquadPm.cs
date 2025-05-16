@@ -8,7 +8,7 @@ namespace DVG.SkyPirates.Shared.Presenters
 {
     internal class SquadPm : Presenter, ITickable
     {
-        const float MinSwapDistance = 0.1f;
+        private const float MinSwapDistance = 0.1f;
         public float3 Position;
         public bool Fixation;
 
@@ -68,36 +68,38 @@ namespace DVG.SkyPirates.Shared.Presenters
             var newRotation = _quantizedRotation * 360 / 16;
             var newOrder = Enumerable.Range(0, _order.Length).ToArray();
 
-            _order = FindOptimalOrdering(_packedCircles.points, _order, _rotation, newRotation);
+            _order = GetOrder(_packedCircles.points, _order, _rotation, newRotation);
             _rotation = newRotation;
             Console.WriteLine(string.Join(", ", _order));
             Console.WriteLine(string.Join(", ", _packedCircles.points.Select((p) => RotatePoint(p, Maths.Radians(_rotation)).ToString())));
         }
 
-        public static int[] FindOptimalOrdering(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
+        public static int[] GetOrder(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
         {
+            // Rotate towards old, for better swap rotation
+            newRotation = Maths.RotateTowards(newRotation, oldRotation, 360f / 32);
             int length = points.Length;
             var order = Enumerable.Range(0, length).ToArray();
             double minDistance = double.MaxValue;
-            for (int shiftFrom = 0; shiftFrom < length; shiftFrom++)
+            for (int swapFrom = 0; swapFrom < length; swapFrom++)
             {
                 for (int shift = 0; shift < length; shift++)
                 {
-                    int shiftTo = (shiftFrom + shift) % length;
-                    (order[shiftFrom], order[shiftTo]) = (order[shiftTo], order[shiftFrom]);
-
+                    int swapTo = (swapFrom + shift) % length;
+                    (order[swapFrom], order[swapTo]) = (order[swapTo], order[swapFrom]);
                     float totalDistance = 0;
+
                     for (int j = 0; j < length; j++)
                     {
-                        var originalPoint = RotatePoint(points[oldOrder[j]], Maths.Radians(oldRotation));
-                        var newPoint = RotatePoint(points[order[j]], Maths.Radians(newRotation));
-                        totalDistance += float2.Distance(originalPoint, newPoint);
+                        var from = RotatePoint(points[order[j]], Maths.Radians(newRotation));
+                        var to = RotatePoint(points[oldOrder[j]], Maths.Radians(oldRotation));
+                        totalDistance += float2.Distance(to, from);
                     }
 
                     if (minDistance - totalDistance > MinSwapDistance)
                         minDistance = totalDistance;
                     else
-                        (order[shiftFrom], order[shiftTo]) = (order[shiftTo], order[shiftFrom]);
+                        (order[swapFrom], order[swapTo]) = (order[swapTo], order[swapFrom]);
                 }
             }
             return order;
