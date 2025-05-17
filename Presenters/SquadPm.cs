@@ -2,13 +2,12 @@
 using DVG.SkyPirates.Shared.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DVG.SkyPirates.Shared.Presenters
 {
     internal class SquadPm : Presenter, ITickable
     {
-        private const float MinSwapDistance = 0.1f;
+        private const float MinSwapDistance = 0.01f;
         public float3 Position;
         public bool Fixation;
 
