@@ -48,8 +48,6 @@ namespace DVG.SkyPirates.Shared.Services
             }
         }
 
-        public void ReorderSquadUnits(Command<UnregisterSquadUnit> cmd, int callerId) { }
-
         public void RegisterSquad(Command<RegisterSquad> cmd, int callerId)
         {
             if (_squads.ContainsKey(cmd.callerId))

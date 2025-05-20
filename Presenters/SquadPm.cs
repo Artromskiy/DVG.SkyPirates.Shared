@@ -66,6 +66,7 @@ namespace DVG.SkyPirates.Shared.Presenters
             _quantizedRotation = newQuantizedRotation;
             var newRotation = _quantizedRotation * 360 / 16;
             _order = GetOrder(_packedCircles.points, _order, _rotation, newRotation);
+            Console.WriteLine(string.Join(", ", _order));
             _rotation = newRotation;
         }
 
@@ -81,18 +82,26 @@ namespace DVG.SkyPirates.Shared.Presenters
             {
                 for (int swapTo = 0; swapTo < length; swapTo++)
                 {
+                    var before1 = RotatePoint(points[order[swapFrom]], Maths.Radians(newRotation));
+                    var before2 = RotatePoint(points[oldOrder[swapFrom]], Maths.Radians(oldRotation));
+
+                    var before3 = RotatePoint(points[order[swapTo]], Maths.Radians(newRotation));
+                    var before4 = RotatePoint(points[oldOrder[swapTo]], Maths.Radians(oldRotation));
+
+                    var beforeDistance = float2.Distance(before1, before2) + float2.Distance(before3, before4);
+
                     (order[swapFrom], order[swapTo]) = (order[swapTo], order[swapFrom]);
-                    float totalDistance = 0;
 
-                    for (int j = 0; j < length; j++)
-                    {
-                        var from = RotatePoint(points[order[j]], Maths.Radians(newRotation));
-                        var to = RotatePoint(points[oldOrder[j]], Maths.Radians(oldRotation));
-                        totalDistance += float2.Distance(to, from);
-                    }
+                    var after1 = RotatePoint(points[order[swapFrom]], Maths.Radians(newRotation));
+                    var after2 = RotatePoint(points[oldOrder[swapFrom]], Maths.Radians(oldRotation));
 
-                    if (minDistance - totalDistance > MinSwapDistance)
-                        minDistance = totalDistance;
+                    var after3 = RotatePoint(points[order[swapTo]], Maths.Radians(newRotation));
+                    var after4 = RotatePoint(points[oldOrder[swapTo]], Maths.Radians(oldRotation));
+
+                    var afterDistance = float2.Distance(after1, after2) + float2.Distance(after3, after4);
+
+                    if (beforeDistance - afterDistance > MinSwapDistance)
+                        continue;
                     else
                         (order[swapFrom], order[swapTo]) = (order[swapTo], order[swapFrom]);
                 }
