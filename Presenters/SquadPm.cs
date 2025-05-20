@@ -47,7 +47,7 @@ namespace DVG.SkyPirates.Shared.Presenters
             _order[count - 1] = count - 1;
         }
 
-        public void Tick()
+        public void Tick(float deltaTime)
         {
             for (int i = 0; i < _units.Count; i++)
             {
@@ -55,7 +55,7 @@ namespace DVG.SkyPirates.Shared.Presenters
             }
 
             foreach (var item in _units)
-                item.Tick();
+                item.Tick(deltaTime);
         }
 
         public void Rotate(float rotation)
@@ -67,13 +67,10 @@ namespace DVG.SkyPirates.Shared.Presenters
             var newRotation = _quantizedRotation * 360 / 16;
             _order = GetOrder(_packedCircles.points, _order, _rotation, newRotation);
             _rotation = newRotation;
-            Console.WriteLine(string.Join(", ", _order));
         }
 
         public static int[] GetOrder(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
         {
-            // Rotate towards old, for better swap rotation
-            newRotation = Maths.RotateTowards(newRotation, oldRotation, 360f / 32);
             int length = points.Length;
             int[] order = new int[length];
             for (int i = 0; i < length; i++)

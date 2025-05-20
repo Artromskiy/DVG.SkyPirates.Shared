@@ -1,6 +1,4 @@
-﻿using DVG.SkyPirates.Shared.Commands.SquadCommands;
-using DVG.SkyPirates.Shared.Commands.SquadUnitCommands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Commands
@@ -12,15 +10,13 @@ namespace DVG.SkyPirates.Shared.Commands
 
         private static readonly Type[] _messages = new Type[]
         {
-            typeof(RegisterSquadCommand),
-            typeof(UnregisterSquadCommand),
-            typeof(MoveSquadCommand),
-            typeof(RotateSquadCommand),
-            typeof(FixateSquadCommand),
-
-            typeof(RegisterSquadUnitCommand),
-            typeof(UnregisterSquadUnitCommand),
-            typeof(ReorderSquadUnitCommand),
+            typeof(RegisterSquad),
+            typeof(UnregisterSquad),
+            typeof(MoveSquad),
+            typeof(RotateSquad),
+            typeof(FixateSquad),
+            typeof(RegisterSquadUnit),
+            typeof(UnregisterSquadUnit),
         };
 
         static CommandIds()
