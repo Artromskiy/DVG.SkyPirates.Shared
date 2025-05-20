@@ -9,6 +9,13 @@ namespace DVG.SkyPirates.Shared.Commands
         public readonly TimeSpan timeStamp;
         public readonly C data;
 
+        public Command(int callerId, TimeSpan timeStamp, C data)
+        {
+            this.callerId = callerId;
+            this.timeStamp = timeStamp;
+            this.data = data;
+        }
+
         public readonly int CommandId => CommandIds.GetId<C>();
         readonly int ICommand.CallerId => callerId;
         readonly TimeSpan ICommand.TimeStamp => timeStamp;
