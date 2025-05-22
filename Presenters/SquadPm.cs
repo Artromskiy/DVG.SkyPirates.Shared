@@ -50,9 +50,7 @@ namespace DVG.SkyPirates.Shared.Presenters
         public void Tick(float deltaTime)
         {
             for (int i = 0; i < _units.Count; i++)
-            {
                 _units[i].TargetPosition = Position + RotatePoint(_packedCircles.points[_order[i]] * 0.5f, Maths.Radians(_rotation)).x_y;
-            }
 
             foreach (var item in _units)
                 item.Tick(deltaTime);
@@ -66,46 +64,45 @@ namespace DVG.SkyPirates.Shared.Presenters
             _quantizedRotation = newQuantizedRotation;
             var newRotation = _quantizedRotation * 360 / 16;
             _order = GetOrder(_packedCircles.points, _order, _rotation, newRotation);
-            Console.WriteLine(string.Join(", ", _order));
+            //Console.WriteLine(string.Join(", ", _order));
             _rotation = newRotation;
         }
 
-        public static int[] GetOrder(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
+        private static int[] GetOrder(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
         {
             int length = points.Length;
             int[] order = new int[length];
             for (int i = 0; i < length; i++)
                 order[i] = i;
+            var newRad = Maths.Radians(newRotation);
+            var oldRad = Maths.Radians(oldRotation);
 
-            float minDistance = float.MaxValue;
-            for (int swapFrom = 0; swapFrom < length; swapFrom++)
+            for (int i = 0; i < length; i++)
             {
-                for (int swapTo = 0; swapTo < length; swapTo++)
+                for (int j = 0; j < length; j++)
                 {
-                    var before1 = RotatePoint(points[order[swapFrom]], Maths.Radians(newRotation));
-                    var before2 = RotatePoint(points[oldOrder[swapFrom]], Maths.Radians(oldRotation));
+                    int oi = order[i];
+                    int oj = order[j];
 
-                    var before3 = RotatePoint(points[order[swapTo]], Maths.Radians(newRotation));
-                    var before4 = RotatePoint(points[oldOrder[swapTo]], Maths.Radians(oldRotation));
+                    float2 lhs = RotatePoint(points[oi], newRad);
+                    float2 rhs = RotatePoint(points[oj], newRad);
 
-                    var beforeDistance = float2.Distance(before1, before2) + float2.Distance(before3, before4);
+                    float2 oldLhs = RotatePoint(points[oldOrder[i]], oldRad);
+                    float2 oldRhs = RotatePoint(points[oldOrder[j]], oldRad);
 
-                    (order[swapFrom], order[swapTo]) = (order[swapTo], order[swapFrom]);
+                    float beforeDist =
+                        float2.Distance(lhs, oldLhs) +
+                        float2.Distance(rhs, oldRhs);
 
-                    var after1 = RotatePoint(points[order[swapFrom]], Maths.Radians(newRotation));
-                    var after2 = RotatePoint(points[oldOrder[swapFrom]], Maths.Radians(oldRotation));
+                    float afterDist =
+                        float2.Distance(rhs, oldLhs) +
+                        float2.Distance(lhs, oldRhs);
 
-                    var after3 = RotatePoint(points[order[swapTo]], Maths.Radians(newRotation));
-                    var after4 = RotatePoint(points[oldOrder[swapTo]], Maths.Radians(oldRotation));
-
-                    var afterDistance = float2.Distance(after1, after2) + float2.Distance(after3, after4);
-
-                    if (beforeDistance - afterDistance > MinSwapDistance)
-                        continue;
-                    else
-                        (order[swapFrom], order[swapTo]) = (order[swapTo], order[swapFrom]);
+                    if (beforeDist - afterDist > MinSwapDistance)
+                        (order[i], order[j]) = (order[j], order[i]);
                 }
             }
+
             return order;
         }
 
