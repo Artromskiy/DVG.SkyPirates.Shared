@@ -14,9 +14,12 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly IInstanceIdsService _instanceIdsService;
         private readonly IPlayerLoopSystem _playerLoopSystem;
 
-        public SpawnCommandsReciever(ICommandRecieveService commandService)
+        public SpawnCommandsReciever(IPathFactory<PackedCirclesModel> packedCirclesFactory, ICommandRecieveService commandService, IInstanceIdsService instanceIdsService, IPlayerLoopSystem playerLoopSystem)
         {
+            _packedCirclesFactory = packedCirclesFactory;
             _commandService = commandService;
+            _instanceIdsService = instanceIdsService;
+            _playerLoopSystem = playerLoopSystem;
             _commandService.RegisterReciever<SpawnSquad>(SpawnSquad);
         }
 
