@@ -1,11 +1,16 @@
 ﻿using DVG.Core;
+using DVG.SkyPirates.Shared.ICommandRecievers;
 using DVG.SkyPirates.Shared.Models;
 using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Presenters
 {
-    internal class SquadPm : Presenter, ITickable
+    internal class SquadPm : Presenter,
+        ITickable,
+        IRotatable,
+        IPositionable,
+        IFixatable
     {
         private const float MinSwapDistance = 0.01f;
         public float3 Position;
@@ -56,7 +61,7 @@ namespace DVG.SkyPirates.Shared.Presenters
                 item.Tick(deltaTime);
         }
 
-        public void Rotate(float rotation)
+        public void SetRotation(float rotation)
         {
             var newQuantizedRotation = (int)Maths.Round(rotation * 16 / 360);
             if (_quantizedRotation == newQuantizedRotation)
@@ -64,8 +69,9 @@ namespace DVG.SkyPirates.Shared.Presenters
             _quantizedRotation = newQuantizedRotation;
             var newRotation = _quantizedRotation * 360 / 16;
             _order = GetOrder(_packedCircles.points, _order, _rotation, newRotation);
-            //Console.WriteLine(string.Join(", ", _order));
             _rotation = newRotation;
+
+            Console.WriteLine(string.Join(", ", _order));
         }
 
         private static int[] GetOrder(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
@@ -114,5 +120,8 @@ namespace DVG.SkyPirates.Shared.Presenters
             float y = -vec.x * sn + vec.y * cs;
             return new float2(x, y);
         }
+
+        public void SetPosition(float3 position) => Position = position;
+        public void SetFixation(bool fixation) { }
     }
 }

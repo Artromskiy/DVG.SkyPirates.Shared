@@ -3,14 +3,16 @@ using System;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
-    public readonly struct Command<C> : ICommand, IComparable<Command<C>> where C : unmanaged
+    public struct Command<C> : ICommand, IComparable<Command<C>> where C : unmanaged
     {
+        public int InstanceId { get; set; }
         public readonly int callerId;
         public readonly TimeSpan timeStamp;
         public readonly C data;
 
-        public Command(int callerId, TimeSpan timeStamp, C data)
+        public Command(int instanceId, int callerId, TimeSpan timeStamp, C data)
         {
+            InstanceId = instanceId;
             this.callerId = callerId;
             this.timeStamp = timeStamp;
             this.data = data;

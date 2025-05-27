@@ -1,10 +1,10 @@
 ﻿namespace DVG.SkyPirates.Shared.Commands
 {
-    public readonly partial struct FixateSquad
+    public readonly partial struct Fixation
     {
         public readonly bool fixation;
 
-        public FixateSquad(bool fixation)
+        public Fixation(bool fixation)
         {
             this.fixation = fixation;
         }

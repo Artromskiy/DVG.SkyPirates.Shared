@@ -1,15 +1,16 @@
-﻿using DVG.SkyPirates.Shared.Ids;
+﻿using DVG.Core;
+using DVG.SkyPirates.Shared.Ids;
 using System;
 
-namespace DVG.SkyPirates.Shared.Commands
+namespace DVG.SkyPirates.Shared.Commands.Lifecycle
 {
-    public readonly partial struct RegisterSquadUnit
+    public partial struct SpawnUnit
     {
         private readonly int _unitId;
         public readonly int level;
         public readonly int merge;
 
-        public RegisterSquadUnit(UnitId unitId, int level, int merge)
+        public SpawnUnit(int instanceId, UnitId unitId, int level, int merge)
         {
             _unitId = Array.IndexOf(UnitId.Constants.AllIds, unitId);
             this.level = level;
