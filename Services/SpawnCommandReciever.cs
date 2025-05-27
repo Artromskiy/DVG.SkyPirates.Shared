@@ -7,7 +7,7 @@ using DVG.SkyPirates.Shared.Presenters;
 
 namespace DVG.SkyPirates.Shared.Services
 {
-    internal class SpawnCommandsReciever
+    public class SpawnCommandsReciever
     {
         private readonly IPathFactory<PackedCirclesModel> _packedCirclesFactory;
         private readonly ICommandRecieveService _commandService;

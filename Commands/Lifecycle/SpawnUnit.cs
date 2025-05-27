@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Commands.Lifecycle
         public readonly int level;
         public readonly int merge;
 
-        public SpawnUnit(int instanceId, UnitId unitId, int level, int merge)
+        public SpawnUnit(UnitId unitId, int level, int merge)
         {
             _unitId = Array.IndexOf(UnitId.Constants.AllIds, unitId);
             this.level = level;
