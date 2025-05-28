@@ -1,5 +1,5 @@
 ﻿using DVG.Core;
-using DVG.SkyPirates.Shared.Ids;
+using DVG.SkyPirates.Shared.Commands.Lifecycle;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.Models;
 
@@ -14,9 +14,11 @@ namespace DVG.SkyPirates.Shared.Factories
             _pathFactory = pathFactory;
         }
 
-        public UnitModel Create((UnitId unitId, int level, int merge) parameters)
+        public UnitModel Create(SpawnUnit parameters)
         {
-            return _pathFactory.Create($"Configs/Units/{parameters.unitId.value}");
+            return _pathFactory.Create($"Configs/Units/{parameters.UnitId.value}");
         }
+
+        public void Dispose(UnitModel instance) => _pathFactory.Dispose(instance);
     }
 }

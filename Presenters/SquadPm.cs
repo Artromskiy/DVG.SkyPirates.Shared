@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Presenters
 {
-    internal class SquadPm : Presenter,
+    public class SquadPm : Presenter,
         ITickable,
         IRotatable,
         IPositionable,

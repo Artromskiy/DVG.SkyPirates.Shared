@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Services
             _commandService.RegisterReciever<Fixation>(TryInvokeCommand);
         }
 
-        public void TryInvokeCommand<T>(Command<T> cmd, int callerId) where T: unmanaged
+        public void TryInvokeCommand<T>(Command<T> cmd) where T: unmanaged
         {
             if (_instanceIdsService.TryGetInstance<ICommandReciever<T>>(cmd.InstanceId, out var instance))
                 instance.Recieve(cmd.data);

@@ -5,7 +5,7 @@ namespace DVG.SkyPirates.Shared.IServices
 {
     public interface ICommandRecieveService
     {
-        public void RegisterReciever<T>(Action<Command<T>, int> reciever) where T : unmanaged;
-        public void UnregisterReciever<T>(Action<Command<T>, int> reciever) where T : unmanaged;
+        public void RegisterReciever<T>(Action<Command<T>> reciever) where T : unmanaged;
+        public void UnregisterReciever<T>(Action<Command<T>> reciever) where T : unmanaged;
     }
 }

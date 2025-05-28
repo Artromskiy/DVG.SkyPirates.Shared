@@ -39,7 +39,7 @@ namespace DVG.SkyPirates.Shared.Services
                 callback.Invoke(e.Message, e.FromConnection.Id);
         }
 
-        public void RegisterReciever<T>(Action<Command<T>, int> reciever) where T : unmanaged
+        public void RegisterReciever<T>(Action<Command<T>> reciever) where T : unmanaged
         {
             int id = CommandIds.GetId<T>();
             ActionContainer<T> genericContainer;
@@ -51,7 +51,7 @@ namespace DVG.SkyPirates.Shared.Services
             genericContainer.Recievers += reciever;
         }
 
-        public void UnregisterReciever<T>(Action<Command<T>, int> reciever) where T : unmanaged
+        public void UnregisterReciever<T>(Action<Command<T>> reciever) where T : unmanaged
         {
             int id = CommandIds.GetId<T>();
             if (!_registeredRecievers.TryGetValue(id, out var container))
@@ -65,7 +65,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         private class ActionContainer<T> : IActionContainer where T : unmanaged
         {
-            public event Action<Command<T>, int>? Recievers;
+            public event Action<Command<T>>? Recievers;
             public bool HasTargets => Recievers?.GetInvocationList().Length > 0;
             private byte[] _tempBytes = Array.Empty<byte>();
             private readonly ICommandSerializer _commandSerializer;
@@ -78,7 +78,7 @@ namespace DVG.SkyPirates.Shared.Services
             public void Invoke(Message m, int callerId)
             {
                 var data = GetData(m);
-                Recievers?.Invoke(data, callerId);
+                Recievers?.Invoke(data);
             }
 
             private Command<T> GetData(Message message)

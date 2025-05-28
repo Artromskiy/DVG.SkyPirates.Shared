@@ -2,48 +2,58 @@
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Commands.Lifecycle;
 using DVG.SkyPirates.Shared.IServices;
-using DVG.SkyPirates.Shared.Models;
 using DVG.SkyPirates.Shared.Presenters;
 
 namespace DVG.SkyPirates.Shared.Services
 {
     public class SpawnCommandsReciever
     {
-        private readonly IPathFactory<PackedCirclesModel> _packedCirclesFactory;
+        private readonly IFactory<SquadPm, Command<SpawnSquad>> _squadFactory;
+        private readonly IFactory<UnitPm, Command<SpawnUnit>> _unitFactory;
         private readonly ICommandRecieveService _commandService;
         private readonly IInstanceIdsService _instanceIdsService;
-        private readonly IPlayerLoopSystem _playerLoopSystem;
 
-        public SpawnCommandsReciever(IPathFactory<PackedCirclesModel> packedCirclesFactory, ICommandRecieveService commandService, IInstanceIdsService instanceIdsService, IPlayerLoopSystem playerLoopSystem)
+        public SpawnCommandsReciever(
+            IFactory<SquadPm, Command<SpawnSquad>> squadFactory,
+            IFactory<UnitPm, Command<SpawnUnit>> unitFactory,
+            ICommandRecieveService commandService,
+            IInstanceIdsService instanceIdsService)
         {
-            _packedCirclesFactory = packedCirclesFactory;
+            _squadFactory = squadFactory;
+            _unitFactory = unitFactory;
+
             _commandService = commandService;
             _instanceIdsService = instanceIdsService;
-            _playerLoopSystem = playerLoopSystem;
+
             _commandService.RegisterReciever<SpawnSquad>(SpawnSquad);
+            _commandService.RegisterReciever<SpawnUnit>(SpawnUnit);
+
+            _commandService.RegisterReciever<DespawnSquad>(DespawnSquad);
+            _commandService.RegisterReciever<DespawnUnit>(DespawnUnit);
         }
 
-        public void SpawnSquad(Command<SpawnSquad> cmd, int callerId)
+        public void SpawnSquad(Command<SpawnSquad> cmd)
         {
-            var squad = new SquadPm(_packedCirclesFactory);
+            var squad = _squadFactory.Create(cmd);
             _instanceIdsService.AddInstance(cmd.InstanceId, squad);
-            _playerLoopSystem.Add(squad);
         }
 
-        public void DespawnSquad(Command<DespawnSquad> cmd, int callerId)
+        public void DespawnSquad(Command<DespawnSquad> cmd)
         {
-            if (_instanceIdsService.RemoveInstance<IPlayerLoopItem>(cmd.InstanceId, out var instance))
-                _playerLoopSystem.Remove(instance);
+            if (_instanceIdsService.RemoveInstance<SquadPm>(cmd.InstanceId, out var instance))
+                _squadFactory.Dispose(instance);
         }
 
-        public void SpawnUnit(Command<SpawnUnit> cmd, int callerId)
+        public void SpawnUnit(Command<SpawnUnit> cmd)
         {
-
+            var unit = _unitFactory.Create(cmd);
+            _instanceIdsService.AddInstance(cmd.InstanceId, unit);
         }
 
-        public void DespawnUnit(Command<DespawnUnit> cmd, int callerId)
+        public void DespawnUnit(Command<DespawnUnit> cmd)
         {
-
+            if (_instanceIdsService.RemoveInstance<UnitPm>(cmd.InstanceId, out var instance))
+                _unitFactory.Dispose(instance);
         }
     }
 }
