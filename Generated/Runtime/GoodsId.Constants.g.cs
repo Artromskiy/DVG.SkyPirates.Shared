@@ -14,19 +14,15 @@ using System;
 
 namespace DVG.SkyPirates.Shared.Ids
 {
-    partial struct CheatingId
+    partial struct GoodsId
     {
         public static partial class Constants
         {
-            public static readonly CheatingId NoOwnershipCommand = new CheatingId("NoOwnershipCommand");
-            public static readonly CheatingId FutureCommand = new CheatingId("FutureCommand");
 
-            private static readonly CheatingId[] _allIds = new CheatingId[]
+            private static readonly GoodsId[] _allIds = new GoodsId[]
             {
-                new CheatingId("NoOwnershipCommand"),
-                new CheatingId("FutureCommand"),
             };
-            public static ReadOnlySpan<CheatingId> AllIds => _allIds;
+            public static ReadOnlySpan<GoodsId> AllIds => _allIds;
         }
     }
 }

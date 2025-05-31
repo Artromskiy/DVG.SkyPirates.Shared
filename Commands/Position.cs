@@ -1,10 +1,9 @@
-﻿using DVG.Core;
-using DVG.Core.Commands.Attributes;
+﻿using DVG.Core.Commands.Attributes;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
     [Command]
-    public readonly struct Position: ICommandData
+    public readonly partial struct Position
     {
         public readonly float3 position;
 
@@ -12,7 +11,5 @@ namespace DVG.SkyPirates.Shared.Commands
         {
             this.position = position;
         }
-
-        public int CommandId => throw new System.NotImplementedException();
     }
 }
