@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using Riptide;
@@ -39,7 +40,8 @@ namespace DVG.SkyPirates.Shared.Services
                 callback.Invoke(e.Message, e.FromConnection.Id);
         }
 
-        public void RegisterReciever<T>(Action<Command<T>> reciever) where T : unmanaged
+        public void RegisterReciever<T>(Action<Command<T>> reciever)
+            where T : unmanaged, ICommandData
         {
             int id = CommandIds.GetId<T>();
             ActionContainer<T> genericContainer;
@@ -51,7 +53,8 @@ namespace DVG.SkyPirates.Shared.Services
             genericContainer.Recievers += reciever;
         }
 
-        public void UnregisterReciever<T>(Action<Command<T>> reciever) where T : unmanaged
+        public void UnregisterReciever<T>(Action<Command<T>> reciever) 
+            where T : unmanaged, ICommandData
         {
             int id = CommandIds.GetId<T>();
             if (!_registeredRecievers.TryGetValue(id, out var container))
@@ -63,7 +66,8 @@ namespace DVG.SkyPirates.Shared.Services
                 _registeredRecievers.Remove(id);
         }
 
-        private class ActionContainer<T> : IActionContainer where T : unmanaged
+        private class ActionContainer<T> : IActionContainer
+            where T : unmanaged, ICommandData
         {
             public event Action<Command<T>>? Recievers;
             public bool HasTargets => Recievers?.GetInvocationList().Length > 0;
@@ -77,11 +81,11 @@ namespace DVG.SkyPirates.Shared.Services
 
             public void Invoke(Message m, int callerId)
             {
-                var data = GetData(m);
-                Recievers?.Invoke(data);
+                var cmd = GetCommand(m);
+                Recievers?.Invoke(cmd);
             }
 
-            private Command<T> GetData(Message message)
+            private Command<T> GetCommand(Message message)
             {
                 var length = (int)message.GetVarULong();
                 if (_tempBytes.Length < length)

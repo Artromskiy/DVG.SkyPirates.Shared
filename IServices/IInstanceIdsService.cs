@@ -6,5 +6,7 @@
         void RemoveInstance(int instanceId);
         bool RemoveInstance<T>(int instanceId, out T instance) where T : class;
         bool TryGetInstance<T>(int instanceId, out T instance) where T : class;
+        bool HasInstance(int instanceId);
+        bool HasInstance<T>(int instanceId);
     }
 }

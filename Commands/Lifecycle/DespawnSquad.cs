@@ -1,4 +1,11 @@
-﻿namespace DVG.SkyPirates.Shared.Commands.Lifecycle
+﻿using DVG.Core;
+using DVG.Core.Commands.Attributes;
+
+namespace DVG.SkyPirates.Shared.Commands.Lifecycle
 {
-    public readonly struct DespawnSquad { }
+    [Command]
+    public readonly struct DespawnSquad : ICommandData
+    {
+        public int CommandId => throw new System.NotImplementedException();
+    }
 }

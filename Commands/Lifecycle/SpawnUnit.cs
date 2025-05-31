@@ -1,10 +1,12 @@
 ﻿using DVG.Core;
+using DVG.Core.Commands.Attributes;
 using DVG.SkyPirates.Shared.Ids;
 using System;
 
 namespace DVG.SkyPirates.Shared.Commands.Lifecycle
 {
-    public partial struct SpawnUnit
+    [Command]
+    public readonly struct SpawnUnit: ICommandData
     {
         private readonly int _unitId;
         public readonly int level;
@@ -19,5 +21,6 @@ namespace DVG.SkyPirates.Shared.Commands.Lifecycle
 
         public readonly UnitId UnitId => UnitId.Constants.AllIds[_unitId];
 
+        public int CommandId => throw new NotImplementedException();
     }
 }

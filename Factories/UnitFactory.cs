@@ -1,7 +1,6 @@
 ﻿using DVG.Core;
 using DVG.SkyPirates.Shared.Commands.Lifecycle;
 using DVG.SkyPirates.Shared.IFactories;
-using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Presenters;
 
 namespace DVG.SkyPirates.Shared.Factories

@@ -1,4 +1,5 @@
-﻿using DVG.SkyPirates.Shared.Commands;
+﻿using DVG.Core;
+using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IServices;
 
 namespace DVG.SkyPirates.Shared.Services
@@ -18,10 +19,11 @@ namespace DVG.SkyPirates.Shared.Services
             _commandService.RegisterReciever<Fixation>(TryInvokeCommand);
         }
 
-        public void TryInvokeCommand<T>(Command<T> cmd) where T: unmanaged
+        public void TryInvokeCommand<T>(Command<T> cmd)
+            where T : unmanaged, ICommandData
         {
-            if (_instanceIdsService.TryGetInstance<ICommandReciever<T>>(cmd.InstanceId, out var instance))
-                instance.Recieve(cmd.data);
+            if (_instanceIdsService.TryGetInstance<ICommandReciever<T>>(cmd.EntityId, out var instance))
+                instance.Recieve(cmd.Data);
         }
     }
 }

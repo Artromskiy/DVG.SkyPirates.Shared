@@ -11,6 +11,16 @@ namespace DVG.SkyPirates.Shared.Services
             _instances.Add(instanceId, instance);
         }
 
+        public bool HasInstance(int instanceId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool HasInstance<T>(int instanceId)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void RemoveInstance(int instanceId)
         {
             _instances.Remove(instanceId);
