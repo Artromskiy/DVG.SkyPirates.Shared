@@ -4,26 +4,33 @@ using DVG.SkyPirates.Shared.Models;
 
 namespace DVG.SkyPirates.Shared.Presenters
 {
-    public class UnitPm : Presenter<IUnitView, UnitModel>, ITickable
+    public class UnitPm :
+        Presenter<IUnitView, UnitModel>,
+        ITickable,
+        IMementoable<UnitMemento>
     {
         public float3 TargetPosition { get; set; }
         public float TargetRotation { get; set; }
 
-        public UnitPm target;
+        public UnitMemento GetMemento()
+        {
+            throw new System.NotImplementedException();
+        }
 
-        private float _freeDeltaTime;
+        public void SetMemento(UnitMemento value)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public UnitPm target;
 
         public UnitPm(IUnitView view, UnitModel model) : base(view, model) { }
 
         public void Tick(float deltaTime)
         {
-            deltaTime += _freeDeltaTime;
-
             deltaTime = Move(deltaTime);
             deltaTime = Attack(deltaTime);
             deltaTime = Reload(deltaTime);
-
-            _freeDeltaTime = deltaTime;
         }
 
         private float Move(float deltaTime)

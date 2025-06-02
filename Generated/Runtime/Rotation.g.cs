@@ -11,11 +11,12 @@
 //------------------------------------------------------------------------------
 
 using DVG.Core;
+using DVG.Core.Commands;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
     partial struct Rotation : ICommandData
     {
-        public int CommandId => CommandIds.GetId<Fixation>();
+        public int CommandId => CommandIds.GetId<Rotation>();
     }
 }

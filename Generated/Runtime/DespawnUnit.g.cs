@@ -11,11 +11,12 @@
 //------------------------------------------------------------------------------
 
 using DVG.Core;
+using DVG.Core.Commands;
 
 namespace DVG.SkyPirates.Shared.Commands.Lifecycle
 {
     partial struct DespawnUnit : ICommandData
     {
-        public int CommandId => CommandIds.GetId<Fixation>();
+        public int CommandId => CommandIds.GetId<DespawnUnit>();
     }
 }

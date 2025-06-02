@@ -1,5 +1,4 @@
-﻿using DVG.Core;
-using DVG.Core.Commands.Attributes;
+﻿using DVG.Core.Commands.Attributes;
 
 namespace DVG.SkyPirates.Shared.Commands
 {

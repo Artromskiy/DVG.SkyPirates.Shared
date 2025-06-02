@@ -1,11 +1,11 @@
-﻿using DVG.SkyPirates.Shared.Commands;
-using DVG.SkyPirates.Shared.IServices;
+﻿using DVG.Core;
+using DVG.SkyPirates.Shared.Commands;
 
 namespace DVG.SkyPirates.Shared.ICommandRecievers
 {
-    public interface IPositionable : ICommandReciever<Position>
+    public interface IPositionable : ICommandable<Position>
     {
         void SetPosition(float3 position);
-        void ICommandReciever<Position>.Recieve(Position cmd) => SetPosition(cmd.position);
+        void ICommandable<Position>.Recieve(Position cmd) => SetPosition(cmd.position);
     }
 }

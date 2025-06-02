@@ -6,10 +6,10 @@ namespace DVG.SkyPirates.Shared.Services
 {
     public class InstanceCommandReciever
     {
-        private readonly IInstanceIdsService _instanceIdsService;
+        private readonly IEntitiesService _instanceIdsService;
         private readonly ICommandRecieveService _commandService;
 
-        public InstanceCommandReciever(ICommandRecieveService commandService, IInstanceIdsService instanceIdsService)
+        public InstanceCommandReciever(ICommandRecieveService commandService, IEntitiesService instanceIdsService)
         {
             _commandService = commandService;
             _instanceIdsService = instanceIdsService;
@@ -22,7 +22,7 @@ namespace DVG.SkyPirates.Shared.Services
         public void TryInvokeCommand<T>(Command<T> cmd)
             where T : unmanaged, ICommandData
         {
-            if (_instanceIdsService.TryGetInstance<ICommandReciever<T>>(cmd.EntityId, out var instance))
+            if (_instanceIdsService.TryGetEntity<ICommandable<T>>(cmd.EntityId, out var instance))
                 instance.Recieve(cmd.Data);
         }
     }

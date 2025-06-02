@@ -11,6 +11,7 @@
 //------------------------------------------------------------------------------
 
 using DVG.Core;
+using DVG.Core.Commands;
 
 namespace DVG.SkyPirates.Shared.Commands
 {

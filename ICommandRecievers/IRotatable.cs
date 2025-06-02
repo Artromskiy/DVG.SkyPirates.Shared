@@ -1,11 +1,11 @@
-﻿using DVG.SkyPirates.Shared.Commands;
-using DVG.SkyPirates.Shared.IServices;
+﻿using DVG.Core;
+using DVG.SkyPirates.Shared.Commands;
 
 namespace DVG.SkyPirates.Shared.ICommandRecievers
 {
-    public interface IRotatable : ICommandReciever<Rotation>
+    public interface IRotatable : ICommandable<Rotation>
     {
         void SetRotation(float rotation);
-        void ICommandReciever<Rotation>.Recieve(Rotation cmd) => SetRotation(cmd.rotation);
+        void ICommandable<Rotation>.Recieve(Rotation cmd) => SetRotation(cmd.rotation);
     }
 }

@@ -10,11 +10,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DVG.SkyPirates.Shared.Commands.Lifecycle;
 using System;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Commands
+using DVG.SkyPirates.Shared.Commands.Lifecycle;
+using DVG.SkyPirates.Shared.Commands;
+
+namespace DVG.Core.Commands
 {
     public static class CommandIds
     {
