@@ -1,5 +1,6 @@
 ﻿using DVG.Core;
-using DVG.SkyPirates.Shared.ICommandRecievers;
+using DVG.SkyPirates.Shared.ICommandables;
+using DVG.SkyPirates.Shared.Mementos;
 using DVG.SkyPirates.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -8,24 +9,25 @@ namespace DVG.SkyPirates.Shared.Presenters
 {
     public class SquadPm : Presenter,
         ITickable,
-        IRotatable,
+        IRotationable,
         IPositionable,
-        IFixatable
+        IFixationable,
+        IMementoable<SquadMemento>
     {
         private const float MinSwapDistance = 0.01f;
-        public float3 Position;
-        public bool Fixation;
 
+        private float3 Position;
+        private float Rotation;
+        public bool Fixation;
         private readonly List<UnitPm> _units = new List<UnitPm>();
-        private PackedCirclesModel _packedCircles;
+        private int[] _order = Array.Empty<int>();
+
 
         public int UnitsCount => _units.Count;
 
+        private PackedCirclesModel _packedCircles;
         private readonly IPathFactory<PackedCirclesModel> _circlesModelFactory;
-        private int[] _order = Array.Empty<int>();
 
-        private int _quantizedRotation = 0;
-        private float _rotation = 0;
 
         public SquadPm(IPathFactory<PackedCirclesModel> circlesModelFactory)
         {
@@ -55,7 +57,7 @@ namespace DVG.SkyPirates.Shared.Presenters
         public void Tick(float deltaTime)
         {
             for (int i = 0; i < _units.Count; i++)
-                _units[i].TargetPosition = Position + RotatePoint(_packedCircles.points[_order[i]] * 0.5f, Maths.Radians(_rotation)).x_y;
+                _units[i].TargetPosition = Position + RotatePoint(_packedCircles.points[_order[i]] * 0.5f, Maths.Radians(Rotation)).x_y;
 
             foreach (var item in _units)
                 item.Tick(deltaTime);
@@ -64,14 +66,37 @@ namespace DVG.SkyPirates.Shared.Presenters
         public void SetRotation(float rotation)
         {
             var newQuantizedRotation = (int)Maths.Round(rotation * 16 / 360);
-            if (_quantizedRotation == newQuantizedRotation)
+            var oldQuantizedRotation = (int)Maths.Round(Rotation * 16 / 360);
+            if (oldQuantizedRotation == newQuantizedRotation)
                 return;
-            _quantizedRotation = newQuantizedRotation;
-            var newRotation = _quantizedRotation * 360 / 16;
-            _order = GetOrder(_packedCircles.points, _order, _rotation, newRotation);
-            _rotation = newRotation;
+            var newRotation = newQuantizedRotation * 360 / 16;
+            _order = GetOrder(_packedCircles.points, _order, Rotation, newRotation);
+            Rotation = newRotation;
 
             Console.WriteLine(string.Join(", ", _order));
+        }
+
+        public void SetPosition(float3 position) => Position = position;
+        public void SetFixation(bool fixation) { }
+
+        public SquadMemento GetMemento()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetMemento(SquadMemento memento)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public static float2 RotatePoint(float2 vec, float radians)
+        {
+            var cs = Maths.Cos(radians);
+            var sn = Maths.Sin(radians);
+            float x = vec.x * cs + vec.y * sn;
+            float y = -vec.x * sn + vec.y * cs;
+            return new float2(x, y);
         }
 
         private static int[] GetOrder(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
@@ -111,17 +136,5 @@ namespace DVG.SkyPirates.Shared.Presenters
 
             return order;
         }
-
-        public static float2 RotatePoint(float2 vec, float radians)
-        {
-            var cs = Maths.Cos(radians);
-            var sn = Maths.Sin(radians);
-            float x = vec.x * cs + vec.y * sn;
-            float y = -vec.x * sn + vec.y * cs;
-            return new float2(x, y);
-        }
-
-        public void SetPosition(float3 position) => Position = position;
-        public void SetFixation(bool fixation) { }
     }
 }

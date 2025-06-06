@@ -8,7 +8,7 @@ namespace DVG.SkyPirates.Shared.Services
     public class CommandSerializer : ICommandSerializer
     {
         public ReadOnlySpan<byte> Serialize<T>(ref Command<T> data)
-            where T : unmanaged, ICommandData
+            where T : ICommandData
         {
             var span = MemoryMarshal.CreateReadOnlySpan(ref data, 1);
             ReadOnlySpan<byte> spanBytes = MemoryMarshal.AsBytes(span);
@@ -16,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Services
         }
 
         public Command<T> Deserialize<T>(ReadOnlySpan<byte> data)
-            where T : unmanaged, ICommandData
+            where T : ICommandData
         {
             return MemoryMarshal.Read<Command<T>>(data);
         }

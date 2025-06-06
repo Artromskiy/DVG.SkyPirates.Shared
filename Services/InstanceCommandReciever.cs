@@ -20,10 +20,10 @@ namespace DVG.SkyPirates.Shared.Services
         }
 
         public void TryInvokeCommand<T>(Command<T> cmd)
-            where T : unmanaged, ICommandData
+            where T : ICommandData
         {
             if (_instanceIdsService.TryGetEntity<ICommandable<T>>(cmd.EntityId, out var instance))
-                instance.Recieve(cmd.Data);
+                instance.Execute(cmd.Data);
         }
     }
 }

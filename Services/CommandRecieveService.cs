@@ -42,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Services
         }
 
         public void RegisterReciever<T>(Action<Command<T>> reciever)
-            where T : unmanaged, ICommandData
+            where T : ICommandData
         {
             int id = CommandIds.GetId<T>();
             ActionContainer<T> genericContainer;
@@ -55,7 +55,7 @@ namespace DVG.SkyPirates.Shared.Services
         }
 
         public void UnregisterReciever<T>(Action<Command<T>> reciever) 
-            where T : unmanaged, ICommandData
+            where T : ICommandData
         {
             int id = CommandIds.GetId<T>();
             if (!_registeredRecievers.TryGetValue(id, out var container))
@@ -68,7 +68,7 @@ namespace DVG.SkyPirates.Shared.Services
         }
 
         private class ActionContainer<T> : IActionContainer
-            where T : unmanaged, ICommandData
+            where T : ICommandData
         {
             public event Action<Command<T>>? Recievers;
             public bool HasTargets => Recievers?.GetInvocationList().Length > 0;
