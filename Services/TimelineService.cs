@@ -2,7 +2,6 @@
 using DVG.Core.Commands;
 using DVG.Core.Mementos;
 using DVG.SkyPirates.Shared.IServices;
-using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services
@@ -15,16 +14,20 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly List<GenericCollection> _mementos = new List<GenericCollection>();
         private readonly HashSet<int> _entityIds = new HashSet<int>();
 
+        private readonly ICommandRecieveService _commandRecieveService;
         private readonly IEntitiesService _entitiesService;
         private readonly IPlayerLoopSystem _playerLoopSystem;
 
         private int oldestCommandTick;
 
-        public TimelineService(IEntitiesService entitiesService, IPlayerLoopSystem playerLoopSystem)
+        public TimelineService(IEntitiesService entitiesService, IPlayerLoopSystem playerLoopSystem, ICommandRecieveService commandRecieveService)
         {
             _entitiesService = entitiesService;
             _playerLoopSystem = playerLoopSystem;
+            _commandRecieveService = commandRecieveService;
+            CommandIds.ForEachData(new RegisterRecieverAction(this));
         }
+
 
         public void AddCommand<T>(Command<T> command)
             where T : ICommandData
@@ -35,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void RemoveCommand(int clientId, int commandId)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void Tick()
@@ -55,6 +58,12 @@ namespace DVG.SkyPirates.Shared.Services
                 
             CurrentTick++;
             oldestCommandTick = CurrentTick;
+        }
+
+        private void RegisterReciever<T>()
+            where T : ICommandData
+        {
+            _commandRecieveService.RegisterReciever<T>(AddCommand);
         }
 
         private void ApplyMementos<T>(GenericCollection mementos)
@@ -89,55 +98,69 @@ namespace DVG.SkyPirates.Shared.Services
                 entity.Execute(item.Data);
             }
         }
+        private readonly struct RegisterRecieverAction: IGenericAction<ICommandData>
+        {
+            private readonly TimelineService _service;
+
+            public RegisterRecieverAction(TimelineService service)
+            {
+                _service = service;
+            }
+
+            public void Invoke<T>() where T : ICommandData
+            {
+                _service.RegisterReciever<T>();
+            }
+        }
 
         private readonly struct ApplyMementosAction : IGenericAction<IMementoData>
         {
-            private readonly TimelineService service;
-            private readonly GenericCollection mementos;
+            private readonly TimelineService _service;
+            private readonly GenericCollection _mementos;
 
             public ApplyMementosAction(TimelineService service, GenericCollection mementos)
             {
-                this.service = service;
-                this.mementos = mementos;
+                _service = service;
+                _mementos = mementos;
             }
 
             public void Invoke<T>() where T : IMementoData
             {
-                service.ApplyMementos<T>(mementos);
+                _service.ApplyMementos<T>(_mementos);
             }
         }
 
         private readonly struct SaveMementosAction : IGenericAction<IMementoData>
         {
-            private readonly TimelineService service;
-            private readonly GenericCollection mementos;
+            private readonly TimelineService _service;
+            private readonly GenericCollection _mementos;
 
             public SaveMementosAction(TimelineService service, GenericCollection mementos)
             {
-                this.service = service;
-                this.mementos = mementos;
+                _service = service;
+                _mementos = mementos;
             }
 
             public void Invoke<T>() where T : IMementoData
             {
-                service.SaveMementos<T>(mementos);
+                _service.SaveMementos<T>(_mementos);
             }
         }
 
         private readonly struct ApplyCommandAction : IGenericAction<ICommandData>
         {
-            private readonly TimelineService service;
-            private readonly GenericCollection commands;
+            private readonly TimelineService _service;
+            private readonly GenericCollection _commands;
 
             public ApplyCommandAction(TimelineService service, GenericCollection commands)
             {
-                this.service = service;
-                this.commands = commands;
+                _service = service;
+                _commands = commands;
             }
 
             public readonly void Invoke<T>() where T : ICommandData
             {
-                service.ApplyCommand<T>(commands);
+                _service.ApplyCommand<T>(_commands);
             }
         }
 
