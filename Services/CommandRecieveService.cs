@@ -1,7 +1,6 @@
 ﻿#nullable enable
 using DVG.Core;
 using DVG.Core.Commands;
-using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using Riptide;
 using System;
@@ -11,20 +10,10 @@ namespace DVG.SkyPirates.Shared.Services
 {
     public class CommandRecieveService : ICommandRecieveService
     {
-        private readonly Riptide.Server? _server;
         private readonly Riptide.Client? _client;
         private readonly ICommandSerializer _commandSerializer;
 
         private readonly Dictionary<int, IActionContainer> _registeredRecievers;
-
-        public CommandRecieveService(Riptide.Server server, ICommandSerializer commandSerializer)
-        {
-            _commandSerializer = commandSerializer;
-            _server = server;
-
-            _server.MessageReceived += OnMessageRecieved;
-            _registeredRecievers = new Dictionary<int, IActionContainer>();
-        }
 
         public CommandRecieveService(Riptide.Client client, ICommandSerializer commandSerializer)
         {

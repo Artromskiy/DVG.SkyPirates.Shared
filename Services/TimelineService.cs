@@ -12,6 +12,8 @@ namespace DVG.SkyPirates.Shared.Services
 
         private readonly List<GenericCollection> _commands = new List<GenericCollection>();
         private readonly List<GenericCollection> _mementos = new List<GenericCollection>();
+        private readonly List<float> _ticks = new List<float>();
+
         private readonly HashSet<int> _entityIds = new HashSet<int>();
 
         private readonly ICommandRecieveService _commandRecieveService;
@@ -41,9 +43,11 @@ namespace DVG.SkyPirates.Shared.Services
             //throw new NotImplementedException();
         }
 
-        public void Tick()
+        public void Tick(float deltaTime)
         {
             var stateToApply = _mementos[oldestCommandTick - 1];
+            _mementos.Add(new GenericCollection());
+            _ticks.Add(deltaTime);
 
             _entityIds.Clear();
             MementoIds.ForEachData(new ApplyMementosAction(this, stateToApply));
@@ -52,10 +56,13 @@ namespace DVG.SkyPirates.Shared.Services
             for (int i = oldestCommandTick; i < CurrentTick; i++)
             {
                 CommandIds.ForEachData(new ApplyCommandAction(this, _commands[i]));
-                _playerLoopSystem.Tick(1f / 10);
+                var tickables = _entitiesService.GetEntities<ITickable>();
+
+                foreach (var entity in tickables)
+                    entity.Tick(_ticks[i]);
+
                 MementoIds.ForEachData(new SaveMementosAction(this, _mementos[i]));
             }
-                
             CurrentTick++;
             oldestCommandTick = CurrentTick;
         }
