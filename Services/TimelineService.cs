@@ -18,15 +18,15 @@ namespace DVG.SkyPirates.Shared.Services
 
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly IEntitiesService _entitiesService;
-        private readonly IPlayerLoopSystem _playerLoopSystem;
 
         private int oldestCommandTick;
 
-        public TimelineService(IEntitiesService entitiesService, IPlayerLoopSystem playerLoopSystem, ICommandRecieveService commandRecieveService)
+        public TimelineService(IEntitiesService entitiesService, ICommandRecieveService commandRecieveService)
         {
             _entitiesService = entitiesService;
-            _playerLoopSystem = playerLoopSystem;
             _commandRecieveService = commandRecieveService;
+            _mementos.Add(new GenericCollection());
+            _commands.Add(new GenericCollection());
             CommandIds.ForEachData(new RegisterRecieverAction(this));
         }
 
@@ -45,9 +45,10 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick(float deltaTime)
         {
-            var stateToApply = _mementos[oldestCommandTick - 1];
             _mementos.Add(new GenericCollection());
             _ticks.Add(deltaTime);
+            int tickToGo = oldestCommandTick - 1;
+            var stateToApply = tickToGo < _mementos.Count ? new GenericCollection() : _mementos[tickToGo];
 
             _entityIds.Clear();
             MementoIds.ForEachData(new ApplyMementosAction(this, stateToApply));
@@ -65,6 +66,7 @@ namespace DVG.SkyPirates.Shared.Services
             }
             CurrentTick++;
             oldestCommandTick = CurrentTick;
+            _commands.Add(new GenericCollection());
         }
 
         private void RegisterReciever<T>()
