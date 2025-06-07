@@ -1,5 +1,4 @@
-﻿using DVG.Core;
-using DVG.SkyPirates.Shared.Commands.Lifecycle;
+﻿using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.Presenters;
 
@@ -10,16 +9,12 @@ namespace DVG.SkyPirates.Shared.Factories
         private readonly IUnitViewFactory _unitViewFactory;
         private readonly IUnitModelFactory _unitModelFactory;
 
-        private readonly IPlayerLoopSystem _playerLoopSystem;
-
         public UnitFactory(
             IUnitViewFactory unitViewFactory,
-            IUnitModelFactory unitModelFactory,
-            IPlayerLoopSystem playerLoopSystem)
+            IUnitModelFactory unitModelFactory)
         {
             _unitViewFactory = unitViewFactory;
             _unitModelFactory = unitModelFactory;
-            _playerLoopSystem = playerLoopSystem;
         }
 
         public UnitPm Create(SpawnUnit parameters)
@@ -28,8 +23,6 @@ namespace DVG.SkyPirates.Shared.Factories
             var model = _unitModelFactory.Create(parameters);
             UnitPm unit = new UnitPm(view, model);
 
-            _playerLoopSystem.Add(unit);
-
             return unit;
         }
 
@@ -37,8 +30,6 @@ namespace DVG.SkyPirates.Shared.Factories
         {
             _unitViewFactory.Dispose(instance.View);
             _unitModelFactory.Dispose(instance.Model);
-
-            _playerLoopSystem.Remove(instance);
         }
     }
 }

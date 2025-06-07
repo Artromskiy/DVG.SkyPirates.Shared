@@ -36,7 +36,7 @@ namespace DVG.SkyPirates.Shared.Presenters
             _order = new int[1] { 0 };
         }
 
-        public void AddUnit(UnitPm unit, int unitId)
+        public void AddUnit(UnitPm unit)
         {
             UpdatePackedCircles(_units.Count + 1);
             _units.Add(unit);

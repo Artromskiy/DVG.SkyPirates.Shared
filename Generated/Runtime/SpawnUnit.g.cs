@@ -14,7 +14,7 @@ using DVG.Core;
 using DVG.Core.Commands;
 using System.Runtime.InteropServices;
 
-namespace DVG.SkyPirates.Shared.Commands.Lifecycle
+namespace DVG.SkyPirates.Shared.Commands
 {
     [StructLayout(LayoutKind.Sequential)]
     partial struct SpawnUnit : ICommandData

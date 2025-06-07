@@ -13,7 +13,6 @@
 using System;
 using System.Collections.Generic;
 
-using DVG.SkyPirates.Shared.Commands.Lifecycle;
 using DVG.SkyPirates.Shared.Commands;
 
 namespace DVG.Core.Commands
@@ -27,24 +26,20 @@ namespace DVG.Core.Commands
         {
             _typeToId = new Dictionary<Type, int>()
             {
-                {typeof(DespawnSquad), 1},
-                {typeof(DespawnUnit), 2},
-                {typeof(Fixation), 3},
-                {typeof(Position), 4},
-                {typeof(Rotation), 5},
-                {typeof(SpawnSquad), 6},
-                {typeof(SpawnUnit), 7},
+                {typeof(Fixation), 1},
+                {typeof(Position), 2},
+                {typeof(Rotation), 3},
+                {typeof(SpawnSquad), 4},
+                {typeof(SpawnUnit), 5},
             };
             
             _idToType = new Dictionary<int, Type>()
             {
-                {1, typeof(DespawnSquad)},
-                {2, typeof(DespawnUnit)},
-                {3, typeof(Fixation)},
-                {4, typeof(Position)},
-                {5, typeof(Rotation)},
-                {6, typeof(SpawnSquad)},
-                {7, typeof(SpawnUnit)},
+                {1, typeof(Fixation)},
+                {2, typeof(Position)},
+                {3, typeof(Rotation)},
+                {4, typeof(SpawnSquad)},
+                {5, typeof(SpawnUnit)},
             };
         }
 
@@ -52,8 +47,6 @@ namespace DVG.Core.Commands
         public static void ForEachData<T>(T action)
             where T: IGenericAction<ICommandData>
         {
-            action.Invoke<DespawnSquad>();
-            action.Invoke<DespawnUnit>();
             action.Invoke<Fixation>();
             action.Invoke<Position>();
             action.Invoke<Rotation>();
