@@ -20,11 +20,13 @@ namespace DVG.SkyPirates.Shared.Ids
         {
             public static readonly CheatingId NoOwnershipCommand = new CheatingId("NoOwnershipCommand");
             public static readonly CheatingId FutureCommand = new CheatingId("FutureCommand");
+            public static readonly CheatingId WrongClientId = new CheatingId("WrongClientId");
 
             private static readonly CheatingId[] _allIds = new CheatingId[]
             {
                 new CheatingId("NoOwnershipCommand"),
                 new CheatingId("FutureCommand"),
+                new CheatingId("WrongClientId"),
             };
             public static ReadOnlySpan<CheatingId> AllIds => _allIds;
         }

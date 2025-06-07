@@ -10,6 +10,7 @@ namespace DVG.SkyPirates.Shared.Tools.IdProviders
         {
             new CheatingId("NoOwnershipCommand"),
             new CheatingId("FutureCommand"),
+            new CheatingId("WrongClientId")
         };
     }
 }

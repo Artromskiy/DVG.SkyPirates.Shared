@@ -17,14 +17,20 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly HashSet<int> _entityIds = new HashSet<int>();
 
         private readonly ICommandRecieveService _commandRecieveService;
+        private readonly ICommandExecutorService _commandExecutorService;
         private readonly IEntitiesService _entitiesService;
 
         private int oldestCommandTick;
 
-        public TimelineService(IEntitiesService entitiesService, ICommandRecieveService commandRecieveService)
+        public TimelineService(
+            IEntitiesService entitiesService,
+            ICommandRecieveService commandRecieveService,
+            ICommandExecutorService commandExecutorService)
         {
             _entitiesService = entitiesService;
             _commandRecieveService = commandRecieveService;
+            _commandExecutorService = commandExecutorService;
+
             _mementos.Add(new GenericCollection());
             _commands.Add(new GenericCollection());
             CommandIds.ForEachData(new RegisterRecieverAction(this));
@@ -102,10 +108,7 @@ namespace DVG.SkyPirates.Shared.Services
         {
             var genericCommands = commands.GetCollection<Command<T>>();
             foreach (var item in genericCommands)
-            {
-                _entitiesService.TryGetEntity<ICommandable<T>>(item.EntityId, out var entity);
-                entity.Execute(item.Data);
-            }
+                _commandExecutorService.Execute(item);
         }
         private readonly struct RegisterRecieverAction: IGenericAction<ICommandData>
         {
