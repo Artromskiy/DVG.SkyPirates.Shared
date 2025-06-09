@@ -12,5 +12,7 @@ namespace DVG.SkyPirates.Shared.IServices
         bool HasEntity(int entityId);
         bool HasEntity<T>(int entityId);
         void RemoveAllExcept(HashSet<int> entityIds);
+
+        int NewEntityId();
     }
 }

@@ -7,6 +7,7 @@ namespace DVG.SkyPirates.Shared.Services
     {
         private readonly Dictionary<int, object> _entities = new Dictionary<int, object>();
         private readonly List<int> _keys = new List<int>();
+        private int _newEntityId;
         public void AddEntity(int entityId, object instance)
         {
             _entities.Add(entityId, instance);
@@ -61,7 +62,8 @@ namespace DVG.SkyPirates.Shared.Services
             foreach (var item in _keys)
                 if (!entityIds.Contains(item))
                     _entities.Remove(item);
-
         }
+
+        public int NewEntityId() => ++_newEntityId;
     }
 }

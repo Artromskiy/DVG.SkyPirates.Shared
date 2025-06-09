@@ -81,7 +81,7 @@ namespace DVG.SkyPirates.Shared.Services
                 if (_tempBytes.Length < length)
                     Array.Resize(ref _tempBytes, length);
                 message.GetBytes(length, _tempBytes);
-                return _commandSerializer.Deserialize<T>(_tempBytes.AsSpan(0, length));
+                return _commandSerializer.Deserialize<T>(_tempBytes.AsMemory(0, length));
             }
         }
 
