@@ -13,12 +13,14 @@
 using DVG.Core;
 using DVG.Core.Commands;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
     [StructLayout(LayoutKind.Sequential)]
     partial struct Fixation : ICommandData
     {
+        [IgnoreDataMember]
         public int CommandId => CommandIds.GetId<Fixation>();
     }
 }
