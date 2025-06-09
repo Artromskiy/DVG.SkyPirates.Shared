@@ -1,17 +1,17 @@
 ﻿using DVG.Core;
 using DVG.SkyPirates.Shared.IServices;
-using ProtoBuf;
+using MessagePack;
 using System;
 using System.Buffers;
 
 namespace DVG.SkyPirates.Shared.Services.CommandSerializers
 {
-    public class ProtobufSerializer : ICommandSerializer
+    public class MessagePackCommandSerializer : ICommandSerializer
     {
         public void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data)
             where T : ICommandData
         {
-            Serializer.Serialize(buffer, data);
+            MessagePackSerializer.Serialize(buffer, data);
         }
 
         public Command<T> Deserialize<T>(ReadOnlyMemory<byte> data)
@@ -20,7 +20,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
             Command<T> result;
             try
             {
-                result = Serializer.Deserialize<Command<T>>(data);
+                result = MessagePackSerializer.Deserialize<Command<T>>(data);
             }
             catch (Exception e)
             {

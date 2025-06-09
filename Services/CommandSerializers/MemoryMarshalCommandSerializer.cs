@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace DVG.SkyPirates.Shared.Services.CommandSerializers
 {
-    public class MemoryMarshalSerializer : ICommandSerializer
+    public class MemoryMarshalCommandSerializer : ICommandSerializer
     {
         public void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data)
             where T : ICommandData
