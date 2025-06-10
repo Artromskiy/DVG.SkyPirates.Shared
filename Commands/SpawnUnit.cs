@@ -10,22 +10,26 @@ namespace DVG.SkyPirates.Shared.Commands
     public readonly partial struct SpawnUnit
     {
         [DataMember(Order = 0)]
-        private readonly int _unitId;
+        public readonly int unitIndex;
         [DataMember(Order = 1)]
         public readonly int level;
         [DataMember(Order = 2)]
         public readonly int merge;
         [DataMember(Order = 3)]
         public readonly int squadEntityId;
+        [IgnoreDataMember]
+        public readonly UnitId UnitId => UnitId.Constants.AllIds[unitIndex];
 
-        public SpawnUnit(UnitId unitId, int level, int merge, int squadEntityId)
+        public SpawnUnit(int unitIndex, int level, int merge, int squadEntityId)
         {
-            _unitId = UnitId.Constants.AllIds.IndexOf(unitId);
+            this.unitIndex = unitIndex;
             this.level = level;
             this.merge = merge;
             this.squadEntityId = squadEntityId;
         }
 
-        public readonly UnitId UnitId => UnitId.Constants.AllIds[_unitId];
+        public SpawnUnit(UnitId unitId, int level, int merge, int squadEntityId) :
+            this(UnitId.Constants.AllIds.IndexOf(unitId), level, merge, squadEntityId)
+        { }
     }
 }
