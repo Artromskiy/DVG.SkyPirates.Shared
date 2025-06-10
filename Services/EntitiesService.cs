@@ -1,5 +1,6 @@
 ﻿using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DVG.SkyPirates.Shared.Services
 {
@@ -13,20 +14,11 @@ namespace DVG.SkyPirates.Shared.Services
             _entities.Add(entityId, instance);
         }
 
-        public bool HasEntity(int entityId)
-        {
-            throw new System.NotImplementedException();
-        }
+        public bool HasEntity(int entityId) => _entities.ContainsKey(entityId);
 
-        public bool HasEntity<T>(int entityId)
-        {
-            throw new System.NotImplementedException();
-        }
+        public bool HasEntity<T>(int entityId) => _entities.TryGetValue(entityId, out var entity) && entity is T;
 
-        public void RemoveEntity(int entityId)
-        {
-            _entities.Remove(entityId);
-        }
+        public void RemoveEntity(int entityId) => _entities.Remove(entityId);
 
         public bool RemoveEntity<T>(int entityId, out T entity) where T : class
         {
@@ -38,13 +30,13 @@ namespace DVG.SkyPirates.Shared.Services
             return false;
         }
 
-        public bool TryGetEntity<T>(int entityId, out T entity) where T : class
+        public bool TryGetEntity<T>(int entityId, [NotNullWhen(true)] out T entity) where T : class
         {
             entity = default!;
             if (!_entities.TryGetValue(entityId, out var entityObj))
                 return false;
             entity = (entityObj as T)!;
-            return entity == null;
+            return !(entity is null);
         }
 
         public IEnumerable<T> GetEntities<T>() where T : class
