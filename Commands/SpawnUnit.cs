@@ -17,6 +17,7 @@ namespace DVG.SkyPirates.Shared.Commands
         public readonly int merge;
         [DataMember(Order = 3)]
         public readonly int squadEntityId;
+
         [IgnoreDataMember]
         public readonly UnitId UnitId => UnitId.Constants.AllIds[unitIndex];
 

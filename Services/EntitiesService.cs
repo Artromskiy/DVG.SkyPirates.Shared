@@ -1,6 +1,5 @@
 ﻿using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace DVG.SkyPirates.Shared.Services
 {
@@ -9,33 +8,24 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly Dictionary<int, object> _entities = new Dictionary<int, object>();
         private readonly List<int> _keys = new List<int>();
         private int _newEntityId;
-        public void AddEntity(int entityId, object instance)
-        {
-            _entities.Add(entityId, instance);
-        }
 
+        public void AddEntity(int entityId, object instance) => _entities.Add(entityId, instance);
         public bool HasEntity(int entityId) => _entities.ContainsKey(entityId);
-
-        public bool HasEntity<T>(int entityId) => _entities.TryGetValue(entityId, out var entity) && entity is T;
-
         public void RemoveEntity(int entityId) => _entities.Remove(entityId);
-
-        public bool RemoveEntity<T>(int entityId, out T entity) where T : class
+        public T? GetEntity<T>(int entityId)
+            where T : class
         {
-            if (TryGetEntity(entityId, out entity))
-            {
-                RemoveEntity(entityId);
-                return true;
-            }
-            return false;
+            _entities.TryGetValue(entityId, out var entityObj);
+            return entityObj as T;
         }
 
-        public bool TryGetEntity<T>(int entityId, [NotNullWhen(true)] out T entity) where T : class
+        public bool TryGetEntity<T>(int entityId, out T? entity)
+            where T : class
         {
-            entity = default!;
+            entity = null;
             if (!_entities.TryGetValue(entityId, out var entityObj))
                 return false;
-            entity = (entityObj as T)!;
+            entity = entityObj as T;
             return !(entity is null);
         }
 
@@ -57,5 +47,6 @@ namespace DVG.SkyPirates.Shared.Services
         }
 
         public int NewEntityId() => ++_newEntityId;
+
     }
 }
