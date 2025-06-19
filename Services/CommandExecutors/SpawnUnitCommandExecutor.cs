@@ -29,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             var unit = _unitFactory.Create(cmd.Data);
             _entitiesService.AddEntity(cmd.EntityId, unit);
             _ownershipService.SetOwner(cmd.EntityId, cmd.ClientId);
-            squad.AddUnit(unit);
+            squad.AddUnit(cmd.EntityId);
         }
     }
 }
