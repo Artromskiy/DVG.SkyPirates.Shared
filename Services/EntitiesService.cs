@@ -1,5 +1,6 @@
 ﻿using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DVG.SkyPirates.Shared.Services
 {
@@ -19,7 +20,7 @@ namespace DVG.SkyPirates.Shared.Services
             return entityObj as T;
         }
 
-        public bool TryGetEntity<T>(int entityId, out T? entity)
+        public bool TryGetEntity<T>(int entityId, [NotNullWhen(true)] out T? entity)
             where T : class
         {
             entity = null;
@@ -29,12 +30,7 @@ namespace DVG.SkyPirates.Shared.Services
             return !(entity is null);
         }
 
-        public IEnumerable<T> GetEntities<T>() where T : class
-        {
-            foreach (var item in _entities)
-                if (item is T genericItem)
-                    yield return genericItem;
-        }
+        public IReadOnlyCollection<int> GetEntityIds() => _entities.Keys;
 
         public void RemoveAllExcept(HashSet<int> entityIds)
         {
