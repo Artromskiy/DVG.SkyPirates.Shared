@@ -63,10 +63,10 @@ namespace DVG.SkyPirates.Shared.Services
             for (int i = oldestCommandTick; i < CurrentTick; i++)
             {
                 CommandIds.ForEachData(new ApplyCommandAction(this, _commands[i]));
-                var tickables = _entitiesService.GetEntities<ITickable>();
 
-                foreach (var entity in tickables)
-                    entity.Tick(_ticks[i]);
+                foreach (var entityId in _entitiesService.GetEntityIds())
+                    if(_entitiesService.TryGetEntity<ITickable>(entityId, out var entity))
+                        entity.Tick(_ticks[i]);
 
                 MementoIds.ForEachData(new SaveMementosAction(this, _mementos[i]));
             }
@@ -97,10 +97,10 @@ namespace DVG.SkyPirates.Shared.Services
             where T : IMementoData
         {
             mementos.GetCollection<Memento<T>>().Clear();
-            var entities = _entitiesService.GetEntities<IMementoable<T>>();
-            foreach (var item in entities)
-                mementos.Add(item.GetMemento());
 
+            foreach (var entityId in _entitiesService.GetEntityIds())
+                if (_entitiesService.TryGetEntity<IMementoable<T>>(entityId, out var entity))
+                    mementos.Add(entity.GetMemento());
         }
 
         private void ApplyCommand<T>(GenericCollection commands)
