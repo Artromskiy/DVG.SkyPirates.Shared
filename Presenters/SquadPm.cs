@@ -1,7 +1,9 @@
 ﻿using DVG.Core;
 using DVG.SkyPirates.Shared.ICommandables;
+using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Mementos;
 using DVG.SkyPirates.Shared.Models;
+using DVG.SkyPirates.Shared.Services;
 using System;
 using System.Collections.Generic;
 
@@ -19,7 +21,8 @@ namespace DVG.SkyPirates.Shared.Presenters
         private float3 Position;
         private float Rotation;
         public bool Fixation;
-        private readonly List<UnitPm> _units = new List<UnitPm>();
+
+        private List<int> _units = new List<int>();
         private int[] _order = Array.Empty<int>();
 
 
@@ -27,24 +30,26 @@ namespace DVG.SkyPirates.Shared.Presenters
 
         private PackedCirclesModel _packedCircles;
         private readonly IPathFactory<PackedCirclesModel> _circlesModelFactory;
+        private readonly IEntitiesService _entitiesService;
 
 
-        public SquadPm(IPathFactory<PackedCirclesModel> circlesModelFactory)
+        public SquadPm(IPathFactory<PackedCirclesModel> circlesModelFactory, IEntitiesService entitiesService)
         {
+            _entitiesService = entitiesService;
             _circlesModelFactory = circlesModelFactory;
             _packedCircles = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + 1);
             _order = new int[1] { 0 };
         }
 
-        public void AddUnit(UnitPm unit)
+        public void AddUnit(int unitEntityId)
         {
             UpdatePackedCircles(_units.Count + 1);
-            _units.Add(unit);
+            _units.Add(unitEntityId);
         }
 
-        public void RemoveUnit(int unitId)
+        public void RemoveUnit(int unitEntityId)
         {
-            _units.RemoveAt(unitId);
+            _units.Remove(unitEntityId);
         }
 
         private void UpdatePackedCircles(int count)
@@ -57,10 +62,8 @@ namespace DVG.SkyPirates.Shared.Presenters
         public void Tick(float deltaTime)
         {
             for (int i = 0; i < _units.Count; i++)
-                _units[i].TargetPosition = Position + RotatePoint(_packedCircles.points[_order[i]] * 0.5f, Maths.Radians(Rotation)).x_y;
-
-            foreach (var item in _units)
-                item.Tick(deltaTime);
+                if (_entitiesService.TryGetEntity<UnitPm>(_units[i], out var unit))
+                    unit.TargetPosition = Position + RotatePoint(_packedCircles.points[_order[i]] * 0.5f, Maths.Radians(Rotation)).x_y;
         }
 
         public void SetRotation(float rotation)
@@ -81,12 +84,17 @@ namespace DVG.SkyPirates.Shared.Presenters
 
         public SquadMemento GetMemento()
         {
-            return new SquadMemento(Position, Rotation, Fixation, new int[0], _order);
+            return new SquadMemento(Position, Rotation, Fixation, _units.ToArray(), _order);
         }
 
         public void SetMemento(SquadMemento memento)
         {
-            //throw new NotImplementedException();
+            Position = memento.Position;
+            Rotation = memento.Rotation;
+            Fixation = memento.Fixation;
+            _units.Clear();
+            _units.AddRange(memento.UnitsIds);
+            _order = memento.Order;
         }
 
 
