@@ -81,12 +81,12 @@ namespace DVG.SkyPirates.Shared.Presenters
 
         public SquadMemento GetMemento()
         {
-            throw new NotImplementedException();
+            return new SquadMemento(Position, Rotation, Fixation, new int[0], _order);
         }
 
         public void SetMemento(SquadMemento memento)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
 
