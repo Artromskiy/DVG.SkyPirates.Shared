@@ -15,8 +15,6 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly List<GenericCollection> _mementos = new List<GenericCollection>();
         private readonly List<float> _ticks = new List<float>();
 
-        private readonly HashSet<int> _currentEntityIds = new HashSet<int>();
-
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
         private readonly IEntitiesService _entitiesService;
@@ -57,23 +55,15 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick(float deltaTime)
         {
-            if(oldestCommandTick != CurrentTick)
-            {
-                int k;
-            }
             _mementos.Add(new GenericCollection());
             _ticks.Add(deltaTime);
             int tickToGo = oldestCommandTick - 1;
-            var stateToApply = tickToGo < _mementos.Count ? new GenericCollection() : _mementos[tickToGo];
+            var stateToApply = tickToGo < 0 ? new GenericCollection() : _mementos[tickToGo];
 
-            _currentEntityIds.Clear();
             MementoIds.ForEachData(new ApplyMementosAction(this, stateToApply));
 
-            if (_entitiesService.GetEntityIds().Count != _currentEntityIds.Count)
-                Console.WriteLine($"Removing {_entitiesService.GetEntityIds().Count - _currentEntityIds.Count} entities");
-
-            _entitiesService.RemoveAllExcept(_currentEntityIds);
-            _ownershipService.RemoveAllExcept(_currentEntityIds);
+            //_entitiesService.RemoveAllExcept(_currentEntityIds);
+            //_ownershipService.RemoveAllExcept(_currentEntityIds);
 
             // Apply old memento, remove unused => (apply command => update => save memento) repeat
             for (int i = oldestCommandTick; i <= CurrentTick; i++)
@@ -104,11 +94,8 @@ namespace DVG.SkyPirates.Shared.Services
             if (genericMementos == null)
                 return;
             foreach (var item in genericMementos)
-            {
-                _entitiesService.TryGetEntity<IMementoable<T>>(item.EntityId, out var entity);
-                entity.SetMemento(item.Data);
-                _currentEntityIds.Add(item.EntityId);
-            }
+                if (_entitiesService.TryGetEntity<IMementoable<T>>(item.EntityId, out var entity))
+                    entity.SetMemento(item.Data);
         }
 
         private void SaveMementos<T>(GenericCollection mementos)
@@ -139,10 +126,7 @@ namespace DVG.SkyPirates.Shared.Services
                 _service = service;
             }
 
-            public void Invoke<T>() where T : ICommandData
-            {
-                _service.RegisterReciever<T>();
-            }
+            public void Invoke<T>() where T : ICommandData => _service.RegisterReciever<T>();
         }
 
         private readonly struct ApplyMementosAction : IGenericAction<IMementoData>
@@ -156,10 +140,7 @@ namespace DVG.SkyPirates.Shared.Services
                 _mementos = mementos;
             }
 
-            public void Invoke<T>() where T : IMementoData
-            {
-                _service.ApplyMementos<T>(_mementos);
-            }
+            public void Invoke<T>() where T : IMementoData => _service.ApplyMementos<T>(_mementos);
         }
 
         private readonly struct SaveMementosAction : IGenericAction<IMementoData>
@@ -173,10 +154,7 @@ namespace DVG.SkyPirates.Shared.Services
                 _mementos = mementos;
             }
 
-            public void Invoke<T>() where T : IMementoData
-            {
-                _service.SaveMementos<T>(_mementos);
-            }
+            public void Invoke<T>() where T : IMementoData => _service.SaveMementos<T>(_mementos);
         }
 
         private readonly struct ApplyCommandAction : IGenericAction<ICommandData>
@@ -190,10 +168,7 @@ namespace DVG.SkyPirates.Shared.Services
                 _commands = commands;
             }
 
-            public readonly void Invoke<T>() where T : ICommandData
-            {
-                _service.ApplyCommand<T>(_commands);
-            }
+            public readonly void Invoke<T>() where T : ICommandData => _service.ApplyCommand<T>(_commands);
         }
 
     }
