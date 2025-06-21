@@ -57,6 +57,10 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick(float deltaTime)
         {
+            if(oldestCommandTick != CurrentTick)
+            {
+                int k;
+            }
             _mementos.Add(new GenericCollection());
             _ticks.Add(deltaTime);
             int tickToGo = oldestCommandTick - 1;
@@ -65,11 +69,14 @@ namespace DVG.SkyPirates.Shared.Services
             _currentEntityIds.Clear();
             MementoIds.ForEachData(new ApplyMementosAction(this, stateToApply));
 
+            if (_entitiesService.GetEntityIds().Count != _currentEntityIds.Count)
+                Console.WriteLine($"Removing {_entitiesService.GetEntityIds().Count - _currentEntityIds.Count} entities");
+
             _entitiesService.RemoveAllExcept(_currentEntityIds);
             _ownershipService.RemoveAllExcept(_currentEntityIds);
 
             // Apply old memento, remove unused => (apply command => update => save memento) repeat
-            for (int i = oldestCommandTick; i < CurrentTick; i++)
+            for (int i = oldestCommandTick; i <= CurrentTick; i++)
             {
                 CommandIds.ForEachData(new ApplyCommandAction(this, _commands[i]));
 
