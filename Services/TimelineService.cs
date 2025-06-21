@@ -35,8 +35,15 @@ namespace DVG.SkyPirates.Shared.Services
             _commandExecutorService = commandExecutorService;
 
             _mementos.Add(new GenericCollection());
-            _commands.Add(new GenericCollection());
             CommandIds.ForEachData(new RegisterRecieverAction(this));
+        }
+
+        private GenericCollection GetCommands(int tick)
+        {
+            int delta = Maths.Max(tick - (_commands.Count - 1), 0);
+            for (int i = 0; i < delta; i++)
+                _commands.Add(new GenericCollection());
+            return _commands[tick];
         }
 
 
@@ -45,7 +52,7 @@ namespace DVG.SkyPirates.Shared.Services
         {
             var cmdTick = command.Tick;
             oldestCommandTick = Maths.Min(cmdTick, oldestCommandTick);
-            _commands[cmdTick].Add(command);
+            GetCommands(cmdTick).Add(command);
         }
 
         public void RemoveCommand(int clientId, int commandId)
@@ -68,7 +75,7 @@ namespace DVG.SkyPirates.Shared.Services
             // Apply old memento, remove unused => (apply command => update => save memento) repeat
             for (int i = oldestCommandTick; i <= CurrentTick; i++)
             {
-                CommandIds.ForEachData(new ApplyCommandAction(this, _commands[i]));
+                CommandIds.ForEachData(new ApplyCommandAction(this, GetCommands(i)));
 
                 foreach (var entityId in _entitiesService.GetEntityIds())
                     if (_entitiesService.TryGetEntity<ITickable>(entityId, out var entity))
@@ -78,7 +85,6 @@ namespace DVG.SkyPirates.Shared.Services
             }
             CurrentTick++;
             oldestCommandTick = CurrentTick;
-            _commands.Add(new GenericCollection());
         }
 
         private void RegisterReciever<T>()
