@@ -2,7 +2,6 @@
 using DVG.Core.Commands;
 using DVG.Core.Mementos;
 using DVG.SkyPirates.Shared.IServices;
-using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services
@@ -99,6 +98,7 @@ namespace DVG.SkyPirates.Shared.Services
             var genericMementos = mementos.GetCollection<Memento<T>>();
             if (genericMementos == null)
                 return;
+
             foreach (var item in genericMementos)
                 if (_entitiesService.TryGetEntity<IMementoable<T>>(item.EntityId, out var entity))
                     entity.SetMemento(item.Data);
@@ -111,7 +111,7 @@ namespace DVG.SkyPirates.Shared.Services
 
             foreach (var entityId in _entitiesService.GetEntityIds())
                 if (_entitiesService.TryGetEntity<IMementoable<T>>(entityId, out var entity))
-                    mementos.Add(entity.GetMemento());
+                    mementos.Add(new Memento<T>(0, entityId, entity.GetMemento()));
         }
 
         private void ApplyCommand<T>(GenericCollection commands)
