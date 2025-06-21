@@ -37,7 +37,7 @@ namespace DVG.SkyPirates.Shared.Services
             CommandIds.ForEachData(new RegisterRecieverAction(this));
         }
 
-        private GenericCollection GetCommands(int tick)
+        private GenericCollection CommandsAtTick(int tick)
         {
             int delta = Maths.Max(tick - (_commands.Count - 1), 0);
             for (int i = 0; i < delta; i++)
@@ -49,9 +49,9 @@ namespace DVG.SkyPirates.Shared.Services
         public void AddCommand<T>(Command<T> command)
             where T : ICommandData
         {
-            var cmdTick = command.Tick;
-            oldestCommandTick = Maths.Min(cmdTick, oldestCommandTick);
-            GetCommands(cmdTick).Add(command);
+            var tick = command.Tick;
+            oldestCommandTick = Maths.Min(tick, oldestCommandTick);
+            CommandsAtTick(tick).Add(command);
         }
 
         public void RemoveCommand(int clientId, int commandId)
@@ -74,7 +74,7 @@ namespace DVG.SkyPirates.Shared.Services
             // Apply old memento, remove unused => (apply command => update => save memento) repeat
             for (int i = oldestCommandTick; i <= CurrentTick; i++)
             {
-                CommandIds.ForEachData(new ApplyCommandAction(this, GetCommands(i)));
+                CommandIds.ForEachData(new ApplyCommandAction(this, CommandsAtTick(i)));
 
                 foreach (var entityId in _entitiesService.GetEntityIds())
                     if (_entitiesService.TryGetEntity<ITickable>(entityId, out var entity))
@@ -107,11 +107,13 @@ namespace DVG.SkyPirates.Shared.Services
         private void SaveMementos<T>(GenericCollection mementos)
             where T : IMementoData
         {
-            mementos.GetCollection<Memento<T>>()?.Clear();
+            mementos.Clear<Memento<T>>();
 
             foreach (var entityId in _entitiesService.GetEntityIds())
                 if (_entitiesService.TryGetEntity<IMementoable<T>>(entityId, out var entity))
                     mementos.Add(new Memento<T>(0, entityId, entity.GetMemento()));
+
+            mementos.Trim<Memento<T>>();
         }
 
         private void ApplyCommand<T>(GenericCollection commands)
@@ -120,6 +122,7 @@ namespace DVG.SkyPirates.Shared.Services
             var genericCommands = commands.GetCollection<Command<T>>();
             if (genericCommands == null)
                 return;
+
             foreach (var item in genericCommands)
                 _commandExecutorService.Execute(item);
         }
