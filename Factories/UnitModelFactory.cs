@@ -18,7 +18,5 @@ namespace DVG.SkyPirates.Shared.Factories
         {
             return _pathFactory.Create($"Configs/Units/{parameters.UnitId.value}");
         }
-
-        public void Dispose(UnitModel instance) => _pathFactory.Dispose(instance);
     }
 }

@@ -6,25 +6,21 @@ namespace DVG.SkyPirates.Shared.Presenters
 {
     public class UnitPm :
         Presenter<IUnitView, UnitModel>,
-        ITickable,
-        IMementoable<UnitMemento>
+        IMementoable<UnitMemento>,
+        ITickable
     {
         public float3 TargetPosition { get; set; }
         public float TargetRotation { get; set; }
 
-        private float3 Position;
-        private float Rotation;
+        private float3 _position;
+        private float _rotation;
 
-
-        public UnitMemento GetMemento()
-        {
-            return new UnitMemento(Position, Rotation, 0, 0);
-        }
+        public UnitMemento GetMemento() => new UnitMemento(_position, _rotation, 0, 0);
 
         public void SetMemento(UnitMemento value)
         {
-            Position = value.Position;
-            Rotation = value.Rotation;
+            _position = value.Position;
+            _rotation = value.Rotation;
         }
 
         public UnitPm(IUnitView view, UnitModel model) : base(view, model) { }
@@ -34,19 +30,19 @@ namespace DVG.SkyPirates.Shared.Presenters
             deltaTime = Move(deltaTime);
             deltaTime = Attack(deltaTime);
             deltaTime = Reload(deltaTime);
-            View.Position = Position;
-            View.Rotation = Rotation;
+            View.Position = _position;
+            View.Rotation = _rotation;
         }
 
         private float Move(float deltaTime)
         {
             var direction = TargetPosition.xz - View.Position.xz;
             var travelTime = float2.Length(direction) / Model.speed;
-            Position = float3.MoveTowards(Position, TargetPosition, Model.speed * deltaTime);
+            _position = float3.MoveTowards(_position, TargetPosition, Model.speed * deltaTime);
             if (float2.SqrLength(direction) != 0)
             {
                 var rotation = Maths.Degrees(-Maths.Atan2(-direction.x, direction.y));
-                Rotation = Maths.RotateTowards(Rotation, rotation, 720 * deltaTime);
+                _rotation = Maths.RotateTowards(_rotation, rotation, 720 * deltaTime);
             }
             return Maths.Max(deltaTime - travelTime, 0);
         }

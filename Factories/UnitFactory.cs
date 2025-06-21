@@ -1,6 +1,8 @@
-﻿using DVG.SkyPirates.Shared.Commands;
+﻿using DVG.Core;
+using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.Presenters;
+using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
@@ -8,6 +10,8 @@ namespace DVG.SkyPirates.Shared.Factories
     {
         private readonly IUnitViewFactory _unitViewFactory;
         private readonly IUnitModelFactory _unitModelFactory;
+
+        private readonly Dictionary<int, UnitPm> _unitsCache = new Dictionary<int, UnitPm>();
 
         public UnitFactory(
             IUnitViewFactory unitViewFactory,
@@ -17,19 +21,13 @@ namespace DVG.SkyPirates.Shared.Factories
             _unitModelFactory = unitModelFactory;
         }
 
-        public UnitPm Create(SpawnUnit parameters)
+        public UnitPm Create(Command<SpawnUnit> cmd)
         {
-            var view = _unitViewFactory.Create(parameters);
-            var model = _unitModelFactory.Create(parameters);
-            UnitPm unit = new UnitPm(view, model);
-
-            return unit;
-        }
-
-        public void Dispose(UnitPm instance)
-        {
-            _unitViewFactory.Dispose(instance.View);
-            _unitModelFactory.Dispose(instance.Model);
+            if (_unitsCache.TryGetValue(cmd.EntityId, out var unit))
+                return unit;
+            var view = _unitViewFactory.Create(cmd.Data);
+            var model = _unitModelFactory.Create(cmd.Data);
+            return _unitsCache[cmd.EntityId] = new UnitPm(view, model);
         }
     }
 }

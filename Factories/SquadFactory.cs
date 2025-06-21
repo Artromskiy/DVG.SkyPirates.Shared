@@ -4,6 +4,7 @@ using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Models;
 using DVG.SkyPirates.Shared.Presenters;
+using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
@@ -12,18 +13,20 @@ namespace DVG.SkyPirates.Shared.Factories
         private readonly IPathFactory<PackedCirclesModel> _circlesModelFactory;
         private readonly IEntitiesService _entitiesService;
 
+        private readonly Dictionary<int, SquadPm> _squadsCache = new Dictionary<int, SquadPm>();
+
         public SquadFactory(IPathFactory<PackedCirclesModel> circlesModelFactory, IEntitiesService entitiesService)
         {
             _circlesModelFactory = circlesModelFactory;
             _entitiesService = entitiesService;
         }
 
-        public SquadPm Create(Command<SpawnSquad> parameters)
+        public SquadPm Create(Command<SpawnSquad> cmd)
         {
-            var squad = new SquadPm(_circlesModelFactory, _entitiesService);
-            return squad;
-        }
+            if (_squadsCache.TryGetValue(cmd.EntityId, out var squad))
+                return squad;
 
-        public void Dispose(SquadPm instance) { }
+            return _squadsCache[cmd.EntityId] = new SquadPm(_circlesModelFactory, _entitiesService);
+        }
     }
 }

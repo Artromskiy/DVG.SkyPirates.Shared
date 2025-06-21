@@ -26,9 +26,12 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         public void Execute(Command<SpawnUnit> cmd)
         {
             _entitiesService.TryGetEntity<SquadPm>(cmd.Data.squadEntityId, out var squad);
-            var unit = _unitFactory.Create(cmd.Data);
+
+            var unit = _unitFactory.Create(cmd);
+
             _entitiesService.AddEntity(cmd.EntityId, unit);
             _ownershipService.SetOwner(cmd.EntityId, cmd.ClientId);
+
             squad.AddUnit(cmd.EntityId);
         }
     }

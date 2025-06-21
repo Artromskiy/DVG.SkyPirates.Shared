@@ -3,7 +3,6 @@ using DVG.SkyPirates.Shared.ICommandables;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Mementos;
 using DVG.SkyPirates.Shared.Models;
-using DVG.SkyPirates.Shared.Services;
 using System;
 using System.Collections.Generic;
 
@@ -22,9 +21,8 @@ namespace DVG.SkyPirates.Shared.Presenters
         private float Rotation;
         public bool Fixation;
 
-        private List<int> _units = new List<int>();
+        private readonly List<int> _units = new List<int>();
         private int[] _order = Array.Empty<int>();
-
 
         public int UnitsCount => _units.Count;
 

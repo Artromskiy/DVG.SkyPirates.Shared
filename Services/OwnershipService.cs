@@ -8,6 +8,7 @@ namespace DVG.SkyPirates.Shared.Services
     public class OwnershipService : IOwnershipService
     {
         private readonly Dictionary<int, int> _entityToClient = new Dictionary<int, int>();
+        private readonly List<int> _keys = new List<int>();
 
         public bool HasOwnership(int clientId, int entityId)
         {
@@ -22,6 +23,21 @@ namespace DVG.SkyPirates.Shared.Services
         public int[] GetOwnedEntities(int clientId)
         {
             return _entityToClient.Where(kv => kv.Value == clientId).Select(kv => kv.Key).ToArray();
+        }
+
+        public void RemoveOwner(int entityId)
+        {
+            _entityToClient.Remove(entityId);
+        }
+
+        public void RemoveAllExcept(HashSet<int> entityIds)
+        {
+            _keys.Clear();
+            _keys.AddRange(_entityToClient.Keys);
+
+            foreach (var item in _keys)
+                if (!entityIds.Contains(item))
+                    _entityToClient.Remove(item);
         }
     }
 }
