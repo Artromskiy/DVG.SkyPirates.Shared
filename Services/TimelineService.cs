@@ -2,6 +2,7 @@
 using DVG.Core.Commands;
 using DVG.Core.Mementos;
 using DVG.SkyPirates.Shared.IServices;
+using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services
@@ -93,6 +94,8 @@ namespace DVG.SkyPirates.Shared.Services
             where T : IMementoData
         {
             var genericMementos = mementos.GetCollection<Memento<T>>();
+            if (genericMementos == null)
+                return;
             foreach (var item in genericMementos)
             {
                 _entitiesService.TryGetEntity<IMementoable<T>>(item.EntityId, out var entity);
@@ -104,7 +107,7 @@ namespace DVG.SkyPirates.Shared.Services
         private void SaveMementos<T>(GenericCollection mementos)
             where T : IMementoData
         {
-            mementos.GetCollection<Memento<T>>().Clear();
+            mementos.GetCollection<Memento<T>>()?.Clear();
 
             foreach (var entityId in _entitiesService.GetEntityIds())
                 if (_entitiesService.TryGetEntity<IMementoable<T>>(entityId, out var entity))
@@ -115,6 +118,8 @@ namespace DVG.SkyPirates.Shared.Services
             where T : ICommandData
         {
             var genericCommands = commands.GetCollection<Command<T>>();
+            if (genericCommands == null)
+                return;
             foreach (var item in genericCommands)
                 _commandExecutorService.Execute(item);
         }
