@@ -44,8 +44,9 @@ namespace DVG.SkyPirates.Shared.Services
         public void AddCommand<T>(Command<T> command)
             where T : ICommandData
         {
-            oldestCommandTick = Maths.Min(command.Tick, oldestCommandTick);
-            _commands[command.CommandId].Add(command);
+            var cmdTick = command.Tick;
+            oldestCommandTick = Maths.Min(cmdTick, oldestCommandTick);
+            _commands[cmdTick].Add(command);
         }
 
         public void RemoveCommand(int clientId, int commandId)
