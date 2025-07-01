@@ -1,19 +1,26 @@
 using DVG.Json;
 using System;
+using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Models
 {
     [JsonAsset]
     [Serializable]
+    [DataContract]
     public partial class PackedCirclesModel
     {
-        public float radius;
-        public float2[] points;
+        [DataMember(Order = 0)]
+        public float Radius;
+        [DataMember(Order = 1)]
+        public float2[] Points;
+        [DataMember(Order = 2)]
+        public int[,] Reorders;
 
-        public PackedCirclesModel(float radius, float2[] points)
+        public PackedCirclesModel(float radius, float2[] points, int[,] reorders)
         {
-            this.radius = radius;
-            this.points = points;
+            Radius = radius;
+            Points = points;
+            Reorders = reorders;
         }
     }
 }

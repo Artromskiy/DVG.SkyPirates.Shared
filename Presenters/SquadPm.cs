@@ -5,6 +5,7 @@ using DVG.SkyPirates.Shared.Mementos;
 using DVG.SkyPirates.Shared.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Presenters
 {
@@ -61,7 +62,7 @@ namespace DVG.SkyPirates.Shared.Presenters
         {
             for (int i = 0; i < _units.Count; i++)
                 if (_entitiesService.TryGetEntity<UnitPm>(_units[i], out var unit))
-                    unit.TargetPosition = Position + RotatePoint(_packedCircles.points[_order[i]] * 0.5f, Maths.Radians(Rotation)).x_y;
+                    unit.TargetPosition = Position + RotatePoint(_packedCircles.Points[_order[i]] * 0.5f, Maths.Radians(Rotation)).x_y;
         }
 
         public void SetRotation(float rotation)
@@ -71,10 +72,17 @@ namespace DVG.SkyPirates.Shared.Presenters
             if (oldQuantizedRotation == newQuantizedRotation)
                 return;
             var newRotation = newQuantizedRotation * 360 / 16;
-            _order = GetOrder(_packedCircles.points, _order, Rotation, newRotation);
+            int[] newOrder = new int[_order.Length];
+            int deltaRotation = newQuantizedRotation - oldQuantizedRotation;
+            deltaRotation = deltaRotation < 0 ? deltaRotation + 16: deltaRotation;
+            for (int i = 0; i < _order.Length; i++)
+            {
+                newOrder[i] = _order[_packedCircles.Reorders[deltaRotation, i]];
+            }
+            //_order = GetOrder(_packedCircles.Points, _order, Rotation, newRotation);
             Rotation = newRotation;
 
-            Console.WriteLine(string.Join(", ", _order));
+            //Console.WriteLine(string.Join(", ", _order));
         }
 
         public void SetPosition(float3 position) => Position = position;
@@ -105,8 +113,11 @@ namespace DVG.SkyPirates.Shared.Presenters
             return new float2(x, y);
         }
 
+
         private static int[] GetOrder(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             int length = points.Length;
             int[] order = new int[length];
             for (int i = 0; i < length; i++)
@@ -127,19 +138,19 @@ namespace DVG.SkyPirates.Shared.Presenters
                     float2 oldLhs = RotatePoint(points[oldOrder[i]], oldRad);
                     float2 oldRhs = RotatePoint(points[oldOrder[j]], oldRad);
 
-                    float beforeDist =
+                    float beforeSwap =
                         float2.Distance(lhs, oldLhs) +
                         float2.Distance(rhs, oldRhs);
 
-                    float afterDist =
+                    float afterSwap =
                         float2.Distance(rhs, oldLhs) +
                         float2.Distance(lhs, oldRhs);
 
-                    if (beforeDist - afterDist > MinSwapDistance)
-                        (order[i], order[j]) = (order[j], order[i]);
+                    if (beforeSwap - afterSwap > MinSwapDistance)
+                        (order[i], order[j]) = (oj, oi);
                 }
             }
-
+            Console.WriteLine(sw.Elapsed.TotalMilliseconds);
             return order;
         }
     }
