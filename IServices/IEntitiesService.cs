@@ -8,7 +8,7 @@ namespace DVG.SkyPirates.Shared.IServices
         void AddEntity(int entityId, object entity);
         void RemoveEntity(int entityId);
         bool HasEntity(int entityId);
-        T? GetEntity<T>(int entityId) where T : class;
+        T GetEntity<T>(int entityId) where T : class;
         bool TryGetEntity<T>(int entityId, [NotNullWhen(true)] out T? entity) where T : class;
 
         IReadOnlyCollection<int> GetEntityIds();

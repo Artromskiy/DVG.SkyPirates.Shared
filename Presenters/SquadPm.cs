@@ -5,7 +5,6 @@ using DVG.SkyPirates.Shared.Mementos;
 using DVG.SkyPirates.Shared.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Presenters
 {
@@ -16,8 +15,6 @@ namespace DVG.SkyPirates.Shared.Presenters
         IFixationable,
         IMementoable<SquadMemento>
     {
-        private const float MinSwapDistance = 0.01f;
-
         private float3 Position;
         private float Rotation;
         public bool Fixation;
@@ -60,29 +57,32 @@ namespace DVG.SkyPirates.Shared.Presenters
 
         public void Tick(float deltaTime)
         {
+            var radians = Maths.Radians(Rotation);
             for (int i = 0; i < _units.Count; i++)
-                if (_entitiesService.TryGetEntity<UnitPm>(_units[i], out var unit))
-                    unit.TargetPosition = Position + RotatePoint(_packedCircles.Points[_order[i]] * 0.5f, Maths.Radians(Rotation)).x_y;
+            {
+                var unit = _entitiesService.GetEntity<UnitPm>(_units[i]);
+                var localPoint = _packedCircles.Points[_order[i]] * 0.5f;
+                var offset = RotatePoint(localPoint, radians).x_y;
+                unit.TargetPosition = Position + offset;
+            }
         }
 
         public void SetRotation(float rotation)
         {
             var newQuantizedRotation = (int)Maths.Round(rotation * 16 / 360);
             var oldQuantizedRotation = (int)Maths.Round(Rotation * 16 / 360);
-            if (oldQuantizedRotation == newQuantizedRotation)
-                return;
-            var newRotation = newQuantizedRotation * 360 / 16;
-            int[] newOrder = new int[_order.Length];
             int deltaRotation = newQuantizedRotation - oldQuantizedRotation;
             deltaRotation = deltaRotation < 0 ? deltaRotation + 16: deltaRotation;
-            for (int i = 0; i < _order.Length; i++)
-            {
-                newOrder[i] = _order[_packedCircles.Reorders[deltaRotation, i]];
-            }
-            //_order = GetOrder(_packedCircles.Points, _order, Rotation, newRotation);
-            Rotation = newRotation;
+            if (deltaRotation == 0)
+                return;
 
-            //Console.WriteLine(string.Join(", ", _order));
+            Rotation = newQuantizedRotation * 360 / 16;
+            int[] newOrder = new int[_order.Length];
+            for (int i = 0; i < _order.Length; i++)
+                newOrder[i] = _packedCircles.Reorders[deltaRotation, _order[i]];
+            _order = newOrder;
+
+            Console.WriteLine(string.Join(", ", _order));
         }
 
         public void SetPosition(float3 position) => Position = position;
@@ -103,7 +103,6 @@ namespace DVG.SkyPirates.Shared.Presenters
             _order = memento.Order;
         }
 
-
         public static float2 RotatePoint(float2 vec, float radians)
         {
             var cs = Maths.Cos(radians);
@@ -111,47 +110,6 @@ namespace DVG.SkyPirates.Shared.Presenters
             float x = vec.x * cs + vec.y * sn;
             float y = -vec.x * sn + vec.y * cs;
             return new float2(x, y);
-        }
-
-
-        private static int[] GetOrder(float2[] points, int[] oldOrder, float oldRotation, float newRotation)
-        {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            int length = points.Length;
-            int[] order = new int[length];
-            for (int i = 0; i < length; i++)
-                order[i] = i;
-            var newRad = Maths.Radians(newRotation);
-            var oldRad = Maths.Radians(oldRotation);
-
-            for (int i = 0; i < length; i++)
-            {
-                for (int j = 0; j < length; j++)
-                {
-                    int oi = order[i];
-                    int oj = order[j];
-
-                    float2 lhs = RotatePoint(points[oi], newRad);
-                    float2 rhs = RotatePoint(points[oj], newRad);
-
-                    float2 oldLhs = RotatePoint(points[oldOrder[i]], oldRad);
-                    float2 oldRhs = RotatePoint(points[oldOrder[j]], oldRad);
-
-                    float beforeSwap =
-                        float2.Distance(lhs, oldLhs) +
-                        float2.Distance(rhs, oldRhs);
-
-                    float afterSwap =
-                        float2.Distance(rhs, oldLhs) +
-                        float2.Distance(lhs, oldRhs);
-
-                    if (beforeSwap - afterSwap > MinSwapDistance)
-                        (order[i], order[j]) = (oj, oi);
-                }
-            }
-            Console.WriteLine(sw.Elapsed.TotalMilliseconds);
-            return order;
         }
     }
 }

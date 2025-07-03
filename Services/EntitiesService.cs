@@ -13,11 +13,13 @@ namespace DVG.SkyPirates.Shared.Services
         public void AddEntity(int entityId, object instance) => _entities.Add(entityId, instance);
         public bool HasEntity(int entityId) => _entities.ContainsKey(entityId);
         public void RemoveEntity(int entityId) => _entities.Remove(entityId);
-        public T? GetEntity<T>(int entityId)
+        public T GetEntity<T>(int entityId)
             where T : class
         {
             _entities.TryGetValue(entityId, out var entityObj);
-            return entityObj as T;
+            if (!(entityObj is T castedEntity))
+                throw new KeyNotFoundException($"Entity with id {entityId} not found");
+            return castedEntity;
         }
 
         public bool TryGetEntity<T>(int entityId, [NotNullWhen(true)] out T? entity)
