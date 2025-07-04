@@ -21,12 +21,14 @@ namespace DVG.SkyPirates.Shared.Presenters
 
         private readonly List<int> _units = new List<int>();
         private int[] _order = Array.Empty<int>();
+        private float2[] _rotatedPoints;
 
         public int UnitsCount => _units.Count;
 
         private PackedCirclesModel _packedCircles;
         private readonly IPathFactory<PackedCirclesModel> _circlesModelFactory;
         private readonly IEntitiesService _entitiesService;
+
 
 
         public SquadPm(IPathFactory<PackedCirclesModel> circlesModelFactory, IEntitiesService entitiesService)
@@ -53,16 +55,15 @@ namespace DVG.SkyPirates.Shared.Presenters
             _packedCircles = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
             Array.Resize(ref _order, count);
             _order[count - 1] = count - 1;
+            UpdateRotatedPoints();
         }
 
         public void Tick(float deltaTime)
         {
-            var radians = Maths.Radians(Rotation);
             for (int i = 0; i < _units.Count; i++)
             {
                 var unit = _entitiesService.GetEntity<UnitPm>(_units[i]);
-                var localPoint = _packedCircles.Points[_order[i]] * 0.5f;
-                var offset = RotatePoint(localPoint, radians).x_y;
+                var offset = _rotatedPoints[_order[i]].x_y;
                 unit.TargetPosition = Position + offset;
             }
         }
@@ -82,7 +83,19 @@ namespace DVG.SkyPirates.Shared.Presenters
                 newOrder[i] = _packedCircles.Reorders[deltaRotation, _order[i]];
             _order = newOrder;
 
-            Console.WriteLine(string.Join(", ", _order));
+            UpdateRotatedPoints();
+            //Console.WriteLine(string.Join(", ", _order));
+        }
+
+        private void UpdateRotatedPoints()
+        {
+            Array.Resize(ref _rotatedPoints, _packedCircles.Points.Length);
+            var radians = Maths.Radians(Rotation);
+            for (int i = 0; i < _units.Count; i++)
+            {
+                var localPoint = _packedCircles.Points[i] * 0.5f;
+                _rotatedPoints[i] = RotatePoint(localPoint, radians);
+            }
         }
 
         public void SetPosition(float3 position) => Position = position;
