@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Presenters
 
         private void Move(float deltaTime)
         {
-            var direction = TargetPosition.xz - View.Position.xz;
+            var direction = TargetPosition.xz - _position.xz;
             _position = float3.MoveTowards(_position, TargetPosition, Model.speed * deltaTime);
             if (float2.SqrLength(direction) != 0)
             {
