@@ -9,11 +9,10 @@ namespace DVG.SkyPirates.Shared.Services
     public class TimelineService : ITimelineService
     {
         public int CurrentTick { get; private set; }
+        public float TickTime { get; set; }
 
         private readonly Dictionary<int, GenericCollection> _commands = new Dictionary<int, GenericCollection>();
         private readonly Dictionary<int, GenericCollection> _mementos = new Dictionary<int, GenericCollection>();
-
-        private readonly List<float> _ticks = new List<float>();
 
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
@@ -64,10 +63,8 @@ namespace DVG.SkyPirates.Shared.Services
             //throw new NotImplementedException();
         }
 
-        public void Tick(float deltaTime)
+        public void Tick()
         {
-            _ticks.Add(deltaTime);
-
             int tickToGo = oldestCommandTick - 1;
             var stateToApply = GetMementos(tickToGo);
             _entitiesService.CurrentTick = tickToGo;
@@ -89,7 +86,7 @@ namespace DVG.SkyPirates.Shared.Services
 
                 foreach (var (id, obj) in _entitiesService.GetEntities(i))
                     if (obj is ITickable entity)
-                        entity.Tick(_ticks[i]);
+                        entity.Tick(TickTime);
 
                 MementoIds.ForEachData(new SaveMementosAction(_entitiesService, GetMementos(i)));
             }

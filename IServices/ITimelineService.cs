@@ -5,8 +5,9 @@ namespace DVG.SkyPirates.Shared.IServices
     public interface ITimelineService
     {
         int CurrentTick { get; }
+        float TickTime { get; set; }
         void AddCommand<T>(Command<T> command) where T: ICommandData;
         void RemoveCommand(int clientId, int commandId);
-        void Tick(float deltaTime);
+        void Tick();
     }
 }
