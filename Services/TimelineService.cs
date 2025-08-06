@@ -83,10 +83,12 @@ namespace DVG.SkyPirates.Shared.Services
                 foreach (var (id, entity) in prevEntities)
                     entities.Add(id, entity);
 
+                _entitiesService.CurrentTick = i;
+
                 CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, GetCommands(i)));
 
-                foreach (var entityId in _entitiesService.GetEntityIds())
-                    if (_entitiesService.TryGetEntity<ITickable>(entityId, out var entity))
+                foreach (var (id, obj) in _entitiesService.GetEntities(i))
+                    if (obj is ITickable entity)
                         entity.Tick(_ticks[i]);
 
                 MementoIds.ForEachData(new SaveMementosAction(_entitiesService, GetMementos(i)));
