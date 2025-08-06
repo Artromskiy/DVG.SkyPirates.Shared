@@ -2,7 +2,7 @@
 
 namespace DVG.SkyPirates.Shared.IServices
 {
-    public interface ITimelineService: ITickable
+    public interface ITimelineService
     {
         int CurrentTick { get; }
         void AddCommand<T>(Command<T> command) where T: ICommandData;

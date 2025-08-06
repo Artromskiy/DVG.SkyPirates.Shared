@@ -9,6 +9,7 @@ namespace DVG.SkyPirates.Shared.Services
     public class TimelineService : ITimelineService
     {
         public int CurrentTick { get; private set; }
+        private int _newEntityId;
 
         private readonly List<GenericCollection> _commands = new List<GenericCollection>();
         private readonly List<GenericCollection> _mementos = new List<GenericCollection>();
@@ -17,24 +18,20 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
         private readonly IEntitiesService _entitiesService;
-        private readonly IOwnershipService _ownershipService;
 
         private int oldestCommandTick;
 
         public TimelineService(
-            IEntitiesService entitiesService,
-            IOwnershipService ownershipService,
-
             ICommandRecieveService commandRecieveService,
-            ICommandExecutorService commandExecutorService)
+            ICommandExecutorService commandExecutorService,
+            IEntitiesService entitiesService)
         {
-            _entitiesService = entitiesService;
-            _ownershipService = ownershipService;
             _commandRecieveService = commandRecieveService;
             _commandExecutorService = commandExecutorService;
+            _entitiesService = entitiesService;
 
             _mementos.Add(new GenericCollection());
-            CommandIds.ForEachData(new RegisterRecieverAction(this));
+            CommandIds.ForEachData(new RegisterRecieverAction(this, _commandRecieveService));
         }
 
         private GenericCollection CommandsAtTick(int tick)
@@ -63,121 +60,116 @@ namespace DVG.SkyPirates.Shared.Services
         {
             _mementos.Add(new GenericCollection());
             _ticks.Add(deltaTime);
+
             int tickToGo = oldestCommandTick - 1;
             var stateToApply = tickToGo < 0 ? new GenericCollection() : _mementos[tickToGo];
+            _entitiesService.CurrentTick = tickToGo;
 
-            MementoIds.ForEachData(new ApplyMementosAction(this, stateToApply));
+            MementoIds.ForEachData(new ApplyMementosAction(stateToApply, _entitiesService));
 
-            //_entitiesService.RemoveAllExcept(_currentEntityIds);
-            //_ownershipService.RemoveAllExcept(_currentEntityIds);
-
-            // Apply old memento, remove unused => (apply command => update => save memento) repeat
+            // (copy entities, apply command => update => save memento) repeat
             for (int i = oldestCommandTick; i <= CurrentTick; i++)
             {
-                CommandIds.ForEachData(new ApplyCommandAction(this, CommandsAtTick(i)));
+                _entitiesService.CurrentTick = i;
+                _entitiesService.CopyPreviousEntities();
+
+                CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, CommandsAtTick(i)));
 
                 foreach (var entityId in _entitiesService.GetEntityIds())
                     if (_entitiesService.TryGetEntity<ITickable>(entityId, out var entity))
                         entity.Tick(_ticks[i]);
 
-                MementoIds.ForEachData(new SaveMementosAction(this, _mementos[i]));
+                MementoIds.ForEachData(new SaveMementosAction(_mementos[i], _entitiesService));
             }
             CurrentTick++;
             oldestCommandTick = CurrentTick;
         }
 
-        private void RegisterReciever<T>()
-            where T : ICommandData
-        {
-            _commandRecieveService.RegisterReciever<T>(AddCommand);
-        }
+        public int NewEntityId() => ++_newEntityId;
 
-        private void ApplyMementos<T>(GenericCollection mementos)
-            where T : IMementoData
-        {
-            var genericMementos = mementos.GetCollection<Memento<T>>();
-            if (genericMementos == null)
-                return;
-
-            foreach (var item in genericMementos)
-                if (_entitiesService.TryGetEntity<IMementoable<T>>(item.EntityId, out var entity))
-                    entity.SetMemento(item.Data);
-        }
-
-        private void SaveMementos<T>(GenericCollection mementos)
-            where T : IMementoData
-        {
-            mementos.Clear<Memento<T>>();
-
-            foreach (var entityId in _entitiesService.GetEntityIds())
-                if (_entitiesService.TryGetEntity<IMementoable<T>>(entityId, out var entity))
-                    mementos.Add(new Memento<T>(0, entityId, entity.GetMemento()));
-
-            mementos.Trim<Memento<T>>();
-        }
-
-        private void ApplyCommand<T>(GenericCollection commands)
-            where T : ICommandData
-        {
-            var genericCommands = commands.GetCollection<Command<T>>();
-            if (genericCommands == null)
-                return;
-
-            foreach (var item in genericCommands)
-                _commandExecutorService.Execute(item);
-        }
         private readonly struct RegisterRecieverAction : IGenericAction<ICommandData>
         {
-            private readonly TimelineService _service;
+            private readonly ITimelineService _timelineService;
+            private readonly ICommandRecieveService _recieveService;
 
-            public RegisterRecieverAction(TimelineService service)
+            public RegisterRecieverAction(ITimelineService timelineService, ICommandRecieveService recieveService)
             {
-                _service = service;
+                _timelineService = timelineService;
+                _recieveService = recieveService;
             }
 
-            public void Invoke<T>() where T : ICommandData => _service.RegisterReciever<T>();
+            public void Invoke<T>() where T : ICommandData
+            {
+                _recieveService.RegisterReciever<T>(_timelineService.AddCommand);
+            }
         }
 
         private readonly struct ApplyMementosAction : IGenericAction<IMementoData>
         {
-            private readonly TimelineService _service;
             private readonly GenericCollection _mementos;
+            private readonly IEntitiesService _entities;
 
-            public ApplyMementosAction(TimelineService service, GenericCollection mementos)
+            public ApplyMementosAction(GenericCollection mementos, IEntitiesService entities)
             {
-                _service = service;
                 _mementos = mementos;
+                _entities = entities;
             }
 
-            public void Invoke<T>() where T : IMementoData => _service.ApplyMementos<T>(_mementos);
+            public void Invoke<T>() where T : IMementoData
+            {
+                var genericMementos = _mementos.GetCollection<Memento<T>>();
+                if (genericMementos == null)
+                    return;
+
+                foreach (var item in genericMementos)
+                    if (_entities.TryGetEntity<IMementoable<T>>(item.EntityId, out var entity))
+                        entity.SetMemento(item.Data);
+            }
         }
 
         private readonly struct SaveMementosAction : IGenericAction<IMementoData>
         {
-            private readonly TimelineService _service;
             private readonly GenericCollection _mementos;
+            private readonly IEntitiesService _entities;
 
-            public SaveMementosAction(TimelineService service, GenericCollection mementos)
+            public SaveMementosAction(GenericCollection mementos, IEntitiesService entities)
             {
-                _service = service;
                 _mementos = mementos;
+                _entities = entities;
             }
 
-            public void Invoke<T>() where T : IMementoData => _service.SaveMementos<T>(_mementos);
+            public void Invoke<T>() where T : IMementoData
+            {
+                _mementos.Clear<Memento<T>>();
+
+                foreach (var entityId in _entities.GetEntityIds())
+                    if (_entities.TryGetEntity<IMementoable<T>>(entityId, out var entity))
+                        _mementos.Add(new Memento<T>(0, entityId, entity.GetMemento()));
+
+                _mementos.Trim<Memento<T>>();
+            }
         }
 
         private readonly struct ApplyCommandAction : IGenericAction<ICommandData>
         {
-            private readonly TimelineService _service;
+            private readonly ICommandExecutorService _executor;
             private readonly GenericCollection _commands;
 
-            public ApplyCommandAction(TimelineService service, GenericCollection commands)
+            public ApplyCommandAction(ICommandExecutorService executor, GenericCollection commands)
             {
-                _service = service;
+                _executor = executor;
                 _commands = commands;
             }
 
-            public readonly void Invoke<T>() where T : ICommandData => _service.ApplyCommand<T>(_commands);
+            public readonly void Invoke<T>() where T : ICommandData
+            {
+                var genericCommands = _commands.GetCollection<Command<T>>();
+                if (genericCommands == null)
+                    return;
+
+                foreach (var item in genericCommands)
+                    _executor.Execute(item);
+            }
         }
 
     }

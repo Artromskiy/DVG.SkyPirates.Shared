@@ -6,17 +6,18 @@ namespace DVG.SkyPirates.Shared.Services
 {
     public class EntitiesService : IEntitiesService
     {
-        private readonly Dictionary<int, object> _entities = new Dictionary<int, object>();
-        private readonly List<int> _keys = new List<int>();
-        private int _newEntityId;
+        public int CurrentTick { get; set; }
 
-        public void AddEntity(int entityId, object instance) => _entities.Add(entityId, instance);
-        public bool HasEntity(int entityId) => _entities.ContainsKey(entityId);
-        public void RemoveEntity(int entityId) => _entities.Remove(entityId);
+        private readonly List<Dictionary<int, object>> _entities = new List<Dictionary<int, object>>();
+        private Dictionary<int, object> CurrentEntities => CurrentTick < _entities.Count ? _entities[CurrentTick] : new Dictionary<int, object>();
+
+        public void AddEntity(int entityId, object instance) => CurrentEntities.Add(entityId, instance);
+        public bool HasEntity(int entityId) => CurrentEntities.ContainsKey(entityId);
+        public void RemoveEntity(int entityId) => CurrentEntities.Remove(entityId);
         public T GetEntity<T>(int entityId)
             where T : class
         {
-            _entities.TryGetValue(entityId, out var entityObj);
+            CurrentEntities.TryGetValue(entityId, out var entityObj);
             if (!(entityObj is T castedEntity))
                 throw new KeyNotFoundException($"Entity with id {entityId} not found");
             return castedEntity;
@@ -26,25 +27,23 @@ namespace DVG.SkyPirates.Shared.Services
             where T : class
         {
             entity = null;
-            if (!_entities.TryGetValue(entityId, out var entityObj))
+            if (!CurrentEntities.TryGetValue(entityId, out var entityObj))
                 return false;
             entity = entityObj as T;
             return !(entity is null);
         }
 
-        public IReadOnlyCollection<int> GetEntityIds() => _entities.Keys;
+        public IReadOnlyCollection<int> GetEntityIds() => CurrentEntities.Keys;
 
-        public void RemoveAllExcept(HashSet<int> entityIds)
+        public void CopyPreviousEntities()
         {
-            _keys.Clear();
-            _keys.AddRange(_entities.Keys);
+            CurrentEntities.Clear();
+            int prevFrame = CurrentTick - 1;
+            if (prevFrame >= _entities.Count || prevFrame < 0)
+                return;
 
-            foreach (var item in _keys)
-                if (!entityIds.Contains(item))
-                    _entities.Remove(item);
+            foreach (var (id, obj) in _entities[prevFrame])
+                CurrentEntities.Add(id, obj);
         }
-
-        public int NewEntityId() => ++_newEntityId;
-
     }
 }
