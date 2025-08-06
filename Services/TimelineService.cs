@@ -9,10 +9,10 @@ namespace DVG.SkyPirates.Shared.Services
     public class TimelineService : ITimelineService
     {
         public int CurrentTick { get; private set; }
-        private int _newEntityId;
 
-        private readonly List<GenericCollection> _commands = new List<GenericCollection>();
-        private readonly List<GenericCollection> _mementos = new List<GenericCollection>();
+        private readonly Dictionary<int, GenericCollection> _commands = new Dictionary<int, GenericCollection>();
+        private readonly Dictionary<int, GenericCollection> _mementos = new Dictionary<int, GenericCollection>();
+
         private readonly List<float> _ticks = new List<float>();
 
         private readonly ICommandRecieveService _commandRecieveService;
@@ -30,25 +30,33 @@ namespace DVG.SkyPirates.Shared.Services
             _commandExecutorService = commandExecutorService;
             _entitiesService = entitiesService;
 
-            _mementos.Add(new GenericCollection());
             CommandIds.ForEachData(new RegisterRecieverAction(this, _commandRecieveService));
         }
 
-        private GenericCollection CommandsAtTick(int tick)
+        private GenericCollection GetCommands(int tick)
         {
-            int delta = Maths.Max(tick - (_commands.Count - 1), 0);
-            for (int i = 0; i < delta; i++)
-                _commands.Add(new GenericCollection());
-            return _commands[tick];
+            if(!_commands.TryGetValue(tick, out var genericCollection))
+            {
+                _commands[tick] = genericCollection = new GenericCollection();
+            }
+            return genericCollection;
         }
 
+        private GenericCollection GetMementos(int tick)
+        {
+            if (!_mementos.TryGetValue(tick, out var genericCollection))
+            {
+                _mementos[tick] = genericCollection = new GenericCollection();
+            }
+            return genericCollection;
+        }
 
         public void AddCommand<T>(Command<T> command)
             where T : ICommandData
         {
             var tick = command.Tick;
             oldestCommandTick = Maths.Min(tick, oldestCommandTick);
-            CommandsAtTick(tick).Add(command);
+            GetCommands(tick).Add(command);
         }
 
         public void RemoveCommand(int clientId, int commandId)
@@ -58,34 +66,34 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick(float deltaTime)
         {
-            _mementos.Add(new GenericCollection());
             _ticks.Add(deltaTime);
 
             int tickToGo = oldestCommandTick - 1;
-            var stateToApply = tickToGo < 0 ? new GenericCollection() : _mementos[tickToGo];
+            var stateToApply = GetMementos(tickToGo);
             _entitiesService.CurrentTick = tickToGo;
 
-            MementoIds.ForEachData(new ApplyMementosAction(stateToApply, _entitiesService));
+            MementoIds.ForEachData(new ApplyMementosAction(_entitiesService, stateToApply));
 
             // (copy entities, apply command => update => save memento) repeat
             for (int i = oldestCommandTick; i <= CurrentTick; i++)
             {
-                _entitiesService.CurrentTick = i;
-                _entitiesService.CopyPreviousEntities();
+                var entities = _entitiesService.GetEntities(i);
+                var prevEntities = _entitiesService.GetEntities(i - 1);
+                entities.Clear();
+                foreach (var (id, entity) in prevEntities)
+                    entities.Add(id, entity);
 
-                CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, CommandsAtTick(i)));
+                CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, GetCommands(i)));
 
                 foreach (var entityId in _entitiesService.GetEntityIds())
                     if (_entitiesService.TryGetEntity<ITickable>(entityId, out var entity))
                         entity.Tick(_ticks[i]);
 
-                MementoIds.ForEachData(new SaveMementosAction(_mementos[i], _entitiesService));
+                MementoIds.ForEachData(new SaveMementosAction(_entitiesService, GetMementos(i)));
             }
             CurrentTick++;
             oldestCommandTick = CurrentTick;
         }
-
-        public int NewEntityId() => ++_newEntityId;
 
         private readonly struct RegisterRecieverAction : IGenericAction<ICommandData>
         {
@@ -106,13 +114,13 @@ namespace DVG.SkyPirates.Shared.Services
 
         private readonly struct ApplyMementosAction : IGenericAction<IMementoData>
         {
-            private readonly GenericCollection _mementos;
             private readonly IEntitiesService _entities;
+            private readonly GenericCollection _mementos;
 
-            public ApplyMementosAction(GenericCollection mementos, IEntitiesService entities)
+            public ApplyMementosAction(IEntitiesService entities, GenericCollection mementos)
             {
-                _mementos = mementos;
                 _entities = entities;
+                _mementos = mementos;
             }
 
             public void Invoke<T>() where T : IMementoData
@@ -129,13 +137,13 @@ namespace DVG.SkyPirates.Shared.Services
 
         private readonly struct SaveMementosAction : IGenericAction<IMementoData>
         {
-            private readonly GenericCollection _mementos;
             private readonly IEntitiesService _entities;
+            private readonly GenericCollection _mementos;
 
-            public SaveMementosAction(GenericCollection mementos, IEntitiesService entities)
+            public SaveMementosAction(IEntitiesService entities, GenericCollection mementos)
             {
-                _mementos = mementos;
                 _entities = entities;
+                _mementos = mementos;
             }
 
             public void Invoke<T>() where T : IMementoData

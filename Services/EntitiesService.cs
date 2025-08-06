@@ -8,9 +8,8 @@ namespace DVG.SkyPirates.Shared.Services
     {
         public int CurrentTick { get; set; }
 
-        private readonly List<Dictionary<int, object>> _entities = new List<Dictionary<int, object>>();
-        private Dictionary<int, object> CurrentEntities => CurrentTick < _entities.Count ? _entities[CurrentTick] : new Dictionary<int, object>();
-
+        private readonly Dictionary<int, Dictionary<int, object>> _timeline = new Dictionary<int, Dictionary<int, object>>();
+        private Dictionary<int, object> CurrentEntities => GetEntities(CurrentTick);
         public void AddEntity(int entityId, object instance) => CurrentEntities.Add(entityId, instance);
         public bool HasEntity(int entityId) => CurrentEntities.ContainsKey(entityId);
         public void RemoveEntity(int entityId) => CurrentEntities.Remove(entityId);
@@ -35,15 +34,11 @@ namespace DVG.SkyPirates.Shared.Services
 
         public IReadOnlyCollection<int> GetEntityIds() => CurrentEntities.Keys;
 
-        public void CopyPreviousEntities()
+        public Dictionary<int, object> GetEntities(int tick)
         {
-            CurrentEntities.Clear();
-            int prevFrame = CurrentTick - 1;
-            if (prevFrame >= _entities.Count || prevFrame < 0)
-                return;
-
-            foreach (var (id, obj) in _entities[prevFrame])
-                CurrentEntities.Add(id, obj);
+            if (!_timeline.TryGetValue(tick, out var entities))
+                _timeline[tick] = entities = new Dictionary<int, object>();
+            return entities;
         }
     }
 }

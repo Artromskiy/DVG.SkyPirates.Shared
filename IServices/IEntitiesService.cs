@@ -10,10 +10,10 @@ namespace DVG.SkyPirates.Shared.IServices
         bool HasEntity(int entityId);
         T GetEntity<T>(int entityId) where T : class;
         bool TryGetEntity<T>(int entityId, [NotNullWhen(true)] out T? entity) where T : class;
-
         IReadOnlyCollection<int> GetEntityIds();
+        
 
-        void CopyPreviousEntities();
+        Dictionary<int, object> GetEntities(int tick);
         int CurrentTick { get; set; }
     }
 }
