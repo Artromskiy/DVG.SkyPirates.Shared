@@ -31,6 +31,7 @@ namespace DVG.Core.Commands
                 {typeof(Rotation), 3},
                 {typeof(SpawnSquad), 4},
                 {typeof(SpawnUnit), 5},
+                {typeof(StartGame), 6},
             };
             
             _idToType = new Dictionary<int, Type>()
@@ -40,6 +41,7 @@ namespace DVG.Core.Commands
                 {3, typeof(Rotation)},
                 {4, typeof(SpawnSquad)},
                 {5, typeof(SpawnUnit)},
+                {6, typeof(StartGame)},
             };
         }
 
@@ -52,6 +54,7 @@ namespace DVG.Core.Commands
             action.Invoke<Rotation>();
             action.Invoke<SpawnSquad>();
             action.Invoke<SpawnUnit>();
+            action.Invoke<StartGame>();
         }
 
         public static int GetId<T>() => _typeToId[typeof(T)];
