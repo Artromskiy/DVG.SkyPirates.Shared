@@ -7,5 +7,6 @@ namespace DVG.SkyPirates.Shared.IServices
     {
         public void RegisterReciever<T>(Action<Command<T>> reciever) where T : ICommandData;
         public void UnregisterReciever<T>(Action<Command<T>> reciever) where T : ICommandData;
+        public void InvokeCommand<T>(Command<T> command) where T : ICommandData;
     }
 }

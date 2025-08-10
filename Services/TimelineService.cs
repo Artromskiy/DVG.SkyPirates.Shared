@@ -1,4 +1,11 @@
-﻿using DVG.Core;
+﻿#region Reals
+using real = System.Single;
+using real2 = DVG.float2;
+using real3 = DVG.float3;
+using real4 = DVG.float4;
+#endregion
+
+using DVG.Core;
 using DVG.Core.Commands;
 using DVG.Core.Mementos;
 using DVG.SkyPirates.Shared.IServices;
@@ -9,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Services
     public class TimelineService : ITimelineService
     {
         public int CurrentTick { get; private set; }
-        public float TickTime { get; set; }
+        public real TickTime { get; set; }
 
         private readonly Dictionary<int, GenericCollection> _commands = new Dictionary<int, GenericCollection>();
         private readonly Dictionary<int, GenericCollection> _mementos = new Dictionary<int, GenericCollection>();

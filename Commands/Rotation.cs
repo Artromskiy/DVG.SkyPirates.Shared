@@ -1,4 +1,11 @@
-﻿using DVG.Core.Commands.Attributes;
+﻿#region Reals
+using real = System.Single;
+using real2 = DVG.float2;
+using real3 = DVG.float3;
+using real4 = DVG.float4;
+#endregion
+
+using DVG.Core.Commands.Attributes;
 using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Commands
@@ -8,9 +15,9 @@ namespace DVG.SkyPirates.Shared.Commands
     public readonly partial struct Rotation
     {
         [DataMember(Order = 0)]
-        public readonly float rotation;
+        public readonly real rotation;
 
-        public Rotation(float rotation)
+        public Rotation(real rotation)
         {
             this.rotation = rotation;
         }

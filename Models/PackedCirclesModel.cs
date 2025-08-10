@@ -1,3 +1,10 @@
+#region Reals
+using real = System.Single;
+using real2 = DVG.float2;
+using real3 = DVG.float3;
+using real4 = DVG.float4;
+#endregion
+
 using DVG.Json;
 using System;
 using System.Runtime.Serialization;
@@ -10,13 +17,13 @@ namespace DVG.SkyPirates.Shared.Models
     public partial class PackedCirclesModel
     {
         [DataMember(Order = 0)]
-        public float Radius;
+        public real Radius;
         [DataMember(Order = 1)]
-        public float2[] Points;
+        public real2[] Points;
         [DataMember(Order = 2)]
         public int[,] Reorders;
 
-        public PackedCirclesModel(float radius, float2[] points, int[,] reorders)
+        public PackedCirclesModel(real radius, real2[] points, int[,] reorders)
         {
             Radius = radius;
             Points = points;

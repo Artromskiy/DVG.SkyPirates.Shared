@@ -56,6 +56,13 @@ namespace DVG.SkyPirates.Shared.Services
                 _registeredRecievers.Remove(id);
         }
 
+        public void InvokeCommand<T>(Command<T> command) where T : ICommandData
+        {
+            if (_registeredRecievers.TryGetValue(command.CommandId, out var callback) &&
+                callback is ActionContainer<T> genericCallback)
+                genericCallback.Invoke(command);
+        }
+
         private class ActionContainer<T> : IActionContainer
             where T : ICommandData
         {
@@ -72,6 +79,11 @@ namespace DVG.SkyPirates.Shared.Services
             public void Invoke(Message m, int callerId)
             {
                 var cmd = GetCommand(m);
+                Recievers?.Invoke(cmd);
+            }
+
+            public void Invoke(Command<T> cmd)
+            {
                 Recievers?.Invoke(cmd);
             }
 

@@ -1,4 +1,11 @@
-﻿using DVG.Core;
+﻿#region Reals
+using real = System.Single;
+using real2 = DVG.float2;
+using real3 = DVG.float3;
+using real4 = DVG.float4;
+#endregion
+
+using DVG.Core;
 using DVG.SkyPirates.Shared.ICommandables;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Mementos;
@@ -15,13 +22,13 @@ namespace DVG.SkyPirates.Shared.Presenters
         IFixationable,
         IMementoable<SquadMemento>
     {
-        private float3 Position;
-        private float Rotation;
+        private real3 Position;
+        private real Rotation;
         public bool Fixation;
 
         private readonly List<int> _units = new List<int>();
         private int[] _order = Array.Empty<int>();
-        private float2[] _rotatedPoints;
+        private real2[] _rotatedPoints;
 
         public int UnitsCount => _units.Count;
 
@@ -58,7 +65,7 @@ namespace DVG.SkyPirates.Shared.Presenters
             UpdateRotatedPoints();
         }
 
-        public void Tick(float deltaTime)
+        public void Tick(real deltaTime)
         {
             for (int i = 0; i < _units.Count; i++)
             {
@@ -68,7 +75,7 @@ namespace DVG.SkyPirates.Shared.Presenters
             }
         }
 
-        public void SetRotation(float rotation)
+        public void SetRotation(real rotation)
         {
             var newQuantizedRotation = (int)Maths.Round(rotation * 16 / 360);
             var oldQuantizedRotation = (int)Maths.Round(Rotation * 16 / 360);
@@ -98,7 +105,7 @@ namespace DVG.SkyPirates.Shared.Presenters
             }
         }
 
-        public void SetPosition(float3 position) => Position = position;
+        public void SetPosition(real3 position) => Position = position;
         public void SetFixation(bool fixation) { }
 
         public SquadMemento GetMemento()
@@ -116,13 +123,13 @@ namespace DVG.SkyPirates.Shared.Presenters
             _order = memento.Order;
         }
 
-        public static float2 RotatePoint(float2 vec, float radians)
+        public static real2 RotatePoint(real2 vec, real radians)
         {
             var cs = Maths.Cos(radians);
             var sn = Maths.Sin(radians);
-            float x = vec.x * cs + vec.y * sn;
-            float y = -vec.x * sn + vec.y * cs;
-            return new float2(x, y);
+            real x = vec.x * cs + vec.y * sn;
+            real y = -vec.x * sn + vec.y * cs;
+            return new real2(x, y);
         }
     }
 }
