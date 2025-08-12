@@ -1,7 +1,7 @@
-using DVG.Core.StringIds.Attributes;
+using DVG.Core.Ids.Attributes;
 
 namespace DVG.SkyPirates.Shared.Ids
 {
-    [StringId]
+    [Id]
     public partial struct GoodsId { }
 }

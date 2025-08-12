@@ -21,10 +21,10 @@ namespace DVG.SkyPirates.Shared.Ids
     [TypeConverter(typeof(IdTypeConverter))]
     [JsonConverter(typeof(IdJsonConverter))]
     [Serializable]
-    partial struct CheatingId : IStringId, IEquatable<CheatingId>, IComparable<CheatingId>
+    partial struct CheatingId : IId, IEquatable<CheatingId>, IComparable<CheatingId>
     {
         public readonly string value;
-        string IStringId.Value => value;
+        string IId.Value => value;
         private const string NoneValue = "None";
         public static readonly CheatingId None = new CheatingId(NoneValue);
 

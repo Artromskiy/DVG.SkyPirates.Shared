@@ -21,10 +21,10 @@ namespace DVG.SkyPirates.Shared.Ids
     [TypeConverter(typeof(IdTypeConverter))]
     [JsonConverter(typeof(IdJsonConverter))]
     [Serializable]
-    partial struct UnitId : IStringId, IEquatable<UnitId>, IComparable<UnitId>
+    partial struct UnitId : IId, IEquatable<UnitId>, IComparable<UnitId>
     {
         public readonly string value;
-        string IStringId.Value => value;
+        string IId.Value => value;
         private const string NoneValue = "None";
         public static readonly UnitId None = new UnitId(NoneValue);
 
