@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Factories
             
             unit = _unitsCache[cmd.EntityId] = new UnitEntity(config);
             var viewModel = _unitViewModelFactory.Create(unit);
-            view.Inject(viewModel);
+            view.ViewModel = viewModel;
 
             return unit;
         }
