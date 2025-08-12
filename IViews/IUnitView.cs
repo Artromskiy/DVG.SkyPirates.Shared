@@ -6,14 +6,15 @@ using real4 = DVG.float4;
 #endregion
 
 using DVG.Core;
+using DVG.SkyPirates.Shared.IViewModels;
 
 namespace DVG.SkyPirates.Shared.IViews
 {
-    public interface IUnitView : IView
+    public interface IUnitView: IView<IUnitVM>
     {
-        public real3 Position { get; set; }
-        public real Rotation { get; set; }
-        public real PreAttack { get; set; }
-        public real PostAttack { get; set; }
+        real3 Position { get; }
+        real Rotation { get; }
+        real PreAttack { get; }
+        real PostAttack { get; }
     }
 }

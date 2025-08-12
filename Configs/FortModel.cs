@@ -8,7 +8,7 @@ using real4 = DVG.float4;
 using DVG.Json;
 using System;
 
-namespace DVG.SkyPirates.Shared.Models
+namespace DVG.SkyPirates.Shared.Configs
 {
     [JsonAsset]
     [Serializable]

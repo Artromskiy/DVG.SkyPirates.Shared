@@ -14,7 +14,7 @@ using System;
 using System.Collections.Generic;
 
 using DVG.SkyPirates.Shared.Mementos;
-using DVG.SkyPirates.Shared.Presenters;
+using DVG.SkyPirates.Shared.Entities;
 
 namespace DVG.Core.Mementos
 {

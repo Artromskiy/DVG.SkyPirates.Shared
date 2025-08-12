@@ -1,8 +1,8 @@
 ﻿using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
-using DVG.SkyPirates.Shared.Presenters;
+using DVG.SkyPirates.Shared.Entities;
 
 namespace DVG.SkyPirates.Shared.IFactories
 {
-    public interface IUnitFactory : IFactory<UnitPm, Command<SpawnUnit>> { }
+    public interface IUnitFactory : IFactory<UnitEntity, Command<SpawnUnit>> { }
 }

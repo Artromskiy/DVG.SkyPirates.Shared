@@ -2,7 +2,7 @@
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
-using DVG.SkyPirates.Shared.Presenters;
+using DVG.SkyPirates.Shared.Entities;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
@@ -25,7 +25,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<SpawnUnit> cmd)
         {
-            _entitiesService.TryGetEntity<SquadPm>(cmd.Data.squadEntityId, out var squad);
+            _entitiesService.TryGetEntity<SquadEntity>(cmd.Data.squadEntityId, out var squad);
 
             var unit = _unitFactory.Create(cmd);
 

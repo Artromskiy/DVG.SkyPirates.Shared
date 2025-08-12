@@ -7,22 +7,22 @@ using real4 = DVG.float4;
 
 using DVG.Core.Mementos.Attributes;
 
-namespace DVG.SkyPirates.Shared.Presenters
+namespace DVG.SkyPirates.Shared.Entities
 {
     [Memento]
     public partial struct UnitMemento
     {
         public readonly real3 Position;
         public readonly real Rotation;
-        public readonly real StatePercent;
-        public readonly int State;
+        public readonly real PreAttack;
+        public readonly real PostAttack;
 
-        public UnitMemento(real3 position, real rotation, real statePercent, int state)
+        public UnitMemento(real3 position, real rotation, real preAttack, real postAttack)
         {
             Position = position;
             Rotation = rotation;
-            StatePercent = statePercent;
-            State = state;
+            PreAttack = preAttack;
+            PostAttack = postAttack;
         }
     }
 }

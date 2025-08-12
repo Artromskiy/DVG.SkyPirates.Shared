@@ -9,7 +9,7 @@ using DVG.Json;
 using System;
 using System.Runtime.Serialization;
 
-namespace DVG.SkyPirates.Shared.Models
+namespace DVG.SkyPirates.Shared.Configs
 {
     [JsonAsset]
     [Serializable]

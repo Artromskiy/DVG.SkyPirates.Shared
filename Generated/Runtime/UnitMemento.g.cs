@@ -14,7 +14,7 @@ using DVG.Core;
 using DVG.Core.Mementos;
 using System.Runtime.InteropServices;
 
-namespace DVG.SkyPirates.Shared.Presenters
+namespace DVG.SkyPirates.Shared.Entities
 {
     [StructLayout(LayoutKind.Sequential)]
     partial struct UnitMemento : IMementoData

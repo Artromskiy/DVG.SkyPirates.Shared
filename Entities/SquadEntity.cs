@@ -9,13 +9,13 @@ using DVG.Core;
 using DVG.SkyPirates.Shared.ICommandables;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Mementos;
-using DVG.SkyPirates.Shared.Models;
+using DVG.SkyPirates.Shared.Configs;
 using System;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Presenters
+namespace DVG.SkyPirates.Shared.Entities
 {
-    public class SquadPm : Presenter,
+    public class SquadEntity :
         ITickable,
         IRotationable,
         IPositionable,
@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Presenters
 
 
 
-        public SquadPm(IPathFactory<PackedCirclesModel> circlesModelFactory, IEntitiesService entitiesService)
+        public SquadEntity(IPathFactory<PackedCirclesModel> circlesModelFactory, IEntitiesService entitiesService)
         {
             _entitiesService = entitiesService;
             _circlesModelFactory = circlesModelFactory;
@@ -69,7 +69,7 @@ namespace DVG.SkyPirates.Shared.Presenters
         {
             for (int i = 0; i < _units.Count; i++)
             {
-                var unit = _entitiesService.GetEntity<UnitPm>(_units[i]);
+                var unit = _entitiesService.GetEntity<UnitEntity>(_units[i]);
                 var offset = _rotatedPoints[_order[i]].x_y;
                 unit.TargetPosition = Position + offset;
             }

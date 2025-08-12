@@ -2,7 +2,7 @@
 using DVG.SkyPirates.Shared.Ids;
 using System;
 
-namespace DVG.SkyPirates.Shared.Models
+namespace DVG.SkyPirates.Shared.Configs
 {
     [JsonAsset]
     [Serializable]
