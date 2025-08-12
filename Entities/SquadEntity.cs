@@ -22,8 +22,9 @@ namespace DVG.SkyPirates.Shared.Entities
         IFixationable,
         IMementoable<SquadMemento>
     {
-        private real3 Position;
-        private real Rotation;
+        public real3 Position { get; private set; }
+        public real Rotation { get; private set; }
+
         public bool Fixation;
 
         private readonly List<int> _units = new List<int>();
