@@ -6,7 +6,7 @@ using System;
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
     public class CommandLogger :
-        ICommandExecutor<Position>,
+        ICommandExecutor<Direction>,
         ICommandExecutor<Rotation>,
         ICommandExecutor<Fixation>,
         ICommandExecutor<SpawnUnit>,
@@ -16,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         public void Execute(Command<SpawnUnit> cmd) => ExecuteCommand(cmd);
         public void Execute(Command<Fixation> cmd) => ExecuteCommand(cmd);
         public void Execute(Command<Rotation> cmd) => ExecuteCommand(cmd);
-        public void Execute(Command<Position> cmd) => ExecuteCommand(cmd);
+        public void Execute(Command<Direction> cmd) => ExecuteCommand(cmd);
 
         private void ExecuteCommand<T>(Command<T> cmd)
             where T : ICommandData

@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Entities
     public class SquadEntity :
         ITickable,
         IRotationable,
-        IPositionable,
+        IDirectionable,
         IFixationable,
         IMementoable<SquadMemento>
     {
@@ -26,6 +26,7 @@ namespace DVG.SkyPirates.Shared.Entities
         public real Rotation { get; private set; }
 
         public bool Fixation;
+        private real2 _direction;
 
         private readonly List<int> _units = new List<int>();
         private int[] _order = Array.Empty<int>();
@@ -36,8 +37,6 @@ namespace DVG.SkyPirates.Shared.Entities
         private PackedCirclesConfig _packedCircles;
         private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
         private readonly IEntitiesService _entitiesService;
-
-
 
         public SquadEntity(IPathFactory<PackedCirclesConfig> circlesModelFactory, IEntitiesService entitiesService)
         {
@@ -68,6 +67,8 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public void Tick(real deltaTime)
         {
+            Position += (deltaTime * _direction * 7).x_y;
+
             for (int i = 0; i < _units.Count; i++)
             {
                 var unit = _entitiesService.GetEntity<UnitEntity>(_units[i]);
@@ -106,12 +107,12 @@ namespace DVG.SkyPirates.Shared.Entities
             }
         }
 
-        public void SetPosition(real3 position) => Position = position;
+        public void SetDirection(real2 direction) => _direction = direction;
         public void SetFixation(bool fixation) { }
 
         public SquadMemento GetMemento()
         {
-            return new SquadMemento(Position, Rotation, Fixation, _units.ToArray(), _order);
+            return new SquadMemento(Position, Rotation, _direction, Fixation, _units.ToArray(), _order);
         }
 
         public void SetMemento(SquadMemento memento)

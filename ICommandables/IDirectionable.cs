@@ -10,9 +10,9 @@ using DVG.SkyPirates.Shared.Commands;
 
 namespace DVG.SkyPirates.Shared.ICommandables
 {
-    public interface IPositionable : ICommandable<Position>
+    public interface IDirectionable : ICommandable<Direction>
     {
-        void SetPosition(real3 position);
-        void ICommandable<Position>.Execute(Position cmd) => SetPosition(cmd.position);
+        void SetDirection(real2 direction);
+        void ICommandable<Direction>.Execute(Direction cmd) => SetDirection(cmd.direction);
     }
 }

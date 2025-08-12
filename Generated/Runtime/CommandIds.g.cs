@@ -27,7 +27,7 @@ namespace DVG.Core.Commands
             _typeToId = new Dictionary<Type, int>()
             {
                 {typeof(Fixation), 1},
-                {typeof(Position), 2},
+                {typeof(Direction), 2},
                 {typeof(Rotation), 3},
                 {typeof(SpawnSquad), 4},
                 {typeof(SpawnUnit), 5},
@@ -37,7 +37,7 @@ namespace DVG.Core.Commands
             _idToType = new Dictionary<int, Type>()
             {
                 {1, typeof(Fixation)},
-                {2, typeof(Position)},
+                {2, typeof(Direction)},
                 {3, typeof(Rotation)},
                 {4, typeof(SpawnSquad)},
                 {5, typeof(SpawnUnit)},
@@ -50,7 +50,7 @@ namespace DVG.Core.Commands
             where T: IGenericAction<ICommandData>
         {
             action.Invoke<Fixation>();
-            action.Invoke<Position>();
+            action.Invoke<Direction>();
             action.Invoke<Rotation>();
             action.Invoke<SpawnSquad>();
             action.Invoke<SpawnUnit>();

@@ -12,14 +12,14 @@ namespace DVG.SkyPirates.Shared.Commands
 {
     [Command]
     [DataContract]
-    public readonly partial struct Position
+    public readonly partial struct Direction
     {
         [DataMember(Order = 0)]
-        public readonly real3 position;
+        public readonly real2 direction;
 
-        public Position(real3 position)
+        public Direction(real2 direction)
         {
-            this.position = position;
+            this.direction = direction;
         }
     }
 }
