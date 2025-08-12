@@ -10,12 +10,12 @@ namespace DVG.SkyPirates.Shared.Factories
 {
     public class SquadFactory : ISquadFactory
     {
-        private readonly IPathFactory<PackedCirclesModel> _circlesModelFactory;
+        private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
         private readonly IEntitiesService _entitiesService;
 
         private readonly Dictionary<int, SquadEntity> _squadsCache = new Dictionary<int, SquadEntity>();
 
-        public SquadFactory(IPathFactory<PackedCirclesModel> circlesModelFactory, IEntitiesService entitiesService)
+        public SquadFactory(IPathFactory<PackedCirclesConfig> circlesModelFactory, IEntitiesService entitiesService)
         {
             _circlesModelFactory = circlesModelFactory;
             _entitiesService = entitiesService;

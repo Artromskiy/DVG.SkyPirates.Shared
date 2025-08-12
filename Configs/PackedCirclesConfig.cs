@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Configs
     [JsonAsset]
     [Serializable]
     [DataContract]
-    public partial class PackedCirclesModel
+    public partial class PackedCirclesConfig
     {
         [DataMember(Order = 0)]
         public real Radius;
@@ -23,7 +23,7 @@ namespace DVG.SkyPirates.Shared.Configs
         [DataMember(Order = 2)]
         public int[,] Reorders;
 
-        public PackedCirclesModel(real radius, real2[] points, int[,] reorders)
+        public PackedCirclesConfig(real radius, real2[] points, int[,] reorders)
         {
             Radius = radius;
             Points = points;

@@ -5,11 +5,11 @@ using DVG.SkyPirates.Shared.Configs;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
-    public class UnitModelFactory : IUnitConfigFactory
+    public class UnitConfigFactory : IUnitConfigFactory
     {
         private readonly IPathFactory<UnitConfig> _pathFactory;
 
-        public UnitModelFactory(IPathFactory<UnitConfig> pathFactory)
+        public UnitConfigFactory(IPathFactory<UnitConfig> pathFactory)
         {
             _pathFactory = pathFactory;
         }

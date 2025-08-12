@@ -33,13 +33,13 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public int UnitsCount => _units.Count;
 
-        private PackedCirclesModel _packedCircles;
-        private readonly IPathFactory<PackedCirclesModel> _circlesModelFactory;
+        private PackedCirclesConfig _packedCircles;
+        private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
         private readonly IEntitiesService _entitiesService;
 
 
 
-        public SquadEntity(IPathFactory<PackedCirclesModel> circlesModelFactory, IEntitiesService entitiesService)
+        public SquadEntity(IPathFactory<PackedCirclesConfig> circlesModelFactory, IEntitiesService entitiesService)
         {
             _entitiesService = entitiesService;
             _circlesModelFactory = circlesModelFactory;

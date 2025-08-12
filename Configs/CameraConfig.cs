@@ -12,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Configs
 {
     [JsonAsset]
     [Serializable]
-    public partial class CameraModel
+    public partial class CameraConfig
     {
         public real minXAngle;
         public real maxXAngle;

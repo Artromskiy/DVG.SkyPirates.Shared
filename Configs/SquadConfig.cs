@@ -5,11 +5,11 @@ namespace DVG.SkyPirates.Shared.Configs
 {
     [JsonAsset]
     [Serializable]
-    public partial class SquadModel
+    public partial class SquadConfig
     {
         public UnitAndLevel[] cards;
 
-        public SquadModel(UnitAndLevel[] cards)
+        public SquadConfig(UnitAndLevel[] cards)
         {
             this.cards = cards;
         }
