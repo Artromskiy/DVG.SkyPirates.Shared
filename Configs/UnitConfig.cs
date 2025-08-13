@@ -1,10 +1,3 @@
-#region Reals
-using real = System.Single;
-using real2 = DVG.float2;
-using real3 = DVG.float3;
-using real4 = DVG.float4;
-#endregion
-
 using DVG.Json;
 using System;
 
@@ -14,15 +7,15 @@ namespace DVG.SkyPirates.Shared.Configs
     [Serializable]
     public partial class UnitConfig
     {
-        public real health;
-        public real damage;
-        public real speed;
+        public fix health;
+        public fix damage;
+        public fix speed;
 
-        public real attackDistance;
-        public real damageZone;
-        public real bulletSpeed;
-        public real reload;
-        public real preAttack;
-        public real postAttack;
+        public fix attackDistance;
+        public fix damageZone;
+        public fix bulletSpeed;
+        public fix reload;
+        public fix preAttack;
+        public fix postAttack;
     }
 }

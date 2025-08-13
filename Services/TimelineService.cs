@@ -1,11 +1,4 @@
-﻿#region Reals
-using real = System.Single;
-using real2 = DVG.float2;
-using real3 = DVG.float3;
-using real4 = DVG.float4;
-#endregion
-
-using DVG.Core;
+﻿using DVG.Core;
 using DVG.Core.Commands;
 using DVG.Core.Mementos;
 using DVG.SkyPirates.Shared.IServices;
@@ -16,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Services
     public class TimelineService : ITimelineService
     {
         public int CurrentTick { get; private set; }
-        public real TickTime { get; set; }
+        public fix TickTime { get; set; }
 
         private readonly Dictionary<int, GenericCollection> _commands = new Dictionary<int, GenericCollection>();
         private readonly Dictionary<int, GenericCollection> _mementos = new Dictionary<int, GenericCollection>();
@@ -92,7 +85,7 @@ namespace DVG.SkyPirates.Shared.Services
                 CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, GetCommands(i)));
 
                 foreach (var (id, obj) in _entitiesService.GetEntities(i))
-                    if (obj is ITickable entity)
+                    if (obj is IFixedTickable entity)
                         entity.Tick(TickTime);
 
                 MementoIds.ForEachData(new SaveMementosAction(_entitiesService, GetMementos(i)));

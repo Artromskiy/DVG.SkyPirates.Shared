@@ -1,26 +1,19 @@
-﻿#region Reals
-using real = System.Single;
-using real2 = DVG.float2;
-using real3 = DVG.float3;
-using real4 = DVG.float4;
-#endregion
-
-using DVG.Core;
+﻿using DVG.Core;
 using DVG.SkyPirates.Shared.Configs;
 
 namespace DVG.SkyPirates.Shared.Entities
 {
     public class UnitEntity :
         IMementoable<UnitMemento>,
-        ITickable
+        IFixedTickable
     {
-        public real3 TargetPosition { get; set; }
-        public real TargetRotation { get; set; }
+        public fix3 TargetPosition { get; set; }
+        public fix TargetRotation { get; set; }
 
-        public real3 Position { get; set; }
-        public real Rotation { get; set; }
-        public real PreAttack { get; set; }
-        public real PostAttack { get; set; }
+        public fix3 Position { get; set; }
+        public fix Rotation { get; set; }
+        public fix PreAttack { get; set; }
+        public fix PostAttack { get; set; }
 
         private UnitConfig Config;
 
@@ -42,16 +35,16 @@ namespace DVG.SkyPirates.Shared.Entities
             Config = cfg;
         }
 
-        public void Tick(real deltaTime)
+        public void Tick(fix deltaTime)
         {
             Move(deltaTime);
         }
 
-        private void Move(real deltaTime)
+        private void Move(fix deltaTime)
         {
             var direction = TargetPosition.xz - Position.xz;
-            Position = real3.MoveTowards(Position, TargetPosition, Config.speed * deltaTime);
-            if (real2.SqrLength(direction) != 0)
+            Position = fix3.MoveTowards(Position, TargetPosition, Config.speed * deltaTime);
+            if (fix2.SqrLength(direction) != 0)
             {
                 var rotation = Maths.Degrees(-Maths.Atan2(-direction.x, direction.y));
                 Rotation = Maths.RotateTowards(Rotation, rotation, 720 * deltaTime);

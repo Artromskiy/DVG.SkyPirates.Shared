@@ -1,11 +1,4 @@
-﻿#region Reals
-using real = System.Single;
-using real2 = DVG.float2;
-using real3 = DVG.float3;
-using real4 = DVG.float4;
-#endregion
-
-using DVG.SkyPirates.Shared.IServices;
+﻿using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TargetSearch;
 using System;
 using System.Collections.Generic;
@@ -20,12 +13,12 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
 
         private IEntitiesService _entitiesService;
 
-        public ITarget FindTarget(real3 position, real distance)
+        public ITarget FindTarget(fix3 position, fix distance)
         {
             throw new NotImplementedException();
         }
 
-        public ITarget[] FindTargets(real3 position, real distance)
+        public ITarget[] FindTargets(fix3 position, fix distance)
         {
             throw new NotImplementedException();
         }
@@ -47,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
             }
         }
 
-        private int2 GetQuantizedSquare(real3 position)
+        private int2 GetQuantizedSquare(fix3 position)
         {
             var pos = position / SquareSize;
             return new int2((int)pos.x, (int)pos.z);

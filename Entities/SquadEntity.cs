@@ -1,11 +1,4 @@
-﻿#region Reals
-using real = System.Single;
-using real2 = DVG.float2;
-using real3 = DVG.float3;
-using real4 = DVG.float4;
-#endregion
-
-using DVG.Core;
+﻿using DVG.Core;
 using DVG.SkyPirates.Shared.ICommandables;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Mementos;
@@ -16,21 +9,21 @@ using System.Collections.Generic;
 namespace DVG.SkyPirates.Shared.Entities
 {
     public class SquadEntity :
-        ITickable,
+        IFixedTickable,
         IRotationable,
         IDirectionable,
         IFixationable,
         IMementoable<SquadMemento>
     {
-        public real3 Position { get; private set; }
-        public real Rotation { get; private set; }
+        public fix3 Position { get; private set; }
+        public fix Rotation { get; private set; }
 
         public bool Fixation;
-        private real2 _direction;
+        private fix2 _direction;
 
         private readonly List<int> _units = new List<int>();
         private int[] _order = Array.Empty<int>();
-        private real2[] _rotatedPoints;
+        private fix2[] _rotatedPoints;
 
         public int UnitsCount => _units.Count;
 
@@ -43,7 +36,7 @@ namespace DVG.SkyPirates.Shared.Entities
             _entitiesService = entitiesService;
             _circlesModelFactory = circlesModelFactory;
             _packedCircles = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + 1);
-            _rotatedPoints = new real2[1] { real2.zero };
+            _rotatedPoints = new fix2[1] { fix2.zero };
             _order = new int[1] { 0 };
         }
 
@@ -66,7 +59,7 @@ namespace DVG.SkyPirates.Shared.Entities
             UpdateRotatedPoints();
         }
 
-        public void Tick(real deltaTime)
+        public void Tick(fix deltaTime)
         {
             Position += (deltaTime * _direction * 7).x_y;
 
@@ -78,7 +71,7 @@ namespace DVG.SkyPirates.Shared.Entities
             }
         }
 
-        public void SetRotation(real rotation)
+        public void SetRotation(fix rotation)
         {
             var newQuantizedRotation = (int)Maths.Round(rotation * 16 / 360);
             var oldQuantizedRotation = (int)Maths.Round(Rotation * 16 / 360);
@@ -102,12 +95,12 @@ namespace DVG.SkyPirates.Shared.Entities
             var radians = Maths.Radians(Rotation);
             for (int i = 0; i < _packedCircles.Points.Length; i++)
             {
-                var localPoint = _packedCircles.Points[i] * 0.5f;
+                var localPoint = _packedCircles.Points[i] / 2;
                 _rotatedPoints[i] = RotatePoint(localPoint, radians);
             }
         }
 
-        public void SetDirection(real2 direction) => _direction = direction;
+        public void SetDirection(fix2 direction) => _direction = direction;
         public void SetFixation(bool fixation) { }
 
         public SquadMemento GetMemento()
@@ -125,13 +118,13 @@ namespace DVG.SkyPirates.Shared.Entities
             _order = memento.Order;
         }
 
-        public static real2 RotatePoint(real2 vec, real radians)
+        public static fix2 RotatePoint(fix2 vec, fix radians)
         {
             var cs = Maths.Cos(radians);
             var sn = Maths.Sin(radians);
-            real x = vec.x * cs + vec.y * sn;
-            real y = -vec.x * sn + vec.y * cs;
-            return new real2(x, y);
+            fix x = vec.x * cs + vec.y * sn;
+            fix y = -vec.x * sn + vec.y * cs;
+            return new fix2(x, y);
         }
     }
 }
