@@ -16,9 +16,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         public void Execute(Command<SpawnUnit> cmd) => ExecuteCommand(cmd);
         public void Execute(Command<Fixation> cmd) => ExecuteCommand(cmd);
         public void Execute(Command<Rotation> cmd) => ExecuteCommand(cmd);
-        public void Execute(Command<Direction> cmd) => ExecuteCommand(cmd);
+        public void Execute(Command<Direction> cmd) => Console.WriteLine($"{typeof(Direction)} {cmd.Data.direction}");
 
-        private void ExecuteCommand<T>(Command<T> cmd)
+        private void ExecuteCommand<T>(Command<T> _)
             where T : ICommandData
         {
             Console.WriteLine(typeof(T));

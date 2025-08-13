@@ -61,8 +61,8 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public void Tick(fix deltaTime)
         {
-            Position += (deltaTime * _direction * 7).x_y;
-
+            var deltaMove = (deltaTime * _direction * 7).x_y;
+            Position += deltaMove;
             for (int i = 0; i < _units.Count; i++)
             {
                 var unit = _entitiesService.GetEntity<UnitEntity>(_units[i]);
@@ -100,7 +100,10 @@ namespace DVG.SkyPirates.Shared.Entities
             }
         }
 
-        public void SetDirection(fix2 direction) => _direction = direction;
+        public void SetDirection(fix2 direction)
+        {
+            _direction = direction;
+        }
         public void SetFixation(bool fixation) { }
 
         public SquadMemento GetMemento()
