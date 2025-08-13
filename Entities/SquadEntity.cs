@@ -43,6 +43,7 @@ namespace DVG.SkyPirates.Shared.Entities
             _entitiesService = entitiesService;
             _circlesModelFactory = circlesModelFactory;
             _packedCircles = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + 1);
+            _rotatedPoints = new real2[1] { real2.zero };
             _order = new int[1] { 0 };
         }
 
@@ -82,7 +83,7 @@ namespace DVG.SkyPirates.Shared.Entities
             var newQuantizedRotation = (int)Maths.Round(rotation * 16 / 360);
             var oldQuantizedRotation = (int)Maths.Round(Rotation * 16 / 360);
             int deltaRotation = newQuantizedRotation - oldQuantizedRotation;
-            deltaRotation = deltaRotation < 0 ? deltaRotation + 16: deltaRotation;
+            deltaRotation = deltaRotation < 0 ? deltaRotation + 16 : deltaRotation;
             if (deltaRotation == 0)
                 return;
 
@@ -93,14 +94,13 @@ namespace DVG.SkyPirates.Shared.Entities
             _order = newOrder;
 
             UpdateRotatedPoints();
-            //Console.WriteLine(string.Join(", ", _order));
         }
 
         private void UpdateRotatedPoints()
         {
             Array.Resize(ref _rotatedPoints, _packedCircles.Points.Length);
             var radians = Maths.Radians(Rotation);
-            for (int i = 0; i < _units.Count; i++)
+            for (int i = 0; i < _packedCircles.Points.Length; i++)
             {
                 var localPoint = _packedCircles.Points[i] * 0.5f;
                 _rotatedPoints[i] = RotatePoint(localPoint, radians);
