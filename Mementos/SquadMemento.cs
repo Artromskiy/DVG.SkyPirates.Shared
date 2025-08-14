@@ -6,7 +6,6 @@ namespace DVG.SkyPirates.Shared.Mementos
     public partial struct SquadMemento
     {
         public readonly fix3 Position;
-        public readonly fix Rotation;
         public readonly fix2 Direction;
         public readonly bool Fixation;
         public readonly int[] UnitsIds;
@@ -14,14 +13,12 @@ namespace DVG.SkyPirates.Shared.Mementos
 
         public SquadMemento(
             fix3 position,
-            fix rotation,
             fix2 direction,
             bool fixation,
             int[] unitsIds,
             int[] order)
         {
             Position = position;
-            Rotation = rotation;
             Direction = direction;
             Fixation = fixation;
             UnitsIds = unitsIds;

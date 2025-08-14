@@ -6,7 +6,6 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
     public class EntityCommandExecutor :
         ICommandExecutor<Direction>,
-        ICommandExecutor<Rotation>,
         ICommandExecutor<Fixation>
     {
         private readonly IEntitiesService _entitiesService;
@@ -17,8 +16,6 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         }
 
         public void Execute(Command<Fixation> cmd) => ExecuteCommand(cmd);
-
-        public void Execute(Command<Rotation> cmd) => ExecuteCommand(cmd);
 
         public void Execute(Command<Direction> cmd) => ExecuteCommand(cmd);
 
