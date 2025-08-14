@@ -75,20 +75,20 @@ namespace DVG.SkyPirates.Shared.Entities
         {
             if (fix2.SqrLength(direction) != 0)
             {
-                var oldRad = _rotation;
-                var newRad = Maths.Radians(GetRotation(direction));
-                _rotation = newRad;
-                var newQ = (int)Maths.Round(newRad * 8 / fix.Pi);
-                var oldQ = (int)Maths.Round(oldRad * 8 / fix.Pi);
-                int reorderId = newQ - oldQ;
-                reorderId = reorderId < 0 ? reorderId + 16 : reorderId;
-                if (reorderId == 0)
+                var oldRot = _rotation;
+                _rotation = GetRotation(direction);
+                var newQuantizedRotation = (int)Maths.Round(Maths.Degrees(oldRot) * 16 / 360);
+                var oldQuantizedRotation = (int)Maths.Round(Maths.Degrees(oldRot) * 16 / 360);
+                int deltaRotation = newQuantizedRotation - oldQuantizedRotation;
+                deltaRotation = deltaRotation < 0 ? deltaRotation + 16 : deltaRotation;
+                if (deltaRotation == 0)
                     return;
 
                 int[] newOrder = new int[_order.Length];
                 for (int i = 0; i < _order.Length; i++)
-                    newOrder[i] = _packedCircles.Reorders[reorderId, _order[i]];
+                    newOrder[i] = _packedCircles.Reorders[deltaRotation, _order[i]];
                 _order = newOrder;
+
                 UpdateRotatedPoints();
             }
 
