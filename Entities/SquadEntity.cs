@@ -18,6 +18,7 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public bool Fixation;
         private fix2 _direction;
+        private fix _rotation;
 
         private readonly List<int> _units = new List<int>();
         private int[] _order = Array.Empty<int>();
@@ -72,29 +73,34 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public void SetDirection(fix2 direction)
         {
-            var oldRotation = (int)(GetRotationDegrees(_direction) * 16) / 360;
-            var newRotation = (int)(GetRotationDegrees(direction) * 16) / 360;
-            int deltaRotation = newRotation - oldRotation;
-            deltaRotation = deltaRotation < 0 ? deltaRotation + 16 : deltaRotation;
-            if (deltaRotation == 0)
-                return;
+            if (fix2.SqrLength(direction) != 0)
+            {
+                var oldRotation = (int)(Maths.Degrees(_rotation) * 16) / 360;
+                _rotation = GetRotation(direction);
+                var newRotation = (int)(Maths.Degrees(_rotation) * 16) / 360;
+                _rotation = Maths.Radians((fix)newRotation * 360 / 16);
+                int deltaRotation = newRotation - oldRotation;
+                deltaRotation = deltaRotation < 0 ? deltaRotation + 16 : deltaRotation;
+                if (deltaRotation == 0)
+                    return;
 
-            int[] newOrder = new int[_order.Length];
-            for (int i = 0; i < _order.Length; i++)
-                newOrder[i] = _packedCircles.Reorders[deltaRotation, _order[i]];
-            _order = newOrder;
+                int[] newOrder = new int[_order.Length];
+                for (int i = 0; i < _order.Length; i++)
+                    newOrder[i] = _packedCircles.Reorders[deltaRotation, _order[i]];
+                _order = newOrder;
+                UpdateRotatedPoints();
+            }
+
             _direction = direction;
-            UpdateRotatedPoints();
         }
 
         private void UpdateRotatedPoints()
         {
             Array.Resize(ref _rotatedPoints, _packedCircles.Points.Length);
-            var radians = Maths.Radians(GetRotationDegrees(_direction));
             for (int i = 0; i < _packedCircles.Points.Length; i++)
             {
                 var localPoint = _packedCircles.Points[i] / 2;
-                _rotatedPoints[i] = RotatePoint(localPoint, radians);
+                _rotatedPoints[i] = RotatePoint(localPoint, _rotation);
             }
         }
 
@@ -114,11 +120,7 @@ namespace DVG.SkyPirates.Shared.Entities
             _order = memento.Order;
         }
 
-        private static fix GetRotationDegrees(fix2 direction)
-        {
-            return -Maths.Atan2(-direction.x, direction.y) * 180 / fix.Pi;
-        }
-        private static fix GetRotationRadians(fix2 direction)
+        private static fix GetRotation(fix2 direction)
         {
             return -Maths.Atan2(-direction.x, direction.y);
         }
