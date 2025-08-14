@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public bool Fixation;
         private fix2 _direction;
-        private fix _rotation;
+        private int _rotationHex;
 
         private readonly List<int> _units = new List<int>();
         private int[] _order = Array.Empty<int>();
@@ -75,11 +75,9 @@ namespace DVG.SkyPirates.Shared.Entities
         {
             if (fix2.SqrLength(direction) != 0)
             {
-                var oldRotation = (int)(Maths.Degrees(_rotation) * 16) / 360;
-                _rotation = GetRotation(direction);
-                var newRotation = (int)(Maths.Degrees(_rotation) * 16) / 360;
-                _rotation = Maths.Radians((fix)newRotation * 360 / 16);
-                int deltaRotation = newRotation - oldRotation;
+                var oldRotation = _rotationHex;
+                _rotationHex = (int)Maths.Round(GetRotation(direction) * 8 / fix.Pi);
+                int deltaRotation = _rotationHex - oldRotation;
                 deltaRotation = deltaRotation < 0 ? deltaRotation + 16 : deltaRotation;
                 if (deltaRotation == 0)
                     return;
@@ -100,7 +98,7 @@ namespace DVG.SkyPirates.Shared.Entities
             for (int i = 0; i < _packedCircles.Points.Length; i++)
             {
                 var localPoint = _packedCircles.Points[i] / 2;
-                _rotatedPoints[i] = RotatePoint(localPoint, _rotation);
+                _rotatedPoints[i] = RotatePoint(localPoint, Maths.Radians((fix)_rotationHex * 360 / 16));
             }
         }
 
