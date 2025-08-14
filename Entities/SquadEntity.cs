@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public bool Fixation;
         private fix2 _direction;
-        private int _rotationHex;
+        private fix _rotation;
 
         private readonly List<int> _units = new List<int>();
         private int[] _order = Array.Empty<int>();
@@ -75,16 +75,19 @@ namespace DVG.SkyPirates.Shared.Entities
         {
             if (fix2.SqrLength(direction) != 0)
             {
-                var oldRotation = _rotationHex;
-                _rotationHex = (int)Maths.Round(GetRotation(direction) * 8 / fix.Pi);
-                int deltaRotation = _rotationHex - oldRotation;
-                deltaRotation = deltaRotation < 0 ? deltaRotation + 16 : deltaRotation;
-                if (deltaRotation == 0)
+                var oldRad = _rotation;
+                var newRad = Maths.Radians(GetRotation(direction));
+                _rotation = newRad;
+                var newQ = (int)Maths.Round(newRad * 8 / fix.Pi);
+                var oldQ = (int)Maths.Round(oldRad * 8 / fix.Pi);
+                int reorderId = newQ - oldQ;
+                reorderId = reorderId < 0 ? reorderId + 16 : reorderId;
+                if (reorderId == 0)
                     return;
 
                 int[] newOrder = new int[_order.Length];
                 for (int i = 0; i < _order.Length; i++)
-                    newOrder[i] = _packedCircles.Reorders[deltaRotation, _order[i]];
+                    newOrder[i] = _packedCircles.Reorders[reorderId, _order[i]];
                 _order = newOrder;
                 UpdateRotatedPoints();
             }
@@ -98,7 +101,7 @@ namespace DVG.SkyPirates.Shared.Entities
             for (int i = 0; i < _packedCircles.Points.Length; i++)
             {
                 var localPoint = _packedCircles.Points[i] / 2;
-                _rotatedPoints[i] = RotatePoint(localPoint, Maths.Radians((fix)_rotationHex * 360 / 16));
+                _rotatedPoints[i] = RotatePoint(localPoint, _rotation);
             }
         }
 
@@ -106,13 +109,14 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public SquadMemento GetMemento()
         {
-            return new SquadMemento(Position, _direction, Fixation, _units.ToArray(), _order);
+            return new SquadMemento(Position, _direction, _rotation, Fixation, _units.ToArray(), _order);
         }
 
         public void SetMemento(SquadMemento memento)
         {
             Position = memento.Position;
             Fixation = memento.Fixation;
+            _rotation = memento.Rotation;
             _units.Clear();
             _units.AddRange(memento.UnitsIds);
             _order = memento.Order;
