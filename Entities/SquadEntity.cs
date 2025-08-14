@@ -60,8 +60,9 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public void Tick(fix deltaTime)
         {
-            var deltaMove = (deltaTime * _direction * 7).x_y;
+            var deltaMove = (_direction * 7 * deltaTime).x_y;
             Position += deltaMove;
+            Console.WriteLine(Position);
             for (int i = 0; i < _units.Count; i++)
             {
                 var unit = _entitiesService.GetEntity<UnitEntity>(_units[i]);
@@ -73,11 +74,12 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public void SetDirection(fix2 direction)
         {
-            if (fix2.SqrLength(direction) != 0)
+            _direction = direction;
+            if (fix2.SqrLength(_direction) != 0)
             {
                 var oldRot = _rotation;
-                _rotation = GetRotation(direction);
-                var newQuantizedRotation = (int)Maths.Round(Maths.Degrees(oldRot) * 16 / 360);
+                _rotation = GetRotation(_direction);
+                var newQuantizedRotation = (int)Maths.Round(Maths.Degrees(_rotation) * 16 / 360);
                 var oldQuantizedRotation = (int)Maths.Round(Maths.Degrees(oldRot) * 16 / 360);
                 int deltaRotation = newQuantizedRotation - oldQuantizedRotation;
                 deltaRotation = deltaRotation < 0 ? deltaRotation + 16 : deltaRotation;
@@ -91,8 +93,6 @@ namespace DVG.SkyPirates.Shared.Entities
 
                 UpdateRotatedPoints();
             }
-
-            _direction = direction;
         }
 
         private void UpdateRotatedPoints()
