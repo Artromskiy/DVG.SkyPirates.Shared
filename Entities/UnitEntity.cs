@@ -21,6 +21,7 @@ namespace DVG.SkyPirates.Shared.Entities
         public int Health { get; set; }
 
         private readonly UnitConfig _config;
+        private readonly ITargetSearchService _targetSearch;
 
         public UnitMemento GetMemento()
         {
@@ -35,9 +36,10 @@ namespace DVG.SkyPirates.Shared.Entities
             PostAttack = value.PostAttack;
         }
 
-        public UnitEntity(UnitConfig cfg, int teamId)
+        public UnitEntity(ITargetSearchService targetSearch, UnitConfig cfg, int teamId)
         {
             _config = cfg;
+            _targetSearch = targetSearch;
             Health = (int)cfg.health;
             TeamId = teamId;
         }

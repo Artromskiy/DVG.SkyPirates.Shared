@@ -81,7 +81,7 @@ namespace DVG.SkyPirates.Shared.Entities
                 var newQuantizedRotation = (int)Maths.Round(Maths.Degrees(_rotation) * 16 / 360);
                 var oldQuantizedRotation = (int)Maths.Round(Maths.Degrees(oldRot) * 16 / 360);
                 int deltaRotation = newQuantizedRotation - oldQuantizedRotation;
-                deltaRotation = deltaRotation < 0 ? deltaRotation + 16 : deltaRotation;
+                deltaRotation = (deltaRotation % 16 + 16) % 16;
                 if (deltaRotation == 0)
                     return;
 
