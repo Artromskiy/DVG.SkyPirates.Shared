@@ -7,7 +7,7 @@ namespace DVG.SkyPirates.Shared.IServices
         int CurrentTick { get; }
         fix TickTime { get; set; }
         void AddCommand<T>(Command<T> command) where T: ICommandData;
-        void RemoveCommand(int clientId, int commandId);
+        void RemoveCommand<T>(Command<T> command) where T : ICommandData;
         void Tick();
     }
 }

@@ -16,6 +16,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
+        private readonly ITickableExecutorService _tickableExecutorService;
         private readonly IEntitiesService _entitiesService;
 
         private int oldestCommandTick;
@@ -23,10 +24,12 @@ namespace DVG.SkyPirates.Shared.Services
         public TimelineService(
             ICommandRecieveService commandRecieveService,
             ICommandExecutorService commandExecutorService,
+            ITickableExecutorService tickableExecutorService,
             IEntitiesService entitiesService)
         {
             _commandRecieveService = commandRecieveService;
             _commandExecutorService = commandExecutorService;
+            _tickableExecutorService = tickableExecutorService;
             _entitiesService = entitiesService;
 
             CommandIds.ForEachData(new RegisterRecieverAction(this, _commandRecieveService));
@@ -58,9 +61,12 @@ namespace DVG.SkyPirates.Shared.Services
             GetCommands(tick).Add(command);
         }
 
-        public void RemoveCommand(int clientId, int commandId)
+        public void RemoveCommand<T>(Command<T> command)
+            where T : ICommandData
         {
-            //throw new NotImplementedException();
+            var tick = command.Tick;
+            oldestCommandTick = Maths.Min(tick, oldestCommandTick);
+            GetCommands(tick).Remove<Command<T>>(c=>c.ClientId == command.ClientId && c.CommandId == command.CommandId);
         }
 
         public void Tick()
@@ -83,6 +89,8 @@ namespace DVG.SkyPirates.Shared.Services
                 _entitiesService.CurrentTick = i;
 
                 CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, GetCommands(i)));
+
+                _tickableExecutorService.Tick(TickTime);
 
                 foreach (var (id, obj) in _entitiesService.GetEntities(i))
                     if (obj is IFixedTickable entity)

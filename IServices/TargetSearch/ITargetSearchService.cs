@@ -1,9 +1,10 @@
-﻿namespace DVG.SkyPirates.Shared.IServices.TargetSearch
+﻿using System.Collections.Generic;
+
+namespace DVG.SkyPirates.Shared.IServices.TargetSearch
 {
-    public interface ITargetSearchService
+    public interface ITargetSearchService: ITickableExecutor
     {
-        ITarget FindTarget(fix3 position, fix distance);
-        ITarget[] FindTargets(fix3 position, fix distance);
-        void UpdateTargetsSearch();
+        ITarget? FindTarget(fix3 position, fix distance, int teamId);
+        void FindTargets(fix3 position, fix distance, int teamId, List<ITarget> targets);
     }
 }

@@ -62,7 +62,6 @@ namespace DVG.SkyPirates.Shared.Entities
         {
             var deltaMove = (_direction * 7 * deltaTime).x_y;
             Position += deltaMove;
-            Console.WriteLine(Position);
             for (int i = 0; i < _units.Count; i++)
             {
                 var unit = _entitiesService.GetEntity<UnitEntity>(_units[i]);
