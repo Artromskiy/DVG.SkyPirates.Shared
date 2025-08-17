@@ -1,10 +1,8 @@
-using DVG.Json;
 using System;
 using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Configs
 {
-    [JsonAsset]
     [Serializable]
     [DataContract]
     public partial class PackedCirclesConfig

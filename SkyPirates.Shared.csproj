@@ -22,7 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj" />
     <ProjectReference Include="..\..\GLSH\Core\GLSH.csproj" />
-    <ProjectReference Include="..\..\Json\Json.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,10 +1,8 @@
-﻿using DVG.Json;
-using DVG.SkyPirates.Shared.Ids;
+﻿using DVG.SkyPirates.Shared.Ids;
 using System;
 
 namespace DVG.SkyPirates.Shared.Configs
 {
-    [JsonAsset]
     [Serializable]
     public partial class UnitAndLevel
     {
