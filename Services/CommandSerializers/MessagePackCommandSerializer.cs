@@ -11,7 +11,15 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
         public void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data)
             where T : ICommandData
         {
-            MessagePackSerializer.Serialize(buffer, data);
+            try
+            {
+                MessagePackSerializer.Serialize(buffer, data);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(typeof(T));
+                throw e;
+            }
         }
 
         public Command<T> Deserialize<T>(ReadOnlyMemory<byte> data)

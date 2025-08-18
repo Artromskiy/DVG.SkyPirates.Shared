@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Entities
         private fix _rotation;
 
         private readonly List<int> _units = new List<int>();
-        private int[] _order = Array.Empty<int>();
+        private readonly List<int> _orders = new List<int>();
         private fix2[] _rotatedPoints;
 
         public int UnitsCount => _units.Count;
@@ -34,28 +34,21 @@ namespace DVG.SkyPirates.Shared.Entities
         {
             _entitiesService = entitiesService;
             _circlesModelFactory = circlesModelFactory;
-            _packedCircles = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + 1);
+            _packedCircles = GetCirclesConfig(1);
             _rotatedPoints = new fix2[1] { fix2.zero };
-            _order = new int[1] { 0 };
         }
 
         public void AddUnit(int unitEntityId)
         {
-            UpdatePackedCircles(_units.Count + 1);
+            _packedCircles = GetCirclesConfig(_units.Count + 1);
+            _orders.Add(_units.Count);
             _units.Add(unitEntityId);
+            UpdateRotatedPoints();
         }
 
         public void RemoveUnit(int unitEntityId)
         {
             _units.Remove(unitEntityId);
-        }
-
-        private void UpdatePackedCircles(int count)
-        {
-            _packedCircles = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
-            Array.Resize(ref _order, count);
-            _order[count - 1] = count - 1;
-            UpdateRotatedPoints();
         }
 
         public void Tick(fix deltaTime)
@@ -65,7 +58,7 @@ namespace DVG.SkyPirates.Shared.Entities
             for (int i = 0; i < _units.Count; i++)
             {
                 var unit = _entitiesService.GetEntity<UnitEntity>(_units[i]);
-                var offset = _rotatedPoints[_order[i]].x_y;
+                var offset = _rotatedPoints[_orders[i]].x_y;
                 unit.TargetPosition = Position + offset;
             }
         }
@@ -74,25 +67,25 @@ namespace DVG.SkyPirates.Shared.Entities
         public void SetDirection(fix2 direction)
         {
             _direction = direction;
-            if (fix2.SqrLength(_direction) != 0)
-            {
-                var oldRot = _rotation;
-                _rotation = GetRotation(_direction);
-                var newQuantizedRotation = (int)Maths.Round(Maths.Degrees(_rotation) * 16 / 360);
-                var oldQuantizedRotation = (int)Maths.Round(Maths.Degrees(oldRot) * 16 / 360);
-                int deltaRotation = newQuantizedRotation - oldQuantizedRotation;
-                deltaRotation = (deltaRotation % 16 + 16) % 16;
-                if (deltaRotation == 0)
-                    return;
 
-                int[] newOrder = new int[_order.Length];
-                for (int i = 0; i < _order.Length; i++)
-                    newOrder[i] = _packedCircles.Reorders[deltaRotation, _order[i]];
-                _order = newOrder;
+            if (fix2.SqrLength(_direction) == 0)
+                return;
 
-                UpdateRotatedPoints();
-            }
+            var oldRot = _rotation;
+            _rotation = GetRotation(_direction);
+
+            static int Quantize(fix a) => (int)Maths.Round(Maths.Degrees(a) * 16 / 360);
+            int newQuantizedRotation = Quantize(_rotation);
+            int oldQuantizedRotation = Quantize(oldRot);
+            int deltaRotation = (newQuantizedRotation - oldQuantizedRotation) & 15;
+            if (deltaRotation == 0)
+                return;
+
+            for (int i = 0; i < _orders.Count; i++)
+                _orders[i] = _packedCircles.Reorders[deltaRotation, _orders[i]];
+            UpdateRotatedPoints();
         }
+
 
         private void UpdateRotatedPoints()
         {
@@ -108,7 +101,13 @@ namespace DVG.SkyPirates.Shared.Entities
 
         public SquadMemento GetMemento()
         {
-            return new SquadMemento(Position, _direction, _rotation, Fixation, _units.ToArray(), _order);
+            return new SquadMemento(
+                Position,
+                _direction,
+                _rotation,
+                Fixation,
+                _units.ToArray(),
+                _orders.ToArray());
         }
 
         public void SetMemento(SquadMemento memento)
@@ -118,7 +117,10 @@ namespace DVG.SkyPirates.Shared.Entities
             _rotation = memento.Rotation;
             _units.Clear();
             _units.AddRange(memento.UnitsIds);
-            _order = memento.Order;
+            _orders.Clear();
+            _orders.AddRange(memento.Order);
+            if (_orders.Count != 0)
+                _packedCircles = GetCirclesConfig(_orders.Count);
         }
 
         private static fix GetRotation(fix2 direction)
@@ -133,6 +135,11 @@ namespace DVG.SkyPirates.Shared.Entities
             fix x = vec.x * cs + vec.y * sn;
             fix y = -vec.x * sn + vec.y * cs;
             return new fix2(x, y);
+        }
+
+        private PackedCirclesConfig GetCirclesConfig(int count)
+        {
+            return _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
         }
     }
 }
