@@ -3,9 +3,9 @@ using DVG.SkyPirates.Shared.Commands;
 
 namespace DVG.SkyPirates.Shared.ICommandables
 {
-    public interface IDirectionable : ICommandable<Direction>
+    public interface IDirectionable : ICommandable<DirectionCommand>
     {
         void SetDirection(fix2 direction);
-        void ICommandable<Direction>.Execute(Direction cmd) => SetDirection(cmd.direction);
+        void ICommandable<DirectionCommand>.Execute(DirectionCommand cmd) => SetDirection(cmd.Direction);
     }
 }

@@ -6,7 +6,7 @@ using DVG.SkyPirates.Shared.IServices;
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
     public class SpawnSquadCommandExecutor :
-        ICommandExecutor<SpawnSquad>
+        ICommandExecutor<SpawnSquadCommand>
     {
         private readonly ISquadFactory _squadFactory;
         private readonly IEntitiesService _entitiesService;
@@ -22,7 +22,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _ownershipService = ownershipService;
         }
 
-        public void Execute(Command<SpawnSquad> cmd)
+        public void Execute(Command<SpawnSquadCommand> cmd)
         {
             var squad = _squadFactory.Create(cmd);
             if(!_entitiesService.HasEntity(cmd.EntityId))

@@ -5,5 +5,5 @@ namespace DVG.SkyPirates.Shared.Commands
 {
     [Command]
     [DataContract]
-    public readonly partial struct SpawnSquad { }
+    public readonly partial struct SpawnSquadCommand { }
 }

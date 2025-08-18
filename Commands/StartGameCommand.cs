@@ -5,7 +5,7 @@ namespace DVG.SkyPirates.Shared.Commands
 {
     [Command]
     [DataContract]
-    public partial struct StartGame
+    public partial struct StartGameCommand
     {
 
     }

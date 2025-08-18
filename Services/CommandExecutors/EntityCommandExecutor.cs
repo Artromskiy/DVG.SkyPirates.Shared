@@ -5,8 +5,8 @@ using DVG.SkyPirates.Shared.IServices;
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
     public class EntityCommandExecutor :
-        ICommandExecutor<Direction>,
-        ICommandExecutor<Fixation>
+        ICommandExecutor<DirectionCommand>,
+        ICommandExecutor<FixationCommand>
     {
         private readonly IEntitiesService _entitiesService;
 
@@ -15,9 +15,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _entitiesService = entitiesService;
         }
 
-        public void Execute(Command<Fixation> cmd) => ExecuteCommand(cmd);
+        public void Execute(Command<FixationCommand> cmd) => ExecuteCommand(cmd);
 
-        public void Execute(Command<Direction> cmd) => ExecuteCommand(cmd);
+        public void Execute(Command<DirectionCommand> cmd) => ExecuteCommand(cmd);
 
         private void ExecuteCommand<T>(Command<T> cmd)
             where T: ICommandData

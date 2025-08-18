@@ -4,5 +4,5 @@ using DVG.SkyPirates.Shared.Entities;
 
 namespace DVG.SkyPirates.Shared.IFactories
 {
-    public interface ISquadFactory : IFactory<SquadEntity, Command<SpawnSquad>> { }
+    public interface ISquadFactory : IFactory<SquadEntity, Command<SpawnSquadCommand>> { }
 }

@@ -5,14 +5,14 @@ namespace DVG.SkyPirates.Shared.Commands
 {
     [Command]
     [DataContract]
-    public readonly partial struct Fixation
+    public partial struct FixationCommand
     {
         [DataMember(Order = 0)]
-        public readonly bool fixation;
+        public bool Fixation { get; set; }
 
-        public Fixation(bool fixation)
+        public FixationCommand(bool fixation)
         {
-            this.fixation = fixation;
+            this.Fixation = fixation;
         }
     }
 }

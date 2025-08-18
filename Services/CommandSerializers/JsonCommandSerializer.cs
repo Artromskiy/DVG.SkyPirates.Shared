@@ -11,12 +11,16 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
     {
         public Command<T> Deserialize<T>(ReadOnlyMemory<byte> data) where T : ICommandData
         {
-            return JsonConvert.DeserializeObject<Command<T>>(Encoding.UTF8.GetString(data.Span));
+            var json = Encoding.UTF8.GetString(data.Span);
+            Console.WriteLine($"Command<{typeof(T).Name}>:\n {json}");
+            return JsonConvert.DeserializeObject<Command<T>>(json);
         }
 
         public void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data) where T : ICommandData
         {
-            buffer.Write(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(data)));
+            var json = JsonConvert.SerializeObject(data);
+            Console.WriteLine($"Command<{typeof(T).Name}>:\n {json}");
+            buffer.Write(Encoding.UTF8.GetBytes(json));
         }
     }
 }

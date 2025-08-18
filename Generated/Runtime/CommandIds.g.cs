@@ -26,20 +26,20 @@ namespace DVG.Core.Commands
         {
             _typeToId = new Dictionary<Type, int>()
             {
-                {typeof(Direction), 1},
-                {typeof(Fixation), 2},
-                {typeof(SpawnSquad), 3},
-                {typeof(SpawnUnit), 4},
-                {typeof(StartGame), 5},
+                {typeof(DirectionCommand), 1},
+                {typeof(FixationCommand), 2},
+                {typeof(SpawnSquadCommand), 3},
+                {typeof(SpawnUnitCommand), 4},
+                {typeof(StartGameCommand), 5},
             };
             
             _idToType = new Dictionary<int, Type>()
             {
-                {1, typeof(Direction)},
-                {2, typeof(Fixation)},
-                {3, typeof(SpawnSquad)},
-                {4, typeof(SpawnUnit)},
-                {5, typeof(StartGame)},
+                {1, typeof(DirectionCommand)},
+                {2, typeof(FixationCommand)},
+                {3, typeof(SpawnSquadCommand)},
+                {4, typeof(SpawnUnitCommand)},
+                {5, typeof(StartGameCommand)},
             };
         }
 
@@ -47,11 +47,11 @@ namespace DVG.Core.Commands
         public static void ForEachData<T>(T action)
             where T: IGenericAction<ICommandData>
         {
-            action.Invoke<Direction>();
-            action.Invoke<Fixation>();
-            action.Invoke<SpawnSquad>();
-            action.Invoke<SpawnUnit>();
-            action.Invoke<StartGame>();
+            action.Invoke<DirectionCommand>();
+            action.Invoke<FixationCommand>();
+            action.Invoke<SpawnSquadCommand>();
+            action.Invoke<SpawnUnitCommand>();
+            action.Invoke<StartGameCommand>();
         }
 
         public static int GetId<T>() => _typeToId[typeof(T)];

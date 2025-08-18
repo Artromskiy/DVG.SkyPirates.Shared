@@ -6,15 +6,15 @@ using System;
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
     public class CommandLogger :
-        ICommandExecutor<Direction>,
-        ICommandExecutor<Fixation>,
-        ICommandExecutor<SpawnUnit>,
-        ICommandExecutor<SpawnSquad>
+        ICommandExecutor<DirectionCommand>,
+        ICommandExecutor<FixationCommand>,
+        ICommandExecutor<SpawnUnitCommand>,
+        ICommandExecutor<SpawnSquadCommand>
     {
-        public void Execute(Command<SpawnSquad> cmd) => ExecuteCommand(cmd);
-        public void Execute(Command<SpawnUnit> cmd) => ExecuteCommand(cmd);
-        public void Execute(Command<Fixation> cmd) => ExecuteCommand(cmd);
-        public void Execute(Command<Direction> cmd) => Console.WriteLine($"{typeof(Direction)} {cmd.Data.direction}");
+        public void Execute(Command<SpawnSquadCommand> cmd) => ExecuteCommand(cmd);
+        public void Execute(Command<SpawnUnitCommand> cmd) => ExecuteCommand(cmd);
+        public void Execute(Command<FixationCommand> cmd) => ExecuteCommand(cmd);
+        public void Execute(Command<DirectionCommand> cmd) => Console.WriteLine($"{typeof(DirectionCommand)} {cmd.Data.Direction}");
 
         private void ExecuteCommand<T>(Command<T> _)
             where T : ICommandData

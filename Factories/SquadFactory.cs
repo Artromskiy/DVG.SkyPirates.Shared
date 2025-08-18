@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Factories
             _entitiesService = entitiesService;
         }
 
-        public SquadEntity Create(Command<SpawnSquad> cmd)
+        public SquadEntity Create(Command<SpawnSquadCommand> cmd)
         {
             if (_squadsCache.TryGetValue(cmd.EntityId, out var squad))
                 return squad;

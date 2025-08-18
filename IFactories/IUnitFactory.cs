@@ -4,5 +4,5 @@ using DVG.SkyPirates.Shared.Entities;
 
 namespace DVG.SkyPirates.Shared.IFactories
 {
-    public interface IUnitFactory : IFactory<UnitEntity, Command<SpawnUnit>> { }
+    public interface IUnitFactory : IFactory<UnitEntity, Command<SpawnUnitCommand>> { }
 }
