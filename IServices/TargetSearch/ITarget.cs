@@ -4,6 +4,6 @@
     {
         public int TeamId { get; }
         public fix3 Position { get; }
-        public int Health { get; }
+        public fix Health { get; set; }
     }
 }

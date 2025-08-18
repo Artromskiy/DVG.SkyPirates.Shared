@@ -12,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Commands
 
         public DirectionCommand(fix2 direction)
         {
-            this.Direction = direction;
+            Direction = direction;
         }
     }
 }

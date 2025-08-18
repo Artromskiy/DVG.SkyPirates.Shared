@@ -1,8 +1,8 @@
 ﻿using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
+using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
-using DVG.SkyPirates.Shared.Entities;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
@@ -25,10 +25,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<SpawnUnitCommand> cmd)
         {
-            _entitiesService.TryGetEntity<SquadEntity>(cmd.Data.SquadId, out var squad);
-
+            var squad = _entitiesService.GetEntity<SquadEntity>(cmd.Data.SquadId);
             var unit = _unitFactory.Create(cmd);
-
+            unit.Position = squad.Position;
             _entitiesService.AddEntity(cmd.EntityId, unit);
             _ownershipService.SetOwner(cmd.EntityId, cmd.ClientId);
 

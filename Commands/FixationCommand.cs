@@ -12,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Commands
 
         public FixationCommand(bool fixation)
         {
-            this.Fixation = fixation;
+            Fixation = fixation;
         }
     }
 }

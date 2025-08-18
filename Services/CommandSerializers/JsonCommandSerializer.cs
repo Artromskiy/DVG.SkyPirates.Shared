@@ -13,13 +13,15 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
         {
             var json = Encoding.UTF8.GetString(data.Span);
             Console.WriteLine($"Command<{typeof(T).Name}>:\n {json}");
-            return JsonConvert.DeserializeObject<Command<T>>(json);
+            var cmd = JsonConvert.DeserializeObject<Command<T>>(json);
+            Console.WriteLine("Deserialize " + cmd);
+            return cmd;
         }
 
         public void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data) where T : ICommandData
         {
             var json = JsonConvert.SerializeObject(data);
-            Console.WriteLine($"Command<{typeof(T).Name}>:\n {json}");
+            Console.WriteLine($"Serialize Command<{typeof(T).Name}>:\n {json}");
             buffer.Write(Encoding.UTF8.GetBytes(json));
         }
     }
