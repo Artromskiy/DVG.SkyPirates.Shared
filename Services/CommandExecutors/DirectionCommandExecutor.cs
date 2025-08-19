@@ -28,17 +28,17 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 cmd.Data.Direction);
         }
 
-        public void SetDirection(ref fix2 _direction, ref fix _rotation, ref Squad squad, fix2 direction)
+        public void SetDirection(ref fix2 direction, ref fix rotation, ref Squad squad, fix2 targetDirection)
         {
-            _direction = direction;
+            direction = targetDirection;
 
-            if (fix2.SqrLength(_direction) == 0)
+            if (fix2.SqrLength(direction) == 0 || squad.orders.Count == 0)
                 return;
-            var oldRot = _rotation;
-            _rotation = GetRotation(_direction);
+            var oldRot = rotation;
+            rotation = GetRotation(direction);
 
             static int Quantize(fix a) => (int)Maths.Round(Maths.Degrees(a) * 16 / 360);
-            int newQuantizedRotation = Quantize(_rotation);
+            int newQuantizedRotation = Quantize(rotation);
             int oldQuantizedRotation = Quantize(oldRot);
             int deltaRotation = (newQuantizedRotation - oldQuantizedRotation) & 15;
             if (deltaRotation == 0)
@@ -46,7 +46,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             var _packedCircles = GetCirclesConfig(squad.orders.Count);
             for (int i = 0; i < squad.orders.Count; i++)
                 squad.orders[i] = _packedCircles.Reorders[deltaRotation, squad.orders[i]];
-            UpdateRotatedPoints(ref squad, _rotation, _packedCircles);
+            UpdateRotatedPoints(ref squad, rotation, _packedCircles);
         }
 
         private static fix GetRotation(fix2 direction)

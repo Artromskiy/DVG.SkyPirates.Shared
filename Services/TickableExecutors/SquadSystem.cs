@@ -1,7 +1,8 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Archetypes;
+using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.IServices;
+using System;
 
 namespace DVG.SkyPirates.Shared.Services.TickableExecutors
 {
@@ -19,6 +20,11 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
             _world.Query(new SquadArch(), (ref Position p, ref Direction d, ref Squad s, ref Rotation r, ref Fixation f) =>
             {
                 var deltaMove = (d.direction * 7 * deltaTime).x_y;
+                Console.WriteLine(deltaMove);
+                if(deltaMove != fix3.zero)
+                {
+                    int k = 0;
+                }
                 p.position += deltaMove;
 
                 for (int i = 0; i < s.units.Count; i++)
