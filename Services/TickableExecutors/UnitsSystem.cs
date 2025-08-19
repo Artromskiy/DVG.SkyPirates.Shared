@@ -1,7 +1,7 @@
 ﻿using Arch.Core;
 using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.ComponentsQueries;
+using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Configs;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TargetSearch;
