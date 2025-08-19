@@ -4,6 +4,7 @@ using DVG.Core.Commands;
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.IServices;
+using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services
@@ -19,18 +20,21 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
         private readonly ITickableExecutorService _tickableExecutorService;
-        private readonly World _world;
+        private readonly IPreTickableExecutorService _preTickableExecutorService;
+        private readonly IPostTickableExecutorService _postTickableExecutorService;
 
         public TimelineService(
             ICommandRecieveService commandRecieveService,
             ICommandExecutorService commandExecutorService,
             ITickableExecutorService tickableExecutorService,
-            World world)
+            IPreTickableExecutorService preTickableExecutorService,
+            IPostTickableExecutorService postTickableExecutorService)
         {
             _commandRecieveService = commandRecieveService;
             _commandExecutorService = commandExecutorService;
             _tickableExecutorService = tickableExecutorService;
-            _world = world;
+            _preTickableExecutorService = preTickableExecutorService;
+            _postTickableExecutorService = postTickableExecutorService;
 
             CommandIds.ForEachData(new RegisterRecieverAction(this, _commandRecieveService));
         }
@@ -63,14 +67,15 @@ namespace DVG.SkyPirates.Shared.Services
         public void Tick()
         {
             int tickToGo = _oldestCommandTick - 1;
-            HistoryArch.ForEachData(new GoToStateAction(_world, tickToGo));
+            _preTickableExecutorService.Tick(tickToGo, TickTime);
             for (int i = _oldestCommandTick; i <= CurrentTick; i++)
             {
                 // TODO Some code to set entity is not active/created
                 CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, GetCommands(i)));
-                _tickableExecutorService.Tick(TickTime); // tick everything inside service
-                HistoryArch.ForEachData(new SaveStateAction(_world, i));
+                _tickableExecutorService.Tick(i, TickTime); // tick everything inside service
             }
+            _postTickableExecutorService.Tick(CurrentTick, TickTime);
+
             CurrentTick++;
             _oldestCommandTick = CurrentTick;
         }
@@ -111,42 +116,6 @@ namespace DVG.SkyPirates.Shared.Services
 
                 foreach (var item in genericCommands)
                     _executor.Execute(item);
-            }
-        }
-        private readonly struct GoToStateAction : IGenericAction
-        {
-            private readonly World _world;
-            private readonly int _tickToGo;
-
-            public GoToStateAction(World world, int tickToGo)
-            {
-                _world = world;
-                _tickToGo = tickToGo;
-            }
-
-            public void Invoke<T>()
-            {
-                var historyQuery = new QueryDescription().WithAll<T, History<T>>();
-                int tickToGo = _tickToGo;
-                _world.Query(historyQuery, (ref T u, ref History<T> h) => u = h.history[tickToGo]);
-            }
-        }
-        private readonly struct SaveStateAction : IGenericAction
-        {
-            private readonly World _world;
-            private readonly int _tickToGo;
-
-            public SaveStateAction(World world, int tickToGo)
-            {
-                _world = world;
-                _tickToGo = tickToGo;
-            }
-
-            public void Invoke<T>()
-            {
-                var historyQuery = new QueryDescription().WithAll<T, History<T>>();
-                int tickToGo = _tickToGo;
-                _world.Query(historyQuery, (ref T u, ref History<T> h) => h.history[tickToGo] = u);
             }
         }
     }

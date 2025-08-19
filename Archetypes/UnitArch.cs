@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             Fixation,
             Team>();
 
-        public static implicit operator QueryDescription(UnitArch _) => _query;
+        public static QueryDescription GetQuery() => _query;
 
         public static void EnsureArch(Entity entity)
         {

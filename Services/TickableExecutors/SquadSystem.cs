@@ -1,33 +1,48 @@
 ﻿using Arch.Core;
+using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.IServices;
+using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Services.TickableExecutors
 {
     public class SquadSystem : ITickableExecutor
     {
+        private const int SquadSpeed = 7;
         private readonly World _world;
-
         public SquadSystem(World world)
         {
             _world = world;
         }
 
-        public void Tick(fix deltaTime)
+        public void Tick(int tick, fix deltaTime)
         {
-            _world.Query(new SquadArch(), (ref Position p, ref Direction d, ref Squad s, ref Rotation r, ref Fixation f) =>
+            var query = new SquadQuery(deltaTime);
+            _world.InlineQuery<SquadQuery, Squad, Position, Direction, Fixation>
+                (SquadArch.GetQuery(), ref query);
+        }
+
+        private readonly struct SquadQuery : IForEach<Squad, Position, Direction, Fixation>
+        {
+            private readonly fix _deltaTime;
+
+            public SquadQuery(fix deltaTime)
             {
-                var deltaMove = (d.direction * 7 * deltaTime).x_y;
+                _deltaTime = deltaTime;
+            }
+
+            public readonly void Update(ref Squad s, ref Position p, ref Direction d, ref Fixation f)
+            {
+                var deltaMove = (d.direction * SquadSpeed * _deltaTime).x_y;
                 p.position += deltaMove;
 
                 for (int i = 0; i < s.units.Count; i++)
                 {
                     var offset = s.positions[s.orders[i]].x_y;
-                    _world.Get<Unit>(s.units[i]).TargetPosition = p.position + offset;
-                    _world.Get<Fixation>(s.units[i]).fixation = f.fixation;
+                    s.units[i].Get<Unit>().TargetPosition = p.position + offset;
+                    s.units[i].Get<Fixation>().fixation = f.fixation;
                 }
-            });
+            }
         }
     }
 }

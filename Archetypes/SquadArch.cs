@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             Direction,
             Fixation>();
 
-        public static implicit operator QueryDescription(SquadArch _) => _query;
+        public static QueryDescription GetQuery() => _query;
 
         public static void EnsureArch(Entity entity)
         {

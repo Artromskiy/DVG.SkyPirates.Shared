@@ -33,6 +33,8 @@ namespace DVG.SkyPirates.Shared.Factories
             UnitArch.EnsureArch(unit);
             HistoryArch.EnsureHistory(unit);
             unit.Get<Unit>().UnitConfig = config;
+            unit.Get<Team>().id = cmd.ClientId;
+            unit.Get<Health>().health = config.health;
             
             return unit;
         }

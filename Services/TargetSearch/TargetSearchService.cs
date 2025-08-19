@@ -23,13 +23,16 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
 
         public Entity FindTarget(fix3 position, fix distance, int teamId)
         {
-            _targetsCache.Clear();
-            FindTargets(position, distance, teamId, _targetsCache);
             fix minSqrDistance = fix.MaxValue;
             Entity foundTarget = Entity.Null;
+
+            _targetsCache.Clear();
+            FindTargets(position, distance, teamId, _targetsCache);
+
             foreach (var target in _targetsCache)
             {
-                var sqrDistance = fix2.SqrDistance(target.Get<Position>().position.xz, position.xz);
+                var targetPosition = target.Get<Position>().position.xz;
+                var sqrDistance = fix2.SqrDistance(targetPosition, position.xz);
                 if (sqrDistance < minSqrDistance)
                 {
                     foundTarget = target;
@@ -62,12 +65,26 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
             }
         }
 
-        public void Tick(fix _)
+        public void Tick(int tick, fix deltaTime)
         {
             foreach (var item in _targets)
                 foreach (var team in item.Value)
                     team.Value.Clear();
-            _world.Query(new TargetArch(), (Entity e, ref Position p, ref Team t) =>
+
+            var query = new TargetsPartitioningQuery(_targets);
+            _world.InlineEntityQuery<TargetsPartitioningQuery, Position, Team>(new TargetArch(), ref query);
+        }
+
+        private readonly struct TargetsPartitioningQuery : IForEachWithEntity<Position, Team>
+        {
+            private readonly Dictionary<int2, Dictionary<int, List<Entity>>> _targets;
+
+            public TargetsPartitioningQuery(Dictionary<int2, Dictionary<int, List<Entity>>> targets)
+            {
+                _targets = targets;
+            }
+
+            public readonly void Update(Entity e, ref Position p, ref Team t)
             {
                 var intPos = GetQuantizedSquare(p.position.xz);
                 if (!_targets.TryGetValue(intPos, out var quadrant))
@@ -75,10 +92,10 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
                 if (!quadrant.TryGetValue(t.id, out var team))
                     quadrant[t.id] = team = new List<Entity>();
                 team.Add(e);
-            });
+            }
         }
 
-        private int2 GetQuantizedSquare(fix2 position)
+        private static int2 GetQuantizedSquare(fix2 position)
         {
             var pos = position / SquareSize;
             return new int2((int)pos.x, (int)pos.y);

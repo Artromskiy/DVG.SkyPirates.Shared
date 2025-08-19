@@ -19,6 +19,11 @@ namespace DVG.SkyPirates.Shared.Archetypes
             action.Invoke<Unit>();
         }
 
+        public static QueryDescription Query<T>()
+        {
+            return new QueryDescription().WithAll<T, History<T>>();
+        }
+
         public static void EnsureHistory(Entity entity)
         {
             ForEachData(new EnsureHistoryAction(entity));

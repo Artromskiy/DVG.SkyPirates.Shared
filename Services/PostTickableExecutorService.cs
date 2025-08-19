@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace DVG.SkyPirates.Shared.Services
 {
-    public class TickableExecutorService : ITickableExecutorService
+    public class PostTickableExecutorService: IPostTickableExecutorService
     {
-        private readonly ITickableExecutor[] _executors;
+        private readonly IPostTickableExecutor[] _executors;
 
-        public TickableExecutorService(IEnumerable<ITickableExecutor> executors)
+        public PostTickableExecutorService(IEnumerable<IPostTickableExecutor> executors)
         {
             _executors = executors.ToArray();
         }
