@@ -25,14 +25,7 @@ namespace DVG.SkyPirates.Shared.Factories
             _squadsCache[cmd.EntityId] = squad = EntityIds.Get(cmd.EntityId);
 
             SquadArch.EnsureArch(squad);
-
-            squad
-            squad.Add<
-                Squad,
-                Position,
-                Rotation,
-                Fixation,
-                Direction>();
+            HistoryArch.EnsureHistory(squad);
 
             return squad;
         }

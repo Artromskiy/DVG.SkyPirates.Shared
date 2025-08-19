@@ -1,5 +1,6 @@
 ﻿using Arch.Core;
 using Arch.Core.Extensions;
+using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.IServices.TargetSearch;
 using System.Collections.Generic;
@@ -66,8 +67,7 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
             foreach (var item in _targets)
                 foreach (var team in item.Value)
                     team.Value.Clear();
-            var query = new QueryDescription().WithAll<Health, Position, Team>();
-            _world.Query(query, (Entity e, ref Health h, ref Position p, ref Team t) =>
+            _world.Query(new TargetArch(), (Entity e, ref Position p, ref Team t) =>
             {
                 var intPos = GetQuantizedSquare(p.position.xz);
                 if (!_targets.TryGetValue(intPos, out var quadrant))
