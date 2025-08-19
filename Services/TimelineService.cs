@@ -1,6 +1,7 @@
-﻿using DVG.Core;
+﻿using Arch.Core;
+using DVG.Core;
 using DVG.Core.Commands;
-using DVG.Core.Mementos;
+using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
 
@@ -12,52 +13,32 @@ namespace DVG.SkyPirates.Shared.Services
         public fix TickTime { get; set; }
 
         private readonly Dictionary<int, GenericCollection> _commands = new Dictionary<int, GenericCollection>();
-        private readonly Dictionary<int, GenericCollection> _mementos = new Dictionary<int, GenericCollection>();
+        private int _oldestCommandTick;
 
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
         private readonly ITickableExecutorService _tickableExecutorService;
-        private readonly IEntitiesService _entitiesService;
-
-        private int oldestCommandTick;
+        private readonly World _world;
 
         public TimelineService(
             ICommandRecieveService commandRecieveService,
             ICommandExecutorService commandExecutorService,
             ITickableExecutorService tickableExecutorService,
-            IEntitiesService entitiesService)
+            World world)
         {
             _commandRecieveService = commandRecieveService;
             _commandExecutorService = commandExecutorService;
             _tickableExecutorService = tickableExecutorService;
-            _entitiesService = entitiesService;
+            _world = world;
 
             CommandIds.ForEachData(new RegisterRecieverAction(this, _commandRecieveService));
-        }
-
-        private GenericCollection GetCommands(int tick)
-        {
-            if(!_commands.TryGetValue(tick, out var genericCollection))
-            {
-                _commands[tick] = genericCollection = new GenericCollection();
-            }
-            return genericCollection;
-        }
-
-        private GenericCollection GetMementos(int tick)
-        {
-            if (!_mementos.TryGetValue(tick, out var genericCollection))
-            {
-                _mementos[tick] = genericCollection = new GenericCollection();
-            }
-            return genericCollection;
         }
 
         public void AddCommand<T>(Command<T> command)
             where T : ICommandData
         {
             var tick = command.Tick;
-            oldestCommandTick = Maths.Min(tick, oldestCommandTick);
+            _oldestCommandTick = Maths.Min(tick, _oldestCommandTick);
             GetCommands(tick).Add(command);
         }
 
@@ -65,41 +46,32 @@ namespace DVG.SkyPirates.Shared.Services
             where T : ICommandData
         {
             var tick = command.Tick;
-            oldestCommandTick = Maths.Min(tick, oldestCommandTick);
-            GetCommands(tick).Remove<Command<T>>(c=>c.ClientId == command.ClientId && c.CommandId == command.CommandId);
+            _oldestCommandTick = Maths.Min(tick, _oldestCommandTick);
+            GetCommands(tick).Remove<Command<T>>(c => c.ClientId == command.ClientId && c.CommandId == command.CommandId);
+        }
+
+        private GenericCollection GetCommands(int tick)
+        {
+            if (!_commands.TryGetValue(tick, out var genericCollection))
+            {
+                _commands[tick] = genericCollection = new GenericCollection();
+            }
+            return genericCollection;
         }
 
         public void Tick()
         {
-            int tickToGo = oldestCommandTick - 1;
-            var stateToApply = GetMementos(tickToGo);
-            _entitiesService.CurrentTick = tickToGo;
-
-            MementoIds.ForEachData(new ApplyMementosAction(_entitiesService, stateToApply));
-
-            // (copy entities, apply command => update => save memento) repeat
-            for (int i = oldestCommandTick; i <= CurrentTick; i++)
+            int tickToGo = _oldestCommandTick - 1;
+            HistoryComponents.ForEachData(new GoToStateAction(_world, tickToGo));
+            for (int i = _oldestCommandTick; i <= CurrentTick; i++)
             {
-                var entities = _entitiesService.GetEntities(i);
-                var prevEntities = _entitiesService.GetEntities(i - 1);
-                entities.Clear();
-                foreach (var (id, entity) in prevEntities)
-                    entities.Add(id, entity);
-
-                _entitiesService.CurrentTick = i;
-
+                // TODO Some code to set entity is not active/created
                 CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, GetCommands(i)));
-
-                _tickableExecutorService.Tick(TickTime);
-
-                foreach (var (id, obj) in _entitiesService.GetEntities(i))
-                    if (obj is IFixedTickable entity)
-                        entity.Tick(TickTime);
-
-                MementoIds.ForEachData(new SaveMementosAction(_entitiesService, GetMementos(i)));
+                _tickableExecutorService.Tick(TickTime); // tick everything inside service
+                HistoryComponents.ForEachData(new SaveStateAction(_world, i));
             }
             CurrentTick++;
-            oldestCommandTick = CurrentTick;
+            _oldestCommandTick = CurrentTick;
         }
 
         private readonly struct RegisterRecieverAction : IGenericAction<ICommandData>
@@ -116,52 +88,6 @@ namespace DVG.SkyPirates.Shared.Services
             public void Invoke<T>() where T : ICommandData
             {
                 _recieveService.RegisterReciever<T>(_timelineService.AddCommand);
-            }
-        }
-
-        private readonly struct ApplyMementosAction : IGenericAction<IMementoData>
-        {
-            private readonly IEntitiesService _entities;
-            private readonly GenericCollection _mementos;
-
-            public ApplyMementosAction(IEntitiesService entities, GenericCollection mementos)
-            {
-                _entities = entities;
-                _mementos = mementos;
-            }
-
-            public void Invoke<T>() where T : IMementoData
-            {
-                var genericMementos = _mementos.GetCollection<Memento<T>>();
-                if (genericMementos == null)
-                    return;
-
-                foreach (var item in genericMementos)
-                    if (_entities.TryGetEntity<IMementoable<T>>(item.EntityId, out var entity))
-                        entity.SetMemento(item.Data);
-            }
-        }
-
-        private readonly struct SaveMementosAction : IGenericAction<IMementoData>
-        {
-            private readonly IEntitiesService _entities;
-            private readonly GenericCollection _mementos;
-
-            public SaveMementosAction(IEntitiesService entities, GenericCollection mementos)
-            {
-                _entities = entities;
-                _mementos = mementos;
-            }
-
-            public void Invoke<T>() where T : IMementoData
-            {
-                _mementos.Clear<Memento<T>>();
-
-                foreach (var entityId in _entities.GetEntityIds())
-                    if (_entities.TryGetEntity<IMementoable<T>>(entityId, out var entity))
-                        _mementos.Add(new Memento<T>(0, entityId, entity.GetMemento()));
-
-                _mementos.Trim<Memento<T>>();
             }
         }
 
@@ -186,6 +112,41 @@ namespace DVG.SkyPirates.Shared.Services
                     _executor.Execute(item);
             }
         }
+        private readonly struct GoToStateAction : IGenericAction
+        {
+            private readonly World _world;
+            private readonly int _tickToGo;
 
+            public GoToStateAction(World world, int tickToGo)
+            {
+                _world = world;
+                _tickToGo = tickToGo;
+            }
+
+            public void Invoke<T>()
+            {
+                var historyQuery = new QueryDescription().WithAll<T, History<T>>();
+                int tickToGo = _tickToGo;
+                _world.Query(historyQuery, (ref T u, ref History<T> h) => u = h.history[tickToGo]);
+            }
+        }
+        private readonly struct SaveStateAction : IGenericAction
+        {
+            private readonly World _world;
+            private readonly int _tickToGo;
+
+            public SaveStateAction(World world, int tickToGo)
+            {
+                _world = world;
+                _tickToGo = tickToGo;
+            }
+
+            public void Invoke<T>()
+            {
+                var historyQuery = new QueryDescription().WithAll<T, History<T>>();
+                int tickToGo = _tickToGo;
+                _world.Query(historyQuery, (ref T u, ref History<T> h) => h.history[tickToGo] = u);
+            }
+        }
     }
 }

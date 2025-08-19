@@ -5,28 +5,38 @@ using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Configs;
 using DVG.SkyPirates.Shared.Entities;
 using System.Collections.Generic;
+using Arch.Core;
+using DVG.SkyPirates.Shared.Components;
+using Arch.Core.Extensions;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
     public class SquadFactory : ISquadFactory
     {
         private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
-        private readonly IEntitiesService _entitiesService;
 
-        private readonly Dictionary<int, SquadEntity> _squadsCache = new Dictionary<int, SquadEntity>();
+        private readonly Dictionary<int, Entity> _squadsCache = new Dictionary<int, Entity>();
 
-        public SquadFactory(IPathFactory<PackedCirclesConfig> circlesModelFactory, IEntitiesService entitiesService)
+        public SquadFactory(IPathFactory<PackedCirclesConfig> circlesModelFactory)
         {
             _circlesModelFactory = circlesModelFactory;
-            _entitiesService = entitiesService;
         }
 
-        public SquadEntity Create(Command<SpawnSquadCommand> cmd)
+        public Entity Create(Command<SpawnSquadCommand> cmd)
         {
             if (_squadsCache.TryGetValue(cmd.EntityId, out var squad))
                 return squad;
 
-            return _squadsCache[cmd.EntityId] = new SquadEntity(_circlesModelFactory, _entitiesService);
+            _squadsCache[cmd.EntityId] = squad = EntityIds.Get(cmd.EntityId);
+
+            squad.Add<
+                Squad, 
+                Position, 
+                Rotation, 
+                Fixation, 
+                Direction>();
+
+            return squad;
         }
     }
 }

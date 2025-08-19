@@ -1,4 +1,6 @@
-﻿using DVG.SkyPirates.Shared.IServices;
+﻿using Arch.Core;
+using Arch.Core.Extensions;
+using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.IServices.TargetSearch;
 using System.Collections.Generic;
 
@@ -8,25 +10,25 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
     {
         private const int SquareSize = 35;
 
-        private readonly IEntitiesService _entitiesService;
+        private readonly World _world;
 
-        private readonly Dictionary<int2, Dictionary<int, List<ITarget>>> _targets = new Dictionary<int2, Dictionary<int, List<ITarget>>>();
-        private readonly List<ITarget> _targetsCache = new List<ITarget>();
+        private readonly Dictionary<int2, Dictionary<int, List<Entity>>> _targets = new Dictionary<int2, Dictionary<int, List<Entity>>>();
+        private readonly List<Entity> _targetsCache = new List<Entity>();
 
-        public TargetSearchService(IEntitiesService entitiesService)
+        public TargetSearchService(World world)
         {
-            _entitiesService = entitiesService;
+            _world = world;
         }
 
-        public ITarget? FindTarget(fix3 position, fix distance, int teamId)
+        public Entity FindTarget(fix3 position, fix distance, int teamId)
         {
             _targetsCache.Clear();
             FindTargets(position, distance, teamId, _targetsCache);
             fix minSqrDistance = fix.MaxValue;
-            ITarget? foundTarget = null;
+            Entity foundTarget = Entity.Null;
             foreach (var target in _targetsCache)
             {
-                var sqrDistance = fix2.SqrDistance(target.Position.xz, position.xz);
+                var sqrDistance = fix2.SqrDistance(target.Get<Position>().position.xz, position.xz);
                 if (sqrDistance < minSqrDistance)
                 {
                     foundTarget = target;
@@ -36,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
             return foundTarget;
         }
 
-        public void FindTargets(fix3 position, fix distance, int teamId, List<ITarget> targets)
+        public void FindTargets(fix3 position, fix distance, int teamId, List<Entity> targets)
         {
             var d = new fix2(distance, distance);
             var min = GetQuantizedSquare(position.xz - d);
@@ -53,7 +55,7 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
                     foreach (var item in quadrant)
                         if (item.Key != teamId)
                             foreach (var target in item.Value)
-                                if (fix2.SqrDistance(target.Position.xz, position.xz) < sqrDistance)
+                                if (fix2.SqrDistance(target.Get<Position>().position.xz, position.xz) < sqrDistance)
                                     targets.Add(target);
                 }
             }
@@ -64,19 +66,16 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
             foreach (var item in _targets)
                 foreach (var team in item.Value)
                     team.Value.Clear();
-
-            foreach (var entityId in _entitiesService.GetEntityIds())
+            var query = new QueryDescription().WithAll<Health, Position, Team>();
+            _world.Query(query, (Entity e, ref Health h, ref Position p, ref Team t) =>
             {
-                if (!_entitiesService.TryGetEntity<ITarget>(entityId, out var target))
-                    continue;
-
-                var intPos = GetQuantizedSquare(target.Position.xz);
+                var intPos = GetQuantizedSquare(p.position.xz);
                 if (!_targets.TryGetValue(intPos, out var quadrant))
-                    _targets[intPos] = quadrant = new Dictionary<int, List<ITarget>>();
-                if (!quadrant.TryGetValue(target.TeamId, out var team))
-                    quadrant[target.TeamId] = team = new List<ITarget>();
-                team.Add(target);
-            }
+                    _targets[intPos] = quadrant = new Dictionary<int, List<Entity>>();
+                if (!quadrant.TryGetValue(t.id, out var team))
+                    quadrant[t.id] = team = new List<Entity>();
+                team.Add(e);
+            });
         }
 
         private int2 GetQuantizedSquare(fix2 position)
