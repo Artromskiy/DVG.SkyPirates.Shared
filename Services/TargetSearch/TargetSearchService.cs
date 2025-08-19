@@ -97,8 +97,7 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
 
         private static int2 GetQuantizedSquare(fix2 position)
         {
-            var pos = position / SquareSize;
-            return new int2((int)pos.x, (int)pos.y);
+            return new int2((int)position.x / SquareSize, (int)position.y / SquareSize);
         }
     }
 }
