@@ -43,9 +43,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             int deltaRotation = (newQuantizedRotation - oldQuantizedRotation) & 15;
             if (deltaRotation == 0)
                 return;
-            var _packedCircles = GetCirclesConfig(squad._orders.Count);
-            for (int i = 0; i < squad._orders.Count; i++)
-                squad._orders[i] = _packedCircles.Reorders[deltaRotation, squad._orders[i]];
+            var _packedCircles = GetCirclesConfig(squad.orders.Count);
+            for (int i = 0; i < squad.orders.Count; i++)
+                squad.orders[i] = _packedCircles.Reorders[deltaRotation, squad.orders[i]];
             UpdateRotatedPoints(ref squad, _rotation, _packedCircles);
         }
 
@@ -56,11 +56,11 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         private void UpdateRotatedPoints(ref Squad squad, fix rotation, PackedCirclesConfig packedCircles)
         {
-            Array.Resize(ref squad._rotatedPoints, packedCircles.Points.Length);
+            Array.Resize(ref squad.positions, packedCircles.Points.Length);
             for (int i = 0; i < packedCircles.Points.Length; i++)
             {
                 var localPoint = packedCircles.Points[i] / 2;
-                squad._rotatedPoints[i] = RotatePoint(localPoint, rotation);
+                squad.positions[i] = RotatePoint(localPoint, rotation);
             }
         }
 

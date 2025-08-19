@@ -36,9 +36,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         void AddUnit(Entity squad, Entity unit)
         {
             ref var squadComponent = ref squad.Get<Squad>();
-            var packedCircles = GetCirclesConfig(squadComponent._units.Count + 1);
-            squadComponent._orders.Add(squadComponent._units.Count);
-            squadComponent._units.Add(unit);
+            var packedCircles = GetCirclesConfig(squadComponent.units.Count + 1);
+            squadComponent.orders.Add(squadComponent.units.Count);
+            squadComponent.units.Add(unit);
             UpdateRotatedPoints(ref squadComponent, ref squad.Get<Rotation>(), packedCircles);
         }
 
@@ -49,11 +49,11 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         private void UpdateRotatedPoints(ref Squad squad, ref Rotation r, PackedCirclesConfig packedCircles)
         {
-            Array.Resize(ref squad._rotatedPoints, packedCircles.Points.Length);
+            Array.Resize(ref squad.positions, packedCircles.Points.Length);
             for (int i = 0; i < packedCircles.Points.Length; i++)
             {
                 var localPoint = packedCircles.Points[i] / 2;
-                squad._rotatedPoints[i] = RotatePoint(localPoint, r.rotation);
+                squad.positions[i] = RotatePoint(localPoint, r.rotation);
             }
         }
 

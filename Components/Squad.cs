@@ -5,8 +5,8 @@ namespace DVG.SkyPirates.Shared.Components
 {
     public struct Squad
     {
-        public readonly List<Entity> _units;
-        public readonly List<int> _orders;
-        public fix2[] _rotatedPoints;
+        public List<Entity> units;
+        public List<int> orders;
+        public fix2[] positions;
     }
 }

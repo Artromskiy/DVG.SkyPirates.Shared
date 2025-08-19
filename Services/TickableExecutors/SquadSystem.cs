@@ -21,11 +21,11 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
                 var deltaMove = (d.direction * 7 * deltaTime).x_y;
                 p.position += deltaMove;
 
-                for (int i = 0; i < s._units.Count; i++)
+                for (int i = 0; i < s.units.Count; i++)
                 {
-                    var offset = s._rotatedPoints[s._orders[i]].x_y;
-                    _world.Get<Unit>(s._units[i]).TargetPosition = p.position + offset;
-                    _world.Get<Fixation>(s._units[i]).fixation = f.fixation;
+                    var offset = s.positions[s.orders[i]].x_y;
+                    _world.Get<Unit>(s.units[i]).TargetPosition = p.position + offset;
+                    _world.Get<Fixation>(s.units[i]).fixation = f.fixation;
                 }
             });
         }
