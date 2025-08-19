@@ -16,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
 
         public void Tick(fix deltaTime)
         {
-            _world.Query(new SquadQuery(), (ref Position p, ref Direction d, ref Squad s, ref Rotation r, ref Fixation f) =>
+            _world.Query(new SquadArch(), (ref Position p, ref Direction d, ref Squad s, ref Rotation r, ref Fixation f) =>
             {
                 var deltaMove = (d.direction * 7 * deltaTime).x_y;
                 p.position += deltaMove;

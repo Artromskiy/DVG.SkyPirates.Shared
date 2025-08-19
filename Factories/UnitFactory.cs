@@ -1,10 +1,12 @@
-﻿using DVG.Core;
+﻿using Arch.Core;
+using Arch.Core.Extensions;
+using DVG.Core;
+using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Commands;
-using DVG.SkyPirates.Shared.IFactories;
-using DVG.SkyPirates.Shared.Entities;
-using System.Collections.Generic;
-using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Entities;
+using DVG.SkyPirates.Shared.IFactories;
+using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
@@ -28,14 +30,10 @@ namespace DVG.SkyPirates.Shared.Factories
 
             _unitsCache[cmd.EntityId] = unit = EntityIds.Get(cmd.EntityId);
 
-            unit.Add<
-                Unit,
-                Position,
-                Rotation,
-                Health,
-                Team,
-                Fixation>();
-
+            UnitArch.EnsureArch(unit);
+            HistoryArch.EnsureHistory(unit);
+            unit.Get<Unit>().UnitConfig = config;
+            
             return unit;
         }
     }

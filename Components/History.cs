@@ -4,6 +4,11 @@ namespace DVG.SkyPirates.Shared.Components
 {
     public struct History<T>
     {
-        public List<T> history;
+        public Dictionary<int, T> history;
+
+        public static History<T> Create() => new History<T>()
+        {
+            history = new Dictionary<int, T>()
+        };
     }
 }

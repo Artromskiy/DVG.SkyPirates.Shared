@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using DVG.Core;
 using DVG.Core.Commands;
+using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
@@ -62,13 +63,13 @@ namespace DVG.SkyPirates.Shared.Services
         public void Tick()
         {
             int tickToGo = _oldestCommandTick - 1;
-            HistoryComponents.ForEachData(new GoToStateAction(_world, tickToGo));
+            HistoryArch.ForEachData(new GoToStateAction(_world, tickToGo));
             for (int i = _oldestCommandTick; i <= CurrentTick; i++)
             {
                 // TODO Some code to set entity is not active/created
                 CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, GetCommands(i)));
                 _tickableExecutorService.Tick(TickTime); // tick everything inside service
-                HistoryComponents.ForEachData(new SaveStateAction(_world, i));
+                HistoryArch.ForEachData(new SaveStateAction(_world, i));
             }
             CurrentTick++;
             _oldestCommandTick = CurrentTick;

@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
 
         public void Tick(fix deltaTime)
         {
-            _world.Query(new UnitQuery(), (ref Fixation f, ref Unit u, ref Position p, ref Rotation r, ref Team t, ref Health h) =>
+            _world.Query(new UnitArch(), (ref Fixation f, ref Unit u, ref Position p, ref Rotation r, ref Team t, ref Health h) =>
             {
                 Tick(
                     ref u.TargetPosition,
