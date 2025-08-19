@@ -55,7 +55,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
             }
 
             var target = _targetSearch.FindTarget(Position, 5, TeamId);
-            if (target == null)
+            if (!target.IsAlive())
             {
                 PreAttack = 0;
                 PostAttack = 0;
