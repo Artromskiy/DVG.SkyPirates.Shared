@@ -40,20 +40,53 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
             public void Update(ref Unit u, ref Position p, ref Rotation r, ref Fixation f, ref Team t)
             {
                 fix deltaTime = _deltaTime;
-                if (f.fixation)
+                var target = _targetSearch.FindTarget(p.position, 5, t.id);
+
+                if (f.fixation || !target.IsAlive())
                 {
+                    AbortAttack(ref u, deltaTime);
+
                     MoveTo(ref p.position, ref r.rotation, u.TargetPosition, u.UnitConfig, deltaTime);
                     return;
                 }
 
-                var target = _targetSearch.FindTarget(p.position, 5, t.id);
-                if (!target.IsAlive())
+                deltaTime = MoveToTarget(target, ref p, ref u, ref r, deltaTime);
+
+                if (deltaTime == 0)
+                    return;
+
+                Attack(ref u, target, deltaTime);
+            }
+
+            private static void Attack(ref Unit unit, Entity target, fix deltaTime)
+            {
+                if (unit.PreAttack != 1)
                 {
-                    u.PreAttack = 0;
-                    u.PostAttack = 0;
-                    MoveTo(ref p.position, ref r.rotation, u.TargetPosition, u.UnitConfig, deltaTime);
+                    var preAttackBefore = unit.PreAttack;
+                    DoPreAttack(ref unit.PreAttack, unit.UnitConfig, deltaTime);
+
+                    if (unit.PreAttack == 1 && preAttackBefore != 1 && target.IsAlive())
+                        target.Get<Health>().health -= unit.UnitConfig.damage;
+
                     return;
                 }
+
+                if (unit.PreAttack == 1)
+                    DoPostAttack(ref unit.PostAttack, unit.UnitConfig, deltaTime);
+            }
+
+            private static void AbortAttack(ref Unit u, fix deltaTime)
+            {
+                if (u.PreAttack == 1)
+                    u.PostAttack = Maths.MoveTowards(u.PostAttack, 1, deltaTime / u.UnitConfig.postAttack);
+                else if (u.PreAttack != 0)
+                    u.PreAttack = Maths.MoveTowards(u.PostAttack, 0, deltaTime / u.UnitConfig.preAttack);
+                else if (u.PostAttack == 1)
+                    u.PostAttack = u.PreAttack = 0;
+            }
+
+            private static fix MoveToTarget(Entity target, ref Position p, ref Unit u, ref Rotation r, fix deltaTime)
+            {
                 var targetPosition = target.Get<Position>().position;
                 var sqrDistance = fix2.SqrDistance(targetPosition.xz, p.position.xz);
                 var sqrAttackDistance = u.UnitConfig.attackDistance * u.UnitConfig.attackDistance;
@@ -62,29 +95,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
                     var inAttackRange = fix3.MoveTowards(targetPosition, p.position, u.UnitConfig.attackDistance);
                     deltaTime = MoveTo(ref p.position, ref r.rotation, inAttackRange, u.UnitConfig, deltaTime);
                 }
-
-                if (deltaTime == 0)
-                    return;
-
-                if (u.PreAttack != 1)
-                {
-                    var preAttackBefore = u.PreAttack;
-                    DoPreAttack(ref u.PreAttack, u.UnitConfig, deltaTime);
-
-                    if (u.PreAttack == 1 && preAttackBefore != 1)
-                        target.Get<Health>().health -= u.UnitConfig.damage;
-
-                    return;
-                }
-
-                if (u.PreAttack == 1)
-                    DoPostAttack(ref u.PostAttack, u.UnitConfig, deltaTime);
-
-                if (u.PreAttack == 1 && u.PostAttack == 1)
-                {
-                    u.PreAttack = 0;
-                    u.PostAttack = 0;
-                }
+                return deltaTime;
             }
 
             private static fix MoveTo(ref fix3 position, ref fix rotation, fix3 targetPosition, UnitConfig config, fix deltaTime)
