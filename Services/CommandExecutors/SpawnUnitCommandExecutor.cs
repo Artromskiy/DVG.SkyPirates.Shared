@@ -8,6 +8,7 @@ using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using System;
+using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
@@ -36,10 +37,19 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         void AddUnit(Entity squad, Entity unit)
         {
             ref var squadComponent = ref squad.Get<Squad>();
+            var rotation = squad.Get<Rotation>().rotation;
             var packedCircles = GetCirclesConfig(squadComponent.units.Count + 1);
+            squadComponent.orders = new List<int>(squadComponent.orders);
+            squadComponent.units = new List<Entity>(squadComponent.units);
             squadComponent.orders.Add(squadComponent.units.Count);
             squadComponent.units.Add(unit);
-            UpdateRotatedPoints(ref squadComponent, ref squad.Get<Rotation>(), packedCircles);
+            squadComponent.positions = new fix2[packedCircles.Points.Length];
+
+            for (int i = 0; i < packedCircles.Points.Length; i++)
+            {
+                var localPoint = packedCircles.Points[i] / 2;
+                squadComponent.positions[i] = RotatePoint(localPoint, rotation);
+            }
         }
 
         private PackedCirclesConfig GetCirclesConfig(int count)
@@ -47,15 +57,6 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             return _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
         }
 
-        private void UpdateRotatedPoints(ref Squad squad, ref Rotation r, PackedCirclesConfig packedCircles)
-        {
-            Array.Resize(ref squad.positions, packedCircles.Points.Length);
-            for (int i = 0; i < packedCircles.Points.Length; i++)
-            {
-                var localPoint = packedCircles.Points[i] / 2;
-                squad.positions[i] = RotatePoint(localPoint, r.rotation);
-            }
-        }
 
         public static fix2 RotatePoint(fix2 vec, fix radians)
         {

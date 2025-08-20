@@ -6,6 +6,7 @@ using DVG.SkyPirates.Shared.Configs;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IServices;
 using System;
+using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
@@ -34,6 +35,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
             if (fix2.SqrLength(direction) == 0 || squad.orders.Count == 0)
                 return;
+
             var oldRot = rotation;
             rotation = GetRotation(direction);
 
@@ -43,25 +45,25 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             int deltaRotation = (newQuantizedRotation - oldQuantizedRotation) & 15;
             if (deltaRotation == 0)
                 return;
-            var _packedCircles = GetCirclesConfig(squad.orders.Count);
+
+            var packedCircles = GetCirclesConfig(squad.orders.Count);
+            var oldOrders = squad.orders;
+
+            squad.orders = new List<int>();
             for (int i = 0; i < squad.orders.Count; i++)
-                squad.orders[i] = _packedCircles.Reorders[deltaRotation, squad.orders[i]];
-            UpdateRotatedPoints(ref squad, rotation, _packedCircles);
-        }
+                squad.orders.Add(packedCircles.Reorders[deltaRotation, oldOrders[i]]);
 
-        private static fix GetRotation(fix2 direction)
-        {
-            return -Maths.Atan2(-direction.x, direction.y);
-        }
-
-        private void UpdateRotatedPoints(ref Squad squad, fix rotation, PackedCirclesConfig packedCircles)
-        {
-            Array.Resize(ref squad.positions, packedCircles.Points.Length);
+            squad.positions = new fix2[packedCircles.Points.Length];
             for (int i = 0; i < packedCircles.Points.Length; i++)
             {
                 var localPoint = packedCircles.Points[i] / 2;
                 squad.positions[i] = RotatePoint(localPoint, rotation);
             }
+        }
+
+        private static fix GetRotation(fix2 direction)
+        {
+            return -Maths.Atan2(-direction.x, direction.y);
         }
 
         public static fix2 RotatePoint(fix2 vec, fix radians)
