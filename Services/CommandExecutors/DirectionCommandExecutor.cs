@@ -32,8 +32,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         public void SetDirection(ref fix2 direction, ref fix rotation, ref Squad squad, fix2 targetDirection)
         {
             direction = targetDirection;
-
-            if (fix2.SqrLength(direction) == 0 || squad.orders.Count == 0)
+            int count = squad.positions.Length;
+            if (fix2.SqrLength(direction) == 0 || count == 0)
                 return;
 
             var oldRot = rotation;
@@ -46,15 +46,15 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             if (deltaRotation == 0)
                 return;
 
-            var packedCircles = GetCirclesConfig(squad.orders.Count);
+            var packedCircles = GetCirclesConfig(count);
             var oldOrders = squad.orders;
 
             squad.orders = new List<int>();
-            for (int i = 0; i < squad.orders.Count; i++)
+            for (int i = 0; i < count; i++)
                 squad.orders.Add(packedCircles.Reorders[deltaRotation, oldOrders[i]]);
 
-            squad.positions = new fix2[packedCircles.Points.Length];
-            for (int i = 0; i < packedCircles.Points.Length; i++)
+            squad.positions = new fix2[count];
+            for (int i = 0; i < count; i++)
             {
                 var localPoint = packedCircles.Points[i] / 2;
                 squad.positions[i] = RotatePoint(localPoint, rotation);

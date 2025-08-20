@@ -38,14 +38,16 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         {
             ref var squadComponent = ref squad.Get<Squad>();
             var rotation = squad.Get<Rotation>().rotation;
-            var packedCircles = GetCirclesConfig(squadComponent.units.Count + 1);
+            int oldCount = squadComponent.units.Count;
+            int newCount = oldCount + 1;
+            var packedCircles = GetCirclesConfig(newCount);
             squadComponent.orders = new List<int>(squadComponent.orders);
             squadComponent.units = new List<Entity>(squadComponent.units);
-            squadComponent.orders.Add(squadComponent.units.Count);
+            squadComponent.orders.Add(oldCount);
             squadComponent.units.Add(unit);
-            squadComponent.positions = new fix2[packedCircles.Points.Length];
+            squadComponent.positions = new fix2[newCount];
 
-            for (int i = 0; i < packedCircles.Points.Length; i++)
+            for (int i = 0; i < newCount; i++)
             {
                 var localPoint = packedCircles.Points[i] / 2;
                 squadComponent.positions[i] = RotatePoint(localPoint, rotation);

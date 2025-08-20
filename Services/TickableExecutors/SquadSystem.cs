@@ -38,7 +38,9 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
 
                 for (int i = 0; i < s.units.Count; i++)
                 {
-                    var offset = s.positions[s.orders[i]].x_y;
+                    var positions = s.positions;
+                    var order = s.orders[i];
+                    var offset = positions[order].x_y;
                     s.units[i].Get<Unit>().TargetPosition = p.position + offset;
                     s.units[i].Get<Fixation>().fixation = f.fixation;
                 }
