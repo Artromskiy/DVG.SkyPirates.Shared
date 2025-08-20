@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Factories
             _unitConfigFactory = unitConfigFactory;
         }
 
-        public Entity Create(Command<SpawnUnitCommand> cmd)
+        public virtual Entity Create(Command<SpawnUnitCommand> cmd)
         {
             var config = _unitConfigFactory.Create(cmd.Data);
 
