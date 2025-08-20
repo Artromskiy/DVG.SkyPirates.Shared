@@ -23,8 +23,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         {
             var squad = EntityIds.Get(cmd.EntityId);
             SetDirection(
-                ref squad.Get<Direction>().direction,
-                ref squad.Get<Rotation>().rotation,
+                ref squad.Get<Direction>().Value,
+                ref squad.Get<Rotation>().Value,
                 ref squad.Get<Squad>(),
                 cmd.Data.Direction);
         }

@@ -26,9 +26,13 @@ namespace DVG.SkyPirates.Shared.Factories
 
             UnitArch.EnsureArch(unit);
             HistoryArch.EnsureHistory(unit);
-            unit.Get<Unit>().UnitConfig = config;
-            unit.Get<Team>().id = cmd.ClientId;
-            unit.Get<Health>().health = config.health;
+
+            unit.Get<Team>().Id = cmd.ClientId;
+            unit.Get<Health>().Value = config.health;
+            unit.Get<Damage>().Value = config.damage;
+            unit.Get<MoveSpeed>().Value = config.speed;
+            unit.Get<ImpactDistance>().Value = config.attackDistance;
+
             unit.Get<Creation>() = new Creation(cmd.Tick);
 
             return unit;

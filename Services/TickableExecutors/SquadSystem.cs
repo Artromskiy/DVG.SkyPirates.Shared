@@ -31,18 +31,18 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
                 _deltaTime = deltaTime;
             }
 
-            public readonly void Update(ref Squad s, ref Position p, ref Direction d, ref Fixation f)
+            public readonly void Update(ref Squad squad, ref Position position, ref Direction direction, ref Fixation fixation)
             {
-                var deltaMove = (d.direction * SquadSpeed * _deltaTime).x_y;
-                p.position += deltaMove;
+                var deltaMove = (direction.Value * SquadSpeed * _deltaTime).x_y;
+                position.Value += deltaMove;
 
-                for (int i = 0; i < s.units.Count; i++)
+                for (int i = 0; i < squad.units.Count; i++)
                 {
-                    var positions = s.positions;
-                    var order = s.orders[i];
+                    var positions = squad.positions;
+                    var order = squad.orders[i];
                     var offset = positions[order].x_y;
-                    s.units[i].Get<Unit>().TargetPosition = p.position + offset;
-                    s.units[i].Get<Fixation>().fixation = f.fixation;
+                    squad.units[i].Get<TargetPosition>().Value = position.Value + offset;
+                    squad.units[i].Get<Fixation>().Value = fixation.Value;
                 }
             }
         }

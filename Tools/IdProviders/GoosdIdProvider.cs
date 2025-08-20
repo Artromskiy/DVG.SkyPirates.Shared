@@ -1,6 +1,5 @@
 ﻿using DVG.Core.Tools;
 using DVG.SkyPirates.Shared.Ids;
-using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Tools.IdProviders

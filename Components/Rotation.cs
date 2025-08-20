@@ -2,6 +2,6 @@
 {
     public struct Rotation
     {
-        public fix rotation;
+        public fix Value;
     }
 }

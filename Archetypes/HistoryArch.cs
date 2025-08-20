@@ -16,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             action.Invoke<Health>();
             action.Invoke<Squad>();
             action.Invoke<Team>();
-            action.Invoke<Unit>();
+            //action.Invoke<Unit>();
         }
 
         public static QueryDescription Query<T>()

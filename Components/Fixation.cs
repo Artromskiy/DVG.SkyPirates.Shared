@@ -2,6 +2,6 @@
 {
     public struct Fixation
     {
-        public bool fixation;
+        public bool Value;
     }
 }

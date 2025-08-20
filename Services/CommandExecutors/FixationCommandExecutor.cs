@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<FixationCommand> cmd)
         {
-            EntityIds.Get(cmd.EntityId).Get<Fixation>().fixation = cmd.Data.Fixation;
+            EntityIds.Get(cmd.EntityId).Get<Fixation>().Value = cmd.Data.Fixation;
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public struct Health
     {
-        public fix health;
+        public fix Value;
     }
 }

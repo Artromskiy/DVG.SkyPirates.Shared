@@ -1,7 +1,7 @@
 ﻿namespace DVG.SkyPirates.Shared.Components
 {
-    public struct Direction
+    public struct TargetPosition
     {
-        public fix2 Value;
+        public fix3 Value;
     }
 }

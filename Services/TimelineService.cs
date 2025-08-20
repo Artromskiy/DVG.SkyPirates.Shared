@@ -1,8 +1,5 @@
-﻿using Arch.Core;
-using DVG.Core;
+﻿using DVG.Core;
 using DVG.Core.Commands;
-using DVG.SkyPirates.Shared.Archetypes;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
@@ -11,8 +8,8 @@ namespace DVG.SkyPirates.Shared.Services
 {
     public class TimelineService : ITimelineService
     {
+        private static readonly fix _tickTime = (fix)1 / Constants.TicksPerSecond;
         public int CurrentTick { get; private set; }
-        public fix TickTime { get; set; }
 
         private readonly Dictionary<int, GenericCollection> _commands = new Dictionary<int, GenericCollection>();
         private int _oldestCommandTick;
@@ -67,16 +64,14 @@ namespace DVG.SkyPirates.Shared.Services
         public void Tick()
         {
             int tickToGo = _oldestCommandTick - 1;
-            // do not apply for not created entities
-            _preTickableExecutorService.Tick(tickToGo, TickTime);
+            _preTickableExecutorService.Tick(tickToGo, _tickTime);
 
             for (int i = _oldestCommandTick; i <= CurrentTick; i++)
             {
-                // TODO Some code to set entity is not active/created
                 CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, GetCommands(i)));
-                _tickableExecutorService.Tick(i, TickTime); // tick everything inside service
+                _tickableExecutorService.Tick(i, _tickTime);
             }
-            _postTickableExecutorService.Tick(CurrentTick, TickTime);
+            _postTickableExecutorService.Tick(CurrentTick, _tickTime);
 
             CurrentTick++;
             _oldestCommandTick = CurrentTick;

@@ -2,6 +2,6 @@
 {
     public struct Position
     {
-        public fix3 position;
+        public fix3 Value;
     }
 }

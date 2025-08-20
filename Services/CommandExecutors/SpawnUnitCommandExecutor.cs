@@ -29,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             var squad = EntityIds.Get(cmd.Data.SquadId);
             var unit = _unitFactory.Create(cmd);
 
-            unit.Get<Position>().position = squad.Get<Position>().position;
+            unit.Get<Position>().Value = squad.Get<Position>().Value;
 
             AddUnit(squad, unit);
         }
@@ -37,7 +37,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         void AddUnit(Entity squad, Entity unit)
         {
             ref var squadComponent = ref squad.Get<Squad>();
-            var rotation = squad.Get<Rotation>().rotation;
+            var rotation = squad.Get<Rotation>().Value;
             int oldCount = squadComponent.units.Count;
             int newCount = oldCount + 1;
             var packedCircles = GetCirclesConfig(newCount);

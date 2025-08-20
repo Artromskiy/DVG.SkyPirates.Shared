@@ -31,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
 
             foreach (var target in _targetsCache)
             {
-                var targetPosition = target.Get<Position>().position.xz;
+                var targetPosition = target.Get<Position>().Value.xz;
                 var sqrDistance = fix2.SqrDistance(targetPosition, position.xz);
                 if (sqrDistance < minSqrDistance)
                 {
@@ -59,7 +59,7 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
                     foreach (var item in quadrant)
                         if (item.Key != teamId)
                             foreach (var target in item.Value)
-                                if (fix2.SqrDistance(target.Get<Position>().position.xz, position.xz) < sqrDistance)
+                                if (fix2.SqrDistance(target.Get<Position>().Value.xz, position.xz) < sqrDistance)
                                     targets.Add(target);
                 }
             }
@@ -86,11 +86,11 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
 
             public readonly void Update(Entity e, ref Position p, ref Team t)
             {
-                var intPos = GetQuantizedSquare(p.position.xz);
+                var intPos = GetQuantizedSquare(p.Value.xz);
                 if (!_targets.TryGetValue(intPos, out var quadrant))
                     _targets[intPos] = quadrant = new Dictionary<int, List<Entity>>();
-                if (!quadrant.TryGetValue(t.id, out var team))
-                    quadrant[t.id] = team = new List<Entity>();
+                if (!quadrant.TryGetValue(t.Id, out var team))
+                    quadrant[t.Id] = team = new List<Entity>();
                 team.Add(e);
             }
         }
