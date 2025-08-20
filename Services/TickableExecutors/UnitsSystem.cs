@@ -73,6 +73,9 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
 
                 if (unit.PreAttack == 1)
                     DoPostAttack(ref unit.PostAttack, unit.UnitConfig, deltaTime);
+
+                if (unit.PostAttack == 1)
+                    unit.PreAttack = unit.PostAttack = 0;
             }
 
             private static void AbortAttack(ref Unit u, fix deltaTime)
