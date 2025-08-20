@@ -57,7 +57,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
                 var targetPosition = target.Get<Position>().position;
                 var sqrDistance = fix2.SqrDistance(targetPosition.xz, p.position.xz);
                 var sqrAttackDistance = u.UnitConfig.attackDistance * u.UnitConfig.attackDistance;
-                if (sqrDistance < sqrAttackDistance)
+                if (sqrDistance > sqrAttackDistance)
                 {
                     var inAttackRange = fix3.MoveTowards(targetPosition, p.position, u.UnitConfig.attackDistance);
                     deltaTime = MoveTo(ref p.position, ref r.rotation, inAttackRange, u.UnitConfig, deltaTime);
@@ -102,15 +102,11 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
 
             private static void DoPreAttack(ref fix PreAttack, UnitConfig config, fix deltaTime)
             {
-                fix prevPreAttack = PreAttack * config.preAttack;
-                fix newPreAttack = Maths.MoveTowards(prevPreAttack, config.preAttack, deltaTime);
-                PreAttack = newPreAttack / config.preAttack;
+                PreAttack = Maths.MoveTowards(PreAttack, 1, deltaTime / config.preAttack);
             }
             private static void DoPostAttack(ref fix PostAttack, UnitConfig config, fix deltaTime)
             {
-                fix prevPostAttack = PostAttack * config.postAttack;
-                fix newPostAttack = Maths.MoveTowards(prevPostAttack, config.postAttack, deltaTime);
-                PostAttack = newPostAttack / config.postAttack;
+                PostAttack = Maths.MoveTowards(PostAttack, 1, deltaTime / config.postAttack);
             }
         }
 

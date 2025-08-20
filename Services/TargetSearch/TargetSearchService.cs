@@ -49,9 +49,9 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
             var max = GetQuantizedSquare(position.xz + d);
             var sqrDistance = distance * distance;
 
-            for (int y = min.y; y < max.y; y++)
+            for (int y = min.y; y <= max.y; y++)
             {
-                for (int x = min.x; x < max.x; x++)
+                for (int x = min.x; x <= max.x; x++)
                 {
                     if (!_targets.TryGetValue(new int2(x, y), out var quadrant))
                         continue;
