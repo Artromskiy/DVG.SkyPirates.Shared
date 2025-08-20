@@ -13,25 +13,20 @@ namespace DVG.SkyPirates.Shared.Factories
 {
     public class SquadFactory : ISquadFactory
     {
-        private readonly Dictionary<int, Entity> _squadsCache = new Dictionary<int, Entity>();
-
         public SquadFactory()
         {
         }
 
         public Entity Create(Command<SpawnSquadCommand> cmd)
         {
-            if (_squadsCache.TryGetValue(cmd.EntityId, out var squad))
-                return squad;
-
-            _squadsCache[cmd.EntityId] = squad = EntityIds.Get(cmd.EntityId);
+            var squad = EntityIds.Get(cmd.EntityId);
 
             SquadArch.EnsureArch(squad);
             HistoryArch.EnsureHistory(squad);
             squad.Get<Squad>().orders = new List<int>();
             squad.Get<Squad>().units = new List<Entity>();
             squad.Get<Squad>().positions = Array.Empty<fix2>();
-
+            squad.Get<Creation>() = new Creation(cmd.Tick);
             return squad;
         }
     }

@@ -24,17 +24,17 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
         private readonly struct ApplyHistoryAction : IGenericAction
         {
             private readonly World _world;
-            private readonly int _tickToGo;
+            private readonly int _tick;
 
             public ApplyHistoryAction(World world, int tick)
             {
                 _world = world;
-                _tickToGo = tick;
+                _tick = tick;
             }
 
             public void Invoke<T>()
             {
-                var query = new ApplyHistoryQuery<T>(_tickToGo);
+                var query = new ApplyHistoryQuery<T>(_tick);
                 _world.InlineQuery<ApplyHistoryQuery<T>, T, History<T>>
                     (HistoryArch.Query<T>(), ref query);
             }

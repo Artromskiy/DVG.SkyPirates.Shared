@@ -27,6 +27,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
         public static void EnsureHistory(Entity entity)
         {
             ForEachData(new EnsureHistoryAction(entity));
+            entity.AddOrGet<Creation>();
         }
 
         private readonly struct EnsureHistoryAction : IGenericAction

@@ -67,7 +67,9 @@ namespace DVG.SkyPirates.Shared.Services
         public void Tick()
         {
             int tickToGo = _oldestCommandTick - 1;
+            // do not apply for not created entities
             _preTickableExecutorService.Tick(tickToGo, TickTime);
+
             for (int i = _oldestCommandTick; i <= CurrentTick; i++)
             {
                 // TODO Some code to set entity is not active/created
