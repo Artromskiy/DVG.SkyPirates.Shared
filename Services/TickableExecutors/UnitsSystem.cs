@@ -97,7 +97,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors
                     var targetRotation = Maths.Degrees(-Maths.Atan2(-direction.x, direction.y));
                     rotation = Maths.RotateTowards(rotation, targetRotation, 720 * deltaTime);
                 }
-                return fix2.Distance(position.xz, prevPosition.xz) / (config.speed * deltaTime);
+                return deltaTime - fix2.Distance(position.xz, prevPosition.xz) / config.speed;
             }
 
             private static void DoPreAttack(ref fix PreAttack, UnitConfig config, fix deltaTime)
