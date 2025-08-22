@@ -3,8 +3,9 @@
 namespace DVG.SkyPirates.Shared.Components
 {
     [History]
-    public struct Fixation
+    public struct TargetSearchData
     {
-        public bool Value;
+        public fix3 Position;
+        public fix Distance;
     }
 }

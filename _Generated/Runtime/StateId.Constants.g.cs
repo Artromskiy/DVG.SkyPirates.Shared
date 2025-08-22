@@ -19,18 +19,14 @@ namespace DVG.SkyPirates.Shared.Ids
         public static partial class Constants
         {
             public static readonly StateId PreAttack = new StateId("PreAttack");
-            public static readonly StateId Impact = new StateId("Impact");
             public static readonly StateId PostAttack = new StateId("PostAttack");
             public static readonly StateId Reload = new StateId("Reload");
-            public static readonly StateId Move = new StateId("Move");
 
             private static readonly StateId[] _allIds = new StateId[]
             {
                 new StateId("PreAttack"),
-                new StateId("Impact"),
                 new StateId("PostAttack"),
                 new StateId("Reload"),
-                new StateId("Move"),
             };
             public static ReadOnlySpan<StateId> AllIds => _allIds;
         }

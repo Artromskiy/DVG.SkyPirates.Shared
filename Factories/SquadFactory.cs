@@ -4,6 +4,7 @@ using DVG.Core;
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IFactories;
 using System;
@@ -26,7 +27,6 @@ namespace DVG.SkyPirates.Shared.Factories
             squad.Get<Squad>().orders = new List<int>();
             squad.Get<Squad>().units = new List<Entity>();
             squad.Get<Squad>().positions = Array.Empty<fix2>();
-            squad.Get<Creation>() = new Creation(cmd.Tick);
             return squad;
         }
     }

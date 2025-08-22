@@ -1,12 +1,16 @@
 ﻿using Arch.Core;
 using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Archetypes;
-using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TargetSearch;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services.TargetSearch
 {
+    /// <summary>
+    /// Caches Entities with their position quantized by <see cref="SquareSize"/>.
+    /// Use for fast nearest search
+    /// </summary>
     public class TargetSearchService : ITargetSearchService
     {
         private const int SquareSize = 35;

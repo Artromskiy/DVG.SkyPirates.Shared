@@ -2,9 +2,11 @@
 using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Configs;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IServices;
+using DVG.SkyPirates.Shared.Tools.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -37,7 +39,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 return;
 
             var oldRot = rotation;
-            rotation = GetRotation(direction);
+            rotation = MathsExtensions.GetRotation(direction);
 
             static int Quantize(fix a) => (int)Maths.Round(Maths.Degrees(a) * 16 / 360);
             int newQuantizedRotation = Quantize(rotation);
@@ -57,22 +59,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             for (int i = 0; i < count; i++)
             {
                 var localPoint = packedCircles.Points[i] / 2;
-                squad.positions[i] = RotatePoint(localPoint, rotation);
+                squad.positions[i] = MathsExtensions.RotatePoint(localPoint, rotation);
             }
-        }
-
-        private static fix GetRotation(fix2 direction)
-        {
-            return -Maths.Atan2(-direction.x, direction.y);
-        }
-
-        public static fix2 RotatePoint(fix2 vec, fix radians)
-        {
-            var cs = Maths.Cos(radians);
-            var sn = Maths.Sin(radians);
-            fix x = vec.x * cs + vec.y * sn;
-            fix y = -vec.x * sn + vec.y * cs;
-            return new fix2(x, y);
         }
 
         private PackedCirclesConfig GetCirclesConfig(int count)

@@ -7,5 +7,7 @@ namespace DVG.SkyPirates.Shared.Components
         public StateId State;
         public fix Percent;
         public fix Duration;
+
+        public StateId? ForceState;
     }
 }

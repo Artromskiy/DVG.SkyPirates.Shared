@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Components.Data;
 
 namespace DVG.SkyPirates.Shared.Archetypes
 {

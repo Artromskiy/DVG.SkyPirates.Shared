@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Components.Data;
 
 namespace DVG.SkyPirates.Shared.Archetypes
 {
@@ -12,8 +13,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             Rotation,
             Fixation,
             Behaviour,
-            TargetPosition,
-            TargetRotation,
+            Destination,
             ImpactDistance,
             Target,
             Damage,
@@ -28,8 +28,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             entity.AddOrGet<Rotation>();
             entity.AddOrGet<Fixation>();
             entity.AddOrGet<Behaviour>();
-            entity.AddOrGet<TargetPosition>();
-            entity.AddOrGet<TargetRotation>();
+            entity.AddOrGet<Destination>();
             entity.AddOrGet<ImpactDistance>();
             entity.AddOrGet<Target>();
             entity.AddOrGet<Damage>();

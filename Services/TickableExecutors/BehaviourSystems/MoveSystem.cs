@@ -1,13 +1,19 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Ids;
+using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Tools.Extensions;
 
 namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 {
+    /// <summary>
+    /// Moves Entity's <see href="Position"/> and <see href="Rotation"/> 
+    /// with speed <see href="MoveSpeed"/> towards <see href="Destination"/>
+    /// </summary>
     public class MoveSystem : ITickableExecutor
     {
         private readonly World _world;
+        private const int RotateSpeed = 720;
         public MoveSystem(World world)
         {
             _world = world;
@@ -16,13 +22,12 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new MoveQuery(deltaTime);
-            var desc = new QueryDescription().WithAll<Behaviour, Position, Rotation, TargetPosition, TargetRotation, MoveSpeed>();
-            _world.InlineQuery<MoveQuery, Behaviour, Position, Rotation, TargetPosition, TargetRotation, MoveSpeed>
-                (desc, ref query);
+            var desc = new QueryDescription().WithAll<Position, Rotation, Destination, MoveSpeed>();
+            _world.InlineQuery<MoveQuery, Position, Rotation, Destination, MoveSpeed>(desc, ref query);
         }
 
         private readonly struct MoveQuery :
-            IForEach<Behaviour, Position, Rotation, TargetPosition, TargetRotation, MoveSpeed>
+            IForEach<Position, Rotation, Destination, MoveSpeed>
         {
             private readonly fix _deltaTime;
 
@@ -31,38 +36,31 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
                 _deltaTime = deltaTime;
             }
 
-            public void Update(
-                ref Behaviour behaviour,
-                ref Position position,
-                ref Rotation rotation,
-                ref TargetPosition targetPosition,
-                ref TargetRotation targetRotation,
-                ref MoveSpeed moveSpeed)
+            public void Update(ref Position position, ref Rotation rotation, ref Destination destination, ref MoveSpeed moveSpeed)
             {
-                if (behaviour.State != StateId.Constants.Move)
-                    return;
-
-                MoveTo(ref position.Value, ref rotation.Value, targetPosition.Value, targetRotation.Value, moveSpeed.Value, _deltaTime);
+                MoveTowardsDestination(ref position, destination, moveSpeed);
+                RotateTowardsDestination(ref rotation, position, destination);
             }
 
-            private static fix MoveTo(
-                ref fix3 position,
-                ref fix rotation,
-                fix3 targetPosition,
-                fix targetRotation,
-                fix speed,
-                fix deltaTime)
+            private void MoveTowardsDestination(ref Position position, Destination destination, MoveSpeed moveSpeed)
             {
-                var direction = targetPosition.xz - position.xz;
-                var prevPosition = position;
-                position = fix3.MoveTowards(prevPosition, targetPosition, speed * deltaTime);
+                position.Value = fix3.MoveTowards(
+                    position.Value,
+                    destination.Position,
+                    moveSpeed.Value * _deltaTime);
+            }
 
-                fix rotateTo = fix2.SqrLength(direction) != 0 ?
-                    Maths.Degrees(-Maths.Atan2(-direction.x, direction.y)) :
-                    targetRotation;
+            private void RotateTowardsDestination(ref Rotation rotation, Position position, Destination destination)
+            {
+                var dir = destination.Position.xz - position.Value.xz;
+                var rotateTo = fix2.SqrLength(dir) != 0
+                    ? Maths.Degrees(MathsExtensions.GetRotation(dir))
+                    : destination.Rotation;
 
-                rotation = Maths.RotateTowards(rotation, rotateTo, 720 * deltaTime);
-                return deltaTime - fix2.Distance(position.xz, prevPosition.xz) / speed;
+                rotation.Value = Maths.RotateTowards(
+                    rotation.Value,
+                    rotateTo,
+                    RotateSpeed * _deltaTime);
             }
         }
     }

@@ -7,27 +7,30 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 {
-    public class ImpactSystem : ITickableExecutor
+    /// <summary>
+    /// Switches <see cref="Behaviour"/> to PreAttack if State is None and Target is in ImpactDistance
+    /// </summary>
+    public class BeginAttackSystem : ITickableExecutor
     {
         private readonly World _world;
 
-        public ImpactSystem(World world)
+        public BeginAttackSystem(World world)
         {
             _world = world;
         }
 
         public void Tick(int tick, fix deltaTime)
         {
-            var desc = new QueryDescription().WithAll<Behaviour, Damage, ImpactDistance, Position, Target>();
-            _world.InlineQuery<AttackQuery, Behaviour, Damage, ImpactDistance, Position, Target>(desc);
+            var desc = new QueryDescription().WithAll<Behaviour, ImpactDistance, Position, Target>();
+            _world.InlineQuery<BeginAttackQuery, Behaviour, ImpactDistance, Position, Target>(desc);
         }
 
-        private readonly struct AttackQuery :
-            IForEach<Behaviour, Damage, ImpactDistance, Position, Target>
+        private readonly struct BeginAttackQuery :
+            IForEach<Behaviour, ImpactDistance, Position, Target>
         {
-            public void Update(ref Behaviour behaviour, ref Damage damage, ref ImpactDistance impactDistance, ref Position position, ref Target target)
+            public void Update(ref Behaviour behaviour, ref ImpactDistance impactDistance, ref Position position, ref Target target)
             {
-                if (behaviour.State != StateId.Constants.PreAttack || behaviour.Percent != 1)
+                if (behaviour.State == StateId.None)
                     return;
 
                 if (!target.Entity.IsAlive())
@@ -37,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
                 if (sqrDistance < impactDistance.Value * impactDistance.Value)
                     return;
 
-                target.Entity.Get<Health>().Value -= damage.Value;
+                behaviour.ForceState = StateId.Constants.PreAttack;
             }
         }
     }
