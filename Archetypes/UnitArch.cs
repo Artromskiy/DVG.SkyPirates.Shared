@@ -20,6 +20,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             entity.AddOrGet<Fixation>();
             entity.AddOrGet<Target>();
             entity.AddOrGet<Destination>();
+            entity.AddOrGet<TargetSearchData>();
             entity.AddOrGet<Behaviour>();
             entity.AddOrGet<BehaviourConfig>();
         }
