@@ -1,5 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Core;
+using DVG.Core.History;
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -17,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            HistoryArch.ForEachData(new SaveHistoryAction(_world, tick));
+            HistoryIds.ForEachData(new SaveHistoryAction(_world, tick));
         }
 
 

@@ -1,5 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Core;
+using DVG.Core.History;
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -20,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            HistoryArch.ForEachData(new ApplyHistoryAction(_entitiesCache, _world, tick));
+            HistoryIds.ForEachData(new ApplyHistoryAction(_entitiesCache, _world, tick));
         }
 
         private readonly struct ApplyHistoryAction : IStructGenericAction
@@ -46,20 +47,20 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
             private void RemoveComponents<T>() where T : struct
             {
                 _entities.Clear();
-                var query = new SelectToAdd<T>(_entities, _tick);
-                _world.InlineEntityQuery<SelectToAdd<T>, History<T>>(
-                    new QueryDescription().WithAll<History<T>>().WithNone<T>(), ref query);
+                var query = new SelectToRemove<T>(_entities, _tick);
+                _world.InlineEntityQuery<SelectToRemove<T>, History<T>>(
+                    new QueryDescription().WithAll<History<T>, T>(), ref query);
 
                 foreach (var item in _entities)
                     _world.Remove<T>(item);
             }
 
-            private void AddComponents<T>() where T: struct
+            private void AddComponents<T>() where T : struct
             {
                 _entities.Clear();
-                var query = new SelectToRemove<T>(_entities, _tick);
-                _world.InlineEntityQuery<SelectToRemove<T>, History<T>>(
-                    new QueryDescription().WithAll<History<T>, T>(), ref query);
+                var query = new SelectToAdd<T>(_entities, _tick);
+                _world.InlineEntityQuery<SelectToAdd<T>, History<T>>(
+                    new QueryDescription().WithAll<History<T>>().WithNone<T>(), ref query);
 
                 foreach (var item in _entities)
                     _world.Add<T>(item);

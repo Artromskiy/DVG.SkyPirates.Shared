@@ -62,7 +62,7 @@ namespace DVG.Core.History
 
         
         public static void ForEachData<T>(T action)
-            where T: IGenericAction
+            where T: IStructGenericAction
         {
             action.Invoke<Damage>();
             action.Invoke<Destination>();

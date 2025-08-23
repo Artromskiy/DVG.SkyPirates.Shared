@@ -15,6 +15,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
     public class DirectionCommandExecutor : ICommandExecutor<DirectionCommand>
     {
         private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
+        private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache = new Dictionary<int, PackedCirclesConfig>();
 
         public DirectionCommandExecutor(IPathFactory<PackedCirclesConfig> circlesModelFactory)
         {
@@ -24,6 +25,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         public void Execute(Command<DirectionCommand> cmd)
         {
             var squad = EntityIds.Get(cmd.EntityId);
+            Console.WriteLine(cmd.Tick);
             SetDirection(
                 ref squad.Get<Direction>().Value,
                 ref squad.Get<Rotation>().Value,
@@ -39,9 +41,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 return;
 
             var oldRot = rotation;
-            rotation = MathsExtensions.GetRotation(direction);
+            rotation = Maths.Degrees(MathsExtensions.GetRotation(direction));
 
-            static int Quantize(fix a) => (int)Maths.Round(Maths.Degrees(a) * 16 / 360);
+            static int Quantize(fix a) => (int)Maths.Round(a * 16 / 360);
             int newQuantizedRotation = Quantize(rotation);
             int oldQuantizedRotation = Quantize(oldRot);
             int deltaRotation = (newQuantizedRotation - oldQuantizedRotation) & 15;
@@ -65,7 +67,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         private PackedCirclesConfig GetCirclesConfig(int count)
         {
-            return _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
+            if(!_circlesConfigCache.TryGetValue(count, out var config))
+                _circlesConfigCache[count] = config = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
+            return config;
         }
     }
 }

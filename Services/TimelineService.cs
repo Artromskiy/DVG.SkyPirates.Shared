@@ -68,13 +68,17 @@ namespace DVG.SkyPirates.Shared.Services
 
             for (int i = _oldestCommandTick; i <= CurrentTick; i++)
             {
-                CommandIds.ForEachData(new ApplyCommandAction(_commandExecutorService, GetCommands(i)));
+                _commandExecutorService.Execute(GetCommands(i));
                 _tickableExecutorService.Tick(i, _tickTime);
             }
-            _postTickableExecutorService.Tick(CurrentTick, _tickTime);
 
-            CurrentTick++;
+            // Set oldest cmd tick now
+            // we can recieve commands in post tick
+            // and they will not be applied, because oldest command tick update
+            int postTick = CurrentTick++;
             _oldestCommandTick = CurrentTick;
+
+            _postTickableExecutorService.Tick(postTick, _tickTime);
         }
 
         private readonly struct RegisterRecieverAction : IGenericAction<ICommandData>

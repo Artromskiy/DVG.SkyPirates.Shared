@@ -17,6 +17,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         ICommandExecutor<SpawnUnitCommand>
     {
         private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
+        private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache = new Dictionary<int, PackedCirclesConfig>();
+
         private readonly IUnitFactory _unitFactory;
 
         public SpawnUnitCommandExecutor(IUnitFactory unitFactory, IPathFactory<PackedCirclesConfig> circlesModelFactory)
@@ -51,13 +53,15 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             for (int i = 0; i < newCount; i++)
             {
                 var localPoint = packedCircles.Points[i] / 2;
-                squadComponent.positions[i] = MathsExtensions.RotatePoint(localPoint, rotation);
+                squadComponent.positions[i] = MathsExtensions.RotatePoint(localPoint, Maths.Radians(rotation));
             }
         }
 
         private PackedCirclesConfig GetCirclesConfig(int count)
         {
-            return _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
+            if (!_circlesConfigCache.TryGetValue(count, out var config))
+                _circlesConfigCache[count] = config = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
+            return config;
         }
     }
 }

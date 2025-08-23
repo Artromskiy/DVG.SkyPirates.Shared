@@ -1,6 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Core;
-using DVG.SkyPirates.Shared.Archetypes;
+using DVG.Core.History;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            HistoryArch.ForEachData(new ClearHistoryAction(_world, tick));
+            HistoryIds.ForEachData(new ClearHistoryAction(_world, tick));
         }
 
         private readonly struct ClearHistoryAction : IStructGenericAction
@@ -35,12 +35,12 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
             public void Invoke<T>() where T : struct
             {
                 var query = new ClearHistoryQuery<T>(_tick);
-                _world.InlineQuery<ClearHistoryQuery<T>, T, History<T>>
-                    (HistoryArch.Query<T>(), ref query);
+                _world.InlineQuery<ClearHistoryQuery<T>, History<T>>
+                    (new QueryDescription().WithAll<History<T>>(), ref query);
             }
         }
 
-        private readonly struct ClearHistoryQuery<T> : IForEach<T, History<T>>
+        private readonly struct ClearHistoryQuery<T> : IForEach<History<T>>
             where T : struct
         {
             private readonly int _tick;
@@ -50,7 +50,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
                 _tick = tick;
             }
 
-            public readonly void Update(ref T component, ref History<T> history)
+            public readonly void Update(ref History<T> history)
             {
                 history.history.Remove(_tick - RemoveTicksAfter);
             }
