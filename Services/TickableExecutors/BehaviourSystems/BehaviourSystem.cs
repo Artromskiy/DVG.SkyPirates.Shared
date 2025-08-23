@@ -10,8 +10,9 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 {
     public class BehaviourSystem : ITickableExecutor
     {
-        private readonly World _world;
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Behaviour>();
         private readonly List<(Entity, StateId, StateId)> _stateSwitchCache = new List<(Entity, StateId, StateId)>();
+        private readonly World _world;
         public BehaviourSystem(World world)
         {
             _world = world;
@@ -22,7 +23,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
             _stateSwitchCache.Clear();
             var switchQuery = new SwitchBehaviourQuery(_stateSwitchCache);
             _world.InlineEntityQuery<SwitchBehaviourQuery, Behaviour, BehaviourConfig>
-                (new QueryDescription().WithAll<Behaviour>(), ref switchQuery);
+                (_desc, ref switchQuery);
 
             foreach (var (entity, prevState, newState) in _stateSwitchCache)
             {
@@ -32,7 +33,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 
             var tickQuery = new TickBehaviourQuery(deltaTime);
             _world.InlineQuery<TickBehaviourQuery, Behaviour>
-                (new QueryDescription().WithAll<Behaviour>(), ref tickQuery);
+                (_desc, ref tickQuery);
         }
 
         private readonly struct RemoveState : IGenericAction<StateId.IFlag>

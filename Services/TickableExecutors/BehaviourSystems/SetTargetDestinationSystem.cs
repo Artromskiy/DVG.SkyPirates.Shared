@@ -12,6 +12,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
     /// </summary>
     public class SetTargetDestinationSystem : ITickableExecutor
     {
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Destination, Position, Fixation, ImpactDistance, Target>();
         private readonly World _world;
 
         public SetTargetDestinationSystem(World world)
@@ -21,8 +22,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var desc = new QueryDescription().WithAll<Destination, Position, Fixation, ImpactDistance, Target>();
-            _world.InlineQuery<SetTargetDestinationQuery, Destination, Position, ImpactDistance, Target>(desc);
+            _world.InlineQuery<SetTargetDestinationQuery, Destination, Position, ImpactDistance, Target>(_desc);
         }
 
         private readonly struct SetTargetDestinationQuery : IForEach<Destination, Position, ImpactDistance, Target>

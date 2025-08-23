@@ -11,6 +11,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
     /// </summary>
     public class SetTargetSystem : ITickableExecutor
     {
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, Target, Team>();
         private readonly World _world;
         private readonly ITargetSearchService _targetSearch;
         public SetTargetSystem(World world, ITargetSearchService targetSearch)
@@ -21,13 +22,8 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var desc = new QueryDescription().WithAll<
-                Position,
-                Target,
-                Team>();
-
             var query = new SetTargetQuery(_targetSearch);
-            _world.InlineQuery<SetTargetQuery, TargetSearchData, Target, Team>(desc, ref query);
+            _world.InlineQuery<SetTargetQuery, TargetSearchData, Target, Team>(_desc, ref query);
         }
 
         private readonly struct SetTargetQuery :

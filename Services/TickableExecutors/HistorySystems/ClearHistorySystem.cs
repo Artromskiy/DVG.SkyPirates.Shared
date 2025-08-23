@@ -3,11 +3,14 @@ using DVG.Core;
 using DVG.Core.History;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System.Collections.Generic;
+using System;
 
 namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
 {
     public class ClearHistorySystem : IPostTickableExecutor
     {
+        private readonly Descriptions _descriptions = new Descriptions();
         private const int RemoveTicksAfter = 600;
         private readonly World _world;
 
@@ -18,16 +21,37 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            HistoryIds.ForEachData(new ClearHistoryAction(_world, tick));
+            HistoryIds.ForEachData(new ClearHistoryAction(_descriptions, _world, tick));
         }
+
+        private class Descriptions
+        {
+            private readonly Dictionary<Type, IDescription> _descriptions = new Dictionary<Type, IDescription>();
+            public Description<T> GetDescription<T>() where T : struct
+            {
+                var type = typeof(T);
+                if (!_descriptions.TryGetValue(type, out var description))
+                    _descriptions[type] = description = new Description<T>();
+                return (Description<T>)description;
+            }
+        }
+
+        private interface IDescription { }
+        private class Description<T> : IDescription where T : struct
+        {
+            public readonly QueryDescription desc = new QueryDescription().WithAll<History<T>>();
+        }
+
 
         private readonly struct ClearHistoryAction : IStructGenericAction
         {
+            private readonly Descriptions _descriptions;
             private readonly World _world;
             private readonly int _tick;
 
-            public ClearHistoryAction(World world, int tick)
+            public ClearHistoryAction(Descriptions descriptions, World world, int tick)
             {
+                _descriptions = descriptions;
                 _world = world;
                 _tick = tick;
             }
@@ -35,8 +59,8 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
             public void Invoke<T>() where T : struct
             {
                 var query = new ClearHistoryQuery<T>(_tick);
-                _world.InlineQuery<ClearHistoryQuery<T>, History<T>>
-                    (new QueryDescription().WithAll<History<T>>(), ref query);
+                var desc = _descriptions.GetDescription<T>().desc;
+                _world.InlineQuery<ClearHistoryQuery<T>, History<T>>(desc, ref query);
             }
         }
 

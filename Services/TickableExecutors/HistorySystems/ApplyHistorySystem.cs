@@ -4,6 +4,7 @@ using DVG.Core.History;
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -11,6 +12,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
 {
     public class ApplyHistorySystem : IPreTickableExecutor
     {
+        private readonly Descriptions _descriptions = new Descriptions();
         private readonly List<Entity> _entitiesCache = new List<Entity>();
         private readonly World _world;
 
@@ -21,17 +23,39 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            HistoryIds.ForEachData(new ApplyHistoryAction(_entitiesCache, _world, tick));
+            HistoryIds.ForEachData(new ApplyHistoryAction(_descriptions, _entitiesCache, _world, tick));
+        }
+
+        private class Descriptions
+        {
+            private readonly Dictionary<Type, IDescription> _descriptions = new Dictionary<Type, IDescription>();
+            public Description<T> GetDescription<T>() where T: struct
+            {
+                var type = typeof(T);
+                if (!_descriptions.TryGetValue(type, out var description))
+                    _descriptions[type] = description = new Description<T>();
+                return (Description<T>)description;
+            }
+        }
+
+        private interface IDescription { }
+        private class Description<T> :IDescription where T: struct
+        {
+            public readonly QueryDescription removeDesc = new QueryDescription().WithAll<History<T>, T>();
+            public readonly QueryDescription addDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
+            public readonly QueryDescription tickDesc = new QueryDescription().WithAll<History<T>, T>();
         }
 
         private readonly struct ApplyHistoryAction : IStructGenericAction
         {
+            private readonly Descriptions _descriptions;
             private readonly List<Entity> _entities;
             private readonly World _world;
             private readonly int _tick;
 
-            public ApplyHistoryAction(List<Entity> entities, World world, int tick)
+            public ApplyHistoryAction(Descriptions descriptions, List<Entity> entities, World world, int tick)
             {
+                _descriptions = descriptions;
                 _entities = entities;
                 _world = world;
                 _tick = tick;
@@ -39,38 +63,37 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
 
             public void Invoke<T>() where T : struct
             {
-                RemoveComponents<T>();
-                AddComponents<T>();
-                SetComponentsData<T>();
+                var desc = _descriptions.GetDescription<T>();
+                RemoveComponents<T>(desc.removeDesc);
+                AddComponents<T>(desc.addDesc);
+                SetComponentsData<T>(desc.tickDesc);
             }
 
-            private void RemoveComponents<T>() where T : struct
+            private void RemoveComponents<T>(QueryDescription desc) where T : struct
             {
                 _entities.Clear();
                 var query = new SelectToRemove<T>(_entities, _tick);
-                _world.InlineEntityQuery<SelectToRemove<T>, History<T>>(
-                    new QueryDescription().WithAll<History<T>, T>(), ref query);
+                _world.InlineEntityQuery<SelectToRemove<T>, History<T>>(desc, ref query);
 
                 foreach (var item in _entities)
                     _world.Remove<T>(item);
             }
 
-            private void AddComponents<T>() where T : struct
+            private void AddComponents<T>(QueryDescription desc) where T : struct
             {
                 _entities.Clear();
                 var query = new SelectToAdd<T>(_entities, _tick);
-                _world.InlineEntityQuery<SelectToAdd<T>, History<T>>(
-                    new QueryDescription().WithAll<History<T>>().WithNone<T>(), ref query);
+                _world.InlineEntityQuery<SelectToAdd<T>, History<T>>(desc, ref query);
 
                 foreach (var item in _entities)
                     _world.Add<T>(item);
             }
 
-            private void SetComponentsData<T>() where T : struct
+            private void SetComponentsData<T>(QueryDescription desc) where T : struct
             {
                 var query = new SetHistoryQuery<T>(_tick);
                 _world.InlineQuery<SetHistoryQuery<T>, History<T>, T>
-                    (new QueryDescription().WithAll<History<T>, T>(), ref query);
+                    (desc, ref query);
             }
         }
 

@@ -25,7 +25,6 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         public void Execute(Command<DirectionCommand> cmd)
         {
             var squad = EntityIds.Get(cmd.EntityId);
-            Console.WriteLine(cmd.Tick);
             SetDirection(
                 ref squad.Get<Direction>().Value,
                 ref squad.Get<Rotation>().Value,

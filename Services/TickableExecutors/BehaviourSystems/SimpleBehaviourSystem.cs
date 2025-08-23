@@ -7,6 +7,8 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 {
     public class SimpleBehaviourSystem : ITickableExecutor
     {
+        private readonly QueryDescription _descSwitch = new QueryDescription().WithAll<Behaviour, BehaviourConfig>();
+        private readonly QueryDescription _descTick = new QueryDescription().WithAll<Behaviour>();
         private readonly World _world;
 
         public SimpleBehaviourSystem(World world)
@@ -16,11 +18,9 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var descSwitch = new QueryDescription().WithAll<Behaviour, BehaviourConfig>();
-            var descTick = new QueryDescription().WithAll<Behaviour>();
             var query = new BehaviourQuery(tick);
-            _world.InlineQuery<BehaviourQuery, Behaviour, BehaviourConfig>(descSwitch, ref query);
-            _world.InlineQuery<BehaviourQuery, Behaviour>(descTick, ref query);
+            _world.InlineQuery<BehaviourQuery, Behaviour, BehaviourConfig>(_descSwitch, ref query);
+            _world.InlineQuery<BehaviourQuery, Behaviour>(_descTick, ref query);
 
         }
 

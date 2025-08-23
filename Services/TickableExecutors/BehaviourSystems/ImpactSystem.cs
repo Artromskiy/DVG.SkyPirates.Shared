@@ -9,6 +9,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 {
     public class ImpactSystem : ITickableExecutor
     {
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Behaviour, Damage, ImpactDistance, Position, Target>();
         private readonly World _world;
 
         public ImpactSystem(World world)
@@ -18,8 +19,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var desc = new QueryDescription().WithAll<Behaviour, Damage, ImpactDistance, Position, Target>();
-            _world.InlineQuery<AttackQuery, Behaviour, Damage, ImpactDistance, Position, Target>(desc);
+            _world.InlineQuery<AttackQuery, Behaviour, Damage, ImpactDistance, Position, Target>(_desc);
         }
 
         private readonly struct AttackQuery :

@@ -12,6 +12,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
     /// </summary>
     public class MoveSystem : ITickableExecutor
     {
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, Rotation, Destination, MoveSpeed>();
         private readonly World _world;
         private const int RotateSpeed = 720;
         public MoveSystem(World world)
@@ -22,8 +23,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new MoveQuery(deltaTime);
-            var desc = new QueryDescription().WithAll<Position, Rotation, Destination, MoveSpeed>();
-            _world.InlineQuery<MoveQuery, Position, Rotation, Destination, MoveSpeed>(desc, ref query);
+            _world.InlineQuery<MoveQuery, Position, Rotation, Destination, MoveSpeed>(_desc, ref query);
         }
 
         private readonly struct MoveQuery :
