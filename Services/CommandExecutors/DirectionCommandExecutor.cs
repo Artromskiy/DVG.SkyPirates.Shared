@@ -41,7 +41,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 return;
 
             var oldRot = rotation;
-            rotation = Maths.Degrees(MathsExtensions.GetRotation(direction));
+            var rotationRadians = MathsExtensions.GetRotation(direction);
+            rotation = Maths.Degrees(rotationRadians);
 
             static int Quantize(fix a) => (int)Maths.Round(a * 16 / 360);
             int newQuantizedRotation = Quantize(rotation);
@@ -61,7 +62,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             for (int i = 0; i < count; i++)
             {
                 var localPoint = packedCircles.Points[i] / 2;
-                squad.positions[i] = MathsExtensions.RotatePoint(localPoint, rotation);
+                squad.positions[i] = MathsExtensions.RotatePoint(localPoint, rotationRadians);
             }
         }
 
