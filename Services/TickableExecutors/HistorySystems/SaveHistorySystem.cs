@@ -73,21 +73,21 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
             IForEach<History<T>>
             where T : struct
         {
-            private readonly int _tick;
+            private readonly int _tickIndex;
 
             public SaveHistoryQuery(int tick)
             {
-                _tick = tick;
+                _tickIndex = tick & (Constants.HistoryTicksLimit - 1);
             }
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                history.history[_tick] = component;
+                history.history[_tickIndex] = component;
             }
 
             public void Update(ref History<T> history)
             {
-                history.history[_tick] = null;
+                history.history[_tickIndex] = null;
             }
         }
     }
