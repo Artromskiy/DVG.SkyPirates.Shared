@@ -101,17 +101,17 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
             where T : struct
         {
             private readonly List<Entity> _entities;
-            private readonly int _tick;
+            private readonly int _tickIndex;
 
             public SelectToAdd(List<Entity> entities, int tick)
             {
                 _entities = entities;
-                _tick = tick;
+                _tickIndex = tick & (Constants.HistoryTicksLimit - 1);
             }
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (history.history.TryGetValue(_tick, out T? cmp) && cmp.HasValue)
+                if (history.history[_tickIndex].HasValue)
                     _entities.Add(entity);
             }
         }
@@ -120,17 +120,17 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
             where T : struct
         {
             private readonly List<Entity> _entities;
-            private readonly int _tick;
+            private readonly int _tickIndex;
 
             public SelectToRemove(List<Entity> entities, int tick)
             {
                 _entities = entities;
-                _tick = tick;
+                _tickIndex = tick & (Constants.HistoryTicksLimit - 1);
             }
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (!history.history.TryGetValue(_tick, out T? cmp) || !cmp.HasValue)
+                if (!history.history[_tickIndex].HasValue)
                     _entities.Add(entity);
             }
         }
@@ -138,16 +138,16 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
         private readonly struct SetHistoryQuery<T> : IForEach<History<T>, T>
             where T : struct
         {
-            private readonly int _tick;
+            private readonly int _tickIndex;
 
             public SetHistoryQuery(int tick)
             {
-                _tick = tick;
+                _tickIndex = tick & (Constants.HistoryTicksLimit - 1);
             }
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                T? cmp = history.history[_tick];
+                T? cmp = history.history[_tickIndex];
                 Debug.Assert(cmp.HasValue);
                 component = cmp.Value;
             }

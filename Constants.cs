@@ -3,5 +3,6 @@
     public static class Constants
     {
         public const int TicksPerSecond = 10;
+        public const int HistoryTicksLimit = 600;
     }
 }
