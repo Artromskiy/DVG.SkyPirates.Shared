@@ -2,6 +2,7 @@
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 
 namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 {
@@ -37,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
             public void Update(ref Behaviour behaviour, ref BehaviourConfig behaviourConfig)
             {
-                if (behaviour.Percent != 1 || behaviour.ForceState == null)
+                if (behaviour.Percent != 1 && behaviour.ForceState == null)
                     return;
 
                 StateId targetState = behaviour.ForceState ??= behaviour.State;
