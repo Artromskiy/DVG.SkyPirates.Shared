@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -12,6 +11,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
     /// </summary>
     public class SquadMoveSystem : ITickableExecutor
     {
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Squad, Position, Direction>();
         private const int SquadSpeed = 7;
         private readonly World _world;
         public SquadMoveSystem(World world)
@@ -22,8 +22,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new SquadQuery(deltaTime);
-            _world.InlineQuery<SquadQuery, Squad, Position, Direction>
-                (SquadArch.GetQuery(), ref query);
+            _world.InlineQuery<SquadQuery, Squad, Position, Direction>(_desc, ref query);
         }
 
         private readonly struct SquadQuery : IForEach<Squad, Position, Direction>
