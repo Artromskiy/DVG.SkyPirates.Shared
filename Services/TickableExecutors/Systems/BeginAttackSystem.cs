@@ -30,7 +30,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
         {
             public void Update(ref Behaviour behaviour, ref ImpactDistance impactDistance, ref Position position, ref Target target)
             {
-                if (behaviour.State == StateId.None)
+                if (behaviour.State != StateId.None)
                     return;
 
                 if (!target.Entity.IsAlive())
