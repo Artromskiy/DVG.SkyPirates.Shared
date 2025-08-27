@@ -111,7 +111,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystem
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (history.history[_tickIndex].HasValue)
+                if (history.Data[_tickIndex].HasValue)
                     _entities.Add(entity);
             }
         }
@@ -130,7 +130,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystem
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (!history.history[_tickIndex].HasValue)
+                if (!history.Data[_tickIndex].HasValue)
                     _entities.Add(entity);
             }
         }
@@ -147,7 +147,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystem
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                T? cmp = history.history[_tickIndex];
+                T? cmp = history.Data[_tickIndex];
                 Debug.Assert(cmp.HasValue);
                 component = cmp.Value;
             }

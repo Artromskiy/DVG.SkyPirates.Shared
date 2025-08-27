@@ -82,12 +82,12 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystem
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                history.history[_tickIndex] = component;
+                history.Data[_tickIndex] = component;
             }
 
             public void Update(ref History<T> history)
             {
-                history.history[_tickIndex] = null;
+                history.Data[_tickIndex] = null;
             }
         }
     }

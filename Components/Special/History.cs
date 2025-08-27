@@ -1,12 +1,14 @@
 ﻿namespace DVG.SkyPirates.Shared.Components.Special
 {
-    public struct History<T> where T : struct
+    public readonly struct History<T> where T : struct
     {
-        public T?[] history;
+        public readonly T?[] Data;
 
-        public static History<T> Create() => new History<T>()
+        public History(int length)
         {
-            history = new T?[Constants.HistoryTicksLimit]
-        };
+            Data = new T?[length];
+        }
+
+        public static History<T> Create() => new History<T>(Constants.HistoryTicksLimit);
     }
 }
