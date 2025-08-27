@@ -23,26 +23,25 @@ namespace DVG.SkyPirates.Shared.Ids
     [Serializable]
     partial struct GoodsId : IId, IEquatable<GoodsId>, IComparable<GoodsId>
     {
-        public readonly string value;
-        string IId.Value => value;
+        public string Value { get; private set; }
         private const string NoneValue = "None";
         public static readonly GoodsId None = new GoodsId(NoneValue);
 
-        public GoodsId(string value)
+        public GoodsId(string Value)
         {
-            this.value = value;
+            this.Value = Value;
         }
 
-        public readonly bool IsNone => string.IsNullOrEmpty(value) || value == NoneValue;
-        public readonly bool Equals(GoodsId other) => value == other.value;
-        public readonly int CompareTo(GoodsId other) => Equals(other) ? 0 : string.Compare(value, other.value);
+        public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
+        public readonly bool Equals(GoodsId other) => Value == other.Value || (IsNone && other.IsNone);
+        public readonly int CompareTo(GoodsId other) => Equals(other) ? 0 : string.Compare(Value, other.Value);
         public override readonly bool Equals(object obj) => obj is GoodsId other && Equals(other);
-        public override readonly string ToString() => value;
-        public override readonly int GetHashCode() => IsNone ? 0 : value.GetHashCode();
-        public static bool operator ==(GoodsId a, GoodsId b) => a.value == b.value || (a.IsNone && b.IsNone);
+        public override readonly string ToString() => Value;
+        public override readonly int GetHashCode() => IsNone ? 0 : Value.GetHashCode();
+        public static bool operator ==(GoodsId a, GoodsId b) => a.Value == b.Value || (a.IsNone && b.IsNone);
         public static bool operator !=(GoodsId a, GoodsId b) => !(a == b);
 
-        public static implicit operator string(GoodsId id) => id.value;
+        public static implicit operator string(GoodsId id) => id.Value;
 
         private class IdTypeConverter : IdTypeConverter<GoodsId>
         {

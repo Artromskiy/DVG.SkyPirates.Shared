@@ -23,26 +23,25 @@ namespace DVG.SkyPirates.Shared.Ids
     [Serializable]
     partial struct CheatingId : IId, IEquatable<CheatingId>, IComparable<CheatingId>
     {
-        public readonly string value;
-        string IId.Value => value;
+        public string Value { get; private set; }
         private const string NoneValue = "None";
         public static readonly CheatingId None = new CheatingId(NoneValue);
 
-        public CheatingId(string value)
+        public CheatingId(string Value)
         {
-            this.value = value;
+            this.Value = Value;
         }
 
-        public readonly bool IsNone => string.IsNullOrEmpty(value) || value == NoneValue;
-        public readonly bool Equals(CheatingId other) => value == other.value;
-        public readonly int CompareTo(CheatingId other) => Equals(other) ? 0 : string.Compare(value, other.value);
+        public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
+        public readonly bool Equals(CheatingId other) => Value == other.Value || (IsNone && other.IsNone);
+        public readonly int CompareTo(CheatingId other) => Equals(other) ? 0 : string.Compare(Value, other.Value);
         public override readonly bool Equals(object obj) => obj is CheatingId other && Equals(other);
-        public override readonly string ToString() => value;
-        public override readonly int GetHashCode() => IsNone ? 0 : value.GetHashCode();
-        public static bool operator ==(CheatingId a, CheatingId b) => a.value == b.value || (a.IsNone && b.IsNone);
+        public override readonly string ToString() => Value;
+        public override readonly int GetHashCode() => IsNone ? 0 : Value.GetHashCode();
+        public static bool operator ==(CheatingId a, CheatingId b) => a.Value == b.Value || (a.IsNone && b.IsNone);
         public static bool operator !=(CheatingId a, CheatingId b) => !(a == b);
 
-        public static implicit operator string(CheatingId id) => id.value;
+        public static implicit operator string(CheatingId id) => id.Value;
 
         private class IdTypeConverter : IdTypeConverter<CheatingId>
         {

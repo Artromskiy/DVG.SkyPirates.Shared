@@ -16,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Factories
 
         public UnitConfig Create(SpawnUnitCommand parameters)
         {
-            return _pathFactory.Create($"Configs/Units/{parameters.UnitId.value}");
+            return _pathFactory.Create($"Configs/Units/{parameters.UnitId.Value}");
         }
     }
 }

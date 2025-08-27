@@ -36,7 +36,7 @@ namespace DVG.SkyPirates.Shared.Ids
         public void GenericCall<T>(T action)
             where T : IGenericAction<IFlag>
         {
-            _ = this.value switch
+            _ = this.Value switch
             {
                 nameof(Flags.PreAttack) => GenericCallWrap<Flags.PreAttack, T>(action),
                 nameof(Flags.PostAttack) => GenericCallWrap<Flags.PostAttack, T>(action),
