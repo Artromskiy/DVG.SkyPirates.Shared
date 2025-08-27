@@ -41,16 +41,18 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                 if (behaviour.Percent != 1 && behaviour.ForceState == null)
                     return;
 
-                StateId targetState = behaviour.ForceState ??= behaviour.State;
+                StateId targetState = behaviour.ForceState ??= 
+                    behaviourConfig.Scenario[behaviour.State];
 
                 behaviour.ForceState = null;
-                behaviour.State = behaviourConfig.Scenario[targetState];
+                behaviour.State = targetState;
                 behaviour.Duration = behaviourConfig.Durations[behaviour.State];
                 behaviour.Percent = 0;
             }
 
             public void Update(ref Behaviour behaviour)
             {
+                Console.WriteLine($"{behaviour.State} {behaviour.Percent * 100:000}");
                 fix step = behaviour.Duration == 0 ? 1 : _deltaTime / behaviour.Duration;
                 behaviour.Percent = Maths.MoveTowards(behaviour.Percent, 1, step);
             }
