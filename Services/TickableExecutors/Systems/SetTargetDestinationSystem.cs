@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools.Extensions;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
+namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 {
     /// <summary>
     /// If <see href="Target"/> is set, then <see href="Destination"/> will set, so it will be in range of <see href="ImpactDistance"/>

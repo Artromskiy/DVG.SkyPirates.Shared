@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
+namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystems
 {
     public class ApplyHistorySystem : IPreTickableExecutor
     {
@@ -29,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
         private class Descriptions
         {
             private readonly Dictionary<Type, IDescription> _descriptions = new Dictionary<Type, IDescription>();
-            public Description<T> GetDescription<T>() where T: struct
+            public Description<T> GetDescription<T>() where T : struct
             {
                 var type = typeof(T);
                 if (!_descriptions.TryGetValue(type, out var description))
@@ -39,7 +39,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
         }
 
         private interface IDescription { }
-        private class Description<T> :IDescription where T: struct
+        private class Description<T> : IDescription where T : struct
         {
             public readonly QueryDescription removeDesc = new QueryDescription().WithAll<History<T>, T>();
             public readonly QueryDescription addDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
@@ -106,7 +106,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
             public SelectToAdd(List<Entity> entities, int tick)
             {
                 _entities = entities;
-                _tickIndex = tick & (Constants.HistoryTicksLimit - 1);
+                _tickIndex = tick & Constants.HistoryTicksLimit - 1;
             }
 
             public readonly void Update(Entity entity, ref History<T> history)
@@ -125,7 +125,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
             public SelectToRemove(List<Entity> entities, int tick)
             {
                 _entities = entities;
-                _tickIndex = tick & (Constants.HistoryTicksLimit - 1);
+                _tickIndex = tick & Constants.HistoryTicksLimit - 1;
             }
 
             public readonly void Update(Entity entity, ref History<T> history)
@@ -142,7 +142,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
 
             public SetHistoryQuery(int tick)
             {
-                _tickIndex = tick & (Constants.HistoryTicksLimit - 1);
+                _tickIndex = tick & Constants.HistoryTicksLimit - 1;
             }
 
             public readonly void Update(ref History<T> history, ref T component)

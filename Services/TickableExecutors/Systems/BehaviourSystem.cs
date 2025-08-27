@@ -6,7 +6,7 @@ using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
+namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 {
     public class BehaviourSystem : ITickableExecutor
     {
@@ -57,7 +57,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
 
             public AddState(Entity entity)
             {
-                this._entity = entity;
+                _entity = entity;
             }
 
             public void Invoke<T>() where T : StateId.IFlag

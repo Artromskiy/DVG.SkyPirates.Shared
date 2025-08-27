@@ -4,7 +4,7 @@ using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TargetSearch;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
+namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 {
     /// <summary>
     /// Sets value to <see href="Target"/> if it matches <see href="TargetSearchData"/> and <see href="TeamId"/> conditions

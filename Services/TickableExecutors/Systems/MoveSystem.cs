@@ -4,7 +4,7 @@ using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools.Extensions;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
+namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 {
     /// <summary>
     /// Moves Entity's <see href="Position"/> and <see href="Rotation"/> 

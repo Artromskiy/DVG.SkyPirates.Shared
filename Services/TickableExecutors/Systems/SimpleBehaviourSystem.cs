@@ -3,7 +3,7 @@ using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.BehaviourSystems
+namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 {
     public class SimpleBehaviourSystem : ITickableExecutor
     {

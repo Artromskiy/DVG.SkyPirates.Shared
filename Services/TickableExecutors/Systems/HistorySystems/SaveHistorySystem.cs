@@ -6,7 +6,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
+namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystems
 {
     public class SaveHistorySystem : ITickableExecutor
     {
@@ -77,7 +77,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.HistorySystems
 
             public SaveHistoryQuery(int tick)
             {
-                _tickIndex = tick & (Constants.HistoryTicksLimit - 1);
+                _tickIndex = tick & Constants.HistoryTicksLimit - 1;
             }
 
             public readonly void Update(ref History<T> history, ref T component)
