@@ -8,7 +8,6 @@ using DVG.SkyPirates.Shared.Configs;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
-using DVG.SkyPirates.Shared.Tools.Extensions;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
@@ -40,7 +39,6 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         private void AddUnit(Entity squad, Entity unit)
         {
             ref var squadComponent = ref squad.Get<Squad>();
-            var rotation = squad.Get<Rotation>().Value;
             int oldCount = squadComponent.units.Count;
             int newCount = oldCount + 1;
             var packedCircles = GetCirclesConfig(newCount);
@@ -53,7 +51,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             for (int i = 0; i < newCount; i++)
             {
                 var localPoint = packedCircles.Points[i] / 2;
-                squadComponent.positions[i] = MathsExtensions.RotatePoint(localPoint, Maths.Radians(rotation));
+                squadComponent.positions[i] = localPoint;
             }
         }
 
