@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                     return;
 
                 var sqrDistance = fix3.SqrDistance(target.Entity.Get<Position>().Value, position.Value);
-                if (sqrDistance < impactDistance.Value * impactDistance.Value)
+                if (sqrDistance > impactDistance.Value * impactDistance.Value)
                     return;
 
                 target.Entity.Get<Health>().Value -= damage.Value;
