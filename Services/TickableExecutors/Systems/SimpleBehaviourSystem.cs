@@ -19,7 +19,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new BehaviourQuery(tick);
+            var query = new BehaviourQuery(deltaTime);
             _world.InlineQuery<BehaviourQuery, Behaviour, BehaviourConfig>(_descSwitch, ref query);
             _world.InlineQuery<BehaviourQuery, Behaviour>(_descTick, ref query);
 
@@ -52,7 +52,6 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
             public void Update(ref Behaviour behaviour)
             {
-                Console.WriteLine($"{behaviour.State} {behaviour.Percent * 100:000}");
                 fix step = behaviour.Duration == 0 ? 1 : _deltaTime / behaviour.Duration;
                 behaviour.Percent = Maths.MoveTowards(behaviour.Percent, 1, step);
             }
