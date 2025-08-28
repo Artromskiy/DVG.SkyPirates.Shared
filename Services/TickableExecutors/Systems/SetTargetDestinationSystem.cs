@@ -33,18 +33,26 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                     return;
 
                 var targetPos = target.Entity.Get<Position>().Value;
-                var impactSqrDistance = impactDistance.Value * impactDistance.Value;
+
+                var impactReduced = impactDistance.Value - 1;
+                var impactSqrDistance = impactReduced * impactReduced;
+
                 var sqrDistance = fix3.SqrDistance(targetPos, position.Value);
-                var direction = targetPos - position.Value;
-                if(sqrDistance != 0)
-                destination.Rotation = Maths.Degrees(MathsExtensions.GetRotation(direction.xz));
-                if (sqrDistance < impactSqrDistance)
+
+                if (sqrDistance != 0)
                 {
-                    destination.Position = position.Value;
+                    var direction = targetPos - position.Value;
+                    destination.Rotation = Maths.Degrees(MathsExtensions.GetRotation(direction.xz));
+                }
+
+                if (sqrDistance > impactSqrDistance)
+                {
+                    destination.Position = fix3.MoveTowards(targetPos, position.Value, impactReduced);
                     return;
                 }
 
-                destination.Position = fix3.MoveTowards(targetPos, position.Value, impactDistance.Value);
+                destination.Position = position.Value;
+
             }
         }
     }
