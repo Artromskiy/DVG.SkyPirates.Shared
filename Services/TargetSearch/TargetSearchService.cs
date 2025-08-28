@@ -13,8 +13,8 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
     /// </summary>
     public class TargetSearchService : ITargetSearchService
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health, Position, Team>();
-        private const int SquareSize = 35;
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<RecivedDamage, Position, Team>();
+        private const int SquareSize = 2;
 
         private readonly World _world;
 

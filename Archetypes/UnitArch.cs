@@ -10,6 +10,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
         public static void EnsureArch(Entity entity)
         {
             entity.AddOrGet<Health>();
+            entity.AddOrGet<MaxHealth>();
             entity.AddOrGet<Position>();
             entity.AddOrGet<Rotation>();
             entity.AddOrGet<MoveSpeed>();
@@ -17,6 +18,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             entity.AddOrGet<Damage>();
             entity.AddOrGet<Team>();
 
+            entity.AddOrGet<AutoHeal>();
             entity.AddOrGet<TempPosition>();
             entity.AddOrGet<PositionSeparation>();
             entity.AddOrGet<Fixation>();

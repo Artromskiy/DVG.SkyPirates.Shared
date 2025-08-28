@@ -40,12 +40,16 @@ namespace DVG.SkyPirates.Shared.Factories
 
             unit.Get<Team>().Id = cmd.ClientId;
             unit.Get<Health>().Value = config.health;
+            unit.Get<MaxHealth>().Value = config.health;
             unit.Get<Damage>().Value = config.damage;
             unit.Get<MoveSpeed>().Value = config.speed;
             unit.Get<ImpactDistance>().Value = config.attackDistance;
             unit.Get<BehaviourConfig>().Scenario = switchTable;
             unit.Get<PositionSeparation>().Radius = (fix)1 / 2;
             unit.Get<PositionSeparation>().Weight = 1;
+            unit.Get<AutoHeal>().healDelay = 10;
+            unit.Get<AutoHeal>().healPerSecond = 20;
+
             unit.Get<BehaviourConfig>().Durations = new Dictionary<StateId, fix>()
             {
                 [StateId.Constants.PreAttack] = config.preAttack,

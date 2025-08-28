@@ -22,7 +22,8 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _world.InlineQuery<BeginAttackQuery, Behaviour, ImpactDistance, Position, Target>(_desc);
+            var query = new BeginAttackQuery();
+            _world.InlineQuery<BeginAttackQuery, Behaviour, ImpactDistance, Position, Target>(_desc, ref query);
         }
 
         private readonly struct BeginAttackQuery :

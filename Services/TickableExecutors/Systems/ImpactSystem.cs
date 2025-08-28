@@ -19,10 +19,11 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _world.InlineQuery<AttackQuery, Behaviour, Damage, ImpactDistance, Position, Target>(_desc);
+            var query = new ImpactQuery();
+            _world.InlineQuery<ImpactQuery, Behaviour, Damage, ImpactDistance, Position, Target>(_desc, ref query);
         }
 
-        private readonly struct AttackQuery :
+        private readonly struct ImpactQuery :
             IForEach<Behaviour, Damage, ImpactDistance, Position, Target>
         {
             public void Update(ref Behaviour behaviour, ref Damage damage, ref ImpactDistance impactDistance, ref Position position, ref Target target)
@@ -39,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                 if (sqrDistance > impactSqrDistance)
                     return;
 
-                target.Entity.Get<Health>().Value -= damage.Value;
+                target.Entity.Get<RecivedDamage>().Value -= damage.Value;
             }
         }
     }
