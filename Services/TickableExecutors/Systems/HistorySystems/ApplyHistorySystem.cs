@@ -106,7 +106,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystem
             public SelectToAdd(List<Entity> entities, int tick)
             {
                 _entities = entities;
-                _tickIndex = tick & Constants.HistoryTicksLimit - 1;
+                _tickIndex = Constants.WrapTick(tick);
             }
 
             public readonly void Update(Entity entity, ref History<T> history)
@@ -125,7 +125,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystem
             public SelectToRemove(List<Entity> entities, int tick)
             {
                 _entities = entities;
-                _tickIndex = tick & Constants.HistoryTicksLimit - 1;
+                _tickIndex = Constants.WrapTick(tick);
             }
 
             public readonly void Update(Entity entity, ref History<T> history)
@@ -138,16 +138,19 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystem
         private readonly struct SetHistoryQuery<T> : IForEach<History<T>, T>
             where T : struct
         {
-            private readonly int _tickIndex;
+            private readonly int _tick;
+            private readonly int _wrappedTick;
 
             public SetHistoryQuery(int tick)
             {
-                _tickIndex = tick & Constants.HistoryTicksLimit - 1;
+                _tick = tick;
+                _wrappedTick = Constants.WrapTick(_tick);
             }
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                T? cmp = history.Data[_tickIndex];
+                history.CurrentTick = _tick;
+                T? cmp = history.Data[_wrappedTick];
                 Debug.Assert(cmp.HasValue);
                 component = cmp.Value;
             }

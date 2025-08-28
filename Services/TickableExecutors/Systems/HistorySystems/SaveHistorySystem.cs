@@ -4,6 +4,7 @@ using DVG.Core.History;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystems
@@ -73,21 +74,25 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystem
             IForEach<History<T>>
             where T : struct
         {
-            private readonly int _tickIndex;
+            private readonly int _wrappedTick;
+            private readonly int _tick;
 
             public SaveHistoryQuery(int tick)
             {
-                _tickIndex = tick & Constants.HistoryTicksLimit - 1;
+                _tick = tick;
+                _wrappedTick = Constants.WrapTick(_tick);
             }
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                history.Data[_tickIndex] = component;
+                history.CurrentTick = _tick;
+                history.Data[_wrappedTick] = component;
             }
 
             public void Update(ref History<T> history)
             {
-                history.Data[_tickIndex] = null;
+                history.CurrentTick = _tick;
+                history.Data[_wrappedTick] = null;
             }
         }
     }
