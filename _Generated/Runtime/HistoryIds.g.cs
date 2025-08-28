@@ -13,8 +13,8 @@
 using System;
 using System.Collections.Generic;
 
-using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Components.Data;
 
 namespace DVG.Core.History
 {
@@ -27,36 +27,38 @@ namespace DVG.Core.History
         {
             _typeToId = new Dictionary<Type, int>()
             {
-                {typeof(Damage), 1},
-                {typeof(Destination), 2},
-                {typeof(Direction), 3},
-                {typeof(Fixation), 4},
-                {typeof(Health), 5},
-                {typeof(ImpactDistance), 6},
-                {typeof(MoveSpeed), 7},
-                {typeof(Position), 8},
-                {typeof(Rotation), 9},
-                {typeof(Squad), 10},
-                {typeof(Target), 11},
-                {typeof(TargetSearchData), 12},
-                {typeof(Team), 13},
+                {typeof(Behaviour), 1},
+                {typeof(Damage), 2},
+                {typeof(Destination), 3},
+                {typeof(Direction), 4},
+                {typeof(Fixation), 5},
+                {typeof(Health), 6},
+                {typeof(ImpactDistance), 7},
+                {typeof(MoveSpeed), 8},
+                {typeof(Position), 9},
+                {typeof(Rotation), 10},
+                {typeof(Squad), 11},
+                {typeof(Target), 12},
+                {typeof(TargetSearchData), 13},
+                {typeof(Team), 14},
             };
             
             _idToType = new Dictionary<int, Type>()
             {
-                {1, typeof(Damage)},
-                {2, typeof(Destination)},
-                {3, typeof(Direction)},
-                {4, typeof(Fixation)},
-                {5, typeof(Health)},
-                {6, typeof(ImpactDistance)},
-                {7, typeof(MoveSpeed)},
-                {8, typeof(Position)},
-                {9, typeof(Rotation)},
-                {10, typeof(Squad)},
-                {11, typeof(Target)},
-                {12, typeof(TargetSearchData)},
-                {13, typeof(Team)},
+                {1, typeof(Behaviour)},
+                {2, typeof(Damage)},
+                {3, typeof(Destination)},
+                {4, typeof(Direction)},
+                {5, typeof(Fixation)},
+                {6, typeof(Health)},
+                {7, typeof(ImpactDistance)},
+                {8, typeof(MoveSpeed)},
+                {9, typeof(Position)},
+                {10, typeof(Rotation)},
+                {11, typeof(Squad)},
+                {12, typeof(Target)},
+                {13, typeof(TargetSearchData)},
+                {14, typeof(Team)},
             };
         }
 
@@ -64,6 +66,7 @@ namespace DVG.Core.History
         public static void ForEachData<T>(T action)
             where T: IStructGenericAction
         {
+            action.Invoke<Behaviour>();
             action.Invoke<Damage>();
             action.Invoke<Destination>();
             action.Invoke<Direction>();
