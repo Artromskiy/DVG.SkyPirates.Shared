@@ -79,8 +79,8 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                     var percent = (1 - Maths.Min(1, dist / separation.Radius)) * otherWeight;
                     forceSum += percent;
                 }
-
-                forceSum = forceSum / (_targetsCache.Count - 1) / separation.Weight;
+                var multiplier = (_targetsCache.Count - 1) * separation.Weight;
+                forceSum /= (multiplier == 0 ? 1 : multiplier);
                 separation.Force = forceSum;
             }
 

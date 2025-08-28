@@ -3,6 +3,6 @@
 namespace DVG.SkyPirates.Shared.Ids
 {
     [Id]
-    [Flag]
+    //[Flag]
     public partial struct StateId { }
 }

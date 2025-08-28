@@ -36,11 +36,12 @@ namespace DVG.Core.History
                 {typeof(ImpactDistance), 7},
                 {typeof(MoveSpeed), 8},
                 {typeof(Position), 9},
-                {typeof(Rotation), 10},
-                {typeof(Squad), 11},
-                {typeof(Target), 12},
-                {typeof(TargetSearchData), 13},
-                {typeof(Team), 14},
+                {typeof(PositionSeparation), 10},
+                {typeof(Rotation), 11},
+                {typeof(Squad), 12},
+                {typeof(Target), 13},
+                {typeof(TargetSearchData), 14},
+                {typeof(Team), 15},
             };
             
             _idToType = new Dictionary<int, Type>()
@@ -54,11 +55,12 @@ namespace DVG.Core.History
                 {7, typeof(ImpactDistance)},
                 {8, typeof(MoveSpeed)},
                 {9, typeof(Position)},
-                {10, typeof(Rotation)},
-                {11, typeof(Squad)},
-                {12, typeof(Target)},
-                {13, typeof(TargetSearchData)},
-                {14, typeof(Team)},
+                {10, typeof(PositionSeparation)},
+                {11, typeof(Rotation)},
+                {12, typeof(Squad)},
+                {13, typeof(Target)},
+                {14, typeof(TargetSearchData)},
+                {15, typeof(Team)},
             };
         }
 
@@ -75,6 +77,7 @@ namespace DVG.Core.History
             action.Invoke<ImpactDistance>();
             action.Invoke<MoveSpeed>();
             action.Invoke<Position>();
+            action.Invoke<PositionSeparation>();
             action.Invoke<Rotation>();
             action.Invoke<Squad>();
             action.Invoke<Target>();

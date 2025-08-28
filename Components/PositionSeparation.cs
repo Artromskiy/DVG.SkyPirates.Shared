@@ -1,5 +1,8 @@
-﻿namespace DVG.SkyPirates.Shared.Components
+﻿using DVG.Core.History.Attributes;
+
+namespace DVG.SkyPirates.Shared.Components
 {
+    [History]
     public struct PositionSeparation
     {
         public fix Radius;
