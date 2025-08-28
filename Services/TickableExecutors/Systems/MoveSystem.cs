@@ -3,7 +3,6 @@ using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools.Extensions;
-using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 {
@@ -16,9 +15,6 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, Rotation, Destination, MoveSpeed>();
         private readonly World _world;
         private const int RotateSpeed = 720;
-        private readonly HashSet<fix3> _positions = new HashSet<fix3>();
-        private readonly HashSet<fix3> _invalidPositions = new HashSet<fix3>();
-
         public MoveSystem(World world)
         {
             _world = world;
@@ -26,48 +22,37 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _positions.Clear();
-            _invalidPositions.Clear();
-            var query = new MoveQuery(_positions, _invalidPositions, deltaTime);
-            _world.InlineQuery<MoveQuery, Position, TempPosition, Destination, MoveSpeed>(_desc, ref query);
-            _world.InlineQuery<MoveQuery, Position, TempPosition, Rotation, Destination>(_desc, ref query);
+            var query = new MoveQuery(deltaTime);
+            _world.InlineQuery<MoveQuery, Position, Rotation, Destination, MoveSpeed>(_desc, ref query);
         }
 
         private readonly struct MoveQuery :
-
-            IForEach<Position, TempPosition, Destination, MoveSpeed>,
-            IForEach<Position, TempPosition, Rotation, Destination>
+            IForEach<Position, Rotation, Destination, MoveSpeed>
         {
-            private readonly HashSet<fix3> _positions;
-            private readonly HashSet<fix3> _invalidPositions;
             private readonly fix _deltaTime;
 
-            public MoveQuery(HashSet<fix3> positions, HashSet<fix3> invalidPositions, fix deltaTime)
+            public MoveQuery(fix deltaTime)
             {
-                _positions = positions;
-                _invalidPositions = invalidPositions;
                 _deltaTime = deltaTime;
             }
 
-            public void Update(ref Position position, ref TempPosition tempPosition, ref Destination destination, ref MoveSpeed moveSpeed)
+            public void Update(ref Position position, ref Rotation rotation, ref Destination destination, ref MoveSpeed moveSpeed)
             {
-                var pos = fix3.MoveTowards(
+                MoveTowardsDestination(ref position, destination, moveSpeed);
+                RotateTowardsDestination(ref rotation, position, destination);
+            }
+
+            private void MoveTowardsDestination(ref Position position, Destination destination, MoveSpeed moveSpeed)
+            {
+                position.Value = fix3.MoveTowards(
                     position.Value,
                     destination.Position,
                     moveSpeed.Value * _deltaTime);
-
-                tempPosition.Value = pos;
-
-                if (!_positions.Add(pos))
-                    _invalidPositions.Add(pos);
             }
 
-            public void Update(ref Position position, ref TempPosition tempPosition, ref Rotation rotation, ref Destination destination)
+            private void RotateTowardsDestination(ref Rotation rotation, Position position, Destination destination)
             {
-                fix3 targetPos = _invalidPositions.Contains(tempPosition.Value) ? 
-                    position.Value : tempPosition.Value;
-
-                var dir = targetPos.xz - position.Value.xz;
+                var dir = destination.Position.xz - position.Value.xz;
                 var rotateTo = fix2.SqrLength(dir) != 0
                     ? Maths.Degrees(MathsExtensions.GetRotation(dir))
                     : destination.Rotation;
@@ -76,11 +61,6 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                     rotation.Value,
                     rotateTo,
                     RotateSpeed * _deltaTime);
-
-                if (_invalidPositions.Contains(tempPosition.Value))
-                    return;
-
-                position.Value = targetPos;
             }
         }
     }
