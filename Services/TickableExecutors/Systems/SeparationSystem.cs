@@ -50,7 +50,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
             public void Update(ref Position position, ref PositionSeparation separation)
             {
-                position.Value = separation.Force.x_y * _deltaTime;
+                position.Value += separation.Force.x_y * _deltaTime;
             }
         }
         private readonly struct SeparationForceQuery : IForEach<Position, PositionSeparation>
@@ -76,8 +76,9 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                     var otherPos = other.Get<Position>().Value.xz;
                     var otherWeight = other.Get<PositionSeparation>().Weight;
                     var dist = fix2.Distance(position.Value.xz, otherPos);
+                    var dir = dist == 0 ? fix2.zero : fix2.Normalize(position.Value.xz - otherPos);
                     var percent = (1 - Maths.Min(1, dist / separation.Radius)) * otherWeight;
-                    forceSum += percent;
+                    forceSum += percent * dir;
                 }
                 var multiplier = (_targetsCache.Count - 1) * separation.Weight;
                 forceSum /= (multiplier == 0 ? 1 : multiplier);
