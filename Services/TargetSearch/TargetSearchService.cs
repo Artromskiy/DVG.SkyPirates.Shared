@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Archetypes;
+using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TargetSearch;
 using System.Collections.Generic;
@@ -25,18 +26,18 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
             _world = world;
         }
 
-        public Entity FindTarget(fix3 position, fix distance, int teamId)
+        public Entity FindTarget(ref TargetSearchData targetSearchData, ref Team team)
         {
             fix minSqrDistance = fix.MaxValue;
             Entity foundTarget = Entity.Null;
 
             _targetsCache.Clear();
-            FindTargets(position, distance, teamId, _targetsCache);
+            FindTargets(ref targetSearchData, ref team, _targetsCache);
 
             foreach (var target in _targetsCache)
             {
                 var targetPosition = target.Get<Position>().Value.xz;
-                var sqrDistance = fix2.SqrDistance(targetPosition, position.xz);
+                var sqrDistance = fix2.SqrDistance(targetPosition, targetSearchData.Position.xz);
                 if (sqrDistance < minSqrDistance)
                 {
                     foundTarget = target;
@@ -46,11 +47,14 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
             return foundTarget;
         }
 
-        public void FindTargets(fix3 position, fix distance, int teamId, List<Entity> targets)
+        public void FindTargets(ref TargetSearchData targetSearchData, ref Team team, List<Entity> targets)
         {
-            var d = new fix2(distance, distance);
-            var min = GetQuantizedSquare(position.xz - d);
-            var max = GetQuantizedSquare(position.xz + d);
+            var distance = targetSearchData.Distance;
+            var position = targetSearchData.Position;
+            var teamId = team.Id;
+            var range = new fix2(distance, distance);
+            var min = GetQuantizedSquare(position.xz - range);
+            var max = GetQuantizedSquare(position.xz + range);
             var sqrDistance = distance * distance;
 
             for (int y = min.y; y <= max.y; y++)

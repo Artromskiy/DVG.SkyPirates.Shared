@@ -1,4 +1,6 @@
 ﻿using Arch.Core;
+using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 
@@ -6,7 +8,7 @@ namespace DVG.SkyPirates.Shared.IServices.TargetSearch
 {
     public interface ITargetSearchService: ITickableExecutor
     {
-        Entity FindTarget(fix3 position, fix distance, int teamId);
-        void FindTargets(fix3 position, fix distance, int teamId, List<Entity> targets);
+        Entity FindTarget(ref TargetSearchData targetSearchData, ref Team team);
+        void FindTargets(ref TargetSearchData targetSearchData, ref Team team, List<Entity> targets);
     }
 }

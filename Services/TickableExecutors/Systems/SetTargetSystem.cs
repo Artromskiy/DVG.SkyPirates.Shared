@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
             public void Update(ref TargetSearchData targetSearchData, ref Target target, ref Team team)
             {
-                target.Entity = _targetSearch.FindTarget(targetSearchData.Position, targetSearchData.Distance, team.Id);
+                target.Entity = _targetSearch.FindTarget(ref targetSearchData, ref team);
             }
         }
     }
