@@ -1,6 +1,5 @@
 ﻿using Arch.Core;
 using Arch.Core.Extensions;
-using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TargetSearch;
@@ -14,6 +13,7 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
     /// </summary>
     public class TargetSearchService : ITargetSearchService
     {
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health, Position, Team>();
         private const int SquareSize = 35;
 
         private readonly World _world;
@@ -80,7 +80,7 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
                     team.Value.Clear();
 
             var query = new TargetsPartitioningQuery(_targets);
-            _world.InlineEntityQuery<TargetsPartitioningQuery, Position, Team>(new TargetArch(), ref query);
+            _world.InlineEntityQuery<TargetsPartitioningQuery, Position, Team>(_desc, ref query);
         }
 
         private readonly struct TargetsPartitioningQuery : IForEachWithEntity<Position, Team>

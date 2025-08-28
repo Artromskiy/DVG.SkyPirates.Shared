@@ -4,6 +4,7 @@ using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools.Extensions;
+using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 {
@@ -12,6 +13,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
     /// </summary>
     public class SetTargetDestinationSystem : ITickableExecutor
     {
+        private static readonly fix _reduceImpactDistance = 1;
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Destination, Position, Fixation, ImpactDistance, Target>();
         private readonly World _world;
 
@@ -34,7 +36,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
                 var targetPos = target.Entity.Get<Position>().Value;
 
-                var impactReduced = impactDistance.Value - 1;
+                var impactReduced = impactDistance.Value - _reduceImpactDistance;
                 var impactSqrDistance = impactReduced * impactReduced;
 
                 var sqrDistance = fix3.SqrDistance(targetPos, position.Value);
@@ -52,7 +54,6 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                 }
 
                 destination.Position = position.Value;
-
             }
         }
     }
