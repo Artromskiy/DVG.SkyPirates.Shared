@@ -50,7 +50,11 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
             public void Update(ref Position position, ref PositionSeparation separation)
             {
-                position.Value += separation.Force.x_y * _deltaTime;
+                var offset = separation.Force.xy * _deltaTime * 10;
+                fix maxOffset = (fix)1 / 3;
+                position.Value += fix2.SqrLength(offset) > maxOffset? 
+                    fix2.Normalize(offset).x_y:
+                    offset.x_y;
             }
         }
         private readonly struct SeparationForceQuery : IForEach<Position, PositionSeparation>
@@ -75,14 +79,15 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                 {
                     var otherPos = other.Get<Position>().Value.xz;
                     var otherWeight = other.Get<PositionSeparation>().Weight;
-                    var dist = fix2.Distance(position.Value.xz, otherPos);
-                    var dir = dist == 0 ? fix2.zero : fix2.Normalize(position.Value.xz - otherPos);
-                    var percent = (1 - Maths.Min(1, dist / separation.Radius)) * otherWeight;
+                    var sqrDist = fix2.SqrDistance(position.Value.xz, otherPos);
+                    var sqrRadius = (separation.Radius * separation.Radius);
+                    var dir = sqrDist == 0 ? fix2.zero : fix2.Normalize(position.Value.xz - otherPos);
+                    var percent = (1 - Maths.Min(1, sqrDist / sqrRadius)) * otherWeight;
                     forceSum += percent * dir;
                 }
-                var multiplier = (_targetsCache.Count - 1) * separation.Weight;
-                forceSum /= (multiplier == 0 ? 1 : multiplier);
-                separation.Force = forceSum;
+                var divisor = (_targetsCache.Count - 1) * separation.Weight;
+                forceSum /= (divisor == 0 ? 1 : divisor);
+                separation.Force = forceSum * separation.Radius;
             }
 
 
