@@ -44,6 +44,8 @@ namespace DVG.SkyPirates.Shared.Factories
             unit.Get<MoveSpeed>().Value = config.speed;
             unit.Get<ImpactDistance>().Value = config.attackDistance;
             unit.Get<BehaviourConfig>().Scenario = switchTable;
+            unit.Get<PositionSeparation>().Radius = 1;
+            unit.Get<PositionSeparation>().Weight = 1;
             unit.Get<BehaviourConfig>().Durations = new Dictionary<StateId, fix>()
             {
                 [StateId.Constants.PreAttack] = config.preAttack,

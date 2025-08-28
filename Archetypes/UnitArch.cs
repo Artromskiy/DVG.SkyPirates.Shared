@@ -17,6 +17,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             entity.AddOrGet<Damage>();
             entity.AddOrGet<Team>();
 
+            entity.AddOrGet<PositionSeparation>();
             entity.AddOrGet<Fixation>();
             entity.AddOrGet<Target>();
             entity.AddOrGet<Destination>();
