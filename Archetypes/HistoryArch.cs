@@ -10,7 +10,6 @@ namespace DVG.SkyPirates.Shared.Archetypes
     {
         public static void EnsureHistory(Entity entity)
         {
-            entity.AddOrGet<TickInfo>();
             HistoryIds.ForEachData(new EnsureHistoryAction(entity));
         }
 
