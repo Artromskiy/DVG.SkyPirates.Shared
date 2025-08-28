@@ -1,7 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Core;
 using DVG.Core.History;
-using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
@@ -138,18 +137,15 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystem
         private readonly struct SetHistoryQuery<T> : IForEach<History<T>, T>
             where T : struct
         {
-            private readonly int _tick;
             private readonly int _wrappedTick;
 
             public SetHistoryQuery(int tick)
             {
-                _tick = tick;
-                _wrappedTick = Constants.WrapTick(_tick);
+                _wrappedTick = Constants.WrapTick(tick);
             }
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                history.CurrentTick = _tick;
                 T? cmp = history.Data[_wrappedTick];
                 Debug.Assert(cmp.HasValue);
                 component = cmp.Value;

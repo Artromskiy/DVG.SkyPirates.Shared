@@ -36,6 +36,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                 var impactSqrDistance = impactDistance.Value * impactDistance.Value;
                 var sqrDistance = fix3.SqrDistance(targetPos, position.Value);
                 var direction = targetPos - position.Value;
+                if(sqrDistance != 0)
                 destination.Rotation = Maths.Degrees(MathsExtensions.GetRotation(direction.xz));
                 if (sqrDistance < impactSqrDistance)
                 {
