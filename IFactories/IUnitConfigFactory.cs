@@ -1,8 +1,9 @@
 ﻿using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Configs;
+using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.SkyPirates.Shared.IFactories
 {
-    public interface IUnitConfigFactory : IFactory<UnitConfig, SpawnUnitCommand> { }
+    public interface IUnitConfigFactory : IFactory<UnitConfig, UnitId> { }
 }

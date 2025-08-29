@@ -45,6 +45,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public readonly void Update(ref Squad squad, ref Position position, ref Fixation fixation, ref Rotation rotation)
             {
+                if (squad.units.Count == 0)
+                    return;
+
                 var packedCircles = GetCirclesConfig(squad.units.Count);
 
                 for (int i = 0; i < squad.units.Count; i++)

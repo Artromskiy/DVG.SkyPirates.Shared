@@ -1,8 +1,6 @@
 ﻿using Arch.Core;
 using Arch.Core.Extensions;
-using DVG.Core;
 using DVG.SkyPirates.Shared.Archetypes;
-using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Entities;
@@ -29,16 +27,16 @@ namespace DVG.SkyPirates.Shared.Factories
             _unitConfigFactory = unitConfigFactory;
         }
 
-        public virtual Entity Create(Command<SpawnUnitCommand> cmd)
+        public virtual Entity Create((fix3 Position, int TeamId, int Level, UnitId UnitId, int EntityId) parameters)
         {
-            var config = _unitConfigFactory.Create(cmd.Data);
+            var config = _unitConfigFactory.Create(parameters.UnitId);
 
-            var unit = EntityIds.Get(cmd.EntityId);
+            var unit = EntityIds.Get(parameters.EntityId);
 
             UnitArch.EnsureArch(unit);
             HistoryArch.EnsureHistory(unit);
 
-            unit.Get<Team>().Id = cmd.ClientId;
+            unit.Get<Team>().Id = parameters.TeamId;
             unit.Get<Health>().Value = config.health;
             unit.Get<MaxHealth>().Value = config.health;
             unit.Get<Damage>().Value = config.damage;
