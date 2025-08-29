@@ -58,12 +58,7 @@ namespace DVG.SkyPirates.Shared.DI
             container.Register<IPreTickableExecutorService, PreTickableExecutorService>(Lifestyle.Singleton);
             container.Collection.Register<IPreTickableExecutor>(preTickableExecutors, Lifestyle.Singleton);
 
-            var postTickableExecutors = new Type[]
-            {
-                //typeof(ClearHistorySystem)
-            };
             container.Register<IPostTickableExecutorService, PostTickableExecutorService>(Lifestyle.Singleton);
-            container.Collection.Register<IPostTickableExecutor>(postTickableExecutors, Lifestyle.Singleton);
 
             container.Register<ITargetSearchService, TargetSearchService>(Lifestyle.Singleton);
             container.Register<ITimelineService, TimelineService>(Lifestyle.Singleton);
