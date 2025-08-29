@@ -27,40 +27,46 @@ namespace DVG.Core.History
         {
             _typeToId = new Dictionary<Type, int>()
             {
-                {typeof(Behaviour), 1},
-                {typeof(Damage), 2},
-                {typeof(Destination), 3},
-                {typeof(Direction), 4},
-                {typeof(Fixation), 5},
-                {typeof(Health), 6},
-                {typeof(ImpactDistance), 7},
-                {typeof(MoveSpeed), 8},
-                {typeof(Position), 9},
-                {typeof(PositionSeparation), 10},
-                {typeof(Rotation), 11},
-                {typeof(Squad), 12},
-                {typeof(Target), 13},
-                {typeof(TargetSearchData), 14},
-                {typeof(Team), 15},
+                {typeof(AutoHeal), 1},
+                {typeof(Behaviour), 2},
+                {typeof(Damage), 3},
+                {typeof(Dead), 4},
+                {typeof(Destination), 5},
+                {typeof(Direction), 6},
+                {typeof(Fixation), 7},
+                {typeof(Health), 8},
+                {typeof(ImpactDistance), 9},
+                {typeof(MaxHealth), 10},
+                {typeof(MoveSpeed), 11},
+                {typeof(Position), 12},
+                {typeof(PositionSeparation), 13},
+                {typeof(Rotation), 14},
+                {typeof(Squad), 15},
+                {typeof(Target), 16},
+                {typeof(TargetSearchData), 17},
+                {typeof(Team), 18},
             };
             
             _idToType = new Dictionary<int, Type>()
             {
-                {1, typeof(Behaviour)},
-                {2, typeof(Damage)},
-                {3, typeof(Destination)},
-                {4, typeof(Direction)},
-                {5, typeof(Fixation)},
-                {6, typeof(Health)},
-                {7, typeof(ImpactDistance)},
-                {8, typeof(MoveSpeed)},
-                {9, typeof(Position)},
-                {10, typeof(PositionSeparation)},
-                {11, typeof(Rotation)},
-                {12, typeof(Squad)},
-                {13, typeof(Target)},
-                {14, typeof(TargetSearchData)},
-                {15, typeof(Team)},
+                {1, typeof(AutoHeal)},
+                {2, typeof(Behaviour)},
+                {3, typeof(Damage)},
+                {4, typeof(Dead)},
+                {5, typeof(Destination)},
+                {6, typeof(Direction)},
+                {7, typeof(Fixation)},
+                {8, typeof(Health)},
+                {9, typeof(ImpactDistance)},
+                {10, typeof(MaxHealth)},
+                {11, typeof(MoveSpeed)},
+                {12, typeof(Position)},
+                {13, typeof(PositionSeparation)},
+                {14, typeof(Rotation)},
+                {15, typeof(Squad)},
+                {16, typeof(Target)},
+                {17, typeof(TargetSearchData)},
+                {18, typeof(Team)},
             };
         }
 
@@ -68,13 +74,16 @@ namespace DVG.Core.History
         public static void ForEachData<T>(T action)
             where T: IStructGenericAction
         {
+            action.Invoke<AutoHeal>();
             action.Invoke<Behaviour>();
             action.Invoke<Damage>();
+            action.Invoke<Dead>();
             action.Invoke<Destination>();
             action.Invoke<Direction>();
             action.Invoke<Fixation>();
             action.Invoke<Health>();
             action.Invoke<ImpactDistance>();
+            action.Invoke<MaxHealth>();
             action.Invoke<MoveSpeed>();
             action.Invoke<Position>();
             action.Invoke<PositionSeparation>();
