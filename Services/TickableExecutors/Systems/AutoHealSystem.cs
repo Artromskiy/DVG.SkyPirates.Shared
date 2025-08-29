@@ -17,7 +17,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new HealQuery();
+            var query = new HealQuery(deltaTime);
             _world.InlineQuery<HealQuery, Health, MaxHealth, AutoHeal, RecivedDamage>(_desc, ref query);
         }
 
@@ -25,6 +25,12 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
             IForEach<Health, MaxHealth, AutoHeal, RecivedDamage>
         {
             private readonly fix _deltaTime;
+
+            public HealQuery(fix deltaTime)
+            {
+                _deltaTime = deltaTime;
+            }
+
             public void Update(ref Health health, ref MaxHealth maxHealth, ref AutoHeal autoHeal, ref RecivedDamage recivedDamage)
             {
                 autoHeal.healLoadPercent = recivedDamage.Value > 0 ? 0 :
