@@ -36,6 +36,7 @@ namespace DVG.SkyPirates.Shared.Factories
             UnitArch.EnsureArch(unit);
             HistoryArch.EnsureHistory(unit);
 
+            unit.Get<Position>().Value = parameters.Position;
             unit.Get<Team>().Id = parameters.TeamId;
             unit.Get<Health>().Value = config.health;
             unit.Get<MaxHealth>().Value = config.health;
