@@ -2,18 +2,21 @@
 using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
-using DVG.SkyPirates.Shared.IServices.TargetSearch;
+using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Services.TargetSearch
+namespace DVG.SkyPirates.Shared.Systems
 {
     /// <summary>
     /// Caches Entities with their position quantized by <see cref="SquareSize"/>.
     /// Use for fast nearest search
     /// </summary>
-    public class TargetSearchService : ITargetSearchService
+    public class TargetSearchSystem : ITargetSearchSystem
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<RecivedDamage, Position, Team>();
+        private readonly QueryDescription _desc = new QueryDescription().
+            WithAll<RecivedDamage, Position, Team>().
+            WithNone<Dead>();
+
         private const int SquareSize = 2;
 
         private readonly World _world;
@@ -21,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Services.TargetSearch
         private readonly Dictionary<int2, Dictionary<int, List<Entity>>> _targets = new Dictionary<int2, Dictionary<int, List<Entity>>>();
         private readonly List<Entity> _targetsCache = new List<Entity>();
 
-        public TargetSearchService(World world)
+        public TargetSearchSystem(World world)
         {
             _world = world;
         }

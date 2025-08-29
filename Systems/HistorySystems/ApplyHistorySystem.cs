@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystems
+namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 {
     public class ApplyHistorySystem : IPreTickableExecutor
     {

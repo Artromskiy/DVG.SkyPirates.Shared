@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
+namespace DVG.SkyPirates.Shared.Systems
 {
     /// <summary>
     /// Moves Entity's <see href="Position"/> and <see href="Rotation"/> 
@@ -14,7 +14,11 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
     public class SeparationSystem : ITickableExecutor
     {
         private const int SquareSize = 3;
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, PositionSeparation>();
+
+        private readonly QueryDescription _desc = new QueryDescription().
+            WithAll<Position, PositionSeparation>().
+            WithNone<Dead>();
+
         private readonly Dictionary<int2, List<Entity>> _targets = new Dictionary<int2, List<Entity>>();
         private readonly List<Entity> _targetsCache = new List<Entity>();
 
@@ -52,8 +56,8 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
             {
                 var offset = separation.Force.xy * _deltaTime * 10;
                 fix maxOffset = (fix)1 / 3;
-                position.Value += fix2.SqrLength(offset) > maxOffset? 
-                    fix2.Normalize(offset).x_y:
+                position.Value += fix2.SqrLength(offset) > maxOffset ?
+                    fix2.Normalize(offset).x_y :
                     offset.x_y;
             }
         }
@@ -80,13 +84,13 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                     var otherPos = other.Get<Position>().Value.xz;
                     var otherWeight = other.Get<PositionSeparation>().Weight;
                     var sqrDist = fix2.SqrDistance(position.Value.xz, otherPos);
-                    var sqrRadius = (separation.Radius * separation.Radius);
+                    var sqrRadius = separation.Radius * separation.Radius;
                     var dir = sqrDist == 0 ? fix2.zero : fix2.Normalize(position.Value.xz - otherPos);
                     var percent = (1 - Maths.Min(1, sqrDist / sqrRadius)) * otherWeight;
                     forceSum += percent * dir;
                 }
                 var divisor = (_targetsCache.Count - 1) * separation.Weight;
-                forceSum /= (divisor == 0 ? 1 : divisor);
+                forceSum /= divisor == 0 ? 1 : divisor;
                 separation.Force = forceSum * separation.Radius;
             }
 

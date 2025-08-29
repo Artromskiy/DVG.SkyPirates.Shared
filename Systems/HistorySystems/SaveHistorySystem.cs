@@ -6,7 +6,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystems
+namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 {
     public class SaveHistorySystem : ITickableExecutor
     {

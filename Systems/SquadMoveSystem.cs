@@ -3,7 +3,7 @@ using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
+namespace DVG.SkyPirates.Shared.Systems
 {
     /// <summary>
     /// Moves squad and sets unit's

@@ -4,7 +4,7 @@ using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools.Extensions;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
+namespace DVG.SkyPirates.Shared.Systems
 {
     /// <summary>
     /// Moves Entity's <see href="Position"/> and <see href="Rotation"/> 
@@ -12,7 +12,10 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
     /// </summary>
     public class MoveSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, Rotation, Destination, MoveSpeed>();
+        private readonly QueryDescription _desc = new QueryDescription().
+            WithAll<Position, Rotation, Destination, MoveSpeed>().
+            WithNone<Dead>();
+
         private readonly World _world;
         private const int RotateSpeed = 720;
         public MoveSystem(World world)

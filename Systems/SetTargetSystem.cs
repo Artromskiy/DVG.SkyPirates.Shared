@@ -1,20 +1,23 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
-using DVG.SkyPirates.Shared.IServices.TargetSearch;
+using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
+namespace DVG.SkyPirates.Shared.Systems
 {
     /// <summary>
     /// Sets value to <see href="Target"/> if it matches <see href="TargetSearchData"/> and <see href="TeamId"/> conditions
     /// </summary>
     public class SetTargetSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, Target, Team>();
+        private readonly QueryDescription _desc = new QueryDescription().
+            WithAll<Position, Target, Team>().
+            WithNone<Dead>();
+
         private readonly World _world;
-        private readonly ITargetSearchService _targetSearch;
-        public SetTargetSystem(World world, ITargetSearchService targetSearch)
+        private readonly ITargetSearchSystem _targetSearch;
+        public SetTargetSystem(World world, ITargetSearchSystem targetSearch)
         {
             _world = world;
             _targetSearch = targetSearch;
@@ -29,9 +32,9 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
         private readonly struct SetTargetQuery :
             IForEach<TargetSearchData, Target, Team>
         {
-            private readonly ITargetSearchService _targetSearch;
+            private readonly ITargetSearchSystem _targetSearch;
 
-            public SetTargetQuery(ITargetSearchService targetSearch)
+            public SetTargetQuery(ITargetSearchSystem targetSearch)
             {
                 _targetSearch = targetSearch;
             }

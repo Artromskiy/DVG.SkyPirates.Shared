@@ -3,11 +3,14 @@ using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
+namespace DVG.SkyPirates.Shared.Systems
 {
     public class DamageSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health, RecivedDamage>();
+        private readonly QueryDescription _desc = new QueryDescription().
+            WithAll<Health, RecivedDamage>().
+            WithNone<Dead>();
+
         private readonly World _world;
 
         public DamageSystem(World world)

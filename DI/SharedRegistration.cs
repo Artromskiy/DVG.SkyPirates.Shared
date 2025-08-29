@@ -3,13 +3,11 @@ using DVG.SkyPirates.Shared.Configs;
 using DVG.SkyPirates.Shared.Factories;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
-using DVG.SkyPirates.Shared.IServices.TargetSearch;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Services;
 using DVG.SkyPirates.Shared.Services.CommandExecutors;
-using DVG.SkyPirates.Shared.Services.TargetSearch;
-using DVG.SkyPirates.Shared.Services.TickableExecutors.Systems;
-using DVG.SkyPirates.Shared.Services.TickableExecutors.Systems.HistorySystems;
+using DVG.SkyPirates.Shared.Systems;
+using DVG.SkyPirates.Shared.Systems.HistorySystems;
 using SimpleInjector;
 using System;
 
@@ -32,7 +30,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             var tickableExecutors = new Type[]
             {
-                typeof(TargetSearchService),
+                typeof(TargetSearchSystem),
                 typeof(SquadMoveSystem),
                 typeof(SquadUnitsSystem),
                 typeof(SetTargetSystem),
@@ -45,6 +43,8 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(ImpactSystem),
                 typeof(AutoHealSystem),
                 typeof(DamageSystem),
+                typeof(MarkDeadSystem),
+                typeof(DeadSquadUnitsSystem),
 
                 typeof(SaveHistorySystem)
             };
@@ -60,7 +60,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             container.Register<IPostTickableExecutorService, PostTickableExecutorService>(Lifestyle.Singleton);
 
-            container.Register<ITargetSearchService, TargetSearchService>(Lifestyle.Singleton);
+            container.Register<ITargetSearchSystem, TargetSearchSystem>(Lifestyle.Singleton);
             container.Register<ITimelineService, TimelineService>(Lifestyle.Singleton);
         }
     }

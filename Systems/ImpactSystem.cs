@@ -5,11 +5,14 @@ using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
+namespace DVG.SkyPirates.Shared.Systems
 {
     public class ImpactSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Behaviour, Damage, ImpactDistance, Position, Target>();
+        private readonly QueryDescription _desc = new QueryDescription().
+            WithAll<Behaviour, Damage, ImpactDistance, Position, Target>().
+            WithNone<Dead>();
+
         private readonly World _world;
 
         public ImpactSystem(World world)

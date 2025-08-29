@@ -15,14 +15,10 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
     public class SpawnUnitCommandExecutor :
         ICommandExecutor<SpawnUnitCommand>
     {
-        private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
-        private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache = new Dictionary<int, PackedCirclesConfig>();
-
         private readonly IUnitFactory _unitFactory;
 
-        public SpawnUnitCommandExecutor(IUnitFactory unitFactory, IPathFactory<PackedCirclesConfig> circlesModelFactory)
+        public SpawnUnitCommandExecutor(IUnitFactory unitFactory)
         {
-            _circlesModelFactory = circlesModelFactory;
             _unitFactory = unitFactory;
         }
 
@@ -39,27 +35,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         private void AddUnit(Entity squad, Entity unit)
         {
             ref var squadComponent = ref squad.Get<Squad>();
-            int oldCount = squadComponent.units.Count;
-            int newCount = oldCount + 1;
-            var packedCircles = GetCirclesConfig(newCount);
-            squadComponent.orders = new List<int>(squadComponent.orders);
             squadComponent.units = new List<Entity>(squadComponent.units);
-            squadComponent.orders.Add(oldCount);
             squadComponent.units.Add(unit);
-            squadComponent.positions = new fix2[newCount];
-
-            for (int i = 0; i < newCount; i++)
-            {
-                var localPoint = packedCircles.Points[i] / 2;
-                squadComponent.positions[i] = localPoint;
-            }
-        }
-
-        private PackedCirclesConfig GetCirclesConfig(int count)
-        {
-            if (!_circlesConfigCache.TryGetValue(count, out var config))
-                _circlesConfigCache[count] = config = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
-            return config;
         }
     }
 }

@@ -4,12 +4,18 @@ using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 
-namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
+namespace DVG.SkyPirates.Shared.Systems
 {
     public class SimpleBehaviourSystem : ITickableExecutor
     {
-        private readonly QueryDescription _descSwitch = new QueryDescription().WithAll<Behaviour, BehaviourConfig>();
-        private readonly QueryDescription _descTick = new QueryDescription().WithAll<Behaviour>();
+        private readonly QueryDescription _descSwitch = new QueryDescription().
+            WithAll<Behaviour, BehaviourConfig>().
+            WithNone<Dead>();
+
+        private readonly QueryDescription _descTick = new QueryDescription().
+            WithAll<Behaviour>().
+            WithNone<Dead>();
+
         private readonly World _world;
 
         public SimpleBehaviourSystem(World world)
@@ -41,7 +47,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                 if (behaviour.Percent != 1 && behaviour.ForceState == null)
                     return;
 
-                StateId targetState = behaviour.ForceState ??= 
+                StateId targetState = behaviour.ForceState ??=
                     behaviourConfig.Scenario[behaviour.State];
 
                 behaviour.ForceState = null;

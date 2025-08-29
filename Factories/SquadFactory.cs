@@ -24,9 +24,7 @@ namespace DVG.SkyPirates.Shared.Factories
 
             SquadArch.EnsureArch(squad);
             HistoryArch.EnsureHistory(squad);
-            squad.Get<Squad>().orders = new List<int>();
             squad.Get<Squad>().units = new List<Entity>();
-            squad.Get<Squad>().positions = Array.Empty<fix2>();
             return squad;
         }
     }
