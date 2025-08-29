@@ -40,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Services.TickableExecutors.Systems
                 if (sqrDistance > impactSqrDistance)
                     return;
 
-                target.Entity.Get<RecivedDamage>().Value -= damage.Value;
+                target.Entity.Get<RecivedDamage>().Value += damage.Value;
             }
         }
     }
