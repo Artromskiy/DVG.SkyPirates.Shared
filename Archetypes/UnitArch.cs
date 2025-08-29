@@ -18,6 +18,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             entity.AddOrGet<Damage>();
             entity.AddOrGet<Team>();
 
+            entity.AddOrGet<RecivedDamage>();
             entity.AddOrGet<AutoHeal>();
             entity.AddOrGet<TempPosition>();
             entity.AddOrGet<PositionSeparation>();
