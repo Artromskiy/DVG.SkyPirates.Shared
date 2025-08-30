@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly World _world;
 
-        private readonly Dictionary<int, Dictionary<int2, List<Entity>>> _targets = new Dictionary<int, Dictionary<int2, List<Entity>>>();
+        private readonly Dictionary<int, Dictionary<int2, List<(Entity entity, Position position)>>> _targets = new Dictionary<int, Dictionary<int2, List<(Entity, Position)>>>();
         private readonly List<Entity> _targetsCache = new List<Entity>();
 
         public TargetSearchSystem(World world)
@@ -74,8 +74,8 @@ namespace DVG.SkyPirates.Shared.Systems
                             continue;
 
                         foreach (var target in quad)
-                            if (fix2.SqrDistance(target.Get<Position>().Value.xz, position.xz) < sqrDistance)
-                                targets.Add(target);
+                            if (fix2.SqrDistance(target.position.Value.xz, position.xz) < sqrDistance)
+                                targets.Add(target.entity);
                     }
                 }
             }
@@ -93,9 +93,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly struct TargetsPartitioningQuery : IForEachWithEntity<Position, Team>
         {
-            private readonly Dictionary<int, Dictionary<int2, List<Entity>>> _targets;
+            private readonly Dictionary<int, Dictionary<int2, List<(Entity, Position)>>> _targets;
 
-            public TargetsPartitioningQuery(Dictionary<int, Dictionary<int2, List<Entity>>> targets)
+            public TargetsPartitioningQuery(Dictionary<int, Dictionary<int2, List<(Entity, Position)>>> targets)
             {
                 _targets = targets;
             }
@@ -104,10 +104,10 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 var intPos = GetQuantizedSquare(p.Value.xz);
                 if (!_targets.TryGetValue(t.Id, out var team))
-                    _targets[t.Id] = team = new Dictionary<int2, List<Entity>>();
+                    _targets[t.Id] = team = new Dictionary<int2, List<(Entity, Position)>>();
                 if (!team.TryGetValue(intPos, out var quad))
-                    team[intPos] = quad = new List<Entity>();
-                quad.Add(e);
+                    team[intPos] = quad = new List<(Entity, Position)>();
+                quad.Add((e, p));
             }
         }
 

@@ -19,7 +19,7 @@ namespace DVG.SkyPirates.Shared.Systems
             WithAll<Position, PositionSeparation>().
             WithNone<Dead>();
 
-        private readonly Dictionary<int2, List<Entity>> _targets = new Dictionary<int2, List<Entity>>();
+        private readonly Dictionary<int2, List<(Entity, Position)>> _targets = new Dictionary<int2, List<(Entity, Position)>>();
         private readonly List<Entity> _targetsCache = new List<Entity>();
 
         private readonly World _world;
@@ -63,10 +63,10 @@ namespace DVG.SkyPirates.Shared.Systems
         }
         private readonly struct SeparationForceQuery : IForEach<Position, PositionSeparation>
         {
-            private readonly Dictionary<int2, List<Entity>> _targets;
+            private readonly Dictionary<int2, List<(Entity entity, Position position)>> _targets;
             private readonly List<Entity> _targetsCache;
 
-            public SeparationForceQuery(Dictionary<int2, List<Entity>> targets, List<Entity> targetsCache)
+            public SeparationForceQuery(Dictionary<int2, List<(Entity, Position)>> targets, List<Entity> targetsCache)
             {
                 _targets = targets;
                 _targetsCache = targetsCache;
@@ -112,8 +112,8 @@ namespace DVG.SkyPirates.Shared.Systems
                             continue;
 
                         foreach (var item in quadrant)
-                            if (fix2.SqrDistance(item.Get<Position>().Value.xz, pos) < sqrDistance)
-                                targets.Add(item);
+                            if (fix2.SqrDistance(item.position.Value.xz, pos) < sqrDistance)
+                                targets.Add(item.entity);
                     }
                 }
             }
@@ -121,9 +121,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly struct PartitioningQuery : IForEachWithEntity<Position>
         {
-            private readonly Dictionary<int2, List<Entity>> _targets;
+            private readonly Dictionary<int2, List<(Entity, Position)>> _targets;
 
-            public PartitioningQuery(Dictionary<int2, List<Entity>> targets)
+            public PartitioningQuery(Dictionary<int2, List<(Entity, Position)>> targets)
             {
                 _targets = targets;
             }
@@ -132,8 +132,8 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 var intPos = GetQuantizedSquare(p.Value.xz);
                 if (!_targets.TryGetValue(intPos, out var quadrant))
-                    _targets[intPos] = quadrant = new List<Entity>();
-                quadrant.Add(e);
+                    _targets[intPos] = quadrant = new List<(Entity, Position)>();
+                quadrant.Add((e, p));
             }
         }
 
