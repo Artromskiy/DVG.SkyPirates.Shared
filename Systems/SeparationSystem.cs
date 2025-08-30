@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -13,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// </summary>
     public class SeparationSystem : ITickableExecutor
     {
-        private const int SquareSize = 3;
+        private const int SquareSize = 1;
 
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, PositionSeparation>().
