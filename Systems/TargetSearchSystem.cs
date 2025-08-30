@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly World _world;
 
-        private readonly Dictionary<int2, Dictionary<int, List<Entity>>> _targets = new Dictionary<int2, Dictionary<int, List<Entity>>>();
+        private readonly Dictionary<int, Dictionary<int2, List<Entity>>> _targets = new Dictionary<int, Dictionary<int2, List<Entity>>>();
         private readonly List<Entity> _targetsCache = new List<Entity>();
 
         public TargetSearchSystem(World world)
@@ -41,7 +41,8 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 var targetPosition = target.Get<Position>().Value.xz;
                 var sqrDistance = fix2.SqrDistance(targetPosition, targetSearchData.Position.xz);
-                if (sqrDistance < minSqrDistance)
+                if ((sqrDistance < minSqrDistance) ||
+                    (sqrDistance == minSqrDistance && target.Id < foundTarget.Id))
                 {
                     foundTarget = target;
                     minSqrDistance = sqrDistance;
@@ -60,18 +61,22 @@ namespace DVG.SkyPirates.Shared.Systems
             var max = GetQuantizedSquare(position.xz + range);
             var sqrDistance = distance * distance;
 
-            for (int y = min.y; y <= max.y; y++)
+            foreach (var t in _targets)
             {
-                for (int x = min.x; x <= max.x; x++)
-                {
-                    if (!_targets.TryGetValue(new int2(x, y), out var quadrant))
-                        continue;
+                if (t.Key == teamId)
+                    continue;
 
-                    foreach (var item in quadrant)
-                        if (item.Key != teamId)
-                            foreach (var target in item.Value)
-                                if (fix2.SqrDistance(target.Get<Position>().Value.xz, position.xz) < sqrDistance)
-                                    targets.Add(target);
+                for (int y = min.y; y <= max.y; y++)
+                {
+                    for (int x = min.x; x <= max.x; x++)
+                    {
+                        if (!t.Value.TryGetValue(new int2(x, y), out var quad))
+                            continue;
+
+                        foreach (var target in quad)
+                            if (fix2.SqrDistance(target.Get<Position>().Value.xz, position.xz) < sqrDistance)
+                                targets.Add(target);
+                    }
                 }
             }
         }
@@ -88,9 +93,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly struct TargetsPartitioningQuery : IForEachWithEntity<Position, Team>
         {
-            private readonly Dictionary<int2, Dictionary<int, List<Entity>>> _targets;
+            private readonly Dictionary<int, Dictionary<int2, List<Entity>>> _targets;
 
-            public TargetsPartitioningQuery(Dictionary<int2, Dictionary<int, List<Entity>>> targets)
+            public TargetsPartitioningQuery(Dictionary<int, Dictionary<int2, List<Entity>>> targets)
             {
                 _targets = targets;
             }
@@ -98,11 +103,11 @@ namespace DVG.SkyPirates.Shared.Systems
             public readonly void Update(Entity e, ref Position p, ref Team t)
             {
                 var intPos = GetQuantizedSquare(p.Value.xz);
-                if (!_targets.TryGetValue(intPos, out var quadrant))
-                    _targets[intPos] = quadrant = new Dictionary<int, List<Entity>>();
-                if (!quadrant.TryGetValue(t.Id, out var team))
-                    quadrant[t.Id] = team = new List<Entity>();
-                team.Add(e);
+                if (!_targets.TryGetValue(t.Id, out var team))
+                    _targets[t.Id] = team = new Dictionary<int2, List<Entity>>();
+                if (!team.TryGetValue(intPos, out var quad))
+                    team[intPos] = quad = new List<Entity>();
+                quad.Add(e);
             }
         }
 
