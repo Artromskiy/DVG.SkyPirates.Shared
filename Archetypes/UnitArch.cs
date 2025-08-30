@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 
@@ -7,27 +6,27 @@ namespace DVG.SkyPirates.Shared.Archetypes
 {
     public readonly struct UnitArch
     {
-        public static void EnsureArch(Entity entity)
+        public static void EnsureArch(World world, Entity entity)
         {
-            entity.AddOrGet<Health>();
-            entity.AddOrGet<MaxHealth>();
-            entity.AddOrGet<Position>();
-            entity.AddOrGet<Rotation>();
-            entity.AddOrGet<MoveSpeed>();
-            entity.AddOrGet<ImpactDistance>();
-            entity.AddOrGet<Damage>();
-            entity.AddOrGet<Team>();
+            world.AddOrGet<Health>(entity);
+            world.AddOrGet<MaxHealth>(entity);
+            world.AddOrGet<Position>(entity);
+            world.AddOrGet<Rotation>(entity);
+            world.AddOrGet<MoveSpeed>(entity);
+            world.AddOrGet<ImpactDistance>(entity);
+            world.AddOrGet<Damage>(entity);
+            world.AddOrGet<Team>(entity);
 
-            entity.AddOrGet<RecivedDamage>();
-            entity.AddOrGet<AutoHeal>();
-            entity.AddOrGet<TempPosition>();
-            entity.AddOrGet<PositionSeparation>();
-            entity.AddOrGet<Fixation>();
-            entity.AddOrGet<Target>();
-            entity.AddOrGet<Destination>();
-            entity.AddOrGet<TargetSearchData>();
-            entity.AddOrGet<Behaviour>();
-            entity.AddOrGet<BehaviourConfig>();
+            world.AddOrGet<RecivedDamage>(entity);
+            world.AddOrGet<AutoHeal>(entity);
+            world.AddOrGet<TempPosition>(entity);
+            world.AddOrGet<PositionSeparation>(entity);
+            world.AddOrGet<Fixation>(entity);
+            world.AddOrGet<Target>(entity);
+            world.AddOrGet<Destination>(entity);
+            world.AddOrGet<TargetSearchData>(entity);
+            world.AddOrGet<Behaviour>(entity);
+            world.AddOrGet<BehaviourConfig>(entity);
         }
     }
 }

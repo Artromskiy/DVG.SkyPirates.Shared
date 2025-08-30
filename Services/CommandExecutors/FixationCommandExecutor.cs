@@ -1,4 +1,4 @@
-﻿using Arch.Core.Extensions;
+﻿using Arch.Core;
 using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components;
@@ -10,11 +10,15 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
     public class FixationCommandExecutor :
         ICommandExecutor<FixationCommand>
     {
-        public FixationCommandExecutor() { }
+        private readonly World _world;
+        public FixationCommandExecutor(World world)
+        {
+            _world = world;
+        }
 
         public void Execute(Command<FixationCommand> cmd)
         {
-            EntityIds.Get(cmd.EntityId).Get<Fixation>().Value = cmd.Data.Fixation;
+            _world.Get<Fixation>(EntityIds.Get(cmd.EntityId)).Value = cmd.Data.Fixation;
         }
     }
 }

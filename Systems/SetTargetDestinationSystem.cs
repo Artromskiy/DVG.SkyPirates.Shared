@@ -26,17 +26,25 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _world.InlineQuery<SetTargetDestinationQuery, Destination, Position, ImpactDistance, Target>(_desc);
+            var query = new SetTargetDestinationQuery(_world);
+            _world.InlineQuery<SetTargetDestinationQuery, Destination, Position, ImpactDistance, Target>(_desc, ref query);
         }
 
         private readonly struct SetTargetDestinationQuery : IForEach<Destination, Position, ImpactDistance, Target>
         {
+            private readonly World _world;
+
+            public SetTargetDestinationQuery(World world)
+            {
+                _world = world;
+            }
+
             public void Update(ref Destination destination, ref Position position, ref ImpactDistance impactDistance, ref Target target)
             {
-                if (!target.Entity.IsAlive())
+                if (!target.Entity.HasValue)
                     return;
 
-                var targetPos = target.Entity.Get<Position>().Value;
+                var targetPos = _world.Get<Position>(target.Entity.Value).Value;
 
                 var impactReduced = impactDistance.Value - _reduceImpactDistance;
                 var impactSqrDistance = impactReduced * impactReduced;

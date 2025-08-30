@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
@@ -13,6 +12,7 @@ namespace DVG.SkyPirates.Shared.Factories
     public class UnitFactory : IUnitFactory
     {
         private readonly IUnitConfigFactory _unitConfigFactory;
+        private readonly World _world;
 
         private readonly Dictionary<StateId, StateId> switchTable = new Dictionary<StateId, StateId>()
         {
@@ -22,8 +22,9 @@ namespace DVG.SkyPirates.Shared.Factories
             [StateId.None] = StateId.None,
         };
 
-        public UnitFactory(IUnitConfigFactory unitConfigFactory)
+        public UnitFactory(World world, IUnitConfigFactory unitConfigFactory)
         {
+            _world = world;
             _unitConfigFactory = unitConfigFactory;
         }
 
@@ -33,23 +34,23 @@ namespace DVG.SkyPirates.Shared.Factories
 
             var unit = EntityIds.Get(parameters.EntityId);
 
-            UnitArch.EnsureArch(unit);
-            HistoryArch.EnsureHistory(unit);
+            UnitArch.EnsureArch(_world, unit);
+            HistoryArch.EnsureHistory(_world, unit);
 
-            unit.Get<Position>().Value = parameters.Position;
-            unit.Get<Team>().Id = parameters.TeamId;
-            unit.Get<Health>().Value = config.health;
-            unit.Get<MaxHealth>().Value = config.health;
-            unit.Get<Damage>().Value = config.damage;
-            unit.Get<MoveSpeed>().Value = config.speed;
-            unit.Get<ImpactDistance>().Value = config.attackDistance;
-            unit.Get<BehaviourConfig>().Scenario = switchTable;
-            unit.Get<PositionSeparation>().Radius = (fix)1 / 2;
-            unit.Get<PositionSeparation>().Weight = 1;
-            unit.Get<AutoHeal>().healDelay = 10;
-            unit.Get<AutoHeal>().healPerSecond = 20;
+            _world.Get<Position>(unit).Value = parameters.Position;
+            _world.Get<Team>(unit).Id = parameters.TeamId;
+            _world.Get<Health>(unit).Value = config.health;
+            _world.Get<MaxHealth>(unit).Value = config.health;
+            _world.Get<Damage>(unit).Value = config.damage;
+            _world.Get<MoveSpeed>(unit).Value = config.speed;
+            _world.Get<ImpactDistance>(unit).Value = config.attackDistance;
+            _world.Get<BehaviourConfig>(unit).Scenario = switchTable;
+            _world.Get<PositionSeparation>(unit).Radius = (fix)1 / 2;
+            _world.Get<PositionSeparation>(unit).Weight = 1;
+            _world.Get<AutoHeal>(unit).healDelay = 10;
+            _world.Get<AutoHeal>(unit).healPerSecond = 20;
 
-            unit.Get<BehaviourConfig>().Durations = new Dictionary<StateId, fix>()
+            _world.Get<BehaviourConfig>(unit).Durations = new Dictionary<StateId, fix>()
             {
                 [StateId.Constants.PreAttack] = config.preAttack,
                 [StateId.Constants.PostAttack] = config.postAttack,

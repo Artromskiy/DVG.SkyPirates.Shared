@@ -1,4 +1,4 @@
-﻿using Arch.Core.Extensions;
+﻿using Arch.Core;
 using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components;
@@ -11,17 +11,18 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
     public class DirectionCommandExecutor : ICommandExecutor<DirectionCommand>
     {
-        public DirectionCommandExecutor()
+        private readonly World _world;
+        public DirectionCommandExecutor(World world)
         {
-
+            _world = world;
         }
 
         public void Execute(Command<DirectionCommand> cmd)
         {
             var squad = EntityIds.Get(cmd.EntityId);
             SetDirection(
-                ref squad.Get<Direction>().Value,
-                ref squad.Get<Rotation>().Value,
+                ref _world.Get<Direction>(squad).Value,
+                ref _world.Get<Rotation>(squad).Value,
                 cmd.Data.Direction);
         }
 

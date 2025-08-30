@@ -6,6 +6,6 @@ namespace DVG.SkyPirates.Shared.Components
     [History]
     public struct Target
     {
-        public Entity Entity;
+        public Entity? Entity;
     }
 }

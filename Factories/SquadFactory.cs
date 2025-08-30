@@ -14,17 +14,19 @@ namespace DVG.SkyPirates.Shared.Factories
 {
     public class SquadFactory : ISquadFactory
     {
-        public SquadFactory()
+        private readonly World _world;
+        public SquadFactory(World world)
         {
+            _world = world;
         }
 
         public Entity Create(Command<SpawnSquadCommand> cmd)
         {
             var squad = EntityIds.Get(cmd.EntityId);
 
-            SquadArch.EnsureArch(squad);
-            HistoryArch.EnsureHistory(squad);
-            squad.Get<Squad>().units = new List<Entity>();
+            SquadArch.EnsureArch(_world, squad);
+            HistoryArch.EnsureHistory(_world, squad);
+            _world.Get<Squad>(squad).units = new List<Entity>();
             return squad;
         }
     }

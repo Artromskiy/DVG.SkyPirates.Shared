@@ -16,16 +16,18 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         ICommandExecutor<SpawnUnitCommand>
     {
         private readonly IUnitFactory _unitFactory;
+        private readonly World _world;
 
-        public SpawnUnitCommandExecutor(IUnitFactory unitFactory)
+        public SpawnUnitCommandExecutor(World world, IUnitFactory unitFactory)
         {
             _unitFactory = unitFactory;
+            _world = world;
         }
 
         public void Execute(Command<SpawnUnitCommand> cmd)
         {
             var squad = EntityIds.Get(cmd.Data.SquadId);
-            var pos = squad.Get<Position>().Value;
+            var pos = _world.Get<Position>(squad).Value;
             var unit = _unitFactory.Create((pos, cmd.ClientId, 1, cmd.Data.UnitId, cmd.EntityId));
 
             AddUnit(squad, unit);
@@ -33,7 +35,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         private void AddUnit(Entity squad, Entity unit)
         {
-            ref var squadComponent = ref squad.Get<Squad>();
+            ref var squadComponent = ref _world.Get<Squad>(squad);
             squadComponent.units = new List<Entity>(squadComponent.units);
             squadComponent.units.Add(unit);
         }

@@ -1,4 +1,6 @@
-﻿using DVG.Core;
+﻿using Arch.Core;
+using DVG.Core;
+using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Configs;
 using DVG.SkyPirates.Shared.Factories;
 using DVG.SkyPirates.Shared.IFactories;
@@ -17,6 +19,14 @@ namespace DVG.SkyPirates.Shared.DI
     {
         public static void Register(Container container)
         {
+            container.Register(() =>
+            {
+                var world = World.Create();
+                world.Create<Temp>(100000);
+                world.Remove<Temp>(new QueryDescription().WithAll<Temp>());
+                return world;
+            }, Lifestyle.Singleton);
+
             var commandExecutors = new Type[]
             {
                 typeof(SpawnSquadCommandExecutor),

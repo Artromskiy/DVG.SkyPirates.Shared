@@ -8,24 +8,26 @@ namespace DVG.SkyPirates.Shared.Archetypes
 {
     public readonly struct HistoryArch
     {
-        public static void EnsureHistory(Entity entity)
+        public static void EnsureHistory(World world, Entity entity)
         {
-            HistoryIds.ForEachData(new EnsureHistoryAction(entity));
+            HistoryIds.ForEachData(new EnsureHistoryAction(world, entity));
         }
 
         private readonly struct EnsureHistoryAction : IStructGenericAction
         {
             private readonly Entity _entity;
+            private readonly World _world;
 
-            public EnsureHistoryAction(Entity entity)
+            public EnsureHistoryAction(World world, Entity entity)
             {
                 _entity = entity;
+                _world = world;
             }
 
             public readonly void Invoke<T>() where T : struct
             {
-                if (_entity.Has<T>() && !_entity.Has<History<T>>())
-                    _entity.Add(History<T>.Create());
+                if (_world.Has<T>(_entity) && !_world.Has<History<T>>(_entity))
+                    _world.Add(_entity, History<T>.Create());
             }
         }
     }
