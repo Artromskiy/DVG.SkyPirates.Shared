@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using Arch.Core.Extensions;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices;
@@ -29,10 +28,10 @@ namespace DVG.SkyPirates.Shared.Systems
             _world = world;
         }
 
-        public Entity FindTarget(ref TargetSearchData targetSearchData, ref Team team)
+        public Entity? FindTarget(ref TargetSearchData targetSearchData, ref Team team)
         {
             fix minSqrDistance = fix.MaxValue;
-            Entity foundTarget = Entity.Null;
+            Entity? foundTarget = null;
 
             _targetsCache.Clear();
             FindTargets(ref targetSearchData, ref team, _targetsCache);
@@ -41,8 +40,9 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 var targetPosition = position.Value.xz;
                 var sqrDistance = fix2.SqrDistance(targetPosition, targetSearchData.Position.xz);
-                if ((sqrDistance < minSqrDistance) ||
-                    (sqrDistance == minSqrDistance && entity.Id < foundTarget.Id))
+                if (!foundTarget.HasValue ||
+                    ((sqrDistance < minSqrDistance) ||
+                    (sqrDistance == minSqrDistance && entity.Id < foundTarget.Value.Id)))
                 {
                     foundTarget = entity;
                     minSqrDistance = sqrDistance;
