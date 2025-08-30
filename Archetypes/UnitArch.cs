@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.SkyPirates.Shared.Archetypes
 {
@@ -8,6 +9,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
     {
         public static void EnsureArch(World world, Entity entity)
         {
+            world.AddOrGet<UnitId>(entity);
             world.AddOrGet<Health>(entity);
             world.AddOrGet<MaxHealth>(entity);
             world.AddOrGet<Position>(entity);

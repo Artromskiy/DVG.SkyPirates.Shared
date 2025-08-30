@@ -15,6 +15,7 @@ using System.Collections.Generic;
 
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.Core.History
 {
@@ -45,6 +46,7 @@ namespace DVG.Core.History
                 {typeof(Target), 16},
                 {typeof(TargetSearchData), 17},
                 {typeof(Team), 18},
+                {typeof(UnitId), 19},
             };
             
             _idToType = new Dictionary<int, Type>()
@@ -67,6 +69,7 @@ namespace DVG.Core.History
                 {16, typeof(Target)},
                 {17, typeof(TargetSearchData)},
                 {18, typeof(Team)},
+                {19, typeof(UnitId)},
             };
         }
 
@@ -92,6 +95,7 @@ namespace DVG.Core.History
             action.Invoke<Target>();
             action.Invoke<TargetSearchData>();
             action.Invoke<Team>();
+            action.Invoke<UnitId>();
         }
 
         public static int GetId<T>() => _typeToId[typeof(T)];
