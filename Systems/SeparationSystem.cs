@@ -19,8 +19,8 @@ namespace DVG.SkyPirates.Shared.Systems
             WithAll<Position, PositionSeparation>().
             WithNone<Dead>();
 
-        private readonly Dictionary<int2, List<(Entity, Position)>> _targets = new Dictionary<int2, List<(Entity, Position)>>();
-        private readonly List<Entity> _targetsCache = new List<Entity>();
+        private readonly Dictionary<int2, List<(Entity, Position, PositionSeparation)>> _targets = new Dictionary<int2, List<(Entity, Position, PositionSeparation)>>();
+        private readonly List<(Entity entity, Position position, PositionSeparation positionSeparation)> _targetsCache = new List<(Entity, Position, PositionSeparation)>();
 
         private readonly World _world;
         public SeparationSystem(World world)
@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 quadrant.Value.Clear();
 
             var partitionQuery = new PartitioningQuery(_targets);
-            _world.InlineEntityQuery<PartitioningQuery, Position>(_desc, ref partitionQuery);
+            _world.InlineEntityQuery<PartitioningQuery, Position, PositionSeparation>(_desc, ref partitionQuery);
 
             var forceQuery = new SeparationForceQuery(_targets, _targetsCache);
             _world.InlineQuery<SeparationForceQuery, Position, PositionSeparation>(_desc, ref forceQuery);
@@ -63,10 +63,10 @@ namespace DVG.SkyPirates.Shared.Systems
         }
         private readonly struct SeparationForceQuery : IForEach<Position, PositionSeparation>
         {
-            private readonly Dictionary<int2, List<(Entity entity, Position position)>> _targets;
-            private readonly List<Entity> _targetsCache;
+            private readonly Dictionary<int2, List<(Entity entity, Position position, PositionSeparation)>> _targets;
+            private readonly List<(Entity entity, Position position, PositionSeparation positionSeparation)> _targetsCache;
 
-            public SeparationForceQuery(Dictionary<int2, List<(Entity, Position)>> targets, List<Entity> targetsCache)
+            public SeparationForceQuery(Dictionary<int2, List<(Entity, Position, PositionSeparation)>> targets, List<(Entity, Position, PositionSeparation)> targetsCache)
             {
                 _targets = targets;
                 _targetsCache = targetsCache;
@@ -81,8 +81,8 @@ namespace DVG.SkyPirates.Shared.Systems
 
                 foreach (var other in _targetsCache)
                 {
-                    var otherPos = other.Get<Position>().Value.xz;
-                    var otherWeight = other.Get<PositionSeparation>().Weight;
+                    var otherPos = other.position.Value.xz;
+                    var otherWeight = other.positionSeparation.Weight;
                     var sqrDist = fix2.SqrDistance(position.Value.xz, otherPos);
                     var sqrRadius = separation.Radius * separation.Radius;
                     var dir = sqrDist == 0 ? fix2.zero : fix2.Normalize(position.Value.xz - otherPos);
@@ -95,7 +95,7 @@ namespace DVG.SkyPirates.Shared.Systems
             }
 
 
-            private void FindTargets(ref Position position, ref PositionSeparation separation, List<Entity> targets)
+            private void FindTargets(ref Position position, ref PositionSeparation separation, List<(Entity, Position, PositionSeparation)> targets)
             {
                 var distance = separation.Radius;
                 var pos = position.Value.xz;
@@ -113,27 +113,27 @@ namespace DVG.SkyPirates.Shared.Systems
 
                         foreach (var item in quadrant)
                             if (fix2.SqrDistance(item.position.Value.xz, pos) < sqrDistance)
-                                targets.Add(item.entity);
+                                targets.Add(item);
                     }
                 }
             }
         }
 
-        private readonly struct PartitioningQuery : IForEachWithEntity<Position>
+        private readonly struct PartitioningQuery : IForEachWithEntity<Position, PositionSeparation>
         {
-            private readonly Dictionary<int2, List<(Entity, Position)>> _targets;
+            private readonly Dictionary<int2, List<(Entity, Position, PositionSeparation)>> _targets;
 
-            public PartitioningQuery(Dictionary<int2, List<(Entity, Position)>> targets)
+            public PartitioningQuery(Dictionary<int2, List<(Entity, Position, PositionSeparation)>> targets)
             {
                 _targets = targets;
             }
 
-            public readonly void Update(Entity e, ref Position p)
+            public readonly void Update(Entity e, ref Position p, ref PositionSeparation ps)
             {
                 var intPos = GetQuantizedSquare(p.Value.xz);
                 if (!_targets.TryGetValue(intPos, out var quadrant))
-                    _targets[intPos] = quadrant = new List<(Entity, Position)>();
-                quadrant.Add((e, p));
+                    _targets[intPos] = quadrant = new List<(Entity, Position, PositionSeparation)>();
+                quadrant.Add((e, p, ps));
             }
         }
 

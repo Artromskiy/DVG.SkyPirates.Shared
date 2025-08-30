@@ -22,7 +22,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly World _world;
 
         private readonly Dictionary<int, Dictionary<int2, List<(Entity entity, Position position)>>> _targets = new Dictionary<int, Dictionary<int2, List<(Entity, Position)>>>();
-        private readonly List<Entity> _targetsCache = new List<Entity>();
+        private readonly List<(Entity entity, Position position)> _targetsCache = new List<(Entity, Position)>();
 
         public TargetSearchSystem(World world)
         {
@@ -37,28 +37,28 @@ namespace DVG.SkyPirates.Shared.Systems
             _targetsCache.Clear();
             FindTargets(ref targetSearchData, ref team, _targetsCache);
 
-            foreach (var target in _targetsCache)
+            foreach (var (entity, position) in _targetsCache)
             {
-                var targetPosition = target.Get<Position>().Value.xz;
+                var targetPosition = position.Value.xz;
                 var sqrDistance = fix2.SqrDistance(targetPosition, targetSearchData.Position.xz);
                 if ((sqrDistance < minSqrDistance) ||
-                    (sqrDistance == minSqrDistance && target.Id < foundTarget.Id))
+                    (sqrDistance == minSqrDistance && entity.Id < foundTarget.Id))
                 {
-                    foundTarget = target;
+                    foundTarget = entity;
                     minSqrDistance = sqrDistance;
                 }
             }
             return foundTarget;
         }
 
-        public void FindTargets(ref TargetSearchData targetSearchData, ref Team team, List<Entity> targets)
+        public void FindTargets(ref TargetSearchData targetSearchData, ref Team team, List<(Entity, Position)> targets)
         {
             var distance = targetSearchData.Distance;
-            var position = targetSearchData.Position;
+            var position = targetSearchData.Position.xz;
             var teamId = team.Id;
             var range = new fix2(distance, distance);
-            var min = GetQuantizedSquare(position.xz - range);
-            var max = GetQuantizedSquare(position.xz + range);
+            var min = GetQuantizedSquare(position - range);
+            var max = GetQuantizedSquare(position + range);
             var sqrDistance = distance * distance;
 
             foreach (var t in _targets)
@@ -74,8 +74,8 @@ namespace DVG.SkyPirates.Shared.Systems
                             continue;
 
                         foreach (var target in quad)
-                            if (fix2.SqrDistance(target.position.Value.xz, position.xz) < sqrDistance)
-                                targets.Add(target.entity);
+                            if (fix2.SqrDistance(target.position.Value.xz, position) < sqrDistance)
+                                targets.Add(target);
                     }
                 }
             }
