@@ -10,26 +10,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DVG.Core.Ids.Utilities;
-using System.ComponentModel;
-using System;
-using Newtonsoft.Json;
 using DVG.Core;
+using System;
+using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Ids
 {
-    [TypeConverter(typeof(IdTypeConverter))]
-    [JsonConverter(typeof(IdJsonConverter))]
     [Serializable]
-    partial struct StateId : IId, IEquatable<StateId>, IComparable<StateId>
+    [DataContract]
+    readonly partial struct StateId : IId, IEquatable<StateId>, IComparable<StateId>
     {
-        public string Value { get; private set; }
+        [DataMember(Order = 0)]
+        public string Value { get; }
         private const string NoneValue = "None";
         public static readonly StateId None = new StateId(NoneValue);
 
-        public StateId(string Value)
+        public StateId(string value)
         {
-            this.Value = Value;
+            Value = value;
         }
 
         public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
@@ -42,15 +40,5 @@ namespace DVG.SkyPirates.Shared.Ids
         public static bool operator !=(StateId a, StateId b) => !(a == b);
 
         public static implicit operator string(StateId id) => id.Value;
-
-        private class IdTypeConverter : IdTypeConverter<StateId>
-        {
-            protected override StateId CreateFromSource(string srcData) => new StateId(srcData);
-        }
-
-        private class IdJsonConverter : IdJsonConverter<StateId>
-        {
-            protected override StateId CreateFromRawData(string type) => new StateId(type);
-        }
     }
 }

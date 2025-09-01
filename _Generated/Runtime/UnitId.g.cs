@@ -10,26 +10,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DVG.Core.Ids.Utilities;
-using System.ComponentModel;
-using System;
-using Newtonsoft.Json;
 using DVG.Core;
+using System;
+using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Ids
 {
-    [TypeConverter(typeof(IdTypeConverter))]
-    [JsonConverter(typeof(IdJsonConverter))]
     [Serializable]
-    partial struct UnitId : IId, IEquatable<UnitId>, IComparable<UnitId>
+    [DataContract]
+    readonly partial struct UnitId : IId, IEquatable<UnitId>, IComparable<UnitId>
     {
-        public string Value { get; private set; }
+        [DataMember(Order = 0)]
+        public string Value { get; }
         private const string NoneValue = "None";
         public static readonly UnitId None = new UnitId(NoneValue);
 
-        public UnitId(string Value)
+        public UnitId(string value)
         {
-            this.Value = Value;
+            Value = value;
         }
 
         public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
@@ -42,15 +40,5 @@ namespace DVG.SkyPirates.Shared.Ids
         public static bool operator !=(UnitId a, UnitId b) => !(a == b);
 
         public static implicit operator string(UnitId id) => id.Value;
-
-        private class IdTypeConverter : IdTypeConverter<UnitId>
-        {
-            protected override UnitId CreateFromSource(string srcData) => new UnitId(srcData);
-        }
-
-        private class IdJsonConverter : IdJsonConverter<UnitId>
-        {
-            protected override UnitId CreateFromRawData(string type) => new UnitId(type);
-        }
     }
 }

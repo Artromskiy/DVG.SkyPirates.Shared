@@ -10,26 +10,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DVG.Core.Ids.Utilities;
-using System.ComponentModel;
-using System;
-using Newtonsoft.Json;
 using DVG.Core;
+using System;
+using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Ids
 {
-    [TypeConverter(typeof(IdTypeConverter))]
-    [JsonConverter(typeof(IdJsonConverter))]
     [Serializable]
-    partial struct CheatingId : IId, IEquatable<CheatingId>, IComparable<CheatingId>
+    [DataContract]
+    readonly partial struct CheatingId : IId, IEquatable<CheatingId>, IComparable<CheatingId>
     {
-        public string Value { get; private set; }
+        [DataMember(Order = 0)]
+        public string Value { get; }
         private const string NoneValue = "None";
         public static readonly CheatingId None = new CheatingId(NoneValue);
 
-        public CheatingId(string Value)
+        public CheatingId(string value)
         {
-            this.Value = Value;
+            Value = value;
         }
 
         public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
@@ -42,15 +40,5 @@ namespace DVG.SkyPirates.Shared.Ids
         public static bool operator !=(CheatingId a, CheatingId b) => !(a == b);
 
         public static implicit operator string(CheatingId id) => id.Value;
-
-        private class IdTypeConverter : IdTypeConverter<CheatingId>
-        {
-            protected override CheatingId CreateFromSource(string srcData) => new CheatingId(srcData);
-        }
-
-        private class IdJsonConverter : IdJsonConverter<CheatingId>
-        {
-            protected override CheatingId CreateFromRawData(string type) => new CheatingId(type);
-        }
     }
 }
