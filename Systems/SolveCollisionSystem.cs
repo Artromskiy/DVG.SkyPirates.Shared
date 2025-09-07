@@ -92,8 +92,22 @@ namespace DVG.SkyPirates.Shared.Systems
             public void Update(ref Position position, ref CachePosition cachePosition, ref CircleShape circleShape)
             {
                 FindSegments(position.Value.xz, cachePosition.Value.xz, circleShape.Radius);
-                position.Value = Spatial.SolveCircleMove(_segmentsCache,
-                    cachePosition.Value.xz, position.Value.xz, circleShape.Radius).x_y;
+                if(Spatial.CircleCast(_segmentsCache,
+                    cachePosition.Value.xz, position.Value.xz, circleShape.Radius, out var res))
+                {
+                    var newPos = res.intersection + res.normal + new fix(1024);
+                    if(!Spatial.CircleCast(_segmentsCache,
+                    cachePosition.Value.xz, newPos, circleShape.Radius, out _))
+                    {
+                        position.Value = newPos.x_y;
+                    }
+                    else
+                    {
+                        position.Value = res.intersection.x_y;
+                    }
+                }
+                //position.Value = Spatial.SolveCircleMove(_segmentsCache,
+                //    cachePosition.Value.xz, position.Value.xz, circleShape.Radius).x_y;
             }
 
             private List<(fix2 s, fix2 e, fix2 normal)> FindSegments(fix2 pos1, fix2 pos2, fix radius)
