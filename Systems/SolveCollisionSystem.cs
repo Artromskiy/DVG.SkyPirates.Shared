@@ -95,7 +95,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 if (Spatial.CircleCast(_segmentsCache,
                     cachePosition.Value.xz, position.Value.xz, circleShape.Radius, out var res))
                 {
-                    var newPos = res.intersection + res.normal + new fix(1024);
+                    var newPos = res.intersection + res.normal * new fix(1024);
                     if (!Spatial.CircleCast(_segmentsCache,
                         cachePosition.Value.xz, newPos, circleShape.Radius, out _))
                     {
