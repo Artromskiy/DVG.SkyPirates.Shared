@@ -92,19 +92,14 @@ namespace DVG.SkyPirates.Shared.Systems
             public void Update(ref Position position, ref CachePosition cachePosition, ref CircleShape circleShape)
             {
                 FindSegments(position.Value.xz, cachePosition.Value.xz, circleShape.Radius);
-                if(Spatial.CircleCast(_segmentsCache,
+                if (Spatial.CircleCast(_segmentsCache,
                     cachePosition.Value.xz, position.Value.xz, circleShape.Radius, out var res))
                 {
                     var newPos = res.intersection + res.normal + new fix(1024);
-                    if(!Spatial.CircleCast(_segmentsCache,
+                    if (!Spatial.CircleCast(_segmentsCache,
                         cachePosition.Value.xz, newPos, circleShape.Radius, out _))
                     {
                         position.Value = newPos.x_y;
-                    }
-                    else if (!Spatial.CircleCast(_segmentsCache,
-                        cachePosition.Value.xz, res.intersection, circleShape.Radius, out _))
-                    {
-                        position.Value = res.intersection.x_y;
                     }
                     else
                     {
