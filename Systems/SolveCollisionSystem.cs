@@ -29,7 +29,6 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _segmentsCache.Clear();
             var collectQuery = new CollectHexTilesQuery(_hexPoints, _hexNormals, _segmentsPartitioning);
             _world.InlineQuery<CollectHexTilesQuery, Position>(_hexDesc, ref collectQuery);
             var query = new SolveCollsionQuery(_segmentsCache, _segmentsPartitioning);
@@ -48,6 +47,8 @@ namespace DVG.SkyPirates.Shared.Systems
                 _hexPoints = hexPoints;
                 _hexNormals = hexNormals;
                 _segmentsPartitioning = segmentsPartitioning;
+                foreach (var item in _segmentsPartitioning)
+                    item.Value.Clear();
             }
 
             public void Update(ref Position position)
