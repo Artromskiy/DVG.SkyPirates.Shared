@@ -103,7 +103,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     }
                     else
                     {
-                        position.Value = cachePosition.Value.x_y;
+                        position.Value = cachePosition.Value;
                     }
                 }
                 //position.Value = Spatial.SolveCircleMove(_segmentsCache,
