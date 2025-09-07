@@ -3,8 +3,8 @@
 namespace DVG.SkyPirates.Shared.Components.Data
 {
     [History]
-    public struct MaxHealth
+    public struct CircleShape
     {
-        public fix Value;
+        public fix Radius;
     }
 }

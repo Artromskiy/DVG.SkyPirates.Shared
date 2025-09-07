@@ -19,6 +19,9 @@ namespace DVG.SkyPirates.Shared.Archetypes
             world.AddOrGet<Damage>(entity);
             world.AddOrGet<Team>(entity);
 
+            world.AddOrGet<CircleShape>(entity);
+            world.AddOrGet<CachePosition>(entity);
+
             world.AddOrGet<RecivedDamage>(entity);
             world.AddOrGet<AutoHeal>(entity);
             world.AddOrGet<TempPosition>(entity);

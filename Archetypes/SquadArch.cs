@@ -13,6 +13,9 @@ namespace DVG.SkyPirates.Shared.Archetypes
             world.AddOrGet<Rotation>(entity);
             world.AddOrGet<Direction>(entity);
             world.AddOrGet<Fixation>(entity);
+
+            world.AddOrGet<CircleShape>(entity);
+            world.AddOrGet<CachePosition>(entity);
         }
     }
 }
