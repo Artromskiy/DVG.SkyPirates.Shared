@@ -97,13 +97,18 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     var newPos = res.intersection + res.normal + new fix(1024);
                     if(!Spatial.CircleCast(_segmentsCache,
-                    cachePosition.Value.xz, newPos, circleShape.Radius, out _))
+                        cachePosition.Value.xz, newPos, circleShape.Radius, out _))
                     {
                         position.Value = newPos.x_y;
                     }
-                    else
+                    else if (!Spatial.CircleCast(_segmentsCache,
+                        cachePosition.Value.xz, res.intersection, circleShape.Radius, out _))
                     {
                         position.Value = res.intersection.x_y;
+                    }
+                    else
+                    {
+                        position.Value = cachePosition.Value.x_y;
                     }
                 }
                 //position.Value = Spatial.SolveCircleMove(_segmentsCache,
