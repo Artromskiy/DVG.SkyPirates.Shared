@@ -10,15 +10,12 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SolveCollisionSystem : ITickableExecutor
     {
         private const int PartitionSize = 2;
-        private QueryDescription _hexDesc = new QueryDescription().WithAll<Position, HexTile>();
-        private QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition, CircleShape>();
+        private readonly QueryDescription _hexDesc = new QueryDescription().WithAll<Position, HexTile>();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition, CircleShape>();
 
         private readonly List<(fix2 s, fix2 e, fix2 normal)> _segmentsCache = new List<(fix2, fix2, fix2)>();
 
         private readonly Dictionary<int2, List<(fix2 s, fix2 e, fix2 normal)>> _segmentsPartitioning = new Dictionary<int2, List<(fix2 s, fix2 e, fix2 normal)>>();
-
-        private readonly fix2[] _hexPoints = Hex.GetHexPoints();
-        private readonly fix2[] _hexNormals = Hex.GetHexNormals();
 
         private readonly World _world;
 
@@ -29,7 +26,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var collectQuery = new CollectHexTilesQuery(_hexPoints, _hexNormals, _segmentsPartitioning);
+            var collectQuery = new CollectHexTilesQuery(_segmentsPartitioning);
             _world.InlineQuery<CollectHexTilesQuery, Position>(_hexDesc, ref collectQuery);
             var query = new SolveCollsionQuery(_segmentsCache, _segmentsPartitioning);
             _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, CircleShape>(_desc, ref query);
@@ -37,15 +34,10 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly struct CollectHexTilesQuery : IForEach<Position>
         {
-            private readonly fix2[] _hexPoints;
-            private readonly fix2[] _hexNormals;
             private readonly Dictionary<int2, List<(fix2 s, fix2 e, fix2 normal)>> _segmentsPartitioning;
 
-            public CollectHexTilesQuery(fix2[] hexPoints, fix2[] hexNormals,
-                Dictionary<int2, List<(fix2 s, fix2 e, fix2 normal)>> segmentsPartitioning)
+            public CollectHexTilesQuery(Dictionary<int2, List<(fix2 s, fix2 e, fix2 normal)>> segmentsPartitioning)
             {
-                _hexPoints = hexPoints;
-                _hexNormals = hexNormals;
                 _segmentsPartitioning = segmentsPartitioning;
                 foreach (var item in _segmentsPartitioning)
                     item.Value.Clear();
@@ -56,11 +48,11 @@ namespace DVG.SkyPirates.Shared.Systems
                 Hex.WorldToAxial(position.Value.xz);
 
                 var center = position.Value.xz;
-                for (int j = 0; j < _hexPoints.Length; j++)
+                for (int j = 0; j < Hex.HexPoints.Length; j++)
                 {
-                    var s = center + _hexPoints[j];
-                    var e = center + _hexPoints[(j + 1) % _hexPoints.Length];
-                    var normal = _hexNormals[j];
+                    var s = center + Hex.HexPoints[j];
+                    var e = center + Hex.HexPoints[(j + 1) % Hex.HexPoints.Length];
+                    var normal = Hex.HexNormals[j];
                     var min = GetQuantizedSquare(fix2.Min(s, e));
                     var max = GetQuantizedSquare(fix2.Max(s, e));
 
@@ -92,30 +84,15 @@ namespace DVG.SkyPirates.Shared.Systems
             public void Update(ref Position position, ref CachePosition cachePosition, ref CircleShape circleShape)
             {
                 FindSegments(position.Value.xz, cachePosition.Value.xz, circleShape.Radius);
-                if (Spatial.CircleCast(_segmentsCache,
-                    cachePosition.Value.xz, position.Value.xz, circleShape.Radius, out var res))
-                {
-                    var newPos = res.intersection + res.normal * new fix(1024);
-                    if (!Spatial.CircleCast(_segmentsCache,
-                        cachePosition.Value.xz, newPos, circleShape.Radius, out _))
-                    {
-                        position.Value = newPos.x_y;
-                    }
-                    else
-                    {
-                        position.Value = cachePosition.Value;
-                    }
-                }
-                //position.Value = Spatial.SolveCircleMove(_segmentsCache,
-                //    cachePosition.Value.xz, position.Value.xz, circleShape.Radius).x_y;
+                position.Value = Spatial.SolveCircleMove(_segmentsCache,
+                    cachePosition.Value.xz, position.Value.xz, circleShape.Radius).x_y;
             }
 
-            private List<(fix2 s, fix2 e, fix2 normal)> FindSegments(fix2 pos1, fix2 pos2, fix radius)
+            private void FindSegments(fix2 pos1, fix2 pos2, fix radius)
             {
                 _segmentsCache.Clear();
-
                 var min = GetQuantizedSquare(fix2.Min(pos1, pos2) - radius);
-                var max = GetQuantizedSquare(fix2.Max(pos1, pos2) - radius);
+                var max = GetQuantizedSquare(fix2.Max(pos1, pos2) + radius);
 
                 for (int y = min.y; y <= max.y; y++)
                 {
@@ -127,7 +104,6 @@ namespace DVG.SkyPirates.Shared.Systems
                         _segmentsCache.AddRange(quad);
                     }
                 }
-                return _segmentsCache;
             }
         }
 
