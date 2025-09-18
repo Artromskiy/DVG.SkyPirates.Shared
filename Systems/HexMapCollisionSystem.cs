@@ -1,10 +1,10 @@
 ﻿using Arch.Core;
 using DVG.Core;
-using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
-using DVG.SkyPirates.Shared.Data;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Systems
             private readonly HexMap _hexMap;
             private readonly List<(fix2 s, fix2 e, fix2 normal)> _segmentsCache;
 
-            public SolveCollsionQuery(HexMap hexMap, 
+            public SolveCollsionQuery(HexMap hexMap,
                 List<(fix2, fix2, fix2)> segmentsCache)
             {
                 _hexMap = hexMap;
@@ -44,40 +44,51 @@ namespace DVG.SkyPirates.Shared.Systems
             public void Update(ref Position position, ref CachePosition cachePosition, ref CircleShape circleShape)
             {
                 FindSegments(cachePosition.Value.xz);
-                position.Value = Spatial.SolveCircleMove(_segmentsCache,
+
+                var solvedPos = Spatial.SolveCircleMove(_segmentsCache,
                     cachePosition.Value.xz, position.Value.xz, circleShape.Radius).x_y;
+
+                position.Value = solvedPos;
             }
 
             private void FindSegments(fix2 from)
             {
                 _segmentsCache.Clear();
                 var axialFrom = Hex.WorldToAxial(from);
+
                 foreach (var item in Hex.AxialNear)
                 {
                     var offsetted = item + axialFrom;
-                    var floor = offsetted.x_y;
 
-                    var up = floor;
-                    up.y = 1;
-
-                    var down = floor;
-                    down.y = -1;
-
-                    if (!_hexMap.Map.ContainsKey(up) &&
-                        !_hexMap.Map.ContainsKey(down) &&
-                        _hexMap.Map.ContainsKey(floor))
+                    if (Walkable(offsetted))
                     {
                         continue;
                     }
 
                     var worldFloor = Hex.AxialToWorld(offsetted);
-                    for (int i = 0; i < Hex.HexPoints.Length; i++)
+                    for (int i = 0; i < Hex.Points.Length; i++)
                     {
-                        var s = worldFloor + Hex.HexPoints[i];
-                        var e = worldFloor + Hex.HexPoints[(i + 1) % Hex.HexPoints.Length];
-                        _segmentsCache.Add((s, e, Hex.HexNormals[i]));
+                        var s = worldFloor + Hex.Points[i];
+                        var e = worldFloor + Hex.Points[(i + 1) % Hex.Points.Length];
+                        _segmentsCache.Add((s, e, Hex.Normals[i]));
                     }
                 }
+            }
+
+            private bool Walkable(int2 axial)
+            {
+                var floor = axial.x_y;
+
+                var up = floor;
+                up.y = 1;
+
+                var down = floor;
+                down.y = -1;
+
+                return
+                    !_hexMap.Map.ContainsKey(up) &&
+                    !_hexMap.Map.ContainsKey(down) &&
+                    _hexMap.Map.ContainsKey(floor);
             }
         }
     }

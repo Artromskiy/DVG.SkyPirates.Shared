@@ -48,11 +48,11 @@ namespace DVG.SkyPirates.Shared.Systems
                 Hex.WorldToAxial(position.Value.xz);
 
                 var center = position.Value.xz;
-                for (int j = 0; j < Hex.HexPoints.Length; j++)
+                for (int j = 0; j < Hex.Points.Length; j++)
                 {
-                    var s = center + Hex.HexPoints[j];
-                    var e = center + Hex.HexPoints[(j + 1) % Hex.HexPoints.Length];
-                    var normal = Hex.HexNormals[j];
+                    var s = center + Hex.Points[j];
+                    var e = center + Hex.Points[(j + 1) % Hex.Points.Length];
+                    var normal = Hex.Normals[j];
                     var min = GetQuantizedSquare(fix2.Min(s, e));
                     var max = GetQuantizedSquare(fix2.Max(s, e));
 
