@@ -1,5 +1,7 @@
 ﻿using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace DVG.SkyPirates.Shared.Services
@@ -15,8 +17,18 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick(int tick, fix deltaTime)
         {
+            Stopwatch sw = new Stopwatch();
+            Stopwatch sw2 = new Stopwatch();
+            sw2.Start();
             foreach (var item in _executors)
+            {
+                sw.Restart();
                 item.Tick(tick, deltaTime);
+                sw.Stop();
+                Console.WriteLine($"{item.GetType().Name}: {sw.Elapsed.TotalMilliseconds:0.000}");
+            }
+            sw2.Stop();
+            Console.WriteLine($"Total: {sw2.Elapsed.TotalMilliseconds:0.000}");
         }
     }
 }

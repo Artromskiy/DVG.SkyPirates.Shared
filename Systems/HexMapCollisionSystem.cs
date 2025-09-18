@@ -4,7 +4,7 @@ using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
-using DVG.SkyPirates.Shared.Configs;
+using DVG.SkyPirates.Shared.Data;
 
 namespace DVG.SkyPirates.Shared.Systems
 {

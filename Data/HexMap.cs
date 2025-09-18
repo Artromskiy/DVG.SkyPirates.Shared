@@ -1,9 +1,11 @@
 ﻿using DVG.SkyPirates.Shared.Ids;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace DVG.SkyPirates.Shared.Configs
+namespace DVG.SkyPirates.Shared.Data
 {
+    [Serializable]
     [DataContract]
     public class HexMap
     {

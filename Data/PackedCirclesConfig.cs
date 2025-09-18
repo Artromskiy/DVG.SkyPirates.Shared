@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace DVG.SkyPirates.Shared.Configs
+namespace DVG.SkyPirates.Shared.Data
 {
     [Serializable]
     [DataContract]

@@ -29,9 +29,4 @@
     <ProjectReference Include="..\..\GLSH\Core\GLSH.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Components\States\" />
-  </ItemGroup>
-
 </Project>

@@ -1,9 +1,7 @@
 ﻿using Arch.Core;
 using DVG.Core;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Configs;
-using DVG.SkyPirates.Shared.Factories;
-using DVG.SkyPirates.Shared.IFactories;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Services;
@@ -27,6 +25,10 @@ namespace DVG.SkyPirates.Shared.DI
                 return world;
             }, Lifestyle.Singleton);
 
+            container.Register(() => 
+                container.GetInstance<IPathFactory<HexMap>>().Create("Configs/Maps/Map"),
+                Lifestyle.Singleton);
+
             var commandExecutors = new Type[]
             {
                 typeof(SpawnSquadCommandExecutor),
@@ -49,7 +51,8 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(SetTargetDestinationSystem),
                 typeof(MoveSystem),
                 typeof(SeparationSystem),
-                typeof(SolveCollisionSystem),
+                //typeof(SolveCollisionSystem),
+                typeof(HexMapCollisionSystem),
 
                 typeof(SimpleBehaviourSystem),
                 typeof(BeginAttackSystem),
