@@ -1,6 +1,6 @@
 ﻿using DVG.Core;
 using DVG.SkyPirates.Shared.IServices;
-using Newtonsoft.Json;
+using DVG.SkyPirates.Shared.Tools.Json;
 using System;
 using System.Buffers;
 using System.Text;
@@ -12,12 +12,12 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
         public Command<T> Deserialize<T>(ReadOnlyMemory<byte> data) where T : ICommandData
         {
             var json = Encoding.UTF8.GetString(data.Span);
-            return JsonConvert.DeserializeObject<Command<T>>(json);
+            return Serialization.Deserialize<Command<T>>(json);
         }
 
         public void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data) where T : ICommandData
         {
-            var json = JsonConvert.SerializeObject(data);
+            var json = Serialization.Serialize(data);
             buffer.Write(Encoding.UTF8.GetBytes(json));
         }
     }

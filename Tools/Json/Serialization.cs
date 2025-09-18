@@ -13,6 +13,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         {
             _serializer = JsonSerializer.CreateDefault();
             _serializer.ContractResolver = new DictionaryAsArrayResolver();
+            _serializer.Formatting = Formatting.Indented;
         }
 
         public static string Serialize<T>(T obj)
