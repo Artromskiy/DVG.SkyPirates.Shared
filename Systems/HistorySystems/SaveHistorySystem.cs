@@ -20,7 +20,8 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            HistoryIds.ForEachData(new SaveHistoryAction(_descriptions, _world, tick));
+            var action = new SaveHistoryAction(_descriptions, _world, tick);
+            HistoryIds.ForEachData(ref action);
         }
 
         private class Descriptions

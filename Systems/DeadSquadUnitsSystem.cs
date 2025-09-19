@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class DeadSquadUnitsSystem : ITickableExecutor
+    public sealed class DeadSquadUnitsSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Squad>();
 
@@ -19,7 +19,6 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _unitsToRemove.Clear();
             var query = new SquadUnitsQuery(_world, _unitsToRemove);
             _world.InlineQuery<SquadUnitsQuery, Squad>(_desc, ref query);
         }
@@ -37,14 +36,10 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public readonly void Update(ref Squad squad)
             {
-                for (int i = 0; i < squad.units.Count; i++)
-                {
-                    var unit = squad.units[i];
+                _unitsToRemove.Clear();
+                foreach (Entity unit in squad.units)
                     if (_world.Has<Dead>(unit))
-                    {
                         _unitsToRemove.Add(unit);
-                    }
-                }
 
                 if (_unitsToRemove.Count > 0)
                 {

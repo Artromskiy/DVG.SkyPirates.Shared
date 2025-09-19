@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SquadUnitsSystem : ITickableExecutor
+    public sealed class SquadUnitsSystem : ITickableExecutor
     {
         private const int SquadSearchTarget = 10;
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Squad, Position, Fixation, Rotation>();

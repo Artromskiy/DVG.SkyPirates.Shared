@@ -9,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// Moves squad and sets unit's
     /// <see href="Destination"/>, <see href="Fixation"/>, <see href="TargetSearchData"/>
     /// </summary>
-    public class SquadMoveSystem : ITickableExecutor
+    public sealed class SquadMoveSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Squad, Position, Direction>();
         private const int SquadSpeed = 7;

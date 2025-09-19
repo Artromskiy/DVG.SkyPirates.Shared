@@ -25,10 +25,10 @@ namespace DVG.SkyPirates.Shared.Services
                 sw.Restart();
                 item.Tick(tick, deltaTime);
                 sw.Stop();
-                Console.WriteLine($"{item.GetType().Name}: {sw.Elapsed.TotalMilliseconds:0.000}");
+                //Console.WriteLine($"{item.GetType().Name}: {sw.Elapsed.TotalMilliseconds:0.000}");
             }
             sw2.Stop();
-            Console.WriteLine($"Total: {sw2.Elapsed.TotalMilliseconds:0.000}");
+            //Console.WriteLine($"Total: {sw2.Elapsed.TotalMilliseconds:0.000}");
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// <summary>
     /// If <see href="Target"/> is set, then <see href="Destination"/> will set, so it will be in range of <see href="ImpactDistance"/>
     /// </summary>
-    public class SetTargetDestinationSystem : ITickableExecutor
+    public sealed class SetTargetDestinationSystem : ITickableExecutor
     {
         private static readonly fix _reduceImpactDistance = 1;
         private readonly QueryDescription _desc = new QueryDescription().

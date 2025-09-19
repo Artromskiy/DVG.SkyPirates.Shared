@@ -25,7 +25,7 @@ namespace DVG.SkyPirates.Shared.DI
                 return world;
             }, Lifestyle.Singleton);
 
-            container.Register(() => 
+            container.Register(() =>
                 container.GetInstance<IPathFactory<HexMap>>().Create("Configs/Maps/Map"),
                 Lifestyle.Singleton);
 
@@ -43,27 +43,39 @@ namespace DVG.SkyPirates.Shared.DI
             var tickableExecutors = new Type[]
             {
                 typeof(CachePositionSystem),
-
+                typeof(LogHashSumSystem),
                 typeof(TargetSearchSystem),
+                typeof(LogHashSumSystem),
                 typeof(SquadMoveSystem),
+                typeof(LogHashSumSystem),
                 typeof(SquadUnitsSystem),
+                typeof(LogHashSumSystem),
                 typeof(SetTargetSystem),
+                typeof(LogHashSumSystem),
                 typeof(SetTargetDestinationSystem),
+                typeof(LogHashSumSystem),
                 typeof(MoveSystem),
-                typeof(SeparationSystem),
+                typeof(LogHashSumSystem),
+                //typeof(SeparationSystem),
                 //typeof(SolveCollisionSystem),
-                typeof(HexMapCollisionSystem),
+                //typeof(HexMapCollisionSystem),
 
                 typeof(SimpleBehaviourSystem),
+                typeof(LogHashSumSystem),
                 typeof(BeginAttackSystem),
-
+                typeof(LogHashSumSystem),
                 typeof(ImpactSystem),
-                typeof(AutoHealSystem),
+                typeof(LogHashSumSystem),
+                //typeof(AutoHealSystem),
                 typeof(DamageSystem),
+                typeof(LogHashSumSystem),
                 typeof(MarkDeadSystem),
+                typeof(LogHashSumSystem),
                 typeof(DeadSquadUnitsSystem),
 
-                typeof(SaveHistorySystem)
+                typeof(LogHashSumSystem),
+                typeof(SaveHistorySystem),
+                typeof(LogHashSumSystem),
             };
             container.Register<ITickableExecutorService, TickableExecutorService>(Lifestyle.Singleton);
             container.Collection.Register<ITickableExecutor>(tickableExecutors, Lifestyle.Singleton);

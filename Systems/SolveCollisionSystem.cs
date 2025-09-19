@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SolveCollisionSystem : ITickableExecutor
+    public sealed class SolveCollisionSystem : ITickableExecutor
     {
         private const int PartitionSize = 2;
         private readonly QueryDescription _hexDesc = new QueryDescription().WithAll<Position, HexTile>();

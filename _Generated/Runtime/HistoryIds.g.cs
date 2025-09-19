@@ -74,7 +74,7 @@ namespace DVG.Core.History
         }
 
         
-        public static void ForEachData<T>(T action)
+        public static void ForEachData<T>(ref T action)
             where T: IStructGenericAction
         {
             action.Invoke<AutoHeal>();

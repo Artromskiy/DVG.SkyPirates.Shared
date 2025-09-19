@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// Moves Entity's <see href="Position"/> and <see href="Rotation"/> 
     /// with speed <see href="MoveSpeed"/> towards <see href="Destination"/>
     /// </summary>
-    public class SeparationSystem : ITickableExecutor
+    public sealed class SeparationSystem : ITickableExecutor
     {
         private const int SquareSize = 1;
 

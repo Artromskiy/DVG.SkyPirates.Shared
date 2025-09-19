@@ -2,11 +2,10 @@
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using System;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SimpleBehaviourSystem : ITickableExecutor
+    public sealed class SimpleBehaviourSystem : ITickableExecutor
     {
         private readonly QueryDescription _descSwitch = new QueryDescription().
             WithAll<Behaviour, BehaviourConfig>().

@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class DamageSystem : ITickableExecutor
+    public sealed class DamageSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Health, RecivedDamage>().

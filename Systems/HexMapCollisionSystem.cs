@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class HexMapCollisionSystem : ITickableExecutor
+    public sealed class HexMapCollisionSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition, CircleShape>();
 

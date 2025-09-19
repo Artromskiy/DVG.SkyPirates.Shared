@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// Moves Entity's <see href="Position"/> and <see href="Rotation"/> 
     /// with speed <see href="MoveSpeed"/> towards <see href="Destination"/>
     /// </summary>
-    public class MoveSystem : ITickableExecutor
+    public sealed class MoveSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, Rotation, Destination, MoveSpeed>().

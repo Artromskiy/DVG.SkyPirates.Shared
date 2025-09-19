@@ -10,7 +10,8 @@ namespace DVG.SkyPirates.Shared.Archetypes
     {
         public static void EnsureHistory(World world, Entity entity)
         {
-            HistoryIds.ForEachData(new EnsureHistoryAction(world, entity));
+            var action = new EnsureHistoryAction(world, entity);
+            HistoryIds.ForEachData(ref action);
         }
 
         private readonly struct EnsureHistoryAction : IStructGenericAction

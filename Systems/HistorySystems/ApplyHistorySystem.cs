@@ -22,7 +22,8 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            HistoryIds.ForEachData(new ApplyHistoryAction(_descriptions, _entitiesCache, _world, tick));
+            var action = new ApplyHistoryAction(_descriptions, _entitiesCache, _world, tick);
+            HistoryIds.ForEachData(ref action);
         }
 
         private class Descriptions

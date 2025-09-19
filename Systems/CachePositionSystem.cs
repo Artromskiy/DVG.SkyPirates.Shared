@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class CachePositionSystem : ITickableExecutor
+    public sealed class CachePositionSystem : ITickableExecutor
     {
         private QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition>();
         private readonly World _world;

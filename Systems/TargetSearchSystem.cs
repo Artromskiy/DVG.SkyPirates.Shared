@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// Caches Entities with their position quantized by <see cref="SquareSize"/>.
     /// Use for fast nearest search
     /// </summary>
-    public class TargetSearchSystem : ITargetSearchSystem
+    public sealed class TargetSearchSystem : ITargetSearchSystem
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<RecivedDamage, Position, Team>().
