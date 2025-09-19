@@ -1,5 +1,6 @@
 ﻿using DVG.Core.History.Attributes;
 using DVG.SkyPirates.Shared.Ids;
+using System;
 
 namespace DVG.SkyPirates.Shared.Components
 {
@@ -11,5 +12,10 @@ namespace DVG.SkyPirates.Shared.Components
         public fix Duration;
 
         public StateId? ForceState;
+
+        public override readonly int GetHashCode()
+        {
+            return HashCode.Combine(State, Percent, Duration, ForceState);
+        }
     }
 }

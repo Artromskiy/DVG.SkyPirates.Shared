@@ -35,7 +35,7 @@ namespace DVG.SkyPirates.Shared.Ids
         public readonly int CompareTo(UnitId other) => Equals(other) ? 0 : string.Compare(Value, other.Value);
         public override readonly bool Equals(object obj) => obj is UnitId other && Equals(other);
         public override readonly string ToString() => Value;
-        public override readonly int GetHashCode() => IsNone ? 0 : Value.GetHashCode();
+        //public override readonly int GetHashCode() => IsNone ? 0 : Value.GetHashCode();
         public static bool operator ==(UnitId a, UnitId b) => a.Value == b.Value || (a.IsNone && b.IsNone);
         public static bool operator !=(UnitId a, UnitId b) => !(a == b);
 

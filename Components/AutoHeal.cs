@@ -1,4 +1,5 @@
 ﻿using DVG.Core.History.Attributes;
+using System;
 
 namespace DVG.SkyPirates.Shared.Components
 {
@@ -9,5 +10,10 @@ namespace DVG.SkyPirates.Shared.Components
         public fix healDelay;
 
         public fix healLoadPercent;
+
+        public override readonly int GetHashCode()
+        {
+            return HashCode.Combine(healPerSecond, healDelay, healLoadPercent);
+        }
     }
 }
