@@ -11,7 +11,7 @@ namespace DVG.SkyPirates.Shared.Services
         private static readonly fix _tickTime = (fix)1 / Constants.TicksPerSecond;
         public int CurrentTick { get; private set; }
 
-        private readonly Dictionary<int, GenericCollection> _commands = new Dictionary<int, GenericCollection>();
+        private readonly Dictionary<int, CommandCollection> _commands = new Dictionary<int, CommandCollection>();
         private int _oldestCommandTick;
 
         private readonly ICommandRecieveService _commandRecieveService;
@@ -49,16 +49,16 @@ namespace DVG.SkyPirates.Shared.Services
         {
             var tick = command.Tick;
             _oldestCommandTick = Maths.Min(tick, _oldestCommandTick);
-            GetCommands(tick).Remove<Command<T>>(c => c.ClientId == command.ClientId && c.CommandId == command.CommandId);
+            GetCommands(tick).Remove<T>(command.ClientId);
         }
 
-        private GenericCollection GetCommands(int tick)
+        private CommandCollection GetCommands(int tick)
         {
-            if (!_commands.TryGetValue(tick, out var genericCollection))
+            if (!_commands.TryGetValue(tick, out var commandCollection))
             {
-                _commands[tick] = genericCollection = new GenericCollection();
+                _commands[tick] = commandCollection = new CommandCollection();
             }
-            return genericCollection;
+            return commandCollection;
         }
 
         public void Tick()
@@ -95,28 +95,6 @@ namespace DVG.SkyPirates.Shared.Services
             public void Invoke<T>() where T : ICommandData
             {
                 _recieveService.RegisterReciever<T>(_timelineService.AddCommand);
-            }
-        }
-
-        private readonly struct ApplyCommandAction : IGenericAction<ICommandData>
-        {
-            private readonly ICommandExecutorService _executor;
-            private readonly GenericCollection _commands;
-
-            public ApplyCommandAction(ICommandExecutorService executor, GenericCollection commands)
-            {
-                _executor = executor;
-                _commands = commands;
-            }
-
-            public readonly void Invoke<T>() where T : ICommandData
-            {
-                var genericCommands = _commands.GetCollection<Command<T>>();
-                if (genericCommands == null)
-                    return;
-
-                foreach (var item in genericCommands)
-                    _executor.Execute(item);
             }
         }
     }

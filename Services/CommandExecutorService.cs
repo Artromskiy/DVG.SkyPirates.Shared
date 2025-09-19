@@ -20,7 +20,7 @@ namespace DVG.SkyPirates.Shared.Services
             _executorWrappers = _wrappersList.ToArray();
         }
 
-        public void Execute(GenericCollection commands)
+        public void Execute(CommandCollection commands)
         {
             foreach (var item in _executorWrappers)
             {
@@ -37,7 +37,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         private interface ICommandExecutorWrapper
         {
-            void Execute(GenericCollection commands);
+            void Execute(CommandCollection commands);
         }
 
         private class CommandExecutorWrapper<T> : ICommandExecutorWrapper 
@@ -50,9 +50,9 @@ namespace DVG.SkyPirates.Shared.Services
                 _executor = executor;
             }
 
-            public void Execute(GenericCollection commands) 
+            public void Execute(CommandCollection commands) 
             {
-                var genericCollection = commands.GetCollection<Command<T>>();
+                var genericCollection = commands.GetCollection<T>();
                 if (genericCollection == null)
                     return;
                 foreach (var cmd in genericCollection)

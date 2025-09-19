@@ -5,6 +5,6 @@ namespace DVG.SkyPirates.Shared.IServices
     public interface ICommandExecutorService
     {
         void Execute<T>(Command<T> cmd) where T : ICommandData;
-        void Execute(GenericCollection commands);
+        void Execute(CommandCollection commands);
     }
 }
