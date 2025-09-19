@@ -1,6 +1,5 @@
 ﻿using Arch.Core;
 using DVG.Core.History.Attributes;
-using System;
 
 namespace DVG.SkyPirates.Shared.Components
 {
@@ -11,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Components
 
         public override readonly int GetHashCode()
         {
-            return Entity.HasValue ? HashCode.Combine(Entity.Value.Id) : 0;
+            return Entity.HasValue ? Entity.Value.Id.GetHashCode() : 0;
         }
     }
 }
