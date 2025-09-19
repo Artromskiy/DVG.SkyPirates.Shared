@@ -9,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Components.Data
 
         public override readonly int GetHashCode()
         {
-            return Id.GetHashCode();
+            return Id;
         }
     }
 }

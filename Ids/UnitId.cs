@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Ids
 
             if (!IsNone)
                 for (int i = 0; i < Value.Length; i++)
-                    hash += Value[i].GetHashCode();
+                    hash += Value[i];
 
             return hash;
         }
