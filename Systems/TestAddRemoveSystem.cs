@@ -22,9 +22,18 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
+            bool toAdd = tick % 2 == 0;
+            if(toAdd)
+            {
+                _world.Add<AddCompTest>(_addDesc);
+            }
+            else
+            {
+                _world.Remove<AddCompTest>(_removeDesc);
+            }
+            return;
             _cacheList.Clear();
             var query = new SelectQuery(_cacheList);
-            bool toAdd = tick % 2 == 0;
             if(toAdd)
             {
                 _world.InlineQuery(_addDesc, ref query);
