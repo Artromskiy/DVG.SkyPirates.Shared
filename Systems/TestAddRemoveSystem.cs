@@ -2,11 +2,10 @@
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using System;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class TestAddRemoveSystem : ITickableExecutorService
+    public class TestAddRemoveSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().WithNone<Temp>();
         private readonly World _world;
