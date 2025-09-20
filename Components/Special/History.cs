@@ -1,6 +1,6 @@
 ﻿namespace DVG.SkyPirates.Shared.Components.Special
 {
-    public struct History<T> where T : struct
+    public readonly struct History<T> where T : struct
     {
         public readonly T?[] Data;
 

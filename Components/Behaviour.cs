@@ -1,7 +1,5 @@
 ﻿using DVG.Core.History.Attributes;
 using DVG.SkyPirates.Shared.Ids;
-using System;
-using System.Runtime.InteropServices;
 
 namespace DVG.SkyPirates.Shared.Components
 {

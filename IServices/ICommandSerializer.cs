@@ -1,7 +1,6 @@
 ﻿using DVG.Core;
 using System;
 using System.Buffers;
-using System.IO;
 
 namespace DVG.SkyPirates.Shared.IServices
 {

@@ -31,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Services
         public void Execute<T>(Command<T> cmd) where T : ICommandData
         {
             foreach (var executor in _executors)
-                if(executor is ICommandExecutor<T> concreteExecutor)
+                if (executor is ICommandExecutor<T> concreteExecutor)
                     concreteExecutor?.Execute(cmd);
         }
 
@@ -40,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Services
             void Execute(CommandCollection commands);
         }
 
-        private class CommandExecutorWrapper<T> : ICommandExecutorWrapper 
+        private class CommandExecutorWrapper<T> : ICommandExecutorWrapper
             where T : ICommandData
         {
             private readonly ICommandExecutor<T> _executor;
@@ -50,7 +50,7 @@ namespace DVG.SkyPirates.Shared.Services
                 _executor = executor;
             }
 
-            public void Execute(CommandCollection commands) 
+            public void Execute(CommandCollection commands)
             {
                 var genericCollection = commands.GetCollection<T>();
                 if (genericCollection == null)

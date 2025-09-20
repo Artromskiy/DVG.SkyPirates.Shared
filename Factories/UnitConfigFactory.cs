@@ -1,8 +1,7 @@
 ﻿using DVG.Core;
-using DVG.SkyPirates.Shared.Commands;
-using DVG.SkyPirates.Shared.IFactories;
-using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.Data;
+using DVG.SkyPirates.Shared.Ids;
+using DVG.SkyPirates.Shared.IFactories;
 
 namespace DVG.SkyPirates.Shared.Factories
 {

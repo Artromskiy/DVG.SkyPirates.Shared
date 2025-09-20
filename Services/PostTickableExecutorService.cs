@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DVG.SkyPirates.Shared.Services
 {
-    public class PostTickableExecutorService: IPostTickableExecutorService
+    public class PostTickableExecutorService : IPostTickableExecutorService
     {
         private readonly IPostTickableExecutor[] _executors;
 
