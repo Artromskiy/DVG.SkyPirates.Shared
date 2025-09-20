@@ -12,13 +12,7 @@ namespace DVG.SkyPirates.Shared.Components
 
         public override readonly int GetHashCode()
         {
-            var tt = this;
-            var span = MemoryMarshal.CreateSpan(ref tt, 1);
-            int hash = 0;
-            foreach (var item in MemoryMarshal.AsBytes(span))
-                hash += item;
-
-            return hash;
+            return Position.x.raw + Position.y.raw + Position.z.raw + Rotation.raw;
         }
     }
 }
