@@ -42,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
                 var query = new HasSumQuery<T>();
                 var desc = _descriptions.GetDescription<T>().Desc;
                 _world.InlineQuery<HasSumQuery<T>, T>(desc, ref query);
-                Console.WriteLine($"{typeof(T).Name}: {query.Hash}");
+                Console.WriteLine($"Hash of {typeof(T).Name}: {query.Hash}");
                 Hash += query.Hash;
             }
         }

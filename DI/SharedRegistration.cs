@@ -42,6 +42,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             var tickableExecutors = new Type[]
             {
+                typeof(LogHashSumSystem),
                 typeof(CachePositionSystem),
                 typeof(LogHashSumSystem),
                 typeof(TargetSearchSystem),
@@ -59,7 +60,6 @@ namespace DVG.SkyPirates.Shared.DI
                 //typeof(SeparationSystem),
                 //typeof(SolveCollisionSystem),
                 //typeof(HexMapCollisionSystem),
-
                 typeof(SimpleBehaviourSystem),
                 typeof(LogHashSumSystem),
                 typeof(BeginAttackSystem),
@@ -72,7 +72,6 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(MarkDeadSystem),
                 typeof(LogHashSumSystem),
                 typeof(DeadSquadUnitsSystem),
-
                 typeof(LogHashSumSystem),
                 typeof(SaveHistorySystem),
                 typeof(LogHashSumSystem),

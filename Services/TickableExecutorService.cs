@@ -1,4 +1,5 @@
 ﻿using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -19,12 +20,14 @@ namespace DVG.SkyPirates.Shared.Services
             Stopwatch sw = new Stopwatch();
             Stopwatch sw2 = new Stopwatch();
             sw2.Start();
-            foreach (var item in _executors)
+            for (int i = 0; i < _executors.Length; i++)
             {
+                ITickableExecutor? item = _executors[i];
                 sw.Restart();
+                Console.WriteLine($"Call index: {i}, System name: {item.GetType().Name}");
                 item.Tick(tick, deltaTime);
-                sw.Stop();
                 //Console.WriteLine($"{item.GetType().Name}: {sw.Elapsed.TotalMilliseconds:0.000}");
+                sw.Stop();
             }
             sw2.Stop();
             //Console.WriteLine($"Total: {sw2.Elapsed.TotalMilliseconds:0.000}");
