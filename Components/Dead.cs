@@ -3,5 +3,11 @@
 namespace DVG.SkyPirates.Shared.Components
 {
     [History]
-    public struct Dead { }
+    public struct Dead
+    {
+        public override readonly int GetHashCode()
+        {
+            return 100;
+        }
+    }
 }
