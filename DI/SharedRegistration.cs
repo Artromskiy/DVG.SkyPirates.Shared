@@ -69,6 +69,8 @@ namespace DVG.SkyPirates.Shared.DI
                 //typeof(AutoHealSystem),
                 typeof(DamageSystem),
                 typeof(LogHashSumSystem),
+                typeof(TestAddRemoveSystem),
+                typeof(LogHashSumSystem),
                 //typeof(MarkDeadSystem),
                 //typeof(LogHashSumSystem),
                 typeof(DeadSquadUnitsSystem),
