@@ -64,6 +64,7 @@ namespace DVG.SkyPirates.Shared.Services
         public void Tick()
         {
             int tickToGo = _oldestCommandTick - 1;
+            // "end of frame state" before "cmd frame"
             _preTickableExecutorService.Tick(tickToGo, _tickTime);
 
             for (int i = _oldestCommandTick; i <= CurrentTick; i++)
