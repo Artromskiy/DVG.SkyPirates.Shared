@@ -2,6 +2,7 @@
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Components.Special;
+using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 
@@ -9,8 +10,8 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class TestAddRemoveSystem : ITickableExecutor
     {
-        private readonly QueryDescription _addDesc = new QueryDescription().WithNone<AddCompTest>();
-        private readonly QueryDescription _removeDesc = new QueryDescription().WithAll<AddCompTest>();
+        private readonly QueryDescription _addDesc = new QueryDescription().WithAll<UnitId>().WithNone<AddCompTest>();
+        private readonly QueryDescription _removeDesc = new QueryDescription().WithAll<UnitId, AddCompTest>();
         private readonly World _world;
         private readonly List<Entity> _cacheList = new List<Entity>();
 
