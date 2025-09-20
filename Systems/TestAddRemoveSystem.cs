@@ -10,9 +10,8 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly QueryDescription _desc = new QueryDescription().WithNone<Temp>();
         private readonly World _world;
 
-        public TestAddRemoveSystem(QueryDescription desc, World world)
+        public TestAddRemoveSystem(World world)
         {
-            _desc = desc;
             _world = world;
         }
 
