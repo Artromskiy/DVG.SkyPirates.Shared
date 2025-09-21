@@ -4,14 +4,15 @@ using DVG.Core.History;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 {
     public sealed class LogHashSumSystem : ITickableExecutor
     {
         private readonly Descriptions _descriptions = new Descriptions();
+        private readonly StringBuilder _stringBuilder = new StringBuilder();
         private readonly World _world;
-
         public LogHashSumSystem(World world)
         {
             _world = world;
@@ -19,20 +20,30 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var action = new LogHashAction(_descriptions, _world);
+            var action = new LogHashAction(_descriptions, _stringBuilder, _world);
             HistoryIds.ForEachData(ref action);
-            Console.WriteLine($"Tick: {tick}, Hash: {action.Hash}");
+            _stringBuilder.Clear();
+            Console.WriteLine($"Tick: {tick}, Hash: {action.Hash}" + Environment.NewLine + _stringBuilder.ToString());
+        }
+
+        public int GetHashSum()
+        {
+            var action = new LogHashAction(_descriptions, _stringBuilder, _world);
+            HistoryIds.ForEachData(ref action);
+            return action.Hash;
         }
 
         private struct LogHashAction : IStructGenericAction
         {
             private readonly Descriptions _descriptions;
             private readonly World _world;
+            private readonly StringBuilder _stringBuilder;
             public int Hash;
 
-            public LogHashAction(Descriptions descriptions, World world)
+            public LogHashAction(Descriptions descriptions, StringBuilder stringBuilder, World world)
             {
                 _descriptions = descriptions;
+                _stringBuilder = stringBuilder;
                 _world = world;
                 Hash = 0;
             }
@@ -42,7 +53,7 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
                 var query = new HasSumQuery<T>();
                 var desc = _descriptions.GetDescription<T>().Desc;
                 _world.InlineQuery<HasSumQuery<T>, T>(desc, ref query);
-                Console.WriteLine($"Hash of {typeof(T).Name}: {query.Hash}");
+                _stringBuilder.AppendLine($"Hash of {typeof(T).Name}: {query.Hash}");
                 Hash += query.Hash;
             }
         }

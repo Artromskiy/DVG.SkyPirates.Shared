@@ -2,6 +2,7 @@
 using DVG.Core.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.HistorySystems;
 using System;
 using System.Collections.Generic;
 
@@ -14,7 +15,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         private readonly Dictionary<int, CommandCollection> _commands = new Dictionary<int, CommandCollection>();
         private int _oldestCommandTick;
-
+        private readonly LogHashSumSystem _logHashSumSystem;
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
         private readonly ITickableExecutorService _tickableExecutorService;
@@ -22,18 +23,20 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly IPostTickableExecutorService _postTickableExecutorService;
 
         public TimelineService(
+            LogHashSumSystem logHashSumSystem,
             ICommandRecieveService commandRecieveService,
             ICommandExecutorService commandExecutorService,
             ITickableExecutorService tickableExecutorService,
             IPreTickableExecutorService preTickableExecutorService,
             IPostTickableExecutorService postTickableExecutorService)
         {
+            _logHashSumSystem = logHashSumSystem;
             _commandRecieveService = commandRecieveService;
             _commandExecutorService = commandExecutorService;
             _tickableExecutorService = tickableExecutorService;
             _preTickableExecutorService = preTickableExecutorService;
             _postTickableExecutorService = postTickableExecutorService;
-
+            
             var action = new RegisterRecieverAction(this, _commandRecieveService);
             CommandIds.ForEachData(ref action);
         }
@@ -68,17 +71,14 @@ namespace DVG.SkyPirates.Shared.Services
             int tickToGo = _oldestCommandTick - 1;
             // "end of frame state" before "cmd frame"
             _preTickableExecutorService.Tick(tickToGo, _tickTime);
-
+            Console.WriteLine($"Rollback: {tickToGo}, Hash: {_logHashSumSystem.GetHashSum()}");
             for (int i = _oldestCommandTick; i <= CurrentTick; i++)
             {
                 _commandExecutorService.Execute(GetCommands(i));
                 _tickableExecutorService.Tick(i, _tickTime);
-
-                var hashAction = new GetHashAction(GetCommands(i));
-
-                CommandIds.ForEachData(ref hashAction);
-                Console.WriteLine($"Tick: {i}, CmdHash: {hashAction.Hash}");
             }
+            Console.WriteLine($"Mementoed: {CurrentTick}, Hash: {_logHashSumSystem.GetHashSum()}");
+
             int cmdSum = 0;
             foreach (var item in _commands)
             {
