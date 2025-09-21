@@ -61,7 +61,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(MarkDeadSystem),
                 typeof(DeadSquadUnitsSystem),
                 typeof(SaveHistorySystem),
-                typeof(LogHashSumSystem),
+                //typeof(LogHashSumSystem),
             };
             container.Register<ITickableExecutorService, TickableExecutorService>(Lifestyle.Singleton);
             container.Collection.Register<ITickableExecutor>(tickableExecutors, Lifestyle.Singleton);
