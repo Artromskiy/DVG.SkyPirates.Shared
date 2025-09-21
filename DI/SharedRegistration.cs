@@ -72,6 +72,7 @@ namespace DVG.SkyPirates.Shared.DI
             };
             container.Register<IPreTickableExecutorService, PreTickableExecutorService>(Lifestyle.Singleton);
             container.Collection.Register<IPreTickableExecutor>(preTickableExecutors, Lifestyle.Singleton);
+            container.Register<LogHashSumSystem>(Lifestyle.Singleton);
 
             container.Register<IPostTickableExecutorService, PostTickableExecutorService>(Lifestyle.Singleton);
 
