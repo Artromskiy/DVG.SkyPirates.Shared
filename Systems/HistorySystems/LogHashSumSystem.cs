@@ -21,16 +21,17 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
         public void Tick(int tick, fix deltaTime)
         {
             var action = new LogHashAction(_descriptions, _stringBuilder, _world);
-            HistoryIds.ForEachData(ref action);
             _stringBuilder.Clear();
-            Console.WriteLine($"Tick: {tick}, Hash: {action.Hash}" + Environment.NewLine + _stringBuilder.ToString());
+            HistoryIds.ForEachData(ref action);
+            //Console.WriteLine($"Tick: {tick}, Hash: {action.Hash}" + Environment.NewLine + _stringBuilder.ToString());
         }
 
-        public int GetHashSum()
+        public (int sum, string info) GetHashSum()
         {
+            _stringBuilder.Clear();
             var action = new LogHashAction(_descriptions, _stringBuilder, _world);
             HistoryIds.ForEachData(ref action);
-            return action.Hash;
+            return (action.Hash, _stringBuilder.ToString());
         }
 
         private struct LogHashAction : IStructGenericAction

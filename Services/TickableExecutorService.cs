@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Services
             {
                 ITickableExecutor? item = _executors[i];
                 sw.Restart();
-                Console.WriteLine($"Call index: {i}, System name: {item.GetType().Name}");
+                //Console.WriteLine($"Call index: {i}, System name: {item.GetType().Name}");
                 item.Tick(tick, deltaTime);
                 //Console.WriteLine($"{item.GetType().Name}: {sw.Elapsed.TotalMilliseconds:0.000}");
                 sw.Stop();
