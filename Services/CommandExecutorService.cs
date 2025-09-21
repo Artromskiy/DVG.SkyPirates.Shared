@@ -16,7 +16,10 @@ namespace DVG.SkyPirates.Shared.Services
             _executors = executors.ToArray();
             List<ICommandExecutorWrapper> _wrappersList = new List<ICommandExecutorWrapper>();
             foreach (var item in _executors)
-                CommandIds.ForEachData(new TryCreateWrapper(_wrappersList, item));
+            {
+                var action = new TryCreateWrapper(_wrappersList, item);
+                CommandIds.ForEachData(ref action);
+            }
             _executorWrappers = _wrappersList.ToArray();
         }
 

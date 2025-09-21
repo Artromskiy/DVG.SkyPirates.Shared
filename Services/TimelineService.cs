@@ -2,6 +2,7 @@
 using DVG.Core.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services
@@ -33,7 +34,8 @@ namespace DVG.SkyPirates.Shared.Services
             _preTickableExecutorService = preTickableExecutorService;
             _postTickableExecutorService = postTickableExecutorService;
 
-            CommandIds.ForEachData(new RegisterRecieverAction(this, _commandRecieveService));
+            var action = new RegisterRecieverAction(this, _commandRecieveService);
+            CommandIds.ForEachData(ref action);
         }
 
         public void AddCommand<T>(Command<T> command)
@@ -71,7 +73,13 @@ namespace DVG.SkyPirates.Shared.Services
             {
                 _commandExecutorService.Execute(GetCommands(i));
                 _tickableExecutorService.Tick(i, _tickTime);
+
+                var hashAction = new GetHashAction(GetCommands(i));
+
+                CommandIds.ForEachData(ref hashAction);
+                Console.WriteLine($"Tick: {i}, CmdHash: {hashAction.Hash}");
             }
+
 
             // Set oldest cmd tick now
             // we can recieve commands in post tick
@@ -96,6 +104,34 @@ namespace DVG.SkyPirates.Shared.Services
             public void Invoke<T>() where T : ICommandData
             {
                 _recieveService.RegisterReciever<T>(_timelineService.AddCommand);
+            }
+        }
+
+        private struct GetHashAction : IGenericAction<ICommandData>
+        {
+            public int Hash;
+            private readonly CommandCollection _commandCollection;
+
+            public GetHashAction(CommandCollection commandCollection)
+            {
+                Hash = 0;
+               _commandCollection = commandCollection;
+            }
+
+            public void Invoke<T>() where T: ICommandData
+            {
+                var coll = _commandCollection.GetCollection<T>();
+                if(coll != null)
+                {
+                    foreach (var item in coll)
+                    {
+                        Hash += item.ClientId + item.CommandId + item.EntityId + item.Tick;
+                    }
+                }
+                else
+                {
+                    Hash -= 100;
+                }
             }
         }
     }

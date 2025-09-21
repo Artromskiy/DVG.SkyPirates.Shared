@@ -44,7 +44,7 @@ namespace DVG.Core.Commands
         }
 
         
-        public static void ForEachData<T>(T action)
+        public static void ForEachData<T>(ref T action)
             where T: IGenericAction<ICommandData>
         {
             action.Invoke<DirectionCommand>();
