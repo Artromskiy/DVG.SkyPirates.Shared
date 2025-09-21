@@ -6,6 +6,7 @@ namespace DVG.SkyPirates.Shared.Commands
     {
         public static bool ClientPredicted<T>() where T : ICommandData
         {
+            return false;
             return
                 typeof(T) == typeof(DirectionCommand) ||
                 typeof(T) == typeof(FixationCommand);
