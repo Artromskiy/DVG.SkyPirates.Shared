@@ -79,7 +79,17 @@ namespace DVG.SkyPirates.Shared.Services
                 CommandIds.ForEachData(ref hashAction);
                 Console.WriteLine($"Tick: {i}, CmdHash: {hashAction.Hash}");
             }
-
+            int cmdSum = 0;
+            foreach (var item in _commands)
+            {
+                if (item.Key <= CurrentTick)
+                {
+                    var countAction = new GetSumAction(_commands[item.Key]);
+                    CommandIds.ForEachData(ref countAction);
+                    cmdSum += countAction.Sum;
+                }
+            }
+            Console.WriteLine($"Tick: {CurrentTick}, CmdCount: {cmdSum}");
 
             // Set oldest cmd tick now
             // we can recieve commands in post tick
@@ -115,13 +125,13 @@ namespace DVG.SkyPirates.Shared.Services
             public GetHashAction(CommandCollection commandCollection)
             {
                 Hash = 0;
-               _commandCollection = commandCollection;
+                _commandCollection = commandCollection;
             }
 
-            public void Invoke<T>() where T: ICommandData
+            public void Invoke<T>() where T : ICommandData
             {
                 var coll = _commandCollection.GetCollection<T>();
-                if(coll != null)
+                if (coll != null)
                 {
                     foreach (var item in coll)
                     {
@@ -132,6 +142,25 @@ namespace DVG.SkyPirates.Shared.Services
                 {
                     Hash -= 100;
                 }
+            }
+        }
+
+        private struct GetSumAction : IGenericAction<ICommandData>
+        {
+            public int Sum;
+            private readonly CommandCollection _commandCollection;
+
+            public GetSumAction(CommandCollection commandCollection)
+            {
+                Sum = 0;
+                _commandCollection = commandCollection;
+            }
+
+            public void Invoke<T>() where T : ICommandData
+            {
+                var coll = _commandCollection.GetCollection<T>();
+                if (coll != null)
+                    Sum += coll.Count;
             }
         }
     }
