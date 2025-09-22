@@ -13,7 +13,6 @@
 using System;
 using System.Collections.Generic;
 
-using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Ids;
@@ -29,52 +28,50 @@ namespace DVG.Core.History
         {
             _typeToId = new Dictionary<Type, int>()
             {
-                {typeof(AddCompTest), 1},
-                {typeof(AutoHeal), 2},
-                {typeof(Behaviour), 3},
-                {typeof(CircleShape), 4},
-                {typeof(Damage), 5},
-                {typeof(Dead), 6},
-                {typeof(Destination), 7},
-                {typeof(Direction), 8},
-                {typeof(Fixation), 9},
-                {typeof(Health), 10},
-                {typeof(ImpactDistance), 11},
-                {typeof(MaxHealth), 12},
-                {typeof(MoveSpeed), 13},
-                {typeof(Position), 14},
-                {typeof(PositionSeparation), 15},
-                {typeof(Rotation), 16},
-                {typeof(Squad), 17},
-                {typeof(Target), 18},
-                {typeof(TargetSearchData), 19},
-                {typeof(Team), 20},
-                {typeof(UnitId), 21},
+                {typeof(AutoHeal), 1},
+                {typeof(Behaviour), 2},
+                {typeof(CircleShape), 3},
+                {typeof(Damage), 4},
+                {typeof(Dead), 5},
+                {typeof(Destination), 6},
+                {typeof(Direction), 7},
+                {typeof(Fixation), 8},
+                {typeof(Health), 9},
+                {typeof(ImpactDistance), 10},
+                {typeof(MaxHealth), 11},
+                {typeof(MoveSpeed), 12},
+                {typeof(Position), 13},
+                {typeof(PositionSeparation), 14},
+                {typeof(Rotation), 15},
+                {typeof(Squad), 16},
+                {typeof(Target), 17},
+                {typeof(TargetSearchData), 18},
+                {typeof(Team), 19},
+                {typeof(UnitId), 20},
             };
             
             _idToType = new Dictionary<int, Type>()
             {
-                {1, typeof(AddCompTest)},
-                {2, typeof(AutoHeal)},
-                {3, typeof(Behaviour)},
-                {4, typeof(CircleShape)},
-                {5, typeof(Damage)},
-                {6, typeof(Dead)},
-                {7, typeof(Destination)},
-                {8, typeof(Direction)},
-                {9, typeof(Fixation)},
-                {10, typeof(Health)},
-                {11, typeof(ImpactDistance)},
-                {12, typeof(MaxHealth)},
-                {13, typeof(MoveSpeed)},
-                {14, typeof(Position)},
-                {15, typeof(PositionSeparation)},
-                {16, typeof(Rotation)},
-                {17, typeof(Squad)},
-                {18, typeof(Target)},
-                {19, typeof(TargetSearchData)},
-                {20, typeof(Team)},
-                {21, typeof(UnitId)},
+                {1, typeof(AutoHeal)},
+                {2, typeof(Behaviour)},
+                {3, typeof(CircleShape)},
+                {4, typeof(Damage)},
+                {5, typeof(Dead)},
+                {6, typeof(Destination)},
+                {7, typeof(Direction)},
+                {8, typeof(Fixation)},
+                {9, typeof(Health)},
+                {10, typeof(ImpactDistance)},
+                {11, typeof(MaxHealth)},
+                {12, typeof(MoveSpeed)},
+                {13, typeof(Position)},
+                {14, typeof(PositionSeparation)},
+                {15, typeof(Rotation)},
+                {16, typeof(Squad)},
+                {17, typeof(Target)},
+                {18, typeof(TargetSearchData)},
+                {19, typeof(Team)},
+                {20, typeof(UnitId)},
             };
         }
 
@@ -82,7 +79,6 @@ namespace DVG.Core.History
         public static void ForEachData<T>(ref T action)
             where T: IStructGenericAction
         {
-            action.Invoke<AddCompTest>();
             action.Invoke<AutoHeal>();
             action.Invoke<Behaviour>();
             action.Invoke<CircleShape>();

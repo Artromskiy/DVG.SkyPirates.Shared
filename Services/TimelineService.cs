@@ -79,12 +79,14 @@ namespace DVG.SkyPirates.Shared.Services
                 Console.WriteLine($"Rollback: {tickToGo}, Hash: {_logHashSumSystem.GetHashSum()}");
             }
             var fromTick = _notAppliedTick ?? CurrentTick;
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder().AppendLine();
             for (int i = fromTick; i <= CurrentTick; i++)
             {
+                sb.AppendLine($"Internal Before command: {i}, Hash{_logHashSumSystem.GetHashSum()}");
                 _commandExecutorService.Execute(GetCommands(i));
+                sb.AppendLine($"Internal Before tick: {i}, Hash{_logHashSumSystem.GetHashSum()}");
                 _tickableExecutorService.Tick(i, _tickTime);
-                sb.AppendLine($"InternalTick: {i}, Hash{_logHashSumSystem}");
+                sb.AppendLine($"Internal After tick: {i}, Hash{_logHashSumSystem.GetHashSum()}");
             }
             Console.WriteLine($"TickStep: {CurrentTick}, {sb}");
 

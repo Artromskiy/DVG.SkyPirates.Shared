@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 {
-    public class SaveHistorySystem : ITickableExecutor
+    internal sealed class SaveHistorySystem : ITickableExecutor
     {
         private readonly Descriptions _descriptions = new Descriptions();
         private readonly World _world;
@@ -74,21 +74,21 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
             IForEach<History<T>>
             where T : struct
         {
-            private readonly int _wrappedTick;
+            private readonly int _tick;
 
             public SaveHistoryQuery(int tick)
             {
-                _wrappedTick = Constants.WrapTick(tick);
+                _tick = tick;
             }
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                history.Data[_wrappedTick] = component;
+                history.SetValue(component, _tick);
             }
 
             public void Update(ref History<T> history)
             {
-                history.Data[_wrappedTick] = null;
+                history.SetValue(null, _tick);
             }
         }
     }

@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 {
-    public class ApplyHistorySystem : IPreTickableExecutor
+    internal sealed class ApplyHistorySystem : IPreTickableExecutor
     {
         private readonly Descriptions _descriptions = new Descriptions();
         private readonly List<Entity> _entitiesCache = new List<Entity>();
@@ -101,17 +101,17 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
             where T : struct
         {
             private readonly List<Entity> _entities;
-            private readonly int _tickIndex;
+            private readonly int _tick;
 
             public SelectToAdd(List<Entity> entities, int tick)
             {
                 _entities = entities;
-                _tickIndex = Constants.WrapTick(tick);
+                _tick = tick;
             }
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (history.Data[_tickIndex].HasValue)
+                if (history.HasValue(_tick))
                     _entities.Add(entity);
             }
         }
@@ -120,17 +120,17 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
             where T : struct
         {
             private readonly List<Entity> _entities;
-            private readonly int _tickIndex;
+            private readonly int _tick;
 
             public SelectToRemove(List<Entity> entities, int tick)
             {
                 _entities = entities;
-                _tickIndex = Constants.WrapTick(tick);
+                _tick = tick;
             }
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (!history.Data[_tickIndex].HasValue)
+                if (!history.HasValue(_tick))
                     _entities.Add(entity);
             }
         }
@@ -138,16 +138,16 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
         private readonly struct SetHistoryQuery<T> : IForEach<History<T>, T>
             where T : struct
         {
-            private readonly int _wrappedTick;
+            private readonly int _tick;
 
             public SetHistoryQuery(int tick)
             {
-                _wrappedTick = Constants.WrapTick(tick);
+                _tick = tick;
             }
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                T? cmp = history.Data[_wrappedTick];
+                T? cmp = history.GetValue(_tick);
                 Debug.Assert(cmp.HasValue);
                 component = cmp.Value;
             }
