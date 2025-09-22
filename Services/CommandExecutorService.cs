@@ -31,13 +31,6 @@ namespace DVG.SkyPirates.Shared.Services
             }
         }
 
-        public void Execute<T>(Command<T> cmd) where T : ICommandData
-        {
-            foreach (var executor in _executors)
-                if (executor is ICommandExecutor<T> concreteExecutor)
-                    concreteExecutor?.Execute(cmd);
-        }
-
         private interface ICommandExecutorWrapper
         {
             void Execute(CommandCollection commands);
@@ -59,7 +52,9 @@ namespace DVG.SkyPirates.Shared.Services
                 if (genericCollection == null)
                     return;
                 foreach (var cmd in genericCollection)
+                {
                     _executor.Execute(cmd);
+                }
             }
         }
 

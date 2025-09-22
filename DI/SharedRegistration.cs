@@ -47,7 +47,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(SquadMoveSystem),
                 typeof(SquadUnitsSystem),
                 typeof(SetTargetSystem),
-                typeof(SetTargetDestinationSystem),
+                //typeof(SetTargetDestinationSystem),
                 typeof(MoveSystem),
                 //typeof(SeparationSystem),
                 //typeof(SolveCollisionSystem),
