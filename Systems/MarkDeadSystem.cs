@@ -8,7 +8,8 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class MarkDeadSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health>().WithNone<Dead>();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health>().
+            WithNone<Dead>();
 
         private readonly List<Entity> _dead = new List<Entity>();
 

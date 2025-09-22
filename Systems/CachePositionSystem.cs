@@ -7,7 +7,8 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class CachePositionSystem : ITickableExecutor
     {
-        private QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition>();
+        private QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition>().
+            WithNone<Dead>();
         private readonly World _world;
 
         public CachePositionSystem(World world)
