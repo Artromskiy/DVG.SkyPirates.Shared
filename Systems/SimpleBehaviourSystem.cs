@@ -8,12 +8,10 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SimpleBehaviourSystem : ITickableExecutor
     {
         private readonly QueryDescription _descSwitch = new QueryDescription().
-            WithAll<Behaviour, BehaviourConfig>().
-            WithNone<Dead>();
+            WithAll<Behaviour, BehaviourConfig, Alive>();
 
         private readonly QueryDescription _descTick = new QueryDescription().
-            WithAll<Behaviour>().
-            WithNone<Dead>();
+            WithAll<Behaviour, Alive>();
 
         private readonly World _world;
 

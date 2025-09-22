@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 _unitsToRemove.Clear();
                 foreach (Entity unit in squad.units)
-                    if (_world.Has<Dead>(unit))
+                    if (!_world.Has<Alive>(unit))
                         _unitsToRemove.Add(unit);
 
                 if (_unitsToRemove.Count > 0)

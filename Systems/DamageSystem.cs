@@ -8,8 +8,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class DamageSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Health, RecivedDamage>().
-            WithNone<Dead>();
+            WithAll<Health, RecivedDamage, Alive>();
 
         private readonly World _world;
 

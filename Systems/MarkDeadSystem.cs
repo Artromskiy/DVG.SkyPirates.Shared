@@ -8,8 +8,7 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class MarkDeadSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health>().
-            WithNone<Dead>();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health, Alive>();
 
         private readonly List<Entity> _dead = new List<Entity>();
 
@@ -25,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var query = new SelectDeadQuery(_dead);
             _world.InlineEntityQuery<SelectDeadQuery, Health>(_desc, ref query);
             foreach (var item in _dead)
-                _world.Add<Dead>(item);
+                _world.Remove<Alive>(item);
         }
 
         private readonly struct SelectDeadQuery : IForEachWithEntity<Health>

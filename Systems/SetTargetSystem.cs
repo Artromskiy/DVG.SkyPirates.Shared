@@ -12,8 +12,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SetTargetSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Target, Team>().
-            WithNone<Dead>();
+            WithAll<Position, Target, Team, Alive>();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;

@@ -32,7 +32,7 @@ namespace DVG.Core.History
                 {typeof(Behaviour), 2},
                 {typeof(CircleShape), 3},
                 {typeof(Damage), 4},
-                {typeof(Dead), 5},
+                {typeof(Alive), 5},
                 {typeof(Destination), 6},
                 {typeof(Direction), 7},
                 {typeof(Fixation), 8},
@@ -56,7 +56,7 @@ namespace DVG.Core.History
                 {2, typeof(Behaviour)},
                 {3, typeof(CircleShape)},
                 {4, typeof(Damage)},
-                {5, typeof(Dead)},
+                {5, typeof(Alive)},
                 {6, typeof(Destination)},
                 {7, typeof(Direction)},
                 {8, typeof(Fixation)},
@@ -83,7 +83,7 @@ namespace DVG.Core.History
             action.Invoke<Behaviour>();
             action.Invoke<CircleShape>();
             action.Invoke<Damage>();
-            action.Invoke<Dead>();
+            action.Invoke<Alive>();
             action.Invoke<Destination>();
             action.Invoke<Direction>();
             action.Invoke<Fixation>();

@@ -18,6 +18,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             world.AddOrGet<ImpactDistance>(entity);
             world.AddOrGet<Damage>(entity);
             world.AddOrGet<Team>(entity);
+            world.AddOrGet<Alive>(entity);
 
             world.AddOrGet<CircleShape>(entity);
             world.AddOrGet<CachePosition>(entity);

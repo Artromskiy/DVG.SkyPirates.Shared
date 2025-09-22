@@ -9,8 +9,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class ImpactSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Behaviour, Damage, ImpactDistance, Position, Target>().
-            WithNone<Dead>();
+            WithAll<Behaviour, Damage, ImpactDistance, Position, Target, Alive>();
 
         private readonly World _world;
 

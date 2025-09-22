@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Behaviour, ImpactDistance, Position, Target>().
-            WithNone<Dead>();
+            WithNone<Alive>();
 
         private readonly World _world;
 

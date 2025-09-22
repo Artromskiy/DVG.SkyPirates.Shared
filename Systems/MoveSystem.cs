@@ -13,8 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class MoveSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Rotation, Destination, MoveSpeed>().
-            WithNone<Dead>();
+            WithAll<Position, Rotation, Destination, MoveSpeed, Alive>();
 
         private readonly World _world;
         private const int RotateSpeed = 720;

@@ -15,8 +15,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private const int SquareSize = 1;
 
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, PositionSeparation>().
-            WithNone<Dead>();
+            WithAll<Position, PositionSeparation, Alive>();
 
         private readonly Dictionary<int2, List<(Entity, Position, PositionSeparation)>> _targets = new Dictionary<int2, List<(Entity, Position, PositionSeparation)>>();
         private readonly List<(Entity entity, Position position, PositionSeparation positionSeparation)> _targetsCache = new List<(Entity, Position, PositionSeparation)>();

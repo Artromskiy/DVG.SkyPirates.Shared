@@ -8,8 +8,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class AutoHealSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Health, MaxHealth, AutoHeal, RecivedDamage>().
-            WithNone<Dead>();
+            WithAll<Health, MaxHealth, AutoHeal, RecivedDamage, Alive>();
 
         private readonly World _world;
 

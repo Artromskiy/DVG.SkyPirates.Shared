@@ -3,7 +3,7 @@
 namespace DVG.SkyPirates.Shared.Components
 {
     [History]
-    public struct Dead
+    public struct Alive
     {
         public override readonly int GetHashCode()
         {

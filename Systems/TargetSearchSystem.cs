@@ -13,8 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class TargetSearchSystem : ITargetSearchSystem
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<RecivedDamage, Position, Team>().
-            WithNone<Dead>();
+            WithAll<RecivedDamage, Position, Team, Alive>();
 
         private const int SquareSize = 2;
 
