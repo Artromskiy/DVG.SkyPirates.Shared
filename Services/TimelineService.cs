@@ -2,10 +2,7 @@
 using DVG.Core.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using DVG.SkyPirates.Shared.Systems.HistorySystems;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DVG.SkyPirates.Shared.Services
 {
@@ -13,10 +10,10 @@ namespace DVG.SkyPirates.Shared.Services
     {
         private static readonly fix _tickTime = (fix)1 / Constants.TicksPerSecond;
         public int CurrentTick { get; private set; }
+        private int? _dirtyTick;
 
         private readonly Dictionary<int, CommandCollection> _commands = new Dictionary<int, CommandCollection>();
-        private int? _notAppliedTick;
-        private readonly LogHashSumSystem _logHashSumSystem;
+
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
         private readonly ITickableExecutorService _tickableExecutorService;
@@ -24,14 +21,12 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly IPostTickableExecutorService _postTickableExecutorService;
 
         public TimelineService(
-            LogHashSumSystem logHashSumSystem,
             ICommandRecieveService commandRecieveService,
             ICommandExecutorService commandExecutorService,
             ITickableExecutorService tickableExecutorService,
             IPreTickableExecutorService preTickableExecutorService,
             IPostTickableExecutorService postTickableExecutorService)
         {
-            _logHashSumSystem = logHashSumSystem;
             _commandRecieveService = commandRecieveService;
             _commandExecutorService = commandExecutorService;
             _tickableExecutorService = tickableExecutorService;
@@ -46,8 +41,8 @@ namespace DVG.SkyPirates.Shared.Services
             where T : ICommandData
         {
             var tick = command.Tick;
-            var prevNotAppliedTick = _notAppliedTick ?? tick;
-            _notAppliedTick = Maths.Min(tick, prevNotAppliedTick);
+            var prevNotAppliedTick = _dirtyTick ?? tick;
+            _dirtyTick = Maths.Min(tick, prevNotAppliedTick);
             GetCommands(tick).Add(command);
         }
 
@@ -56,8 +51,8 @@ namespace DVG.SkyPirates.Shared.Services
         {
             var tick = command.Tick;
 
-            var prevNotAppliedTick = _notAppliedTick ?? tick;
-            _notAppliedTick = Maths.Min(tick, prevNotAppliedTick);
+            var prevNotAppliedTick = _dirtyTick ?? tick;
+            _dirtyTick = Maths.Min(tick, prevNotAppliedTick);
             GetCommands(tick).Remove<T>(command.ClientId);
         }
 
@@ -72,40 +67,20 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick()
         {
-            if (_notAppliedTick.HasValue)
+            if (_dirtyTick.HasValue)
             {
-                int tickToGo = _notAppliedTick.Value - 1;
+                int tickToGo = _dirtyTick.Value - 1;
                 _preTickableExecutorService.Tick(tickToGo, _tickTime);
-                Console.WriteLine($"Rollback: {tickToGo}, Hash: {_logHashSumSystem.GetHashSum()}");
             }
-            var fromTick = _notAppliedTick ?? CurrentTick;
-            StringBuilder sb = new StringBuilder().AppendLine();
+
+            var fromTick = _dirtyTick ?? CurrentTick;
             for (int i = fromTick; i <= CurrentTick; i++)
             {
-                sb.AppendLine($"Internal Before command: {i}, Hash{_logHashSumSystem.GetHashSum()}");
                 _commandExecutorService.Execute(GetCommands(i));
-                sb.AppendLine($"Internal Before tick: {i}, Hash{_logHashSumSystem.GetHashSum()}");
                 _tickableExecutorService.Tick(i, _tickTime);
-                sb.AppendLine($"Internal After tick: {i}, Hash{_logHashSumSystem.GetHashSum()}");
             }
-            Console.WriteLine($"TickStep: {CurrentTick}, {sb}");
 
-            int cmdSum = 0;
-            foreach (var item in _commands)
-            {
-                if (item.Key <= _notAppliedTick)
-                {
-                    var countAction = new GetSumAction(_commands[item.Key]);
-                    CommandIds.ForEachData(ref countAction);
-                    cmdSum += countAction.Sum;
-                }
-            }
-            Console.WriteLine($"Tick: {CurrentTick}, CmdCount: {cmdSum}");
-
-            // Set oldest cmd tick now
-            // we can recieve commands in post tick
-            // and they will not be applied, because oldest command tick update
-            _notAppliedTick = null;
+            _dirtyTick = null;
 
             _postTickableExecutorService.Tick(CurrentTick++, _tickTime);
         }

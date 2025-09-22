@@ -9,13 +9,13 @@ using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 {
-    internal sealed class ApplyHistorySystem : IPreTickableExecutor
+    internal sealed class RollbackHistorySystem : IPreTickableExecutor
     {
         private readonly Descriptions _descriptions = new Descriptions();
         private readonly List<Entity> _entitiesCache = new List<Entity>();
         private readonly World _world;
 
-        public ApplyHistorySystem(World world)
+        public RollbackHistorySystem(World world)
         {
             _world = world;
         }

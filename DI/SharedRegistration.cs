@@ -57,7 +57,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(ImpactSystem),
                 //typeof(AutoHealSystem),
                 typeof(DamageSystem),
-                //typeof(MarkDeadSystem),
+                typeof(MarkDeadSystem),
                 typeof(DeadSquadUnitsSystem),
                 typeof(SaveHistorySystem),
                 //typeof(LogHashSumSystem),
@@ -67,7 +67,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             var preTickableExecutors = new Type[]
             {
-                typeof(ApplyHistorySystem),
+                typeof(RollbackHistorySystem),
             };
             container.Register<IPreTickableExecutorService, PreTickableExecutorService>(Lifestyle.Singleton);
             container.Collection.Register<IPreTickableExecutor>(preTickableExecutors, Lifestyle.Singleton);

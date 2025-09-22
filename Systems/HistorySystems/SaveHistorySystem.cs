@@ -24,24 +24,6 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
             HistoryIds.ForEachData(ref action);
         }
 
-        private class Descriptions
-        {
-            private readonly Dictionary<Type, IDescription> _descriptions = new Dictionary<Type, IDescription>();
-            public Description<T> GetDescription<T>() where T : struct
-            {
-                var type = typeof(T);
-                if (!_descriptions.TryGetValue(type, out var description))
-                    _descriptions[type] = description = new Description<T>();
-                return (Description<T>)description;
-            }
-        }
-
-        private interface IDescription { }
-        private sealed class Description<T> : IDescription where T : struct
-        {
-            public readonly QueryDescription hasDesc = new QueryDescription().WithAll<History<T>, T>();
-            public readonly QueryDescription noDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
-        }
 
         private readonly struct SaveHistoryAction : IStructGenericAction
         {
@@ -90,6 +72,25 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
             {
                 history.SetValue(null, _tick);
             }
+        }
+
+
+        private class Descriptions
+        {
+            private readonly Dictionary<Type, IDescription> _descriptions = new Dictionary<Type, IDescription>();
+            public Description<T> GetDescription<T>() where T : struct
+            {
+                var type = typeof(T);
+                if (!_descriptions.TryGetValue(type, out var description))
+                    _descriptions[type] = description = new Description<T>();
+                return (Description<T>)description;
+            }
+        }
+        private interface IDescription { }
+        private sealed class Description<T> : IDescription where T : struct
+        {
+            public readonly QueryDescription hasDesc = new QueryDescription().WithAll<History<T>, T>();
+            public readonly QueryDescription noDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
         }
     }
 }
