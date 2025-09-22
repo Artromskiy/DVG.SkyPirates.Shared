@@ -12,8 +12,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class BeginAttackSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Behaviour, ImpactDistance, Position, Target>().
-            WithNone<Alive>();
+            WithAll<Behaviour, ImpactDistance, Position, Target, Alive>();
 
         private readonly World _world;
 
