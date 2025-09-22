@@ -4,6 +4,7 @@ using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IServices;
+using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
@@ -18,7 +19,11 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<FixationCommand> cmd)
         {
-            _world.Get<Fixation>(EntityIds.Get(cmd.EntityId)).Value = cmd.Data.Fixation;
+            var squad = EntityIds.Get(cmd.EntityId);
+            if (!_world.Has<Fixation>(squad))
+                Debug.WriteLine($"Attempt to use command for entity {cmd.EntityId}, which is not created");
+
+            _world.Get<Fixation>(squad).Value = cmd.Data.Fixation;
         }
     }
 }
