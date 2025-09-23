@@ -20,8 +20,12 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         public void Execute(Command<FixationCommand> cmd)
         {
             var squad = EntityIds.Get(cmd.EntityId);
-            if (!_world.Has<Fixation>(squad))
+            if (!_world.IsAlive(squad) ||
+                !_world.Has<Fixation>(squad))
+            {
                 Debug.WriteLine($"Attempt to use command for entity {cmd.EntityId}, which is not created");
+                return;
+            }
 
             _world.Get<Fixation>(squad).Value = cmd.Data.Fixation;
         }

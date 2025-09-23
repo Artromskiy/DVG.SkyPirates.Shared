@@ -21,23 +21,25 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         public void Execute(Command<DirectionCommand> cmd)
         {
             var squad = EntityIds.Get(cmd.EntityId);
-            if (!_world.Has<Direction>(squad) ||
+            if (!_world.IsAlive(squad) ||
+                !_world.Has<Direction>(squad) ||
                 !_world.Has<Rotation>(squad))
+            {
                 Debug.WriteLine($"Attempt to use command for entity {cmd.EntityId}, which is not created");
-            SetDirection(
-                ref _world.Get<Direction>(squad).Value,
-                ref _world.Get<Rotation>(squad).Value,
-                cmd.Data.Direction);
+                return;
+            }
+
+            SetDirection(ref _world.Get<Direction>(squad), ref _world.Get<Rotation>(squad), cmd.Data.Direction);
         }
 
-        public void SetDirection(ref fix2 direction, ref fix rotation, fix2 targetDirection)
+        public void SetDirection(ref Direction direction, ref Rotation rotation, fix2 targetDirection)
         {
-            direction = targetDirection;
-            if (fix2.SqrLength(direction) == 0)
+            direction.Value = targetDirection;
+            if (fix2.SqrLength(direction.Value) == 0)
                 return;
 
-            var rotationRadians = MathsExtensions.GetRotation(direction);
-            rotation = Maths.Degrees(rotationRadians);
+            var rotationRadians = MathsExtensions.GetRotation(direction.Value);
+            rotation.Value = Maths.Degrees(rotationRadians);
         }
     }
 }
