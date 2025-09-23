@@ -4,7 +4,7 @@ using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IServices;
-using System.Diagnostics;
+using System;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
@@ -23,7 +23,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             if (!_world.IsAlive(squad) ||
                 !_world.Has<Fixation>(squad))
             {
-                Debug.WriteLine($"Attempt to use command for entity {cmd.EntityId}, which is not created");
+                Console.WriteLine($"Attempt to use command for entity {cmd.EntityId}, which is not created");
                 return;
             }
 
