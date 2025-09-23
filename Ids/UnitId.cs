@@ -7,6 +7,7 @@ namespace DVG.SkyPirates.Shared.Ids
     [History]
     public partial struct UnitId
     {
+        /*
         public override readonly int GetHashCode()
         {
             int hash = 0;
@@ -17,5 +18,6 @@ namespace DVG.SkyPirates.Shared.Ids
 
             return hash;
         }
+        */
     }
 }

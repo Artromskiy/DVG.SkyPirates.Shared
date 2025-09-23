@@ -6,6 +6,7 @@ namespace DVG.SkyPirates.Shared.Ids
     [Flag]
     public partial struct StateId
     {
+        /*
         public override int GetHashCode()
         {
             int hash = 0;
@@ -16,5 +17,6 @@ namespace DVG.SkyPirates.Shared.Ids
 
             return hash;
         }
+        */
     }
 }
