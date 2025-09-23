@@ -8,6 +8,7 @@ namespace DVG.SkyPirates.Shared.Components
         public fix AddRadius;
         public fix AffectedCoeff;
         public fix AffectingCoeff;
+
         public fix2 Force;
         public int ForcesCount;
 
