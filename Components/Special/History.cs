@@ -32,6 +32,6 @@ namespace DVG.SkyPirates.Shared.Components.Special
             Data[tick] = value;
         }
 
-        public static History<T> Create() => new History<T>(Constants.HistoryTicksLimit);
+        public static History<T> Create() => new History<T>(Constants.HistoryTicks);
     }
 }

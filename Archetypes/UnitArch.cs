@@ -25,7 +25,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
 
             world.AddOrGet<RecivedDamage>(entity);
             world.AddOrGet<AutoHeal>(entity);
-            world.AddOrGet<PositionSeparation>(entity);
+            world.AddOrGet<Separation>(entity);
             world.AddOrGet<Fixation>(entity);
             world.AddOrGet<Target>(entity);
             world.AddOrGet<Destination>(entity);

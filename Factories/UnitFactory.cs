@@ -47,8 +47,8 @@ namespace DVG.SkyPirates.Shared.Factories
             _world.Get<MoveSpeed>(unit).Value = config.speed;
             _world.Get<ImpactDistance>(unit).Value = config.attackDistance;
             _world.Get<BehaviourConfig>(unit).Scenario = switchTable;
-            _world.Get<PositionSeparation>(unit).Radius = (fix)1 / 2;
-            _world.Get<PositionSeparation>(unit).Weight = 1;
+            _world.Get<Separation>(unit).AddRadius = (fix)1 / 2;
+            _world.Get<Separation>(unit).AffectingCoeff = 1;
             _world.Get<AutoHeal>(unit).healDelay = 10;
             _world.Get<AutoHeal>(unit).healPerSecond = 20;
 

@@ -41,7 +41,7 @@ namespace DVG.Core.History
                 {typeof(MaxHealth), 11},
                 {typeof(MoveSpeed), 12},
                 {typeof(Position), 13},
-                {typeof(PositionSeparation), 14},
+                {typeof(Separation), 14},
                 {typeof(Rotation), 15},
                 {typeof(Squad), 16},
                 {typeof(Target), 17},
@@ -65,7 +65,7 @@ namespace DVG.Core.History
                 {11, typeof(MaxHealth)},
                 {12, typeof(MoveSpeed)},
                 {13, typeof(Position)},
-                {14, typeof(PositionSeparation)},
+                {14, typeof(Separation)},
                 {15, typeof(Rotation)},
                 {16, typeof(Squad)},
                 {17, typeof(Target)},
@@ -92,7 +92,7 @@ namespace DVG.Core.History
             action.Invoke<MaxHealth>();
             action.Invoke<MoveSpeed>();
             action.Invoke<Position>();
-            action.Invoke<PositionSeparation>();
+            action.Invoke<Separation>();
             action.Invoke<Rotation>();
             action.Invoke<Squad>();
             action.Invoke<Target>();
