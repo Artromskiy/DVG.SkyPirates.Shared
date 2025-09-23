@@ -41,8 +41,10 @@ namespace DVG.SkyPirates.Shared.Services
             where T : ICommandData
         {
             var tick = command.Tick;
-            var prevNotAppliedTick = _dirtyTick ?? tick;
-            _dirtyTick = Maths.Min(tick, prevNotAppliedTick);
+
+            var prevDirtyTick = _dirtyTick ?? tick;
+            _dirtyTick = Maths.Min(tick, prevDirtyTick);
+
             GetCommands(tick).Add(command);
         }
 
@@ -67,13 +69,13 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick()
         {
-            if (_dirtyTick.HasValue)
+            if (_dirtyTick.HasValue && _dirtyTick < CurrentTick)
             {
                 int tickToGo = _dirtyTick.Value - 1;
                 _preTickableExecutorService.Tick(tickToGo, _tickTime);
             }
 
-            var fromTick = _dirtyTick ?? CurrentTick;
+            var fromTick = Maths.Min(_dirtyTick ?? CurrentTick, CurrentTick);
             for (int i = fromTick; i <= CurrentTick; i++)
             {
                 _commandExecutorService.Execute(GetCommands(i));
