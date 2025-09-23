@@ -50,7 +50,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(SetTargetDestinationSystem),
                 typeof(MoveSystem),
                 typeof(SeparationSystem),
-                typeof(SolveCollisionSystem),
+                //typeof(SolveCollisionSystem),
                 typeof(HexMapCollisionSystem),
                 typeof(SimpleBehaviourSystem),
                 typeof(BeginAttackSystem),
