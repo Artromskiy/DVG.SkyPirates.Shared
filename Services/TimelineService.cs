@@ -8,7 +8,6 @@ namespace DVG.SkyPirates.Shared.Services
 {
     public class TimelineService : ITimelineService
     {
-        private static readonly fix _tickTime = (fix)1 / Constants.TicksPerSecond;
         public int CurrentTick { get; private set; }
         private int? _dirtyTick;
 
@@ -72,19 +71,19 @@ namespace DVG.SkyPirates.Shared.Services
             if (_dirtyTick.HasValue && _dirtyTick < CurrentTick)
             {
                 int tickToGo = _dirtyTick.Value - 1;
-                _preTickableExecutorService.Tick(tickToGo, _tickTime);
+                _preTickableExecutorService.Tick(tickToGo, Constants.TickTime);
             }
 
             var fromTick = Maths.Min(_dirtyTick ?? CurrentTick, CurrentTick);
             for (int i = fromTick; i <= CurrentTick; i++)
             {
                 _commandExecutorService.Execute(GetCommands(i));
-                _tickableExecutorService.Tick(i, _tickTime);
+                _tickableExecutorService.Tick(i, Constants.TickTime);
             }
 
             _dirtyTick = null;
 
-            _postTickableExecutorService.Tick(CurrentTick++, _tickTime);
+            _postTickableExecutorService.Tick(CurrentTick++, Constants.TickTime);
         }
 
         private readonly struct RegisterRecieverAction : IGenericAction<ICommandData>
