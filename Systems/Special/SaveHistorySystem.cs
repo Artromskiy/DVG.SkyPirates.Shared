@@ -3,14 +3,18 @@ using DVG.Core;
 using DVG.Core.History;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using System;
-using System.Collections.Generic;
+using DVG.SkyPirates.Shared.Tools;
 
-namespace DVG.SkyPirates.Shared.Systems.HistorySystems
+namespace DVG.SkyPirates.Shared.Systems.Special
 {
     internal sealed class SaveHistorySystem : ITickableExecutor
     {
-        private readonly Descriptions _descriptions = new Descriptions();
+        private sealed class Description<T> where T : struct
+        {
+            public readonly QueryDescription hasDesc = new QueryDescription().WithAll<History<T>, T>();
+            public readonly QueryDescription noDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
+        }
+        private readonly GenericCollection _desc = new();
         private readonly World _world;
 
         public SaveHistorySystem(World world)
@@ -20,18 +24,17 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var action = new SaveHistoryAction(_descriptions, _world, tick);
+            var action = new SaveHistoryAction(_desc, _world, tick);
             HistoryIds.ForEachData(ref action);
         }
 
-
         private readonly struct SaveHistoryAction : IStructGenericAction
         {
-            private readonly Descriptions _descriptions;
+            private readonly GenericCollection _descriptions;
             private readonly World _world;
             private readonly int _tick;
 
-            public SaveHistoryAction(Descriptions descriptions, World world, int tick)
+            public SaveHistoryAction(GenericCollection descriptions, World world, int tick)
             {
                 _descriptions = descriptions;
                 _world = world;
@@ -41,7 +44,7 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
             public void Invoke<T>() where T : struct
             {
                 var query = new SaveHistoryQuery<T>(_tick);
-                var desc = _descriptions.GetDescription<T>();
+                var desc = _descriptions.Get<Description<T>>();
 
                 var hasDesc = desc.hasDesc;
                 _world.InlineQuery<SaveHistoryQuery<T>, History<T>, T>(hasDesc, ref query);
@@ -65,32 +68,13 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                history.SetValue(component, _tick);
+                history[_tick] = component;
             }
 
             public void Update(ref History<T> history)
             {
-                history.SetValue(null, _tick);
+                history[_tick] = null;
             }
-        }
-
-
-        private class Descriptions
-        {
-            private readonly Dictionary<Type, IDescription> _descriptions = new Dictionary<Type, IDescription>();
-            public Description<T> GetDescription<T>() where T : struct
-            {
-                var type = typeof(T);
-                if (!_descriptions.TryGetValue(type, out var description))
-                    _descriptions[type] = description = new Description<T>();
-                return (Description<T>)description;
-            }
-        }
-        private interface IDescription { }
-        private sealed class Description<T> : IDescription where T : struct
-        {
-            public readonly QueryDescription hasDesc = new QueryDescription().WithAll<History<T>, T>();
-            public readonly QueryDescription noDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
         }
     }
 }

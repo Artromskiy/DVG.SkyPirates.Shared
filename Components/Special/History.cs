@@ -4,32 +4,28 @@ namespace DVG.SkyPirates.Shared.Components.Special
     internal readonly struct History<T> where T : struct
     {
         //private readonly Dictionary<int, T?> Data;
-        private readonly T?[] Data;
+        private readonly T?[] _data;
 
         public History(int length)
         {
             //Data = new Dictionary<int, T?>();
-            Data = new T?[length];
+            _data = new T?[length];
         }
 
-        public bool HasValue(int tick)
-        {
-            tick = Constants.WrapTick(tick);
-            return Data[tick].HasValue;
-            //return Data.ContainsKey(tick) && Data[tick].HasValue;
-        }
+        public ref T? this[int tick] => ref _data[Constants.WrapTick(tick)];
 
-        public T GetValue(int tick)
+        public bool AllHasValues()
         {
-            tick = Constants.WrapTick(tick);
-            return Data[tick].Value;
-            //return Data[tick].Value;
+            foreach (var item in _data)
+                if (!item.HasValue)
+                    return false;
+            return true;
         }
 
         public void SetValue(T? value, int tick)
         {
             tick = Constants.WrapTick(tick);
-            Data[tick] = value;
+            _data[tick] = value;
         }
 
         public static History<T> Create() => new History<T>(Constants.HistoryTicks);

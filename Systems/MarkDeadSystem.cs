@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 
@@ -24,7 +25,10 @@ namespace DVG.SkyPirates.Shared.Systems
             var query = new SelectDeadQuery(_dead);
             _world.InlineEntityQuery<SelectDeadQuery, Health>(_desc, ref query);
             foreach (var item in _dead)
+            {
                 _world.Remove<Alive>(item);
+                _world.Add<Destruct>(item);
+            }
         }
 
         private readonly struct SelectDeadQuery : IForEachWithEntity<Health>

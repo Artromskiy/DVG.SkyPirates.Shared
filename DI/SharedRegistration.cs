@@ -7,7 +7,6 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Services;
 using DVG.SkyPirates.Shared.Services.CommandExecutors;
 using DVG.SkyPirates.Shared.Systems;
-using DVG.SkyPirates.Shared.Systems.HistorySystems;
 using SimpleInjector;
 using System;
 
@@ -59,19 +58,12 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(DamageSystem),
                 typeof(MarkDeadSystem),
                 typeof(DeadSquadUnitsSystem),
-                typeof(SaveHistorySystem),
                 //typeof(LogHashSumSystem),
             };
             container.Register<ITickableExecutorService, TickableExecutorService>(Lifestyle.Singleton);
             container.Collection.Register<ITickableExecutor>(tickableExecutors, Lifestyle.Singleton);
 
-            var preTickableExecutors = new Type[]
-            {
-                typeof(RollbackHistorySystem),
-            };
             container.Register<IPreTickableExecutorService, PreTickableExecutorService>(Lifestyle.Singleton);
-            container.Collection.Register<IPreTickableExecutor>(preTickableExecutors, Lifestyle.Singleton);
-            container.Register<LogHashSumSystem>(Lifestyle.Singleton);
 
             container.Register<IPostTickableExecutorService, PostTickableExecutorService>(Lifestyle.Singleton);
 

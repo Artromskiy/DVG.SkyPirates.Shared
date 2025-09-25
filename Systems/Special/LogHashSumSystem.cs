@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DVG.SkyPirates.Shared.Systems.HistorySystems
+namespace DVG.SkyPirates.Shared.Systems.Special
 {
     public sealed class LogHashSumSystem : ITickableExecutor
     {

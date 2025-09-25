@@ -3,16 +3,22 @@ using DVG.Core;
 using DVG.Core.History;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Tools;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
-namespace DVG.SkyPirates.Shared.Systems.HistorySystems
+namespace DVG.SkyPirates.Shared.Systems.Special
 {
     internal sealed class RollbackHistorySystem : IPreTickableExecutor
     {
-        private readonly Descriptions _descriptions = new Descriptions();
-        private readonly List<Entity> _entitiesCache = new List<Entity>();
+        private sealed class Description<T> where T : struct
+        {
+            public readonly QueryDescription removeDesc = new QueryDescription().WithAll<History<T>, T>();
+            public readonly QueryDescription addDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
+            public readonly QueryDescription tickDesc = new QueryDescription().WithAll<History<T>, T>();
+        }
+        private readonly GenericCollection _desc = new();
+        private readonly List<Entity> _entitiesCache = new();
         private readonly World _world;
 
         public RollbackHistorySystem(World world)
@@ -22,38 +28,19 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var action = new ApplyHistoryAction(_descriptions, _entitiesCache, _world, tick);
+            var action = new ApplyHistoryAction(_desc, _entitiesCache, _world, tick);
             HistoryIds.ForEachData(ref action);
         }
 
-        private class Descriptions
-        {
-            private readonly Dictionary<Type, IDescription> _descriptions = new Dictionary<Type, IDescription>();
-            public Description<T> GetDescription<T>() where T : struct
-            {
-                var type = typeof(T);
-                if (!_descriptions.TryGetValue(type, out var description))
-                    _descriptions[type] = description = new Description<T>();
-                return (Description<T>)description;
-            }
-        }
-
-        private interface IDescription { }
-        private class Description<T> : IDescription where T : struct
-        {
-            public readonly QueryDescription removeDesc = new QueryDescription().WithAll<History<T>, T>();
-            public readonly QueryDescription addDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
-            public readonly QueryDescription tickDesc = new QueryDescription().WithAll<History<T>, T>();
-        }
 
         private readonly struct ApplyHistoryAction : IStructGenericAction
         {
-            private readonly Descriptions _descriptions;
+            private readonly GenericCollection _descriptions;
             private readonly List<Entity> _entities;
             private readonly World _world;
             private readonly int _tick;
 
-            public ApplyHistoryAction(Descriptions descriptions, List<Entity> entities, World world, int tick)
+            public ApplyHistoryAction(GenericCollection descriptions, List<Entity> entities, World world, int tick)
             {
                 _descriptions = descriptions;
                 _entities = entities;
@@ -63,7 +50,7 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 
             public void Invoke<T>() where T : struct
             {
-                var desc = _descriptions.GetDescription<T>();
+                var desc = _descriptions.Get<Description<T>>();
                 RemoveComponents<T>(desc.removeDesc);
                 AddComponents<T>(desc.addDesc);
                 SetComponentsData<T>(desc.tickDesc);
@@ -111,7 +98,7 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (history.HasValue(_tick))
+                if (history[_tick].HasValue)
                     _entities.Add(entity);
             }
         }
@@ -130,7 +117,7 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (!history.HasValue(_tick))
+                if (!history[_tick].HasValue)
                     _entities.Add(entity);
             }
         }
@@ -147,8 +134,11 @@ namespace DVG.SkyPirates.Shared.Systems.HistorySystems
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                T? cmp = history.GetValue(_tick);
-                Debug.Assert(cmp.HasValue);
+                var cmp = history[_tick];
+
+                if (!cmp.HasValue)
+                    throw new InvalidOperationException();
+
                 component = cmp.Value;
             }
         }

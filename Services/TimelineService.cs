@@ -1,7 +1,9 @@
-﻿using DVG.Core;
+﻿using Arch.Core;
+using DVG.Core;
 using DVG.Core.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services
@@ -19,13 +21,22 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly IPreTickableExecutorService _preTickableExecutorService;
         private readonly IPostTickableExecutorService _postTickableExecutorService;
 
+        private readonly RollbackHistorySystem _rollbackHistorySystem;
+        private readonly SaveHistorySystem _saveHistorySystem;
+        private readonly DestructSystem _destructSystem;
+
         public TimelineService(
+            World world,
             ICommandRecieveService commandRecieveService,
             ICommandExecutorService commandExecutorService,
             ITickableExecutorService tickableExecutorService,
             IPreTickableExecutorService preTickableExecutorService,
             IPostTickableExecutorService postTickableExecutorService)
         {
+            _rollbackHistorySystem = new(world);
+            _saveHistorySystem = new(world);
+            _destructSystem = new(world);
+
             _commandRecieveService = commandRecieveService;
             _commandExecutorService = commandExecutorService;
             _tickableExecutorService = tickableExecutorService;
@@ -52,8 +63,9 @@ namespace DVG.SkyPirates.Shared.Services
         {
             var tick = command.Tick;
 
-            var prevNotAppliedTick = _dirtyTick ?? tick;
-            _dirtyTick = Maths.Min(tick, prevNotAppliedTick);
+            var prevDirtyTick = _dirtyTick ?? tick;
+            _dirtyTick = Maths.Min(tick, prevDirtyTick);
+
             GetCommands(tick).Remove<T>(command.ClientId);
         }
 
@@ -68,21 +80,23 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick()
         {
+            _preTickableExecutorService.Tick(CurrentTick, Constants.TickTime);
+
             if (_dirtyTick.HasValue && _dirtyTick < CurrentTick)
             {
                 int tickToGo = _dirtyTick.Value - 1;
-                _preTickableExecutorService.Tick(tickToGo, Constants.TickTime);
+                _rollbackHistorySystem.Tick(tickToGo, Constants.TickTime);
             }
-
             var fromTick = Maths.Min(_dirtyTick ?? CurrentTick, CurrentTick);
             for (int i = fromTick; i <= CurrentTick; i++)
             {
                 _commandExecutorService.Execute(GetCommands(i));
                 _tickableExecutorService.Tick(i, Constants.TickTime);
+                _saveHistorySystem.Tick(i, Constants.TickTime);
             }
-
             _dirtyTick = null;
 
+            _destructSystem.Tick(CurrentTick, Constants.TickTime);
             _postTickableExecutorService.Tick(CurrentTick++, Constants.TickTime);
         }
 
@@ -100,53 +114,6 @@ namespace DVG.SkyPirates.Shared.Services
             public void Invoke<T>() where T : ICommandData
             {
                 _recieveService.RegisterReciever<T>(_timelineService.AddCommand);
-            }
-        }
-
-        private struct GetHashAction : IGenericAction<ICommandData>
-        {
-            public int Hash;
-            private readonly CommandCollection _commandCollection;
-
-            public GetHashAction(CommandCollection commandCollection)
-            {
-                Hash = 0;
-                _commandCollection = commandCollection;
-            }
-
-            public void Invoke<T>() where T : ICommandData
-            {
-                var coll = _commandCollection.GetCollection<T>();
-                if (coll != null)
-                {
-                    foreach (var item in coll)
-                    {
-                        Hash += item.ClientId + item.CommandId + item.EntityId + item.Tick;
-                    }
-                }
-                else
-                {
-                    Hash -= 100;
-                }
-            }
-        }
-
-        private struct GetSumAction : IGenericAction<ICommandData>
-        {
-            public int Sum;
-            private readonly CommandCollection _commandCollection;
-
-            public GetSumAction(CommandCollection commandCollection)
-            {
-                Sum = 0;
-                _commandCollection = commandCollection;
-            }
-
-            public void Invoke<T>() where T : ICommandData
-            {
-                var coll = _commandCollection.GetCollection<T>();
-                if (coll != null)
-                    Sum += coll.Count;
             }
         }
     }
