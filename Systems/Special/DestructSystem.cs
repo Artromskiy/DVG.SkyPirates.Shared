@@ -7,7 +7,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 {
     internal class DestructSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Destruct, History<Destruct>>();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Destruct>();
         private readonly List<Entity> _entitiesCache = new();
         private readonly World _world;
 
@@ -20,14 +20,14 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             _entitiesCache.Clear();
             var query = new SelectToDestruct(_entitiesCache);
-            _world.InlineEntityQuery<SelectToDestruct, History<Destruct>>(_desc, ref query);
+            _world.InlineEntityQuery<SelectToDestruct, Destruct>(_desc, ref query);
             foreach (var entity in _entitiesCache)
             {
                 _world.RemoveRange(entity, _world.GetSignature(entity).Components);
             }
         }
 
-        private readonly struct SelectToDestruct : IForEachWithEntity<History<Destruct>>
+        private readonly struct SelectToDestruct : IForEachWithEntity<Destruct>
         {
             private readonly List<Entity> _entities;
 
@@ -36,9 +36,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 _entities = entities;
             }
 
-            public void Update(Entity entity, ref History<Destruct> history)
+            public void Update(Entity entity, ref Destruct destruct)
             {
-                if (history.AllHasValues())
+                if (++destruct.TicksPassed > Constants.HistoryTicks)
                     _entities.Add(entity);
             }
         }

@@ -3,5 +3,10 @@
 namespace DVG.SkyPirates.Shared.Components.Special
 {
     [History]
-    public struct Destruct { }
+    internal struct Destruct
+    {
+        public int TicksPassed;
+
+        public override readonly int GetHashCode() => TicksPassed;
+    }
 }
