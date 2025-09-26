@@ -13,9 +13,8 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly IPathFactory<HexMap> _hexMapLoader;
         private readonly World _world;
 
-        public CreateHexMapTempSystem(bool created, IPathFactory<HexMap> hexMapLoader, World world)
+        public CreateHexMapTempSystem(IPathFactory<HexMap> hexMapLoader, World world)
         {
-            _created = created;
             _hexMapLoader = hexMapLoader;
             _world = world;
         }
