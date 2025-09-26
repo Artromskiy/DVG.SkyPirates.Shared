@@ -1,6 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Core;
-using DVG.Core.History;
+using DVG.Core.Components;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools;
@@ -11,8 +11,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
     {
         private sealed class Description<T> where T : struct
         {
-            public readonly QueryDescription hasDesc = new QueryDescription().WithAll<History<T>, T>();
-            public readonly QueryDescription noDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
+            public readonly QueryDescription addHistoryCmpDesc = new QueryDescription().WithAll<T>().WithNone<History<T>>();
+            public readonly QueryDescription setupHistoryCmpDesc = new QueryDescription().WithAll<T, History<T>, Temp>();
+            public readonly QueryDescription saveHasCmpDesc = new QueryDescription().WithAll<History<T>, T>();
+            public readonly QueryDescription saveNoCmpDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
         }
         private readonly GenericCollection _desc = new();
         private readonly World _world;
@@ -43,15 +45,30 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public void Invoke<T>() where T : struct
             {
-                var query = new SaveHistoryQuery<T>(_tick);
+                var saveQuery = new SaveHistoryQuery<T>(_tick);
+                var setupHistoryQuery = new SetupHistoryQuery<T>();
                 var desc = _descriptions.Get<Description<T>>();
 
-                var hasDesc = desc.hasDesc;
-                _world.InlineQuery<SaveHistoryQuery<T>, History<T>, T>(hasDesc, ref query);
+                // add temp, setup, remove temp
+                var addHistoryCmpDesc = desc.addHistoryCmpDesc;
+                _world.Add<History<T>, Temp>(addHistoryCmpDesc);
+                var setupHistoryCmpDesc = desc.setupHistoryCmpDesc;
+                _world.InlineQuery<SetupHistoryQuery<T>, History<T>>(setupHistoryCmpDesc, ref setupHistoryQuery);
+                _world.Remove<Temp>(setupHistoryCmpDesc);
 
-                var noDesc = desc.noDesc;
-                _world.InlineQuery<SaveHistoryQuery<T>, History<T>>(noDesc, ref query);
+                var saveHasCmpDesc = desc.saveHasCmpDesc;
+                _world.InlineQuery<SaveHistoryQuery<T>, History<T>, T>(saveHasCmpDesc, ref saveQuery);
+
+                var saveNoCmpDesc = desc.saveNoCmpDesc;
+                _world.InlineQuery<SaveHistoryQuery<T>, History<T>>(saveNoCmpDesc, ref saveQuery);
             }
+        }
+
+        private readonly struct SetupHistoryQuery<T> :
+            IForEach<History<T>>
+            where T : struct
+        {
+            public void Update(ref History<T> history) => history = History<T>.Create();
         }
 
         private readonly struct SaveHistoryQuery<T> :

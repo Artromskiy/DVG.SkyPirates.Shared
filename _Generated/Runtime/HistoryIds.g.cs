@@ -18,7 +18,7 @@ using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.Ids;
 
-namespace DVG.Core.History
+namespace DVG.Core.Components
 {
     public static class HistoryIds
     {
@@ -104,9 +104,6 @@ namespace DVG.Core.History
             action.Invoke<Team>();
             action.Invoke<UnitId>();
         }
-
-        public static int GetId<T>() => _typeToId[typeof(T)];
-        public static Type GetCommand(ushort id) => _idToType[id];
     }
 }
 

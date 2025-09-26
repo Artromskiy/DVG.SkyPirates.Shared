@@ -2,7 +2,6 @@
 using DVG.Core;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
-using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 
@@ -14,18 +13,19 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly List<(fix2 s, fix2 e, fix2 normal)> _segmentsCache = new List<(fix2, fix2, fix2)>();
 
-        private readonly HexMap _hexMap;
         private readonly World _world;
 
-        public HexMapCollisionSystem(HexMap hexMap, World world)
+        public HexMapCollisionSystem(World world)
         {
-            _hexMap = hexMap;
             _world = world;
         }
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new SolveCollsionQuery(_hexMap, _segmentsCache);
+            _world.TryGetArchetype(Component<HexMap>.Signature, out var archetype);
+            var hexMap = archetype.GetChunk(0).GetFirst<HexMap>();
+
+            var query = new SolveCollsionQuery(hexMap, _segmentsCache);
             _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, CircleShape>(_desc, ref query);
         }
 

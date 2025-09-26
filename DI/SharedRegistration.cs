@@ -1,7 +1,7 @@
 ﻿using Arch.Core;
 using DVG.Core;
-using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Data;
+using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Services;
@@ -24,10 +24,6 @@ namespace DVG.SkyPirates.Shared.DI
                 return world;
             }, Lifestyle.Singleton);
 
-            container.Register(() =>
-                container.GetInstance<IPathFactory<HexMap>>().Create("Configs/Maps/Map"),
-                Lifestyle.Singleton);
-
             var commandExecutors = new Type[]
             {
                 typeof(SpawnSquadCommandExecutor),
@@ -41,6 +37,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             var tickableExecutors = new Type[]
             {
+                typeof(CreateHexMapTempSystem),
                 typeof(CachePositionSystem),
                 typeof(TargetSearchSystem),
                 typeof(SquadMoveSystem),
@@ -64,7 +61,6 @@ namespace DVG.SkyPirates.Shared.DI
             container.Collection.Register<ITickableExecutor>(tickableExecutors, Lifestyle.Singleton);
 
             container.Register<IPreTickableExecutorService, PreTickableExecutorService>(Lifestyle.Singleton);
-
             container.Register<IPostTickableExecutorService, PostTickableExecutorService>(Lifestyle.Singleton);
 
             container.Register<ITargetSearchSystem, TargetSearchSystem>(Lifestyle.Singleton);

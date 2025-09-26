@@ -23,7 +23,6 @@ namespace DVG.SkyPirates.Shared.Factories
             var squad = EntityIds.Get(cmd.EntityId);
 
             SquadArch.EnsureArch(_world, squad);
-            HistoryArch.EnsureHistory(_world, squad);
 
             _world.Get<CircleShape>(squad).Radius = fix.One / 3;
             _world.Get<Squad>(squad).units = new List<Entity>();

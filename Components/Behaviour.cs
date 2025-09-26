@@ -1,9 +1,10 @@
-﻿using DVG.Core.History.Attributes;
+﻿using DVG.Core.Components.Attributes;
 using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.SkyPirates.Shared.Components
 {
     [History]
+    [Component]
     public struct Behaviour
     {
         public StateId State;

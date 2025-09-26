@@ -35,7 +35,6 @@ namespace DVG.SkyPirates.Shared.Factories
             var unit = EntityIds.Get(parameters.EntityId);
 
             UnitArch.EnsureArch(_world, unit);
-            HistoryArch.EnsureHistory(_world, unit);
 
             _world.Get<CircleShape>(unit).Radius = fix.One / 3;
             _world.Get<UnitId>(unit) = parameters.UnitId;

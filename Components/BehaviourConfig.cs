@@ -1,8 +1,10 @@
-﻿using DVG.SkyPirates.Shared.Ids;
+﻿using DVG.Core.Components.Attributes;
+using DVG.SkyPirates.Shared.Ids;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Components
 {
+    [Component]
     public struct BehaviourConfig
     {
         public Dictionary<StateId, StateId> Scenario;
