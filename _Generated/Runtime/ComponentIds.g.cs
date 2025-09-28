@@ -13,6 +13,9 @@
 using System;
 using System.Collections.Generic;
 
+using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Components.Special;
 
 namespace DVG.Core.Components
 {
@@ -25,10 +28,58 @@ namespace DVG.Core.Components
         {
             _typeToId = new Dictionary<Type, int>()
             {
+                {typeof(Alive), 1},
+                {typeof(AutoHeal), 2},
+                {typeof(Behaviour), 3},
+                {typeof(BehaviourConfig), 4},
+                {typeof(CachePosition), 5},
+                {typeof(CircleShape), 6},
+                {typeof(Damage), 7},
+                {typeof(Destination), 8},
+                {typeof(Destruct), 9},
+                {typeof(Direction), 10},
+                {typeof(Fixation), 11},
+                {typeof(Health), 12},
+                {typeof(HexMap), 13},
+                {typeof(ImpactDistance), 14},
+                {typeof(MaxHealth), 15},
+                {typeof(MoveSpeed), 16},
+                {typeof(Position), 17},
+                {typeof(RecivedDamage), 18},
+                {typeof(Rotation), 19},
+                {typeof(Separation), 20},
+                {typeof(Squad), 21},
+                {typeof(Target), 22},
+                {typeof(TargetSearchData), 23},
+                {typeof(Team), 24},
             };
             
             _idToType = new Dictionary<int, Type>()
             {
+                {1, typeof(Alive)},
+                {2, typeof(AutoHeal)},
+                {3, typeof(Behaviour)},
+                {4, typeof(BehaviourConfig)},
+                {5, typeof(CachePosition)},
+                {6, typeof(CircleShape)},
+                {7, typeof(Damage)},
+                {8, typeof(Destination)},
+                {9, typeof(Destruct)},
+                {10, typeof(Direction)},
+                {11, typeof(Fixation)},
+                {12, typeof(Health)},
+                {13, typeof(HexMap)},
+                {14, typeof(ImpactDistance)},
+                {15, typeof(MaxHealth)},
+                {16, typeof(MoveSpeed)},
+                {17, typeof(Position)},
+                {18, typeof(RecivedDamage)},
+                {19, typeof(Rotation)},
+                {20, typeof(Separation)},
+                {21, typeof(Squad)},
+                {22, typeof(Target)},
+                {23, typeof(TargetSearchData)},
+                {24, typeof(Team)},
             };
         }
 
@@ -36,6 +87,30 @@ namespace DVG.Core.Components
         public static void ForEachData<T>(ref T action)
             where T: IStructGenericAction
         {
+            action.Invoke<Alive>();
+            action.Invoke<AutoHeal>();
+            action.Invoke<Behaviour>();
+            action.Invoke<BehaviourConfig>();
+            action.Invoke<CachePosition>();
+            action.Invoke<CircleShape>();
+            action.Invoke<Damage>();
+            action.Invoke<Destination>();
+            action.Invoke<Destruct>();
+            action.Invoke<Direction>();
+            action.Invoke<Fixation>();
+            action.Invoke<Health>();
+            action.Invoke<HexMap>();
+            action.Invoke<ImpactDistance>();
+            action.Invoke<MaxHealth>();
+            action.Invoke<MoveSpeed>();
+            action.Invoke<Position>();
+            action.Invoke<RecivedDamage>();
+            action.Invoke<Rotation>();
+            action.Invoke<Separation>();
+            action.Invoke<Squad>();
+            action.Invoke<Target>();
+            action.Invoke<TargetSearchData>();
+            action.Invoke<Team>();
         }
     }
 }
