@@ -24,7 +24,6 @@ namespace DVG.SkyPirates.Shared.DI
 
             var commandExecutors = new Type[]
             {
-                //typeof(LoadWorldCommandExecutor),
                 typeof(SpawnSquadCommandExecutor),
                 typeof(SpawnUnitCommandExecutor),
                 typeof(FixationCommandExecutor),
@@ -36,7 +35,6 @@ namespace DVG.SkyPirates.Shared.DI
 
             var tickableExecutors = new Type[]
             {
-                typeof(CreateHexMapTempSystem),
                 typeof(CachePositionSystem),
                 typeof(TargetSearchSystem),
                 typeof(SquadMoveSystem),
