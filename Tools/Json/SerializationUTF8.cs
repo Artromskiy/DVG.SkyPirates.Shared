@@ -9,9 +9,14 @@ namespace DVG.SkyPirates.Shared.Tools.Json
     {
         private static Utf8JsonWriter? _writer;
         private static readonly ArrayBufferWriter<byte> _buffer;
+        private static readonly JsonSerializerOptions _options;
         static SerializationUTF8()
         {
             _buffer = new ArrayBufferWriter<byte>();
+            _options = new(JsonSerializerOptions.Default);
+            _options.IncludeFields = true;
+            _options.IgnoreReadOnlyFields = false;
+            _options.IgnoreReadOnlyProperties = false;
         }
 
         public static string Serialize<T>(T data)
@@ -26,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         {
             _writer?.Reset(buffer);
             _writer ??= new Utf8JsonWriter(buffer);
-            JsonSerializer.Serialize(_writer, data);
+            JsonSerializer.Serialize(_writer, data, _options);
         }
 
         public static T Deserialize<T>(string json)
@@ -42,7 +47,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         public static T Deserialize<T>(ReadOnlyMemory<byte> data)
         {
             var reader = new Utf8JsonReader(data.Span);
-            return JsonSerializer.Deserialize<T>(ref reader);
+            return JsonSerializer.Deserialize<T>(ref reader, _options);
         }
     }
 }
