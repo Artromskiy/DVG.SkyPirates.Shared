@@ -27,13 +27,6 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             return Encoding.UTF8.GetString(_buffer.WrittenSpan);
         }
 
-        public static void Serialize<T>(T data, IBufferWriter<byte> buffer)
-        {
-            _writer?.Reset(buffer);
-            _writer ??= new Utf8JsonWriter(buffer);
-            JsonSerializer.Serialize(_writer, data, _options);
-        }
-
         public static T Deserialize<T>(string json)
         {
             _buffer.Clear();
@@ -43,6 +36,14 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
             return Deserialize<T>(_buffer.WrittenMemory);
         }
+
+        public static void Serialize<T>(T data, IBufferWriter<byte> buffer)
+        {
+            _writer?.Reset(buffer);
+            _writer ??= new Utf8JsonWriter(buffer);
+            JsonSerializer.Serialize(_writer, data, _options);
+        }
+
 
         public static T Deserialize<T>(ReadOnlyMemory<byte> data)
         {

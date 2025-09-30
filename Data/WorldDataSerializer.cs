@@ -64,7 +64,7 @@ namespace DVG.SkyPirates.Shared.Data
 
                 public void Update(Entity entity, ref T component)
                 {
-                    _components.Add((entity.Id, Serialization.Serialize(component)));
+                    _components.Add((entity.Id, SerializationUTF8.Serialize(component)));
                 }
             }
         }

@@ -47,7 +47,7 @@ namespace DVG.SkyPirates.Shared.Data
                     _commands[key] = list = new();
 
                 foreach (var item in collection)
-                    list.Add(Serialization.Serialize(item));
+                    list.Add(SerializationUTF8.Serialize(item));
             }
         }
         private readonly struct ApplyCommandsAction : IGenericAction<ICommandData>
@@ -68,7 +68,7 @@ namespace DVG.SkyPirates.Shared.Data
 
                 foreach (var item in commands)
                 {
-                    var cmd = Serialization.Deserialize<Command<T>>(item);
+                    var cmd = SerializationUTF8.Deserialize<Command<T>>(item);
                     _timeline.AddCommand(cmd);
                 }
             }
