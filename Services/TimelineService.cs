@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Services
 {
     public class TimelineService : ITimelineService
     {
-        public int CurrentTick { get; private set; }
+        public int CurrentTick { get; set; }
         private int? _dirtyTick;
 
         private readonly Dictionary<int, CommandCollection> _commands = new Dictionary<int, CommandCollection>();

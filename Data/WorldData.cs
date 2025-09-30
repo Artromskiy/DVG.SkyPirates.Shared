@@ -4,14 +4,16 @@ using DVG.Core.Components;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.Tools.Json;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    public class WorldSerialization
+    public class WorldData
     {
-        public Dictionary<string, List<(int entity, string data)>> _entities;
+        [DataMember]
+        private readonly Dictionary<string, List<(int entity, string data)>> _entities;
 
-        public WorldSerialization(World world)
+        public WorldData(World world)
         {
             _entities = new Dictionary<string, List<(int entity, string data)>>();
             var serializationAction = new SerializationAction(_entities, world);
