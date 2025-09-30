@@ -6,7 +6,7 @@ namespace DVG.SkyPirates.Shared.IServices
 {
     public interface ITimelineService
     {
-        int CurrentTick { get; set; }
+        int CurrentTick { get; }
         void Init(TimelineStartCommand timelineStart);
         TimelineStartCommand GetIniter();
         void AddCommand<T>(Command<T> command) where T : ICommandData;

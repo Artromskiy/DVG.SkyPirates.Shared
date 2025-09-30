@@ -5,7 +5,6 @@ using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using DVG.SkyPirates.Shared.Services.CommandExecutors;
 using DVG.SkyPirates.Shared.Systems.Special;
 using System.Collections.Generic;
 
@@ -13,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Services
 {
     public class TimelineService : ITimelineService
     {
-        public int CurrentTick { get; set; }
+        public int CurrentTick { get; private set; }
         private int? _dirtyTick;
 
         private readonly Dictionary<int, CommandCollection> _commands = new();

@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using DVG.Core;
 using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 
@@ -25,7 +26,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 return;
 
             var hexMap = _hexMapLoader.Create("Configs/Maps/Map");
-            _world.Create(hexMap);
+            _world.AddOrGet<HexMap>(EntityIds.Get(1)) = hexMap;
             _created = true;
         }
     }
