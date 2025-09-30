@@ -7,7 +7,7 @@ using DVG.SkyPirates.Shared.IServices;
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
     public class LoadWorldCommandExecutor :
-        ICommandExecutor<LoadWorldCommand>
+        ICommandExecutor<ConnectionCommand>
     {
         private readonly World _world;
         private readonly ITimelineService _timelineService;
@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _world = world;
         }
 
-        public void Execute(Command<LoadWorldCommand> cmd)
+        public void Execute(Command<ConnectionCommand> cmd)
         {
             WorldDataSerializer.Deserialize(_world, cmd.Data.WorldData);
             _timelineService.CurrentTick = cmd.Tick;

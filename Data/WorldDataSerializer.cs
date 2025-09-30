@@ -2,6 +2,7 @@
 using DVG.Core;
 using DVG.Core.Components;
 using DVG.SkyPirates.Shared.Entities;
+using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Tools;
 using DVG.SkyPirates.Shared.Tools.Json;
 using System.Collections.Generic;
@@ -16,11 +17,14 @@ namespace DVG.SkyPirates.Shared.Data
         }
         private static readonly GenericCollection _desc = new();
 
-        public static WorldData Serialize(World world)
+        public static WorldData Serialize(World world, ITimelineService timelineService, int tick)
         {
+            timelineService.GoToTick(tick);
             var entities = new Dictionary<string, List<(int entity, string data)>>();
             var serializationAction = new SerializationAction(_desc, entities, world);
             ComponentIds.ForEachData(ref serializationAction);
+
+            timelineService.GoToTick(timelineService.CurrentTick - 1);
             return new WorldData(entities);
         }
 

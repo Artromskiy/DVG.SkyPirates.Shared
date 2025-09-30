@@ -24,6 +24,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             var commandExecutors = new Type[]
             {
+                //typeof(LoadWorldCommandExecutor),
                 typeof(SpawnSquadCommandExecutor),
                 typeof(SpawnUnitCommandExecutor),
                 typeof(FixationCommandExecutor),

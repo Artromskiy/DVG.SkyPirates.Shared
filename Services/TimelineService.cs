@@ -105,7 +105,7 @@ namespace DVG.SkyPirates.Shared.Services
             List<CommandCollection> commands = new();
             foreach (var item in _commands)
             {
-                if (item.Key >= tick)
+                if (item.Key > tick)
                     commands.Add(item.Value);
             }
             return commands;
