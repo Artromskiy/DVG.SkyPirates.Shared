@@ -23,16 +23,16 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
         {
             _buffer.Clear();
             SerializationUTF8.Serialize(data, _buffer);
-            Compress(_buffer, buffer);
+            Compress(_buffer.WrittenMemory, buffer);
         }
 
-        public void Compress(IBufferWriter<byte> from, IBufferWriter<byte> to)
+        public void Compress(ReadOnlyMemory<byte> from, IBufferWriter<byte> to)
         {
             _buffer.Clear();
             using var output = to.AsStream();
             using var input = from.AsStream();
-            using DeflateStream dstream = new DeflateStream(input, CompressionLevel.Optimal);
-            dstream.CopyTo(output);
+            using DeflateStream dstream = new DeflateStream(output, CompressionLevel.Optimal);
+            dstream.Write(from.Span);
         }
 
         public static void Decompress(ReadOnlyMemory<byte> from, IBufferWriter<byte> to)
