@@ -88,7 +88,7 @@ namespace DVG.SkyPirates.Shared.Data
                 foreach (var (entity, data) in components)
                 {
                     ref var cmp = ref _world.AddOrGet<T>(EntityIds.Get(entity));
-                    cmp = Serialization.Deserialize<T>(data);
+                    cmp = SerializationUTF8.Deserialize<T>(data);
                 }
             }
         }
