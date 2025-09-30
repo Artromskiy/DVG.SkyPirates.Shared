@@ -18,9 +18,9 @@ using System.Runtime.Serialization;
 namespace DVG.SkyPirates.Shared.Commands
 {
     [StructLayout(LayoutKind.Sequential)]
-    partial struct ConnectionCommand : ICommandData
+    partial struct TimelineStartCommand : ICommandData
     {
         [IgnoreDataMember]
-        public int CommandId => CommandIds.GetId<ConnectionCommand>();
+        public int CommandId => CommandIds.GetId<TimelineStartCommand>();
     }
 }

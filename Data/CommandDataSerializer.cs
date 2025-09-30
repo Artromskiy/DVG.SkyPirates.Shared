@@ -8,10 +8,8 @@ namespace DVG.SkyPirates.Shared.Data
 {
     public static class CommandDataSerializer
     {
-        public static CommandsData Serialize(ITimelineService timeline, int tick)
+        public static CommandsData Serialize(List<CommandCollection> commands)
         {
-            var commands = timeline.GetCommandsAfter(tick);
-
             Dictionary<string, List<string>> _commands = new();
             foreach (var tickCollection in commands)
             {

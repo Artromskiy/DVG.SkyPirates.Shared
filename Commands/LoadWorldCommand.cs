@@ -6,18 +6,20 @@ using System.Runtime.Serialization;
 namespace DVG.SkyPirates.Shared.Commands
 {
     [Command]
-    public partial struct ConnectionCommand
+    public partial struct TimelineStartCommand
     {
-
         [DataMember(Order = 0)]
         public WorldData WorldData { get; set; }
         [DataMember(Order = 1)]
         public CommandsData CommandsData { get; set; }
+        [DataMember(Order = 2)]
+        public int CurrentTick { get; set; }
 
-        public ConnectionCommand(WorldData worldData, CommandsData commandsData)
+        public TimelineStartCommand(WorldData worldData, CommandsData commandsData, int currentTick)
         {
             WorldData = worldData;
             CommandsData = commandsData;
+            CurrentTick = currentTick;
         }
     }
 }

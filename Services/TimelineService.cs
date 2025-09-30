@@ -1,8 +1,11 @@
 ﻿using Arch.Core;
 using DVG.Core;
 using DVG.Core.Commands;
+using DVG.SkyPirates.Shared.Commands;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Services.CommandExecutors;
 using DVG.SkyPirates.Shared.Systems.Special;
 using System.Collections.Generic;
 
@@ -13,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Services
         public int CurrentTick { get; set; }
         private int? _dirtyTick;
 
-        private readonly SortedDictionary<int, CommandCollection> _commands = new();
+        private readonly Dictionary<int, CommandCollection> _commands = new();
 
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
@@ -24,6 +27,7 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly RollbackHistorySystem _rollbackHistorySystem;
         private readonly SaveHistorySystem _saveHistorySystem;
         private readonly DestructSystem _destructSystem;
+        private readonly World _world;
 
         public TimelineService(
             World world,
@@ -36,6 +40,7 @@ namespace DVG.SkyPirates.Shared.Services
             _rollbackHistorySystem = new(world);
             _saveHistorySystem = new(world);
             _destructSystem = new(world);
+            _world = world;
 
             _commandRecieveService = commandRecieveService;
             _commandExecutorService = commandExecutorService;
@@ -85,7 +90,7 @@ namespace DVG.SkyPirates.Shared.Services
             if (_dirtyTick.HasValue && _dirtyTick < CurrentTick)
             {
                 int tickToGo = _dirtyTick.Value - 1;
-                GoToTick(tickToGo);
+                _rollbackHistorySystem.Tick(tickToGo, Constants.TickTime);
             }
             var fromTick = Maths.Min(_dirtyTick ?? CurrentTick, CurrentTick);
             for (int i = fromTick; i <= CurrentTick; i++)
@@ -100,20 +105,32 @@ namespace DVG.SkyPirates.Shared.Services
             _postTickableExecutorService.Tick(CurrentTick++, Constants.TickTime);
         }
 
-        public List<CommandCollection> GetCommandsAfter(int tick)
+        private List<CommandCollection> GetCommandsAfter(int tick)
         {
             List<CommandCollection> commands = new();
             foreach (var item in _commands)
-            {
                 if (item.Key > tick)
                     commands.Add(item.Value);
-            }
             return commands;
         }
 
-        public void GoToTick(int tick)
+        public void Init(TimelineStartCommand timelineStart)
         {
-            _rollbackHistorySystem.Tick(tick, Constants.TickTime);
+            WorldDataSerializer.Deserialize(_world, timelineStart.WorldData);
+            CommandDataSerializer.Deserialize(this, timelineStart.CommandsData);
+            CurrentTick = timelineStart.CurrentTick;
+            for (int i = CurrentTick - 50; i < CurrentTick; i++)
+                _saveHistorySystem.Tick(CurrentTick - 50, Constants.TickTime);
+        }
+
+        public TimelineStartCommand GetIniter()
+        {
+            int targetTick = CurrentTick - 50;
+            _rollbackHistorySystem.Tick(targetTick, Constants.TickTime);
+            var worldData= WorldDataSerializer.Serialize(_world);
+            var commandsData = CommandDataSerializer.Serialize(GetCommandsAfter(targetTick));
+            _rollbackHistorySystem.Tick(CurrentTick - 1, Constants.TickTime);
+            return new TimelineStartCommand(worldData, commandsData, CurrentTick);
         }
 
         private readonly struct RegisterRecieverAction : IGenericAction<ICommandData>

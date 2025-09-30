@@ -17,14 +17,11 @@ namespace DVG.SkyPirates.Shared.Data
         }
         private static readonly GenericCollection _desc = new();
 
-        public static WorldData Serialize(World world, ITimelineService timelineService, int tick)
+        public static WorldData Serialize(World world)
         {
-            timelineService.GoToTick(tick);
             var entities = new Dictionary<string, List<(int entity, string data)>>();
             var serializationAction = new SerializationAction(_desc, entities, world);
             ComponentIds.ForEachData(ref serializationAction);
-
-            timelineService.GoToTick(timelineService.CurrentTick - 1);
             return new WorldData(entities);
         }
 
