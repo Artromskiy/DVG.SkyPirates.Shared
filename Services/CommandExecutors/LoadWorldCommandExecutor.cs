@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
@@ -19,7 +20,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<LoadWorldCommand> cmd)
         {
-            cmd.Data.WorldData.Apply(_world);
+            WorldDataSerializer.Deserialize(_world, cmd.Data.WorldData);
             _timelineService.CurrentTick = cmd.Tick;
         }
     }

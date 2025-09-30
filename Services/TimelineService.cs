@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Services
         public int CurrentTick { get; set; }
         private int? _dirtyTick;
 
-        private readonly Dictionary<int, CommandCollection> _commands = new Dictionary<int, CommandCollection>();
+        private readonly SortedDictionary<int, CommandCollection> _commands = new();
 
         private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
@@ -85,7 +85,7 @@ namespace DVG.SkyPirates.Shared.Services
             if (_dirtyTick.HasValue && _dirtyTick < CurrentTick)
             {
                 int tickToGo = _dirtyTick.Value - 1;
-                _rollbackHistorySystem.Tick(tickToGo, Constants.TickTime);
+                GoToTick(tickToGo);
             }
             var fromTick = Maths.Min(_dirtyTick ?? CurrentTick, CurrentTick);
             for (int i = fromTick; i <= CurrentTick; i++)
@@ -98,6 +98,22 @@ namespace DVG.SkyPirates.Shared.Services
 
             _destructSystem.Tick(CurrentTick, Constants.TickTime);
             _postTickableExecutorService.Tick(CurrentTick++, Constants.TickTime);
+        }
+
+        public List<CommandCollection> GetCommandsAfter(int tick)
+        {
+            List<CommandCollection> commands = new();
+            foreach (var item in _commands)
+            {
+                if (item.Key >= tick)
+                    commands.Add(item.Value);
+            }
+            return commands;
+        }
+
+        public void GoToTick(int tick)
+        {
+            _rollbackHistorySystem.Tick(tick, Constants.TickTime);
         }
 
         private readonly struct RegisterRecieverAction : IGenericAction<ICommandData>
