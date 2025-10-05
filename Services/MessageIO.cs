@@ -6,7 +6,7 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Services.CommandSerializers
+namespace DVG.SkyPirates.Shared.Services
 {
     public class MessageIO
     {
@@ -31,6 +31,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
             where T : ICommandData
         {
             bool splitted = message.GetBool();
+            _buffer.Clear();
 
             if (!splitted)
             {
@@ -56,7 +57,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
 
                 storage.Write(message);
 
-                if(storage.Recieved(_buffer))
+                if (storage.Recieved(_buffer))
                 {
                     command = _commandSerializer.Deserialize<T>(_buffer.WrittenMemory);
                     storage.Clear();
@@ -72,7 +73,10 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
         public List<Message> GetMessages<T>(Command<T> data, List<Message> messages)
             where T : ICommandData
         {
-            var written = WriteCommandToBuffer(data);
+            _buffer.Clear();
+            _commandSerializer.Serialize(_buffer, ref data);
+            var written = _buffer.WrittenSpan;
+
             if (written.Length >= SplitSize) // need to split
             {
                 return GetSplitted<T>(written, messages);
@@ -124,13 +128,13 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
             return messages;
         }
 
-        private ReadOnlySpan<byte> WriteCommandToBuffer<T>(Command<T> data)
-            where T : ICommandData
-        {
-            _buffer.Clear();
-            _commandSerializer.Serialize(_buffer, ref data);
-            return _buffer.WrittenSpan;
-        }
+
+
+
+
+
+
+
 
         private void WriteToMessage(ReadOnlySpan<byte> write, Message message)
         {
