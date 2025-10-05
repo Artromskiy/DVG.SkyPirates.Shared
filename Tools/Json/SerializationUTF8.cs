@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Buffers;
 using System.Globalization;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace DVG.SkyPirates.Shared.Tools.Json
 {

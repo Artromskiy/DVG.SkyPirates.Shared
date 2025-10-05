@@ -18,10 +18,10 @@ namespace DVG.SkyPirates.Shared.Ids
 {
     [Serializable]
     [DataContract]
-    readonly partial struct UnitId : IId, IEquatable<UnitId>, IComparable<UnitId>
+    partial struct UnitId : IId, IEquatable<UnitId>, IComparable<UnitId>
     {
         [DataMember(Order = 0)]
-        public string Value { get; }
+        public string Value { get; private set; }
         private const string NoneValue = "None";
         public static readonly UnitId None = new UnitId(NoneValue);
 
@@ -30,6 +30,7 @@ namespace DVG.SkyPirates.Shared.Ids
             Value = value;
         }
 
+        [IgnoreMember]
         public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
         public readonly bool Equals(UnitId other) => Value == other.Value || (IsNone && other.IsNone);
         public readonly int CompareTo(UnitId other) => Equals(other) ? 0 : string.Compare(Value, other.Value);

@@ -11,7 +11,6 @@
 //------------------------------------------------------------------------------
 
 using DVG.Core;
-using MessagePack;
 using System;
 using System.Runtime.Serialization;
 
@@ -19,10 +18,10 @@ namespace DVG.SkyPirates.Shared.Ids
 {
     [Serializable]
     [DataContract]
-    readonly partial struct TileId : IId, IEquatable<TileId>, IComparable<TileId>
+    partial struct TileId : IId, IEquatable<TileId>, IComparable<TileId>
     {
         [DataMember(Order = 0)]
-        public string Value { get; }
+        public string Value { get; private set; }
         private const string NoneValue = "None";
         public static readonly TileId None = new TileId(NoneValue);
 
@@ -30,6 +29,7 @@ namespace DVG.SkyPirates.Shared.Ids
         {
             Value = value;
         }
+
         [IgnoreMember]
         public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
         public readonly bool Equals(TileId other) => Value == other.Value || (IsNone && other.IsNone);

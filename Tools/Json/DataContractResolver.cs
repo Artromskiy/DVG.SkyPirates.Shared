@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 {
     public class DataContractResolver : DefaultJsonTypeInfoResolver
     {
-        private static Lazy<DataContractResolver> s_defaultInstance = new(() => new DataContractResolver());
+        private static readonly Lazy<DataContractResolver> s_defaultInstance = new(() => new DataContractResolver());
 
         public static DataContractResolver Default => s_defaultInstance.Value;
 
