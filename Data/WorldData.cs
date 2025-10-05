@@ -9,13 +9,11 @@ namespace DVG.SkyPirates.Shared.Data
     public class WorldData
     {
         [DataMember(Order = 0)]
-        private readonly Dictionary<string, List<(int entity, string data)>> _entities;
-        [IgnoreDataMember]
-        public IReadOnlyDictionary<string, List<(int entity, string data)>> Entities => _entities;
+        public readonly Dictionary<string, List<(int entity, string data)>> Entities;
 
         public WorldData(Dictionary<string, List<(int entity, string data)>> entities)
         {
-            _entities = entities;
+            Entities = entities;
         }
     }
 }

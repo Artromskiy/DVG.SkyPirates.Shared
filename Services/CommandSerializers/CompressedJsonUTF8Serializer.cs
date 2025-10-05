@@ -5,7 +5,6 @@ using DVG.SkyPirates.Shared.Tools.Json;
 using System;
 using System.Buffers;
 using System.IO.Compression;
-using System.Text;
 
 namespace DVG.SkyPirates.Shared.Services.CommandSerializers
 {
@@ -17,7 +16,6 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
         {
             _buffer.Clear();
             Decompress(data, _buffer);
-            Console.WriteLine(Encoding.UTF8.GetString(_buffer.WrittenSpan));
             return SerializationUTF8.Deserialize<Command<T>>(_buffer.WrittenMemory);
         }
 
@@ -25,7 +23,6 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
         {
             _buffer.Clear();
             SerializationUTF8.Serialize(data, _buffer);
-            Console.WriteLine(Encoding.UTF8.GetString(_buffer.WrittenSpan));
             Compress(_buffer.WrittenMemory, buffer);
         }
 
