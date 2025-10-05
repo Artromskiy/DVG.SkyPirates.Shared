@@ -79,6 +79,7 @@ namespace DVG.SkyPirates.Shared.Services
 
             if (written.Length >= SplitSize) // need to split
             {
+                Console.WriteLine(written.Length);
                 return GetSplitted<T>(written, messages);
             }
             else
@@ -166,7 +167,7 @@ namespace DVG.SkyPirates.Shared.Services
                 {
                     foreach (var item in _splitMessageData)
                     {
-                        var read = writer.GetMemory(item.Value.Length);
+                        var read = item.Value;
                         var write = writer.GetMemory(read.Length);
                         read.CopyTo(write);
                         writer.Advance(read.Length);
