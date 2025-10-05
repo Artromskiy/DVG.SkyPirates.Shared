@@ -30,7 +30,7 @@ namespace DVG.SkyPirates.Shared.Ids
             Value = value;
         }
 
-        [IgnoreMember]
+        [IgnoreDataMember]
         public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
         public readonly bool Equals(StateId other) => Value == other.Value || (IsNone && other.IsNone);
         public readonly int CompareTo(StateId other) => Equals(other) ? 0 : string.Compare(Value, other.Value);

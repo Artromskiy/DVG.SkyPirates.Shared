@@ -113,7 +113,7 @@ namespace DVG.SkyPirates.Shared.Services
             return commands;
         }
 
-        public void Init(TimelineStartCommand timelineStart)
+        public void Init(LoadWorldCommand timelineStart)
         {
             WorldDataSerializer.Deserialize(_world, timelineStart.WorldData);
             CommandDataSerializer.Deserialize(this, timelineStart.CommandsData);
@@ -122,14 +122,14 @@ namespace DVG.SkyPirates.Shared.Services
                 _saveHistorySystem.Tick(CurrentTick - 50, Constants.TickTime);
         }
 
-        public TimelineStartCommand GetIniter()
+        public LoadWorldCommand GetIniter()
         {
             int targetTick = CurrentTick - 50;
             _rollbackHistorySystem.Tick(targetTick, Constants.TickTime);
             var worldData= WorldDataSerializer.Serialize(_world);
             var commandsData = CommandDataSerializer.Serialize(GetCommandsAfter(targetTick));
             _rollbackHistorySystem.Tick(CurrentTick - 1, Constants.TickTime);
-            return new TimelineStartCommand(worldData, commandsData, CurrentTick);
+            return new LoadWorldCommand(worldData, commandsData, CurrentTick);
         }
 
         private readonly struct RegisterRecieverAction : IGenericAction<ICommandData>

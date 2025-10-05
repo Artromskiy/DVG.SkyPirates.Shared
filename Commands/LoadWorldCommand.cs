@@ -1,12 +1,11 @@
-﻿using DVG.Core;
-using DVG.Core.Commands.Attributes;
+﻿using DVG.Core.Commands.Attributes;
 using DVG.SkyPirates.Shared.Data;
 using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
     [Command]
-    public partial struct TimelineStartCommand
+    public partial struct LoadWorldCommand
     {
         [DataMember(Order = 0)]
         public WorldData WorldData { get; set; }
@@ -15,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Commands
         [DataMember(Order = 2)]
         public int CurrentTick { get; set; }
 
-        public TimelineStartCommand(WorldData worldData, CommandsData commandsData, int currentTick)
+        public LoadWorldCommand(WorldData worldData, CommandsData commandsData, int currentTick)
         {
             WorldData = worldData;
             CommandsData = commandsData;

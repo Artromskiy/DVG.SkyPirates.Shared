@@ -28,18 +28,18 @@ namespace DVG.Core.Commands
             {
                 {typeof(DirectionCommand), 1},
                 {typeof(FixationCommand), 2},
-                {typeof(SpawnSquadCommand), 3},
-                {typeof(SpawnUnitCommand), 4},
-                {typeof(TimelineStartCommand), 5},
+                {typeof(LoadWorldCommand), 3},
+                {typeof(SpawnSquadCommand), 4},
+                {typeof(SpawnUnitCommand), 5},
             };
             
             _idToType = new Dictionary<int, Type>()
             {
                 {1, typeof(DirectionCommand)},
                 {2, typeof(FixationCommand)},
-                {3, typeof(SpawnSquadCommand)},
-                {4, typeof(SpawnUnitCommand)},
-                {5, typeof(TimelineStartCommand)},
+                {3, typeof(LoadWorldCommand)},
+                {4, typeof(SpawnSquadCommand)},
+                {5, typeof(SpawnUnitCommand)},
             };
         }
 
@@ -49,9 +49,9 @@ namespace DVG.Core.Commands
         {
             action.Invoke<DirectionCommand>();
             action.Invoke<FixationCommand>();
+            action.Invoke<LoadWorldCommand>();
             action.Invoke<SpawnSquadCommand>();
             action.Invoke<SpawnUnitCommand>();
-            action.Invoke<TimelineStartCommand>();
         }
 
         public static int GetId<T>() => _typeToId[typeof(T)];
