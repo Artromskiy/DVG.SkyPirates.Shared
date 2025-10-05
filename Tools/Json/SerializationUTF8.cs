@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Buffers;
+using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -18,25 +19,25 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _options.IncludeFields = true;
             _options.IgnoreReadOnlyFields = false;
             _options.IgnoreReadOnlyProperties = false;
-
+            var format = CultureInfo.InvariantCulture;
             _options.Converters.Add(new Converter<bool2>(value => bool2.Parse(value)));
             _options.Converters.Add(new Converter<bool3>(value => bool3.Parse(value)));
             _options.Converters.Add(new Converter<bool4>(value => bool4.Parse(value)));
-            _options.Converters.Add(new Converter<fix2>(value => fix2.Parse(value)));
-            _options.Converters.Add(new Converter<fix3>(value => fix3.Parse(value)));
-            _options.Converters.Add(new Converter<fix4>(value => fix4.Parse(value)));
-            _options.Converters.Add(new Converter<int2>(value => int2.Parse(value)));
-            _options.Converters.Add(new Converter<int3>(value => int3.Parse(value)));
-            _options.Converters.Add(new Converter<int4>(value => int4.Parse(value)));
-            _options.Converters.Add(new Converter<uint2>(value => uint2.Parse(value)));
-            _options.Converters.Add(new Converter<uint3>(value => uint3.Parse(value)));
-            _options.Converters.Add(new Converter<uint4>(value => uint4.Parse(value)));
-            _options.Converters.Add(new Converter<float2>(value => float2.Parse(value)));
-            _options.Converters.Add(new Converter<float3>(value => float3.Parse(value)));
-            _options.Converters.Add(new Converter<float4>(value => float4.Parse(value)));
-            _options.Converters.Add(new Converter<double2>(value => double2.Parse(value)));
-            _options.Converters.Add(new Converter<double3>(value => double3.Parse(value)));
-            _options.Converters.Add(new Converter<double4>(value => double4.Parse(value)));
+            _options.Converters.Add(new Converter<fix2>(value => fix2.Parse(value, format)));
+            _options.Converters.Add(new Converter<fix3>(value => fix3.Parse(value, format)));
+            _options.Converters.Add(new Converter<fix4>(value => fix4.Parse(value, format)));
+            _options.Converters.Add(new Converter<int2>(value => int2.Parse(value, format)));
+            _options.Converters.Add(new Converter<int3>(value => int3.Parse(value, format)));
+            _options.Converters.Add(new Converter<int4>(value => int4.Parse(value, format)));
+            _options.Converters.Add(new Converter<uint2>(value => uint2.Parse(value, format)));
+            _options.Converters.Add(new Converter<uint3>(value => uint3.Parse(value, format)));
+            _options.Converters.Add(new Converter<uint4>(value => uint4.Parse(value, format)));
+            _options.Converters.Add(new Converter<float2>(value => float2.Parse(value, format)));
+            _options.Converters.Add(new Converter<float3>(value => float3.Parse(value, format)));
+            _options.Converters.Add(new Converter<float4>(value => float4.Parse(value, format)));
+            _options.Converters.Add(new Converter<double2>(value => double2.Parse(value, format)));
+            _options.Converters.Add(new Converter<double3>(value => double3.Parse(value, format)));
+            _options.Converters.Add(new Converter<double4>(value => double4.Parse(value, format)));
         }
 
         public static string Serialize<T>(T data)
