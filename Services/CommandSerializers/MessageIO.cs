@@ -1,0 +1,201 @@
+﻿using DVG.Core;
+using DVG.Core.Commands;
+using DVG.SkyPirates.Shared.IServices;
+using Riptide;
+using System;
+using System.Buffers;
+using System.Collections.Generic;
+
+namespace DVG.SkyPirates.Shared.Services.CommandSerializers
+{
+    public class MessageIO
+    {
+        private byte[] _tempBytes = Array.Empty<byte>();
+        private readonly ArrayBufferWriter<byte> _buffer = new();
+        private readonly ICommandSerializer _commandSerializer;
+        private ushort _splitMessageId;
+
+        // split  last + index + uid
+        private const int SplitHeaderSize = 5; // bool + ushort + ushort + bool
+        private int SplitSize => Message.MaxPayloadSize - SplitHeaderSize;
+
+        private readonly Dictionary<(ushort client, ushort uid), SplitMessageStorage> _splitMessages = new();
+        private readonly Queue<SplitMessageStorage> _queue = new();
+
+        public MessageIO(ICommandSerializer commandSerializer)
+        {
+            _commandSerializer = commandSerializer;
+        }
+
+        public bool RecieveMessage<T>(Message message, ushort client, out Command<T> command)
+            where T : ICommandData
+        {
+            bool splitted = message.GetBool();
+
+            if (!splitted)
+            {
+                var length = (int)message.GetVarULong();
+                if (_tempBytes.Length < length)
+                    Array.Resize(ref _tempBytes, length);
+
+                var writeMemory = _buffer.GetMemory(length);
+                message.GetBytes(length, _tempBytes);
+                _tempBytes.CopyTo(writeMemory);
+                _buffer.Advance(length);
+                command = _commandSerializer.Deserialize<T>(_buffer.WrittenMemory);
+                return true;
+            }
+            else
+            {
+                // read uid // 2^16 max
+                ushort uid = message.GetUShort();
+                var key = (client, uid);
+                if (!_splitMessages.TryGetValue(key, out var storage))
+                    _splitMessages[key] = storage =
+                        _queue.TryDequeue(out storage) ? storage : new(this);
+
+                storage.Write(message);
+
+                if(storage.Recieved(_buffer))
+                {
+                    command = _commandSerializer.Deserialize<T>(_buffer.WrittenMemory);
+                    storage.Clear();
+                    _splitMessages.Remove(key);
+                    _queue.Enqueue(storage);
+                    return true;
+                }
+                command = default;
+                return false;
+            }
+        }
+
+        public List<Message> GetMessages<T>(Command<T> data, List<Message> messages)
+            where T : ICommandData
+        {
+            var written = WriteCommandToBuffer(data);
+            if (written.Length >= SplitSize) // need to split
+            {
+                return GetSplitted<T>(written, messages);
+            }
+            else
+            {
+                return GetSingle<T>(written, messages);
+            }
+        }
+
+        private List<Message> GetSplitted<T>(ReadOnlySpan<byte> written, List<Message> messages)
+            where T : ICommandData
+        {
+            // write true if splitted
+            // write true if last split index
+            // write split index // 2^16 max
+            // write uid // 2^16 max
+
+            int splitCount = written.Length / SplitSize +
+                (written.Length % SplitSize == 0 ? 0 : 1);
+            if (splitCount > ushort.MaxValue)
+                throw new NotSupportedException();
+            var commandId = CommandIds.GetId<T>();
+            ushort uid = _splitMessageId++;
+            for (int i = 0; i < splitCount; i++)
+            {
+                var splitMessage = Message.Create(MessageSendMode.Reliable, (ushort)commandId);
+                splitMessage.AddBool(true); // split
+                splitMessage.AddUShort(uid); // uid
+                splitMessage.AddUShort((ushort)i); // index
+                splitMessage.AddBool(i == splitCount - 1); // is last
+
+                var splitWrite = written[(i * SplitSize)..];
+                splitWrite = splitWrite[..Math.Min(splitWrite.Length, SplitSize)];
+                WriteToMessage(splitWrite, splitMessage);
+                messages.Add(splitMessage);
+            }
+            return messages;
+        }
+
+        private List<Message> GetSingle<T>(ReadOnlySpan<byte> written, List<Message> messages)
+            where T : ICommandData
+        {
+            var commandId = CommandIds.GetId<T>();
+            var message = Message.Create(MessageSendMode.Reliable, (ushort)commandId);
+            message.AddBool(false);
+            WriteToMessage(written, message);
+            messages.Add(message);
+            return messages;
+        }
+
+        private ReadOnlySpan<byte> WriteCommandToBuffer<T>(Command<T> data)
+            where T : ICommandData
+        {
+            _buffer.Clear();
+            _commandSerializer.Serialize(_buffer, ref data);
+            return _buffer.WrittenSpan;
+        }
+
+        private void WriteToMessage(ReadOnlySpan<byte> write, Message message)
+        {
+            int length = write.Length;
+            if (length > _tempBytes.Length)
+                Array.Resize(ref _tempBytes, length);
+            write.CopyTo(_tempBytes);
+            message.AddBytes(_tempBytes, 0, length);
+        }
+
+        private class SplitMessageStorage
+        {
+            private ushort? _lastIndex;
+            private readonly ArrayBufferWriter<byte> _allocator;
+            private readonly SortedDictionary<ushort, Memory<byte>> _splitMessageData;
+            private readonly MessageIO _owner;
+
+            public SplitMessageStorage(MessageIO messageIO)
+            {
+                _allocator = new();
+                _splitMessageData = new();
+                _lastIndex = null;
+                _owner = messageIO;
+            }
+
+            public bool Recieved(IBufferWriter<byte> writer)
+            {
+                if (_lastIndex.HasValue && _splitMessageData.Count == _lastIndex.Value + 1)
+                {
+                    foreach (var item in _splitMessageData)
+                    {
+                        var read = writer.GetMemory(item.Value.Length);
+                        var write = writer.GetMemory(read.Length);
+                        read.CopyTo(write);
+                        writer.Advance(read.Length);
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            public void Clear()
+            {
+                _splitMessageData.Clear();
+                _lastIndex = null;
+                _allocator.Clear();
+            }
+
+            public void Write(Message message)
+            {
+                ushort index = message.GetUShort(); // index
+                bool isLast = message.GetBool(); // is last
+                if (isLast)
+                {
+                    _lastIndex = index;
+                }
+                var length = (int)message.GetVarULong();
+                if (_owner._tempBytes.Length < length)
+                    Array.Resize(ref _owner._tempBytes, length);
+                message.GetBytes(length, _owner._tempBytes);
+                var memory = _allocator.GetMemory(length);
+                _splitMessageData[index] = memory[..length];
+                _owner._tempBytes.CopyTo(memory);
+                _allocator.Advance(length);
+            }
+        }
+    }
+}

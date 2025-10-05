@@ -71,10 +71,6 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             return JsonSerializer.Deserialize<T>(ref reader, _options);
         }
 
-        private class fix3Converter : SimpleConverter<fix3>
-        {
-            protected override fix3 Parse(string value) => fix3.Parse(value);
-        }
 
         private class Converter<T> : SimpleConverter<T>
         {
