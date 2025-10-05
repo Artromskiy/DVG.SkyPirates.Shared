@@ -2,7 +2,6 @@
 using DVG.Core;
 using DVG.Core.Components;
 using DVG.SkyPirates.Shared.Entities;
-using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Tools;
 using DVG.SkyPirates.Shared.Tools.Json;
 using System.Collections.Generic;

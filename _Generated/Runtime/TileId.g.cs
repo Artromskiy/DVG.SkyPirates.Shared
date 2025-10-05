@@ -11,6 +11,7 @@
 //------------------------------------------------------------------------------
 
 using DVG.Core;
+using MessagePack;
 using System;
 using System.Runtime.Serialization;
 
@@ -29,7 +30,7 @@ namespace DVG.SkyPirates.Shared.Ids
         {
             Value = value;
         }
-
+        [IgnoreMember]
         public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
         public readonly bool Equals(TileId other) => Value == other.Value || (IsNone && other.IsNone);
         public readonly int CompareTo(TileId other) => Equals(other) ? 0 : string.Compare(Value, other.Value);
