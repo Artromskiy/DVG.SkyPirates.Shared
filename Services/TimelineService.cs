@@ -116,7 +116,7 @@ namespace DVG.SkyPirates.Shared.Services
         public void Init(LoadWorldCommand timelineStart)
         {
             WorldDataSerializer.Deserialize(_world, timelineStart.WorldData);
-            CommandDataSerializer.Deserialize(this, timelineStart.CommandsData);
+            CommandsDataSerializer.Deserialize(this, timelineStart.CommandsData);
             CurrentTick = timelineStart.CurrentTick;
             for (int i = CurrentTick - 50; i < CurrentTick; i++)
                 _saveHistorySystem.Tick(CurrentTick - 50, Constants.TickTime);
@@ -127,7 +127,7 @@ namespace DVG.SkyPirates.Shared.Services
             int targetTick = CurrentTick - 50;
             _rollbackHistorySystem.Tick(targetTick, Constants.TickTime);
             var worldData= WorldDataSerializer.Serialize(_world);
-            var commandsData = CommandDataSerializer.Serialize(GetCommandsAfter(targetTick));
+            var commandsData = CommandsDataSerializer.Serialize(GetCommandsAfter(targetTick));
             _rollbackHistorySystem.Tick(CurrentTick - 1, Constants.TickTime);
             return new LoadWorldCommand(worldData, commandsData, CurrentTick);
         }

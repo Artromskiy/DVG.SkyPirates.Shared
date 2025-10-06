@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    public static class CommandDataSerializer
+    public static class CommandsDataSerializer
     {
         public static CommandsData Serialize(List<CommandCollection> commands)
         {
@@ -43,7 +43,7 @@ namespace DVG.SkyPirates.Shared.Data
                     return;
 
                 string key = typeof(T).Name;
-                if (_commands.TryGetValue(key, out var list))
+                if (!_commands.TryGetValue(key, out var list))
                     _commands[key] = list = new();
 
                 foreach (var item in collection)
