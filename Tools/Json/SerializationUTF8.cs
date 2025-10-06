@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVG.SkyPirates.Shared.Ids;
+using System;
 using System.Buffers;
 using System.Globalization;
 using System.Text;
@@ -38,6 +39,11 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _options.Converters.Add(new Converter<double2>(value => double2.Parse(value, format)));
             _options.Converters.Add(new Converter<double3>(value => double3.Parse(value, format)));
             _options.Converters.Add(new Converter<double4>(value => double4.Parse(value, format)));
+            _options.Converters.Add(new Converter<CheatingId>(value => new CheatingId(value)));
+            _options.Converters.Add(new Converter<GoodsId>(value => new GoodsId(value)));
+            _options.Converters.Add(new Converter<StateId>(value => new StateId(value)));
+            _options.Converters.Add(new Converter<TileId>(value => new TileId(value)));
+            _options.Converters.Add(new Converter<UnitId>(value => new UnitId(value)));
         }
 
         public static string Serialize<T>(T data)
