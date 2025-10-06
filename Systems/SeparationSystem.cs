@@ -81,7 +81,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 foreach (var other in _targetsCache)
                 {
                     var otherPos = other.position.Value.xz;
-                    var dir = posXZ - otherPos;
+                    var dir = otherPos - posXZ;
                     var sqrDist = fix2.SqrLength(dir);
                     var distance = Maths.Sqrt(sqrDist);
 
