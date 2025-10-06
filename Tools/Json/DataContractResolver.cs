@@ -114,7 +114,6 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                 {
                     continue;
                 }
-
                 jsonPropertyInfo.Get = getValue;
                 jsonPropertyInfo.Set = setValue;
 
@@ -145,7 +144,6 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         public override JsonTypeInfo GetTypeInfo(Type type, JsonSerializerOptions options)
         {
             JsonTypeInfo jsonTypeInfo = base.GetTypeInfo(type, options);
-
             if (jsonTypeInfo.Kind != JsonTypeInfoKind.Object)
             {
                 return jsonTypeInfo;
