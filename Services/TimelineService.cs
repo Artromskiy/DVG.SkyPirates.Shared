@@ -117,16 +117,18 @@ namespace DVG.SkyPirates.Shared.Services
         {
             WorldDataSerializer.Deserialize(_world, timelineStart.WorldData);
             CommandsDataSerializer.Deserialize(this, timelineStart.CommandsData);
-            CurrentTick = timelineStart.CurrentTick;
-            for (int i = CurrentTick - 50; i < CurrentTick; i++)
-                _saveHistorySystem.Tick(CurrentTick - 50, Constants.TickTime);
+            CurrentTick = timelineStart.CurrentTick - 50;
+            for (int i = 0; i < 50; i++)
+            {
+                Tick();
+            }
         }
 
         public LoadWorldCommand GetIniter()
         {
             int targetTick = CurrentTick - 50;
             _rollbackHistorySystem.Tick(targetTick, Constants.TickTime);
-            var worldData= WorldDataSerializer.Serialize(_world);
+            var worldData = WorldDataSerializer.Serialize(_world);
             var commandsData = CommandsDataSerializer.Serialize(GetCommandsAfter(targetTick));
             _rollbackHistorySystem.Tick(CurrentTick - 1, Constants.TickTime);
             return new LoadWorldCommand(worldData, commandsData, CurrentTick);

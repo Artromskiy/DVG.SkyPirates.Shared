@@ -9,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Squad>();
 
-        private readonly HashSet<Entity> _unitsToRemove = new HashSet<Entity>();
+        private readonly HashSet<Entity> _unitsToRemove = new();
 
         private readonly World _world;
         public DeadSquadUnitsSystem(World world)

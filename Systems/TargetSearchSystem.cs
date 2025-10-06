@@ -39,9 +39,8 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 var targetPosition = position.Value.xz;
                 var sqrDistance = fix2.SqrDistance(targetPosition, targetSearchData.Position.xz);
-                if (!foundTarget.HasValue ||
-                    ((sqrDistance < minSqrDistance) ||
-                    (sqrDistance == minSqrDistance && entity.Id < foundTarget.Value.Id)))
+                if (!foundTarget.HasValue || (sqrDistance < minSqrDistance) ||
+                    (sqrDistance == minSqrDistance && entity.Id < foundTarget.Value.Id))
                 {
                     foundTarget = entity;
                     minSqrDistance = sqrDistance;

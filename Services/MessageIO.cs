@@ -111,7 +111,7 @@ namespace DVG.SkyPirates.Shared.Services
                 splitMessage.AddBool(i == splitCount - 1); // is last
 
                 var splitWrite = written[(i * SplitSize)..];
-                splitWrite = splitWrite[..Math.Min(splitWrite.Length, SplitSize)];
+                splitWrite = splitWrite[..Maths.Min(splitWrite.Length, SplitSize)];
                 WriteToMessage(splitWrite, splitMessage);
                 messages.Add(splitMessage);
             }

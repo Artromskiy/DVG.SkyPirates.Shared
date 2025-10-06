@@ -1,6 +1,5 @@
 ﻿using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
-using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.IServices
 {

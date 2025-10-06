@@ -11,7 +11,7 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Health, Alive>();
 
-        private readonly List<Entity> _dead = new List<Entity>();
+        private readonly List<Entity> _dead = new();
 
         private readonly World _world;
         public MarkDeadSystem(World world)

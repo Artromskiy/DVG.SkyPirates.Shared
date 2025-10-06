@@ -1,5 +1,7 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components.Special;
+using DVG.SkyPirates.Shared.Factories;
+using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Services;
@@ -14,13 +16,13 @@ namespace DVG.SkyPirates.Shared.DI
     {
         public static void Register(Container container)
         {
-            container.Register(() =>
+            container.RegisterSingleton(() =>
             {
                 var world = World.Create();
                 world.Create<Temp>(100000);
                 world.Remove<Temp>(new QueryDescription().WithAll<Temp>());
                 return world;
-            }, Lifestyle.Singleton);
+            });
 
             var commandExecutors = new Type[]
             {
@@ -30,7 +32,12 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(DirectionCommandExecutor)
                 //typeof(CommandLogger)
             };
-            container.Register<ICommandExecutorService, CommandExecutorService>(Lifestyle.Singleton);
+
+            container.RegisterSingleton<IUnitConfigFactory, UnitConfigFactory>();
+            container.RegisterSingleton<ISquadFactory, SquadFactory>();
+            container.RegisterSingleton<IUnitFactory, UnitFactory>();
+
+            container.RegisterSingleton<ICommandExecutorService, CommandExecutorService>();
             container.Collection.Register<ICommandExecutor>(commandExecutors, Lifestyle.Singleton);
 
             var tickableExecutors = new Type[]
@@ -54,14 +61,14 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(DeadSquadUnitsSystem),
                 //typeof(LogHashSumSystem),
             };
-            container.Register<ITickableExecutorService, TickableExecutorService>(Lifestyle.Singleton);
+            container.RegisterSingleton<ITickableExecutorService, TickableExecutorService>();
             container.Collection.Register<ITickableExecutor>(tickableExecutors, Lifestyle.Singleton);
 
-            container.Register<IPreTickableExecutorService, PreTickableExecutorService>(Lifestyle.Singleton);
-            container.Register<IPostTickableExecutorService, PostTickableExecutorService>(Lifestyle.Singleton);
+            container.RegisterSingleton<IPreTickableExecutorService, PreTickableExecutorService>();
+            container.RegisterSingleton<IPostTickableExecutorService, PostTickableExecutorService>();
 
-            container.Register<ITargetSearchSystem, TargetSearchSystem>(Lifestyle.Singleton);
-            container.Register<ITimelineService, TimelineService>(Lifestyle.Singleton);
+            container.RegisterSingleton<ITargetSearchSystem, TargetSearchSystem>();
+            container.RegisterSingleton<ITimelineService, TimelineService>();
         }
     }
 }
