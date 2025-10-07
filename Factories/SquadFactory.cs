@@ -26,6 +26,7 @@ namespace DVG.SkyPirates.Shared.Factories
 
             _world.Get<CircleShape>(squad).Radius = fix.One / 3;
             _world.Get<Squad>(squad).units = new List<Entity>();
+            _world.Get<Team>(squad).Id = cmd.ClientId;
             return squad;
         }
     }

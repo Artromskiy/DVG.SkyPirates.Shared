@@ -16,6 +16,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
 
             world.AddOrGet<CircleShape>(entity);
             world.AddOrGet<CachePosition>(entity);
+            world.AddOrGet<Team>(entity);
         }
     }
 }

@@ -131,6 +131,7 @@ namespace DVG.SkyPirates.Shared.Services
             {
                 Tick();
             }
+            _world.TrimExcess();
         }
 
         public LoadWorldCommand GetIniter()
