@@ -97,14 +97,16 @@ namespace DVG.SkyPirates.Shared.Services
             {
                 _rollbackHistorySystem.Tick(_rollbackTo.Value, Constants.TickTime);
             }
+
             var fromTick = Maths.Min(_rollbackTo ?? CurrentTick, CurrentTick) + 1;
-            for (int i = fromTick; i <= CurrentTick + 1; i++)
+            var toTick = CurrentTick + 1;
+            for (int i = fromTick; i <= toTick; i++)
             {
                 _commandExecutorService.Execute(GetCommands(i));
                 _tickableExecutorService.Tick(i, Constants.TickTime);
                 _saveHistorySystem.Tick(i, Constants.TickTime);
             }
-            CurrentTick++;
+            CurrentTick = toTick;
             _rollbackTo = null;
 
             _destructSystem.Tick(CurrentTick, Constants.TickTime);

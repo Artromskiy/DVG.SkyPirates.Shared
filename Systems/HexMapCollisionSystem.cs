@@ -3,6 +3,7 @@ using DVG.Core;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -47,8 +48,8 @@ namespace DVG.SkyPirates.Shared.Systems
 
                 var solvedPos = Spatial.SolveCircleMove(_segmentsCache,
                     cachePosition.Value.xz, position.Value.xz, circleShape.Radius).x_y;
-
                 position.Value = solvedPos;
+                Console.WriteLine(position.Value);
             }
 
             private void FindSegments(fix2 from)
