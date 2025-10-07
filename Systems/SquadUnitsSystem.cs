@@ -10,7 +10,6 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class SquadUnitsSystem : ITickableExecutor
     {
-        private const int SquadSearchTarget = 7;
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Squad, Position, Fixation, Rotation>();
 
         private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache = new();
@@ -27,10 +26,10 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new SquadUnitsQuery(_circlesConfigCache, _circlesModelFactory, _world);
-            _world.InlineQuery<SquadUnitsQuery, Squad, Position, Fixation, Rotation>(_desc, ref query);
+            _world.InlineQuery<SquadUnitsQuery, Squad, Position, Fixation, Rotation, TargetSearchData>(_desc, ref query);
         }
 
-        private readonly struct SquadUnitsQuery : IForEach<Squad, Position, Fixation, Rotation>
+        private readonly struct SquadUnitsQuery : IForEach<Squad, Position, Fixation, Rotation, TargetSearchData>
         {
             private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache;
             private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
