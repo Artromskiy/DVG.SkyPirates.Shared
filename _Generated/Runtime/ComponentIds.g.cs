@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Components.Special;
+using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.Core.Components
 {
@@ -52,6 +53,7 @@ namespace DVG.Core.Components
                 {typeof(Target), 22},
                 {typeof(TargetSearchData), 23},
                 {typeof(Team), 24},
+                {typeof(UnitId), 25},
             };
             
             _idToType = new Dictionary<int, Type>()
@@ -80,6 +82,7 @@ namespace DVG.Core.Components
                 {22, typeof(Target)},
                 {23, typeof(TargetSearchData)},
                 {24, typeof(Team)},
+                {25, typeof(UnitId)},
             };
         }
 
@@ -111,6 +114,7 @@ namespace DVG.Core.Components
             action.Invoke<Target>();
             action.Invoke<TargetSearchData>();
             action.Invoke<Team>();
+            action.Invoke<UnitId>();
         }
     }
 }

@@ -5,6 +5,7 @@ namespace DVG.SkyPirates.Shared.Ids
 {
     [Id]
     [History]
+    [Component]
     public partial struct UnitId
     {
         /*
