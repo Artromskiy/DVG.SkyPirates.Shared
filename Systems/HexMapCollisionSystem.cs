@@ -49,7 +49,6 @@ namespace DVG.SkyPirates.Shared.Systems
                 var solvedPos = Spatial.SolveCircleMove(_segmentsCache,
                     cachePosition.Value.xz, position.Value.xz, circleShape.Radius).x_y;
                 position.Value = solvedPos;
-                Console.WriteLine(position.Value);
             }
 
             private void FindSegments(fix2 from)
