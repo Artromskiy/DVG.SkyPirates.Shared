@@ -12,6 +12,7 @@ namespace DVG.SkyPirates.Shared.Services
 {
     public class TimelineService : ITimelineService
     {
+        private const int RollbackInitTicks = 50;
         public int CurrentTick { get; private set; } = -1;
         private int? _dirtyTick;
 
@@ -116,10 +117,10 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Init(LoadWorldCommand timelineStart)
         {
+            CurrentTick = timelineStart.CurrentTick - RollbackInitTicks;
             WorldDataSerializer.Deserialize(_world, timelineStart.WorldData);
             CommandsDataSerializer.Deserialize(this, timelineStart.CommandsData);
-            CurrentTick = timelineStart.CurrentTick - 50;
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < RollbackInitTicks; i++)
             {
                 Tick();
             }
@@ -127,7 +128,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         public LoadWorldCommand GetIniter()
         {
-            int targetTick = CurrentTick - 50;
+            int targetTick = CurrentTick - RollbackInitTicks;
             _rollbackHistorySystem.Tick(targetTick, Constants.TickTime);
             var worldData = WorldDataSerializer.Serialize(_world);
             var commandsData = CommandsDataSerializer.Serialize(GetCommandsAfter(targetTick));
