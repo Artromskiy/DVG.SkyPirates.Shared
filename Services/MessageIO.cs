@@ -198,7 +198,8 @@ namespace DVG.SkyPirates.Shared.Services
                 message.GetBytes(length, _owner._tempBytes);
                 var memory = _allocator.GetMemory(length);
                 _splitMessageData[index] = memory[..length];
-                _owner._tempBytes.CopyTo(memory);
+                var from = _owner._tempBytes.AsSpan(0, length);
+                from.CopyTo(memory.Span);
                 _allocator.Advance(length);
             }
         }
