@@ -44,6 +44,7 @@ namespace DVG.SkyPirates.Shared.DI
             {
                 typeof(CachePositionSystem),
                 typeof(TargetSearchSystem),
+                typeof(SquadRangeSystem),
                 typeof(SquadMoveSystem),
                 typeof(SquadUnitsSystem),
                 typeof(SetTargetSystem),

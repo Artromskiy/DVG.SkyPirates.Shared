@@ -10,10 +10,10 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class SquadUnitsSystem : ITickableExecutor
     {
-        private const int SquadSearchTarget = 10;
+        private const int SquadSearchTarget = 7;
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Squad, Position, Fixation, Rotation>();
 
-        private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache = new Dictionary<int, PackedCirclesConfig>();
+        private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache = new();
 
         private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
         private readonly World _world;
@@ -43,7 +43,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 _world = world;
             }
 
-            public readonly void Update(ref Squad squad, ref Position position, ref Fixation fixation, ref Rotation rotation)
+            public readonly void Update(ref Squad squad, ref Position position, ref Fixation fixation, ref Rotation rotation, ref TargetSearchData targetSearchData)
             {
                 if (squad.units.Count == 0)
                     return;
@@ -56,8 +56,9 @@ namespace DVG.SkyPirates.Shared.Systems
                     var unit = squad.units[i];
 
                     var entityData = _world.GetEntityData(unit);
-                    entityData.Get<TargetSearchData>().Position = position.Value;
-                    entityData.Get<TargetSearchData>().Distance = fixation.Value ? 0 : SquadSearchTarget;
+                    entityData.Get<TargetSearchData>().Position = targetSearchData.Position;
+                    entityData.Get<TargetSearchData>().Distance = fixation.Value ? 0 : targetSearchData.Distance;
+
                     entityData.Get<Destination>().Position = position.Value + localPoint.x_y;
                     entityData.Get<Destination>().Rotation = rotation.Value;
                 }
