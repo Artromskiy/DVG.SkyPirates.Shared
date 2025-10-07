@@ -31,6 +31,7 @@ namespace DVG.Core.Commands
                 {typeof(LoadWorldCommand), 3},
                 {typeof(SpawnSquadCommand), 4},
                 {typeof(SpawnUnitCommand), 5},
+                {typeof(TickSyncCommand), 6},
             };
             
             _idToType = new Dictionary<int, Type>()
@@ -40,6 +41,7 @@ namespace DVG.Core.Commands
                 {3, typeof(LoadWorldCommand)},
                 {4, typeof(SpawnSquadCommand)},
                 {5, typeof(SpawnUnitCommand)},
+                {6, typeof(TickSyncCommand)},
             };
         }
 
@@ -52,6 +54,7 @@ namespace DVG.Core.Commands
             action.Invoke<LoadWorldCommand>();
             action.Invoke<SpawnSquadCommand>();
             action.Invoke<SpawnUnitCommand>();
+            action.Invoke<TickSyncCommand>();
         }
 
         public static int GetId<T>() => _typeToId[typeof(T)];
