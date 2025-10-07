@@ -13,8 +13,10 @@ namespace DVG.SkyPirates.Shared.Services
     public class TimelineService : ITimelineService
     {
         private const int RollbackInitTicks = 50;
+        // last saved state
         public int CurrentTick { get; private set; } = -1;
-        private int? _dirtyTick;
+        // tick before not applied command
+        private int? _rollbackTo;
 
         private readonly Dictionary<int, CommandCollection> _commands = new();
 
@@ -56,22 +58,26 @@ namespace DVG.SkyPirates.Shared.Services
             where T : ICommandData
         {
             var tick = command.Tick;
-
-            var prevDirtyTick = _dirtyTick ?? tick;
-            _dirtyTick = Maths.Min(tick, prevDirtyTick);
-
+            var cmdRollback = tick - 1;
             GetCommands(tick).Add(command);
+
+            _rollbackTo = cmdRollback < CurrentTick && 
+                (!_rollbackTo.HasValue || cmdRollback < _rollbackTo.Value) ?
+                cmdRollback :
+                _rollbackTo;
         }
 
         public void RemoveCommand<T>(Command<T> command)
             where T : ICommandData
         {
             var tick = command.Tick;
-
-            var prevDirtyTick = _dirtyTick ?? tick;
-            _dirtyTick = Maths.Min(tick, prevDirtyTick);
-
+            var cmdRollback = tick - 1;
             GetCommands(tick).Remove<T>(command.ClientId);
+
+            _rollbackTo = cmdRollback < CurrentTick &&
+                (!_rollbackTo.HasValue || cmdRollback < _rollbackTo.Value) ?
+                cmdRollback :
+                _rollbackTo;
         }
 
         private CommandCollection GetCommands(int tick)
@@ -87,20 +93,19 @@ namespace DVG.SkyPirates.Shared.Services
         {
             _preTickableExecutorService.Tick(CurrentTick, Constants.TickTime);
 
-            if (_dirtyTick.HasValue && _dirtyTick < CurrentTick)
+            if (_rollbackTo.HasValue)
             {
-                int tickToGo = _dirtyTick.Value - 1;
-                _rollbackHistorySystem.Tick(tickToGo, Constants.TickTime);
+                _rollbackHistorySystem.Tick(_rollbackTo.Value, Constants.TickTime);
             }
             CurrentTick++;
-            var fromTick = Maths.Min(_dirtyTick ?? CurrentTick, CurrentTick);
-            for (int i = fromTick; i <= CurrentTick; i++)
+            var fromTick = Maths.Min(_rollbackTo ?? CurrentTick, CurrentTick) + 1;
+            for (int i = fromTick; i <= CurrentTick + 1; i++)
             {
                 _commandExecutorService.Execute(GetCommands(i));
                 _tickableExecutorService.Tick(i, Constants.TickTime);
                 _saveHistorySystem.Tick(i, Constants.TickTime);
             }
-            _dirtyTick = null;
+            _rollbackTo = null;
 
             _destructSystem.Tick(CurrentTick, Constants.TickTime);
             _postTickableExecutorService.Tick(CurrentTick, Constants.TickTime);
