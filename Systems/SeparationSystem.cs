@@ -75,7 +75,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
                 fix2 posXZ = position.Value.xz;
                 fix radius = circleShape.Radius;
-                fix addRadius = separation.AddRadius; 
+                fix addRadius = separation.AddRadius;
                 fix extendedRadius = radius + addRadius;
 
                 foreach (var other in _targetsCache)

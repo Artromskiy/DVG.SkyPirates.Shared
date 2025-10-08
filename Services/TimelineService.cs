@@ -61,7 +61,7 @@ namespace DVG.SkyPirates.Shared.Services
             var cmdRollback = tick - 1;
             GetCommands(tick).Add(command);
 
-            _rollbackTo = cmdRollback < CurrentTick && 
+            _rollbackTo = cmdRollback < CurrentTick &&
                 (!_rollbackTo.HasValue || cmdRollback < _rollbackTo.Value) ?
                 cmdRollback :
                 _rollbackTo;

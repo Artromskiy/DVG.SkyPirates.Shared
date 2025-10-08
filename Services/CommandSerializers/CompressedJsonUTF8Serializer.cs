@@ -5,7 +5,6 @@ using DVG.SkyPirates.Shared.Tools.Json;
 using System;
 using System.Buffers;
 using System.IO.Compression;
-using System.Text;
 
 namespace DVG.SkyPirates.Shared.Services.CommandSerializers
 {
