@@ -129,14 +129,6 @@ namespace DVG.SkyPirates.Shared.Services
             return messages;
         }
 
-
-
-
-
-
-
-
-
         private void WriteToMessage(ReadOnlySpan<byte> write, Message message)
         {
             int length = write.Length;

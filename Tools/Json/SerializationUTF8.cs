@@ -20,7 +20,9 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _options.IgnoreReadOnlyFields = false;
             _options.IgnoreReadOnlyProperties = false;
             var format = CultureInfo.InvariantCulture;
+            _options.WriteIndented = true;
             _options.TypeInfoResolver = new DataContractResolver();
+            _options.Converters.Add(new Converter<fix>(value => fix.Parse(value, format)));
             _options.Converters.Add(new Converter<bool2>(value => bool2.Parse(value)));
             _options.Converters.Add(new Converter<bool3>(value => bool3.Parse(value)));
             _options.Converters.Add(new Converter<bool4>(value => bool4.Parse(value)));
@@ -67,7 +69,10 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         public static void Serialize<T>(T data, IBufferWriter<byte> buffer)
         {
             _writer?.Reset(buffer);
-            _writer ??= new Utf8JsonWriter(buffer);
+            _writer ??= new Utf8JsonWriter(buffer, new JsonWriterOptions()
+            {
+                Indented=true,
+            });
             JsonSerializer.Serialize(_writer, data, _options);
         }
 

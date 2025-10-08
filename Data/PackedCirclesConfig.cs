@@ -11,14 +11,11 @@ namespace DVG.SkyPirates.Shared.Data
         public fix Radius;
         [DataMember(Order = 1)]
         public fix2[] Points;
-        [DataMember(Order = 2)]
-        public int[,] Reorders;
 
-        public PackedCirclesConfig(fix radius, fix2[] points, int[,] reorders)
+        public PackedCirclesConfig(fix radius, fix2[] points)
         {
             Radius = radius;
             Points = points;
-            Reorders = reorders;
         }
     }
 }
