@@ -4,5 +4,5 @@ using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.SkyPirates.Shared.IFactories
 {
-    public interface IUnitFactory : IFactory<Entity, (fix3 Position, int TeamId, int Level, UnitId UnitId, int EntityId)> { }
+    public interface IUnitFactory : IFactory<Entity, (UnitId UnitId, int EntityId)> { }
 }

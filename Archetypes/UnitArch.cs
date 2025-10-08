@@ -9,29 +9,30 @@ namespace DVG.SkyPirates.Shared.Archetypes
     {
         public static void EnsureArch(World world, Entity entity)
         {
-            world.AddOrGet<UnitId>(entity);
-            world.AddOrGet<Health>(entity);
-            world.AddOrGet<MaxHealth>(entity);
-            world.AddOrGet<Position>(entity);
-            world.AddOrGet<Rotation>(entity);
-            world.AddOrGet<MoveSpeed>(entity);
-            world.AddOrGet<ImpactDistance>(entity);
-            world.AddOrGet<Damage>(entity);
-            world.AddOrGet<Team>(entity);
-            world.AddOrGet<Alive>(entity);
-
-            world.AddOrGet<CircleShape>(entity);
-            world.AddOrGet<CachePosition>(entity);
-
-            world.AddOrGet<RecivedDamage>(entity);
-            world.AddOrGet<AutoHeal>(entity);
-            world.AddOrGet<Separation>(entity);
-            world.AddOrGet<Fixation>(entity);
-            world.AddOrGet<Target>(entity);
-            world.AddOrGet<Destination>(entity);
-            world.AddOrGet<TargetSearchData>(entity);
-            world.AddOrGet<Behaviour>(entity);
-            world.AddOrGet<BehaviourConfig>(entity);
+            world.RemoveRange(entity, world.GetSignature(entity).Components);
+            world.Add<
+                UnitId,
+                Health,
+                MaxHealth,
+                Position,
+                Rotation,
+                MoveSpeed,
+                ImpactDistance,
+                Damage,
+                Team,
+                Alive,
+                CircleShape,
+                CachePosition,
+                RecivedDamage,
+                AutoHeal,
+                Separation,
+                Fixation,
+                Target,
+                Destination,
+                TargetSearchData,
+                Behaviour,
+                BehaviourConfig>
+                (entity);
         }
     }
 }

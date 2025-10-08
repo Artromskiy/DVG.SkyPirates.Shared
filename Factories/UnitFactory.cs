@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Factories
         private readonly IUnitConfigFactory _unitConfigFactory;
         private readonly World _world;
 
-        private readonly Dictionary<StateId, StateId> switchTable = new Dictionary<StateId, StateId>()
+        private readonly Dictionary<StateId, StateId> switchTable = new()
         {
             [StateId.Constants.PreAttack] = StateId.Constants.PostAttack,
             [StateId.Constants.PostAttack] = StateId.Constants.Reload,
@@ -28,7 +28,7 @@ namespace DVG.SkyPirates.Shared.Factories
             _unitConfigFactory = unitConfigFactory;
         }
 
-        public virtual Entity Create((fix3 Position, int TeamId, int Level, UnitId UnitId, int EntityId) parameters)
+        public virtual Entity Create((UnitId UnitId, int EntityId) parameters)
         {
             var config = _unitConfigFactory.Create(parameters.UnitId);
 
@@ -36,16 +36,16 @@ namespace DVG.SkyPirates.Shared.Factories
 
             UnitArch.EnsureArch(_world, unit);
 
-            _world.Get<CircleShape>(unit).Radius = fix.One / 3;
             _world.Get<UnitId>(unit) = parameters.UnitId;
-            _world.Get<Position>(unit).Value = parameters.Position;
-            _world.Get<Team>(unit).Id = parameters.TeamId;
+
             _world.Get<Health>(unit).Value = config.health;
             _world.Get<MaxHealth>(unit).Value = config.health;
             _world.Get<Damage>(unit).Value = config.damage;
             _world.Get<MoveSpeed>(unit).Value = config.speed;
             _world.Get<ImpactDistance>(unit).Value = config.attackDistance;
             _world.Get<BehaviourConfig>(unit).Scenario = switchTable;
+
+            _world.Get<CircleShape>(unit).Radius = fix.One / 3;
             _world.Get<Separation>(unit).AddRadius = fix.One / 3;
             _world.Get<Separation>(unit).AffectingCoeff = 1;
             _world.Get<Separation>(unit).AffectedCoeff = 1;

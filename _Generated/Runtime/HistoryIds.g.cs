@@ -40,16 +40,17 @@ namespace DVG.Core.Components
                 {typeof(Fixation), 9},
                 {typeof(Health), 10},
                 {typeof(ImpactDistance), 11},
-                {typeof(MaxHealth), 12},
-                {typeof(MoveSpeed), 13},
-                {typeof(Position), 14},
-                {typeof(Rotation), 15},
-                {typeof(Separation), 16},
-                {typeof(Squad), 17},
-                {typeof(Target), 18},
-                {typeof(TargetSearchData), 19},
-                {typeof(Team), 20},
-                {typeof(UnitId), 21},
+                {typeof(Level), 12},
+                {typeof(MaxHealth), 13},
+                {typeof(MoveSpeed), 14},
+                {typeof(Position), 15},
+                {typeof(Rotation), 16},
+                {typeof(Separation), 17},
+                {typeof(Squad), 18},
+                {typeof(Target), 19},
+                {typeof(TargetSearchData), 20},
+                {typeof(Team), 21},
+                {typeof(UnitId), 22},
             };
             
             _idToType = new Dictionary<int, Type>()
@@ -65,16 +66,17 @@ namespace DVG.Core.Components
                 {9, typeof(Fixation)},
                 {10, typeof(Health)},
                 {11, typeof(ImpactDistance)},
-                {12, typeof(MaxHealth)},
-                {13, typeof(MoveSpeed)},
-                {14, typeof(Position)},
-                {15, typeof(Rotation)},
-                {16, typeof(Separation)},
-                {17, typeof(Squad)},
-                {18, typeof(Target)},
-                {19, typeof(TargetSearchData)},
-                {20, typeof(Team)},
-                {21, typeof(UnitId)},
+                {12, typeof(Level)},
+                {13, typeof(MaxHealth)},
+                {14, typeof(MoveSpeed)},
+                {15, typeof(Position)},
+                {16, typeof(Rotation)},
+                {17, typeof(Separation)},
+                {18, typeof(Squad)},
+                {19, typeof(Target)},
+                {20, typeof(TargetSearchData)},
+                {21, typeof(Team)},
+                {22, typeof(UnitId)},
             };
         }
 
@@ -93,6 +95,7 @@ namespace DVG.Core.Components
             action.Invoke<Fixation>();
             action.Invoke<Health>();
             action.Invoke<ImpactDistance>();
+            action.Invoke<Level>();
             action.Invoke<MaxHealth>();
             action.Invoke<MoveSpeed>();
             action.Invoke<Position>();

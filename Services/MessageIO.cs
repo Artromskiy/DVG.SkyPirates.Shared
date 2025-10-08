@@ -76,7 +76,7 @@ namespace DVG.SkyPirates.Shared.Services
             _buffer.Clear();
             _commandSerializer.Serialize(_buffer, ref data);
             var written = _buffer.WrittenSpan;
-
+            Console.WriteLine($"Message size: {written.Length} bytes");
             if (written.Length >= SplitSize) // need to split
             {
                 Console.WriteLine(written.Length);

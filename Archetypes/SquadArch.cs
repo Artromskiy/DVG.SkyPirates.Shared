@@ -8,16 +8,18 @@ namespace DVG.SkyPirates.Shared.Archetypes
     {
         public static void EnsureArch(World world, Entity entity)
         {
-            world.AddOrGet<Squad>(entity);
-            world.AddOrGet<Position>(entity);
-            world.AddOrGet<Rotation>(entity);
-            world.AddOrGet<Direction>(entity);
-            world.AddOrGet<Fixation>(entity);
-            world.AddOrGet<TargetSearchData>(entity);
-
-            world.AddOrGet<CircleShape>(entity);
-            world.AddOrGet<CachePosition>(entity);
-            world.AddOrGet<Team>(entity);
+            world.RemoveRange(entity, world.GetSignature(entity).Components);
+            world.Add<
+                Squad,
+                Position,
+                Rotation,
+                Direction,
+                Fixation,
+                TargetSearchData,
+                CircleShape,
+                CachePosition,
+                Team>
+                (entity);
         }
     }
 }
