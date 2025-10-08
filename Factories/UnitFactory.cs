@@ -2,6 +2,7 @@
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
@@ -13,14 +14,6 @@ namespace DVG.SkyPirates.Shared.Factories
     {
         private readonly IUnitConfigFactory _unitConfigFactory;
         private readonly World _world;
-
-        private readonly Dictionary<StateId, StateId> switchTable = new()
-        {
-            [StateId.Constants.PreAttack] = StateId.Constants.PostAttack,
-            [StateId.Constants.PostAttack] = StateId.Constants.Reload,
-            [StateId.Constants.Reload] = StateId.None,
-            [StateId.None] = StateId.None,
-        };
 
         public UnitFactory(World world, IUnitConfigFactory unitConfigFactory)
         {
@@ -43,7 +36,6 @@ namespace DVG.SkyPirates.Shared.Factories
             _world.Get<Damage>(unit).Value = config.damage;
             _world.Get<MoveSpeed>(unit).Value = config.speed;
             _world.Get<ImpactDistance>(unit).Value = config.attackDistance;
-            _world.Get<BehaviourConfig>(unit).Scenario = switchTable;
 
             _world.Get<CircleShape>(unit).Radius = fix.One / 3;
             _world.Get<Separation>(unit).AddRadius = fix.One / 3;
@@ -52,14 +44,26 @@ namespace DVG.SkyPirates.Shared.Factories
             _world.Get<AutoHeal>(unit).healDelay = 10;
             _world.Get<AutoHeal>(unit).healPerSecond = 20;
 
-            _world.Get<BehaviourConfig>(unit).Durations = new Dictionary<StateId, fix>()
-            {
-                [StateId.Constants.PreAttack] = config.preAttack,
-                [StateId.Constants.PostAttack] = config.postAttack,
-                [StateId.Constants.Reload] = config.reload,
-                [StateId.None] = 0,
-            };
+            _world.Get<BehaviourConfig>(unit).Scenario = GetScenario();
+            _world.Get<BehaviourConfig>(unit).Durations = GetConfigDurations(config);
+
             return unit;
         }
+
+        private Dictionary<StateId, StateId> GetScenario() => new()
+        {
+            [StateId.Constants.PreAttack] = StateId.Constants.PostAttack,
+            [StateId.Constants.PostAttack] = StateId.Constants.Reload,
+            [StateId.Constants.Reload] = StateId.None,
+            [StateId.None] = StateId.None,
+        };
+
+        private Dictionary<StateId, fix> GetConfigDurations(UnitConfig config) => new()
+        {
+            [StateId.Constants.PreAttack] = config.preAttack,
+            [StateId.Constants.PostAttack] = config.postAttack,
+            [StateId.Constants.Reload] = config.reload,
+            [StateId.None] = 0,
+        };
     }
 }
