@@ -22,7 +22,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             var format = CultureInfo.InvariantCulture;
             _options.WriteIndented = true;
             _options.TypeInfoResolver = new DataContractResolver();
-            _options.Converters.Add(new Converter<fix>(value => fix.Parse(value, format)));
+            _options.Converters.Add(new FixConverter());
             _options.Converters.Add(new Converter<bool2>(value => bool2.Parse(value)));
             _options.Converters.Add(new Converter<bool3>(value => bool3.Parse(value)));
             _options.Converters.Add(new Converter<bool4>(value => bool4.Parse(value)));
