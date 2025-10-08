@@ -10,9 +10,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 {
     public class DataContractResolver : DefaultJsonTypeInfoResolver
     {
-        private static readonly Lazy<DataContractResolver> s_defaultInstance = new(() => new DataContractResolver());
-
-        public static DataContractResolver Default => s_defaultInstance.Value;
+        private readonly Dictionary<Type, JsonTypeInfo> _cachedTypeInfos = new();
 
         private static bool IsNullOrDefault(object obj)
         {
@@ -143,15 +141,21 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
         public override JsonTypeInfo GetTypeInfo(Type type, JsonSerializerOptions options)
         {
-            JsonTypeInfo jsonTypeInfo = base.GetTypeInfo(type, options);
-            if (jsonTypeInfo.Kind != JsonTypeInfoKind.Object)
+            if (!_cachedTypeInfos.TryGetValue(type, out var jsonTypeInfo))
             {
-                return jsonTypeInfo;
+                jsonTypeInfo = base.GetTypeInfo(type, options);
+                if (jsonTypeInfo.Kind != JsonTypeInfoKind.Object)
+                {
+                    _cachedTypeInfos[type] = jsonTypeInfo;
+                    return jsonTypeInfo;
+                }
+
+                jsonTypeInfo.Properties.Clear();
+                jsonTypeInfo = GetTypeInfo(jsonTypeInfo);
+                _cachedTypeInfos[type] = jsonTypeInfo;
             }
 
-            jsonTypeInfo.Properties.Clear();
-
-            return GetTypeInfo(jsonTypeInfo);
+            return jsonTypeInfo;
         }
     }
 }

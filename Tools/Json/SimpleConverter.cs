@@ -4,6 +4,21 @@ using System.Text.Json.Serialization;
 
 namespace DVG.SkyPirates.Shared.Tools.Json
 {
+    public class FuncConverter<T> : SimpleConverter<T>
+    {
+        private readonly Func<string, T> _parser;
+
+        public FuncConverter(Func<string, T> parser)
+        {
+            _parser = parser;
+        }
+
+        protected override T Parse(string value)
+        {
+            return _parser.Invoke(value);
+        }
+    }
+
     public abstract class SimpleConverter<T> : JsonConverter<T>
     {
         protected abstract T Parse(string value);

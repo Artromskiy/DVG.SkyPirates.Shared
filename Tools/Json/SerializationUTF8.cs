@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using System.Text.Unicode;
 
 namespace DVG.SkyPirates.Shared.Tools.Json
 {
@@ -22,33 +21,34 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _options.IgnoreReadOnlyFields = false;
             _options.IgnoreReadOnlyProperties = false;
             _options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
-            var format = CultureInfo.InvariantCulture;
             _options.WriteIndented = true;
             _options.TypeInfoResolver = new DataContractResolver();
+
+            var format = CultureInfo.InvariantCulture;
             _options.Converters.Add(new FixConverter());
-            _options.Converters.Add(new Converter<bool2>(value => bool2.Parse(value)));
-            _options.Converters.Add(new Converter<bool3>(value => bool3.Parse(value)));
-            _options.Converters.Add(new Converter<bool4>(value => bool4.Parse(value)));
-            _options.Converters.Add(new Converter<fix2>(value => fix2.Parse(value, format)));
-            _options.Converters.Add(new Converter<fix3>(value => fix3.Parse(value, format)));
-            _options.Converters.Add(new Converter<fix4>(value => fix4.Parse(value, format)));
-            _options.Converters.Add(new Converter<int2>(value => int2.Parse(value, format)));
-            _options.Converters.Add(new Converter<int3>(value => int3.Parse(value, format)));
-            _options.Converters.Add(new Converter<int4>(value => int4.Parse(value, format)));
-            _options.Converters.Add(new Converter<uint2>(value => uint2.Parse(value, format)));
-            _options.Converters.Add(new Converter<uint3>(value => uint3.Parse(value, format)));
-            _options.Converters.Add(new Converter<uint4>(value => uint4.Parse(value, format)));
-            _options.Converters.Add(new Converter<float2>(value => float2.Parse(value, format)));
-            _options.Converters.Add(new Converter<float3>(value => float3.Parse(value, format)));
-            _options.Converters.Add(new Converter<float4>(value => float4.Parse(value, format)));
-            _options.Converters.Add(new Converter<double2>(value => double2.Parse(value, format)));
-            _options.Converters.Add(new Converter<double3>(value => double3.Parse(value, format)));
-            _options.Converters.Add(new Converter<double4>(value => double4.Parse(value, format)));
-            _options.Converters.Add(new Converter<CheatingId>(value => new CheatingId(value)));
-            _options.Converters.Add(new Converter<GoodsId>(value => new GoodsId(value)));
-            _options.Converters.Add(new Converter<StateId>(value => new StateId(value)));
-            _options.Converters.Add(new Converter<TileId>(value => new TileId(value)));
-            _options.Converters.Add(new Converter<UnitId>(value => new UnitId(value)));
+            _options.Converters.Add(new FuncConverter<bool2>(value => bool2.Parse(value)));
+            _options.Converters.Add(new FuncConverter<bool3>(value => bool3.Parse(value)));
+            _options.Converters.Add(new FuncConverter<bool4>(value => bool4.Parse(value)));
+            _options.Converters.Add(new FuncConverter<fix2>(value => fix2.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<fix3>(value => fix3.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<fix4>(value => fix4.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<int2>(value => int2.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<int3>(value => int3.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<int4>(value => int4.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<uint2>(value => uint2.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<uint3>(value => uint3.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<uint4>(value => uint4.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<float2>(value => float2.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<float3>(value => float3.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<float4>(value => float4.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<double2>(value => double2.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<double3>(value => double3.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<double4>(value => double4.Parse(value, format)));
+            _options.Converters.Add(new FuncConverter<CheatingId>(value => new CheatingId(value)));
+            _options.Converters.Add(new FuncConverter<GoodsId>(value => new GoodsId(value)));
+            _options.Converters.Add(new FuncConverter<StateId>(value => new StateId(value)));
+            _options.Converters.Add(new FuncConverter<TileId>(value => new TileId(value)));
+            _options.Converters.Add(new FuncConverter<UnitId>(value => new UnitId(value)));
         }
 
         public static string Serialize<T>(T data)
@@ -75,6 +75,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _writer ??= new Utf8JsonWriter(buffer, new JsonWriterOptions()
             {
                 Indented = true,
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
             JsonSerializer.Serialize(_writer, data, _options);
         }
@@ -84,22 +85,6 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         {
             var reader = new Utf8JsonReader(data.Span);
             return JsonSerializer.Deserialize<T>(ref reader, _options);
-        }
-
-
-        private class Converter<T> : SimpleConverter<T>
-        {
-            private readonly Func<string, T> _parser;
-
-            public Converter(Func<string, T> parser)
-            {
-                _parser = parser;
-            }
-
-            protected override T Parse(string value)
-            {
-                return _parser.Invoke(value);
-            }
         }
     }
 }

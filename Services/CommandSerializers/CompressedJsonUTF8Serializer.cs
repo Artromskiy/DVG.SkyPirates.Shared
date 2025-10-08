@@ -33,7 +33,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
         {
             using var output = to.AsStream();
             using var input = from.AsStream();
-            using DeflateStream dstream = new DeflateStream(output, CompressionLevel.Optimal);
+            using DeflateStream dstream = new DeflateStream(output, CompressionLevel.Fastest);
             dstream.Write(from.Span);
         }
 
