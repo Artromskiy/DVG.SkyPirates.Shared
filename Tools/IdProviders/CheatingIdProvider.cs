@@ -8,9 +8,9 @@ namespace DVG.SkyPirates.Shared.Tools.IdProviders
     {
         public override IEnumerable<CheatingId> TypedIds => new CheatingId[]
         {
-            new CheatingId("NoOwnershipCommand"),
-            new CheatingId("FutureCommand"),
-            new CheatingId("WrongClientId")
+            new("NoOwnershipCommand"),
+            new("FutureCommand"),
+            new("WrongClientId")
         };
     }
 }

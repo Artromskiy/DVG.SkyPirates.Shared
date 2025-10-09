@@ -8,10 +8,10 @@ namespace DVG.SkyPirates.Shared.Tools.IdProviders
     {
         public override IEnumerable<StateId> TypedIds => new StateId[]
         {
-            new StateId("None"),
-            new StateId("PreAttack"),
-            new StateId("PostAttack"),
-            new StateId("Reload"),
+            new("None"),
+            new("PreAttack"),
+            new("PostAttack"),
+            new("Reload"),
         };
 
     }

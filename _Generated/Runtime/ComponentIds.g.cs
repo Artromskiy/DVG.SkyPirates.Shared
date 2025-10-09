@@ -48,13 +48,15 @@ namespace DVG.Core.Components
                 {typeof(MoveSpeed), 17},
                 {typeof(Position), 18},
                 {typeof(RecivedDamage), 19},
-                {typeof(Rotation), 20},
-                {typeof(Separation), 21},
-                {typeof(Squad), 22},
-                {typeof(Target), 23},
-                {typeof(TargetSearchData), 24},
-                {typeof(Team), 25},
-                {typeof(UnitId), 26},
+                {typeof(RockId), 20},
+                {typeof(Rotation), 21},
+                {typeof(Separation), 22},
+                {typeof(Squad), 23},
+                {typeof(Target), 24},
+                {typeof(TargetSearchData), 25},
+                {typeof(Team), 26},
+                {typeof(TreeId), 27},
+                {typeof(UnitId), 28},
             };
             
             _idToType = new Dictionary<int, Type>()
@@ -78,13 +80,15 @@ namespace DVG.Core.Components
                 {17, typeof(MoveSpeed)},
                 {18, typeof(Position)},
                 {19, typeof(RecivedDamage)},
-                {20, typeof(Rotation)},
-                {21, typeof(Separation)},
-                {22, typeof(Squad)},
-                {23, typeof(Target)},
-                {24, typeof(TargetSearchData)},
-                {25, typeof(Team)},
-                {26, typeof(UnitId)},
+                {20, typeof(RockId)},
+                {21, typeof(Rotation)},
+                {22, typeof(Separation)},
+                {23, typeof(Squad)},
+                {24, typeof(Target)},
+                {25, typeof(TargetSearchData)},
+                {26, typeof(Team)},
+                {27, typeof(TreeId)},
+                {28, typeof(UnitId)},
             };
         }
 
@@ -111,12 +115,14 @@ namespace DVG.Core.Components
             action.Invoke<MoveSpeed>();
             action.Invoke<Position>();
             action.Invoke<RecivedDamage>();
+            action.Invoke<RockId>();
             action.Invoke<Rotation>();
             action.Invoke<Separation>();
             action.Invoke<Squad>();
             action.Invoke<Target>();
             action.Invoke<TargetSearchData>();
             action.Invoke<Team>();
+            action.Invoke<TreeId>();
             action.Invoke<UnitId>();
         }
     }

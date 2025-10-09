@@ -36,6 +36,8 @@ namespace DVG.SkyPirates.Shared.DI
             container.RegisterSingleton<IUnitConfigFactory, UnitConfigFactory>();
             container.RegisterSingleton<ISquadFactory, SquadFactory>();
             container.RegisterSingleton<IUnitFactory, UnitFactory>();
+            container.RegisterSingleton<ITreeFactory, TreeFactory>();
+            container.RegisterSingleton<IRockFactory, RockFactory>();
 
             container.RegisterSingleton<ICommandExecutorService, CommandExecutorService>();
             container.Collection.Register<ICommandExecutor>(commandExecutors, Lifestyle.Singleton);

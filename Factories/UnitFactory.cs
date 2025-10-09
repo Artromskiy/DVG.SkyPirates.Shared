@@ -25,29 +25,29 @@ namespace DVG.SkyPirates.Shared.Factories
         {
             var config = _unitConfigFactory.Create(parameters.UnitId);
 
-            var unit = EntityIds.Get(parameters.EntityId);
+            var entity = EntityIds.Get(parameters.EntityId);
 
-            UnitArch.EnsureArch(_world, unit);
+            UnitArch.EnsureArch(_world, entity);
 
-            _world.Get<UnitId>(unit) = parameters.UnitId;
+            _world.Get<UnitId>(entity) = parameters.UnitId;
 
-            _world.Get<Health>(unit).Value = config.health;
-            _world.Get<MaxHealth>(unit).Value = config.health;
-            _world.Get<Damage>(unit).Value = config.damage;
-            _world.Get<MoveSpeed>(unit).Value = config.speed;
-            _world.Get<ImpactDistance>(unit).Value = config.attackDistance;
+            _world.Get<Health>(entity).Value = config.health;
+            _world.Get<MaxHealth>(entity).Value = config.health;
+            _world.Get<Damage>(entity).Value = config.damage;
+            _world.Get<MoveSpeed>(entity).Value = config.speed;
+            _world.Get<ImpactDistance>(entity).Value = config.attackDistance;
 
-            _world.Get<CircleShape>(unit).Radius = fix.One / 3;
-            _world.Get<Separation>(unit).AddRadius = fix.One / 3;
-            _world.Get<Separation>(unit).AffectingCoeff = 1;
-            _world.Get<Separation>(unit).AffectedCoeff = 1;
-            _world.Get<AutoHeal>(unit).healDelay = 10;
-            _world.Get<AutoHeal>(unit).healPerSecond = 20;
+            _world.Get<CircleShape>(entity).Radius = fix.One / 3;
+            _world.Get<Separation>(entity).AddRadius = fix.One / 3;
+            _world.Get<Separation>(entity).AffectingCoeff = 1;
+            _world.Get<Separation>(entity).AffectedCoeff = 1;
+            _world.Get<AutoHeal>(entity).healDelay = 10;
+            _world.Get<AutoHeal>(entity).healPerSecond = 20;
 
-            _world.Get<BehaviourConfig>(unit).Scenario = GetScenario();
-            _world.Get<BehaviourConfig>(unit).Durations = GetConfigDurations(config);
+            _world.Get<BehaviourConfig>(entity).Scenario = GetScenario();
+            _world.Get<BehaviourConfig>(entity).Durations = GetConfigDurations(config);
 
-            return unit;
+            return entity;
         }
 
         private Dictionary<StateId, StateId> GetScenario() => new()

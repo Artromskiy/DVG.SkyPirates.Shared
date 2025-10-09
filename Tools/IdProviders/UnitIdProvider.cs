@@ -8,15 +8,15 @@ namespace DVG.SkyPirates.Shared.Tools.IdProviders
     {
         public override IEnumerable<UnitId> TypedIds => new UnitId[]
         {
-            new UnitId("Sailor"),
-            new UnitId("Pirate"),
-            new UnitId("Buccaneer"),
-            new UnitId("Rogue"),
-            new UnitId("Skelly"),
-            new UnitId("Archy"),
-            new UnitId("Demon"),
-            new UnitId("Imp"),
-            new UnitId("Militia"),
+            new("Sailor"),
+            new("Pirate"),
+            new("Buccaneer"),
+            new("Rogue"),
+            new("Skelly"),
+            new("Archy"),
+            new("Demon"),
+            new("Imp"),
+            new("Militia"),
         };
     }
 }
