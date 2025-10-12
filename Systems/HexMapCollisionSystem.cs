@@ -22,7 +22,8 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _world.TryGetArchetype(Component<HexMap>.Signature, out var archetype);
+            if (!_world.TryGetArchetype(Component<HexMap>.Signature, out var archetype))
+                return;
             var hexMap = archetype.GetChunk(0).GetFirst<HexMap>();
 
             var query = new SolveCollsionQuery(hexMap, _segmentsCache);
