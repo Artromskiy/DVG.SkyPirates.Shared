@@ -24,6 +24,7 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             if (!_world.TryGetArchetype(Component<HexMap>.Signature, out var archetype))
                 return;
+
             var hexMap = archetype.GetChunk(0).GetFirst<HexMap>();
 
             var query = new SolveCollsionQuery(hexMap, _segmentsCache);
@@ -86,9 +87,9 @@ namespace DVG.SkyPirates.Shared.Systems
                 down.y = -1;
 
                 return
-                    !_hexMap.Map.ContainsKey(up) &&
-                    !_hexMap.Map.ContainsKey(down) &&
-                    _hexMap.Map.ContainsKey(floor);
+                    !_hexMap.Data.ContainsKey(up) &&
+                    !_hexMap.Data.ContainsKey(down) &&
+                    _hexMap.Data.ContainsKey(floor);
             }
         }
     }

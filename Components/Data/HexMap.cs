@@ -9,6 +9,6 @@ namespace DVG.SkyPirates.Shared.Components.Data
     public struct HexMap
     {
         [DataMember(Order = 0)]
-        public Dictionary<int3, TileId> Map { get; set; }
+        public Dictionary<int3, TileId> Data { get; set; }
     }
 }

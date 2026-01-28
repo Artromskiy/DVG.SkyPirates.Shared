@@ -15,5 +15,7 @@ namespace DVG.SkyPirates.Shared.Data
         {
             Commands = commands;
         }
+
+        public static CommandsData Create() => new(new());
     }
 }

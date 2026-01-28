@@ -3,7 +3,7 @@ using DVG.Core;
 using DVG.Core.Components;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.Tools;
-using DVG.SkyPirates.Shared.Tools.Json;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Data
@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Data
 
         public static WorldData Serialize(World world)
         {
-            var entities = new Dictionary<string, List<(int entity, string data)>>();
+            var entities = new Dictionary<string, IList>();
             var serializationAction = new SerializationAction(_desc, entities, world);
             ComponentIds.ForEachData(ref serializationAction);
             return new WorldData(entities);
@@ -33,10 +33,10 @@ namespace DVG.SkyPirates.Shared.Data
         private readonly struct SerializationAction : IStructGenericAction
         {
             private readonly GenericCollection _desc;
-            private readonly Dictionary<string, List<(int entity, string data)>> _entities;
+            private readonly Dictionary<string, IList> _entities;
             private readonly World _world;
 
-            public SerializationAction(GenericCollection desc, Dictionary<string, List<(int entity, string data)>> entities, World world)
+            public SerializationAction(GenericCollection desc, Dictionary<string, IList> entities, World world)
             {
                 _desc = desc;
                 _entities = entities;
@@ -45,7 +45,7 @@ namespace DVG.SkyPirates.Shared.Data
 
             public readonly void Invoke<T>() where T : struct
             {
-                var components = new List<(int entity, string data)>();
+                var components = new List<(int entity, T data)>();
                 _entities.Add(typeof(T).Name, components);
                 var query = new SerializationQuery<T>(components);
                 var desc = _desc.Get<Description<T>>().Desc;
@@ -54,26 +54,26 @@ namespace DVG.SkyPirates.Shared.Data
 
             private readonly struct SerializationQuery<T> : IForEachWithEntity<T> where T : struct
             {
-                private readonly List<(int entity, string data)> _components;
+                private readonly List<(int entity, T data)> _components;
 
-                public SerializationQuery(List<(int entity, string data)> components)
+                public SerializationQuery(List<(int entity, T data)> components)
                 {
                     _components = components;
                 }
 
                 public void Update(Entity entity, ref T component)
                 {
-                    _components.Add((entity.Id, SerializationUTF8.Serialize(component)));
+                    _components.Add((entity.Id, component));
                 }
             }
         }
 
         private readonly struct DeserializationAction : IStructGenericAction
         {
-            private readonly IReadOnlyDictionary<string, List<(int entity, string data)>> _entities;
+            private readonly IReadOnlyDictionary<string, IList> _entities;
             private readonly World _world;
 
-            public DeserializationAction(IReadOnlyDictionary<string, List<(int entity, string data)>> entities, World world)
+            public DeserializationAction(IReadOnlyDictionary<string, IList> entities, World world)
             {
                 _entities = entities;
                 _world = world;
@@ -83,11 +83,13 @@ namespace DVG.SkyPirates.Shared.Data
             {
                 if (!_entities.TryGetValue(typeof(T).Name, out var components))
                     return;
+                if (components is not List<(int, T)> genericComponents)
+                    return;
 
-                foreach (var (entity, data) in components)
+                foreach (var (entity, data) in genericComponents)
                 {
                     ref var cmp = ref _world.AddOrGet<T>(EntityIds.Get(entity));
-                    cmp = SerializationUTF8.Deserialize<T>(data);
+                    cmp = data;
                 }
             }
         }
