@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Data
 
         public static WorldData Serialize(World world)
         {
-            var entities = new Dictionary<string, IList>();
+            var entities = new Dictionary<string, IDictionary>();
             var serializationAction = new SerializationAction(_desc, entities, world);
             ComponentIds.ForEachData(ref serializationAction);
             return new WorldData(entities);
@@ -33,10 +33,10 @@ namespace DVG.SkyPirates.Shared.Data
         private readonly struct SerializationAction : IStructGenericAction
         {
             private readonly GenericCollection _desc;
-            private readonly Dictionary<string, IList> _entities;
+            private readonly Dictionary<string, IDictionary> _entities;
             private readonly World _world;
 
-            public SerializationAction(GenericCollection desc, Dictionary<string, IList> entities, World world)
+            public SerializationAction(GenericCollection desc, Dictionary<string, IDictionary> entities, World world)
             {
                 _desc = desc;
                 _entities = entities;
@@ -45,7 +45,7 @@ namespace DVG.SkyPirates.Shared.Data
 
             public readonly void Invoke<T>() where T : struct
             {
-                var components = new List<(int entity, T data)>();
+                var components = new Dictionary<int, T>();
                 _entities.Add(typeof(T).Name, components);
                 var query = new SerializationQuery<T>(components);
                 var desc = _desc.Get<Description<T>>().Desc;
@@ -54,26 +54,26 @@ namespace DVG.SkyPirates.Shared.Data
 
             private readonly struct SerializationQuery<T> : IForEachWithEntity<T> where T : struct
             {
-                private readonly List<(int entity, T data)> _components;
+                private readonly Dictionary<int, T> _components;
 
-                public SerializationQuery(List<(int entity, T data)> components)
+                public SerializationQuery(Dictionary<int, T> components)
                 {
                     _components = components;
                 }
 
                 public void Update(Entity entity, ref T component)
                 {
-                    _components.Add((entity.Id, component));
+                    _components[entity.Id] = component;
                 }
             }
         }
 
         private readonly struct DeserializationAction : IStructGenericAction
         {
-            private readonly IReadOnlyDictionary<string, IList> _entities;
+            private readonly IReadOnlyDictionary<string, IDictionary> _entities;
             private readonly World _world;
 
-            public DeserializationAction(IReadOnlyDictionary<string, IList> entities, World world)
+            public DeserializationAction(IReadOnlyDictionary<string, IDictionary> entities, World world)
             {
                 _entities = entities;
                 _world = world;
@@ -83,7 +83,7 @@ namespace DVG.SkyPirates.Shared.Data
             {
                 if (!_entities.TryGetValue(typeof(T).Name, out var components))
                     return;
-                if (components is not List<(int, T)> genericComponents)
+                if (components is not Dictionary<int, T> genericComponents)
                     return;
 
                 foreach (var (entity, data) in genericComponents)
