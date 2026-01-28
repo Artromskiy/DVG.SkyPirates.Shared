@@ -3,6 +3,7 @@ using DVG.Core;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Linq;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -22,10 +23,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            if (!_world.TryGetArchetype(Component<HexMap>.Signature, out var archetype))
+            var hexMap = _world.FirstOrDefault<HexMap>();
+            if (hexMap.Data == null)
                 return;
-
-            var hexMap = archetype.GetChunk(0).GetFirst<HexMap>();
 
             var query = new SolveCollsionQuery(hexMap, _segmentsCache);
             _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, CircleShape>(_desc, ref query);
