@@ -12,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
     {
         private readonly Dictionary<Type, JsonTypeInfo> _cachedTypeInfos = new();
 
-        private static bool IsNullOrDefault(object obj)
+        private static bool IsNullOrDefault(object? obj)
         {
             if (obj is null)
             {
@@ -59,7 +59,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                     continue;
                 }
 
-                DataMemberAttribute attr = null;
+                DataMemberAttribute? attr = null;
                 if (isDataContract)
                 {
                     attr = memberInfo.GetCustomAttribute<DataMemberAttribute>();
@@ -76,10 +76,10 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                     }
                 }
 
-                Func<object, object> getValue = null;
-                Action<object, object> setValue = null;
-                Type propertyType = null;
-                string propertyName = null;
+                Func<object, object?>? getValue = null;
+                Action<object, object?>? setValue = null;
+                Type propertyType = null!;
+                string propertyName = null!;
 
                 if (memberInfo.MemberType == MemberTypes.Field && memberInfo is FieldInfo fieldInfo)
                 {
@@ -89,23 +89,23 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                     setValue = fieldInfo.SetValue;
                 }
                 else
-                if (memberInfo.MemberType == MemberTypes.Property && memberInfo is PropertyInfo propertyInfo)
-                {
-                    propertyName = attr?.Name ?? propertyInfo.Name;
-                    propertyType = propertyInfo.PropertyType;
-                    if (propertyInfo.CanRead)
+                    if (memberInfo.MemberType == MemberTypes.Property && memberInfo is PropertyInfo propertyInfo)
                     {
-                        getValue = propertyInfo.GetValue;
+                        propertyName = attr?.Name ?? propertyInfo.Name;
+                        propertyType = propertyInfo.PropertyType;
+                        if (propertyInfo.CanRead)
+                        {
+                            getValue = propertyInfo.GetValue;
+                        }
+                        if (propertyInfo.CanWrite)
+                        {
+                            setValue = propertyInfo.SetValue;
+                        }
                     }
-                    if (propertyInfo.CanWrite)
+                    else
                     {
-                        setValue = propertyInfo.SetValue;
+                        continue;
                     }
-                }
-                else
-                {
-                    continue;
-                }
 
                 JsonPropertyInfo jsonPropertyInfo = jsonTypeInfo.CreateJsonPropertyInfo(propertyType, propertyName);
                 if (jsonPropertyInfo == null)
