@@ -1,4 +1,5 @@
 ﻿using Arch.Core;
+using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.Tools;
 
 namespace DVG.SkyPirates.Shared.Systems.Linq
@@ -10,6 +11,7 @@ namespace DVG.SkyPirates.Shared.Systems.Linq
             public QueryDescription Desc = new QueryDescription().WithAll<T>();
         }
 
+        private static readonly QueryDescription NotUsedDesc = new QueryDescription().WithNone<Free>();
         private static readonly GenericCollection _desc = new();
 
 
@@ -19,6 +21,23 @@ namespace DVG.SkyPirates.Shared.Systems.Linq
             var desc = _desc.Get<Description<T>>().Desc;
             world.InlineQuery<FirstOrDefaultQuery<T>, T>(in desc, ref query);
             return query.Value;
+        }
+
+        public static int MaxEntityId(this World world)
+        {
+            var query = new MaxEntityIdQuery();
+            world.InlineQuery(in NotUsedDesc, ref query);
+            return query.Value;
+        }
+
+        private struct MaxEntityIdQuery : IForEach
+        {
+            public int Value;
+
+            public void Update(Entity entity)
+            {
+                Value = Maths.Max(Value, entity.Id);
+            }
         }
 
         private struct FirstOrDefaultQuery<T> : IForEach<T>

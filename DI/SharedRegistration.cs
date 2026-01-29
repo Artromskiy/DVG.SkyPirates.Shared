@@ -19,8 +19,7 @@ namespace DVG.SkyPirates.Shared.DI
             container.RegisterSingleton(() =>
             {
                 var world = World.Create();
-                world.Create<Temp>(100000);
-                world.Remove<Temp>(new QueryDescription().WithAll<Temp>());
+                world.Create<Free>(100000);
                 return world;
             });
 

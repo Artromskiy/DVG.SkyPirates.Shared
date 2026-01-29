@@ -29,7 +29,6 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             var unit = _unitFactory.Create((cmd.Data.UnitId, cmd.EntityId));
 
             _world.Get<Team>(unit).Id = cmd.ClientId;
-            _world.Get<Level>(unit).Value = 1;
             _world.Get<Position>(unit).Value = pos;
 
             AddUnit(squad, unit);
