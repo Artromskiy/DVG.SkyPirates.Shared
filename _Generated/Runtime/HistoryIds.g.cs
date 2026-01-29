@@ -50,10 +50,11 @@ namespace DVG.Core.Components
                 {typeof(Separation), 19},
                 {typeof(Squad), 20},
                 {typeof(Target), 21},
-                {typeof(TargetSearchData), 22},
-                {typeof(Team), 23},
-                {typeof(TreeId), 24},
-                {typeof(UnitId), 25},
+                {typeof(Targets), 22},
+                {typeof(TargetSearchData), 23},
+                {typeof(Team), 24},
+                {typeof(TreeId), 25},
+                {typeof(UnitId), 26},
             };
             
             _idToType = new Dictionary<int, Type>()
@@ -79,10 +80,11 @@ namespace DVG.Core.Components
                 {19, typeof(Separation)},
                 {20, typeof(Squad)},
                 {21, typeof(Target)},
-                {22, typeof(TargetSearchData)},
-                {23, typeof(Team)},
-                {24, typeof(TreeId)},
-                {25, typeof(UnitId)},
+                {22, typeof(Targets)},
+                {23, typeof(TargetSearchData)},
+                {24, typeof(Team)},
+                {25, typeof(TreeId)},
+                {26, typeof(UnitId)},
             };
         }
 
@@ -111,6 +113,7 @@ namespace DVG.Core.Components
             action.Invoke<Separation>();
             action.Invoke<Squad>();
             action.Invoke<Target>();
+            action.Invoke<Targets>();
             action.Invoke<TargetSearchData>();
             action.Invoke<Team>();
             action.Invoke<TreeId>();

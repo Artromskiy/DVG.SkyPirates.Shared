@@ -74,12 +74,14 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 23)]
         public Dictionary<int, Target> Target;
         [DataMember(Order = 24)]
-        public Dictionary<int, TargetSearchData> TargetSearchData;
+        public Dictionary<int, Targets> Targets;
         [DataMember(Order = 25)]
-        public Dictionary<int, Team> Team;
+        public Dictionary<int, TargetSearchData> TargetSearchData;
         [DataMember(Order = 26)]
-        public Dictionary<int, TreeId> TreeId;
+        public Dictionary<int, Team> Team;
         [DataMember(Order = 27)]
+        public Dictionary<int, TreeId> TreeId;
+        [DataMember(Order = 28)]
         public Dictionary<int, UnitId> UnitId;
 
         public WorldData()
@@ -109,6 +111,7 @@ namespace DVG.SkyPirates.Shared.Data
             Separation = new();
             Squad = new();
             Target = new();
+            Targets = new();
             TargetSearchData = new();
             Team = new();
             TreeId = new();
@@ -167,6 +170,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Squad as Dictionary<int, T>;
             if (typeof(T) == typeof(Target))
                 return Target as Dictionary<int, T>;
+            if (typeof(T) == typeof(Targets))
+                return Targets as Dictionary<int, T>;
             if (typeof(T) == typeof(TargetSearchData))
                 return TargetSearchData as Dictionary<int, T>;
             if (typeof(T) == typeof(Team))
@@ -301,6 +306,11 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(Target))
             {
                 Target = data as Dictionary<int, Target>;
+                return;
+            }
+            if (typeof(T) == typeof(Targets))
+            {
+                Targets = data as Dictionary<int, Targets>;
                 return;
             }
             if (typeof(T) == typeof(TargetSearchData))
