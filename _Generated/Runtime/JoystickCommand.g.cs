@@ -18,9 +18,9 @@ using System.Runtime.Serialization;
 namespace DVG.SkyPirates.Shared.Commands
 {
     [StructLayout(LayoutKind.Sequential)]
-    partial struct FixationCommand : ICommandData
+    partial struct JoystickCommand : ICommandData
     {
         [IgnoreDataMember]
-        public int CommandId => CommandIds.GetId<FixationCommand>();
+        public int CommandId => CommandIds.GetId<JoystickCommand>();
     }
 }

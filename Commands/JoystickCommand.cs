@@ -1,8 +1,7 @@
-﻿using DVG;
-using DVG.Core.Commands.Attributes;
+﻿using DVG.Core.Commands.Attributes;
 using System.Runtime.Serialization;
 
-namespace Assets.Scripts.SkyPirates.Shared.Commands
+namespace DVG.SkyPirates.Shared.Commands
 {
     [Command]
     [DataContract]

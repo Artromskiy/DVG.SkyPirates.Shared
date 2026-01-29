@@ -26,22 +26,20 @@ namespace DVG.Core.Commands
         {
             _typeToId = new Dictionary<Type, int>()
             {
-                {typeof(DirectionCommand), 1},
-                {typeof(FixationCommand), 2},
-                {typeof(LoadWorldCommand), 3},
-                {typeof(SpawnSquadCommand), 4},
-                {typeof(SpawnUnitCommand), 5},
-                {typeof(TickSyncCommand), 6},
+                {typeof(JoystickCommand), 1},
+                {typeof(LoadWorldCommand), 2},
+                {typeof(SpawnSquadCommand), 3},
+                {typeof(SpawnUnitCommand), 4},
+                {typeof(TickSyncCommand), 5},
             };
             
             _idToType = new Dictionary<int, Type>()
             {
-                {1, typeof(DirectionCommand)},
-                {2, typeof(FixationCommand)},
-                {3, typeof(LoadWorldCommand)},
-                {4, typeof(SpawnSquadCommand)},
-                {5, typeof(SpawnUnitCommand)},
-                {6, typeof(TickSyncCommand)},
+                {1, typeof(JoystickCommand)},
+                {2, typeof(LoadWorldCommand)},
+                {3, typeof(SpawnSquadCommand)},
+                {4, typeof(SpawnUnitCommand)},
+                {5, typeof(TickSyncCommand)},
             };
         }
 
@@ -49,8 +47,7 @@ namespace DVG.Core.Commands
         public static void ForEachData<T>(ref T action)
             where T: IGenericAction<ICommandData>
         {
-            action.Invoke<DirectionCommand>();
-            action.Invoke<FixationCommand>();
+            action.Invoke<JoystickCommand>();
             action.Invoke<LoadWorldCommand>();
             action.Invoke<SpawnSquadCommand>();
             action.Invoke<SpawnUnitCommand>();

@@ -10,26 +10,29 @@ using System;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    public class DirectionCommandExecutor : ICommandExecutor<DirectionCommand>
+    public class JoysticCommandExecutor : ICommandExecutor<JoystickCommand>
     {
         private readonly World _world;
-        public DirectionCommandExecutor(World world)
+        public JoysticCommandExecutor(World world)
         {
             _world = world;
         }
 
-        public void Execute(Command<DirectionCommand> cmd)
+        public void Execute(Command<JoystickCommand> cmd)
         {
             var squad = EntityIds.Get(cmd.EntityId);
             if (!_world.IsAlive(squad) ||
                 !_world.Has<Direction>(squad) ||
-                !_world.Has<Rotation>(squad))
+                !_world.Has<Rotation>(squad) ||
+                !_world.Has<Fixation>(squad))
             {
                 Console.WriteLine($"Attempt to use command for entity {cmd.EntityId}, which is not created");
                 return;
             }
 
             SetDirection(ref _world.Get<Direction>(squad), ref _world.Get<Rotation>(squad), cmd.Data.Direction);
+
+            _world.Get<Fixation>(squad).Value = cmd.Data.Fixation;
         }
 
         public void SetDirection(ref Direction direction, ref Rotation rotation, fix2 targetDirection)

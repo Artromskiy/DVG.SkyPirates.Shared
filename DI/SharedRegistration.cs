@@ -28,8 +28,7 @@ namespace DVG.SkyPirates.Shared.DI
             {
                 typeof(SpawnSquadCommandExecutor),
                 typeof(SpawnUnitCommandExecutor),
-                typeof(FixationCommandExecutor),
-                typeof(DirectionCommandExecutor)
+                typeof(JoysticCommandExecutor)
                 //typeof(CommandLogger)
             };
 
