@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    public static class WorldDataSerializer
+    public static class WorldDataFactory
     {
         private class Description<T>
         {
@@ -15,7 +15,7 @@ namespace DVG.SkyPirates.Shared.Data
         }
         private static readonly GenericCollection _desc = new();
 
-        public static WorldData Serialize(World world)
+        public static WorldData Create(World world)
         {
             var worldData = new WorldData();
             var serializationAction = new SerializationAction(_desc, worldData, world);
@@ -23,7 +23,7 @@ namespace DVG.SkyPirates.Shared.Data
             return worldData;
         }
 
-        public static void Deserialize(World world, WorldData worldData)
+        public static void Extract(World world, WorldData worldData)
         {
             var deserializationAction = new DeserializationAction(worldData, world);
             ComponentIds.ForEachData(ref deserializationAction);
