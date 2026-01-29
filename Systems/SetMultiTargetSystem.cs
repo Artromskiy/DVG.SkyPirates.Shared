@@ -2,11 +2,12 @@
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.IServices;
+using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SetMultiTargetSystem
+    public class SetMultiTargetSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, Targets, Team, Alive>();
