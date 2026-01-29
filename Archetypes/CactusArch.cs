@@ -11,11 +11,18 @@ namespace DVG.SkyPirates.Shared.Archetypes
         {
             world.RemoveRange(entity, world.GetSignature(entity).Components);
             world.Add<
-                RockId,
+                CactusId,
                 Position,
                 Rotation,
+                ImpactDistance,
+                TargetSearchData,
+                Targets,
+                Damage,
                 Team,
+                Alive,
                 CircleShape,
+                Behaviour,
+                BehaviourConfig,
                 Separation>
                 (entity);
         }

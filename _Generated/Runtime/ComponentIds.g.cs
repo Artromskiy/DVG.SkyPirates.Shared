@@ -14,8 +14,8 @@ using System;
 using System.Collections.Generic;
 
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Ids;
+using DVG.SkyPirates.Shared.Components.Data;
 
 namespace DVG.Core.Components
 {
@@ -33,28 +33,29 @@ namespace DVG.Core.Components
                 {typeof(Behaviour), 3},
                 {typeof(BehaviourConfig), 4},
                 {typeof(CachePosition), 5},
-                {typeof(CircleShape), 6},
-                {typeof(Damage), 7},
-                {typeof(Destination), 8},
-                {typeof(Direction), 9},
-                {typeof(Fixation), 10},
-                {typeof(Health), 11},
-                {typeof(HexMap), 12},
-                {typeof(ImpactDistance), 13},
-                {typeof(Level), 14},
-                {typeof(MaxHealth), 15},
-                {typeof(MoveSpeed), 16},
-                {typeof(Position), 17},
-                {typeof(RecivedDamage), 18},
-                {typeof(RockId), 19},
-                {typeof(Rotation), 20},
-                {typeof(Separation), 21},
-                {typeof(Squad), 22},
-                {typeof(Target), 23},
-                {typeof(TargetSearchData), 24},
-                {typeof(Team), 25},
-                {typeof(TreeId), 26},
-                {typeof(UnitId), 27},
+                {typeof(CactusId), 6},
+                {typeof(CircleShape), 7},
+                {typeof(Damage), 8},
+                {typeof(Destination), 9},
+                {typeof(Direction), 10},
+                {typeof(Fixation), 11},
+                {typeof(Health), 12},
+                {typeof(HexMap), 13},
+                {typeof(ImpactDistance), 14},
+                {typeof(Level), 15},
+                {typeof(MaxHealth), 16},
+                {typeof(MoveSpeed), 17},
+                {typeof(Position), 18},
+                {typeof(RecivedDamage), 19},
+                {typeof(RockId), 20},
+                {typeof(Rotation), 21},
+                {typeof(Separation), 22},
+                {typeof(Squad), 23},
+                {typeof(Target), 24},
+                {typeof(TargetSearchData), 25},
+                {typeof(Team), 26},
+                {typeof(TreeId), 27},
+                {typeof(UnitId), 28},
             };
             
             _idToType = new Dictionary<int, Type>()
@@ -64,28 +65,29 @@ namespace DVG.Core.Components
                 {3, typeof(Behaviour)},
                 {4, typeof(BehaviourConfig)},
                 {5, typeof(CachePosition)},
-                {6, typeof(CircleShape)},
-                {7, typeof(Damage)},
-                {8, typeof(Destination)},
-                {9, typeof(Direction)},
-                {10, typeof(Fixation)},
-                {11, typeof(Health)},
-                {12, typeof(HexMap)},
-                {13, typeof(ImpactDistance)},
-                {14, typeof(Level)},
-                {15, typeof(MaxHealth)},
-                {16, typeof(MoveSpeed)},
-                {17, typeof(Position)},
-                {18, typeof(RecivedDamage)},
-                {19, typeof(RockId)},
-                {20, typeof(Rotation)},
-                {21, typeof(Separation)},
-                {22, typeof(Squad)},
-                {23, typeof(Target)},
-                {24, typeof(TargetSearchData)},
-                {25, typeof(Team)},
-                {26, typeof(TreeId)},
-                {27, typeof(UnitId)},
+                {6, typeof(CactusId)},
+                {7, typeof(CircleShape)},
+                {8, typeof(Damage)},
+                {9, typeof(Destination)},
+                {10, typeof(Direction)},
+                {11, typeof(Fixation)},
+                {12, typeof(Health)},
+                {13, typeof(HexMap)},
+                {14, typeof(ImpactDistance)},
+                {15, typeof(Level)},
+                {16, typeof(MaxHealth)},
+                {17, typeof(MoveSpeed)},
+                {18, typeof(Position)},
+                {19, typeof(RecivedDamage)},
+                {20, typeof(RockId)},
+                {21, typeof(Rotation)},
+                {22, typeof(Separation)},
+                {23, typeof(Squad)},
+                {24, typeof(Target)},
+                {25, typeof(TargetSearchData)},
+                {26, typeof(Team)},
+                {27, typeof(TreeId)},
+                {28, typeof(UnitId)},
             };
         }
 
@@ -98,6 +100,7 @@ namespace DVG.Core.Components
             action.Invoke<Behaviour>();
             action.Invoke<BehaviourConfig>();
             action.Invoke<CachePosition>();
+            action.Invoke<CactusId>();
             action.Invoke<CircleShape>();
             action.Invoke<Damage>();
             action.Invoke<Destination>();

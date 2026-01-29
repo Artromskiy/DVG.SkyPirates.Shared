@@ -6,40 +6,37 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    /// <summary>
-    /// Switches <see cref="Behaviour"/> to PreAttack if State is None and Target is in ImpactDistance
-    /// </summary>
-    public sealed class BeginAttackSystem : ITickableExecutor
+    public sealed class SingleImpactSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Behaviour, ImpactDistance, Position, Target, Alive>();
+            WithAll<Behaviour, Damage, ImpactDistance, Position, Target, Alive>();
 
         private readonly World _world;
 
-        public BeginAttackSystem(World world)
+        public SingleImpactSystem(World world)
         {
             _world = world;
         }
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new BeginAttackQuery(_world);
-            _world.InlineQuery<BeginAttackQuery, Behaviour, ImpactDistance, Position, Target>(_desc, ref query);
+            var query = new ImpactQuery(_world);
+            _world.InlineQuery<ImpactQuery, Behaviour, Damage, ImpactDistance, Position, Target>(_desc, ref query);
         }
 
-        private readonly struct BeginAttackQuery :
-            IForEach<Behaviour, ImpactDistance, Position, Target>
+        private readonly struct ImpactQuery :
+            IForEach<Behaviour, Damage, ImpactDistance, Position, Target>
         {
             private readonly World _world;
 
-            public BeginAttackQuery(World world)
+            public ImpactQuery(World world)
             {
                 _world = world;
             }
 
-            public void Update(ref Behaviour behaviour, ref ImpactDistance impactDistance, ref Position position, ref Target target)
+            public void Update(ref Behaviour behaviour, ref Damage damage, ref ImpactDistance impactDistance, ref Position position, ref Target target)
             {
-                if (behaviour.State != StateId.None)
+                if (behaviour.State != StateId.Constants.PreAttack || behaviour.Percent != 1)
                     return;
 
                 if (!target.Entity.HasValue)
@@ -52,7 +49,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 if (sqrDistance > impactSqrDistance)
                     return;
 
-                behaviour.ForceState = StateId.Constants.PreAttack;
+                _world.Get<RecivedDamage>(target.Entity.Value).Value += damage.Value;
             }
         }
     }

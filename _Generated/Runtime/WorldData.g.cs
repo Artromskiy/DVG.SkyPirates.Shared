@@ -15,8 +15,8 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Components.Data;
 using DVG.SkyPirates.Shared.Ids;
+using DVG.SkyPirates.Shared.Components.Data;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -36,48 +36,50 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 4)]
         public Dictionary<int, CachePosition> CachePosition;
         [DataMember(Order = 5)]
-        public Dictionary<int, CircleShape> CircleShape;
+        public Dictionary<int, CactusId> CactusId;
         [DataMember(Order = 6)]
-        public Dictionary<int, Damage> Damage;
+        public Dictionary<int, CircleShape> CircleShape;
         [DataMember(Order = 7)]
-        public Dictionary<int, Destination> Destination;
+        public Dictionary<int, Damage> Damage;
         [DataMember(Order = 8)]
-        public Dictionary<int, Direction> Direction;
+        public Dictionary<int, Destination> Destination;
         [DataMember(Order = 9)]
-        public Dictionary<int, Fixation> Fixation;
+        public Dictionary<int, Direction> Direction;
         [DataMember(Order = 10)]
-        public Dictionary<int, Health> Health;
+        public Dictionary<int, Fixation> Fixation;
         [DataMember(Order = 11)]
-        public Dictionary<int, HexMap> HexMap;
+        public Dictionary<int, Health> Health;
         [DataMember(Order = 12)]
-        public Dictionary<int, ImpactDistance> ImpactDistance;
+        public Dictionary<int, HexMap> HexMap;
         [DataMember(Order = 13)]
-        public Dictionary<int, Level> Level;
+        public Dictionary<int, ImpactDistance> ImpactDistance;
         [DataMember(Order = 14)]
-        public Dictionary<int, MaxHealth> MaxHealth;
+        public Dictionary<int, Level> Level;
         [DataMember(Order = 15)]
-        public Dictionary<int, MoveSpeed> MoveSpeed;
+        public Dictionary<int, MaxHealth> MaxHealth;
         [DataMember(Order = 16)]
-        public Dictionary<int, Position> Position;
+        public Dictionary<int, MoveSpeed> MoveSpeed;
         [DataMember(Order = 17)]
-        public Dictionary<int, RecivedDamage> RecivedDamage;
+        public Dictionary<int, Position> Position;
         [DataMember(Order = 18)]
-        public Dictionary<int, RockId> RockId;
+        public Dictionary<int, RecivedDamage> RecivedDamage;
         [DataMember(Order = 19)]
-        public Dictionary<int, Rotation> Rotation;
+        public Dictionary<int, RockId> RockId;
         [DataMember(Order = 20)]
-        public Dictionary<int, Separation> Separation;
+        public Dictionary<int, Rotation> Rotation;
         [DataMember(Order = 21)]
-        public Dictionary<int, Squad> Squad;
+        public Dictionary<int, Separation> Separation;
         [DataMember(Order = 22)]
-        public Dictionary<int, Target> Target;
+        public Dictionary<int, Squad> Squad;
         [DataMember(Order = 23)]
-        public Dictionary<int, TargetSearchData> TargetSearchData;
+        public Dictionary<int, Target> Target;
         [DataMember(Order = 24)]
-        public Dictionary<int, Team> Team;
+        public Dictionary<int, TargetSearchData> TargetSearchData;
         [DataMember(Order = 25)]
-        public Dictionary<int, TreeId> TreeId;
+        public Dictionary<int, Team> Team;
         [DataMember(Order = 26)]
+        public Dictionary<int, TreeId> TreeId;
+        [DataMember(Order = 27)]
         public Dictionary<int, UnitId> UnitId;
 
         public WorldData()
@@ -88,6 +90,7 @@ namespace DVG.SkyPirates.Shared.Data
             Behaviour = new();
             BehaviourConfig = new();
             CachePosition = new();
+            CactusId = new();
             CircleShape = new();
             Damage = new();
             Destination = new();
@@ -126,6 +129,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return BehaviourConfig as Dictionary<int, T>;
             if (typeof(T) == typeof(CachePosition))
                 return CachePosition as Dictionary<int, T>;
+            if (typeof(T) == typeof(CactusId))
+                return CactusId as Dictionary<int, T>;
             if (typeof(T) == typeof(CircleShape))
                 return CircleShape as Dictionary<int, T>;
             if (typeof(T) == typeof(Damage))
@@ -201,6 +206,11 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(CachePosition))
             {
                 CachePosition = data as Dictionary<int, CachePosition>;
+                return;
+            }
+            if (typeof(T) == typeof(CactusId))
+            {
+                CactusId = data as Dictionary<int, CactusId>;
                 return;
             }
             if (typeof(T) == typeof(CircleShape))
