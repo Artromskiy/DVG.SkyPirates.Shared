@@ -11,5 +11,11 @@ namespace DVG.SkyPirates.Shared.Commands
         public fix2 Direction { get; set; }
         [DataMember(Order = 1)]
         public bool Fixation { get; set; }
+
+        public JoystickCommand(fix2 direction, bool fixation)
+        {
+            Direction = direction;
+            Fixation = fixation;
+        }
     }
 }
