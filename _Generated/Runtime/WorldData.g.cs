@@ -14,9 +14,9 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -26,150 +26,150 @@ namespace DVG.SkyPirates.Shared.Data
     {
 
         [DataMember(Order = 0)]
-        public Dictionary<int, RockId> RockIds;
+        public Dictionary<int, Alive> Alive;
         [DataMember(Order = 1)]
-        public Dictionary<int, TreeId> TreeIds;
+        public Dictionary<int, AutoHeal> AutoHeal;
         [DataMember(Order = 2)]
-        public Dictionary<int, UnitId> UnitIds;
+        public Dictionary<int, Behaviour> Behaviour;
         [DataMember(Order = 3)]
-        public Dictionary<int, Alive> Alives;
+        public Dictionary<int, BehaviourConfig> BehaviourConfig;
         [DataMember(Order = 4)]
-        public Dictionary<int, AutoHeal> AutoHeals;
+        public Dictionary<int, CachePosition> CachePosition;
         [DataMember(Order = 5)]
-        public Dictionary<int, Behaviour> Behaviours;
+        public Dictionary<int, CircleShape> CircleShape;
         [DataMember(Order = 6)]
-        public Dictionary<int, BehaviourConfig> BehaviourConfigs;
+        public Dictionary<int, Damage> Damage;
         [DataMember(Order = 7)]
-        public Dictionary<int, CachePosition> CachePositions;
+        public Dictionary<int, Destination> Destination;
         [DataMember(Order = 8)]
-        public Dictionary<int, Destination> Destinations;
+        public Dictionary<int, Direction> Direction;
         [DataMember(Order = 9)]
-        public Dictionary<int, Direction> Directions;
+        public Dictionary<int, Fixation> Fixation;
         [DataMember(Order = 10)]
-        public Dictionary<int, Fixation> Fixations;
+        public Dictionary<int, Health> Health;
         [DataMember(Order = 11)]
-        public Dictionary<int, RecivedDamage> RecivedDamages;
+        public Dictionary<int, HexMap> HexMap;
         [DataMember(Order = 12)]
-        public Dictionary<int, Separation> Separations;
+        public Dictionary<int, ImpactDistance> ImpactDistance;
         [DataMember(Order = 13)]
-        public Dictionary<int, Squad> Squads;
+        public Dictionary<int, Level> Level;
         [DataMember(Order = 14)]
-        public Dictionary<int, Target> Targets;
+        public Dictionary<int, MaxHealth> MaxHealth;
         [DataMember(Order = 15)]
-        public Dictionary<int, TargetSearchData> TargetSearchDatas;
+        public Dictionary<int, MoveSpeed> MoveSpeed;
         [DataMember(Order = 16)]
-        public Dictionary<int, CircleShape> CircleShapes;
+        public Dictionary<int, Position> Position;
         [DataMember(Order = 17)]
-        public Dictionary<int, Damage> Damages;
+        public Dictionary<int, RecivedDamage> RecivedDamage;
         [DataMember(Order = 18)]
-        public Dictionary<int, Health> Healths;
+        public Dictionary<int, RockId> RockId;
         [DataMember(Order = 19)]
-        public Dictionary<int, HexMap> HexMaps;
+        public Dictionary<int, Rotation> Rotation;
         [DataMember(Order = 20)]
-        public Dictionary<int, ImpactDistance> ImpactDistances;
+        public Dictionary<int, Separation> Separation;
         [DataMember(Order = 21)]
-        public Dictionary<int, Level> Levels;
+        public Dictionary<int, Squad> Squad;
         [DataMember(Order = 22)]
-        public Dictionary<int, MaxHealth> MaxHealths;
+        public Dictionary<int, Target> Target;
         [DataMember(Order = 23)]
-        public Dictionary<int, MoveSpeed> MoveSpeeds;
+        public Dictionary<int, TargetSearchData> TargetSearchData;
         [DataMember(Order = 24)]
-        public Dictionary<int, Position> Positions;
+        public Dictionary<int, Team> Team;
         [DataMember(Order = 25)]
-        public Dictionary<int, Rotation> Rotations;
+        public Dictionary<int, TreeId> TreeId;
         [DataMember(Order = 26)]
-        public Dictionary<int, Team> Teams;
+        public Dictionary<int, UnitId> UnitId;
 
         public WorldData()
         {
 
-            RockIds = new();
-            TreeIds = new();
-            UnitIds = new();
-            Alives = new();
-            AutoHeals = new();
-            Behaviours = new();
-            BehaviourConfigs = new();
-            CachePositions = new();
-            Destinations = new();
-            Directions = new();
-            Fixations = new();
-            RecivedDamages = new();
-            Separations = new();
-            Squads = new();
-            Targets = new();
-            TargetSearchDatas = new();
-            CircleShapes = new();
-            Damages = new();
-            Healths = new();
-            HexMaps = new();
-            ImpactDistances = new();
-            Levels = new();
-            MaxHealths = new();
-            MoveSpeeds = new();
-            Positions = new();
-            Rotations = new();
-            Teams = new();
+            Alive = new();
+            AutoHeal = new();
+            Behaviour = new();
+            BehaviourConfig = new();
+            CachePosition = new();
+            CircleShape = new();
+            Damage = new();
+            Destination = new();
+            Direction = new();
+            Fixation = new();
+            Health = new();
+            HexMap = new();
+            ImpactDistance = new();
+            Level = new();
+            MaxHealth = new();
+            MoveSpeed = new();
+            Position = new();
+            RecivedDamage = new();
+            RockId = new();
+            Rotation = new();
+            Separation = new();
+            Squad = new();
+            Target = new();
+            TargetSearchData = new();
+            Team = new();
+            TreeId = new();
+            UnitId = new();
         }
 
         public Dictionary<int, T> Get<T>()
             where T : struct
         {
 
-            if (typeof(T) == typeof(RockId))
-                return RockIds as Dictionary<int, T>;
-            if (typeof(T) == typeof(TreeId))
-                return TreeIds as Dictionary<int, T>;
-            if (typeof(T) == typeof(UnitId))
-                return UnitIds as Dictionary<int, T>;
             if (typeof(T) == typeof(Alive))
-                return Alives as Dictionary<int, T>;
+                return Alive as Dictionary<int, T>;
             if (typeof(T) == typeof(AutoHeal))
-                return AutoHeals as Dictionary<int, T>;
+                return AutoHeal as Dictionary<int, T>;
             if (typeof(T) == typeof(Behaviour))
-                return Behaviours as Dictionary<int, T>;
+                return Behaviour as Dictionary<int, T>;
             if (typeof(T) == typeof(BehaviourConfig))
-                return BehaviourConfigs as Dictionary<int, T>;
+                return BehaviourConfig as Dictionary<int, T>;
             if (typeof(T) == typeof(CachePosition))
-                return CachePositions as Dictionary<int, T>;
-            if (typeof(T) == typeof(Destination))
-                return Destinations as Dictionary<int, T>;
-            if (typeof(T) == typeof(Direction))
-                return Directions as Dictionary<int, T>;
-            if (typeof(T) == typeof(Fixation))
-                return Fixations as Dictionary<int, T>;
-            if (typeof(T) == typeof(RecivedDamage))
-                return RecivedDamages as Dictionary<int, T>;
-            if (typeof(T) == typeof(Separation))
-                return Separations as Dictionary<int, T>;
-            if (typeof(T) == typeof(Squad))
-                return Squads as Dictionary<int, T>;
-            if (typeof(T) == typeof(Target))
-                return Targets as Dictionary<int, T>;
-            if (typeof(T) == typeof(TargetSearchData))
-                return TargetSearchDatas as Dictionary<int, T>;
+                return CachePosition as Dictionary<int, T>;
             if (typeof(T) == typeof(CircleShape))
-                return CircleShapes as Dictionary<int, T>;
+                return CircleShape as Dictionary<int, T>;
             if (typeof(T) == typeof(Damage))
-                return Damages as Dictionary<int, T>;
+                return Damage as Dictionary<int, T>;
+            if (typeof(T) == typeof(Destination))
+                return Destination as Dictionary<int, T>;
+            if (typeof(T) == typeof(Direction))
+                return Direction as Dictionary<int, T>;
+            if (typeof(T) == typeof(Fixation))
+                return Fixation as Dictionary<int, T>;
             if (typeof(T) == typeof(Health))
-                return Healths as Dictionary<int, T>;
+                return Health as Dictionary<int, T>;
             if (typeof(T) == typeof(HexMap))
-                return HexMaps as Dictionary<int, T>;
+                return HexMap as Dictionary<int, T>;
             if (typeof(T) == typeof(ImpactDistance))
-                return ImpactDistances as Dictionary<int, T>;
+                return ImpactDistance as Dictionary<int, T>;
             if (typeof(T) == typeof(Level))
-                return Levels as Dictionary<int, T>;
+                return Level as Dictionary<int, T>;
             if (typeof(T) == typeof(MaxHealth))
-                return MaxHealths as Dictionary<int, T>;
+                return MaxHealth as Dictionary<int, T>;
             if (typeof(T) == typeof(MoveSpeed))
-                return MoveSpeeds as Dictionary<int, T>;
+                return MoveSpeed as Dictionary<int, T>;
             if (typeof(T) == typeof(Position))
-                return Positions as Dictionary<int, T>;
+                return Position as Dictionary<int, T>;
+            if (typeof(T) == typeof(RecivedDamage))
+                return RecivedDamage as Dictionary<int, T>;
+            if (typeof(T) == typeof(RockId))
+                return RockId as Dictionary<int, T>;
             if (typeof(T) == typeof(Rotation))
-                return Rotations as Dictionary<int, T>;
+                return Rotation as Dictionary<int, T>;
+            if (typeof(T) == typeof(Separation))
+                return Separation as Dictionary<int, T>;
+            if (typeof(T) == typeof(Squad))
+                return Squad as Dictionary<int, T>;
+            if (typeof(T) == typeof(Target))
+                return Target as Dictionary<int, T>;
+            if (typeof(T) == typeof(TargetSearchData))
+                return TargetSearchData as Dictionary<int, T>;
             if (typeof(T) == typeof(Team))
-                return Teams as Dictionary<int, T>;
+                return Team as Dictionary<int, T>;
+            if (typeof(T) == typeof(TreeId))
+                return TreeId as Dictionary<int, T>;
+            if (typeof(T) == typeof(UnitId))
+                return UnitId as Dictionary<int, T>;
 
             throw new NotSupportedException(typeof(T).Name);
         }
@@ -178,139 +178,139 @@ namespace DVG.SkyPirates.Shared.Data
             where T : struct
         {
 
-            if (typeof(T) == typeof(RockId))
-            {
-                RockIds = data as Dictionary<int, RockId>;
-                return;
-            }
-            if (typeof(T) == typeof(TreeId))
-            {
-                TreeIds = data as Dictionary<int, TreeId>;
-                return;
-            }
-            if (typeof(T) == typeof(UnitId))
-            {
-                UnitIds = data as Dictionary<int, UnitId>;
-                return;
-            }
             if (typeof(T) == typeof(Alive))
             {
-                Alives = data as Dictionary<int, Alive>;
+                Alive = data as Dictionary<int, Alive>;
                 return;
             }
             if (typeof(T) == typeof(AutoHeal))
             {
-                AutoHeals = data as Dictionary<int, AutoHeal>;
+                AutoHeal = data as Dictionary<int, AutoHeal>;
                 return;
             }
             if (typeof(T) == typeof(Behaviour))
             {
-                Behaviours = data as Dictionary<int, Behaviour>;
+                Behaviour = data as Dictionary<int, Behaviour>;
                 return;
             }
             if (typeof(T) == typeof(BehaviourConfig))
             {
-                BehaviourConfigs = data as Dictionary<int, BehaviourConfig>;
+                BehaviourConfig = data as Dictionary<int, BehaviourConfig>;
                 return;
             }
             if (typeof(T) == typeof(CachePosition))
             {
-                CachePositions = data as Dictionary<int, CachePosition>;
-                return;
-            }
-            if (typeof(T) == typeof(Destination))
-            {
-                Destinations = data as Dictionary<int, Destination>;
-                return;
-            }
-            if (typeof(T) == typeof(Direction))
-            {
-                Directions = data as Dictionary<int, Direction>;
-                return;
-            }
-            if (typeof(T) == typeof(Fixation))
-            {
-                Fixations = data as Dictionary<int, Fixation>;
-                return;
-            }
-            if (typeof(T) == typeof(RecivedDamage))
-            {
-                RecivedDamages = data as Dictionary<int, RecivedDamage>;
-                return;
-            }
-            if (typeof(T) == typeof(Separation))
-            {
-                Separations = data as Dictionary<int, Separation>;
-                return;
-            }
-            if (typeof(T) == typeof(Squad))
-            {
-                Squads = data as Dictionary<int, Squad>;
-                return;
-            }
-            if (typeof(T) == typeof(Target))
-            {
-                Targets = data as Dictionary<int, Target>;
-                return;
-            }
-            if (typeof(T) == typeof(TargetSearchData))
-            {
-                TargetSearchDatas = data as Dictionary<int, TargetSearchData>;
+                CachePosition = data as Dictionary<int, CachePosition>;
                 return;
             }
             if (typeof(T) == typeof(CircleShape))
             {
-                CircleShapes = data as Dictionary<int, CircleShape>;
+                CircleShape = data as Dictionary<int, CircleShape>;
                 return;
             }
             if (typeof(T) == typeof(Damage))
             {
-                Damages = data as Dictionary<int, Damage>;
+                Damage = data as Dictionary<int, Damage>;
+                return;
+            }
+            if (typeof(T) == typeof(Destination))
+            {
+                Destination = data as Dictionary<int, Destination>;
+                return;
+            }
+            if (typeof(T) == typeof(Direction))
+            {
+                Direction = data as Dictionary<int, Direction>;
+                return;
+            }
+            if (typeof(T) == typeof(Fixation))
+            {
+                Fixation = data as Dictionary<int, Fixation>;
                 return;
             }
             if (typeof(T) == typeof(Health))
             {
-                Healths = data as Dictionary<int, Health>;
+                Health = data as Dictionary<int, Health>;
                 return;
             }
             if (typeof(T) == typeof(HexMap))
             {
-                HexMaps = data as Dictionary<int, HexMap>;
+                HexMap = data as Dictionary<int, HexMap>;
                 return;
             }
             if (typeof(T) == typeof(ImpactDistance))
             {
-                ImpactDistances = data as Dictionary<int, ImpactDistance>;
+                ImpactDistance = data as Dictionary<int, ImpactDistance>;
                 return;
             }
             if (typeof(T) == typeof(Level))
             {
-                Levels = data as Dictionary<int, Level>;
+                Level = data as Dictionary<int, Level>;
                 return;
             }
             if (typeof(T) == typeof(MaxHealth))
             {
-                MaxHealths = data as Dictionary<int, MaxHealth>;
+                MaxHealth = data as Dictionary<int, MaxHealth>;
                 return;
             }
             if (typeof(T) == typeof(MoveSpeed))
             {
-                MoveSpeeds = data as Dictionary<int, MoveSpeed>;
+                MoveSpeed = data as Dictionary<int, MoveSpeed>;
                 return;
             }
             if (typeof(T) == typeof(Position))
             {
-                Positions = data as Dictionary<int, Position>;
+                Position = data as Dictionary<int, Position>;
+                return;
+            }
+            if (typeof(T) == typeof(RecivedDamage))
+            {
+                RecivedDamage = data as Dictionary<int, RecivedDamage>;
+                return;
+            }
+            if (typeof(T) == typeof(RockId))
+            {
+                RockId = data as Dictionary<int, RockId>;
                 return;
             }
             if (typeof(T) == typeof(Rotation))
             {
-                Rotations = data as Dictionary<int, Rotation>;
+                Rotation = data as Dictionary<int, Rotation>;
+                return;
+            }
+            if (typeof(T) == typeof(Separation))
+            {
+                Separation = data as Dictionary<int, Separation>;
+                return;
+            }
+            if (typeof(T) == typeof(Squad))
+            {
+                Squad = data as Dictionary<int, Squad>;
+                return;
+            }
+            if (typeof(T) == typeof(Target))
+            {
+                Target = data as Dictionary<int, Target>;
+                return;
+            }
+            if (typeof(T) == typeof(TargetSearchData))
+            {
+                TargetSearchData = data as Dictionary<int, TargetSearchData>;
                 return;
             }
             if (typeof(T) == typeof(Team))
             {
-                Teams = data as Dictionary<int, Team>;
+                Team = data as Dictionary<int, Team>;
+                return;
+            }
+            if (typeof(T) == typeof(TreeId))
+            {
+                TreeId = data as Dictionary<int, TreeId>;
+                return;
+            }
+            if (typeof(T) == typeof(UnitId))
+            {
+                UnitId = data as Dictionary<int, UnitId>;
                 return;
             }
 
