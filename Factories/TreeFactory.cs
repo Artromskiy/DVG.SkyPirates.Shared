@@ -25,8 +25,8 @@ namespace DVG.SkyPirates.Shared.Factories
             _world.Get<TreeId>(entity) = parameters.TreeId;
             _world.Get<Health>(entity).Value = 100;
             _world.Get<MaxHealth>(entity).Value = 100;
-            _world.Get<CircleShape>(entity).Radius = fix.One / 3;
-            _world.Get<Separation>(entity).AddRadius = fix.One / 3;
+            _world.Get<CircleShape>(entity).Radius = fix.One / 2;
+            _world.Get<Separation>(entity).AddRadius = fix.One / 2;
             _world.Get<Separation>(entity).AffectingCoeff = 1;
             _world.Get<Separation>(entity).AffectedCoeff = 0;
             _world.Get<AutoHeal>(entity).healDelay = 10;

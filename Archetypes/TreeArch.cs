@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.SkyPirates.Shared.Archetypes
 {
-    public class TreeArch
+    public static class TreeArch
     {
         public static void EnsureArch(World world, Entity entity)
         {

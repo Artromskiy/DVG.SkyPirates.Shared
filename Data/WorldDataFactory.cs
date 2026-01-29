@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using DVG.Core;
 using DVG.Core.Components;
+using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.Tools;
 using System.Collections.Generic;
@@ -18,24 +19,24 @@ namespace DVG.SkyPirates.Shared.Data
         public static WorldData Create(World world)
         {
             var worldData = new WorldData();
-            var serializationAction = new SerializationAction(_desc, worldData, world);
-            ComponentIds.ForEachData(ref serializationAction);
+            var packAction = new PackAction(_desc, worldData, world);
+            ComponentIds.ForEachData(ref packAction);
             return worldData;
         }
 
         public static void Extract(World world, WorldData worldData)
         {
-            var deserializationAction = new DeserializationAction(worldData, world);
-            ComponentIds.ForEachData(ref deserializationAction);
+            var unpackAction = new UnpackAction(worldData, world);
+            ComponentIds.ForEachData(ref unpackAction);
         }
 
-        private readonly struct SerializationAction : IStructGenericAction
+        private readonly struct PackAction : IStructGenericAction
         {
             private readonly GenericCollection _desc;
             private readonly WorldData _worldData;
             private readonly World _world;
 
-            public SerializationAction(GenericCollection desc, WorldData entities, World world)
+            public PackAction(GenericCollection desc, WorldData entities, World world)
             {
                 _desc = desc;
                 _worldData = entities;
@@ -45,16 +46,16 @@ namespace DVG.SkyPirates.Shared.Data
             public readonly void Invoke<T>() where T : struct
             {
                 var components = _worldData.Get<T>();
-                var query = new SerializationQuery<T>(components);
+                var query = new PackQuery<T>(components);
                 var desc = _desc.Get<Description<T>>().Desc;
-                _world.InlineEntityQuery<SerializationQuery<T>, T>(desc, ref query);
+                _world.InlineEntityQuery<PackQuery<T>, T>(desc, ref query);
             }
 
-            private readonly struct SerializationQuery<T> : IForEachWithEntity<T> where T : struct
+            private readonly struct PackQuery<T> : IForEachWithEntity<T> where T : struct
             {
                 private readonly Dictionary<int, T> _components;
 
-                public SerializationQuery(Dictionary<int, T> components)
+                public PackQuery(Dictionary<int, T> components)
                 {
                     _components = components;
                 }
@@ -66,12 +67,12 @@ namespace DVG.SkyPirates.Shared.Data
             }
         }
 
-        private readonly struct DeserializationAction : IStructGenericAction
+        private readonly struct UnpackAction : IStructGenericAction
         {
             private readonly WorldData _worldData;
             private readonly World _world;
 
-            public DeserializationAction(WorldData entities, World world)
+            public UnpackAction(WorldData entities, World world)
             {
                 _worldData = entities;
                 _world = world;
@@ -79,9 +80,14 @@ namespace DVG.SkyPirates.Shared.Data
 
             public void Invoke<T>() where T : struct
             {
-                foreach (var (entity, data) in _worldData.Get<T>())
+                foreach (var (id, data) in _worldData.Get<T>())
                 {
-                    ref var cmp = ref _world.AddOrGet<T>(EntityIds.Get(entity));
+                    var entity = EntityIds.Get(id);
+
+                    if (_world.Has<Free>(entity))
+                        _world.Remove<Free>(entity);
+
+                    ref var cmp = ref _world.AddOrGet<T>(entity);
                     cmp = data;
                 }
             }

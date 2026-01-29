@@ -4,7 +4,7 @@ using DVG.SkyPirates.Shared.Components.Data;
 
 namespace DVG.SkyPirates.Shared.Archetypes
 {
-    public readonly struct SquadArch
+    public static class SquadArch
     {
         public static void EnsureArch(World world, Entity entity)
         {
