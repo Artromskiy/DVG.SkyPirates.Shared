@@ -21,7 +21,8 @@ namespace DVG.SkyPirates.Shared.Ids
     partial struct StateId : IId, IEquatable<StateId>, IComparable<StateId>
     {
         [DataMember(Order = 0)]
-        public string Value { get; private set; }
+        public string Value;
+        string IId.Value => Value;
         private const string NoneValue = "None";
         public static readonly StateId None = new StateId(NoneValue);
 
