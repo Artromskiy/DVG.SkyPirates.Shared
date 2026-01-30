@@ -43,6 +43,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(ref TargetSearchData targetSearchData, ref Targets target, ref Team team)
             {
+                _targetsCache.Clear();
                 _targetSearch.FindTargets(ref targetSearchData, ref team, _targetsCache);
                 target.Entities = new();
                 foreach (var item in _targetsCache)
