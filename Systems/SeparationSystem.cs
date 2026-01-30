@@ -39,21 +39,16 @@ namespace DVG.SkyPirates.Shared.Systems
             var forceQuery = new SeparationForceQuery(_partitioning, _targetsCache);
             _world.InlineQuery<SeparationForceQuery, Position, Separation, CircleShape>(_affectingDesc, ref forceQuery);
 
-            var separationQuery = new SeparationQuery(deltaTime);
+            var separationQuery = new SeparationQuery();
             _world.InlineQuery<SeparationQuery, Position, Separation>(_affectedDesc, ref separationQuery);
         }
 
         private readonly struct SeparationQuery : IForEach<Position, Separation>
         {
-            public SeparationQuery(fix deltaTime)
-            {
-
-            }
-
             public void Update(ref Position position, ref Separation separation)
             {
                 var offset = separation.Force / (separation.ForcesCount == 0 ? 1 : separation.ForcesCount);
-                position.Value += offset.x_y * separation.AffectedCoeff;
+                position.Value += (offset.xy * separation.AffectedCoeff).x_y;
                 separation.Force = fix2.zero;
                 separation.ForcesCount = 0;
             }

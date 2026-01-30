@@ -27,7 +27,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _world = world;
         }
 
-        public Entity? FindTarget(ref TargetSearchData targetSearchData, ref Team team)
+        public Entity? FindTarget(ref Position position, ref TargetSearchData targetSearchData, ref Team team)
         {
             fix minSqrDistance = fix.MaxValue;
             Entity? foundTarget = null;
@@ -35,11 +35,12 @@ namespace DVG.SkyPirates.Shared.Systems
             _targetsCache.Clear();
             FindTargets(ref targetSearchData, ref team, _targetsCache);
 
-            foreach (var (entity, position) in _targetsCache)
+            var positionXZ = position.Value.xz;
+            foreach (var (entity, targetPosition) in _targetsCache)
             {
-                var targetPosition = position.Value.xz;
-                var sqrDistance = fix2.SqrDistance(targetPosition, targetSearchData.Position.xz);
-                if (!foundTarget.HasValue || (sqrDistance < minSqrDistance) ||
+                var targetPositionXZ = targetPosition.Value.xz;
+                var sqrDistance = fix2.SqrDistance(targetPositionXZ, positionXZ);
+                if (!foundTarget.HasValue || sqrDistance < minSqrDistance ||
                     (sqrDistance == minSqrDistance && entity.Id < foundTarget.Value.Id))
                 {
                     foundTarget = entity;

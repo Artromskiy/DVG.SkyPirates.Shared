@@ -25,11 +25,11 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new SetTargetQuery(_targetSearch);
-            _world.InlineQuery<SetTargetQuery, TargetSearchData, Target, Team>(_desc, ref query);
+            _world.InlineQuery<SetTargetQuery, Position, TargetSearchData, Target, Team>(_desc, ref query);
         }
 
         private readonly struct SetTargetQuery :
-            IForEach<TargetSearchData, Target, Team>
+            IForEach<Position, TargetSearchData, Target, Team>
         {
             private readonly ITargetSearchSystem _targetSearch;
 
@@ -38,9 +38,9 @@ namespace DVG.SkyPirates.Shared.Systems
                 _targetSearch = targetSearch;
             }
 
-            public void Update(ref TargetSearchData targetSearchData, ref Target target, ref Team team)
+            public void Update(ref Position position, ref TargetSearchData targetSearchData, ref Target target, ref Team team)
             {
-                target.Entity = _targetSearch.FindTarget(ref targetSearchData, ref team);
+                target.Entity = _targetSearch.FindTarget(ref position, ref targetSearchData, ref team);
             }
         }
     }
