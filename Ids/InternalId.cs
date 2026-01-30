@@ -1,10 +1,7 @@
-﻿using DVG.Core.Components.Attributes;
-using DVG.Core.Ids.Attributes;
+﻿using DVG.Core.Ids.Attributes;
 
 namespace DVG.SkyPirates.Shared.Ids
 {
     [Id]
-    [History]
-    [Component]
-    internal struct InternalId { }
+    internal partial struct InternalId { }
 }
