@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Ids
     partial struct InternalId : IId, IEquatable<InternalId>, IComparable<InternalId>
     {
         [DataMember(Order = 0)]
-        public string Value { get; private set; }
+        public string Value { get; set; }
         private const string NoneValue = "None";
         public static readonly InternalId None = new InternalId(NoneValue);
 

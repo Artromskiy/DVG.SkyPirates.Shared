@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Ids
     partial struct TileId : IId, IEquatable<TileId>, IComparable<TileId>
     {
         [DataMember(Order = 0)]
-        public string Value { get; private set; }
+        public string Value { get; set; }
         private const string NoneValue = "None";
         public static readonly TileId None = new TileId(NoneValue);
 
