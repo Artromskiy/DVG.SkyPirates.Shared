@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Ids
     partial struct GoodsId : IId, IEquatable<GoodsId>, IComparable<GoodsId>
     {
         [DataMember(Order = 0)]
-        public string Value { get; set; }
+        public string Value { get; private set; }
         private const string NoneValue = "None";
         public static readonly GoodsId None = new GoodsId(NoneValue);
 
