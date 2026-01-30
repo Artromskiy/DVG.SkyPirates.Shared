@@ -7,10 +7,5 @@ namespace DVG.SkyPirates.Shared.Components.Data
     public struct Position
     {
         public fix3 Value;
-
-        public override readonly int GetHashCode()
-        {
-            return Value.x.raw + Value.y.raw + Value.z.raw;
-        }
     }
 }
