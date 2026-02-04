@@ -36,8 +36,8 @@ namespace DVG.Core.Components
                 {typeof(CircleShape), 5},
                 {typeof(Damage), 6},
                 {typeof(Destination), 7},
-                {typeof(Dispose), 8},
-                {typeof(Direction), 9},
+                {typeof(Direction), 8},
+                {typeof(Dispose), 9},
                 {typeof(Fixation), 10},
                 {typeof(Health), 11},
                 {typeof(ImpactDistance), 12},
@@ -66,8 +66,8 @@ namespace DVG.Core.Components
                 {5, typeof(CircleShape)},
                 {6, typeof(Damage)},
                 {7, typeof(Destination)},
-                {8, typeof(Dispose)},
-                {9, typeof(Direction)},
+                {8, typeof(Direction)},
+                {9, typeof(Dispose)},
                 {10, typeof(Fixation)},
                 {11, typeof(Health)},
                 {12, typeof(ImpactDistance)},
@@ -99,8 +99,8 @@ namespace DVG.Core.Components
             action.Invoke<CircleShape>();
             action.Invoke<Damage>();
             action.Invoke<Destination>();
-            action.Invoke<Dispose>();
             action.Invoke<Direction>();
+            action.Invoke<Dispose>();
             action.Invoke<Fixation>();
             action.Invoke<Health>();
             action.Invoke<ImpactDistance>();
