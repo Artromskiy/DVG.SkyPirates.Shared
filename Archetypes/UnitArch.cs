@@ -1,37 +1,38 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Components.Data;
-using DVG.SkyPirates.Shared.Ids;
+using DVG.SkyPirates.Shared.Components.Config;
+using System;
 
 namespace DVG.SkyPirates.Shared.Archetypes
 {
+    [Obsolete]
     public static class UnitArch
     {
         public static void EnsureArch(World world, Entity entity)
         {
             world.RemoveRange(entity, world.GetSignature(entity).Components);
             world.Add<
-                UnitId,
-                Health,
-                MaxHealth,
+
+                // Synced, loaded first by config
+                // Config Data
+
+                // Synced, edited by systems
+                // Runtime Data
                 Position,
                 Rotation,
-                MoveSpeed,
-                ImpactDistance,
-                Damage,
                 Team,
                 Alive,
-                CircleShape,
+
+                // Non Synced, edited by systems
+                // System Frame Data
                 CachePosition,
                 RecivedDamage,
-                AutoHeal,
-                Separation,
                 Fixation,
                 Target,
                 Destination,
-                TargetSearchData,
-                BehaviourState,
-                BehaviourConfig>
+                TargetSearchData>
+
+                // Special Data (History, Dispose, Free, Temp)
                 (entity);
         }
     }

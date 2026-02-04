@@ -1,6 +1,8 @@
 ﻿using Arch.Core;
+using DVG.Core;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.Factories;
+using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -31,18 +33,24 @@ namespace DVG.SkyPirates.Shared.DI
                 //typeof(CommandLogger)
             };
 
-            container.RegisterSingleton<IUnitConfigFactory, UnitConfigFactory>();
+            container.RegisterSingleton<IEntityConfigFactory, EntityConfigFactory>();
+            //container.RegisterSingleton<IUnitConfigFactory, UnitConfigFactory>();
             container.RegisterSingleton<ISquadFactory, SquadFactory>();
             container.RegisterSingleton<IUnitFactory, UnitFactory>();
             container.RegisterSingleton<ITreeFactory, TreeFactory>();
+            container.RegisterSingleton<IFactory<Entity, (TreeId TreeId, int EntityId)>, TreeFactory>();
             container.RegisterSingleton<IRockFactory, RockFactory>();
+            container.RegisterSingleton<IFactory<Entity, (RockId RockId, int EntityId)>, RockFactory>();
             container.RegisterSingleton<ICactusFactory, CactusFactory>();
+            container.RegisterSingleton<IFactory<Entity, (CactusId CactusId, int EntityId)>, CactusFactory>();
 
             container.RegisterSingleton<ICommandExecutorService, CommandExecutorService>();
             container.Collection.Register<ICommandExecutor>(commandExecutors, Lifestyle.Singleton);
 
             var tickableExecutors = new Type[]
             {
+                typeof(EnsureSystem),
+                typeof(ClearSystem),
                 typeof(CachePositionSystem),
                 typeof(TargetSearchSystem),
                 typeof(TargetSearchSyncSystem),

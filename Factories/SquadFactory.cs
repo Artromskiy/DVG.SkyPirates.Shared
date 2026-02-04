@@ -3,7 +3,7 @@ using DVG.Core;
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IFactories;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Factories
 
             SquadArch.EnsureArch(_world, squad);
 
-            _world.Get<CircleShape>(squad).Radius = fix.One / 3;
+            _world.Get<Radius>(squad).Value = fix.One / 3;
             _world.Get<Squad>(squad).units = new List<Entity>();
             _world.Get<Team>(squad).Id = cmd.ClientId;
             return squad;

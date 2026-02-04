@@ -3,7 +3,7 @@ using DVG.SkyPirates.Shared.Ids;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace DVG.SkyPirates.Shared.Components.Data
+namespace DVG.SkyPirates.Shared.Components.Config
 {
     [Component]
     public struct HexMap

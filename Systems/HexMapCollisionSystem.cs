@@ -1,7 +1,7 @@
 ﻿using Arch.Core;
 using DVG.Core;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Systems.Linq;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class HexMapCollisionSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition, CircleShape>();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition, Radius>();
 
         private readonly List<(fix2 s, fix2 e, fix2 normal)> _segmentsCache = new List<(fix2, fix2, fix2)>();
 
@@ -28,10 +28,10 @@ namespace DVG.SkyPirates.Shared.Systems
                 return;
 
             var query = new SolveCollsionQuery(hexMap, _segmentsCache);
-            _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, CircleShape>(_desc, ref query);
+            _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, Radius>(_desc, ref query);
         }
 
-        private readonly struct SolveCollsionQuery : IForEach<Position, CachePosition, CircleShape>
+        private readonly struct SolveCollsionQuery : IForEach<Position, CachePosition, Radius>
         {
             private readonly HexMap _hexMap;
             private readonly List<(fix2 s, fix2 e, fix2 normal)> _segmentsCache;
@@ -43,12 +43,12 @@ namespace DVG.SkyPirates.Shared.Systems
                 _segmentsCache = segmentsCache;
             }
 
-            public void Update(ref Position position, ref CachePosition cachePosition, ref CircleShape circleShape)
+            public void Update(ref Position position, ref CachePosition cachePosition, ref Radius circleShape)
             {
                 FindSegments(cachePosition.Value.xz);
 
                 var solvedPos = Spatial.SolveCircleMove(_segmentsCache,
-                    cachePosition.Value.xz, position.Value.xz, circleShape.Radius).x_y;
+                    cachePosition.Value.xz, position.Value.xz, circleShape.Value).x_y;
                 position.Value = solvedPos;
             }
 

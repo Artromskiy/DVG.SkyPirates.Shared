@@ -1,7 +1,7 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Factories
             CactusArch.EnsureArch(_world, entity);
 
             _world.Get<CactusId>(entity) = parameters.CactusId;
-            _world.Get<CircleShape>(entity).Radius = fix.One / 2;
+            _world.Get<Radius>(entity).Value = fix.One / 2;
             _world.Get<Separation>(entity).AddRadius = fix.One / 2;
             _world.Get<Separation>(entity).AffectingCoeff = 1;
             _world.Get<Separation>(entity).AffectedCoeff = 0;

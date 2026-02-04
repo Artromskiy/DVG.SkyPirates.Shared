@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Special;
 
 namespace DVG.Core.Components
@@ -33,7 +33,7 @@ namespace DVG.Core.Components
                 {typeof(AutoHeal), 2},
                 {typeof(BehaviourState), 3},
                 {typeof(CactusId), 4},
-                {typeof(CircleShape), 5},
+                {typeof(Radius), 5},
                 {typeof(Damage), 6},
                 {typeof(Destination), 7},
                 {typeof(Direction), 8},
@@ -43,7 +43,7 @@ namespace DVG.Core.Components
                 {typeof(ImpactDistance), 12},
                 {typeof(Level), 13},
                 {typeof(MaxHealth), 14},
-                {typeof(MoveSpeed), 15},
+                {typeof(MaxSpeed), 15},
                 {typeof(Position), 16},
                 {typeof(RockId), 17},
                 {typeof(Rotation), 18},
@@ -63,7 +63,7 @@ namespace DVG.Core.Components
                 {2, typeof(AutoHeal)},
                 {3, typeof(BehaviourState)},
                 {4, typeof(CactusId)},
-                {5, typeof(CircleShape)},
+                {5, typeof(Radius)},
                 {6, typeof(Damage)},
                 {7, typeof(Destination)},
                 {8, typeof(Direction)},
@@ -73,7 +73,7 @@ namespace DVG.Core.Components
                 {12, typeof(ImpactDistance)},
                 {13, typeof(Level)},
                 {14, typeof(MaxHealth)},
-                {15, typeof(MoveSpeed)},
+                {15, typeof(MaxSpeed)},
                 {16, typeof(Position)},
                 {17, typeof(RockId)},
                 {18, typeof(Rotation)},
@@ -96,7 +96,7 @@ namespace DVG.Core.Components
             action.Invoke<AutoHeal>();
             action.Invoke<BehaviourState>();
             action.Invoke<CactusId>();
-            action.Invoke<CircleShape>();
+            action.Invoke<Radius>();
             action.Invoke<Damage>();
             action.Invoke<Destination>();
             action.Invoke<Direction>();
@@ -106,7 +106,7 @@ namespace DVG.Core.Components
             action.Invoke<ImpactDistance>();
             action.Invoke<Level>();
             action.Invoke<MaxHealth>();
-            action.Invoke<MoveSpeed>();
+            action.Invoke<MaxSpeed>();
             action.Invoke<Position>();
             action.Invoke<RockId>();
             action.Invoke<Rotation>();

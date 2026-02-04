@@ -1,6 +1,6 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools.Extensions;
 
@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class MoveSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Rotation, Destination, MoveSpeed, Alive>();
+            WithAll<Position, Rotation, Destination, MaxSpeed, Alive>();
 
         private readonly World _world;
         private const int RotateSpeed = 720;
@@ -25,11 +25,11 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new MoveQuery(deltaTime);
-            _world.InlineQuery<MoveQuery, Position, Rotation, Destination, MoveSpeed>(_desc, ref query);
+            _world.InlineQuery<MoveQuery, Position, Rotation, Destination, MaxSpeed>(_desc, ref query);
         }
 
         private readonly struct MoveQuery :
-            IForEach<Position, Rotation, Destination, MoveSpeed>
+            IForEach<Position, Rotation, Destination, MaxSpeed>
         {
             private readonly fix _deltaTime;
 
@@ -38,13 +38,13 @@ namespace DVG.SkyPirates.Shared.Systems
                 _deltaTime = deltaTime;
             }
 
-            public void Update(ref Position position, ref Rotation rotation, ref Destination destination, ref MoveSpeed moveSpeed)
+            public void Update(ref Position position, ref Rotation rotation, ref Destination destination, ref MaxSpeed moveSpeed)
             {
                 MoveTowardsDestination(ref position, destination, moveSpeed);
                 RotateTowardsDestination(ref rotation, position, destination);
             }
 
-            private void MoveTowardsDestination(ref Position position, Destination destination, MoveSpeed moveSpeed)
+            private void MoveTowardsDestination(ref Position position, Destination destination, MaxSpeed moveSpeed)
             {
                 position.Value = fix3.MoveTowards(
                     position.Value,

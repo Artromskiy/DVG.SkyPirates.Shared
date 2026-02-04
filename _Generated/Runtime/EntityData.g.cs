@@ -16,7 +16,7 @@ using System.Runtime.CompilerServices;
 
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Components.Config;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 5)]
         public CactusId? CactusId;
         [DataMember(Order = 6)]
-        public CircleShape? CircleShape;
+        public Radius? CircleShape;
         [DataMember(Order = 7)]
         public Damage? Damage;
         [DataMember(Order = 8)]
@@ -58,7 +58,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 15)]
         public MaxHealth? MaxHealth;
         [DataMember(Order = 16)]
-        public MoveSpeed? MoveSpeed;
+        public MaxSpeed? MoveSpeed;
         [DataMember(Order = 17)]
         public Position? Position;
         [DataMember(Order = 18)]
@@ -100,8 +100,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<CachePosition?, T?>(ref CachePosition);
             if (typeof(T) == typeof(CactusId))
                 return Unsafe.As<CactusId?, T?>(ref CactusId);
-            if (typeof(T) == typeof(CircleShape))
-                return Unsafe.As<CircleShape?, T?>(ref CircleShape);
+            if (typeof(T) == typeof(Radius))
+                return Unsafe.As<Radius?, T?>(ref CircleShape);
             if (typeof(T) == typeof(Damage))
                 return Unsafe.As<Damage?, T?>(ref Damage);
             if (typeof(T) == typeof(Destination))
@@ -120,8 +120,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<Level?, T?>(ref Level);
             if (typeof(T) == typeof(MaxHealth))
                 return Unsafe.As<MaxHealth?, T?>(ref MaxHealth);
-            if (typeof(T) == typeof(MoveSpeed))
-                return Unsafe.As<MoveSpeed?, T?>(ref MoveSpeed);
+            if (typeof(T) == typeof(MaxSpeed))
+                return Unsafe.As<MaxSpeed?, T?>(ref MoveSpeed);
             if (typeof(T) == typeof(Position))
                 return Unsafe.As<Position?, T?>(ref Position);
             if (typeof(T) == typeof(RecivedDamage))
@@ -184,9 +184,9 @@ namespace DVG.SkyPirates.Shared.Data
                 CactusId = Unsafe.As<T?, CactusId?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(CircleShape))
+            if (typeof(T) == typeof(Radius))
             {
-                CircleShape = Unsafe.As<T?, CircleShape?>(ref data);
+                CircleShape = Unsafe.As<T?, Radius?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Damage))
@@ -234,9 +234,9 @@ namespace DVG.SkyPirates.Shared.Data
                 MaxHealth = Unsafe.As<T?, MaxHealth?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(MoveSpeed))
+            if (typeof(T) == typeof(MaxSpeed))
             {
-                MoveSpeed = Unsafe.As<T?, MoveSpeed?>(ref data);
+                MoveSpeed = Unsafe.As<T?, MaxSpeed?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Position))

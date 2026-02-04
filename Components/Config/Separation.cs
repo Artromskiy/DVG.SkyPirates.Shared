@@ -4,11 +4,10 @@ namespace DVG.SkyPirates.Shared.Components
 {
     [History]
     [Component]
-    public struct AutoHeal
+    public struct Separation
     {
-        public fix healPerSecond;
-        public fix healDelay;
-
-        public fix healLoadPercent;
+        public fix AddRadius;
+        public fix AffectedCoeff;
+        public fix AffectingCoeff;
     }
 }

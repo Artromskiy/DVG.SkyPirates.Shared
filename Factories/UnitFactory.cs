@@ -1,69 +1,63 @@
 ﻿using Arch.Core;
+using DVG.Core;
+using DVG.Core.Components;
 using DVG.SkyPirates.Shared.Archetypes;
-using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Components.Data;
-using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
-using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
     public class UnitFactory : IUnitFactory
     {
-        private readonly IUnitConfigFactory _unitConfigFactory;
+        private readonly IEntityConfigFactory _entityConfigFactory;
         private readonly World _world;
 
-        public UnitFactory(World world, IUnitConfigFactory unitConfigFactory)
+        public UnitFactory(World world, IEntityConfigFactory entityConfigFactory)
         {
             _world = world;
-            _unitConfigFactory = unitConfigFactory;
+            _entityConfigFactory = entityConfigFactory;
         }
 
         public virtual Entity Create((UnitId UnitId, int EntityId) parameters)
         {
-            var config = _unitConfigFactory.Create(parameters.UnitId);
-
+            var config = _entityConfigFactory.Create(parameters.UnitId);
             var entity = EntityIds.Get(parameters.EntityId);
-
             UnitArch.EnsureArch(_world, entity);
-
+            Apply(config, _world, entity);
             _world.Get<UnitId>(entity) = parameters.UnitId;
-
-            _world.Get<Health>(entity).Value = config.health;
-            _world.Get<MaxHealth>(entity).Value = config.health;
-            _world.Get<Damage>(entity).Value = config.damage;
-            _world.Get<MoveSpeed>(entity).Value = config.speed;
-            _world.Get<ImpactDistance>(entity).Value = config.attackDistance;
-
-            _world.Get<CircleShape>(entity).Radius = fix.One / 3;
-            _world.Get<Separation>(entity).AddRadius = fix.One / 3;
-            _world.Get<Separation>(entity).AffectingCoeff = 1;
-            _world.Get<Separation>(entity).AffectedCoeff = 1;
-            _world.Get<AutoHeal>(entity).healDelay = 10;
-            _world.Get<AutoHeal>(entity).healPerSecond = 20;
-
-            _world.Get<BehaviourConfig>(entity).Scenario = GetScenario();
-            _world.Get<BehaviourConfig>(entity).Durations = GetConfigDurations(config);
 
             return entity;
         }
 
-        private Dictionary<StateId, StateId> GetScenario() => new()
-        {
-            [StateId.Constants.PreAttack] = StateId.Constants.PostAttack,
-            [StateId.Constants.PostAttack] = StateId.Constants.Reload,
-            [StateId.Constants.Reload] = StateId.None,
-            [StateId.None] = StateId.None,
-        };
 
-        private Dictionary<StateId, fix> GetConfigDurations(UnitConfig config) => new()
+        public void Apply(Data.EntityData config, World world, Entity entity)
         {
-            [StateId.Constants.PreAttack] = config.preAttack,
-            [StateId.Constants.PostAttack] = config.postAttack,
-            [StateId.Constants.Reload] = config.reload,
-            [StateId.None] = 0,
-        };
+            var action = new ApplyComponent(entity, world, config);
+            ComponentIds.ForEachData(ref action);
+        }
+
+        private readonly struct ApplyComponent : IStructGenericAction
+        {
+            private readonly Entity _entity;
+            private readonly World _world;
+            private readonly Data.EntityData _config;
+
+            public ApplyComponent(Entity entity, World world, Data.EntityData config)
+            {
+                _entity = entity;
+                _world = world;
+                _config = config;
+            }
+
+            public void Invoke<T>() where T : struct
+            {
+                var cmp = _config.Get<T>();
+                if (cmp.HasValue && !_world.Has<T>(_entity))
+                    _world.Add<T>(_entity);
+                if (cmp.HasValue)
+                    _world.Set(_entity, cmp.Value);
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -35,11 +35,11 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(ref Health health, ref MaxHealth maxHealth, ref AutoHeal autoHeal, ref RecivedDamage recivedDamage)
             {
-                autoHeal.healLoadPercent = recivedDamage.Value > 0 ? 0 :
-                    Maths.MoveTowards(autoHeal.healLoadPercent, 1, _deltaTime / autoHeal.healDelay);
+                autoHeal.HealLoadPercent = recivedDamage.Value > 0 ? 0 :
+                    Maths.MoveTowards(autoHeal.HealLoadPercent, 1, _deltaTime / autoHeal.HealDelay);
 
-                health.Value = autoHeal.healLoadPercent != 1 ? health.Value :
-                    Maths.MoveTowards(health.Value, maxHealth.Value, autoHeal.healPerSecond * _deltaTime);
+                health.Value = autoHeal.HealLoadPercent != 1 ? health.Value :
+                    Maths.MoveTowards(health.Value, maxHealth.Value, autoHeal.HealPerSecond * _deltaTime);
             }
         }
     }

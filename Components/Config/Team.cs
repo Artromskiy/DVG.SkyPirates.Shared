@@ -1,6 +1,6 @@
 ﻿using DVG.Core.Components.Attributes;
 
-namespace DVG.SkyPirates.Shared.Components.Data
+namespace DVG.SkyPirates.Shared.Components.Config
 {
     [History]
     [Component]

@@ -1,4 +1,4 @@
-﻿using DVG.SkyPirates.Shared.Components.Data;
+﻿using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Ids;
 using System;
 using System.Buffers;
@@ -51,7 +51,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _options.Converters.Add(new FixFuncConverter<Health>(value => new() { Value = value }, value => value.Value));
             _options.Converters.Add(new FixFuncConverter<MaxHealth>(value => new() { Value = value }, value => value.Value));
             _options.Converters.Add(new FixFuncConverter<Damage>(value => new() { Value = value }, value => value.Value));
-            _options.Converters.Add(new FixFuncConverter<MoveSpeed>(value => new() { Value = value }, value => value.Value));
+            _options.Converters.Add(new FixFuncConverter<MaxSpeed>(value => new() { Value = value }, value => value.Value));
             _options.Converters.Add(new FixFuncConverter<ImpactDistance>(value => new() { Value = value }, value => value.Value));
 
             _options.Converters.Add(new StringFuncConverter<CheatingId>(value => new CheatingId(value)));

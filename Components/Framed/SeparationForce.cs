@@ -2,14 +2,9 @@
 
 namespace DVG.SkyPirates.Shared.Components
 {
-    [History]
     [Component]
-    public struct Separation
+    public struct SeparationForce
     {
-        public fix AddRadius;
-        public fix AffectedCoeff;
-        public fix AffectingCoeff;
-
         public fix2 Force;
         public int ForcesCount;
     }
