@@ -30,66 +30,68 @@ namespace DVG.Core.Components
             {
                 {typeof(Alive), 1},
                 {typeof(AutoHeal), 2},
-                {typeof(BehaviourState), 3},
-                {typeof(BehaviourConfig), 4},
+                {typeof(BehaviourConfig), 3},
+                {typeof(BehaviourState), 4},
                 {typeof(CachePosition), 5},
                 {typeof(CactusId), 6},
-                {typeof(Radius), 7},
-                {typeof(Damage), 8},
-                {typeof(Destination), 9},
-                {typeof(Direction), 10},
-                {typeof(Fixation), 11},
-                {typeof(Health), 12},
-                {typeof(HexMap), 13},
-                {typeof(ImpactDistance), 14},
-                {typeof(Level), 15},
-                {typeof(MaxHealth), 16},
-                {typeof(MaxSpeed), 17},
-                {typeof(Position), 18},
+                {typeof(Damage), 7},
+                {typeof(Destination), 8},
+                {typeof(Direction), 9},
+                {typeof(Fixation), 10},
+                {typeof(Health), 11},
+                {typeof(HexMap), 12},
+                {typeof(ImpactDistance), 13},
+                {typeof(Level), 14},
+                {typeof(MaxHealth), 15},
+                {typeof(MaxSpeed), 16},
+                {typeof(Position), 17},
+                {typeof(Radius), 18},
                 {typeof(RecivedDamage), 19},
                 {typeof(RockId), 20},
                 {typeof(Rotation), 21},
                 {typeof(Separation), 22},
-                {typeof(Squad), 23},
-                {typeof(Target), 24},
-                {typeof(Targets), 25},
-                {typeof(TargetSearchData), 26},
-                {typeof(Team), 27},
-                {typeof(TreeId), 28},
-                {typeof(UnitId), 29},
+                {typeof(SeparationForce), 23},
+                {typeof(Squad), 24},
+                {typeof(Target), 25},
+                {typeof(Targets), 26},
+                {typeof(TargetSearchData), 27},
+                {typeof(Team), 28},
+                {typeof(TreeId), 29},
+                {typeof(UnitId), 30},
             };
             
             _idToType = new Dictionary<int, Type>()
             {
                 {1, typeof(Alive)},
                 {2, typeof(AutoHeal)},
-                {3, typeof(BehaviourState)},
-                {4, typeof(BehaviourConfig)},
+                {3, typeof(BehaviourConfig)},
+                {4, typeof(BehaviourState)},
                 {5, typeof(CachePosition)},
                 {6, typeof(CactusId)},
-                {7, typeof(Radius)},
-                {8, typeof(Damage)},
-                {9, typeof(Destination)},
-                {10, typeof(Direction)},
-                {11, typeof(Fixation)},
-                {12, typeof(Health)},
-                {13, typeof(HexMap)},
-                {14, typeof(ImpactDistance)},
-                {15, typeof(Level)},
-                {16, typeof(MaxHealth)},
-                {17, typeof(MaxSpeed)},
-                {18, typeof(Position)},
+                {7, typeof(Damage)},
+                {8, typeof(Destination)},
+                {9, typeof(Direction)},
+                {10, typeof(Fixation)},
+                {11, typeof(Health)},
+                {12, typeof(HexMap)},
+                {13, typeof(ImpactDistance)},
+                {14, typeof(Level)},
+                {15, typeof(MaxHealth)},
+                {16, typeof(MaxSpeed)},
+                {17, typeof(Position)},
+                {18, typeof(Radius)},
                 {19, typeof(RecivedDamage)},
                 {20, typeof(RockId)},
                 {21, typeof(Rotation)},
                 {22, typeof(Separation)},
-                {23, typeof(Squad)},
-                {24, typeof(Target)},
-                {25, typeof(Targets)},
-                {26, typeof(TargetSearchData)},
-                {27, typeof(Team)},
-                {28, typeof(TreeId)},
-                {29, typeof(UnitId)},
+                {23, typeof(SeparationForce)},
+                {24, typeof(Squad)},
+                {25, typeof(Target)},
+                {26, typeof(Targets)},
+                {27, typeof(TargetSearchData)},
+                {28, typeof(Team)},
+                {29, typeof(TreeId)},
+                {30, typeof(UnitId)},
             };
         }
 
@@ -99,11 +101,10 @@ namespace DVG.Core.Components
         {
             action.Invoke<Alive>();
             action.Invoke<AutoHeal>();
-            action.Invoke<BehaviourState>();
             action.Invoke<BehaviourConfig>();
+            action.Invoke<BehaviourState>();
             action.Invoke<CachePosition>();
             action.Invoke<CactusId>();
-            action.Invoke<Radius>();
             action.Invoke<Damage>();
             action.Invoke<Destination>();
             action.Invoke<Direction>();
@@ -115,10 +116,12 @@ namespace DVG.Core.Components
             action.Invoke<MaxHealth>();
             action.Invoke<MaxSpeed>();
             action.Invoke<Position>();
+            action.Invoke<Radius>();
             action.Invoke<RecivedDamage>();
             action.Invoke<RockId>();
             action.Invoke<Rotation>();
             action.Invoke<Separation>();
+            action.Invoke<SeparationForce>();
             action.Invoke<Squad>();
             action.Invoke<Target>();
             action.Invoke<Targets>();

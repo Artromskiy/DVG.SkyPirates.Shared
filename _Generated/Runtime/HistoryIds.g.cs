@@ -33,18 +33,18 @@ namespace DVG.Core.Components
                 {typeof(AutoHeal), 2},
                 {typeof(BehaviourState), 3},
                 {typeof(CactusId), 4},
-                {typeof(Radius), 5},
-                {typeof(Damage), 6},
-                {typeof(Destination), 7},
-                {typeof(Direction), 8},
-                {typeof(Dispose), 9},
-                {typeof(Fixation), 10},
-                {typeof(Health), 11},
-                {typeof(ImpactDistance), 12},
-                {typeof(Level), 13},
-                {typeof(MaxHealth), 14},
-                {typeof(MaxSpeed), 15},
-                {typeof(Position), 16},
+                {typeof(Damage), 5},
+                {typeof(Destination), 6},
+                {typeof(Direction), 7},
+                {typeof(Dispose), 8},
+                {typeof(Fixation), 9},
+                {typeof(Health), 10},
+                {typeof(ImpactDistance), 11},
+                {typeof(Level), 12},
+                {typeof(MaxHealth), 13},
+                {typeof(MaxSpeed), 14},
+                {typeof(Position), 15},
+                {typeof(Radius), 16},
                 {typeof(RockId), 17},
                 {typeof(Rotation), 18},
                 {typeof(Separation), 19},
@@ -63,18 +63,18 @@ namespace DVG.Core.Components
                 {2, typeof(AutoHeal)},
                 {3, typeof(BehaviourState)},
                 {4, typeof(CactusId)},
-                {5, typeof(Radius)},
-                {6, typeof(Damage)},
-                {7, typeof(Destination)},
-                {8, typeof(Direction)},
-                {9, typeof(Dispose)},
-                {10, typeof(Fixation)},
-                {11, typeof(Health)},
-                {12, typeof(ImpactDistance)},
-                {13, typeof(Level)},
-                {14, typeof(MaxHealth)},
-                {15, typeof(MaxSpeed)},
-                {16, typeof(Position)},
+                {5, typeof(Damage)},
+                {6, typeof(Destination)},
+                {7, typeof(Direction)},
+                {8, typeof(Dispose)},
+                {9, typeof(Fixation)},
+                {10, typeof(Health)},
+                {11, typeof(ImpactDistance)},
+                {12, typeof(Level)},
+                {13, typeof(MaxHealth)},
+                {14, typeof(MaxSpeed)},
+                {15, typeof(Position)},
+                {16, typeof(Radius)},
                 {17, typeof(RockId)},
                 {18, typeof(Rotation)},
                 {19, typeof(Separation)},
@@ -96,7 +96,6 @@ namespace DVG.Core.Components
             action.Invoke<AutoHeal>();
             action.Invoke<BehaviourState>();
             action.Invoke<CactusId>();
-            action.Invoke<Radius>();
             action.Invoke<Damage>();
             action.Invoke<Destination>();
             action.Invoke<Direction>();
@@ -108,6 +107,7 @@ namespace DVG.Core.Components
             action.Invoke<MaxHealth>();
             action.Invoke<MaxSpeed>();
             action.Invoke<Position>();
+            action.Invoke<Radius>();
             action.Invoke<RockId>();
             action.Invoke<Rotation>();
             action.Invoke<Separation>();
