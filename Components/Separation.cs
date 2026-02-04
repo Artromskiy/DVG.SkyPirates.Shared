@@ -12,10 +12,5 @@ namespace DVG.SkyPirates.Shared.Components
 
         public fix2 Force;
         public int ForcesCount;
-
-        public override readonly int GetHashCode()
-        {
-            return AddRadius.raw + AffectedCoeff.raw + AffectingCoeff.raw + Force.x.raw + Force.y.raw;
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DVG.SkyPirates.Shared.Ids;
+﻿using DVG.SkyPirates.Shared.Components.Data;
+using DVG.SkyPirates.Shared.Ids;
 using System;
 using System.Buffers;
 using System.Globalization;
@@ -25,30 +26,39 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _options.TypeInfoResolver = new DataContractResolver();
 
             var format = CultureInfo.InvariantCulture;
+
             _options.Converters.Add(new FixConverter());
-            _options.Converters.Add(new FuncConverter<bool2>(value => bool2.Parse(value)));
-            _options.Converters.Add(new FuncConverter<bool3>(value => bool3.Parse(value)));
-            _options.Converters.Add(new FuncConverter<bool4>(value => bool4.Parse(value)));
-            _options.Converters.Add(new FuncConverter<fix2>(value => fix2.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<fix3>(value => fix3.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<fix4>(value => fix4.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<int2>(value => int2.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<int3>(value => int3.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<int4>(value => int4.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<uint2>(value => uint2.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<uint3>(value => uint3.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<uint4>(value => uint4.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<float2>(value => float2.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<float3>(value => float3.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<float4>(value => float4.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<double2>(value => double2.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<double3>(value => double3.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<double4>(value => double4.Parse(value, format)));
-            _options.Converters.Add(new FuncConverter<CheatingId>(value => new CheatingId(value)));
-            _options.Converters.Add(new FuncConverter<GoodsId>(value => new GoodsId(value)));
-            _options.Converters.Add(new FuncConverter<StateId>(value => new StateId(value)));
-            _options.Converters.Add(new FuncConverter<TileId>(value => new TileId(value)));
-            _options.Converters.Add(new FuncConverter<UnitId>(value => new UnitId(value)));
+
+            _options.Converters.Add(new StringFuncConverter<bool2>(value => bool2.Parse(value)));
+            _options.Converters.Add(new StringFuncConverter<bool3>(value => bool3.Parse(value)));
+            _options.Converters.Add(new StringFuncConverter<bool4>(value => bool4.Parse(value)));
+            _options.Converters.Add(new StringFuncConverter<fix2>(value => fix2.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<fix3>(value => fix3.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<fix4>(value => fix4.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<int2>(value => int2.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<int3>(value => int3.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<int4>(value => int4.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<uint2>(value => uint2.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<uint3>(value => uint3.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<uint4>(value => uint4.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<float2>(value => float2.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<float3>(value => float3.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<float4>(value => float4.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<double2>(value => double2.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<double3>(value => double3.Parse(value, format)));
+            _options.Converters.Add(new StringFuncConverter<double4>(value => double4.Parse(value, format)));
+
+            _options.Converters.Add(new FixFuncConverter<Health>(value => new() { Value = value }, value => value.Value));
+            _options.Converters.Add(new FixFuncConverter<MaxHealth>(value => new() { Value = value }, value => value.Value));
+            _options.Converters.Add(new FixFuncConverter<Damage>(value => new() { Value = value }, value => value.Value));
+            _options.Converters.Add(new FixFuncConverter<MoveSpeed>(value => new() { Value = value }, value => value.Value));
+            _options.Converters.Add(new FixFuncConverter<ImpactDistance>(value => new() { Value = value }, value => value.Value));
+
+            _options.Converters.Add(new StringFuncConverter<CheatingId>(value => new CheatingId(value)));
+            _options.Converters.Add(new StringFuncConverter<GoodsId>(value => new GoodsId(value)));
+            _options.Converters.Add(new StringFuncConverter<StateId>(value => new StateId(value)));
+            _options.Converters.Add(new StringFuncConverter<TileId>(value => new TileId(value)));
+            _options.Converters.Add(new StringFuncConverter<UnitId>(value => new UnitId(value)));
         }
 
         public static string Serialize<T>(T data)

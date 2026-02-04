@@ -7,10 +7,5 @@ namespace DVG.SkyPirates.Shared.Components.Data
     public struct CircleShape
     {
         public fix Radius;
-
-        public override readonly int GetHashCode()
-        {
-            return Radius.raw;
-        }
     }
 }

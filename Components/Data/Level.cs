@@ -7,6 +7,5 @@ namespace DVG.SkyPirates.Shared.Components.Data
     public partial struct Level
     {
         public int Value;
-        public override readonly int GetHashCode() => Value;
     }
 }

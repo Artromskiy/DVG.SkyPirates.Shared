@@ -10,10 +10,5 @@ namespace DVG.SkyPirates.Shared.Components
         public fix healDelay;
 
         public fix healLoadPercent;
-
-        public override readonly int GetHashCode()
-        {
-            return healPerSecond.raw + healDelay.raw + healLoadPercent.raw;
-        }
     }
 }

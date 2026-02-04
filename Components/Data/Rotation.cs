@@ -7,10 +7,5 @@ namespace DVG.SkyPirates.Shared.Components.Data
     public struct Rotation
     {
         public fix Value;
-
-        public override readonly int GetHashCode()
-        {
-            return Value.raw;
-        }
     }
 }

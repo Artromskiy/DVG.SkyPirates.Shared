@@ -7,10 +7,5 @@ namespace DVG.SkyPirates.Shared.Components
     public struct Fixation
     {
         public bool Value;
-
-        public override readonly int GetHashCode()
-        {
-            return Value ? 1 : 0;
-        }
     }
 }

@@ -12,10 +12,5 @@ namespace DVG.SkyPirates.Shared.Components
         public fix Duration;
 
         public StateId? ForceState;
-
-        public override readonly int GetHashCode()
-        {
-            return Percent.raw + Duration.raw + State.GetHashCode() + (ForceState.HasValue ? ForceState.Value.GetHashCode() : 0);
-        }
     }
 }

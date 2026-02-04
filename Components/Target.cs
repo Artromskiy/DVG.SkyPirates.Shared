@@ -8,10 +8,5 @@ namespace DVG.SkyPirates.Shared.Components
     public struct Target
     {
         public Entity? Entity;
-
-        public override readonly int GetHashCode()
-        {
-            return Entity.HasValue ? Entity.Value.Id : 0;
-        }
     }
 }

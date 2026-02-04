@@ -7,10 +7,5 @@ namespace DVG.SkyPirates.Shared.Components
     public struct Direction
     {
         public fix2 Value;
-
-        public override readonly int GetHashCode()
-        {
-            return Value.x.raw + Value.y.raw;
-        }
     }
 }

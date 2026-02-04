@@ -30,7 +30,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 1)]
         public AutoHeal? AutoHeal;
         [DataMember(Order = 2)]
-        public Behaviour? Behaviour;
+        public BehaviourState? BehaviourState;
         [DataMember(Order = 3)]
         public BehaviourConfig? BehaviourConfig;
         [DataMember(Order = 4)]
@@ -92,8 +92,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<Alive?, T?>(ref Alive);
             if (typeof(T) == typeof(AutoHeal))
                 return Unsafe.As<AutoHeal?, T?>(ref AutoHeal);
-            if (typeof(T) == typeof(Behaviour))
-                return Unsafe.As<Behaviour?, T?>(ref Behaviour);
+            if (typeof(T) == typeof(BehaviourState))
+                return Unsafe.As<BehaviourState?, T?>(ref BehaviourState);
             if (typeof(T) == typeof(BehaviourConfig))
                 return Unsafe.As<BehaviourConfig?, T?>(ref BehaviourConfig);
             if (typeof(T) == typeof(CachePosition))
@@ -164,9 +164,9 @@ namespace DVG.SkyPirates.Shared.Data
                 AutoHeal = Unsafe.As<T?, AutoHeal?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Behaviour))
+            if (typeof(T) == typeof(BehaviourState))
             {
-                Behaviour = Unsafe.As<T?, Behaviour?>(ref data);
+                BehaviourState = Unsafe.As<T?, BehaviourState?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(BehaviourConfig))

@@ -8,10 +8,5 @@ namespace DVG.SkyPirates.Shared.Components
     {
         public fix3 Position;
         public fix Rotation;
-
-        public override readonly int GetHashCode()
-        {
-            return Position.x.raw + Position.y.raw + Position.z.raw + Rotation.raw;
-        }
     }
 }
