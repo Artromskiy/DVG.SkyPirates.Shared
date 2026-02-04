@@ -3,7 +3,7 @@
 namespace DVG.SkyPirates.Shared.Components.Special
 {
     [History]
-    internal struct Destruct
+    internal struct Dispose
     {
         public int TicksPassed;
 

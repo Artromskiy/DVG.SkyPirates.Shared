@@ -27,7 +27,7 @@ namespace DVG.SkyPirates.Shared.Systems
             foreach (var item in _dead)
             {
                 _world.Remove<Alive>(item);
-                _world.Add<Destruct>(item);
+                _world.Add<Dispose>(item);
             }
         }
 

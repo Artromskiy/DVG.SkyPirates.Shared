@@ -28,7 +28,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         private readonly RollbackHistorySystem _rollbackHistorySystem;
         private readonly SaveHistorySystem _saveHistorySystem;
-        private readonly DestructSystem _destructSystem;
+        private readonly DisposeSystem _destructSystem;
         private readonly World _world;
 
         public TimelineService(

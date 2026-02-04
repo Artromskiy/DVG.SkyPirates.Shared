@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
-    internal class DestructSystem : ITickableExecutor
+    internal class DisposeSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Destruct>();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Dispose>();
         private readonly List<Entity> _entitiesCache = new();
         private readonly World _world;
 
-        public DestructSystem(World world)
+        public DisposeSystem(World world)
         {
             _world = world;
         }
@@ -19,24 +19,24 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public void Tick(int tick, fix deltaTime)
         {
             _entitiesCache.Clear();
-            var query = new SelectToDestruct(_entitiesCache);
-            _world.InlineEntityQuery<SelectToDestruct, Destruct>(_desc, ref query);
+            var query = new SelectToDispose(_entitiesCache);
+            _world.InlineEntityQuery<SelectToDispose, Dispose>(_desc, ref query);
             foreach (var entity in _entitiesCache)
             {
-                _world.RemoveRange(entity, _world.GetSignature(entity).Components);
+                _world.Destroy(entity);
             }
         }
 
-        private readonly struct SelectToDestruct : IForEachWithEntity<Destruct>
+        private readonly struct SelectToDispose : IForEachWithEntity<Dispose>
         {
             private readonly List<Entity> _entities;
 
-            public SelectToDestruct(List<Entity> entities)
+            public SelectToDispose(List<Entity> entities)
             {
                 _entities = entities;
             }
 
-            public void Update(Entity entity, ref Destruct destruct)
+            public void Update(Entity entity, ref Dispose destruct)
             {
                 if (++destruct.TicksPassed > Constants.HistoryTicks)
                     _entities.Add(entity);
