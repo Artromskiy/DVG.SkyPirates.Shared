@@ -9,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class MultiPreAttackSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Behaviour, ImpactDistance, Position, Targets, Alive>();
+            WithAll<BehaviourState, ImpactDistance, Position, Targets, Alive>();
 
         private readonly World _world;
 
@@ -21,11 +21,11 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new PreAttackQuery(_world);
-            _world.InlineQuery<PreAttackQuery, Behaviour, ImpactDistance, Position, Targets>(_desc, ref query);
+            _world.InlineQuery<PreAttackQuery, BehaviourState, ImpactDistance, Position, Targets>(_desc, ref query);
         }
 
         private readonly struct PreAttackQuery :
-            IForEach<Behaviour, ImpactDistance, Position, Targets>
+            IForEach<BehaviourState, ImpactDistance, Position, Targets>
         {
             private readonly World _world;
 
@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 _world = world;
             }
 
-            public void Update(ref Behaviour behaviour, ref ImpactDistance impactDistance, ref Position position, ref Targets targets)
+            public void Update(ref BehaviourState behaviour, ref ImpactDistance impactDistance, ref Position position, ref Targets targets)
             {
                 if (behaviour.State != StateId.None)
                     return;

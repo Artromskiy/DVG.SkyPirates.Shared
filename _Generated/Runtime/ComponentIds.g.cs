@@ -30,7 +30,7 @@ namespace DVG.Core.Components
             {
                 {typeof(Alive), 1},
                 {typeof(AutoHeal), 2},
-                {typeof(Behaviour), 3},
+                {typeof(BehaviourState), 3},
                 {typeof(BehaviourConfig), 4},
                 {typeof(CachePosition), 5},
                 {typeof(CactusId), 6},
@@ -63,7 +63,7 @@ namespace DVG.Core.Components
             {
                 {1, typeof(Alive)},
                 {2, typeof(AutoHeal)},
-                {3, typeof(Behaviour)},
+                {3, typeof(BehaviourState)},
                 {4, typeof(BehaviourConfig)},
                 {5, typeof(CachePosition)},
                 {6, typeof(CactusId)},
@@ -99,7 +99,7 @@ namespace DVG.Core.Components
         {
             action.Invoke<Alive>();
             action.Invoke<AutoHeal>();
-            action.Invoke<Behaviour>();
+            action.Invoke<BehaviourState>();
             action.Invoke<BehaviourConfig>();
             action.Invoke<CachePosition>();
             action.Invoke<CactusId>();

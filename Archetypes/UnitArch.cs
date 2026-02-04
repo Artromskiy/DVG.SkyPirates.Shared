@@ -30,7 +30,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
                 Target,
                 Destination,
                 TargetSearchData,
-                Behaviour,
+                BehaviourState,
                 BehaviourConfig>
                 (entity);
         }

@@ -9,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SingleImpactSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Behaviour, Damage, ImpactDistance, Position, Target, Alive>();
+            WithAll<BehaviourState, Damage, ImpactDistance, Position, Target, Alive>();
 
         private readonly World _world;
 
@@ -21,11 +21,11 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new ImpactQuery(_world);
-            _world.InlineQuery<ImpactQuery, Behaviour, Damage, ImpactDistance, Position, Target>(_desc, ref query);
+            _world.InlineQuery<ImpactQuery, BehaviourState, Damage, ImpactDistance, Position, Target>(_desc, ref query);
         }
 
         private readonly struct ImpactQuery :
-            IForEach<Behaviour, Damage, ImpactDistance, Position, Target>
+            IForEach<BehaviourState, Damage, ImpactDistance, Position, Target>
         {
             private readonly World _world;
 
@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 _world = world;
             }
 
-            public void Update(ref Behaviour behaviour, ref Damage damage, ref ImpactDistance impactDistance, ref Position position, ref Target target)
+            public void Update(ref BehaviourState behaviour, ref Damage damage, ref ImpactDistance impactDistance, ref Position position, ref Target target)
             {
                 if (behaviour.State != StateId.Constants.PreAttack || behaviour.Percent != 1)
                     return;

@@ -7,12 +7,12 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 namespace DVG.SkyPirates.Shared.Systems
 {
     /// <summary>
-    /// Switches <see cref="Behaviour"/> to PreAttack if State is None and Target is in ImpactDistance
+    /// Switches <see cref="BehaviourState"/> to PreAttack if State is None and Target is in ImpactDistance
     /// </summary>
     public sealed class SinglePreAttackSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Behaviour, ImpactDistance, Position, Target, Alive>();
+            WithAll<BehaviourState, ImpactDistance, Position, Target, Alive>();
 
         private readonly World _world;
 
@@ -24,11 +24,11 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new PreAttackQuery(_world);
-            _world.InlineQuery<PreAttackQuery, Behaviour, ImpactDistance, Position, Target>(_desc, ref query);
+            _world.InlineQuery<PreAttackQuery, BehaviourState, ImpactDistance, Position, Target>(_desc, ref query);
         }
 
         private readonly struct PreAttackQuery :
-            IForEach<Behaviour, ImpactDistance, Position, Target>
+            IForEach<BehaviourState, ImpactDistance, Position, Target>
         {
             private readonly World _world;
 
@@ -37,7 +37,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 _world = world;
             }
 
-            public void Update(ref Behaviour behaviour, ref ImpactDistance impactDistance, ref Position position, ref Target target)
+            public void Update(ref BehaviourState behaviour, ref ImpactDistance impactDistance, ref Position position, ref Target target)
             {
                 if (behaviour.State != StateId.None)
                     return;

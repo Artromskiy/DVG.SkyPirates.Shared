@@ -8,10 +8,10 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SimpleBehaviourSystem : ITickableExecutor
     {
         private readonly QueryDescription _descSwitch = new QueryDescription().
-            WithAll<Behaviour, BehaviourConfig, Alive>();
+            WithAll<BehaviourState, BehaviourConfig, Alive>();
 
         private readonly QueryDescription _descTick = new QueryDescription().
-            WithAll<Behaviour, Alive>();
+            WithAll<BehaviourState, Alive>();
 
         private readonly World _world;
 
@@ -23,14 +23,14 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new BehaviourQuery(deltaTime);
-            _world.InlineQuery<BehaviourQuery, Behaviour, BehaviourConfig>(_descSwitch, ref query);
-            _world.InlineQuery<BehaviourQuery, Behaviour>(_descTick, ref query);
+            _world.InlineQuery<BehaviourQuery, BehaviourState, BehaviourConfig>(_descSwitch, ref query);
+            _world.InlineQuery<BehaviourQuery, BehaviourState>(_descTick, ref query);
 
         }
 
         private readonly struct BehaviourQuery :
-            IForEach<Behaviour, BehaviourConfig>,
-            IForEach<Behaviour>
+            IForEach<BehaviourState, BehaviourConfig>,
+            IForEach<BehaviourState>
         {
             private readonly fix _deltaTime;
 
@@ -39,7 +39,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 _deltaTime = deltaTime;
             }
 
-            public void Update(ref Behaviour behaviour, ref BehaviourConfig behaviourConfig)
+            public void Update(ref BehaviourState behaviour, ref BehaviourConfig behaviourConfig)
             {
                 if (behaviour.Percent != 1 && behaviour.ForceState == null)
                     return;
@@ -53,7 +53,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 behaviour.Percent = 0;
             }
 
-            public void Update(ref Behaviour behaviour)
+            public void Update(ref BehaviourState behaviour)
             {
                 fix step = behaviour.Duration == 0 ? 1 : _deltaTime / behaviour.Duration;
                 behaviour.Percent = Maths.MoveTowards(behaviour.Percent, 1, step);

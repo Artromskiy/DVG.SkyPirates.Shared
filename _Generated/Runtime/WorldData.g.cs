@@ -30,7 +30,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 1)]
         public Dictionary<int, AutoHeal> AutoHeal;
         [DataMember(Order = 2)]
-        public Dictionary<int, Behaviour> Behaviour;
+        public Dictionary<int, BehaviourState> Behaviour;
         [DataMember(Order = 3)]
         public Dictionary<int, BehaviourConfig> BehaviourConfig;
         [DataMember(Order = 4)]
@@ -126,7 +126,7 @@ namespace DVG.SkyPirates.Shared.Data
                 return Alive as Dictionary<int, T>;
             if (typeof(T) == typeof(AutoHeal))
                 return AutoHeal as Dictionary<int, T>;
-            if (typeof(T) == typeof(Behaviour))
+            if (typeof(T) == typeof(BehaviourState))
                 return Behaviour as Dictionary<int, T>;
             if (typeof(T) == typeof(BehaviourConfig))
                 return BehaviourConfig as Dictionary<int, T>;
@@ -198,9 +198,9 @@ namespace DVG.SkyPirates.Shared.Data
                 AutoHeal = data as Dictionary<int, AutoHeal>;
                 return;
             }
-            if (typeof(T) == typeof(Behaviour))
+            if (typeof(T) == typeof(BehaviourState))
             {
-                Behaviour = data as Dictionary<int, Behaviour>;
+                Behaviour = data as Dictionary<int, BehaviourState>;
                 return;
             }
             if (typeof(T) == typeof(BehaviourConfig))

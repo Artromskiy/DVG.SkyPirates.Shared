@@ -5,7 +5,7 @@ namespace DVG.SkyPirates.Shared.Components
 {
     [History]
     [Component]
-    public struct Behaviour
+    public struct BehaviourState
     {
         public StateId State;
         public fix Percent;

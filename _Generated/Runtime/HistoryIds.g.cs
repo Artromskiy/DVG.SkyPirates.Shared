@@ -31,7 +31,7 @@ namespace DVG.Core.Components
             {
                 {typeof(Alive), 1},
                 {typeof(AutoHeal), 2},
-                {typeof(Behaviour), 3},
+                {typeof(BehaviourState), 3},
                 {typeof(CactusId), 4},
                 {typeof(CircleShape), 5},
                 {typeof(Damage), 6},
@@ -61,7 +61,7 @@ namespace DVG.Core.Components
             {
                 {1, typeof(Alive)},
                 {2, typeof(AutoHeal)},
-                {3, typeof(Behaviour)},
+                {3, typeof(BehaviourState)},
                 {4, typeof(CactusId)},
                 {5, typeof(CircleShape)},
                 {6, typeof(Damage)},
@@ -94,7 +94,7 @@ namespace DVG.Core.Components
         {
             action.Invoke<Alive>();
             action.Invoke<AutoHeal>();
-            action.Invoke<Behaviour>();
+            action.Invoke<BehaviourState>();
             action.Invoke<CactusId>();
             action.Invoke<CircleShape>();
             action.Invoke<Damage>();

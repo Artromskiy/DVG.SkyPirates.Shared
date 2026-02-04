@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
                 Team,
                 Alive,
                 CircleShape,
-                Behaviour,
+                BehaviourState,
                 BehaviourConfig,
                 Separation>
                 (entity);
