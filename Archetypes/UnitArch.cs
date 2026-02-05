@@ -1,6 +1,8 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Framed;
+using DVG.SkyPirates.Shared.Components.Runtime;
 using System;
 
 namespace DVG.SkyPirates.Shared.Archetypes
@@ -25,12 +27,11 @@ namespace DVG.SkyPirates.Shared.Archetypes
 
                 // Non Synced, edited by systems
                 // System Frame Data
-                CachePosition,
-                RecivedDamage,
                 Fixation,
                 Target,
                 Destination,
-                TargetSearchData>
+                TargetSearchDistance,
+                TargetSearchPosition>
 
                 // Special Data (History, Dispose, Free, Temp)
                 (entity);

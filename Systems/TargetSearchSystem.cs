@@ -1,6 +1,8 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Framed;
+using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
 
@@ -27,13 +29,13 @@ namespace DVG.SkyPirates.Shared.Systems
             _world = world;
         }
 
-        public Entity? FindTarget(ref Position position, ref TargetSearchData targetSearchData, ref Team team)
+        public Entity? FindTarget(ref Position position, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Team team)
         {
             fix minSqrDistance = fix.MaxValue;
             Entity? foundTarget = null;
 
             _targetsCache.Clear();
-            FindTargets(ref targetSearchData, ref team, _targetsCache);
+            FindTargets(ref searchDistance, ref searchPosition, ref team, _targetsCache);
 
             var positionXZ = position.Value.xz;
             foreach (var (entity, targetPosition) in _targetsCache)
@@ -50,10 +52,10 @@ namespace DVG.SkyPirates.Shared.Systems
             return foundTarget;
         }
 
-        public void FindTargets(ref TargetSearchData targetSearchData, ref Team team, List<(Entity, Position)> targets)
+        public void FindTargets(ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Team team, List<(Entity, Position)> targets)
         {
-            var distance = targetSearchData.Distance;
-            var position = targetSearchData.Position.xz;
+            var distance = searchDistance.Value;
+            var position = searchPosition.Value.xz;
             var teamId = team.Id;
             var range = new fix2(distance, distance);
             var min = GetQuantizedSquare(position - range);

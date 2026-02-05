@@ -1,0 +1,2004 @@
+[
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_02"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_03"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_04"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_05"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_06"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_07"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_08"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_09"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_10"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_11"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_12"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_13"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_14"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_15"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_16"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_17"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_18"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_19"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_20"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_21"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_22"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_23"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_24"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_25"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_26"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_27"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_28"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_29"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_30"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_31"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_32"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_33"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_34"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_35"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_36"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_37"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_38"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_39"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_40"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_41"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_42"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_43"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_44"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_45"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_46"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_47"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_48"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_49"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_50"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_51"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_52"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_53"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_54"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_55"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_56"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_57"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_58"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_59"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "HardRock_60"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_32"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_01"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_02"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_03"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_04"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_05"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_06"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_07"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_08"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_09"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_10"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_11"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_12"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_13"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_14"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_15"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_16"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_17"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_18"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_19"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_20"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_21"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_22"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_23"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_24"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_25"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_26"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_27"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_28"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_29"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_30"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  },
+  {
+    "RockId": {
+      "HardRock_01": "SoftRock_31"
+    },
+    "MaxHealth": {
+      "100": 100
+    },
+    "Radius": {
+      "0.5": 0.5
+    },
+    "Separation": {
+      "AddRadius": {
+        "0.5": 0.5
+      },
+      "AffectingCoeff": {
+        "1": 1
+      },
+      "AffectedCoeff": {
+        "0": 0
+      }
+    }
+  }
+]

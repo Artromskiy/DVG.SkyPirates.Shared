@@ -7,7 +7,7 @@ namespace DVG.SkyPirates.Shared.Components
     public struct Separation
     {
         public fix AddRadius;
-        public fix AffectedCoeff;
         public fix AffectingCoeff;
+        public fix AffectedCoeff;
     }
 }

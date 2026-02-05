@@ -1,5 +1,5 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
+using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems

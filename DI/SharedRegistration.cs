@@ -32,9 +32,9 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(JoysticCommandExecutor)
                 //typeof(CommandLogger)
             };
+            //RegisterSingleton(typeof(IPathFactory<>), typeof(ResourcesFactory<>));
 
-            container.RegisterSingleton<IEntityConfigFactory, EntityConfigFactory>();
-            //container.RegisterSingleton<IUnitConfigFactory, UnitConfigFactory>();
+            container.RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
             container.RegisterSingleton<ISquadFactory, SquadFactory>();
             container.RegisterSingleton<IUnitFactory, UnitFactory>();
             container.RegisterSingleton<ITreeFactory, TreeFactory>();

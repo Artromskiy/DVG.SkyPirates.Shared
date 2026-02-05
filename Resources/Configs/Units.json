@@ -1,7 +1,6 @@
 [
   {
     "UnitId": "Sailor",
-    "Health": 45,
     "MaxHealth": 45,
     "Damage": 3,
     "ImpactDistance": 3,
@@ -29,7 +28,6 @@
   },
   {
     "UnitId": "Rogue",
-    "Health": 20,
     "MaxHealth": 20,
     "Damage": 4,
     "ImpactDistance": 3,
@@ -57,7 +55,6 @@
   },
   {
     "UnitId": "Pirate",
-    "Health": 45,
     "MaxHealth": 45,
     "Damage": 10,
     "ImpactDistance": 3,
@@ -85,7 +82,6 @@
   },
   {
     "UnitId": "Skelly",
-    "Health": 45,
     "MaxHealth": 45,
     "Damage": 6,
     "ImpactDistance": 3,
@@ -113,7 +109,6 @@
   },
   {
     "UnitId": "Militia",
-    "Health": 100,
     "MaxHealth": 100,
     "Damage": 15,
     "ImpactDistance": 3,
@@ -127,6 +122,114 @@
     "BehaviourConfig": {
       "Durations": {
         "PreAttack": 0.7,
+        "PostAttack": 0.3,
+        "Reload": 0.3,
+        "None": 0
+      },
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      }
+    }
+  },
+  {
+    "UnitId": "Demon",
+    "MaxHealth": 65,
+    "Damage": 10,
+    "ImpactDistance": 3,
+    "MaxSpeed": 10,
+    "Radius": 0.3,
+    "Separation": {
+      "AddRadius": 0.33,
+      "AffectingCoeff": 1,
+      "AffectedCoeff": 1
+    },
+    "BehaviourConfig": {
+      "Durations": {
+        "PreAttack": 0.7,
+        "PostAttack": 0.3,
+        "Reload": 0.3,
+        "None": 0
+      },
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      }
+    }
+  },
+  {
+    "UnitId": "Buccaneer",
+    "MaxHealth": 10,
+    "Damage": 7,
+    "ImpactDistance": 3,
+    "MaxSpeed": 10,
+    "Radius": 0.3,
+    "Separation": {
+      "AddRadius": 0.33,
+      "AffectingCoeff": 1,
+      "AffectedCoeff": 1
+    },
+    "BehaviourConfig": {
+      "Durations": {
+        "PreAttack": 0.3,
+        "PostAttack": 0.3,
+        "Reload": 0.5,
+        "None": 0
+      },
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      }
+    }
+  },
+  {
+    "UnitId": "Bonny",
+    "MaxHealth": 10,
+    "Damage": 7,
+    "ImpactDistance": 3,
+    "MaxSpeed": 10,
+    "Radius": 0.3,
+    "Separation": {
+      "AddRadius": 0.33,
+      "AffectingCoeff": 1,
+      "AffectedCoeff": 1
+    },
+    "BehaviourConfig": {
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3,
+        "Reload": 0.3,
+        "None": 0
+      },
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      }
+    }
+  },
+  {
+    "UnitId": "Imp",
+    "MaxHealth": 50,
+    "Damage": 1,
+    "ImpactDistance": 3,
+    "MaxSpeed": 10,
+    "Radius": 0.3,
+    "Separation": {
+      "AddRadius": 0.33,
+      "AffectingCoeff": 1,
+      "AffectedCoeff": 1
+    },
+    "BehaviourConfig": {
+      "Durations": {
+        "PreAttack": 0.2,
         "PostAttack": 0.3,
         "Reload": 0.3,
         "None": 0

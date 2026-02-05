@@ -1,6 +1,8 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Framed;
+using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SetMultiTargetSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Targets, Team, Alive>();
+            WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, Team, Alive>();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;
@@ -26,11 +28,11 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new SetTargetQuery(_targetSearch, _targetsCache);
-            _world.InlineQuery<SetTargetQuery, TargetSearchData, Targets, Team>(_desc, ref query);
+            _world.InlineQuery<SetTargetQuery, TargetSearchDistance, TargetSearchPosition, Targets, Team>(_desc, ref query);
         }
 
         private readonly struct SetTargetQuery :
-            IForEach<TargetSearchData, Targets, Team>
+            IForEach<TargetSearchDistance, TargetSearchPosition, Targets, Team>
         {
             private readonly ITargetSearchSystem _targetSearch;
             private readonly List<(Entity target, Position position)> _targetsCache;
@@ -41,10 +43,10 @@ namespace DVG.SkyPirates.Shared.Systems
                 _targetsCache = targetsCache;
             }
 
-            public void Update(ref TargetSearchData targetSearchData, ref Targets target, ref Team team)
+            public void Update(ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Targets target, ref Team team)
             {
                 _targetsCache.Clear();
-                _targetSearch.FindTargets(ref targetSearchData, ref team, _targetsCache);
+                _targetSearch.FindTargets(ref searchDistance, ref searchPosition, ref team, _targetsCache);
                 target.Entities = new();
                 foreach (var item in _targetsCache)
                     target.Entities.Add(item.target);

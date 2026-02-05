@@ -16,7 +16,9 @@ using System.Runtime.Serialization;
 
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Config; using DVG.SkyPirates.Shared.Components.Framed; using DVG.SkyPirates.Shared.Components.Runtime;
+using DVG.SkyPirates.Shared.Components.Framed;
+using DVG.SkyPirates.Shared.Components.Runtime;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -78,7 +80,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 25)]
         public Dictionary<int, Targets> Targets;
         [DataMember(Order = 26)]
-        public Dictionary<int, TargetSearchData> TargetSearchData;
+        public Dictionary<int, TargetSearchDistance> TargetSearchData;
         [DataMember(Order = 27)]
         public Dictionary<int, Team> Team;
         [DataMember(Order = 28)]
@@ -177,7 +179,7 @@ namespace DVG.SkyPirates.Shared.Data
                 return Target as Dictionary<int, T>;
             if (typeof(T) == typeof(Targets))
                 return Targets as Dictionary<int, T>;
-            if (typeof(T) == typeof(TargetSearchData))
+            if (typeof(T) == typeof(TargetSearchDistance))
                 return TargetSearchData as Dictionary<int, T>;
             if (typeof(T) == typeof(Team))
                 return Team as Dictionary<int, T>;
@@ -323,9 +325,9 @@ namespace DVG.SkyPirates.Shared.Data
                 Targets = data as Dictionary<int, Targets>;
                 return;
             }
-            if (typeof(T) == typeof(TargetSearchData))
+            if (typeof(T) == typeof(TargetSearchDistance))
             {
-                TargetSearchData = data as Dictionary<int, TargetSearchData>;
+                TargetSearchData = data as Dictionary<int, TargetSearchDistance>;
                 return;
             }
             if (typeof(T) == typeof(Team))

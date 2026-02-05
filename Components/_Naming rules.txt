@@ -4,7 +4,7 @@ For Component with single field there are naming rules
 
 It is Id	  (eg. Team)
 	Name: Id
-It is Tick    (eg. Creation)
+It is Tick/Frame    (eg. Creation)
 	Name: Tick
 It is Entity  (eg. Target)
 	Name: Entity

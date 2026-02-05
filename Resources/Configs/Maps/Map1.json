@@ -25,16 +25,10 @@
   "BehaviourConfig": {},
   "CachePosition": {},
   "CactusId": {},
-  "CircleShape": {
-    "3": {
-      "Value": 0.5
-    },
-    "2": {
-      "Value": 0.5
-    },
-    "4": {
-      "Value": 0.5
-    }
+  "Radius": {
+    "3":  0.5,
+    "2":  0.5,
+    "4":  0.5
   },
   "Damage": {},
   "Destination": {},
@@ -1158,15 +1152,9 @@
     }
   },
   "TreeId": {
-    "3": {
-      "Value": "Tree_01_Fall"
-    },
-    "2": {
-      "Value": "Tree_01_Fall"
-    },
-    "4": {
-      "Value": "Tree_01_Fall"
-    }
+    "3": "Tree_01_Fall",
+    "2": "Tree_01_Fall",
+    "4": "Tree_01_Fall"
   },
   "UnitId": {}
 }

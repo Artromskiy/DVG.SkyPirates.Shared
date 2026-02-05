@@ -16,7 +16,7 @@ using System.Runtime.CompilerServices;
 
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Config; using DVG.SkyPirates.Shared.Components.Framed; using DVG.SkyPirates.Shared.Components.Runtime;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -78,7 +78,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 25)]
         public Targets? Targets;
         [DataMember(Order = 26)]
-        public TargetSearchData? TargetSearchData;
+        public TargetSearchDistance? TargetSearchData;
         [DataMember(Order = 27)]
         public Team? Team;
         [DataMember(Order = 28)]
@@ -142,8 +142,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<Target?, T?>(ref Target);
             if (typeof(T) == typeof(Targets))
                 return Unsafe.As<Targets?, T?>(ref Targets);
-            if (typeof(T) == typeof(TargetSearchData))
-                return Unsafe.As<TargetSearchData?, T?>(ref TargetSearchData);
+            if (typeof(T) == typeof(TargetSearchDistance))
+                return Unsafe.As<TargetSearchDistance?, T?>(ref TargetSearchData);
             if (typeof(T) == typeof(Team))
                 return Unsafe.As<Team?, T?>(ref Team);
             if (typeof(T) == typeof(TreeId))
@@ -288,9 +288,9 @@ namespace DVG.SkyPirates.Shared.Data
                 Targets = Unsafe.As<T?, Targets?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(TargetSearchData))
+            if (typeof(T) == typeof(TargetSearchDistance))
             {
-                TargetSearchData = Unsafe.As<T?, TargetSearchData?>(ref data);
+                TargetSearchData = Unsafe.As<T?, TargetSearchDistance?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Team))

@@ -1,6 +1,6 @@
 ﻿namespace DVG.SkyPirates.Shared.Components.Framed
 {
-    public struct CachePosition
+    public struct TargetSearchPosition
     {
         public fix3 Value;
     }

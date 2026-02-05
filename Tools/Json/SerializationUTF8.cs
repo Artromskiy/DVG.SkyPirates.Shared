@@ -1,4 +1,4 @@
-﻿using DVG.SkyPirates.Shared.Components.Config;
+﻿using DVG.SkyPirates.Shared.Components.Config; using DVG.SkyPirates.Shared.Components.Framed; using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
 using System;
 using System.Buffers;
@@ -49,16 +49,20 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _options.Converters.Add(new StringFuncConverter<double4>(value => double4.Parse(value, format)));
 
             _options.Converters.Add(new FixFuncConverter<Health>(value => new() { Value = value }, value => value.Value));
-            _options.Converters.Add(new FixFuncConverter<MaxHealth>(value => new() { Value = value }, value => value.Value));
+            _options.Converters.Add(new FixFuncConverter<Radius>(value => new() { Value = value }, value => value.Value));
             _options.Converters.Add(new FixFuncConverter<Damage>(value => new() { Value = value }, value => value.Value));
             _options.Converters.Add(new FixFuncConverter<MaxSpeed>(value => new() { Value = value }, value => value.Value));
+            _options.Converters.Add(new FixFuncConverter<MaxHealth>(value => new() { Value = value }, value => value.Value));
             _options.Converters.Add(new FixFuncConverter<ImpactDistance>(value => new() { Value = value }, value => value.Value));
 
-            _options.Converters.Add(new StringFuncConverter<CheatingId>(value => new CheatingId(value)));
-            _options.Converters.Add(new StringFuncConverter<GoodsId>(value => new GoodsId(value)));
-            _options.Converters.Add(new StringFuncConverter<StateId>(value => new StateId(value)));
-            _options.Converters.Add(new StringFuncConverter<TileId>(value => new TileId(value)));
-            _options.Converters.Add(new StringFuncConverter<UnitId>(value => new UnitId(value)));
+            _options.Converters.Add(new IdConverter<CheatingId>());
+            _options.Converters.Add(new IdConverter<GoodsId>());
+            _options.Converters.Add(new IdConverter<StateId>());
+            _options.Converters.Add(new IdConverter<TileId>());
+            _options.Converters.Add(new IdConverter<UnitId>());
+            _options.Converters.Add(new IdConverter<CactusId>());
+            _options.Converters.Add(new IdConverter<TreeId>());
+            _options.Converters.Add(new IdConverter<RockId>());
         }
 
         public static string Serialize<T>(T data)

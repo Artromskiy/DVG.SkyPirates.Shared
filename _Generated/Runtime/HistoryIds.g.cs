@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Config; using DVG.SkyPirates.Shared.Components.Framed; using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Special;
 
 namespace DVG.Core.Components
@@ -51,7 +51,7 @@ namespace DVG.Core.Components
                 {typeof(Squad), 20},
                 {typeof(Target), 21},
                 {typeof(Targets), 22},
-                {typeof(TargetSearchData), 23},
+                {typeof(TargetSearchDistance), 23},
                 {typeof(Team), 24},
                 {typeof(TreeId), 25},
                 {typeof(UnitId), 26},
@@ -81,7 +81,7 @@ namespace DVG.Core.Components
                 {20, typeof(Squad)},
                 {21, typeof(Target)},
                 {22, typeof(Targets)},
-                {23, typeof(TargetSearchData)},
+                {23, typeof(TargetSearchDistance)},
                 {24, typeof(Team)},
                 {25, typeof(TreeId)},
                 {26, typeof(UnitId)},
@@ -114,7 +114,7 @@ namespace DVG.Core.Components
             action.Invoke<Squad>();
             action.Invoke<Target>();
             action.Invoke<Targets>();
-            action.Invoke<TargetSearchData>();
+            action.Invoke<TargetSearchDistance>();
             action.Invoke<Team>();
             action.Invoke<TreeId>();
             action.Invoke<UnitId>();

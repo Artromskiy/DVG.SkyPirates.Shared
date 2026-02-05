@@ -1,9 +1,16 @@
-﻿using System;
+﻿using DVG.Core;
+using DVG.SkyPirates.Shared.Ids;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace DVG.SkyPirates.Shared.Tools.Json
 {
+    public class IdConverter<T> : StringConverter<T> where T : struct, IId
+    {
+        protected override T Parse(string value) => IdFactory.Create<T>(value);
+    }
+
     public class StringFuncConverter<T> : StringConverter<T>
     {
         private readonly Func<string, T> _parser;
@@ -13,21 +20,6 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _parser = parser;
         }
         protected override T Parse(string value) => _parser.Invoke(value);
-    }
-
-    public class NumberFuncConverter<T> : NumberConverter<T>
-    {
-        private readonly Func<decimal, T> _reader;
-        private readonly Func<T, decimal> _writer;
-
-        public NumberFuncConverter(Func<decimal, T> reader, Func<T, decimal> writer)
-        {
-            _reader = reader;
-            _writer = writer;
-        }
-
-        protected override T Read(decimal value) => _reader.Invoke(value);
-        protected override decimal Write(T value) => _writer.Invoke(value);
     }
 
     public class FixFuncConverter<T> : NumberConverter<T>

@@ -1,6 +1,8 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Framed;
+using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
@@ -25,11 +27,11 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new SetTargetQuery(_targetSearch);
-            _world.InlineQuery<SetTargetQuery, Position, TargetSearchData, Target, Team>(_desc, ref query);
+            _world.InlineQuery<SetTargetQuery, Position, TargetSearchDistance, TargetSearchPosition, Target, Team>(_desc, ref query);
         }
 
         private readonly struct SetTargetQuery :
-            IForEach<Position, TargetSearchData, Target, Team>
+            IForEach<Position, TargetSearchDistance, TargetSearchPosition, Target, Team>
         {
             private readonly ITargetSearchSystem _targetSearch;
 
@@ -38,9 +40,9 @@ namespace DVG.SkyPirates.Shared.Systems
                 _targetSearch = targetSearch;
             }
 
-            public void Update(ref Position position, ref TargetSearchData targetSearchData, ref Target target, ref Team team)
+            public void Update(ref Position position, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Target target, ref Team team)
             {
-                target.Entity = _targetSearch.FindTarget(ref position, ref targetSearchData, ref team);
+                target.Entity = _targetSearch.FindTarget(ref position, ref searchDistance, ref searchPosition, ref team);
             }
         }
     }

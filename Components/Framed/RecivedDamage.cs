@@ -1,7 +1,7 @@
 ﻿namespace DVG.SkyPirates.Shared.Components.Framed
 {
-    public struct CachePosition
+    public struct RecivedDamage
     {
-        public fix3 Value;
+        public fix Value;
     }
 }
