@@ -1,6 +1,5 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components.Config; using DVG.SkyPirates.Shared.Components.Framed; using DVG.SkyPirates.Shared.Components.Runtime;
-
+using DVG.SkyPirates.Shared.Components.Config;
 namespace DVG.SkyPirates.Shared.Archetypes
 {
     public static class HexMapArch
