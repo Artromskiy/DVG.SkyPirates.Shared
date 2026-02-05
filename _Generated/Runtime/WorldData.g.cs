@@ -15,10 +15,9 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Ids;
-using DVG.SkyPirates.Shared.Components.Config; using DVG.SkyPirates.Shared.Components.Framed; using DVG.SkyPirates.Shared.Components.Runtime;
-using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
+using DVG.SkyPirates.Shared.Ids;
+using DVG.SkyPirates.Shared.Components.Config;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -36,56 +35,44 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 3)]
         public Dictionary<int, BehaviourState> BehaviourState;
         [DataMember(Order = 4)]
-        public Dictionary<int, CachePosition> CachePosition;
-        [DataMember(Order = 5)]
         public Dictionary<int, CactusId> CactusId;
-        [DataMember(Order = 6)]
+        [DataMember(Order = 5)]
         public Dictionary<int, Damage> Damage;
-        [DataMember(Order = 7)]
+        [DataMember(Order = 6)]
         public Dictionary<int, Destination> Destination;
-        [DataMember(Order = 8)]
+        [DataMember(Order = 7)]
         public Dictionary<int, Direction> Direction;
-        [DataMember(Order = 9)]
+        [DataMember(Order = 8)]
         public Dictionary<int, Fixation> Fixation;
-        [DataMember(Order = 10)]
+        [DataMember(Order = 9)]
         public Dictionary<int, Health> Health;
-        [DataMember(Order = 11)]
+        [DataMember(Order = 10)]
         public Dictionary<int, HexMap> HexMap;
-        [DataMember(Order = 12)]
+        [DataMember(Order = 11)]
         public Dictionary<int, ImpactDistance> ImpactDistance;
-        [DataMember(Order = 13)]
+        [DataMember(Order = 12)]
         public Dictionary<int, Level> Level;
-        [DataMember(Order = 14)]
+        [DataMember(Order = 13)]
         public Dictionary<int, MaxHealth> MaxHealth;
-        [DataMember(Order = 15)]
+        [DataMember(Order = 14)]
         public Dictionary<int, MaxSpeed> MaxSpeed;
-        [DataMember(Order = 16)]
+        [DataMember(Order = 15)]
         public Dictionary<int, Position> Position;
-        [DataMember(Order = 17)]
+        [DataMember(Order = 16)]
         public Dictionary<int, Radius> Radius;
-        [DataMember(Order = 18)]
-        public Dictionary<int, RecivedDamage> RecivedDamage;
-        [DataMember(Order = 19)]
+        [DataMember(Order = 17)]
         public Dictionary<int, RockId> RockId;
-        [DataMember(Order = 20)]
+        [DataMember(Order = 18)]
         public Dictionary<int, Rotation> Rotation;
-        [DataMember(Order = 21)]
+        [DataMember(Order = 19)]
         public Dictionary<int, Separation> Separation;
-        [DataMember(Order = 22)]
-        public Dictionary<int, SeparationForce> SeparationForce;
-        [DataMember(Order = 23)]
+        [DataMember(Order = 20)]
         public Dictionary<int, Squad> Squad;
-        [DataMember(Order = 24)]
-        public Dictionary<int, Target> Target;
-        [DataMember(Order = 25)]
-        public Dictionary<int, Targets> Targets;
-        [DataMember(Order = 26)]
-        public Dictionary<int, TargetSearchDistance> TargetSearchData;
-        [DataMember(Order = 27)]
+        [DataMember(Order = 21)]
         public Dictionary<int, Team> Team;
-        [DataMember(Order = 28)]
+        [DataMember(Order = 22)]
         public Dictionary<int, TreeId> TreeId;
-        [DataMember(Order = 29)]
+        [DataMember(Order = 23)]
         public Dictionary<int, UnitId> UnitId;
 
         public WorldData()
@@ -95,7 +82,6 @@ namespace DVG.SkyPirates.Shared.Data
             AutoHeal = new();
             BehaviourConfig = new();
             BehaviourState = new();
-            CachePosition = new();
             CactusId = new();
             Damage = new();
             Destination = new();
@@ -109,15 +95,10 @@ namespace DVG.SkyPirates.Shared.Data
             MaxSpeed = new();
             Position = new();
             Radius = new();
-            RecivedDamage = new();
             RockId = new();
             Rotation = new();
             Separation = new();
-            SeparationForce = new();
             Squad = new();
-            Target = new();
-            Targets = new();
-            TargetSearchData = new();
             Team = new();
             TreeId = new();
             UnitId = new();
@@ -135,8 +116,6 @@ namespace DVG.SkyPirates.Shared.Data
                 return BehaviourConfig as Dictionary<int, T>;
             if (typeof(T) == typeof(BehaviourState))
                 return BehaviourState as Dictionary<int, T>;
-            if (typeof(T) == typeof(CachePosition))
-                return CachePosition as Dictionary<int, T>;
             if (typeof(T) == typeof(CactusId))
                 return CactusId as Dictionary<int, T>;
             if (typeof(T) == typeof(Damage))
@@ -163,24 +142,14 @@ namespace DVG.SkyPirates.Shared.Data
                 return Position as Dictionary<int, T>;
             if (typeof(T) == typeof(Radius))
                 return Radius as Dictionary<int, T>;
-            if (typeof(T) == typeof(RecivedDamage))
-                return RecivedDamage as Dictionary<int, T>;
             if (typeof(T) == typeof(RockId))
                 return RockId as Dictionary<int, T>;
             if (typeof(T) == typeof(Rotation))
                 return Rotation as Dictionary<int, T>;
             if (typeof(T) == typeof(Separation))
                 return Separation as Dictionary<int, T>;
-            if (typeof(T) == typeof(SeparationForce))
-                return SeparationForce as Dictionary<int, T>;
             if (typeof(T) == typeof(Squad))
                 return Squad as Dictionary<int, T>;
-            if (typeof(T) == typeof(Target))
-                return Target as Dictionary<int, T>;
-            if (typeof(T) == typeof(Targets))
-                return Targets as Dictionary<int, T>;
-            if (typeof(T) == typeof(TargetSearchDistance))
-                return TargetSearchData as Dictionary<int, T>;
             if (typeof(T) == typeof(Team))
                 return Team as Dictionary<int, T>;
             if (typeof(T) == typeof(TreeId))
@@ -213,11 +182,6 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(BehaviourState))
             {
                 BehaviourState = data as Dictionary<int, BehaviourState>;
-                return;
-            }
-            if (typeof(T) == typeof(CachePosition))
-            {
-                CachePosition = data as Dictionary<int, CachePosition>;
                 return;
             }
             if (typeof(T) == typeof(CactusId))
@@ -285,11 +249,6 @@ namespace DVG.SkyPirates.Shared.Data
                 Radius = data as Dictionary<int, Radius>;
                 return;
             }
-            if (typeof(T) == typeof(RecivedDamage))
-            {
-                RecivedDamage = data as Dictionary<int, RecivedDamage>;
-                return;
-            }
             if (typeof(T) == typeof(RockId))
             {
                 RockId = data as Dictionary<int, RockId>;
@@ -305,29 +264,9 @@ namespace DVG.SkyPirates.Shared.Data
                 Separation = data as Dictionary<int, Separation>;
                 return;
             }
-            if (typeof(T) == typeof(SeparationForce))
-            {
-                SeparationForce = data as Dictionary<int, SeparationForce>;
-                return;
-            }
             if (typeof(T) == typeof(Squad))
             {
                 Squad = data as Dictionary<int, Squad>;
-                return;
-            }
-            if (typeof(T) == typeof(Target))
-            {
-                Target = data as Dictionary<int, Target>;
-                return;
-            }
-            if (typeof(T) == typeof(Targets))
-            {
-                Targets = data as Dictionary<int, Targets>;
-                return;
-            }
-            if (typeof(T) == typeof(TargetSearchDistance))
-            {
-                TargetSearchData = data as Dictionary<int, TargetSearchDistance>;
                 return;
             }
             if (typeof(T) == typeof(Team))
