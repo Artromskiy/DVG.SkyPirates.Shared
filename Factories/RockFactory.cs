@@ -1,9 +1,9 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Archetypes;
-using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
+using DVG.SkyPirates.Shared.Systems.Special;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
@@ -23,7 +23,7 @@ namespace DVG.SkyPirates.Shared.Factories
             var config = _entityConfigFactory.Create(parameters.RockId);
             var entity = EntityIds.Get(parameters.EntityId);
             RockArch.EnsureArch(_world, entity);
-            _world.SetConfig(entity, config);
+            _world.SetEntityData(entity, config);
             return entity;
         }
     }

@@ -1,0 +1,101 @@
+﻿using Arch.Core;
+using DVG.Core;
+using DVG.Core.Components;
+using DVG.SkyPirates.Shared.Components.Special;
+using DVG.SkyPirates.Shared.Tools;
+
+namespace DVG.SkyPirates.Shared.Systems.Special
+{
+    public static class WorldExt
+    {
+        private class WithAll<T>
+        {
+            public QueryDescription Desc = new QueryDescription().WithAll<T>();
+        }
+        private class WithAll<T0, T1>
+        {
+            public QueryDescription Desc = new QueryDescription().WithAll<T0, T1>();
+        }
+        private class WithAllWithNone<All, None>
+        {
+            public QueryDescription Desc = new QueryDescription().WithAll<All>().WithNone<None>();
+        }
+
+        private static readonly QueryDescription NotUsedDesc = new QueryDescription().WithNone<Free>();
+        private static readonly GenericCollection _desc = new();
+
+        public static T FirstOrDefault<T>(this World world) where T : struct
+        {
+            var query = new FirstOrDefaultQuery<T>();
+            var desc = _desc.Get<WithAll<T>>().Desc;
+            world.InlineQuery<FirstOrDefaultQuery<T>, T>(in desc, ref query);
+            return query.Value;
+        }
+
+        public static int MaxEntityId(this World world)
+        {
+            var query = new MaxEntityIdQuery();
+            world.InlineQuery(in NotUsedDesc, ref query);
+            return query.Value;
+        }
+
+        public static void AddQuery<Has, Add>(this World world, ForEach<Has, Add> forEach)
+        {
+            var addDesc = _desc.Get<WithAllWithNone<Has, Add>>().Desc;
+            var queryDesc = _desc.Get<WithAll<Add, Temp>>().Desc;
+
+            world.Add<Add, Temp>(addDesc);
+            world.Query(queryDesc, forEach);
+            world.Remove<Temp>(queryDesc);
+        }
+
+        public static void SetEntityData(this World world, Entity entity, Data.EntityData config)
+        {
+            var action = new ApplyEntityData(entity, world, config);
+            ComponentIds.ForEachData(ref action);
+        }
+
+        private struct MaxEntityIdQuery : IForEach
+        {
+            public int Value;
+            public void Update(Entity entity) => Value = Maths.Max(Value, entity.Id);
+        }
+
+        private struct FirstOrDefaultQuery<T> : IForEach<T>
+        {
+            public T Value;
+            private bool _valueSet;
+            public void Update(ref T t)
+            {
+                if (_valueSet)
+                    return;
+
+                _valueSet = true;
+                Value = t;
+            }
+        }
+
+        private readonly struct ApplyEntityData : IStructGenericAction
+        {
+            private readonly Entity _entity;
+            private readonly World _world;
+            private readonly Data.EntityData _config;
+
+            public ApplyEntityData(Entity entity, World world, Data.EntityData config)
+            {
+                _entity = entity;
+                _world = world;
+                _config = config;
+            }
+
+            public void Invoke<T>() where T : struct
+            {
+                var cmp = _config.Get<T>();
+                if (cmp.HasValue && !_world.Has<T>(_entity))
+                    _world.Add<T>(_entity);
+                if (cmp.HasValue)
+                    _world.Set(_entity, cmp.Value);
+            }
+        }
+    }
+}

@@ -2,7 +2,7 @@
 using DVG.SkyPirates.Shared.Ids;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Components
+namespace DVG.SkyPirates.Shared.Components.Config
 {
     [Component]
     public struct BehaviourConfig
