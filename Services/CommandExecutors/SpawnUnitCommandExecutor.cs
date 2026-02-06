@@ -3,9 +3,9 @@ using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Runtime;
-using DVG.SkyPirates.Shared.Entities;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
+using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
@@ -13,18 +13,28 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
     public class SpawnUnitCommandExecutor :
         ICommandExecutor<SpawnUnitCommand>
     {
+        private readonly ICommandEntityFactory _commandEntityFactory;
         private readonly IUnitFactory _unitFactory;
         private readonly World _world;
 
-        public SpawnUnitCommandExecutor(World world, IUnitFactory unitFactory)
+        public SpawnUnitCommandExecutor(World world, IUnitFactory unitFactory, ICommandEntityFactory commandEntityFactory)
         {
-            _unitFactory = unitFactory;
             _world = world;
+            _unitFactory = unitFactory;
+            _commandEntityFactory = commandEntityFactory;
         }
 
         public void Execute(Command<SpawnUnitCommand> cmd)
         {
-            var squad = EntityIds.Get(cmd.Data.SquadId);
+            var squad = _commandEntityFactory.Get(cmd.Data.SquadId);
+            if (squad == Entity.Null ||
+                !_world.IsAlive(squad) ||
+                !_world.Has<Position, Squad>(squad))
+            {
+                Console.WriteLine($"Attempt to use command for entity {cmd.EntityId}, which is not created");
+                return;
+            }
+
             var pos = _world.Get<Position>(squad).Value;
             var unit = _unitFactory.Create((cmd.Data.UnitId, cmd.EntityId));
 

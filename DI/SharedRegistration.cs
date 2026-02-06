@@ -1,6 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Core;
-using DVG.SkyPirates.Shared.Components.Special;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Factories;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
@@ -18,12 +18,7 @@ namespace DVG.SkyPirates.Shared.DI
     {
         public static void Register(Container container)
         {
-            container.RegisterSingleton(() =>
-            {
-                var world = World.Create();
-                world.Create<Free>(100000);
-                return world;
-            });
+            container.RegisterSingleton(() => World.Create());
 
             var commandExecutors = new Type[]
             {
@@ -35,8 +30,12 @@ namespace DVG.SkyPirates.Shared.DI
             //RegisterSingleton(typeof(IPathFactory<>), typeof(ResourcesFactory<>));
 
             container.RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
+            container.RegisterSingleton<IWorldDataFactory, WorldDataFactory>();
+            container.RegisterSingleton<ICommandEntityFactory, CommandEntityFactory>();
             container.RegisterSingleton<ISquadFactory, SquadFactory>();
             container.RegisterSingleton<IUnitFactory, UnitFactory>();
+            container.RegisterSingleton<IHexMapFactory, HexMapFactory>();
+
             container.RegisterSingleton<ITreeFactory, TreeFactory>();
             container.RegisterSingleton<IFactory<Entity, (TreeId TreeId, int EntityId)>, TreeFactory>();
             container.RegisterSingleton<IRockFactory, RockFactory>();

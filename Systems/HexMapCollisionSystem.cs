@@ -28,6 +28,7 @@ namespace DVG.SkyPirates.Shared.Systems
             if (hexMap.Data == null)
                 return;
 
+            // TODO multithread this thing
             var query = new SolveCollsionQuery(hexMap, _segmentsCache);
             _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, Radius>(_desc, ref query);
         }
@@ -44,12 +45,12 @@ namespace DVG.SkyPirates.Shared.Systems
                 _segmentsCache = segmentsCache;
             }
 
-            public void Update(ref Position position, ref CachePosition cachePosition, ref Radius circleShape)
+            public void Update(ref Position position, ref CachePosition cachePosition, ref Radius radius)
             {
                 FindSegments(cachePosition.Value.xz);
 
                 var solvedPos = Spatial.SolveCircleMove(_segmentsCache,
-                    cachePosition.Value.xz, position.Value.xz, circleShape.Value).x_y;
+                    cachePosition.Value.xz, position.Value.xz, radius.Value).x_y;
                 position.Value = solvedPos;
             }
 

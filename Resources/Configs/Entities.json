@@ -4,10 +4,11 @@
     "MaxHealth": 45,
     "Damage": 3,
     "ImpactDistance": 3,
+    "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
     "Separation": {
-      "AddRadius": 0.33,
+      "AddRadius": 0.3,
       "AffectingCoeff": 1,
       "AffectedCoeff": 1
     },
@@ -31,10 +32,11 @@
     "MaxHealth": 20,
     "Damage": 4,
     "ImpactDistance": 3,
+    "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
     "Separation": {
-      "AddRadius": 0.33,
+      "AddRadius": 0.3,
       "AffectingCoeff": 1,
       "AffectedCoeff": 1
     },
@@ -58,10 +60,11 @@
     "MaxHealth": 45,
     "Damage": 10,
     "ImpactDistance": 3,
+    "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
     "Separation": {
-      "AddRadius": 0.33,
+      "AddRadius": 0.3,
       "AffectingCoeff": 1,
       "AffectedCoeff": 1
     },
@@ -85,10 +88,11 @@
     "MaxHealth": 45,
     "Damage": 6,
     "ImpactDistance": 3,
+    "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
     "Separation": {
-      "AddRadius": 0.33,
+      "AddRadius": 0.3,
       "AffectingCoeff": 1,
       "AffectedCoeff": 1
     },
@@ -112,10 +116,11 @@
     "MaxHealth": 100,
     "Damage": 15,
     "ImpactDistance": 3,
+    "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
     "Separation": {
-      "AddRadius": 0.33,
+      "AddRadius": 0.3,
       "AffectingCoeff": 1,
       "AffectedCoeff": 1
     },
@@ -139,10 +144,11 @@
     "MaxHealth": 65,
     "Damage": 10,
     "ImpactDistance": 3,
+    "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
     "Separation": {
-      "AddRadius": 0.33,
+      "AddRadius": 0.3,
       "AffectingCoeff": 1,
       "AffectedCoeff": 1
     },
@@ -166,10 +172,11 @@
     "MaxHealth": 10,
     "Damage": 7,
     "ImpactDistance": 3,
+    "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
     "Separation": {
-      "AddRadius": 0.33,
+      "AddRadius": 0.3,
       "AffectingCoeff": 1,
       "AffectedCoeff": 1
     },
@@ -193,10 +200,11 @@
     "MaxHealth": 10,
     "Damage": 7,
     "ImpactDistance": 3,
+    "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
     "Separation": {
-      "AddRadius": 0.33,
+      "AddRadius": 0.3,
       "AffectingCoeff": 1,
       "AffectedCoeff": 1
     },
@@ -220,10 +228,11 @@
     "MaxHealth": 50,
     "Damage": 1,
     "ImpactDistance": 3,
+    "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
     "Separation": {
-      "AddRadius": 0.33,
+      "AddRadius": 0.3,
       "AffectingCoeff": 1,
       "AffectedCoeff": 1
     },
@@ -246,11 +255,11 @@
     "CactusId": "Cactus_39_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -267,11 +276,11 @@
     "CactusId": "Cactus_02_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -288,11 +297,11 @@
     "CactusId": "Cactus_03_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -309,11 +318,11 @@
     "CactusId": "Cactus_05_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -330,11 +339,11 @@
     "CactusId": "Cactus_06_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -351,11 +360,11 @@
     "CactusId": "Cactus_07_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -372,11 +381,11 @@
     "CactusId": "Cactus_08_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -393,11 +402,11 @@
     "CactusId": "Cactus_09_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -414,11 +423,11 @@
     "CactusId": "Cactus_10_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -435,11 +444,11 @@
     "CactusId": "Cactus_11_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -456,11 +465,11 @@
     "CactusId": "Cactus_12_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -477,11 +486,11 @@
     "CactusId": "Cactus_13_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -498,11 +507,11 @@
     "CactusId": "Cactus_15_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -519,11 +528,11 @@
     "CactusId": "Cactus_16_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -540,11 +549,11 @@
     "CactusId": "Cactus_18_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -561,11 +570,11 @@
     "CactusId": "Cactus_18_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -582,11 +591,11 @@
     "CactusId": "Cactus_23_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -603,11 +612,11 @@
     "CactusId": "Cactus_25_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -624,11 +633,11 @@
     "CactusId": "Cactus_26_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -645,11 +654,11 @@
     "CactusId": "Cactus_26_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -666,11 +675,11 @@
     "CactusId": "Cactus_30_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -687,11 +696,11 @@
     "CactusId": "Cactus_32_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -708,11 +717,11 @@
     "CactusId": "Cactus_36_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -729,11 +738,11 @@
     "CactusId": "Cactus_37_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -750,11 +759,11 @@
     "CactusId": "Cactus_38_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -771,11 +780,11 @@
     "CactusId": "Cactus_01_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -792,11 +801,11 @@
     "CactusId": "Cactus_01_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -813,11 +822,11 @@
     "CactusId": "Cactus_02_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -834,11 +843,11 @@
     "CactusId": "Cactus_03_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -855,11 +864,11 @@
     "CactusId": "Cactus_04_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -876,11 +885,11 @@
     "CactusId": "Cactus_04_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -897,11 +906,11 @@
     "CactusId": "Cactus_05_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -918,11 +927,11 @@
     "CactusId": "Cactus_06_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -939,11 +948,11 @@
     "CactusId": "Cactus_07_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -960,11 +969,11 @@
     "CactusId": "Cactus_08_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -981,11 +990,11 @@
     "CactusId": "Cactus_09_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1002,11 +1011,11 @@
     "CactusId": "Cactus_10_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1023,11 +1032,11 @@
     "CactusId": "Cactus_11_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1044,11 +1053,11 @@
     "CactusId": "Cactus_12_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1065,11 +1074,11 @@
     "CactusId": "Cactus_13_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1086,11 +1095,11 @@
     "CactusId": "Cactus_14_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1107,11 +1116,11 @@
     "CactusId": "Cactus_14_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1128,11 +1137,11 @@
     "CactusId": "Cactus_15_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1149,11 +1158,11 @@
     "CactusId": "Cactus_16_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1170,11 +1179,11 @@
     "CactusId": "Cactus_17_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1191,11 +1200,11 @@
     "CactusId": "Cactus_17_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1212,11 +1221,11 @@
     "CactusId": "Cactus_19_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1233,11 +1242,11 @@
     "CactusId": "Cactus_19_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1254,11 +1263,11 @@
     "CactusId": "Cactus_20_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1275,11 +1284,11 @@
     "CactusId": "Cactus_20_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1296,11 +1305,11 @@
     "CactusId": "Cactus_21_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1317,11 +1326,11 @@
     "CactusId": "Cactus_21_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1338,11 +1347,11 @@
     "CactusId": "Cactus_22_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1359,11 +1368,11 @@
     "CactusId": "Cactus_22_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1380,11 +1389,11 @@
     "CactusId": "Cactus_23_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1401,11 +1410,11 @@
     "CactusId": "Cactus_24_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1422,11 +1431,11 @@
     "CactusId": "Cactus_24_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1443,11 +1452,11 @@
     "CactusId": "Cactus_25_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1464,11 +1473,11 @@
     "CactusId": "Cactus_27_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1485,11 +1494,11 @@
     "CactusId": "Cactus_27_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1506,11 +1515,11 @@
     "CactusId": "Cactus_28_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1527,11 +1536,11 @@
     "CactusId": "Cactus_28_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1548,11 +1557,11 @@
     "CactusId": "Cactus_29_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1569,11 +1578,11 @@
     "CactusId": "Cactus_29_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1590,11 +1599,11 @@
     "CactusId": "Cactus_30_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1611,11 +1620,11 @@
     "CactusId": "Cactus_31_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1632,11 +1641,11 @@
     "CactusId": "Cactus_31_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1653,11 +1662,11 @@
     "CactusId": "Cactus_32_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1674,11 +1683,11 @@
     "CactusId": "Cactus_33_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1695,11 +1704,11 @@
     "CactusId": "Cactus_33_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1716,11 +1725,11 @@
     "CactusId": "Cactus_34_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1737,11 +1746,11 @@
     "CactusId": "Cactus_34_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1758,11 +1767,11 @@
     "CactusId": "Cactus_35_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1779,11 +1788,11 @@
     "CactusId": "Cactus_35_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1800,11 +1809,11 @@
     "CactusId": "Cactus_36_B",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1821,11 +1830,11 @@
     "CactusId": "Cactus_37_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1842,11 +1851,11 @@
     "CactusId": "Cactus_38_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1863,11 +1872,11 @@
     "CactusId": "Cactus_39_A",
     "Damage": 1,
     "ImpactDistance": 2,
+    "TargetSearchDistance": 2,
     "Radius": 0.5,
     "Separation": {
       "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "AffectingCoeff": 1
     },
     "BehaviourConfig": {
       "Durations": {
@@ -1881,5657 +1890,2334 @@
     }
   },
   {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_01_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_01_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_02_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_02_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_02_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_03_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_03_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_03_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_04_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_04_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_04_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_05_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_05_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_05_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_06_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_06_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_06_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_07_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_07_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_07_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_08_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_08_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_08_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_09_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_09_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_09_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_10_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_10_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_10_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_11_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_11_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_11_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_12_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_12_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_12_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_13_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_13_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_13_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_14_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_14_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_14_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_15_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_15_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_15_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_16_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_16_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_16_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_17_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_17_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_17_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_18_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_18_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_18_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_19_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_19_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_19_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_20_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_20_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_20_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_21_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_21_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_21_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_22_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_22_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_22_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_23_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_23_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_23_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_24_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_24_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_24_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_25_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_25_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_25_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_26_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_26_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_26_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_27_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_27_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_27_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_28_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_28_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_28_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_29_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_29_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_29_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_30_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_30_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_30_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_31_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_31_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_31_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_32_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_32_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_32_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_33_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_33_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_33_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_34_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_34_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_34_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_35_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_35_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_35_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_36_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_36_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_36_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_37_Fall"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_37_Spring"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "Tree_37_Winter"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_01"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_02"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_03"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_04"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_05"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_06"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_07"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_08"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_09"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_10"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_11"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_12"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_13"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_14"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_15"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_16"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_17"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_18"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_19"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_20"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_21"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_22"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_23"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_24"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_25"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_26"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_27"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_28"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_29"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_30"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_31"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_32"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_33"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_34"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_35"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_36"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_37"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_38"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_39"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_40"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_41"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_42"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_43"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_44"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_45"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_46"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_47"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_48"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_49"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_50"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_51"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_52"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_53"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_54"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_55"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "TreeId": {
-      "Tree_01_Fall": "TreeTrunk_56"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_02"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_03"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_04"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_05"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_06"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_07"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_08"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_09"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_10"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_11"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_12"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_13"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_14"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_15"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_16"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_17"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_18"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_19"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_20"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_21"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_22"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_23"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_24"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_25"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_26"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_27"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_28"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_29"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_30"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_31"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_32"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_33"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_34"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_35"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_36"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_37"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_38"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_39"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_40"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_41"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_42"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_43"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_44"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_45"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_46"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_47"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_48"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_49"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_50"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_51"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_52"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_53"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_54"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_55"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_56"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_57"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_58"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_59"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "HardRock_60"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_32"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_01"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_02"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_03"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_04"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_05"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_06"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_07"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_08"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_09"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_10"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_11"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_12"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_13"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_14"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_15"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_16"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_17"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_18"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_19"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_20"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_21"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_22"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_23"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_24"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_25"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_26"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_27"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_28"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_29"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_30"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
-    }
-  },
-  {
-    "RockId": {
-      "HardRock_01": "SoftRock_31"
-    },
-    "MaxHealth": {
-      "100": 100
-    },
-    "Radius": {
-      "0.5": 0.5
-    },
-    "Separation": {
-      "AddRadius": {
-        "0.5": 0.5
-      },
-      "AffectingCoeff": {
-        "1": 1
-      },
-      "AffectedCoeff": {
-        "0": 0
-      }
+    "TreeId": "Tree_01_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_01_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_01_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_02_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_02_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_02_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_03_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_03_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_03_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_04_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_04_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_04_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_05_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_05_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_05_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_06_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_06_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_06_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_07_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_07_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_07_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_08_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_08_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_08_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_09_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_09_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_09_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_10_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_10_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_10_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_11_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_11_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_11_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_12_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_12_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_12_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_13_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_13_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_13_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_14_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_14_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_14_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_15_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_15_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_15_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_16_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_16_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_16_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_17_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_17_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_17_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_18_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_18_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_18_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_19_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_19_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_19_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_20_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_20_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_20_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_21_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_21_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_21_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_22_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_22_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_22_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_23_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_23_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_23_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_24_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_24_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_24_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_25_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_25_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_25_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_26_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_26_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_26_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_27_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_27_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_27_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_28_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_28_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_28_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_29_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_29_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_29_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_30_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_30_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_30_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_31_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_31_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_31_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_32_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_32_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_32_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_33_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_33_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_33_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_34_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_34_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_34_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_35_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_35_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_35_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_36_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_36_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_36_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_37_Fall",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_37_Spring",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "Tree_37_Winter",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_01",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_02",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_03",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_04",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_05",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_06",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_07",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_08",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_09",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_10",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_11",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_12",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_13",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_14",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_15",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_16",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_17",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_18",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_19",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_20",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_21",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_22",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_23",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_24",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_25",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_26",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_27",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_28",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_29",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_30",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_31",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_32",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_33",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_34",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_35",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_36",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_37",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_38",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_39",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_40",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_41",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_42",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_43",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_44",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_45",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_46",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_47",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_48",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_49",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_50",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_51",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_52",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_53",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_54",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_55",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "TreeId": "TreeTrunk_56",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_01",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_02",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_03",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_04",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_05",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_06",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_07",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_08",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_09",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_10",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_11",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_12",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_13",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_14",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_15",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_16",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_17",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_18",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_19",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_20",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_21",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_22",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_23",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_24",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_25",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_26",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_27",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_28",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_29",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_30",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_31",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_32",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_33",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_34",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_35",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_36",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_37",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_38",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_39",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_40",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_41",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_42",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_43",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_44",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_45",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_46",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_47",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_48",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_49",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_50",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_51",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_52",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_53",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_54",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_55",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_56",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_57",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_58",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_59",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "HardRock_60",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_32",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_01",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_02",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_03",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_04",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_05",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_06",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_07",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_08",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_09",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_10",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_11",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_12",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_13",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_14",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_15",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_16",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_17",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_18",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_19",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_20",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_21",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_22",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_23",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_24",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_25",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_26",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_27",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_28",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_29",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_30",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
+    }
+  },
+  {
+    "RockId": "SoftRock_31",
+    "MaxHealth": 100,
+    "Radius": 0.5,
+    "Separation": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1
     }
   }
 ]
