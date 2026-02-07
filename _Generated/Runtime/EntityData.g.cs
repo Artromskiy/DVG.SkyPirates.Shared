@@ -17,12 +17,13 @@ using System.Runtime.CompilerServices;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Ids;
+using DVG.Core;
 
 namespace DVG.SkyPirates.Shared.Data
 {
     [Serializable]
     [DataContract]
-    public sealed class EntityData
+    public sealed class EntityData: IStructGenericCaller
     {
 
         [DataMember(Order = 0)]
@@ -305,6 +306,53 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(UnitId);
             
             return types;
+        }
+
+        public void ForEach<T>(ref T action)
+            where T: IStructGenericAction
+        {
+            if(AutoHeal.HasValue)
+                action.Invoke<AutoHeal>();
+            if(BehaviourConfig.HasValue)
+                action.Invoke<BehaviourConfig>();
+            if(BehaviourState.HasValue)
+                action.Invoke<BehaviourState>();
+            if(CactusId.HasValue)
+                action.Invoke<CactusId>();
+            if(Damage.HasValue)
+                action.Invoke<Damage>();
+            if(Direction.HasValue)
+                action.Invoke<Direction>();
+            if(Fixation.HasValue)
+                action.Invoke<Fixation>();
+            if(Health.HasValue)
+                action.Invoke<Health>();
+            if(HexMap.HasValue)
+                action.Invoke<HexMap>();
+            if(ImpactDistance.HasValue)
+                action.Invoke<ImpactDistance>();
+            if(Level.HasValue)
+                action.Invoke<Level>();
+            if(MaxHealth.HasValue)
+                action.Invoke<MaxHealth>();
+            if(MaxSpeed.HasValue)
+                action.Invoke<MaxSpeed>();
+            if(Position.HasValue)
+                action.Invoke<Position>();
+            if(Radius.HasValue)
+                action.Invoke<Radius>();
+            if(RockId.HasValue)
+                action.Invoke<RockId>();
+            if(Rotation.HasValue)
+                action.Invoke<Rotation>();
+            if(Separation.HasValue)
+                action.Invoke<Separation>();
+            if(Team.HasValue)
+                action.Invoke<Team>();
+            if(TreeId.HasValue)
+                action.Invoke<TreeId>();
+            if(UnitId.HasValue)
+                action.Invoke<UnitId>();
         }
     }
 }
