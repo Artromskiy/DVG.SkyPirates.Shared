@@ -9,7 +9,16 @@ namespace DVG.SkyPirates.Shared.IServices
 {
     public interface ITargetSearchSystem : ITickableExecutor
     {
-        Entity? FindTarget(ref Position position, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Team team);
-        void FindTargets(ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Team team, List<(Entity, Position)> targets);
+        Entity FindTarget(
+            ref Position position,
+            ref TargetSearchDistance searchDistance,
+            ref TargetSearchPosition searchPosition,
+            ref Team team);
+
+        void FindTargets(
+            ref TargetSearchDistance searchDistance,
+            ref TargetSearchPosition searchPosition,
+            ref Team team,
+            List<Entity> targets);
     }
 }

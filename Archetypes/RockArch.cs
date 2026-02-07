@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using System;
 
@@ -14,8 +13,7 @@ namespace DVG.SkyPirates.Shared.Archetypes
             world.Add<
                 Position,
                 Rotation,
-                Team,
-                Alive>
+                Team>
                 (entity);
         }
     }

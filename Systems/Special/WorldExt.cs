@@ -47,18 +47,6 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             ComponentIds.ForEachData(ref action);
         }
 
-        private struct MaxEntityIdQuery : IForEach
-        {
-            public int Value;
-
-            public MaxEntityIdQuery(int value)
-            {
-                Value = value;
-            }
-
-            public void Update(Entity entity) => Value = Maths.Max(Value, entity.Id);
-        }
-
         private struct FirstOrDefaultQuery<T> : IForEach<T>
         {
             public T Value;

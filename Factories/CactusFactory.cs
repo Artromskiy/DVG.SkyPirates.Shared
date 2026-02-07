@@ -9,11 +9,11 @@ namespace DVG.SkyPirates.Shared.Factories
 {
     public class CactusFactory : ICactusFactory
     {
-        private readonly ICommandEntityFactory _commandEntityFactory;
+        private readonly IEntityFactory _commandEntityFactory;
         private readonly IEntityConfigFactory<CactusId> _entityConfigFactory;
         private readonly World _world;
 
-        public CactusFactory(World world, IEntityConfigFactory<CactusId> entityConfigFactory, ICommandEntityFactory commandEntityFactory)
+        public CactusFactory(World world, IEntityConfigFactory<CactusId> entityConfigFactory, IEntityFactory commandEntityFactory)
         {
             _world = world;
             _entityConfigFactory = entityConfigFactory;

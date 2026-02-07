@@ -1,6 +1,5 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components;
-using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using System;
@@ -14,7 +13,6 @@ namespace DVG.SkyPirates.Shared.Archetypes
         {
             world.RemoveRange(entity, world.GetSignature(entity).Components);
             world.Add<
-
                 // Synced, loaded first by config
                 // Config Data
 
@@ -23,14 +21,12 @@ namespace DVG.SkyPirates.Shared.Archetypes
                 Position,
                 Rotation,
                 Team,
-                Alive,
 
                 // Non Synced, edited by systems
                 // System Frame Data
                 Fixation,
                 Target,
                 Destination,
-                TargetSearchDistance,
                 TargetSearchPosition>
 
                 // Special Data (History, Dispose, Free, Temp)

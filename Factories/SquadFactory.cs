@@ -2,19 +2,17 @@
 using DVG.Core;
 using DVG.SkyPirates.Shared.Archetypes;
 using DVG.SkyPirates.Shared.Commands;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IFactories;
-using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
     public class SquadFactory : ISquadFactory
     {
-        private readonly ICommandEntityFactory _commandEntityFactory;
+        private readonly IEntityFactory _commandEntityFactory;
         private readonly World _world;
-        public SquadFactory(World world, ICommandEntityFactory commandEntityFactory)
+        public SquadFactory(World world, IEntityFactory commandEntityFactory)
         {
             _world = world;
             _commandEntityFactory = commandEntityFactory;
@@ -27,7 +25,7 @@ namespace DVG.SkyPirates.Shared.Factories
             SquadArch.EnsureArch(_world, entity);
 
             _world.Get<Radius>(entity).Value = fix.One / 3;
-            _world.Get<Squad>(entity).units = new List<Entity>();
+            //_world.Get<Squad>(entity).Units = new List<int>();
             _world.Get<Team>(entity).Id = cmd.ClientId;
             return entity;
         }

@@ -1,15 +1,16 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
+    [Obsolete]
     public sealed class MarkDeadSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health, Alive>();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health>();
 
         private readonly List<Entity> _dead = new();
 
@@ -26,7 +27,6 @@ namespace DVG.SkyPirates.Shared.Systems
             _world.InlineEntityQuery<SelectDeadQuery, Health>(_desc, ref query);
             foreach (var item in _dead)
             {
-                _world.Remove<Alive>(item);
                 _world.Add<Dispose>(item);
             }
         }

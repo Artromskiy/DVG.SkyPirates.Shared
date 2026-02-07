@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
@@ -10,10 +9,10 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SimpleBehaviourSystem : ITickableExecutor
     {
         private readonly QueryDescription _descSwitch = new QueryDescription().
-            WithAll<BehaviourState, BehaviourConfig, Alive>();
+            WithAll<BehaviourState, BehaviourConfig>();
 
         private readonly QueryDescription _descTick = new QueryDescription().
-            WithAll<BehaviourState, Alive>();
+            WithAll<BehaviourState>();
 
         private readonly World _world;
 

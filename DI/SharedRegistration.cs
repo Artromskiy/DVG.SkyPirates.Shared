@@ -30,8 +30,9 @@ namespace DVG.SkyPirates.Shared.DI
             //RegisterSingleton(typeof(IPathFactory<>), typeof(ResourcesFactory<>));
 
             container.RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
+            container.RegisterSingleton<IPackedCirclesFactory, PackedCirclesFactory>();
             container.RegisterSingleton<IWorldDataFactory, WorldDataFactory>();
-            container.RegisterSingleton<ICommandEntityFactory, CommandEntityFactory>();
+            container.RegisterSingleton<IEntityFactory, EntityFactory>();
             container.RegisterSingleton<ISquadFactory, SquadFactory>();
             container.RegisterSingleton<IUnitFactory, UnitFactory>();
             container.RegisterSingleton<IHexMapFactory, HexMapFactory>();

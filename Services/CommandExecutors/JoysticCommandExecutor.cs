@@ -12,9 +12,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
     public class JoysticCommandExecutor : ICommandExecutor<JoystickCommand>
     {
-        private readonly ICommandEntityFactory _commandEntityFactory;
+        private readonly IEntityFactory _commandEntityFactory;
         private readonly World _world;
-        public JoysticCommandExecutor(World world, ICommandEntityFactory commandEntityFactory)
+        public JoysticCommandExecutor(World world, IEntityFactory commandEntityFactory)
         {
             _world = world;
             _commandEntityFactory = commandEntityFactory;

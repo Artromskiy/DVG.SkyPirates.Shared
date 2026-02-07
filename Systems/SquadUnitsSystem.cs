@@ -1,79 +1,110 @@
 ﻿using Arch.Core;
-using DVG.Core;
+using DVG;
 using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
-using DVG.SkyPirates.Shared.Data;
+using DVG.SkyPirates.Shared.Components.Special;
+using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using System;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Systems
+public sealed class SquadUnitsSystem : ITickableExecutor
 {
-    [Obsolete]
-    public sealed class SquadUnitsSystem : ITickableExecutor
+    private readonly QueryDescription _unitsDesc = new QueryDescription().
+        WithAll<SquadMember, Destination>();
+
+    private readonly QueryDescription _squadsDesc = new QueryDescription().
+        WithAll<Squad, SyncId, Position, Rotation, Fixation, TargetSearchDistance, TargetSearchPosition>();
+
+    private readonly World _world;
+    private readonly IPackedCirclesFactory _packedCirclesFactory;
+
+    private readonly Dictionary<int, List<(Entity entity, SyncId syncId)>> _unitsBySquad = new();
+
+    public SquadUnitsSystem(World world, IPackedCirclesFactory packedCirclesFactory)
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Squad, Position, Fixation, Rotation>();
+        _world = world;
+        _packedCirclesFactory = packedCirclesFactory;
+    }
 
-        private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache = new();
+    public void Tick(int tick, fix deltaTime)
+    {
+        _unitsBySquad.Clear();
 
-        private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
-        private readonly World _world;
+        var collectQuery = new CollectUnitsQuery(_unitsBySquad);
+        _world.InlineEntityQuery<CollectUnitsQuery, SquadMember, SyncId>(_unitsDesc, ref collectQuery);
 
-        public SquadUnitsSystem(IPathFactory<PackedCirclesConfig> circlesModelFactory, World world)
+        foreach (var item in _unitsBySquad)
         {
-            _circlesModelFactory = circlesModelFactory;
-            _world = world;
+            item.Value.Sort((u1, u2) => u1.syncId.Value.CompareTo(u2.syncId.Value));
         }
 
-        public void Tick(int tick, fix deltaTime)
+        var applyQuery = new ApplyFormationQuery(_world, _unitsBySquad, _packedCirclesFactory);
+        _world.InlineQuery<ApplyFormationQuery,
+            Squad, SyncId, Position, Rotation, TargetSearchDistance, TargetSearchPosition>
+            (_squadsDesc, ref applyQuery);
+    }
+
+    private readonly struct CollectUnitsQuery : IForEachWithEntity<SquadMember, SyncId>
+    {
+        private readonly Dictionary<int, List<(Entity, SyncId)>> _map;
+
+        public CollectUnitsQuery(Dictionary<int, List<(Entity, SyncId)>> map)
         {
-            var query = new SquadUnitsQuery(_circlesConfigCache, _circlesModelFactory, _world);
-            _world.InlineQuery<SquadUnitsQuery, Squad, Position, Fixation, Rotation, TargetSearchDistance, TargetSearchPosition>(_desc, ref query);
+            _map = map;
         }
 
-        private readonly struct SquadUnitsQuery : IForEach<Squad, Position, Fixation, Rotation, TargetSearchDistance, TargetSearchPosition>
+        public void Update(Entity entity, ref SquadMember member, ref SyncId syncId)
         {
-            private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache;
-            private readonly IPathFactory<PackedCirclesConfig> _circlesModelFactory;
-            private readonly World _world;
+            if (!_map.TryGetValue(member.SquadId, out var list))
+                _map[member.SquadId] = list = new(8);
 
-            public SquadUnitsQuery(Dictionary<int, PackedCirclesConfig> circlesConfigCache, IPathFactory<PackedCirclesConfig> circlesModelFactory, World world)
-            {
-                _circlesConfigCache = circlesConfigCache;
-                _circlesModelFactory = circlesModelFactory;
-                _world = world;
-            }
-
-            public readonly void Update(ref Squad squad, ref Position position, ref Fixation fixation, ref Rotation rotation, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition)
-            {
-                if (squad.units.Count == 0)
-                    return;
-
-                var packedCircles = GetCirclesConfig(squad.units.Count);
-
-                for (int i = 0; i < squad.units.Count; i++)
-                {
-                    var localPoint = packedCircles.Points[i] / 2;
-                    var unit = squad.units[i];
-
-                    var entityData = _world.GetEntityData(unit);
-                    entityData.Get<TargetSearchPosition>() = searchPosition;
-                    entityData.Get<TargetSearchDistance>().Value = fixation.Value ? 0 : searchDistance.Value;
-
-                    entityData.Get<Destination>().Position = position.Value + localPoint.x_y;
-                    entityData.Get<Destination>().Rotation = rotation.Value;
-                }
-            }
-
-            private PackedCirclesConfig GetCirclesConfig(int count)
-            {
-                if (!_circlesConfigCache.TryGetValue(count, out var config))
-                    _circlesConfigCache[count] = config = _circlesModelFactory.Create("Configs/PackedCircles/PackedCirclesModel" + count);
-                return config;
-            }
+            list.Add((entity, syncId));
         }
     }
 
+    private readonly struct ApplyFormationQuery
+        : IForEach<Squad, SyncId, Position, Rotation, TargetSearchDistance, TargetSearchPosition>
+    {
+        private readonly World _world;
+        private readonly Dictionary<int, List<(Entity entity, SyncId syncId)>> _unitsBySquad;
+        private readonly IPackedCirclesFactory _factory;
+
+        public ApplyFormationQuery(
+            World world,
+            Dictionary<int, List<(Entity, SyncId)>> unitsBySquad,
+            IPackedCirclesFactory factory)
+        {
+            _world = world;
+            _unitsBySquad = unitsBySquad;
+            _factory = factory;
+        }
+
+        public void Update(
+            ref Squad squad,
+            ref SyncId syncId,
+            ref Position pos,
+            ref Rotation rot,
+            ref TargetSearchDistance searchDist,
+            ref TargetSearchPosition searchPos)
+        {
+            if (!_unitsBySquad.TryGetValue(syncId.Value, out var units) || units.Count == 0)
+                return;
+
+            var circles = _factory.Create(units.Count);
+
+            for (int i = 0; i < units.Count; i++)
+            {
+                var unit = units[i];
+                ref var destination = ref _world.Get<Destination>(unit.entity);
+                var local = circles.Points[i] / 2;
+                destination.Position = pos.Value + local.x_y;
+                destination.Rotation = rot.Value;
+
+                _world.Get<TargetSearchPosition>(unit.entity) = searchPos;
+                _world.Get<TargetSearchDistance>(unit.entity) = searchDist;
+            }
+        }
+    }
 }

@@ -1,8 +1,8 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
+using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
 
@@ -12,71 +12,88 @@ namespace DVG.SkyPirates.Shared.Systems
     /// Caches Entities with their position quantized by <see cref="SquareSize"/>.
     /// Use for fast nearest search
     /// </summary>
-    public sealed class TargetSearchSystem : ITargetSearchSystem
+    public sealed class TargetSearchSystem : ITargetSearchSystem // Should be used before any Position/Team writes for accurate search
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<RecivedDamage, Position, Team, Alive>();
+            WithAll<RecivedDamage, Position, Team>();
 
         private const int SquareSize = 2;
 
         private readonly World _world;
 
-        private readonly Dictionary<int, Dictionary<int2, List<(Entity entity, Position position)>>> _targets = new Dictionary<int, Dictionary<int2, List<(Entity, Position)>>>();
-        private readonly List<(Entity entity, Position position)> _targetsCache = new List<(Entity, Position)>();
+        // teamId -> quad -> entities
+        private readonly Dictionary<int, Dictionary<int2, List<Entity>>> _targets = new();
+        private readonly List<Entity> _targetsCache = new();
 
         public TargetSearchSystem(World world)
         {
             _world = world;
         }
 
-        public Entity? FindTarget(ref Position position, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Team team)
+        public Entity FindTarget(
+            ref Position position,
+            ref TargetSearchDistance searchDistance,
+            ref TargetSearchPosition searchPosition,
+            ref Team team)
         {
-            fix minSqrDistance = fix.MaxValue;
-            Entity? foundTarget = null;
-
             _targetsCache.Clear();
             FindTargets(ref searchDistance, ref searchPosition, ref team, _targetsCache);
 
-            var positionXZ = position.Value.xz;
-            foreach (var (entity, targetPosition) in _targetsCache)
+            var origin = position.Value.xz;
+
+            Entity best = Entity.Null;
+            fix bestDist = fix.MaxValue;
+            int bestSyncId = int.MaxValue;
+
+            foreach (var entity in _targetsCache)
             {
-                var targetPositionXZ = targetPosition.Value.xz;
-                var sqrDistance = fix2.SqrDistance(targetPositionXZ, positionXZ);
-                if (!foundTarget.HasValue || sqrDistance < minSqrDistance ||
-                    (sqrDistance == minSqrDistance && entity.Id < foundTarget.Value.Id))
+                var targetPosXZ = _world.Get<Position>(entity).Value.xz;
+                var syncId = _world.Get<SyncId>(entity).Value;
+                var dist = fix2.SqrDistance(targetPosXZ, origin);
+
+                if (best == Entity.Null ||
+                    dist < bestDist ||
+                    (dist == bestDist && syncId < bestSyncId))
                 {
-                    foundTarget = entity;
-                    minSqrDistance = sqrDistance;
+                    best = entity;
+                    bestDist = dist;
+                    bestSyncId = syncId;
                 }
             }
-            return foundTarget;
+
+            return best;
         }
 
-        public void FindTargets(ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Team team, List<(Entity, Position)> targets)
-        {
-            var distance = searchDistance.Value;
-            var position = searchPosition.Value.xz;
-            var teamId = team.Id;
-            var range = new fix2(distance, distance);
-            var min = GetQuantizedSquare(position - range);
-            var max = GetQuantizedSquare(position + range);
-            var sqrDistance = distance * distance;
 
-            foreach (var t in _targets)
+        public void FindTargets(
+            ref TargetSearchDistance searchDistance,
+            ref TargetSearchPosition searchPosition,
+            ref Team team,
+            List<Entity> targets)
+        {
+            var center = searchPosition.Value.xz;
+            var distance = searchDistance.Value;
+
+            var range = new fix2(distance, distance);
+            var min = GetQuantizedSquare(center - range);
+            var max = GetQuantizedSquare(center + range);
+
+            foreach (var kv in _targets)
             {
-                if (t.Key == teamId)
+                if (kv.Key == team.Id)
                     continue;
+
+                var grid = kv.Value;
 
                 for (int y = min.y; y <= max.y; y++)
                 {
                     for (int x = min.x; x <= max.x; x++)
                     {
-                        if (!t.Value.TryGetValue(new int2(x, y), out var quad))
+                        if (!grid.TryGetValue(new int2(x, y), out var list))
                             continue;
 
-                        foreach (var target in quad)
-                            if (fix2.SqrDistance(target.position.Value.xz, position) < sqrDistance)
-                                targets.Add(target);
+                        for (int i = 0; i < list.Count; i++)
+                            targets.Add(list[i]);
                     }
                 }
             }
@@ -84,37 +101,42 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            foreach (var item in _targets)
-                foreach (var team in item.Value)
-                    team.Value.Clear();
+            foreach (var team in _targets.Values)
+                foreach (var quad in team.Values)
+                    quad.Clear();
 
-            var query = new TargetsPartitioningQuery(_targets);
-            _world.InlineEntityQuery<TargetsPartitioningQuery, Position, Team>(_desc, ref query);
+            var query = new PartitionQuery(_targets);
+            _world.InlineEntityQuery<PartitionQuery, Position, Team>(_desc, ref query);
         }
 
-        private readonly struct TargetsPartitioningQuery : IForEachWithEntity<Position, Team>
+        private readonly struct PartitionQuery : IForEachWithEntity<Position, Team>
         {
-            private readonly Dictionary<int, Dictionary<int2, List<(Entity, Position)>>> _targets;
+            private readonly Dictionary<int, Dictionary<int2, List<Entity>>> _targets;
 
-            public TargetsPartitioningQuery(Dictionary<int, Dictionary<int2, List<(Entity, Position)>>> targets)
+            public PartitionQuery(Dictionary<int, Dictionary<int2, List<Entity>>> targets)
             {
                 _targets = targets;
             }
 
-            public readonly void Update(Entity e, ref Position p, ref Team t)
+            public void Update(Entity e, ref Position p, ref Team t)
             {
-                var intPos = GetQuantizedSquare(p.Value.xz);
+                var quad = GetQuantizedSquare(p.Value.xz);
+
                 if (!_targets.TryGetValue(t.Id, out var team))
-                    _targets[t.Id] = team = new Dictionary<int2, List<(Entity, Position)>>();
-                if (!team.TryGetValue(intPos, out var quad))
-                    team[intPos] = quad = new List<(Entity, Position)>();
-                quad.Add((e, p));
+                    _targets[t.Id] = team = new();
+
+                if (!team.TryGetValue(quad, out var list))
+                    team[quad] = list = new List<Entity>(8);
+
+                list.Add(e);
             }
         }
 
         private static int2 GetQuantizedSquare(fix2 position)
         {
-            return new int2((int)position.x / SquareSize, (int)position.y / SquareSize);
+            return new int2(
+                (int)position.x / SquareSize,
+                (int)position.y / SquareSize);
         }
     }
 }

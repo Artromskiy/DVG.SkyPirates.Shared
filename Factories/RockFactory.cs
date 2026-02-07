@@ -8,11 +8,11 @@ namespace DVG.SkyPirates.Shared.Factories
 {
     public class RockFactory : IRockFactory
     {
-        private readonly ICommandEntityFactory _commandEntityFactory;
+        private readonly IEntityFactory _commandEntityFactory;
         private readonly IEntityConfigFactory<RockId> _entityConfigFactory;
         private readonly World _world;
 
-        public RockFactory(World world, IEntityConfigFactory<RockId> entityConfigFactory, ICommandEntityFactory commandEntityFactory)
+        public RockFactory(World world, IEntityConfigFactory<RockId> entityConfigFactory, IEntityFactory commandEntityFactory)
         {
             _world = world;
             _entityConfigFactory = entityConfigFactory;

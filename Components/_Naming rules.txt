@@ -2,11 +2,21 @@
 
 For Component with single field there are naming rules
 
-It is Id	  (eg. Team)
-	Name: Id
-It is Tick/Frame    (eg. Creation)
-	Name: Tick
-It is Entity  (eg. Target)
-	Name: Entity
-Else
-	Name: Value
+It is Config 
+{
+	Component's name is self explaining => Value
+}
+
+It is Runtime
+{
+	It's SyncId copy and it is self referencing (e.g. Squad) => Id
+	It's SyncId copy and it is not self referencing (e.g. SquadMember) => Think of a good name
+	It's Id	but not SyncId (eg. Team) => Id
+	It is Tick/Frame (eg. Creation) => Tick
+}
+
+It is Framed
+{
+	Type of field is Entity => Entity;
+	Component's name is self explaining => Value
+}

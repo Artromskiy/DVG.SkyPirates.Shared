@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -10,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class AutoHealSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Health, MaxHealth, AutoHeal, RecivedDamage, Alive>();
+            WithAll<Health, MaxHealth, AutoHeal, RecivedDamage>();
 
         private readonly World _world;
 

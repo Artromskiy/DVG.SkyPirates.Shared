@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -11,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class MultiPreAttackSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<BehaviourState, ImpactDistance, Position, Targets, Alive>();
+            WithAll<BehaviourState, ImpactDistance, Position, Targets>();
 
         private readonly World _world;
 

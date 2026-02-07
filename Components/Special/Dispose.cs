@@ -6,7 +6,5 @@ namespace DVG.SkyPirates.Shared.Components.Special
     internal struct Dispose
     {
         public int TicksPassed;
-
-        public override readonly int GetHashCode() => TicksPassed;
     }
 }

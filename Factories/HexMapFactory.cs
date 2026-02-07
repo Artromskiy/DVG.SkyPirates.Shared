@@ -6,10 +6,10 @@ namespace DVG.SkyPirates.Shared.Factories
 {
     public class HexMapFactory : IHexMapFactory
     {
-        private readonly ICommandEntityFactory _commandEntityFactory;
+        private readonly IEntityFactory _commandEntityFactory;
         private readonly World _world;
 
-        public HexMapFactory(World world, ICommandEntityFactory commandEntityFactory)
+        public HexMapFactory(World world, IEntityFactory commandEntityFactory)
         {
             _world = world;
             _commandEntityFactory = commandEntityFactory;

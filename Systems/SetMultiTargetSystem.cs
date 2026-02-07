@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -12,12 +11,12 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SetMultiTargetSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, Team, Alive>();
+            WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, Team>();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;
 
-        private readonly List<(Entity, Position)> _targetsCache = new();
+        private readonly List<Entity> _targetsCache = new();
 
         public SetMultiTargetSystem(World world, ITargetSearchSystem targetSearch)
         {
@@ -35,9 +34,9 @@ namespace DVG.SkyPirates.Shared.Systems
             IForEach<TargetSearchDistance, TargetSearchPosition, Targets, Team>
         {
             private readonly ITargetSearchSystem _targetSearch;
-            private readonly List<(Entity target, Position position)> _targetsCache;
+            private readonly List<Entity> _targetsCache;
 
-            public SetTargetQuery(ITargetSearchSystem targetSearch, List<(Entity, Position)> targetsCache)
+            public SetTargetQuery(ITargetSearchSystem targetSearch, List<Entity> targetsCache)
             {
                 _targetSearch = targetSearch;
                 _targetsCache = targetsCache;
@@ -49,7 +48,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 _targetSearch.FindTargets(ref searchDistance, ref searchPosition, ref team, _targetsCache);
                 target.Entities = new();
                 foreach (var item in _targetsCache)
-                    target.Entities.Add(item.target);
+                    target.Entities.Add(item);
             }
         }
     }

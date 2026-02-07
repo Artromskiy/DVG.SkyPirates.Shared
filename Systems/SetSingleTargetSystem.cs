@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -14,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SetSingleTargetSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Target, Team, Alive>();
+            WithAll<Position, Target, Team>();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;

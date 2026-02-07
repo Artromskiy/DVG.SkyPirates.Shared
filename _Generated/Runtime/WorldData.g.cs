@@ -26,8 +26,6 @@ namespace DVG.SkyPirates.Shared.Data
     public sealed class WorldData
     {
 
-        [DataMember(Order = 0)]
-        public Dictionary<int, Alive> Alive;
         [DataMember(Order = 1)]
         public Dictionary<int, AutoHeal> AutoHeal;
         [DataMember(Order = 2)]
@@ -78,7 +76,6 @@ namespace DVG.SkyPirates.Shared.Data
         public WorldData()
         {
 
-            Alive = new();
             AutoHeal = new();
             BehaviourConfig = new();
             BehaviourState = new();
@@ -108,8 +105,6 @@ namespace DVG.SkyPirates.Shared.Data
             where T : struct
         {
 
-            if (typeof(T) == typeof(Alive))
-                return Alive as Dictionary<int, T>;
             if (typeof(T) == typeof(AutoHeal))
                 return AutoHeal as Dictionary<int, T>;
             if (typeof(T) == typeof(BehaviourConfig))
@@ -163,12 +158,6 @@ namespace DVG.SkyPirates.Shared.Data
         public void Set<T>(Dictionary<int, T> data)
             where T : struct
         {
-
-            if (typeof(T) == typeof(Alive))
-            {
-                Alive = data as Dictionary<int, Alive>;
-                return;
-            }
             if (typeof(T) == typeof(AutoHeal))
             {
                 AutoHeal = data as Dictionary<int, AutoHeal>;

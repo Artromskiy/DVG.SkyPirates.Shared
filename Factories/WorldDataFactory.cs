@@ -1,24 +1,26 @@
 ﻿using Arch.Core;
 using DVG.Core;
 using DVG.Core.Components;
+using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.Tools;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Data
 {
+    // TODO Add dead components, as they can rollback?
     public class WorldDataFactory : IWorldDataFactory
     {
         private class Description<T>
         {
-            public QueryDescription Desc = new QueryDescription().WithAll<T>();
+            public QueryDescription Desc = new QueryDescription().WithAll<T, SyncId>();
         }
         private readonly GenericCollection _desc = new();
 
-        private readonly ICommandEntityFactory _commandEntityFactory;
+        private readonly IEntityFactory _commandEntityFactory;
         private readonly World _world;
 
-        public WorldDataFactory(World world, ICommandEntityFactory commandEntityFactory)
+        public WorldDataFactory(World world, IEntityFactory commandEntityFactory)
         {
             _world = world;
             _commandEntityFactory = commandEntityFactory;
@@ -27,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Data
         public WorldData Create()
         {
             var worldData = new WorldData();
-            var packAction = new PackAction(_world, worldData, _desc, _commandEntityFactory);
+            var packAction = new PackAction(_world, worldData, _desc);
             ComponentIds.ForEachData(ref packAction);
             return worldData;
         }
@@ -40,53 +42,48 @@ namespace DVG.SkyPirates.Shared.Data
 
         private readonly struct PackAction : IStructGenericAction
         {
-            private readonly ICommandEntityFactory _commandEntityFactory;
             private readonly GenericCollection _desc;
             private readonly WorldData _worldData;
             private readonly World _world;
 
-            public PackAction(World world, WorldData entities, GenericCollection desc, ICommandEntityFactory commandEntityFactory)
+            public PackAction(World world, WorldData entities, GenericCollection desc)
             {
                 _world = world;
                 _worldData = entities;
                 _desc = desc;
-                _commandEntityFactory = commandEntityFactory;
             }
 
             public readonly void Invoke<T>() where T : struct
             {
                 var components = _worldData.Get<T>();
-                var query = new PackQuery<T>(components, _commandEntityFactory);
+                var query = new PackQuery<T>(components);
                 var desc = _desc.Get<Description<T>>().Desc;
-                _world.InlineEntityQuery<PackQuery<T>, T>(desc, ref query);
+                _world.InlineQuery<PackQuery<T>, T, SyncId>(desc, ref query);
             }
 
-            private readonly struct PackQuery<T> : IForEachWithEntity<T> where T : struct
+            private readonly struct PackQuery<T> : IForEach<T, SyncId> where T : struct
             {
-                private readonly ICommandEntityFactory _commandEntityFactory;
                 private readonly Dictionary<int, T> _components;
 
-                public PackQuery(Dictionary<int, T> components, ICommandEntityFactory commandEntityFactory)
+                public PackQuery(Dictionary<int, T> components)
                 {
                     _components = components;
-                    _commandEntityFactory = commandEntityFactory;
                 }
 
-                public void Update(Entity entity, ref T component)
+                public void Update(ref T component, ref SyncId id)
                 {
-                    var id = _commandEntityFactory.Get(entity);
-                    _components[id] = component;
+                    _components[id.Value] = component;
                 }
             }
         }
 
         private readonly struct ExtractAction : IStructGenericAction
         {
-            private readonly ICommandEntityFactory _commandEntityFactory;
+            private readonly IEntityFactory _commandEntityFactory;
             private readonly WorldData _worldData;
             private readonly World _world;
 
-            public ExtractAction(World world, WorldData entities, ICommandEntityFactory commandEntityFactory)
+            public ExtractAction(World world, WorldData entities, IEntityFactory commandEntityFactory)
             {
                 _world = world;
                 _worldData = entities;

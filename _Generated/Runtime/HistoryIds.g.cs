@@ -30,7 +30,6 @@ namespace DVG.Core.Components
         {
             _typeToId = new Dictionary<Type, int>()
             {
-                {typeof(Alive), 1},
                 {typeof(AutoHeal), 2},
                 {typeof(BehaviourState), 3},
                 {typeof(CactusId), 4},
@@ -57,7 +56,6 @@ namespace DVG.Core.Components
             
             _idToType = new Dictionary<int, Type>()
             {
-                {1, typeof(Alive)},
                 {2, typeof(AutoHeal)},
                 {3, typeof(BehaviourState)},
                 {4, typeof(CactusId)},
@@ -87,7 +85,6 @@ namespace DVG.Core.Components
         public static void ForEachData<T>(ref T action)
             where T: IStructGenericAction
         {
-            action.Invoke<Alive>();
             action.Invoke<AutoHeal>();
             action.Invoke<BehaviourState>();
             action.Invoke<CactusId>();

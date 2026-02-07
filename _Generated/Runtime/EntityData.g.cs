@@ -25,9 +25,6 @@ namespace DVG.SkyPirates.Shared.Data
     [DataContract]
     public sealed class EntityData
     {
-
-        [DataMember(Order = 0)]
-        public Alive? Alive;
         [DataMember(Order = 1)]
         public AutoHeal? AutoHeal;
         [DataMember(Order = 2)]
@@ -79,8 +76,6 @@ namespace DVG.SkyPirates.Shared.Data
             where T : struct
         {
 
-            if (typeof(T) == typeof(Alive))
-                return Unsafe.As<Alive?, T?>(ref Alive);
             if (typeof(T) == typeof(AutoHeal))
                 return Unsafe.As<AutoHeal?, T?>(ref AutoHeal);
             if (typeof(T) == typeof(BehaviourConfig))
@@ -135,11 +130,6 @@ namespace DVG.SkyPirates.Shared.Data
             where T : struct
         {
 
-            if (typeof(T) == typeof(Alive))
-            {
-                Alive = Unsafe.As<T?, Alive?>(ref data);
-                return;
-            }
             if (typeof(T) == typeof(AutoHeal))
             {
                 AutoHeal = Unsafe.As<T?, AutoHeal?>(ref data);

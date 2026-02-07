@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -17,10 +16,10 @@ namespace DVG.SkyPirates.Shared.Systems
         private const int SquareSize = 1;
 
         private readonly QueryDescription _affectedDesc = new QueryDescription().
-            WithAll<Position, Separation, Alive>();
+            WithAll<Position, Separation>();
 
         private readonly QueryDescription _affectingDesc = new QueryDescription().
-            WithAll<Position, Separation, Radius, Alive>();
+            WithAll<Position, Separation, Radius>();
 
         private readonly Dictionary<int2, List<Entity>> _partitioning = new();
         private readonly List<Entity> _targetsCache = new();

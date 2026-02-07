@@ -11,8 +11,6 @@ namespace DVG.SkyPirates.Shared.Systems.Special
     {
         private sealed class Description<T> where T : struct
         {
-            public readonly QueryDescription addHistoryCmpDesc = new QueryDescription().WithAll<T>().WithNone<History<T>>();
-            public readonly QueryDescription setupHistoryCmpDesc = new QueryDescription().WithAll<T, History<T>, Temp>();
             public readonly QueryDescription saveHasCmpDesc = new QueryDescription().WithAll<History<T>, T>();
             public readonly QueryDescription saveNoCmpDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
         }
@@ -46,15 +44,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             public void Invoke<T>() where T : struct
             {
                 var saveQuery = new SaveHistoryQuery<T>(_tick);
-                var setupHistoryQuery = new SetupHistoryQuery<T>();
                 var desc = _descriptions.Get<Description<T>>();
 
-                // add temp, setup, remove temp
-                var addHistoryCmpDesc = desc.addHistoryCmpDesc;
-                _world.Add<History<T>, Temp>(addHistoryCmpDesc);
-                var setupHistoryCmpDesc = desc.setupHistoryCmpDesc;
-                _world.InlineQuery<SetupHistoryQuery<T>, History<T>>(setupHistoryCmpDesc, ref setupHistoryQuery);
-                _world.Remove<Temp>(setupHistoryCmpDesc);
+                _world.AddQuery((ref T has, ref History<T> history) => history = History<T>.Create());
 
                 var saveHasCmpDesc = desc.saveHasCmpDesc;
                 _world.InlineQuery<SaveHistoryQuery<T>, History<T>, T>(saveHasCmpDesc, ref saveQuery);
@@ -62,13 +54,6 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 var saveNoCmpDesc = desc.saveNoCmpDesc;
                 _world.InlineQuery<SaveHistoryQuery<T>, History<T>>(saveNoCmpDesc, ref saveQuery);
             }
-        }
-
-        private readonly struct SetupHistoryQuery<T> :
-            IForEach<History<T>>
-            where T : struct
-        {
-            public void Update(ref History<T> history) => history = History<T>.Create();
         }
 
         private readonly struct SaveHistoryQuery<T> :
