@@ -13,12 +13,10 @@
 using System;
 using System.Collections.Generic;
 
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Special;
-using DVG.SkyPirates.Shared.Components.Framed;
 
 namespace DVG.Core.Components
 {
@@ -31,54 +29,50 @@ namespace DVG.Core.Components
         {
             _typeToId = new Dictionary<Type, int>()
             {
-                {typeof(AutoHeal), 2},
-                {typeof(BehaviourState), 3},
-                {typeof(CactusId), 4},
-                {typeof(Damage), 5},
-                {typeof(Destination), 6},
-                {typeof(Direction), 7},
-                {typeof(Dispose), 8},
-                {typeof(Fixation), 9},
-                {typeof(Health), 10},
-                {typeof(ImpactDistance), 11},
-                {typeof(Level), 12},
-                {typeof(MaxHealth), 13},
-                {typeof(MaxSpeed), 14},
-                {typeof(Position), 15},
-                {typeof(Radius), 16},
-                {typeof(RockId), 17},
-                {typeof(Rotation), 18},
-                {typeof(Separation), 19},
-                {typeof(Squad), 20},
-                {typeof(Team), 21},
-                {typeof(TreeId), 22},
-                {typeof(UnitId), 23},
+                {typeof(AutoHeal), 1},
+                {typeof(BehaviourState), 2},
+                {typeof(CactusId), 3},
+                {typeof(Damage), 4},
+                {typeof(Direction), 5},
+                {typeof(Dispose), 6},
+                {typeof(Fixation), 7},
+                {typeof(Health), 8},
+                {typeof(ImpactDistance), 9},
+                {typeof(Level), 10},
+                {typeof(MaxHealth), 11},
+                {typeof(MaxSpeed), 12},
+                {typeof(Position), 13},
+                {typeof(Radius), 14},
+                {typeof(RockId), 15},
+                {typeof(Rotation), 16},
+                {typeof(Separation), 17},
+                {typeof(Team), 18},
+                {typeof(TreeId), 19},
+                {typeof(UnitId), 20},
             };
             
             _idToType = new Dictionary<int, Type>()
             {
-                {2, typeof(AutoHeal)},
-                {3, typeof(BehaviourState)},
-                {4, typeof(CactusId)},
-                {5, typeof(Damage)},
-                {6, typeof(Destination)},
-                {7, typeof(Direction)},
-                {8, typeof(Dispose)},
-                {9, typeof(Fixation)},
-                {10, typeof(Health)},
-                {11, typeof(ImpactDistance)},
-                {12, typeof(Level)},
-                {13, typeof(MaxHealth)},
-                {14, typeof(MaxSpeed)},
-                {15, typeof(Position)},
-                {16, typeof(Radius)},
-                {17, typeof(RockId)},
-                {18, typeof(Rotation)},
-                {19, typeof(Separation)},
-                {20, typeof(Squad)},
-                {21, typeof(Team)},
-                {22, typeof(TreeId)},
-                {23, typeof(UnitId)},
+                {1, typeof(AutoHeal)},
+                {2, typeof(BehaviourState)},
+                {3, typeof(CactusId)},
+                {4, typeof(Damage)},
+                {5, typeof(Direction)},
+                {6, typeof(Dispose)},
+                {7, typeof(Fixation)},
+                {8, typeof(Health)},
+                {9, typeof(ImpactDistance)},
+                {10, typeof(Level)},
+                {11, typeof(MaxHealth)},
+                {12, typeof(MaxSpeed)},
+                {13, typeof(Position)},
+                {14, typeof(Radius)},
+                {15, typeof(RockId)},
+                {16, typeof(Rotation)},
+                {17, typeof(Separation)},
+                {18, typeof(Team)},
+                {19, typeof(TreeId)},
+                {20, typeof(UnitId)},
             };
         }
 
@@ -90,7 +84,6 @@ namespace DVG.Core.Components
             action.Invoke<BehaviourState>();
             action.Invoke<CactusId>();
             action.Invoke<Damage>();
-            action.Invoke<Destination>();
             action.Invoke<Direction>();
             action.Invoke<Dispose>();
             action.Invoke<Fixation>();
@@ -104,7 +97,6 @@ namespace DVG.Core.Components
             action.Invoke<RockId>();
             action.Invoke<Rotation>();
             action.Invoke<Separation>();
-            action.Invoke<Squad>();
             action.Invoke<Team>();
             action.Invoke<TreeId>();
             action.Invoke<UnitId>();

@@ -14,11 +14,9 @@ using System;
 using System.Runtime.Serialization;
 using System.Runtime.CompilerServices;
 
-using DVG.SkyPirates.Shared.Components;
 using DVG.SkyPirates.Shared.Components.Runtime;
-using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.Components.Config;
-using DVG.SkyPirates.Shared.Components.Framed;
+using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -26,51 +24,48 @@ namespace DVG.SkyPirates.Shared.Data
     [DataContract]
     public sealed class EntityData
     {
-        [DataMember(Order = 1)]
+
+        [DataMember(Order = 0)]
         public AutoHeal? AutoHeal;
-        [DataMember(Order = 2)]
+        [DataMember(Order = 1)]
         public BehaviourConfig? BehaviourConfig;
-        [DataMember(Order = 3)]
+        [DataMember(Order = 2)]
         public BehaviourState? BehaviourState;
-        [DataMember(Order = 4)]
+        [DataMember(Order = 3)]
         public CactusId? CactusId;
-        [DataMember(Order = 5)]
+        [DataMember(Order = 4)]
         public Damage? Damage;
-        [DataMember(Order = 6)]
-        public Destination? Destination;
-        [DataMember(Order = 7)]
+        [DataMember(Order = 5)]
         public Direction? Direction;
-        [DataMember(Order = 8)]
+        [DataMember(Order = 6)]
         public Fixation? Fixation;
-        [DataMember(Order = 9)]
+        [DataMember(Order = 7)]
         public Health? Health;
-        [DataMember(Order = 10)]
+        [DataMember(Order = 8)]
         public HexMap? HexMap;
-        [DataMember(Order = 11)]
+        [DataMember(Order = 9)]
         public ImpactDistance? ImpactDistance;
-        [DataMember(Order = 12)]
+        [DataMember(Order = 10)]
         public Level? Level;
-        [DataMember(Order = 13)]
+        [DataMember(Order = 11)]
         public MaxHealth? MaxHealth;
-        [DataMember(Order = 14)]
+        [DataMember(Order = 12)]
         public MaxSpeed? MaxSpeed;
-        [DataMember(Order = 15)]
+        [DataMember(Order = 13)]
         public Position? Position;
-        [DataMember(Order = 16)]
+        [DataMember(Order = 14)]
         public Radius? Radius;
-        [DataMember(Order = 17)]
+        [DataMember(Order = 15)]
         public RockId? RockId;
-        [DataMember(Order = 18)]
+        [DataMember(Order = 16)]
         public Rotation? Rotation;
-        [DataMember(Order = 19)]
+        [DataMember(Order = 17)]
         public Separation? Separation;
-        [DataMember(Order = 20)]
-        public Squad? Squad;
-        [DataMember(Order = 21)]
+        [DataMember(Order = 18)]
         public Team? Team;
-        [DataMember(Order = 22)]
+        [DataMember(Order = 19)]
         public TreeId? TreeId;
-        [DataMember(Order = 23)]
+        [DataMember(Order = 20)]
         public UnitId? UnitId;
 
         public T? Get<T>()
@@ -87,8 +82,6 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<CactusId?, T?>(ref CactusId);
             if (typeof(T) == typeof(Damage))
                 return Unsafe.As<Damage?, T?>(ref Damage);
-            if (typeof(T) == typeof(Destination))
-                return Unsafe.As<Destination?, T?>(ref Destination);
             if (typeof(T) == typeof(Direction))
                 return Unsafe.As<Direction?, T?>(ref Direction);
             if (typeof(T) == typeof(Fixation))
@@ -115,8 +108,6 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<Rotation?, T?>(ref Rotation);
             if (typeof(T) == typeof(Separation))
                 return Unsafe.As<Separation?, T?>(ref Separation);
-            if (typeof(T) == typeof(Squad))
-                return Unsafe.As<Squad?, T?>(ref Squad);
             if (typeof(T) == typeof(Team))
                 return Unsafe.As<Team?, T?>(ref Team);
             if (typeof(T) == typeof(TreeId))
@@ -154,11 +145,6 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(Damage))
             {
                 Damage = Unsafe.As<T?, Damage?>(ref data);
-                return;
-            }
-            if (typeof(T) == typeof(Destination))
-            {
-                Destination = Unsafe.As<T?, Destination?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Direction))
@@ -224,11 +210,6 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(Separation))
             {
                 Separation = Unsafe.As<T?, Separation?>(ref data);
-                return;
-            }
-            if (typeof(T) == typeof(Squad))
-            {
-                Squad = Unsafe.As<T?, Squad?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Team))
