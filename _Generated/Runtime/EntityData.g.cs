@@ -230,5 +230,81 @@ namespace DVG.SkyPirates.Shared.Data
 
             throw new NotSupportedException(typeof(T).Name);
         }
+
+        public Type[] GetTypes()
+        {
+            int typesCount = 
+
+                (AutoHeal.HasValue? 1 : 0) + 
+                (BehaviourConfig.HasValue? 1 : 0) + 
+                (BehaviourState.HasValue? 1 : 0) + 
+                (CactusId.HasValue? 1 : 0) + 
+                (Damage.HasValue? 1 : 0) + 
+                (Direction.HasValue? 1 : 0) + 
+                (Fixation.HasValue? 1 : 0) + 
+                (Health.HasValue? 1 : 0) + 
+                (HexMap.HasValue? 1 : 0) + 
+                (ImpactDistance.HasValue? 1 : 0) + 
+                (Level.HasValue? 1 : 0) + 
+                (MaxHealth.HasValue? 1 : 0) + 
+                (MaxSpeed.HasValue? 1 : 0) + 
+                (Position.HasValue? 1 : 0) + 
+                (Radius.HasValue? 1 : 0) + 
+                (RockId.HasValue? 1 : 0) + 
+                (Rotation.HasValue? 1 : 0) + 
+                (Separation.HasValue? 1 : 0) + 
+                (Team.HasValue? 1 : 0) + 
+                (TreeId.HasValue? 1 : 0) + 
+                (UnitId.HasValue? 1 : 0);
+            
+            Type[] types = new Type[typesCount];
+            int i = 0;
+
+
+            if(AutoHeal.HasValue)
+                types[i++] = typeof(AutoHeal);
+            if(BehaviourConfig.HasValue)
+                types[i++] = typeof(BehaviourConfig);
+            if(BehaviourState.HasValue)
+                types[i++] = typeof(BehaviourState);
+            if(CactusId.HasValue)
+                types[i++] = typeof(CactusId);
+            if(Damage.HasValue)
+                types[i++] = typeof(Damage);
+            if(Direction.HasValue)
+                types[i++] = typeof(Direction);
+            if(Fixation.HasValue)
+                types[i++] = typeof(Fixation);
+            if(Health.HasValue)
+                types[i++] = typeof(Health);
+            if(HexMap.HasValue)
+                types[i++] = typeof(HexMap);
+            if(ImpactDistance.HasValue)
+                types[i++] = typeof(ImpactDistance);
+            if(Level.HasValue)
+                types[i++] = typeof(Level);
+            if(MaxHealth.HasValue)
+                types[i++] = typeof(MaxHealth);
+            if(MaxSpeed.HasValue)
+                types[i++] = typeof(MaxSpeed);
+            if(Position.HasValue)
+                types[i++] = typeof(Position);
+            if(Radius.HasValue)
+                types[i++] = typeof(Radius);
+            if(RockId.HasValue)
+                types[i++] = typeof(RockId);
+            if(Rotation.HasValue)
+                types[i++] = typeof(Rotation);
+            if(Separation.HasValue)
+                types[i++] = typeof(Separation);
+            if(Team.HasValue)
+                types[i++] = typeof(Team);
+            if(TreeId.HasValue)
+                types[i++] = typeof(TreeId);
+            if(UnitId.HasValue)
+                types[i++] = typeof(UnitId);
+            
+            return types;
+        }
     }
 }
