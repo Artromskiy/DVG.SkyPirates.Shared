@@ -15,6 +15,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly QueryDescription _autoHealDesc = new QueryDescription().WithAll<MaxHealth>().WithNone<AutoHeal>();
         private readonly QueryDescription _recievedDamageDesc = new QueryDescription().WithAll<MaxHealth>().WithNone<RecivedDamage>();
         private readonly QueryDescription _behaviourStateDesc = new QueryDescription().WithAll<BehaviourConfig>().WithNone<BehaviourState>();
+        private readonly QueryDescription _squadMembersCountDesc = new QueryDescription().WithAll<Squad>().WithNone<SquadMemberCount>();
 
         private readonly AutoHeal _defaultAutoHeal = new()
         {
@@ -42,6 +43,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private void EnsureFramed()
         {
+            _world.Add(in _squadMembersCountDesc, new SquadMemberCount());
             _world.Add(in _recievedDamageDesc, new RecivedDamage());
             _world.Add(in _cachePositionDesc, new CachePosition());
             _world.Add(in _separationForceDesc, new SeparationForce());

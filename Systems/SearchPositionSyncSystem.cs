@@ -5,12 +5,12 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class TargetSearchSyncSystem : ITickableExecutor
+    public class SearchPositionSyncSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().WithAll<TargetSearchPosition, Position>();
         private readonly World _world;
 
-        public TargetSearchSyncSystem(World world)
+        public SearchPositionSyncSystem(World world)
         {
             _world = world;
         }

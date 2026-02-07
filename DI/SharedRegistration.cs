@@ -49,17 +49,19 @@ namespace DVG.SkyPirates.Shared.DI
 
             var tickableExecutors = new Type[]
             {
-                typeof(EnsureSystem),
-                typeof(ClearSystem),
+                typeof(EnsureSystem), // ensures
+                typeof(ClearSystem), // cleanups
                 typeof(CachePositionSystem),
-                typeof(TargetSearchSystem),
-                typeof(TargetSearchSyncSystem),
-                typeof(SquadRangeSystem),
-                typeof(SquadMoveSystem),
-                typeof(SquadUnitsSystem),
+                typeof(TargetSearchSystem), // cache target search
+                typeof(SearchPositionSyncSystem), // sync Positon and TargetSearchPosition
+                typeof(SquadMemberCounterSystem), // set count of members to squad
+                typeof(SquadTargetSearchDistanceSystem), // set TargetSearchDistance of Squad
+                typeof(SquadMemberDestinationSystem), // positioning of squad members
+                typeof(SquadMemberSearchSyncSystem), // copies TargetSearch from squad to members
                 typeof(SetSingleTargetSystem),
                 typeof(SetMultiTargetSystem),
-                typeof(SetTargetDestinationSystem),
+
+                typeof(SetTargetDestinationSystem), // set destination to target or skips
                 typeof(MoveSystem),
                 typeof(SeparationSystem),
                 typeof(HexMapCollisionSystem),

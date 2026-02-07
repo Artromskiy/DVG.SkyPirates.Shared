@@ -25,7 +25,7 @@ namespace DVG.SkyPirates.Shared.Factories
             SquadArch.EnsureArch(_world, entity);
 
             _world.Get<Radius>(entity).Value = fix.One / 3;
-            //_world.Get<Squad>(entity).Units = new List<int>();
+            _world.Get<MaxSpeed>(entity).Value = 7;
             _world.Get<Team>(entity).Id = cmd.ClientId;
             return entity;
         }

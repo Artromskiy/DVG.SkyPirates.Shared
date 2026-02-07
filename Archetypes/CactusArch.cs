@@ -10,7 +10,6 @@ namespace DVG.SkyPirates.Shared.Archetypes
         [Obsolete]
         public static void EnsureArch(World world, Entity entity)
         {
-            world.RemoveRange(entity, world.GetSignature(entity).Components);
             world.Add<
                 Position,
                 Rotation,
