@@ -22,7 +22,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _options.IncludeFields = true;
             _options.IgnoreReadOnlyFields = false;
             _options.IgnoreReadOnlyProperties = false;
-            _options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            //_options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
             _options.WriteIndented = true;
             _options.TypeInfoResolver = new DataContractResolver();
 

@@ -30,9 +30,4 @@
     <ProjectReference Include="..\..\GLSH\Core\GLSH.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="_Generated\Resources\" />
-  </ItemGroup>
-
 </Project>
