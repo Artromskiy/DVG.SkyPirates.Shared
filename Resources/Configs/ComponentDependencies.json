@@ -1,0 +1,60 @@
+{
+  "Dependencies": [
+    {
+      "Has": {
+        "Position": {}
+      }
+    },
+    {
+      "Add": {
+        "CachePosition": {}
+      }
+    },
+    {
+      "Has": {
+        "Separation": {}
+      }
+    },
+    {
+      "Add": {
+        "SeparationForce": {}
+      }
+    },
+    {
+      "Has": {
+        "MaxHealth": {}
+      }
+    },
+    {
+      "Add": {
+        "RecivedDamage": {}
+      }
+    },
+    {
+      "Has": {
+        "BehaviourConfig": {}
+      }
+    },
+    {
+      "Add": {
+        "BehaviourState": {}
+      }
+    },
+    {
+      "Has": {
+        "Squad": {}
+      }
+    },
+    {
+      "Add": {
+        "SquadMemberCount": {}
+      }
+    }
+  ],
+  "DefaultOnAdd": {
+    "AutoHeal": {
+      "HealPerSecond": 20,
+      "HealDelay": 10
+    }
+  }
+}

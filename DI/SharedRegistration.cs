@@ -30,6 +30,7 @@ namespace DVG.SkyPirates.Shared.DI
             //RegisterSingleton(typeof(IPathFactory<>), typeof(ResourcesFactory<>));
 
             container.RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
+            container.RegisterSingleton<IGlobalConfigFactory, GlobalConfigFactory>();
             container.RegisterSingleton<IPackedCirclesFactory, PackedCirclesFactory>();
             container.RegisterSingleton<IWorldDataFactory, WorldDataFactory>();
             container.RegisterSingleton<IEntityFactory, EntityFactory>();
@@ -49,6 +50,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             var tickableExecutors = new Type[]
             {
+                typeof(ComponentDependenciesSystem), // creates dependant components
                 typeof(EnsureSystem), // ensures
                 typeof(ClearSystem), // cleanups
                 typeof(CachePositionSystem),

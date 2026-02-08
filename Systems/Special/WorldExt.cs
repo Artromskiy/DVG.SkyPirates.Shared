@@ -2,6 +2,7 @@
 using DVG.Core;
 using DVG.Core.Components;
 using DVG.SkyPirates.Shared.Components.Special;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Tools;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
@@ -41,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             world.Remove<Temp>(queryDesc);
         }
 
-        public static void SetEntityData(this World world, Entity entity, Data.EntityData config)
+        public static void SetEntityData(this World world, Entity entity, ComponentsData config)
         {
             var action = new ApplyEntityData(entity, world, config);
             ComponentIds.ForEachData(ref action);
@@ -65,9 +66,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             private readonly Entity _entity;
             private readonly World _world;
-            private readonly Data.EntityData _config;
+            private readonly ComponentsData _config;
 
-            public ApplyEntityData(Entity entity, World world, Data.EntityData config)
+            public ApplyEntityData(Entity entity, World world, ComponentsData config)
             {
                 _entity = entity;
                 _world = world;

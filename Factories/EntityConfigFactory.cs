@@ -8,25 +8,29 @@ namespace DVG.SkyPirates.Shared.Factories
 {
     public class EntityConfigFactory<T> : IEntityConfigFactory<T> where T : struct, IId, IEquatable<T>
     {
-        private readonly IPathFactory<EntityData[]> _pathFactory;
+        private readonly Dictionary<T, ComponentsData> _entities;
 
-        private readonly EntityData[] _entityDatas;
-        private readonly Dictionary<T, EntityData> _entities;
-
-        public EntityConfigFactory(IPathFactory<EntityData[]> pathFactory)
+        public EntityConfigFactory(IGlobalConfigFactory globalConfigFactory)
         {
-            _pathFactory = pathFactory;
-            _entityDatas = _pathFactory.Create($"Configs/Entities");
-            _entities = new();
-            foreach (var item in _entityDatas)
-            {
-                var key = item.Get<T>();
-                if (key != null)
-                    _entities.Add(key.Value, item);
-            }
+            var config = globalConfigFactory.Create();
+            foreach (var item in config.Units)
+                TryAdd(item);
+            foreach (var item in config.Cactuses)
+                TryAdd(item);
+            foreach (var item in config.Trees)
+                TryAdd(item);
+            foreach (var item in config.Rocks)
+                TryAdd(item);
         }
 
-        public EntityData Create(T parameters)
+        private void TryAdd(ComponentsData data)
+        {
+            var key = data.Get<T>();
+            if (key != null)
+                _entities.Add(key.Value, data);
+        }
+
+        public ComponentsData Create(T parameters)
         {
             _entities.TryGetValue(parameters, out var entityData);
             return entityData;

@@ -1,5 +1,16 @@
 {
-  "AutoHeal": {},
+  "AutoHeal": {
+    "2": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    }
+  },
   "BehaviourConfig": {},
   "BehaviourState": {},
   "CactusId": {},
@@ -7,28 +18,73 @@
   "Destination": {},
   "Direction": {},
   "Fixation": {},
-  "Health": {},
+  "Health": {
+    "2": 100,
+    "1": 100
+  },
   "HexMap": {
     "0": {
       "Data": {
-        "-1, 0, 9": "Land2",
-        "-2, 0, 10": "Land2",
-        "-1, 0, 10": "Land2",
-        "0, 0, 9": "Land2"
+        "-2, 0, -7": "Land2",
+        "-1, 0, -8": "Land2",
+        "0, 0, -8": "Land2",
+        "-1, 0, -7": "Land2",
+        "-2, 0, -6": "Land2"
       }
     }
   },
   "ImpactDistance": {},
   "Level": {},
-  "MaxHealth": {},
+  "MaxHealth": {
+    "2": 100,
+    "1": 100
+  },
   "MaxSpeed": {},
-  "Position": {},
-  "Radius": {},
+  "Position": {
+    "2": {
+      "Value": "0.035369873046875, 0, -13.7110137939453125"
+    },
+    "1": {
+      "Value": "-3.1201171875, 0, -12.0611114501953125"
+    }
+  },
+  "Radius": {
+    "2": 0.5,
+    "1": 0.5
+  },
   "RockId": {},
-  "Rotation": {},
-  "Separation": {},
+  "Rotation": {
+    "2": {
+      "Value": 240
+    },
+    "1": {
+      "Value": 274
+    }
+  },
+  "Separation": {
+    "2": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1,
+      "AffectedCoeff": 0
+    },
+    "1": {
+      "AddRadius": 0.5,
+      "AffectingCoeff": 1,
+      "AffectedCoeff": 0
+    }
+  },
   "Squad": {},
-  "Team": {},
-  "TreeId": {},
+  "Team": {
+    "2": {
+      "Id": 0
+    },
+    "1": {
+      "Id": 0
+    }
+  },
+  "TreeId": {
+    "2": "Tree_37_Fall",
+    "1": "Tree_12_Spring"
+  },
   "UnitId": {}
 }
