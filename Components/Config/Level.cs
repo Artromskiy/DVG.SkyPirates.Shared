@@ -2,8 +2,7 @@
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    [History]
-    [Component]
+    [Component(true)]
     public partial struct Level
     {
         public int Value;

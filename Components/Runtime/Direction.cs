@@ -2,8 +2,7 @@
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
-    [History]
-    [Component]
+    [Component(true)]
     public struct Direction
     {
         public fix2 Value;

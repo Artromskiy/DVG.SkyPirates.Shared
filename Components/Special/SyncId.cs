@@ -1,5 +1,8 @@
-﻿namespace DVG.SkyPirates.Shared.Components.Special
+﻿using DVG.Core.Components.Attributes;
+
+namespace DVG.SkyPirates.Shared.Components.Special
 {
+    [Component(true)]
     internal struct SyncId
     {
         public int Value;

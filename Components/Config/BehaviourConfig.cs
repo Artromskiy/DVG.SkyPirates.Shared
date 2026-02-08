@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    [Component]
+    [Component(true)]
     public struct BehaviourConfig
     {
         public Dictionary<StateId, StateId> Scenario;

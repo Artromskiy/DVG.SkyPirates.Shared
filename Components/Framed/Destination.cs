@@ -1,5 +1,8 @@
-﻿namespace DVG.SkyPirates.Shared.Components.Framed
+﻿using DVG.Core.Components.Attributes;
+
+namespace DVG.SkyPirates.Shared.Components.Framed
 {
+    [Component(false)]
     public struct Destination
     {
         public fix3 Position;

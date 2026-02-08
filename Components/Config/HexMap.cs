@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    [Component]
+    [Component(true)]
     public struct HexMap
     {
         [DataMember(Order = 0)]
