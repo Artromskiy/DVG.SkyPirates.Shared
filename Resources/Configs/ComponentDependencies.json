@@ -1,60 +1,80 @@
-{
-  "Dependencies": [
-    {
-      "Has": {
+[
+  {
+    "Has": [
+      {
         "Position": {}
       }
-    },
-    {
-      "Add": {
+    ],
+    "Add": [
+      {
         "CachePosition": {}
       }
-    },
-    {
-      "Has": {
+    ]
+  },
+  {
+    "Has": [
+      {
         "Separation": {}
       }
-    },
-    {
-      "Add": {
+    ],
+    "Add": [
+      {
         "SeparationForce": {}
       }
-    },
-    {
-      "Has": {
+    ]
+  },
+  {
+    "Has": [
+      {
         "MaxHealth": {}
       }
-    },
-    {
-      "Add": {
+    ],
+    "Add": [
+      {
         "RecivedDamage": {}
       }
-    },
-    {
-      "Has": {
+    ]
+  },
+  {
+    "Has": [
+      {
         "BehaviourConfig": {}
       }
-    },
-    {
-      "Add": {
+    ],
+    "Add": [
+      {
         "BehaviourState": {}
       }
-    },
-    {
-      "Has": {
+    ]
+  },
+  {
+    "Has": [
+      {
         "Squad": {}
       }
-    },
-    {
-      "Add": {
+    ],
+    "Add": [
+      {
         "SquadMemberCount": {}
       }
-    }
-  ],
-  "DefaultOnAdd": {
-    "AutoHeal": {
-      "HealPerSecond": 20,
-      "HealDelay": 10
+    ]
+  },
+  {
+    "Has": [
+      {
+        "MaxHealth": {}
+      }
+    ],
+    "Add": [
+      {
+        "AutoHeal": {}
+      }
+    ],
+    "DefaultOnAdd": {
+      "AutoHeal": {
+        "HealPerSecond": 20,
+        "HealDelay": 10
+      }
     }
   }
-}
+]

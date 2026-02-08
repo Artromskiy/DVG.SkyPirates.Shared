@@ -2,7 +2,8 @@
 {
     public class EnsureConfig
     {
-        public (ComponentsData Has, ComponentsData Add)[] Dependencies;
+        public ComponentsData[] Has;
+        public ComponentsData[] Add;
         public ComponentsData DefaultOnAdd;
     }
 }

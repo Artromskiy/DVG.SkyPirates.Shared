@@ -8,7 +8,7 @@ namespace DVG.SkyPirates.Shared.Factories
 {
     public class EntityConfigFactory<T> : IEntityConfigFactory<T> where T : struct, IId, IEquatable<T>
     {
-        private readonly Dictionary<T, ComponentsData> _entities;
+        private readonly Dictionary<T, ComponentsData> _entities = new();
 
         public EntityConfigFactory(IGlobalConfigFactory globalConfigFactory)
         {

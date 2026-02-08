@@ -30,14 +30,14 @@ namespace DVG.SkyPirates.Shared.Data
         {
             var worldData = new WorldData();
             var packAction = new PackAction(_world, worldData, _desc);
-            ComponentIds.ForEachData(ref packAction);
+            HistoryIds.ForEachData(ref packAction);
             return worldData;
         }
 
         public void Extract(WorldData worldData)
         {
             var unpackAction = new ExtractAction(_world, worldData, _commandEntityFactory);
-            ComponentIds.ForEachData(ref unpackAction);
+            HistoryIds.ForEachData(ref unpackAction);
         }
 
         private readonly struct PackAction : IStructGenericAction

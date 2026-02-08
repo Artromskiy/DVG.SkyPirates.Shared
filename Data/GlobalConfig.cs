@@ -6,6 +6,6 @@
         public ComponentsData[] Cactuses;
         public ComponentsData[] Trees;
         public ComponentsData[] Rocks;
-        public EnsureConfig ComponentDependencies;
+        public EnsureConfig[] ComponentDependencies;
     }
 }

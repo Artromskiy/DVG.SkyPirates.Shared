@@ -39,7 +39,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 5)]
         public Dictionary<int, Direction> Direction;
         [DataMember(Order = 6)]
-        public Dictionary<int, Dispose> Dispose;
+        internal Dictionary<int, Dispose> Dispose;
         [DataMember(Order = 7)]
         public Dictionary<int, Fixation> Fixation;
         [DataMember(Order = 8)]
@@ -69,7 +69,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 20)]
         public Dictionary<int, SquadMember> SquadMember;
         [DataMember(Order = 21)]
-        public Dictionary<int, SyncId> SyncId;
+        internal Dictionary<int, SyncId> SyncId;
         [DataMember(Order = 22)]
         public Dictionary<int, TargetSearchDistance> TargetSearchDistance;
         [DataMember(Order = 23)]

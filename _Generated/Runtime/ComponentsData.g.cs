@@ -45,7 +45,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 7)]
         public Direction? Direction;
         [DataMember(Order = 8)]
-        public Dispose? Dispose;
+        internal Dispose? Dispose;
         [DataMember(Order = 9)]
         public Fixation? Fixation;
         [DataMember(Order = 10)]
@@ -81,7 +81,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 25)]
         public SquadMemberCount? SquadMemberCount;
         [DataMember(Order = 26)]
-        public SyncId? SyncId;
+        internal SyncId? SyncId;
         [DataMember(Order = 27)]
         public Target? Target;
         [DataMember(Order = 28)]
