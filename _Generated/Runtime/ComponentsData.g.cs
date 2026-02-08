@@ -29,73 +29,75 @@ namespace DVG.SkyPirates.Shared.Data
     {
 
         [DataMember(Order = 0)]
-        public AutoHeal? AutoHeal;
+        private AutoHeal? AutoHeal;
         [DataMember(Order = 1)]
-        public BehaviourConfig? BehaviourConfig;
+        private BehaviourConfig? BehaviourConfig;
         [DataMember(Order = 2)]
-        public BehaviourState? BehaviourState;
+        private BehaviourState? BehaviourState;
         [DataMember(Order = 3)]
-        public CachePosition? CachePosition;
+        private CachePosition? CachePosition;
         [DataMember(Order = 4)]
-        public CactusId? CactusId;
+        private CactusId? CactusId;
         [DataMember(Order = 5)]
-        public Damage? Damage;
+        private Collision? Collision;
         [DataMember(Order = 6)]
-        public Destination? Destination;
+        private Damage? Damage;
         [DataMember(Order = 7)]
-        public Direction? Direction;
+        private Destination? Destination;
         [DataMember(Order = 8)]
-        internal Dispose? Dispose;
+        private Direction? Direction;
         [DataMember(Order = 9)]
-        public Fixation? Fixation;
+        private Dispose? Dispose;
         [DataMember(Order = 10)]
-        public Health? Health;
+        private Fixation? Fixation;
         [DataMember(Order = 11)]
-        public HexMap? HexMap;
+        private Health? Health;
         [DataMember(Order = 12)]
-        public ImpactDistance? ImpactDistance;
+        private HexMap? HexMap;
         [DataMember(Order = 13)]
-        public Level? Level;
+        private ImpactDistance? ImpactDistance;
         [DataMember(Order = 14)]
-        public MaxHealth? MaxHealth;
+        private Level? Level;
         [DataMember(Order = 15)]
-        public MaxSpeed? MaxSpeed;
+        private MaxHealth? MaxHealth;
         [DataMember(Order = 16)]
-        public Position? Position;
+        private MaxSpeed? MaxSpeed;
         [DataMember(Order = 17)]
-        public Radius? Radius;
+        private Position? Position;
         [DataMember(Order = 18)]
-        public RecivedDamage? RecivedDamage;
+        private Radius? Radius;
         [DataMember(Order = 19)]
-        public RockId? RockId;
+        private RecivedDamage? RecivedDamage;
         [DataMember(Order = 20)]
-        public Rotation? Rotation;
+        private RockId? RockId;
         [DataMember(Order = 21)]
-        public Separation? Separation;
+        private Rotation? Rotation;
         [DataMember(Order = 22)]
-        public SeparationForce? SeparationForce;
+        private Separation? Separation;
         [DataMember(Order = 23)]
-        public Squad? Squad;
+        private SeparationForce? SeparationForce;
         [DataMember(Order = 24)]
-        public SquadMember? SquadMember;
+        private Squad? Squad;
         [DataMember(Order = 25)]
-        public SquadMemberCount? SquadMemberCount;
+        private SquadMember? SquadMember;
         [DataMember(Order = 26)]
-        internal SyncId? SyncId;
+        private SquadMemberCount? SquadMemberCount;
         [DataMember(Order = 27)]
-        public Target? Target;
+        private SyncId? SyncId;
         [DataMember(Order = 28)]
-        public Targets? Targets;
+        private Target? Target;
         [DataMember(Order = 29)]
-        public TargetSearchDistance? TargetSearchDistance;
+        private Targets? Targets;
         [DataMember(Order = 30)]
-        public TargetSearchPosition? TargetSearchPosition;
+        private TargetSearchDistance? TargetSearchDistance;
         [DataMember(Order = 31)]
-        public Team? Team;
+        private TargetSearchPosition? TargetSearchPosition;
         [DataMember(Order = 32)]
-        public TreeId? TreeId;
+        private Team? Team;
         [DataMember(Order = 33)]
-        public UnitId? UnitId;
+        private TreeId? TreeId;
+        [DataMember(Order = 34)]
+        private UnitId? UnitId;
 
         public T? Get<T>()
             where T : struct
@@ -111,6 +113,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<CachePosition?, T?>(ref CachePosition);
             if (typeof(T) == typeof(CactusId))
                 return Unsafe.As<CactusId?, T?>(ref CactusId);
+            if (typeof(T) == typeof(Collision))
+                return Unsafe.As<Collision?, T?>(ref Collision);
             if (typeof(T) == typeof(Damage))
                 return Unsafe.As<Damage?, T?>(ref Damage);
             if (typeof(T) == typeof(Destination))
@@ -200,6 +204,11 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(CactusId))
             {
                 CactusId = Unsafe.As<T?, CactusId?>(ref data);
+                return;
+            }
+            if (typeof(T) == typeof(Collision))
+            {
+                Collision = Unsafe.As<T?, Collision?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Damage))
@@ -360,6 +369,7 @@ namespace DVG.SkyPirates.Shared.Data
                 (BehaviourState.HasValue? 1 : 0) + 
                 (CachePosition.HasValue? 1 : 0) + 
                 (CactusId.HasValue? 1 : 0) + 
+                (Collision.HasValue? 1 : 0) + 
                 (Damage.HasValue? 1 : 0) + 
                 (Destination.HasValue? 1 : 0) + 
                 (Direction.HasValue? 1 : 0) + 
@@ -404,6 +414,8 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(CachePosition);
             if(CactusId.HasValue)
                 types[i++] = typeof(CactusId);
+            if(Collision.HasValue)
+                types[i++] = typeof(Collision);
             if(Damage.HasValue)
                 types[i++] = typeof(Damage);
             if(Destination.HasValue)
@@ -480,6 +492,8 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<CachePosition>();
             if(CactusId.HasValue)
                 action.Invoke<CactusId>();
+            if(Collision.HasValue)
+                action.Invoke<Collision>();
             if(Damage.HasValue)
                 action.Invoke<Damage>();
             if(Destination.HasValue)

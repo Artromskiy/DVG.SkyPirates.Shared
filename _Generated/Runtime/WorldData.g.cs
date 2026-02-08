@@ -27,57 +27,57 @@ namespace DVG.SkyPirates.Shared.Data
     {
 
         [DataMember(Order = 0)]
-        public Dictionary<int, AutoHeal> AutoHeal;
+        private Dictionary<int, AutoHeal> AutoHeal;
         [DataMember(Order = 1)]
-        public Dictionary<int, BehaviourConfig> BehaviourConfig;
+        private Dictionary<int, BehaviourConfig> BehaviourConfig;
         [DataMember(Order = 2)]
-        public Dictionary<int, BehaviourState> BehaviourState;
+        private Dictionary<int, BehaviourState> BehaviourState;
         [DataMember(Order = 3)]
-        public Dictionary<int, CactusId> CactusId;
+        private Dictionary<int, CactusId> CactusId;
         [DataMember(Order = 4)]
-        public Dictionary<int, Damage> Damage;
+        private Dictionary<int, Damage> Damage;
         [DataMember(Order = 5)]
-        public Dictionary<int, Direction> Direction;
+        private Dictionary<int, Direction> Direction;
         [DataMember(Order = 6)]
-        internal Dictionary<int, Dispose> Dispose;
+        private Dictionary<int, Dispose> Dispose;
         [DataMember(Order = 7)]
-        public Dictionary<int, Fixation> Fixation;
+        private Dictionary<int, Fixation> Fixation;
         [DataMember(Order = 8)]
-        public Dictionary<int, Health> Health;
+        private Dictionary<int, Health> Health;
         [DataMember(Order = 9)]
-        public Dictionary<int, HexMap> HexMap;
+        private Dictionary<int, HexMap> HexMap;
         [DataMember(Order = 10)]
-        public Dictionary<int, ImpactDistance> ImpactDistance;
+        private Dictionary<int, ImpactDistance> ImpactDistance;
         [DataMember(Order = 11)]
-        public Dictionary<int, Level> Level;
+        private Dictionary<int, Level> Level;
         [DataMember(Order = 12)]
-        public Dictionary<int, MaxHealth> MaxHealth;
+        private Dictionary<int, MaxHealth> MaxHealth;
         [DataMember(Order = 13)]
-        public Dictionary<int, MaxSpeed> MaxSpeed;
+        private Dictionary<int, MaxSpeed> MaxSpeed;
         [DataMember(Order = 14)]
-        public Dictionary<int, Position> Position;
+        private Dictionary<int, Position> Position;
         [DataMember(Order = 15)]
-        public Dictionary<int, Radius> Radius;
+        private Dictionary<int, Radius> Radius;
         [DataMember(Order = 16)]
-        public Dictionary<int, RockId> RockId;
+        private Dictionary<int, RockId> RockId;
         [DataMember(Order = 17)]
-        public Dictionary<int, Rotation> Rotation;
+        private Dictionary<int, Rotation> Rotation;
         [DataMember(Order = 18)]
-        public Dictionary<int, Separation> Separation;
+        private Dictionary<int, Separation> Separation;
         [DataMember(Order = 19)]
-        public Dictionary<int, Squad> Squad;
+        private Dictionary<int, Squad> Squad;
         [DataMember(Order = 20)]
-        public Dictionary<int, SquadMember> SquadMember;
+        private Dictionary<int, SquadMember> SquadMember;
         [DataMember(Order = 21)]
-        internal Dictionary<int, SyncId> SyncId;
+        private Dictionary<int, SyncId> SyncId;
         [DataMember(Order = 22)]
-        public Dictionary<int, TargetSearchDistance> TargetSearchDistance;
+        private Dictionary<int, TargetSearchDistance> TargetSearchDistance;
         [DataMember(Order = 23)]
-        public Dictionary<int, Team> Team;
+        private Dictionary<int, Team> Team;
         [DataMember(Order = 24)]
-        public Dictionary<int, TreeId> TreeId;
+        private Dictionary<int, TreeId> TreeId;
         [DataMember(Order = 25)]
-        public Dictionary<int, UnitId> UnitId;
+        private Dictionary<int, UnitId> UnitId;
 
         public WorldData()
         {
