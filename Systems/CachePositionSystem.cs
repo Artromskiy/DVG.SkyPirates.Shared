@@ -2,12 +2,13 @@
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class CachePositionSystem : ITickableExecutor
     {
-        private QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition>();
+        private QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition>().NotDisposing();
         private readonly World _world;
 
         public CachePositionSystem(World world)

@@ -24,6 +24,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         private static readonly GenericCollection _desc = new();
 
+        public static QueryDescription NotDisposing(this QueryDescription desc)
+        {
+            var none = Signature.Add(desc.None, Component<Dispose>.Signature);
+            return new QueryDescription(desc.All, desc.Any, none, desc.Exclusive);
+        }
+
         public static T FirstOrDefault<T>(this World world) where T : struct
         {
             var query = new FirstOrDefaultQuery<T>();

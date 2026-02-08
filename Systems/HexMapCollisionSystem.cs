@@ -1,20 +1,23 @@
 ﻿using Arch.Core;
 using DVG.Core;
+using DVG.Core.Physics;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Systems.Special;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class HexMapCollisionSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, CachePosition, Radius>();
+        private readonly QueryDescription _desc = new QueryDescription().
+            WithAll<Position, CachePosition, Radius>().NotDisposing();
 
-        private readonly List<(fix2 s, fix2 e, fix2 normal)> _segmentsCache = new List<(fix2, fix2, fix2)>();
-
+        //private readonly List<Segment> _segmentsCache = new();
+        private readonly ThreadLocal<List<Segment>> _segmentsCache = new(() => new List<Segment>());
         private readonly World _world;
 
         public HexMapCollisionSystem(World world)
@@ -30,16 +33,16 @@ namespace DVG.SkyPirates.Shared.Systems
 
             // TODO multithread this thing
             var query = new SolveCollsionQuery(hexMap, _segmentsCache);
-            _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, Radius>(_desc, ref query);
+            _world.InlineParallelQuery<SolveCollsionQuery, Position, CachePosition, Radius>(_desc, ref query);
         }
 
         private readonly struct SolveCollsionQuery : IForEach<Position, CachePosition, Radius>
         {
             private readonly HexMap _hexMap;
-            private readonly List<(fix2 s, fix2 e, fix2 normal)> _segmentsCache;
+            //private readonly List<Segment> _segmentsCache;
+            private readonly ThreadLocal<List<Segment>> _segmentsCache;
 
-            public SolveCollsionQuery(HexMap hexMap,
-                List<(fix2, fix2, fix2)> segmentsCache)
+            public SolveCollsionQuery(HexMap hexMap, ThreadLocal<List<Segment>> segmentsCache)
             {
                 _hexMap = hexMap;
                 _segmentsCache = segmentsCache;
@@ -49,14 +52,14 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 FindSegments(cachePosition.Value.xz);
 
-                var solvedPos = Spatial.SolveCircleMove(_segmentsCache,
+                var solvedPos = Spatial.SolveCircleMove(_segmentsCache.Value,
                     cachePosition.Value.xz, position.Value.xz, radius.Value).x_y;
                 position.Value = solvedPos;
             }
 
             private void FindSegments(fix2 from)
             {
-                _segmentsCache.Clear();
+                _segmentsCache.Value.Clear();
                 var axialFrom = Hex.WorldToAxial(from);
 
                 foreach (var item in Hex.AxialNear)
@@ -73,7 +76,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     {
                         var s = worldFloor + Hex.Points[i];
                         var e = worldFloor + Hex.Points[(i + 1) % Hex.Points.Length];
-                        _segmentsCache.Add((s, e, Hex.Normals[i]));
+                        _segmentsCache.Value.Add(new(s, e, Hex.Normals[i]));
                     }
                 }
             }

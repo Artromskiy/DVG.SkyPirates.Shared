@@ -3,6 +3,7 @@ using DVG.Core;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,7 +59,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Invoke<T>() where T : struct
             {
-                var desc = new QueryDescription(all: _allSignature, none: Component<T>.Signature);
+                var desc = new QueryDescription(all: _allSignature, none: Component<T>.Signature).NotDisposing();
                 var defaultValue = _defaults?.Get<T>();
                 _world.Add(desc, defaultValue ?? default);
             }

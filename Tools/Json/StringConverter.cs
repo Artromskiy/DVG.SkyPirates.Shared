@@ -43,6 +43,11 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
+            if (reader.TokenType == JsonTokenType.StartObject)
+            {
+                reader.Skip();
+                return Parse(string.Empty);
+            }
             return Parse(reader.GetString());
         }
 

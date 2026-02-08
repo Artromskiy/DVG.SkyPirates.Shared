@@ -2,6 +2,7 @@
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 using System;
 using System.Collections.Generic;
 
@@ -10,7 +11,7 @@ namespace DVG.SkyPirates.Shared.Systems
     [Obsolete]
     public sealed class MarkDeadSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health>();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health>().NotDisposing();
 
         private readonly List<Entity> _dead = new();
 

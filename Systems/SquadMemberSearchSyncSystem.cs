@@ -5,16 +5,17 @@ using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
     public class SquadMemberSearchSyncSystem : ITickableExecutor
     {
         private readonly QueryDescription _unitsDesc = new QueryDescription().
-            WithAll<SquadMember, TargetSearchDistance, TargetSearchPosition>();
+            WithAll<SquadMember, TargetSearchDistance, TargetSearchPosition>().NotDisposing();
 
         private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SyncId, TargetSearchDistance, TargetSearchPosition>();
+            WithAll<Squad, SyncId, TargetSearchDistance, TargetSearchPosition>().NotDisposing();
 
         private readonly World _world;
 

@@ -1,4230 +1,4567 @@
 {
   "Units": [
     {
-      "UnitId": "Sailor",
-      "MaxHealth": 45,
+      "BehaviourConfig": {
+        "Scenario": {
+          "PreAttack": "PostAttack",
+          "PostAttack": "Reload",
+          "Reload": "None",
+          "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.5,
+          "PostAttack": 0.3000030517578125,
+          "Reload": 0.1999969482421875,
+          "None": 0
+        }
+      },
       "Damage": 3,
       "ImpactDistance": 3,
-      "TargetSearchDistance": 5,
+      "MaxHealth": 45,
       "MaxSpeed": 10,
-      "Radius": 0.3,
+      "Radius": 0.3000030517578125,
       "Separation": {
-        "AddRadius": 0.3,
+        "AddRadius": 0.3000030517578125,
         "AffectingCoeff": 1,
         "AffectedCoeff": 1
       },
+      "TargetSearchDistance": 5,
+      "UnitId": "Sailor"
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.5,
-          "PostAttack": 0.3,
-          "Reload": 0.2,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "PostAttack",
           "PostAttack": "Reload",
           "Reload": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.1999969482421875,
+          "PostAttack": 0.3000030517578125,
+          "Reload": 0.3000030517578125,
+          "None": 0
         }
-      }
-    },
-    {
-      "UnitId": "Rogue",
-      "MaxHealth": 20,
+      },
       "Damage": 4,
       "ImpactDistance": 3,
-      "TargetSearchDistance": 5,
+      "MaxHealth": 20,
       "MaxSpeed": 10,
-      "Radius": 0.3,
+      "Radius": 0.3000030517578125,
       "Separation": {
-        "AddRadius": 0.3,
+        "AddRadius": 0.3000030517578125,
         "AffectingCoeff": 1,
         "AffectedCoeff": 1
       },
+      "TargetSearchDistance": 5,
+      "UnitId": "Rogue"
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.2,
-          "PostAttack": 0.3,
-          "Reload": 0.3,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "PostAttack",
           "PostAttack": "Reload",
           "Reload": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.350006103515625,
+          "PostAttack": 0.3000030517578125,
+          "Reload": 0.350006103515625,
+          "None": 0
         }
-      }
-    },
-    {
-      "UnitId": "Pirate",
-      "MaxHealth": 45,
+      },
       "Damage": 10,
       "ImpactDistance": 3,
-      "TargetSearchDistance": 5,
+      "MaxHealth": 45,
       "MaxSpeed": 10,
-      "Radius": 0.3,
+      "Radius": 0.3000030517578125,
       "Separation": {
-        "AddRadius": 0.3,
+        "AddRadius": 0.3000030517578125,
         "AffectingCoeff": 1,
         "AffectedCoeff": 1
       },
+      "TargetSearchDistance": 5,
+      "UnitId": "Pirate"
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.35,
-          "PostAttack": 0.3,
-          "Reload": 0.35,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "PostAttack",
           "PostAttack": "Reload",
           "Reload": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.350006103515625,
+          "PostAttack": 0.3000030517578125,
+          "Reload": 0.350006103515625,
+          "None": 0
         }
-      }
-    },
-    {
-      "UnitId": "Skelly",
-      "MaxHealth": 45,
+      },
       "Damage": 6,
       "ImpactDistance": 3,
-      "TargetSearchDistance": 5,
+      "MaxHealth": 45,
       "MaxSpeed": 10,
-      "Radius": 0.3,
+      "Radius": 0.3000030517578125,
       "Separation": {
-        "AddRadius": 0.3,
+        "AddRadius": 0.3000030517578125,
         "AffectingCoeff": 1,
         "AffectedCoeff": 1
       },
+      "TargetSearchDistance": 5,
+      "UnitId": "Skelly"
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.35,
-          "PostAttack": 0.3,
-          "Reload": 0.35,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "PostAttack",
           "PostAttack": "Reload",
           "Reload": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.6999969482421875,
+          "PostAttack": 0.3000030517578125,
+          "Reload": 0.3000030517578125,
+          "None": 0
         }
-      }
-    },
-    {
-      "UnitId": "Militia",
-      "MaxHealth": 100,
+      },
       "Damage": 15,
       "ImpactDistance": 3,
-      "TargetSearchDistance": 5,
+      "MaxHealth": 100,
       "MaxSpeed": 10,
-      "Radius": 0.3,
+      "Radius": 0.3000030517578125,
       "Separation": {
-        "AddRadius": 0.3,
+        "AddRadius": 0.3000030517578125,
         "AffectingCoeff": 1,
         "AffectedCoeff": 1
       },
+      "TargetSearchDistance": 5,
+      "UnitId": "Militia"
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.7,
-          "PostAttack": 0.3,
-          "Reload": 0.3,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "PostAttack",
           "PostAttack": "Reload",
           "Reload": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.6999969482421875,
+          "PostAttack": 0.3000030517578125,
+          "Reload": 0.3000030517578125,
+          "None": 0
         }
-      }
-    },
-    {
-      "UnitId": "Demon",
-      "MaxHealth": 65,
+      },
       "Damage": 10,
       "ImpactDistance": 3,
-      "TargetSearchDistance": 5,
+      "MaxHealth": 65,
       "MaxSpeed": 10,
-      "Radius": 0.3,
+      "Radius": 0.3000030517578125,
       "Separation": {
-        "AddRadius": 0.3,
+        "AddRadius": 0.3000030517578125,
         "AffectingCoeff": 1,
         "AffectedCoeff": 1
       },
+      "TargetSearchDistance": 5,
+      "UnitId": "Demon"
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.7,
-          "PostAttack": 0.3,
-          "Reload": 0.3,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "PostAttack",
           "PostAttack": "Reload",
           "Reload": "None",
           "None": "None"
-        }
-      }
-    },
-    {
-      "UnitId": "Buccaneer",
-      "MaxHealth": 10,
-      "Damage": 7,
-      "ImpactDistance": 3,
-      "TargetSearchDistance": 5,
-      "MaxSpeed": 10,
-      "Radius": 0.3,
-      "Separation": {
-        "AddRadius": 0.3,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
-      },
-      "BehaviourConfig": {
+        },
         "Durations": {
-          "PreAttack": 0.3,
-          "PostAttack": 0.3,
+          "PreAttack": 0.3000030517578125,
+          "PostAttack": 0.3000030517578125,
           "Reload": 0.5,
           "None": 0
-        },
-        "Scenario": {
-          "PreAttack": "PostAttack",
-          "PostAttack": "Reload",
-          "Reload": "None",
-          "None": "None"
         }
-      }
-    },
-    {
-      "UnitId": "Bonny",
-      "MaxHealth": 10,
+      },
       "Damage": 7,
       "ImpactDistance": 3,
-      "TargetSearchDistance": 5,
+      "MaxHealth": 10,
       "MaxSpeed": 10,
-      "Radius": 0.3,
+      "Radius": 0.3000030517578125,
       "Separation": {
-        "AddRadius": 0.3,
+        "AddRadius": 0.3000030517578125,
         "AffectingCoeff": 1,
         "AffectedCoeff": 1
       },
-      "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.5,
-          "PostAttack": 0.3,
-          "Reload": 0.3,
-          "None": 0
-        },
-        "Scenario": {
-          "PreAttack": "PostAttack",
-          "PostAttack": "Reload",
-          "Reload": "None",
-          "None": "None"
-        }
-      }
+      "TargetSearchDistance": 5,
+      "UnitId": "Buccaneer"
     },
     {
-      "UnitId": "Imp",
-      "MaxHealth": 50,
-      "Damage": 1,
-      "ImpactDistance": 3,
-      "TargetSearchDistance": 5,
-      "MaxSpeed": 10,
-      "Radius": 0.3,
-      "Separation": {
-        "AddRadius": 0.3,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
-      },
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.2,
-          "PostAttack": 0.3,
-          "Reload": 0.3,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "PostAttack",
           "PostAttack": "Reload",
           "Reload": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.5,
+          "PostAttack": 0.3000030517578125,
+          "Reload": 0.3000030517578125,
+          "None": 0
         }
-      }
+      },
+      "Damage": 7,
+      "ImpactDistance": 3,
+      "MaxHealth": 10,
+      "MaxSpeed": 10,
+      "Radius": 0.3000030517578125,
+      "Separation": {
+        "AddRadius": 0.3000030517578125,
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 1
+      },
+      "TargetSearchDistance": 5,
+      "UnitId": "Bonny"
+    },
+    {
+      "BehaviourConfig": {
+        "Scenario": {
+          "PreAttack": "PostAttack",
+          "PostAttack": "Reload",
+          "Reload": "None",
+          "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.1999969482421875,
+          "PostAttack": 0.3000030517578125,
+          "Reload": 0.3000030517578125,
+          "None": 0
+        }
+      },
+      "Damage": 1,
+      "ImpactDistance": 3,
+      "MaxHealth": 50,
+      "MaxSpeed": 10,
+      "Radius": 0.3000030517578125,
+      "Separation": {
+        "AddRadius": 0.3000030517578125,
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 1
+      },
+      "TargetSearchDistance": 5,
+      "UnitId": "Imp"
     }
   ],
   "Cactuses": [
     {
+      "BehaviourConfig": {
+        "Scenario": {
+          "PreAttack": "None",
+          "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
+        }
+      },
       "CactusId": "Cactus_39_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_02_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_03_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_05_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_06_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_07_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_08_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_09_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_10_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_11_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_12_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_13_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_15_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_16_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_18_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_18_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_23_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_25_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_26_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_26_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_30_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_32_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_36_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_37_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_38_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_01_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_01_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_02_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_03_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_04_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_04_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_05_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_06_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_07_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_08_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_09_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_10_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_11_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_12_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_13_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_14_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_14_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_15_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_16_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_17_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_17_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_19_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_19_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_20_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_20_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_21_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_21_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_22_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_22_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_23_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_24_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_24_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_25_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_27_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_27_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_28_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_28_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_29_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_29_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_30_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_31_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_31_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_32_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_33_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_33_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_34_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_34_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_35_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_35_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_36_B",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_37_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_38_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
+      "TargetSearchDistance": 2
+    },
+    {
       "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
         "Scenario": {
           "PreAttack": "None",
           "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.399993896484375,
+          "None": 0
         }
-      }
-    },
-    {
+      },
       "CactusId": "Cactus_39_A",
       "Damage": 1,
       "ImpactDistance": 2,
-      "TargetSearchDistance": 2,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       },
-      "BehaviourConfig": {
-        "Durations": {
-          "PreAttack": 0.4,
-          "None": 0
-        },
-        "Scenario": {
-          "PreAttack": "None",
-          "None": "None"
-        }
-      }
+      "TargetSearchDistance": 2
     }
   ],
   "Trees": [
     {
-      "TreeId": "Tree_01_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_01_Fall"
     },
     {
-      "TreeId": "Tree_01_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_01_Spring"
     },
     {
-      "TreeId": "Tree_01_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_01_Winter"
     },
     {
-      "TreeId": "Tree_02_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_02_Fall"
     },
     {
-      "TreeId": "Tree_02_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_02_Spring"
     },
     {
-      "TreeId": "Tree_02_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_02_Winter"
     },
     {
-      "TreeId": "Tree_03_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_03_Fall"
     },
     {
-      "TreeId": "Tree_03_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_03_Spring"
     },
     {
-      "TreeId": "Tree_03_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_03_Winter"
     },
     {
-      "TreeId": "Tree_04_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_04_Fall"
     },
     {
-      "TreeId": "Tree_04_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_04_Spring"
     },
     {
-      "TreeId": "Tree_04_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_04_Winter"
     },
     {
-      "TreeId": "Tree_05_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_05_Fall"
     },
     {
-      "TreeId": "Tree_05_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_05_Spring"
     },
     {
-      "TreeId": "Tree_05_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_05_Winter"
     },
     {
-      "TreeId": "Tree_06_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_06_Fall"
     },
     {
-      "TreeId": "Tree_06_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_06_Spring"
     },
     {
-      "TreeId": "Tree_06_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_06_Winter"
     },
     {
-      "TreeId": "Tree_07_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_07_Fall"
     },
     {
-      "TreeId": "Tree_07_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_07_Spring"
     },
     {
-      "TreeId": "Tree_07_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_07_Winter"
     },
     {
-      "TreeId": "Tree_08_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_08_Fall"
     },
     {
-      "TreeId": "Tree_08_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_08_Spring"
     },
     {
-      "TreeId": "Tree_08_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_08_Winter"
     },
     {
-      "TreeId": "Tree_09_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_09_Fall"
     },
     {
-      "TreeId": "Tree_09_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_09_Spring"
     },
     {
-      "TreeId": "Tree_09_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_09_Winter"
     },
     {
-      "TreeId": "Tree_10_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_10_Fall"
     },
     {
-      "TreeId": "Tree_10_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_10_Spring"
     },
     {
-      "TreeId": "Tree_10_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_10_Winter"
     },
     {
-      "TreeId": "Tree_11_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_11_Fall"
     },
     {
-      "TreeId": "Tree_11_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_11_Spring"
     },
     {
-      "TreeId": "Tree_11_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_11_Winter"
     },
     {
-      "TreeId": "Tree_12_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_12_Fall"
     },
     {
-      "TreeId": "Tree_12_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_12_Spring"
     },
     {
-      "TreeId": "Tree_12_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_12_Winter"
     },
     {
-      "TreeId": "Tree_13_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_13_Fall"
     },
     {
-      "TreeId": "Tree_13_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_13_Spring"
     },
     {
-      "TreeId": "Tree_13_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_13_Winter"
     },
     {
-      "TreeId": "Tree_14_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_14_Fall"
     },
     {
-      "TreeId": "Tree_14_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_14_Spring"
     },
     {
-      "TreeId": "Tree_14_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_14_Winter"
     },
     {
-      "TreeId": "Tree_15_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_15_Fall"
     },
     {
-      "TreeId": "Tree_15_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_15_Spring"
     },
     {
-      "TreeId": "Tree_15_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_15_Winter"
     },
     {
-      "TreeId": "Tree_16_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_16_Fall"
     },
     {
-      "TreeId": "Tree_16_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_16_Spring"
     },
     {
-      "TreeId": "Tree_16_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_16_Winter"
     },
     {
-      "TreeId": "Tree_17_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_17_Fall"
     },
     {
-      "TreeId": "Tree_17_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_17_Spring"
     },
     {
-      "TreeId": "Tree_17_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_17_Winter"
     },
     {
-      "TreeId": "Tree_18_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_18_Fall"
     },
     {
-      "TreeId": "Tree_18_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_18_Spring"
     },
     {
-      "TreeId": "Tree_18_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_18_Winter"
     },
     {
-      "TreeId": "Tree_19_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_19_Fall"
     },
     {
-      "TreeId": "Tree_19_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_19_Spring"
     },
     {
-      "TreeId": "Tree_19_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_19_Winter"
     },
     {
-      "TreeId": "Tree_20_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_20_Fall"
     },
     {
-      "TreeId": "Tree_20_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_20_Spring"
     },
     {
-      "TreeId": "Tree_20_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_20_Winter"
     },
     {
-      "TreeId": "Tree_21_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_21_Fall"
     },
     {
-      "TreeId": "Tree_21_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_21_Spring"
     },
     {
-      "TreeId": "Tree_21_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_21_Winter"
     },
     {
-      "TreeId": "Tree_22_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_22_Fall"
     },
     {
-      "TreeId": "Tree_22_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_22_Spring"
     },
     {
-      "TreeId": "Tree_22_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_22_Winter"
     },
     {
-      "TreeId": "Tree_23_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_23_Fall"
     },
     {
-      "TreeId": "Tree_23_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_23_Spring"
     },
     {
-      "TreeId": "Tree_23_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_23_Winter"
     },
     {
-      "TreeId": "Tree_24_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_24_Fall"
     },
     {
-      "TreeId": "Tree_24_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_24_Spring"
     },
     {
-      "TreeId": "Tree_24_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_24_Winter"
     },
     {
-      "TreeId": "Tree_25_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_25_Fall"
     },
     {
-      "TreeId": "Tree_25_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_25_Spring"
     },
     {
-      "TreeId": "Tree_25_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_25_Winter"
     },
     {
-      "TreeId": "Tree_26_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_26_Fall"
     },
     {
-      "TreeId": "Tree_26_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_26_Spring"
     },
     {
-      "TreeId": "Tree_26_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_26_Winter"
     },
     {
-      "TreeId": "Tree_27_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_27_Fall"
     },
     {
-      "TreeId": "Tree_27_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_27_Spring"
     },
     {
-      "TreeId": "Tree_27_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_27_Winter"
     },
     {
-      "TreeId": "Tree_28_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_28_Fall"
     },
     {
-      "TreeId": "Tree_28_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_28_Spring"
     },
     {
-      "TreeId": "Tree_28_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_28_Winter"
     },
     {
-      "TreeId": "Tree_29_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_29_Fall"
     },
     {
-      "TreeId": "Tree_29_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_29_Spring"
     },
     {
-      "TreeId": "Tree_29_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_29_Winter"
     },
     {
-      "TreeId": "Tree_30_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_30_Fall"
     },
     {
-      "TreeId": "Tree_30_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_30_Spring"
     },
     {
-      "TreeId": "Tree_30_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_30_Winter"
     },
     {
-      "TreeId": "Tree_31_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_31_Fall"
     },
     {
-      "TreeId": "Tree_31_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_31_Spring"
     },
     {
-      "TreeId": "Tree_31_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_31_Winter"
     },
     {
-      "TreeId": "Tree_32_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_32_Fall"
     },
     {
-      "TreeId": "Tree_32_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_32_Spring"
     },
     {
-      "TreeId": "Tree_32_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_32_Winter"
     },
     {
-      "TreeId": "Tree_33_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_33_Fall"
     },
     {
-      "TreeId": "Tree_33_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_33_Spring"
     },
     {
-      "TreeId": "Tree_33_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_33_Winter"
     },
     {
-      "TreeId": "Tree_34_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_34_Fall"
     },
     {
-      "TreeId": "Tree_34_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_34_Spring"
     },
     {
-      "TreeId": "Tree_34_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_34_Winter"
     },
     {
-      "TreeId": "Tree_35_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_35_Fall"
     },
     {
-      "TreeId": "Tree_35_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_35_Spring"
     },
     {
-      "TreeId": "Tree_35_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_35_Winter"
     },
     {
-      "TreeId": "Tree_36_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_36_Fall"
     },
     {
-      "TreeId": "Tree_36_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_36_Spring"
     },
     {
-      "TreeId": "Tree_36_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_36_Winter"
     },
     {
-      "TreeId": "Tree_37_Fall",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_37_Fall"
     },
     {
-      "TreeId": "Tree_37_Spring",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_37_Spring"
     },
     {
-      "TreeId": "Tree_37_Winter",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "Tree_37_Winter"
     },
     {
-      "TreeId": "TreeTrunk_01",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_01"
     },
     {
-      "TreeId": "TreeTrunk_02",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_02"
     },
     {
-      "TreeId": "TreeTrunk_03",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_03"
     },
     {
-      "TreeId": "TreeTrunk_04",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_04"
     },
     {
-      "TreeId": "TreeTrunk_05",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_05"
     },
     {
-      "TreeId": "TreeTrunk_06",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_06"
     },
     {
-      "TreeId": "TreeTrunk_07",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_07"
     },
     {
-      "TreeId": "TreeTrunk_08",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_08"
     },
     {
-      "TreeId": "TreeTrunk_09",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_09"
     },
     {
-      "TreeId": "TreeTrunk_10",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_10"
     },
     {
-      "TreeId": "TreeTrunk_11",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_11"
     },
     {
-      "TreeId": "TreeTrunk_12",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_12"
     },
     {
-      "TreeId": "TreeTrunk_13",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_13"
     },
     {
-      "TreeId": "TreeTrunk_14",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_14"
     },
     {
-      "TreeId": "TreeTrunk_15",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_15"
     },
     {
-      "TreeId": "TreeTrunk_16",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_16"
     },
     {
-      "TreeId": "TreeTrunk_17",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_17"
     },
     {
-      "TreeId": "TreeTrunk_18",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_18"
     },
     {
-      "TreeId": "TreeTrunk_19",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_19"
     },
     {
-      "TreeId": "TreeTrunk_20",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_20"
     },
     {
-      "TreeId": "TreeTrunk_21",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_21"
     },
     {
-      "TreeId": "TreeTrunk_22",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_22"
     },
     {
-      "TreeId": "TreeTrunk_23",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_23"
     },
     {
-      "TreeId": "TreeTrunk_24",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_24"
     },
     {
-      "TreeId": "TreeTrunk_25",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_25"
     },
     {
-      "TreeId": "TreeTrunk_26",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_26"
     },
     {
-      "TreeId": "TreeTrunk_27",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_27"
     },
     {
-      "TreeId": "TreeTrunk_28",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_28"
     },
     {
-      "TreeId": "TreeTrunk_29",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_29"
     },
     {
-      "TreeId": "TreeTrunk_30",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_30"
     },
     {
-      "TreeId": "TreeTrunk_31",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_31"
     },
     {
-      "TreeId": "TreeTrunk_32",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_32"
     },
     {
-      "TreeId": "TreeTrunk_33",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_33"
     },
     {
-      "TreeId": "TreeTrunk_34",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_34"
     },
     {
-      "TreeId": "TreeTrunk_35",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_35"
     },
     {
-      "TreeId": "TreeTrunk_36",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_36"
     },
     {
-      "TreeId": "TreeTrunk_37",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_37"
     },
     {
-      "TreeId": "TreeTrunk_38",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_38"
     },
     {
-      "TreeId": "TreeTrunk_39",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_39"
     },
     {
-      "TreeId": "TreeTrunk_40",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_40"
     },
     {
-      "TreeId": "TreeTrunk_41",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_41"
     },
     {
-      "TreeId": "TreeTrunk_42",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_42"
     },
     {
-      "TreeId": "TreeTrunk_43",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_43"
     },
     {
-      "TreeId": "TreeTrunk_44",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_44"
     },
     {
-      "TreeId": "TreeTrunk_45",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_45"
     },
     {
-      "TreeId": "TreeTrunk_46",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_46"
     },
     {
-      "TreeId": "TreeTrunk_47",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_47"
     },
     {
-      "TreeId": "TreeTrunk_48",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_48"
     },
     {
-      "TreeId": "TreeTrunk_49",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_49"
     },
     {
-      "TreeId": "TreeTrunk_50",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_50"
     },
     {
-      "TreeId": "TreeTrunk_51",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_51"
     },
     {
-      "TreeId": "TreeTrunk_52",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_52"
     },
     {
-      "TreeId": "TreeTrunk_53",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_53"
     },
     {
-      "TreeId": "TreeTrunk_54",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_54"
     },
     {
-      "TreeId": "TreeTrunk_55",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_55"
     },
     {
-      "TreeId": "TreeTrunk_56",
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
-      }
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
+      },
+      "TreeId": "TreeTrunk_56"
     }
   ],
   "Rocks": [
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_01",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_02",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_03",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_04",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_05",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_06",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_07",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_08",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_09",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_10",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_11",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_12",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_13",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_14",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_15",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_16",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_17",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_18",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_19",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_20",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_21",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_22",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_23",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_24",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_25",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_26",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_27",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_28",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_29",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_30",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_31",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_32",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_33",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_34",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_35",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_36",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_37",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_38",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_39",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_40",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_41",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_42",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_43",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_44",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_45",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_46",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_47",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_48",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_49",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_50",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_51",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_52",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_53",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_54",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_55",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_56",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_57",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_58",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_59",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "HardRock_60",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_32",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_01",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_02",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_03",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_04",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_05",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_06",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_07",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_08",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_09",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_10",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_11",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_12",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_13",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_14",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_15",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_16",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_17",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_18",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_19",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_20",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_21",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_22",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_23",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_24",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_25",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_26",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_27",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_28",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_29",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
+      "MaxHealth": 100,
+      "Radius": 0.5,
       "RockId": "SoftRock_30",
-      "MaxHealth": 100,
-      "Radius": 0.5,
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     },
     {
-      "RockId": "SoftRock_31",
       "MaxHealth": 100,
       "Radius": 0.5,
+      "RockId": "SoftRock_31",
       "Separation": {
         "AddRadius": 0.5,
-        "AffectingCoeff": 1
+        "AffectingCoeff": 1,
+        "AffectedCoeff": 0
       }
     }
   ],
@@ -4232,36 +4569,49 @@
     {
       "Has": [
         {
-          "Position": {}
+          "Position": {
+            "Value": "0, 0, 0"
+          }
         }
       ],
       "Add": [
         {
-          "CachePosition": {}
+          "CachePosition": {
+            "Value": "0, 0, 0"
+          }
         }
       ]
     },
     {
       "Has": [
         {
-          "Separation": {}
+          "Separation": {
+            "AddRadius": 0,
+            "AffectingCoeff": 0,
+            "AffectedCoeff": 0
+          }
         }
       ],
       "Add": [
         {
-          "SeparationForce": {}
+          "SeparationForce": {
+            "Force": "0, 0",
+            "ForcesCount": 0
+          }
         }
       ]
     },
     {
       "Has": [
         {
-          "MaxHealth": {}
+          "MaxHealth": 0
         }
       ],
       "Add": [
         {
-          "RecivedDamage": {}
+          "RecivedDamage": {
+            "Value": 0
+          }
         }
       ]
     },
@@ -4273,7 +4623,11 @@
       ],
       "Add": [
         {
-          "BehaviourState": {}
+          "BehaviourState": {
+            "State": null,
+            "Percent": 0,
+            "Duration": 0
+          }
         }
       ]
     },
@@ -4285,27 +4639,65 @@
       ],
       "Add": [
         {
-          "SquadMemberCount": {}
+          "SquadMemberCount": {
+            "Value": 0
+          }
         }
       ]
     },
     {
       "Has": [
         {
-          "MaxHealth": {}
+          "MaxHealth": 0
         }
       ],
       "Add": [
         {
-          "AutoHeal": {}
+          "AutoHeal": {
+            "HealPerSecond": 0,
+            "HealDelay": 0,
+            "HealLoadPercent": 0
+          }
         }
       ],
       "DefaultOnAdd": {
         "AutoHeal": {
           "HealPerSecond": 20,
-          "HealDelay": 10
+          "HealDelay": 10,
+          "HealLoadPercent": 0
         }
       }
+    },
+    {
+      "Has": [
+        {
+          "Position": {
+            "Value": "0, 0, 0"
+          }
+        },
+        {
+          "TargetSearchDistance": 0
+        }
+      ],
+      "Add": [
+        {
+          "TargetSearchPosition": {
+            "Value": "0, 0, 0"
+          }
+        }
+      ]
+    },
+    {
+      "Has": [
+        {
+          "CactusId": ""
+        }
+      ],
+      "Add": [
+        {
+          "Targets": {}
+        }
+      ]
     }
   ]
 }

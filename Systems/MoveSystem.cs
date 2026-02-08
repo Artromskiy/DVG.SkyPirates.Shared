@@ -3,6 +3,7 @@ using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 using DVG.SkyPirates.Shared.Tools.Extensions;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -14,7 +15,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class MoveSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Rotation, Destination, MaxSpeed>();
+            WithAll<Position, Rotation, Destination, MaxSpeed>().NotDisposing();
 
         private readonly World _world;
         private const int RotateSpeed = 720;

@@ -3,6 +3,7 @@ using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -16,11 +17,12 @@ namespace DVG.SkyPirates.Shared.Systems
         private const int SquareSize = 1;
 
         private readonly QueryDescription _affectedDesc = new QueryDescription().
-            WithAll<Position, Separation>();
+            WithAll<Position, Separation>().NotDisposing();
 
         private readonly QueryDescription _affectingDesc = new QueryDescription().
-            WithAll<Position, Separation, Radius>();
+            WithAll<Position, Separation, Radius>().NotDisposing();
 
+        //private readonly Lookup2D<List<Entity>> _partitioning = new();
         private readonly Dictionary<int2, List<Entity>> _partitioning = new();
         private readonly List<Entity> _targetsCache = new();
 

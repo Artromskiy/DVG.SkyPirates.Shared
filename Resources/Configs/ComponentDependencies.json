@@ -76,5 +76,32 @@
         "HealDelay": 10
       }
     }
+  },
+  {
+    "Has": [
+      {
+        "Position": {}
+      },
+      {
+        "TargetSearchDistance": {}
+      }
+    ],
+    "Add": [
+      {
+        "TargetSearchPosition": {}
+      }
+    ]
+  },
+  {
+    "Has": [
+      {
+        "CactusId": {}
+      }
+    ],
+    "Add": [
+      {
+        "Targets": {}
+      }
+    ]
   }
 ]

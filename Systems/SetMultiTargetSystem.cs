@@ -4,6 +4,7 @@ using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -11,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SetMultiTargetSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, Team>();
+            WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, Team>().NotDisposing();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;
@@ -46,9 +47,10 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 _targetsCache.Clear();
                 _targetSearch.FindTargets(ref searchDistance, ref searchPosition, ref team, _targetsCache);
-                target.Entities = new();
-                foreach (var item in _targetsCache)
-                    target.Entities.Add(item);
+                if (_targetsCache.Count > 0)
+                {
+                    target.Entities = new(_targetsCache);
+                }
             }
         }
     }

@@ -4,6 +4,7 @@ using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -13,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SetSingleTargetSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Target, Team>();
+            WithAll<Position, Target, Team>().NotDisposing();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;

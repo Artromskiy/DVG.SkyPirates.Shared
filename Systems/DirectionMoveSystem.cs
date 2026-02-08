@@ -2,12 +2,13 @@
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
     public class DirectionMoveSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, Direction, MaxSpeed>();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Position, Direction, MaxSpeed>().NotDisposing();
         private readonly World _world;
         public DirectionMoveSystem(World world)
         {

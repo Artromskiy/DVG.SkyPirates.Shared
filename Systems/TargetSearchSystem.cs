@@ -4,6 +4,7 @@ using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices;
+using DVG.SkyPirates.Shared.Systems.Special;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -15,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class TargetSearchSystem : ITargetSearchSystem // Should be used before any Position/Team writes for accurate search
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<RecivedDamage, Position, Team>();
+            WithAll<RecivedDamage, Position, Team>().NotDisposing();
 
         private const int SquareSize = 2;
 
@@ -30,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _world = world;
         }
 
-        public Entity FindTarget(
+        public Entity? FindTarget(
             ref Position position,
             ref TargetSearchDistance searchDistance,
             ref TargetSearchPosition searchPosition,
@@ -41,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             var origin = position.Value.xz;
 
-            Entity best = Entity.Null;
+            Entity? best = null;
             fix bestDist = fix.MaxValue;
             int bestSyncId = int.MaxValue;
 
@@ -51,7 +52,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 var syncId = _world.Get<SyncId>(entity).Value;
                 var dist = fix2.SqrDistance(targetPosXZ, origin);
 
-                if (best == Entity.Null ||
+                if (best == null ||
                     dist < bestDist ||
                     (dist == bestDist && syncId < bestSyncId))
                 {
@@ -77,6 +78,8 @@ namespace DVG.SkyPirates.Shared.Systems
             var range = new fix2(distance, distance);
             var min = GetQuantizedSquare(center - range);
             var max = GetQuantizedSquare(center + range);
+            var searchPositionXZ = searchPosition.Value.xz;
+            var sqrSearchDistance = searchDistance.Value * searchDistance.Value;
 
             foreach (var kv in _targets)
             {
@@ -93,7 +96,8 @@ namespace DVG.SkyPirates.Shared.Systems
                             continue;
 
                         for (int i = 0; i < list.Count; i++)
-                            targets.Add(list[i]);
+                            if (fix2.SqrDistance(_world.Get<Position>(list[i]).Value.xz, searchPositionXZ) < sqrSearchDistance)
+                                targets.Add(list[i]);
                     }
                 }
             }

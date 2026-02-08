@@ -28,7 +28,7 @@ namespace DVG.SkyPirates.Shared.DI
                 //typeof(CommandLogger)
             };
             //RegisterSingleton(typeof(IPathFactory<>), typeof(ResourcesFactory<>));
-
+            World.SharedJobScheduler = new Schedulers.JobScheduler(new Schedulers.JobScheduler.Config() { MaxExpectedConcurrentJobs = 4, ThreadCount = 4, ThreadPrefixName = "ECS_" });
             container.RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
             container.RegisterSingleton<IGlobalConfigFactory, GlobalConfigFactory>();
             container.RegisterSingleton<IPackedCirclesFactory, PackedCirclesFactory>();
@@ -60,6 +60,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(SquadTargetSearchDistanceSystem), // set TargetSearchDistance of Squad
                 typeof(SquadMemberDestinationSystem), // positioning of squad members
                 typeof(SquadMemberSearchSyncSystem), // copies TargetSearch from squad to members
+                typeof(DirectionMoveSystem), // moves entities with Direction (squads)
                 typeof(SetSingleTargetSystem),
                 typeof(SetMultiTargetSystem),
 
@@ -75,7 +76,6 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(AutoHealSystem),
                 typeof(DamageSystem),
                 typeof(MarkDeadSystem),
-                typeof(DeadSquadUnitsSystem),
                 //typeof(LogHashSumSystem),
             };
             container.RegisterSingleton<ITickableExecutorService, TickableExecutorService>();

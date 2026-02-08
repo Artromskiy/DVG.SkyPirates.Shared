@@ -3,6 +3,7 @@ using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 using DVG.SkyPirates.Shared.Tools.Extensions;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -14,7 +15,7 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private static readonly fix _reduceImpactDistance = 1;
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Destination, Position, ImpactDistance, Target>();
+            WithAll<Destination, Position, ImpactDistance, Target>().NotDisposing();
 
         private readonly World _world;
 

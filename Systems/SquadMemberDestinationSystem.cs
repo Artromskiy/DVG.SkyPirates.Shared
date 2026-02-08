@@ -1,11 +1,11 @@
 ﻿using Arch.Core;
 using DVG.Core.Collections;
-using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -13,10 +13,10 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SquadMemberDestinationSystem : ITickableExecutor
     {
         private readonly QueryDescription _unitsDesc = new QueryDescription().
-            WithAll<SquadMember, Destination>();
+            WithAll<SquadMember, Destination>().NotDisposing();
 
         private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SyncId, Position, Rotation, Fixation, TargetSearchDistance, TargetSearchPosition>();
+            WithAll<Squad>().NotDisposing();
 
         private readonly World _world;
         private readonly IPackedCirclesFactory _packedCirclesFactory;
@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _unitsPerSquad.Clear();
 
             var collectSquadsQuery = new CollectDataPerSquadQuery(_dataPerSquad);
-            _world.InlineQuery<CollectDataPerSquadQuery, SyncId, Position, Rotation, SquadMemberCount>(_unitsDesc, ref collectSquadsQuery);
+            _world.InlineQuery<CollectDataPerSquadQuery, SyncId, Position, Rotation, SquadMemberCount>(_squadsDesc, ref collectSquadsQuery);
 
             var collectUnitsQuery = new CollectUnitsPerSquadQuery(_unitsPerSquad);
             _world.InlineQuery<CollectUnitsPerSquadQuery, SquadMember, SyncId>(_unitsDesc, ref collectUnitsQuery);
@@ -54,7 +54,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             var applyQuery = new ApplySquadMembersDestinationQuery(_orderPerUnit, _dataPerSquad, _packedCirclesFactory);
             _world.InlineQuery<ApplySquadMembersDestinationQuery, SyncId, SquadMember, Destination>
-                (_squadsDesc, ref applyQuery);
+                (_unitsDesc, ref applyQuery);
         }
 
         private readonly struct CollectDataPerSquadQuery : IForEach<SyncId, Position, Rotation, SquadMemberCount>

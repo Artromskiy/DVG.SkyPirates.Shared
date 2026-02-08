@@ -8,8 +8,13 @@ namespace DVG.SkyPirates.Shared.Factories
     public class PackedCirclesFactory : IPackedCirclesFactory
     {
         private const string PathFormat = "Configs/PackedCircles/PackedCirclesModel{0}";
+        private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache = new();
         private readonly IPathFactory<PackedCirclesConfig> _circlesFactory;
-        private readonly Dictionary<int, PackedCirclesConfig> _circlesConfigCache;
+
+        public PackedCirclesFactory(IPathFactory<PackedCirclesConfig> circlesFactory)
+        {
+            _circlesFactory = circlesFactory;
+        }
 
         public PackedCirclesConfig Create(int parameters)
         {

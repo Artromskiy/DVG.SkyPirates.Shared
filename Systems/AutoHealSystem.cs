@@ -3,13 +3,14 @@ using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class AutoHealSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Health, MaxHealth, AutoHeal, RecivedDamage>();
+            WithAll<Health, MaxHealth, AutoHeal, RecivedDamage>().NotDisposing();
 
         private readonly World _world;
 

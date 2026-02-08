@@ -4,13 +4,14 @@ using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
     public class MultiPreAttackSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<BehaviourState, ImpactDistance, Position, Targets>();
+            WithAll<BehaviourState, ImpactDistance, Position, Targets>().NotDisposing();
 
         private readonly World _world;
 

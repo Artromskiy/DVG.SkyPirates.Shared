@@ -3,16 +3,17 @@ using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class SimpleBehaviourSystem : ITickableExecutor
     {
         private readonly QueryDescription _descSwitch = new QueryDescription().
-            WithAll<BehaviourState, BehaviourConfig>();
+            WithAll<BehaviourState, BehaviourConfig>().NotDisposing();
 
         private readonly QueryDescription _descTick = new QueryDescription().
-            WithAll<BehaviourState>();
+            WithAll<BehaviourState>().NotDisposing();
 
         private readonly World _world;
 

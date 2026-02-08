@@ -4,6 +4,7 @@ using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Systems.Special;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -12,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private const int BaseRange = 5;
 
         private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SquadMemberCount, Fixation, TargetSearchDistance>();
+            WithAll<Squad, SquadMemberCount, Fixation, TargetSearchDistance>().NotDisposing();
 
         private readonly IPackedCirclesFactory _packedCirclesFactory;
         private readonly World _world;

@@ -5,8 +5,8 @@ using System;
 using System.Buffers;
 using System.Globalization;
 using System.Text;
-using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace DVG.SkyPirates.Shared.Tools.Json
 {
@@ -22,10 +22,9 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _options.IncludeFields = true;
             _options.IgnoreReadOnlyFields = false;
             _options.IgnoreReadOnlyProperties = false;
-            //_options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
             _options.WriteIndented = true;
+            _options.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             _options.TypeInfoResolver = new DataContractResolver();
-
             var format = CultureInfo.InvariantCulture;
 
             _options.Converters.Add(new FixConverter());
@@ -91,7 +90,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _writer ??= new Utf8JsonWriter(buffer, new JsonWriterOptions()
             {
                 Indented = true,
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                SkipValidation = true,
             });
             JsonSerializer.Serialize(_writer, data, _options);
         }
