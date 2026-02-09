@@ -1,6 +1,5 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components.Config;
-using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using System;
 
@@ -19,7 +18,6 @@ namespace DVG.SkyPirates.Shared.Archetypes
                 Fixation,
                 MaxSpeed,
                 TargetSearchDistance,
-                TargetSearchPosition,
                 Radius,
                 Team>
                 (entity);

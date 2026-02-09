@@ -10,6 +10,7 @@ namespace DVG.SkyPirates.Shared.IFactories
         int Next();
     }
 
+    [Obsolete]
     public interface IEntityFactory<ID> : IFactory<Entity, (ID id, int entityId)>
         where ID : struct, IId, IEquatable<ID>
     { }

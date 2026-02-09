@@ -1,75 +1,37 @@
 [
   {
-    "Has": [
-      {
-        "Position": {}
-      }
-    ],
-    "Add": [
-      {
-        "CachePosition": {}
-      }
-    ]
+    "Has": {
+      "Position": {}
+    },
+    "Add": {
+      "CachePosition": {}
+    }
   },
   {
-    "Has": [
-      {
-        "Separation": {}
-      }
-    ],
-    "Add": [
-      {
-        "SeparationForce": {}
-      }
-    ]
+    "Has": {
+      "Position": {},
+      "TargetSearchDistance": {}
+    },
+    "Add": {
+      "TargetSearchPosition": {}
+    }
   },
   {
-    "Has": [
-      {
-        "MaxHealth": {}
-      }
-    ],
-    "Add": [
-      {
-        "RecivedDamage": {}
-      }
-    ]
+    "Has": {
+      "Separation": {}
+    },
+    "Add": {
+      "SeparationForce": {}
+    }
   },
   {
-    "Has": [
-      {
-        "BehaviourConfig": {}
-      }
-    ],
-    "Add": [
-      {
-        "BehaviourState": {}
-      }
-    ]
-  },
-  {
-    "Has": [
-      {
-        "Squad": {}
-      }
-    ],
-    "Add": [
-      {
-        "SquadMemberCount": {}
-      }
-    ]
-  },
-  {
-    "Has": [
-      {
-        "MaxHealth": {}
-      }
-    ],
-    "Add": [
-      {
-        "AutoHeal": {}
-      }
-    ],
+    "Has": {
+      "MaxHealth": {}
+    },
+    "Add": {
+      "RecivedDamage": {},
+      "AutoHeal": {}
+    },
     "DefaultOnAdd": {
       "AutoHeal": {
         "HealPerSecond": 20,
@@ -78,30 +40,38 @@
     }
   },
   {
-    "Has": [
-      {
-        "Position": {}
-      },
-      {
-        "TargetSearchDistance": {}
-      }
-    ],
-    "Add": [
-      {
-        "TargetSearchPosition": {}
-      }
-    ]
+    "Has": {
+      "BehaviourConfig": {}
+    },
+    "Add": {
+      "BehaviourState": {}
+    }
   },
   {
-    "Has": [
-      {
-        "CactusId": {}
-      }
-    ],
-    "Add": [
-      {
-        "Targets": {}
-      }
-    ]
+    "Has": {
+      "Squad": {}
+    },
+    "Add": {
+      "SquadMemberCount": {},
+      "Collision": {}
+    }
+  },
+  {
+    "Has": {
+      "CactusId": {}
+    },
+    "Add": {
+      "Targets": {}
+    }
+  },
+  {
+    "Has": {
+      "UnitId": {}
+    },
+    "Add": {
+      "Collision": {},
+      "Target": {},
+      "Destination": {}
+    }
   }
 ]

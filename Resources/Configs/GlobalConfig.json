@@ -4567,99 +4567,59 @@
   ],
   "ComponentDependencies": [
     {
-      "Has": [
-        {
-          "Position": {
-            "Value": "0, 0, 0"
-          }
+      "Has": {
+        "Position": {
+          "Value": "0, 0, 0"
         }
-      ],
-      "Add": [
-        {
-          "CachePosition": {
-            "Value": "0, 0, 0"
-          }
+      },
+      "Add": {
+        "CachePosition": {
+          "Value": "0, 0, 0"
         }
-      ]
+      }
     },
     {
-      "Has": [
-        {
-          "Separation": {
-            "AddRadius": 0,
-            "AffectingCoeff": 0,
-            "AffectedCoeff": 0
-          }
+      "Has": {
+        "Position": {
+          "Value": "0, 0, 0"
+        },
+        "TargetSearchDistance": 0
+      },
+      "Add": {
+        "TargetSearchPosition": {
+          "Value": "0, 0, 0"
         }
-      ],
-      "Add": [
-        {
-          "SeparationForce": {
-            "Force": "0, 0",
-            "ForcesCount": 0
-          }
-        }
-      ]
+      }
     },
     {
-      "Has": [
-        {
-          "MaxHealth": 0
+      "Has": {
+        "Separation": {
+          "AddRadius": 0,
+          "AffectingCoeff": 0,
+          "AffectedCoeff": 0
         }
-      ],
-      "Add": [
-        {
-          "RecivedDamage": {
-            "Value": 0
-          }
+      },
+      "Add": {
+        "SeparationForce": {
+          "Force": "0, 0",
+          "ForcesCount": 0
         }
-      ]
+      }
     },
     {
-      "Has": [
-        {
-          "BehaviourConfig": {}
+      "Has": {
+        "MaxHealth": 0
+      },
+      "Add": {
+        "AutoHeal": {
+          "HealPerSecond": 0,
+          "HealDelay": 0,
+          "HealLoadPercent": 0
+        },
+        "RecivedDamage": {
+          "Value": 0
         }
-      ],
-      "Add": [
-        {
-          "BehaviourState": {
-            "State": null,
-            "Percent": 0,
-            "Duration": 0
-          }
-        }
-      ]
-    },
-    {
-      "Has": [
-        {
-          "Squad": {}
-        }
-      ],
-      "Add": [
-        {
-          "SquadMemberCount": {
-            "Value": 0
-          }
-        }
-      ]
-    },
-    {
-      "Has": [
-        {
-          "MaxHealth": 0
-        }
-      ],
-      "Add": [
-        {
-          "AutoHeal": {
-            "HealPerSecond": 0,
-            "HealDelay": 0,
-            "HealLoadPercent": 0
-          }
-        }
-      ],
+      },
       "DefaultOnAdd": {
         "AutoHeal": {
           "HealPerSecond": 20,
@@ -4669,35 +4629,48 @@
       }
     },
     {
-      "Has": [
-        {
-          "Position": {
-            "Value": "0, 0, 0"
-          }
-        },
-        {
-          "TargetSearchDistance": 0
+      "Has": {
+        "BehaviourConfig": {}
+      },
+      "Add": {
+        "BehaviourState": {
+          "State": null,
+          "Percent": 0,
+          "Duration": 0
         }
-      ],
-      "Add": [
-        {
-          "TargetSearchPosition": {
-            "Value": "0, 0, 0"
-          }
-        }
-      ]
+      }
     },
     {
-      "Has": [
-        {
-          "CactusId": ""
+      "Has": {
+        "Squad": {}
+      },
+      "Add": {
+        "Collision": {},
+        "SquadMemberCount": {
+          "Value": 0
         }
-      ],
-      "Add": [
-        {
-          "Targets": {}
-        }
-      ]
+      }
+    },
+    {
+      "Has": {
+        "CactusId": ""
+      },
+      "Add": {
+        "Targets": {}
+      }
+    },
+    {
+      "Has": {
+        "UnitId": ""
+      },
+      "Add": {
+        "Collision": {},
+        "Destination": {
+          "Position": "0, 0, 0",
+          "Rotation": 0
+        },
+        "Target": {}
+      }
     }
   ]
 }

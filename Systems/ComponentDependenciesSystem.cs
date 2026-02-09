@@ -7,7 +7,6 @@ using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -24,11 +23,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _dependencies = Array.ConvertAll(config, dependency =>
             {
                 HashSet<Type> allComponents = new();
-                foreach (var has in dependency.Has)
-                    allComponents.UnionWith(has.GetTypes());
-
-                var componentTypes = allComponents.Select(t => Component.GetComponentType(t)).ToArray();
-                Signature allSignature = new(componentTypes);
+                Signature allSignature = new(Array.ConvertAll(dependency.Has.GetTypes(), Component.GetComponentType));
                 return new DependencyData(allSignature, dependency.Add, dependency.DefaultOnAdd);
             });
         }
@@ -38,10 +33,7 @@ namespace DVG.SkyPirates.Shared.Systems
             foreach (var data in _dependencies)
             {
                 var ensureAction = new AddComponentAction(_world, data.HasComponentSignature, data.DefaultComponentData);
-                foreach (var add in data.AddComponentData)
-                {
-                    add.ForEach(ref ensureAction);
-                }
+                data.AddComponentData.ForEach(ref ensureAction);
             }
         }
 
@@ -62,17 +54,18 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 var desc = new QueryDescription(all: _allSignature, none: Component<T, Dispose>.Signature);
                 var defaultValue = _defaults?.Get<T>();
-                _world.Add(desc, defaultValue ?? default);
+                if (_world.CountEntities(desc) > 0)
+                    _world.Add(desc, defaultValue ?? default);
             }
         }
 
         private readonly struct DependencyData
         {
             public readonly Signature HasComponentSignature;
-            public readonly ComponentsData[] AddComponentData;
+            public readonly ComponentsData AddComponentData;
             public readonly ComponentsData DefaultComponentData;
 
-            public DependencyData(Signature hasComponentSignature, ComponentsData[] addComponentData, ComponentsData defaultComponentData)
+            public DependencyData(Signature hasComponentSignature, ComponentsData addComponentData, ComponentsData defaultComponentData)
             {
                 HasComponentSignature = hasComponentSignature;
                 AddComponentData = addComponentData;

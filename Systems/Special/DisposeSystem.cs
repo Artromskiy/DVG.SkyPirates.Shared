@@ -7,7 +7,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 {
     internal class DisposeSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Dispose>().NotDisposing();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Dispose>();
         private readonly List<Entity> _entitiesCache = new();
         private readonly World _world;
 

@@ -1,4 +1,5 @@
 ﻿using Arch.Core;
+using DVG.Core.Collections;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -18,13 +19,15 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<RecivedDamage, Position, Team>().NotDisposing();
 
-        private const int SquareSize = 2;
+        private const int SquareSize = 5;
 
         private readonly World _world;
 
         // teamId -> quad -> entities
-        private readonly Dictionary<int, Dictionary<int2, List<Entity>>> _targets = new();
+        private readonly Dictionary<int, Lookup2D<List<Entity>>> _targets = new();
         private readonly List<Entity> _targetsCache = new();
+
+        private readonly Lookup _entitiesLookup = new();
 
         public TargetSearchSystem(World world)
         {
@@ -72,6 +75,7 @@ namespace DVG.SkyPirates.Shared.Systems
             ref Team team,
             List<Entity> targets)
         {
+            _entitiesLookup.Clear();
             var center = searchPosition.Value.xz;
             var distance = searchDistance.Value;
 
@@ -92,12 +96,20 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     for (int x = min.x; x <= max.x; x++)
                     {
-                        if (!grid.TryGetValue(new int2(x, y), out var list))
+                        if (!grid.TryGetValue(x, y, out var list))
                             continue;
 
                         for (int i = 0; i < list.Count; i++)
+                        {
+                            if (_entitiesLookup.Has(list[i].Id))
+                                continue;
+
                             if (fix2.SqrDistance(_world.Get<Position>(list[i]).Value.xz, searchPositionXZ) < sqrSearchDistance)
+                            {
                                 targets.Add(list[i]);
+                                _entitiesLookup.Add(list[i].Id);
+                            }
+                        }
                     }
                 }
             }
@@ -106,8 +118,7 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             foreach (var team in _targets.Values)
-                foreach (var quad in team.Values)
-                    quad.Clear();
+                team.Clear();
 
             var query = new PartitionQuery(_targets);
             _world.InlineEntityQuery<PartitionQuery, Position, Team>(_desc, ref query);
@@ -115,9 +126,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly struct PartitionQuery : IForEachWithEntity<Position, Team>
         {
-            private readonly Dictionary<int, Dictionary<int2, List<Entity>>> _targets;
+            private readonly Dictionary<int, Lookup2D<List<Entity>>> _targets;
 
-            public PartitionQuery(Dictionary<int, Dictionary<int2, List<Entity>>> targets)
+            public PartitionQuery(Dictionary<int, Lookup2D<List<Entity>>> targets)
             {
                 _targets = targets;
             }
@@ -129,8 +140,8 @@ namespace DVG.SkyPirates.Shared.Systems
                 if (!_targets.TryGetValue(t.Id, out var team))
                     _targets[t.Id] = team = new();
 
-                if (!team.TryGetValue(quad, out var list))
-                    team[quad] = list = new List<Entity>(8);
+                if (!team.TryGetValue(quad.x, quad.y, out var list))
+                    team[quad.x, quad.y] = list = new List<Entity>(8);
 
                 list.Add(e);
             }

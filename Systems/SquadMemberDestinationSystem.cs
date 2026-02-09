@@ -25,6 +25,8 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly Lookup<SquadData> _dataPerSquad = new();
         private readonly Dictionary<int, List<SyncId>> _unitsPerSquad = new();
 
+        private readonly Queue<List<SyncId>> _unitsCache = new();
+
         public SquadMemberDestinationSystem(World world, IPackedCirclesFactory packedCirclesFactory)
         {
             _world = world;
@@ -33,6 +35,11 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
+            foreach (var item in _unitsPerSquad)
+            {
+                item.Value.Clear();
+                _unitsCache.Enqueue(item.Value);
+            }
             _orderPerUnit.Clear();
             _dataPerSquad.Clear();
             _unitsPerSquad.Clear();
@@ -40,7 +47,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var collectSquadsQuery = new CollectDataPerSquadQuery(_dataPerSquad);
             _world.InlineQuery<CollectDataPerSquadQuery, SyncId, Position, Rotation, SquadMemberCount>(_squadsDesc, ref collectSquadsQuery);
 
-            var collectUnitsQuery = new CollectUnitsPerSquadQuery(_unitsPerSquad);
+            var collectUnitsQuery = new CollectUnitsPerSquadQuery(_unitsPerSquad, _unitsCache);
             _world.InlineQuery<CollectUnitsPerSquadQuery, SquadMember, SyncId>(_unitsDesc, ref collectUnitsQuery);
 
             foreach (var item in _unitsPerSquad)
@@ -75,16 +82,18 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly struct CollectUnitsPerSquadQuery : IForEach<SquadMember, SyncId>
         {
             private readonly Dictionary<int, List<SyncId>> _map;
+            private readonly Queue<List<SyncId>> _unitsCache;
 
-            public CollectUnitsPerSquadQuery(Dictionary<int, List<SyncId>> map)
+            public CollectUnitsPerSquadQuery(Dictionary<int, List<SyncId>> map, Queue<List<SyncId>> unitsCache)
             {
                 _map = map;
+                _unitsCache = unitsCache;
             }
 
             public void Update(ref SquadMember member, ref SyncId syncId)
             {
                 if (!_map.TryGetValue(member.SquadId, out var list))
-                    _map[member.SquadId] = list = new(8);
+                    _map[member.SquadId] = _unitsCache.TryDequeue(out list) ? list : list = new(8); // really wtf?
 
                 list.Add(syncId);
             }

@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class HexMapCollisionSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, CachePosition, Radius>().NotDisposing();
+            WithAll<Position, CachePosition, Radius, Collision>().NotDisposing();
 
         //private readonly List<Segment> _segmentsCache = new();
         private readonly ThreadLocal<List<Segment>> _segmentsCache = new(() => new List<Segment>());
@@ -33,7 +33,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             // TODO multithread this thing
             var query = new SolveCollsionQuery(hexMap, _segmentsCache);
-            _world.InlineParallelQuery<SolveCollsionQuery, Position, CachePosition, Radius>(_desc, ref query);
+            _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, Radius>(_desc, ref query);
         }
 
         private readonly struct SolveCollsionQuery : IForEach<Position, CachePosition, Radius>
