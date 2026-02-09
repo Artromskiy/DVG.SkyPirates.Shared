@@ -49,7 +49,6 @@ namespace DVG.Core.Components
             action.Invoke<RockId>();
             action.Invoke<Rotation>();
             action.Invoke<Separation>();
-            action.Invoke<SeparationForce>();
             action.Invoke<Squad>();
             action.Invoke<SquadMember>();
             action.Invoke<SquadMemberCount>();

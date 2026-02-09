@@ -11,7 +11,6 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly World _world;
 
         private readonly QueryDescription _destinationQuery = new QueryDescription().WithAll<Destination, Position, Rotation>().NotDisposing();
-        private readonly QueryDescription _separationForceDesc = new QueryDescription().WithAll<SeparationForce>().NotDisposing();
         private readonly QueryDescription _recivedDamageDesc = new QueryDescription().WithAll<RecivedDamage>().NotDisposing();
         private readonly QueryDescription _targetDesc = new QueryDescription().WithAll<Target>().NotDisposing();
         private readonly QueryDescription _targetsDesc = new QueryDescription().WithAll<Targets>().NotDisposing();
@@ -23,7 +22,6 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _world.Set<SeparationForce>(in _separationForceDesc, default);
             _world.Set<RecivedDamage>(in _recivedDamageDesc, default);
             _world.Set<Target>(in _targetDesc, default);
             _world.Set<Targets>(in _targetsDesc, default);

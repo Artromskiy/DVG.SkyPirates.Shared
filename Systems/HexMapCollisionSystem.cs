@@ -16,7 +16,6 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, CachePosition, Radius, Collision>().NotDisposing();
 
-        //private readonly List<Segment> _segmentsCache = new();
         private readonly ThreadLocal<List<Segment>> _segmentsCache = new(() => new List<Segment>());
         private readonly World _world;
 
@@ -31,7 +30,6 @@ namespace DVG.SkyPirates.Shared.Systems
             if (hexMap.Data == null)
                 return;
 
-            // TODO multithread this thing
             var query = new SolveCollsionQuery(hexMap, _segmentsCache);
             _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, Radius>(_desc, ref query);
         }
@@ -39,7 +37,6 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly struct SolveCollsionQuery : IForEach<Position, CachePosition, Radius>
         {
             private readonly HexMap _hexMap;
-            //private readonly List<Segment> _segmentsCache;
             private readonly ThreadLocal<List<Segment>> _segmentsCache;
 
             public SolveCollsionQuery(HexMap hexMap, ThreadLocal<List<Segment>> segmentsCache)

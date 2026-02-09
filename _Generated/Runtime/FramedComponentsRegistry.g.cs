@@ -26,7 +26,6 @@ namespace DVG.Core.Components
             action.Invoke<Collision>();
             action.Invoke<Destination>();
             action.Invoke<RecivedDamage>();
-            action.Invoke<SeparationForce>();
             action.Invoke<SquadMemberCount>();
             action.Invoke<Target>();
             action.Invoke<Targets>();
