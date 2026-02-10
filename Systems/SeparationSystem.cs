@@ -6,7 +6,6 @@ using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Systems.Special;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -63,10 +62,9 @@ namespace DVG.SkyPirates.Shared.Systems
             public readonly void Update(ref SyncId syncId, ref Position position, ref Separation separation)
             {
                 _forces.TryGetValue(syncId.Value, out var force);
-                var combinedForce = force.Force / (force.ForcesCount == 0 ? 1 : force.ForcesCount);
-                var offset = (combinedForce.xy * separation.AffectedCoeff).x_y;
-                Debug.DrawRay((float3)position.Value, (float3)offset, Color.red, 1);
-                position.Value += offset;
+                var forcesCount = force.ForcesCount == 0 ? 1 : force.ForcesCount;
+                var offset = force.Force * (separation.AffectedCoeff / forcesCount);
+                position.Value += offset.x_y;
             }
         }
 
