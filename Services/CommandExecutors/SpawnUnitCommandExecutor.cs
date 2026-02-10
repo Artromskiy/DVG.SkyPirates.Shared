@@ -3,6 +3,7 @@ using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Special;
+using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using System;
@@ -13,10 +14,10 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         ICommandExecutor<SpawnUnitCommand>
     {
         private readonly IEntityFactory _commandEntityFactory;
-        private readonly IUnitFactory _unitFactory;
+        private readonly IConfigedEntityFactory<UnitId> _unitFactory;
         private readonly World _world;
 
-        public SpawnUnitCommandExecutor(World world, IUnitFactory unitFactory, IEntityFactory commandEntityFactory)
+        public SpawnUnitCommandExecutor(World world, IEntityFactory commandEntityFactory, IConfigedEntityFactory<UnitId> unitFactory)
         {
             _world = world;
             _unitFactory = unitFactory;

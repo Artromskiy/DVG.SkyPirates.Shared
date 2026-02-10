@@ -1,8 +1,6 @@
 ﻿using Arch.Core;
-using DVG.Core;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Factories;
-using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -32,18 +30,13 @@ namespace DVG.SkyPirates.Shared.DI
             container.RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
             container.RegisterSingleton<IGlobalConfigFactory, GlobalConfigFactory>();
             container.RegisterSingleton<IPackedCirclesFactory, PackedCirclesFactory>();
+            container.RegisterSingleton<IEntityDependencyFactory, EntityDependencyFactory>();
             container.RegisterSingleton<IWorldDataFactory, WorldDataFactory>();
             container.RegisterSingleton<IEntityFactory, EntityFactory>();
-            container.RegisterSingleton<ISquadFactory, SquadFactory>();
-            container.RegisterSingleton<IUnitFactory, UnitFactory>();
             container.RegisterSingleton<IHexMapFactory, HexMapFactory>();
+            container.RegisterSingleton<ISquadFactory, SquadFactory>();
 
-            container.RegisterSingleton<ITreeFactory, TreeFactory>();
-            container.RegisterSingleton<IFactory<Entity, (TreeId TreeId, int EntityId)>, TreeFactory>();
-            container.RegisterSingleton<IRockFactory, RockFactory>();
-            container.RegisterSingleton<IFactory<Entity, (RockId RockId, int EntityId)>, RockFactory>();
-            container.RegisterSingleton<ICactusFactory, CactusFactory>();
-            container.RegisterSingleton<IFactory<Entity, (CactusId CactusId, int EntityId)>, CactusFactory>();
+            container.RegisterSingleton(typeof(IConfigedEntityFactory<>), typeof(ConfigedEntityFactory<>));
 
             container.RegisterSingleton<ICommandExecutorService, CommandExecutorService>();
             container.Collection.Register<ICommandExecutor>(commandExecutors, Lifestyle.Singleton);
@@ -78,6 +71,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(MarkDeadSystem),
                 //typeof(LogHashSumSystem),
             };
+
             container.RegisterSingleton<ITickableExecutorService, TickableExecutorService>();
             container.Collection.Register<ITickableExecutor>(tickableExecutors, Lifestyle.Singleton);
 
