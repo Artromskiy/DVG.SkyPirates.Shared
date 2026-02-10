@@ -37,17 +37,20 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _forces.Clear();
-            _partitioning.Clear();
+            for (int i = 0; i < 2; i++)
+            {
+                _forces.Clear();
+                _partitioning.Clear();
 
-            var partitionQuery = new PartitioningQuery(_partitioning);
-            _world.InlineQuery<PartitioningQuery, SyncId, Position>(_affectedDesc, ref partitionQuery);
+                var partitionQuery = new PartitioningQuery(_partitioning);
+                _world.InlineQuery<PartitioningQuery, SyncId, Position>(_affectedDesc, ref partitionQuery);
 
-            var forceQuery = new SumSeparationForceQuery(_partitioning, _forces, _entitiesLookup, _targetsCache);
-            _world.InlineQuery<SumSeparationForceQuery, Position, Separation, Radius>(_affectingDesc, ref forceQuery);
+                var forceQuery = new SumSeparationForceQuery(_partitioning, _forces, _entitiesLookup, _targetsCache);
+                _world.InlineQuery<SumSeparationForceQuery, Position, Separation, Radius>(_affectingDesc, ref forceQuery);
 
-            var separationQuery = new ApplySeparationQuery(_forces);
-            _world.InlineQuery<ApplySeparationQuery, SyncId, Position, Separation>(_affectedDesc, ref separationQuery);
+                var separationQuery = new ApplySeparationQuery(_forces);
+                _world.InlineQuery<ApplySeparationQuery, SyncId, Position, Separation>(_affectedDesc, ref separationQuery);
+            }
         }
 
         private readonly struct ApplySeparationQuery : IForEach<SyncId, Position, Separation>
