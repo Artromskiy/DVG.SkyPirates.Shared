@@ -4568,6 +4568,35 @@
   "ComponentDependencies": [
     {
       "Has": {
+        "Squad": {}
+      },
+      "Add": {
+        "Collision": {},
+        "Direction": {
+          "Value": "0, 0"
+        },
+        "Fixation": {
+          "Value": false
+        },
+        "MaxSpeed": 0,
+        "Position": {
+          "Value": "0, 0, 0"
+        },
+        "Radius": 0,
+        "Rotation": {
+          "Value": 0
+        },
+        "SquadMemberCount": {
+          "Value": 0
+        },
+        "TargetSearchDistance": 0,
+        "Team": {
+          "Id": 0
+        }
+      }
+    },
+    {
+      "Has": {
         "UnitId": ""
       },
       "Add": {
@@ -4583,6 +4612,23 @@
           "Value": 0
         },
         "Target": {},
+        "Team": {
+          "Id": 0
+        }
+      }
+    },
+    {
+      "Has": {
+        "CactusId": ""
+      },
+      "Add": {
+        "Position": {
+          "Value": "0, 0, 0"
+        },
+        "Rotation": {
+          "Value": 0
+        },
+        "Targets": {},
         "Team": {
           "Id": 0
         }
@@ -4613,43 +4659,6 @@
           "Value": "0, 0, 0"
         },
         "Rotation": {
-          "Value": 0
-        },
-        "Team": {
-          "Id": 0
-        }
-      }
-    },
-    {
-      "Has": {
-        "CactusId": ""
-      },
-      "Add": {
-        "Position": {
-          "Value": "0, 0, 0"
-        },
-        "Rotation": {
-          "Value": 0
-        },
-        "Targets": {},
-        "Team": {
-          "Id": 0
-        }
-      }
-    },
-    {
-      "Has": {
-        "Squad": {}
-      },
-      "Add": {
-        "Collision": {},
-        "Position": {
-          "Value": "0, 0, 0"
-        },
-        "Rotation": {
-          "Value": 0
-        },
-        "SquadMemberCount": {
           "Value": 0
         },
         "Team": {

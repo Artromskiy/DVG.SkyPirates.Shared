@@ -1,6 +1,23 @@
 [
   {
     "Has": {
+      "Squad": {}
+    },
+    "Add": {
+      "Position": {},
+      "Rotation": {},
+      "Team": {},
+      "Collision": {},
+      "Direction": {},
+      "Fixation": {},
+      "MaxSpeed": {},
+      "SquadMemberCount": {},
+      "TargetSearchDistance": {},
+      "Radius": {}
+    }
+  },
+  {
+    "Has": {
       "UnitId": {}
     },
     "Add": {
@@ -10,6 +27,17 @@
       "Collision": {},
       "Target": {},
       "Destination": {}
+    }
+  },
+  {
+    "Has": {
+      "CactusId": {}
+    },
+    "Add": {
+      "Position": {},
+      "Rotation": {},
+      "Team": {},
+      "Targets": {}
     }
   },
   {
@@ -30,29 +58,6 @@
       "Position": {},
       "Rotation": {},
       "Team": {}
-    }
-  },
-  {
-    "Has": {
-      "CactusId": {}
-    },
-    "Add": {
-      "Position": {},
-      "Rotation": {},
-      "Team": {},
-      "Targets": {}
-    }
-  },
-  {
-    "Has": {
-      "Squad": {}
-    },
-    "Add": {
-      "Position": {},
-      "Rotation": {},
-      "Team": {},
-      "SquadMemberCount": {},
-      "Collision": {}
     }
   },
   {
