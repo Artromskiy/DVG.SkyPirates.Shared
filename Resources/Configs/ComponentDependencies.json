@@ -1,27 +1,66 @@
 [
   {
     "Has": {
+      "UnitId": {}
+    },
+    "Add": {
+      "Position": {},
+      "Rotation": {},
+      "Team": {},
+      "Collision": {},
+      "Target": {},
+      "Destination": {}
+    }
+  },
+  {
+    "Has": {
+      "TreeId": {}
+    },
+    "Add": {
+      "Position": {},
+      "Rotation": {},
+      "Team": {}
+    }
+  },
+  {
+    "Has": {
+      "RockId": {}
+    },
+    "Add": {
+      "Position": {},
+      "Rotation": {},
+      "Team": {}
+    }
+  },
+  {
+    "Has": {
+      "CactusId": {}
+    },
+    "Add": {
+      "Position": {},
+      "Rotation": {},
+      "Team": {},
+      "Targets": {}
+    }
+  },
+  {
+    "Has": {
+      "Squad": {}
+    },
+    "Add": {
+      "Position": {},
+      "Rotation": {},
+      "Team": {},
+      "SquadMemberCount": {},
+      "Collision": {}
+    }
+  },
+  {
+    "Has": {
       "Position": {}
     },
     "Add": {
       "CachePosition": {}
-    }
-  },
-  {
-    "Has": {
-      "Position": {},
-      "TargetSearchDistance": {}
-    },
-    "Add": {
-      "TargetSearchPosition": {}
-    }
-  },
-  {
-    "Has": {
-      "Separation": {}
-    },
-    "Add": {
-      "SeparationForce": {}
     }
   },
   {
@@ -49,29 +88,11 @@
   },
   {
     "Has": {
-      "Squad": {}
+      "Position": {},
+      "TargetSearchDistance": {}
     },
     "Add": {
-      "SquadMemberCount": {},
-      "Collision": {}
-    }
-  },
-  {
-    "Has": {
-      "CactusId": {}
-    },
-    "Add": {
-      "Targets": {}
-    }
-  },
-  {
-    "Has": {
-      "UnitId": {}
-    },
-    "Add": {
-      "Collision": {},
-      "Target": {},
-      "Destination": {}
+      "TargetSearchPosition": {}
     }
   }
 ]
