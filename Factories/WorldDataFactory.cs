@@ -2,13 +2,13 @@
 using DVG.Core;
 using DVG.Core.Components;
 using DVG.SkyPirates.Shared.Components.Special;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.Tools;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Data
+namespace DVG.SkyPirates.Shared.Factories
 {
-    // TODO Add dead components, as they can rollback?
     public class WorldDataFactory : IWorldDataFactory
     {
         private class Description<T>
