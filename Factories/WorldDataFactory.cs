@@ -39,7 +39,9 @@ namespace DVG.SkyPirates.Shared.Factories
         {
             foreach (var item in worldData.Get<SyncId>())
             {
-                _entityFactory.Create(new(new() { Value = item.Key }, default, default));
+                var syncId = item.Value;
+                _entityRegistryService.Register(syncId);
+                _entityFactory.Create(new(syncId, default, default));
             }
             var unpackAction = new ExtractAction(_entityRegistryService, worldData, _world);
             HistoryIds.ForEachData(ref unpackAction);

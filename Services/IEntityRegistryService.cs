@@ -2,6 +2,7 @@
 using DVG.Components;
 using DVG.Core.Collections;
 using DVG.SkyPirates.Shared.IServices;
+using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Services
 {
@@ -11,8 +12,14 @@ namespace DVG.SkyPirates.Shared.Services
         private int _entityIdCounter = 1;
         public void Register(Entity entity, SyncId syncId)
         {
+            Debug.Assert(!_idToEntity.TryGetValue(syncId.Value, out _));
             _idToEntity[syncId.Value] = entity;
-            _entityIdCounter = Maths.Max(_entityIdCounter, syncId.Value);
+        }
+
+        public void Register(SyncId syncId)
+        {
+            _entityIdCounter = Maths.Max(_entityIdCounter, syncId.Value + 1);
+            _idToEntity[syncId.Value] = Entity.Null;
         }
 
         public SyncId Reserve()
