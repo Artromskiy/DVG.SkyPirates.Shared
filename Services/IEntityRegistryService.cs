@@ -8,7 +8,7 @@ namespace DVG.SkyPirates.Shared.Services
     public class EntityRegistryService : IEntityRegistryService
     {
         private readonly Lookup<Entity> _idToEntity = new();
-        private int _entityIdCounter;
+        private int _entityIdCounter = 1;
         public void Register(Entity entity, SyncId syncId)
         {
             _idToEntity[syncId.Value] = entity;
@@ -17,14 +17,14 @@ namespace DVG.SkyPirates.Shared.Services
 
         public SyncId Reserve()
         {
-            return new() { Value = ++_entityIdCounter };
+            return new() { Value = _entityIdCounter++ };
         }
 
         public SyncIdReserve Reserve(int count)
         {
-            int current = _entityIdCounter + 1;
-            int last = _entityIdCounter += count;
-            return new() { Current = current, Last = last };
+            int first = _entityIdCounter;
+            _entityIdCounter += count;
+            return new() { First = first, Count = count, Current = first };
         }
 
         public bool TryGet(SyncId syncId, out Entity entity)
