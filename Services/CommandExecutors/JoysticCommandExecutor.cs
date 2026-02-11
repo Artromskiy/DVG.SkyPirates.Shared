@@ -2,7 +2,6 @@
 using DVG.Commands;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components.Runtime;
-using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Tools.Extensions;
 using System;
@@ -11,17 +10,19 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
     public class JoysticCommandExecutor : ICommandExecutor<JoystickCommand>
     {
-        private readonly IEntityFactory _commandEntityFactory;
+        private readonly IEntityRegistryService _entityRegistryService;
         private readonly World _world;
-        public JoysticCommandExecutor(World world, IEntityFactory commandEntityFactory)
+
+        public JoysticCommandExecutor(IEntityRegistryService entityRegistryService, World world)
         {
+            _entityRegistryService = entityRegistryService;
             _world = world;
-            _commandEntityFactory = commandEntityFactory;
         }
 
         public void Execute(Command<JoystickCommand> cmd)
         {
-            var entity = _commandEntityFactory.Get(cmd.EntityId);
+            _entityRegistryService.TryGet(new() { Value = cmd.EntityId }, out var entity);
+
             if (entity == Entity.Null ||
                 !_world.IsAlive(entity) ||
                 !_world.Has<Direction, Direction, Fixation>(entity))

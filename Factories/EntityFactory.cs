@@ -1,38 +1,30 @@
 ﻿using Arch.Core;
-using DVG.Components;
-using DVG.Core.Collections;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
+using DVG.SkyPirates.Shared.IServices;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
     public class EntityFactory : IEntityFactory
     {
         private readonly World _world;
+        private readonly IEntityRegistryService _entityRegistryService;
 
-        private readonly Lookup<Entity> _idToEntity = new();
-
-        private int _entityIdCounter = 0;
-
-        public EntityFactory(World world)
+        public EntityFactory(World world, IEntityRegistryService entityRegistryService)
         {
             _world = world;
+            _entityRegistryService = entityRegistryService;
         }
 
-        public Entity Create(int parameters)
+        public Entity Create(EntityParameters parameters)
         {
-            _idToEntity.TryGetValue(parameters, out var entity);
-            if (entity == Entity.Null || !_world.IsAlive(entity))
-                _idToEntity[parameters] = entity = _world.Create(new SyncId() { Value = parameters });
-
-            _entityIdCounter = Maths.Max(parameters, _entityIdCounter);
+            if (!_entityRegistryService.TryGet(parameters.SyncId, out var entity) ||
+                entity == null || !_world.IsAlive(entity))
+            {
+                entity = _world.Create(parameters.SyncId, parameters.SyncIdReserve, parameters.RandomSource);
+                _entityRegistryService.Register(entity, parameters.SyncId);
+            }
             return entity;
         }
-
-        public Entity Get(int entityId)
-        {
-            _idToEntity.TryGetValue(entityId, out var entity);
-            return entity;
-        }
-        public int Reserve(int count = 1) => (_entityIdCounter += count);
     }
 }

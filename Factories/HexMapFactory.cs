@@ -1,5 +1,6 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
 
 namespace DVG.SkyPirates.Shared.Factories
@@ -17,7 +18,8 @@ namespace DVG.SkyPirates.Shared.Factories
 
         public Entity Create(int parameters)
         {
-            var entity = _commandEntityFactory.Create(parameters);
+            EntityParameters entityParameters = new(new() { Value = parameters }, default, default);
+            var entity = _commandEntityFactory.Create(entityParameters);
             _world.AddOrGet<HexMap>(entity).Data = new();
             return entity;
         }

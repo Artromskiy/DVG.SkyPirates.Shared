@@ -1,5 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Ids;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.Systems.Special;
 using System;
@@ -22,10 +23,10 @@ namespace DVG.SkyPirates.Shared.Factories
             _world = world;
         }
 
-        public Entity Create((T Id, int SyncId) parameters)
+        public Entity Create((T Id, EntityParameters parameters) parameters)
         {
             var config = _entityConfigFactory.Create(parameters.Id);
-            var entity = _entityFactory.Create(parameters.SyncId);
+            var entity = _entityFactory.Create(parameters.parameters);
             _world.SetEntityData(entity, config);
             return _entityDependencyFactory.Create(entity);
         }

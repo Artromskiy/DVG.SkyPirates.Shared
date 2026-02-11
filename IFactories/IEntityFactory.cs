@@ -1,12 +1,11 @@
 ﻿using Arch.Core;
 using DVG.Core;
+using DVG.SkyPirates.Shared.Data;
 
 namespace DVG.SkyPirates.Shared.IFactories
 {
-    public interface IEntityFactory : IFactory<Entity, int>
+    public interface IEntityFactory : IFactory<Entity, EntityParameters>
     {
-        Entity Get(int entityId);
-        int Reserve(int count = 1);
+
     }
-    //public interface IEntityFactory : IFactory<Entity, (int SyncId, )>
 }

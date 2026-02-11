@@ -13,20 +13,20 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
     public class SpawnUnitCommandExecutor :
         ICommandExecutor<SpawnUnitCommand>
     {
-        private readonly IEntityFactory _commandEntityFactory;
+        private readonly IEntityRegistryService _entityRegistryService;
         private readonly IConfigedEntityFactory<UnitId> _unitFactory;
         private readonly World _world;
 
-        public SpawnUnitCommandExecutor(World world, IEntityFactory commandEntityFactory, IConfigedEntityFactory<UnitId> unitFactory)
+        public SpawnUnitCommandExecutor(IEntityRegistryService entityRegistryService, IConfigedEntityFactory<UnitId> unitFactory, World world)
         {
-            _world = world;
+            _entityRegistryService = entityRegistryService;
             _unitFactory = unitFactory;
-            _commandEntityFactory = commandEntityFactory;
+            _world = world;
         }
 
         public void Execute(Command<SpawnUnitCommand> cmd)
         {
-            var squad = _commandEntityFactory.Get(cmd.Data.SquadId);
+            _entityRegistryService.TryGet(new SyncId() { Value = cmd.Data.SquadId }, out var squad);
             if (squad == Entity.Null ||
                 !_world.IsAlive(squad) ||
                 !_world.Has<Position, Squad>(squad))
@@ -36,7 +36,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             }
 
             var pos = _world.Get<Position>(squad).Value;
-            var unit = _unitFactory.Create((cmd.Data.UnitId, cmd.EntityId));
+            SyncId syncId = new() { Value = cmd.EntityId };
+            var unit = _unitFactory.Create((cmd.Data.UnitId, new(syncId, default, default)));
 
             _world.Get<Team>(unit).Id = cmd.ClientId;
             _world.Get<Position>(unit).Value = pos;
