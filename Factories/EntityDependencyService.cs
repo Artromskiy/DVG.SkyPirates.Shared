@@ -4,30 +4,29 @@ using DVG.SkyPirates.Shared.IFactories;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
-    public class EntityDependencyFactory : IEntityDependencyFactory
+    public class EntityDependencyService : IEntityDependencyService
     {
         private readonly World _world;
         private readonly EnsureConfig[] _dependencies;
 
-        public EntityDependencyFactory(World world, IGlobalConfigFactory globalConfigFactory)
+        public EntityDependencyService(World world, IGlobalConfigFactory globalConfigFactory)
         {
             _world = world;
             _dependencies = globalConfigFactory.Create().ComponentDependencies;
         }
 
-        public Entity Create(Entity parameters)
+        public void EnsureDependencies(Entity entity)
         {
             foreach (var config in _dependencies)
             {
-                var hasAll = new HasAllAction(_world, parameters);
+                var hasAll = new HasAllAction(_world, entity);
                 config.Has.ForEach(ref hasAll);
                 if (!hasAll.Value)
                     continue;
 
-                var add = new AddAction(config.DefaultOnAdd, _world, parameters);
+                var add = new AddAction(config.DefaultOnAdd, _world, entity);
                 config.Add.ForEach(ref add);
             }
-            return parameters;
         }
 
         private struct HasAllAction : IStructGenericAction

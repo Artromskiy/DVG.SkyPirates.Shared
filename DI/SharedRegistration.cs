@@ -27,15 +27,16 @@ namespace DVG.SkyPirates.Shared.DI
             //RegisterSingleton(typeof(IPathFactory<>), typeof(ResourcesFactory<>));
             World.SharedJobScheduler = new Schedulers.JobScheduler(new Schedulers.JobScheduler.Config() { MaxExpectedConcurrentJobs = 4, ThreadCount = 4, ThreadPrefixName = "ECS_" });
             container.RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
+            container.RegisterSingleton(typeof(IConfigedEntityFactory<>), typeof(ConfigedEntityFactory<>));
             container.RegisterSingleton<IGlobalConfigFactory, GlobalConfigFactory>();
             container.RegisterSingleton<IPackedCirclesFactory, PackedCirclesFactory>();
-            container.RegisterSingleton<IEntityDependencyFactory, EntityDependencyFactory>();
             container.RegisterSingleton<IWorldDataFactory, WorldDataFactory>();
             container.RegisterSingleton<IEntityFactory, EntityFactory>();
             container.RegisterSingleton<IHexMapFactory, HexMapFactory>();
             container.RegisterSingleton<ISquadFactory, SquadFactory>();
 
-            container.RegisterSingleton(typeof(IConfigedEntityFactory<>), typeof(ConfigedEntityFactory<>));
+            container.RegisterSingleton<IEntityDependencyService, EntityDependencyService>();
+            container.RegisterSingleton<IEntityRegistryService, EntityRegistryService>();
 
             container.RegisterSingleton<ICommandExecutorService, CommandExecutorService>();
             container.Collection.Register<ICommandExecutor>(commandExecutors, Lifestyle.Singleton);
@@ -67,6 +68,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(MultiImpactSystem),
                 typeof(AutoHealSystem),
                 typeof(DamageSystem),
+                typeof(GoodsDropSystem),
                 typeof(MarkDeadSystem),
                 //typeof(LogHashSumSystem),
             };

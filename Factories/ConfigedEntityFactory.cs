@@ -12,14 +12,14 @@ namespace DVG.SkyPirates.Shared.Factories
     {
         private readonly IEntityFactory _entityFactory;
         private readonly IEntityConfigFactory<T> _entityConfigFactory;
-        private readonly IEntityDependencyFactory _entityDependencyFactory;
+        private readonly IEntityDependencyService _entityDependencyService;
         private readonly World _world;
 
-        public ConfigedEntityFactory(IEntityFactory entityFactory, IEntityConfigFactory<T> entityConfigFactory, IEntityDependencyFactory entityDependencyFactory, World world)
+        public ConfigedEntityFactory(IEntityFactory entityFactory, IEntityConfigFactory<T> entityConfigFactory, IEntityDependencyService entityDependencyService, World world)
         {
             _entityFactory = entityFactory;
             _entityConfigFactory = entityConfigFactory;
-            _entityDependencyFactory = entityDependencyFactory;
+            _entityDependencyService = entityDependencyService;
             _world = world;
         }
 
@@ -28,7 +28,8 @@ namespace DVG.SkyPirates.Shared.Factories
             var config = _entityConfigFactory.Create(parameters.Id);
             var entity = _entityFactory.Create(parameters.parameters);
             _world.SetEntityData(entity, config);
-            return _entityDependencyFactory.Create(entity);
+            _entityDependencyService.EnsureDependencies(entity);
+            return entity;
         }
     }
 }
