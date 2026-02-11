@@ -6,7 +6,7 @@ namespace DVG.SkyPirates.Shared.IFactories
     public interface IEntityFactory : IFactory<Entity, int>
     {
         Entity Get(int entityId);
-        int Next();
+        int Reserve(int count = 1);
     }
     //public interface IEntityFactory : IFactory<Entity, (int SyncId, )>
 }

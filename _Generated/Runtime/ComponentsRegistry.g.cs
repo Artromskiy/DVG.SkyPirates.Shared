@@ -17,6 +17,7 @@ using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Ids;
+using DVG.Components;
 
 namespace DVG.Components
 {
@@ -34,6 +35,7 @@ namespace DVG.Components
             action.Invoke<Damage>();
             action.Invoke<Destination>();
             action.Invoke<Direction>();
+            action.Invoke<Dispose>();
             action.Invoke<Fixation>();
             action.Invoke<GoodsDrop>();
             action.Invoke<GoodsId>();
@@ -45,6 +47,7 @@ namespace DVG.Components
             action.Invoke<MaxSpeed>();
             action.Invoke<Position>();
             action.Invoke<Radius>();
+            action.Invoke<RandomSource>();
             action.Invoke<RecivedDamage>();
             action.Invoke<RockId>();
             action.Invoke<Rotation>();
@@ -52,6 +55,8 @@ namespace DVG.Components
             action.Invoke<Squad>();
             action.Invoke<SquadMember>();
             action.Invoke<SquadMemberCount>();
+            action.Invoke<SyncId>();
+            action.Invoke<SyncIdReserve>();
             action.Invoke<Target>();
             action.Invoke<Targets>();
             action.Invoke<TargetSearchDistance>();

@@ -33,7 +33,6 @@ namespace DVG.SkyPirates.Shared.Factories
             _idToEntity.TryGetValue(entityId, out var entity);
             return entity;
         }
-
-        public int Next() => ++_entityIdCounter;
+        public int Reserve(int count = 1) => (_entityIdCounter += count);
     }
 }
