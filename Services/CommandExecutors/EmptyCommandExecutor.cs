@@ -1,5 +1,4 @@
 ﻿using DVG.Commands;
-using DVG.Core;
 using DVG.SkyPirates.Shared.IServices;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors

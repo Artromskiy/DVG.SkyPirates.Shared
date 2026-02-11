@@ -1,5 +1,5 @@
 ﻿using Arch.Core;
-using DVG.Core;
+using DVG.Commands;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;

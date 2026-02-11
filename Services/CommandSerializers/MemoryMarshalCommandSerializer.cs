@@ -1,5 +1,4 @@
 ﻿using DVG.Commands;
-using DVG.Core;
 using DVG.SkyPirates.Shared.IServices;
 using System;
 using System.Buffers;

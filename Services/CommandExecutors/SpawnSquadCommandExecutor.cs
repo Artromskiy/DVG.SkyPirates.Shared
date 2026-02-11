@@ -1,4 +1,4 @@
-﻿using DVG.Core;
+﻿using DVG.Commands;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
