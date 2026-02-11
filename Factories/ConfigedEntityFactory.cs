@@ -2,7 +2,7 @@
 using DVG.Ids;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
-using DVG.SkyPirates.Shared.Systems.Special;
+using DVG.SkyPirates.Shared.Systems;
 using System;
 
 namespace DVG.SkyPirates.Shared.Factories

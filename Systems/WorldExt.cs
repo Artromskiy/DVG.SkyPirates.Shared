@@ -3,7 +3,7 @@ using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Tools;
 
-namespace DVG.SkyPirates.Shared.Systems.Special
+namespace DVG.SkyPirates.Shared.Systems
 {
     public static class WorldExt
     {
