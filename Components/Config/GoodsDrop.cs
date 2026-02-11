@@ -8,6 +8,5 @@ namespace DVG.SkyPirates.Shared.Components.Config
     {
         public GoodsId Id;
         public int Amount;
-        public int MaxCount;
     }
 }
