@@ -1,7 +1,5 @@
 ﻿using Arch.Core;
-using DVG.Core;
-using DVG.Core.Components;
-using DVG.SkyPirates.Shared.Components.Special;
+using DVG.Components;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools;
 using System;
@@ -25,6 +23,8 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             _world = world;
         }
+
+        private static int WrapTick(int tick) => Constants.WrapTick(tick);
 
         public void Tick(int tick, fix deltaTime)
         {
@@ -98,7 +98,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (history[_tick].HasValue)
+                if (history[WrapTick(_tick)].HasValue)
                     _entities.Add(entity);
             }
         }
@@ -117,7 +117,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (!history[_tick].HasValue)
+                if (!history[WrapTick(_tick)].HasValue)
                     _entities.Add(entity);
             }
         }
@@ -134,7 +134,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                var cmp = history[_tick];
+                var cmp = history[WrapTick(_tick)];
 
                 if (!cmp.HasValue)
                     throw new InvalidOperationException();

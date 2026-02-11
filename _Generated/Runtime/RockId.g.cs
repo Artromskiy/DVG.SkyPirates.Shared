@@ -10,7 +10,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DVG.Core;
+using DVG.Ids;
 using System;
 using System.Runtime.Serialization;
 

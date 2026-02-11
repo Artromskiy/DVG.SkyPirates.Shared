@@ -1,4 +1,4 @@
-﻿using DVG.Core.Components.Attributes;
+﻿using DVG.Components.Attributes;
 using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.SkyPirates.Shared.Components.Runtime

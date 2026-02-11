@@ -1,4 +1,4 @@
-﻿using DVG.Core;
+﻿using DVG.Ids;
 using DVG.SkyPirates.Shared.Ids;
 using System;
 using System.Text.Json;

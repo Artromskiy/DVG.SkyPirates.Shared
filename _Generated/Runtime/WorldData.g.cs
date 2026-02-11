@@ -17,7 +17,6 @@ using System.Runtime.Serialization;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.SkyPirates.Shared.Components.Special;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -39,37 +38,37 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 5)]
         private Dictionary<int, Direction> Direction;
         [DataMember(Order = 6)]
-        private Dictionary<int, Dispose> Dispose;
-        [DataMember(Order = 7)]
         private Dictionary<int, Fixation> Fixation;
+        [DataMember(Order = 7)]
+        private Dictionary<int, GoodsDrop> GoodsDrop;
         [DataMember(Order = 8)]
-        private Dictionary<int, Health> Health;
+        private Dictionary<int, GoodsId> GoodsId;
         [DataMember(Order = 9)]
-        private Dictionary<int, HexMap> HexMap;
+        private Dictionary<int, Health> Health;
         [DataMember(Order = 10)]
-        private Dictionary<int, ImpactDistance> ImpactDistance;
+        private Dictionary<int, HexMap> HexMap;
         [DataMember(Order = 11)]
-        private Dictionary<int, Level> Level;
+        private Dictionary<int, ImpactDistance> ImpactDistance;
         [DataMember(Order = 12)]
-        private Dictionary<int, MaxHealth> MaxHealth;
+        private Dictionary<int, Level> Level;
         [DataMember(Order = 13)]
-        private Dictionary<int, MaxSpeed> MaxSpeed;
+        private Dictionary<int, MaxHealth> MaxHealth;
         [DataMember(Order = 14)]
-        private Dictionary<int, Position> Position;
+        private Dictionary<int, MaxSpeed> MaxSpeed;
         [DataMember(Order = 15)]
-        private Dictionary<int, Radius> Radius;
+        private Dictionary<int, Position> Position;
         [DataMember(Order = 16)]
-        private Dictionary<int, RockId> RockId;
+        private Dictionary<int, Radius> Radius;
         [DataMember(Order = 17)]
-        private Dictionary<int, Rotation> Rotation;
+        private Dictionary<int, RockId> RockId;
         [DataMember(Order = 18)]
-        private Dictionary<int, Separation> Separation;
+        private Dictionary<int, Rotation> Rotation;
         [DataMember(Order = 19)]
-        private Dictionary<int, Squad> Squad;
+        private Dictionary<int, Separation> Separation;
         [DataMember(Order = 20)]
-        private Dictionary<int, SquadMember> SquadMember;
+        private Dictionary<int, Squad> Squad;
         [DataMember(Order = 21)]
-        private Dictionary<int, SyncId> SyncId;
+        private Dictionary<int, SquadMember> SquadMember;
         [DataMember(Order = 22)]
         private Dictionary<int, TargetSearchDistance> TargetSearchDistance;
         [DataMember(Order = 23)]
@@ -88,8 +87,9 @@ namespace DVG.SkyPirates.Shared.Data
             CactusId = new();
             Damage = new();
             Direction = new();
-            Dispose = new();
             Fixation = new();
+            GoodsDrop = new();
+            GoodsId = new();
             Health = new();
             HexMap = new();
             ImpactDistance = new();
@@ -103,7 +103,6 @@ namespace DVG.SkyPirates.Shared.Data
             Separation = new();
             Squad = new();
             SquadMember = new();
-            SyncId = new();
             TargetSearchDistance = new();
             Team = new();
             TreeId = new();
@@ -126,10 +125,12 @@ namespace DVG.SkyPirates.Shared.Data
                 return Damage as Dictionary<int, T>;
             if (typeof(T) == typeof(Direction))
                 return Direction as Dictionary<int, T>;
-            if (typeof(T) == typeof(Dispose))
-                return Dispose as Dictionary<int, T>;
             if (typeof(T) == typeof(Fixation))
                 return Fixation as Dictionary<int, T>;
+            if (typeof(T) == typeof(GoodsDrop))
+                return GoodsDrop as Dictionary<int, T>;
+            if (typeof(T) == typeof(GoodsId))
+                return GoodsId as Dictionary<int, T>;
             if (typeof(T) == typeof(Health))
                 return Health as Dictionary<int, T>;
             if (typeof(T) == typeof(HexMap))
@@ -156,8 +157,6 @@ namespace DVG.SkyPirates.Shared.Data
                 return Squad as Dictionary<int, T>;
             if (typeof(T) == typeof(SquadMember))
                 return SquadMember as Dictionary<int, T>;
-            if (typeof(T) == typeof(SyncId))
-                return SyncId as Dictionary<int, T>;
             if (typeof(T) == typeof(TargetSearchDistance))
                 return TargetSearchDistance as Dictionary<int, T>;
             if (typeof(T) == typeof(Team))
@@ -204,14 +203,19 @@ namespace DVG.SkyPirates.Shared.Data
                 Direction = data as Dictionary<int, Direction>;
                 return;
             }
-            if (typeof(T) == typeof(Dispose))
-            {
-                Dispose = data as Dictionary<int, Dispose>;
-                return;
-            }
             if (typeof(T) == typeof(Fixation))
             {
                 Fixation = data as Dictionary<int, Fixation>;
+                return;
+            }
+            if (typeof(T) == typeof(GoodsDrop))
+            {
+                GoodsDrop = data as Dictionary<int, GoodsDrop>;
+                return;
+            }
+            if (typeof(T) == typeof(GoodsId))
+            {
+                GoodsId = data as Dictionary<int, GoodsId>;
                 return;
             }
             if (typeof(T) == typeof(Health))
@@ -277,11 +281,6 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(SquadMember))
             {
                 SquadMember = data as Dictionary<int, SquadMember>;
-                return;
-            }
-            if (typeof(T) == typeof(SyncId))
-            {
-                SyncId = data as Dictionary<int, SyncId>;
                 return;
             }
             if (typeof(T) == typeof(TargetSearchDistance))

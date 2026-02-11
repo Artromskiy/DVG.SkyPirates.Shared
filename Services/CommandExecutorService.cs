@@ -1,5 +1,4 @@
-﻿using DVG.Core;
-using DVG.Core.Commands;
+﻿using DVG.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
 using System.Linq;

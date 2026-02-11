@@ -1,4 +1,4 @@
-﻿using DVG.Core;
+﻿using DVG.Commands;
 
 namespace DVG.SkyPirates.Shared.Commands
 {

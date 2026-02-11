@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 using DVG.SkyPirates.Shared.Commands;
 
-namespace DVG.Core.Commands
+namespace DVG.Commands
 {
     public static class CommandIds
     {

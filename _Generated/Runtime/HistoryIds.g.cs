@@ -16,9 +16,8 @@ using System.Collections.Generic;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.SkyPirates.Shared.Components.Special;
 
-namespace DVG.Core.Components
+namespace DVG.Components
 {
     public static class HistoryIds
     {

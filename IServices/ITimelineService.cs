@@ -1,4 +1,5 @@
-﻿using DVG.Core;
+﻿using DVG.Commands;
+using DVG.Core;
 using DVG.SkyPirates.Shared.Commands;
 
 namespace DVG.SkyPirates.Shared.IServices

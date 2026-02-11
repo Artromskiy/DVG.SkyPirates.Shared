@@ -13,13 +13,12 @@
 using System;
 using System.Runtime.Serialization;
 using System.Runtime.CompilerServices;
-using DVG.Core;
+using DVG.Components;
 
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.SkyPirates.Shared.Components.Special;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -47,41 +46,41 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 8)]
         private Direction? Direction;
         [DataMember(Order = 9)]
-        private Dispose? Dispose;
-        [DataMember(Order = 10)]
         private Fixation? Fixation;
+        [DataMember(Order = 10)]
+        private GoodsDrop? GoodsDrop;
         [DataMember(Order = 11)]
-        private Health? Health;
+        private GoodsId? GoodsId;
         [DataMember(Order = 12)]
-        private HexMap? HexMap;
+        private Health? Health;
         [DataMember(Order = 13)]
-        private ImpactDistance? ImpactDistance;
+        private HexMap? HexMap;
         [DataMember(Order = 14)]
-        private Level? Level;
+        private ImpactDistance? ImpactDistance;
         [DataMember(Order = 15)]
-        private MaxHealth? MaxHealth;
+        private Level? Level;
         [DataMember(Order = 16)]
-        private MaxSpeed? MaxSpeed;
+        private MaxHealth? MaxHealth;
         [DataMember(Order = 17)]
-        private Position? Position;
+        private MaxSpeed? MaxSpeed;
         [DataMember(Order = 18)]
-        private Radius? Radius;
+        private Position? Position;
         [DataMember(Order = 19)]
-        private RecivedDamage? RecivedDamage;
+        private Radius? Radius;
         [DataMember(Order = 20)]
-        private RockId? RockId;
+        private RecivedDamage? RecivedDamage;
         [DataMember(Order = 21)]
-        private Rotation? Rotation;
+        private RockId? RockId;
         [DataMember(Order = 22)]
-        private Separation? Separation;
+        private Rotation? Rotation;
         [DataMember(Order = 23)]
-        private Squad? Squad;
+        private Separation? Separation;
         [DataMember(Order = 24)]
-        private SquadMember? SquadMember;
+        private Squad? Squad;
         [DataMember(Order = 25)]
-        private SquadMemberCount? SquadMemberCount;
+        private SquadMember? SquadMember;
         [DataMember(Order = 26)]
-        private SyncId? SyncId;
+        private SquadMemberCount? SquadMemberCount;
         [DataMember(Order = 27)]
         private Target? Target;
         [DataMember(Order = 28)]
@@ -119,10 +118,12 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<Destination?, T?>(ref Destination);
             if (typeof(T) == typeof(Direction))
                 return Unsafe.As<Direction?, T?>(ref Direction);
-            if (typeof(T) == typeof(Dispose))
-                return Unsafe.As<Dispose?, T?>(ref Dispose);
             if (typeof(T) == typeof(Fixation))
                 return Unsafe.As<Fixation?, T?>(ref Fixation);
+            if (typeof(T) == typeof(GoodsDrop))
+                return Unsafe.As<GoodsDrop?, T?>(ref GoodsDrop);
+            if (typeof(T) == typeof(GoodsId))
+                return Unsafe.As<GoodsId?, T?>(ref GoodsId);
             if (typeof(T) == typeof(Health))
                 return Unsafe.As<Health?, T?>(ref Health);
             if (typeof(T) == typeof(HexMap))
@@ -153,8 +154,6 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<SquadMember?, T?>(ref SquadMember);
             if (typeof(T) == typeof(SquadMemberCount))
                 return Unsafe.As<SquadMemberCount?, T?>(ref SquadMemberCount);
-            if (typeof(T) == typeof(SyncId))
-                return Unsafe.As<SyncId?, T?>(ref SyncId);
             if (typeof(T) == typeof(Target))
                 return Unsafe.As<Target?, T?>(ref Target);
             if (typeof(T) == typeof(Targets))
@@ -222,14 +221,19 @@ namespace DVG.SkyPirates.Shared.Data
                 Direction = Unsafe.As<T?, Direction?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Dispose))
-            {
-                Dispose = Unsafe.As<T?, Dispose?>(ref data);
-                return;
-            }
             if (typeof(T) == typeof(Fixation))
             {
                 Fixation = Unsafe.As<T?, Fixation?>(ref data);
+                return;
+            }
+            if (typeof(T) == typeof(GoodsDrop))
+            {
+                GoodsDrop = Unsafe.As<T?, GoodsDrop?>(ref data);
+                return;
+            }
+            if (typeof(T) == typeof(GoodsId))
+            {
+                GoodsId = Unsafe.As<T?, GoodsId?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Health))
@@ -307,11 +311,6 @@ namespace DVG.SkyPirates.Shared.Data
                 SquadMemberCount = Unsafe.As<T?, SquadMemberCount?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(SyncId))
-            {
-                SyncId = Unsafe.As<T?, SyncId?>(ref data);
-                return;
-            }
             if (typeof(T) == typeof(Target))
             {
                 Target = Unsafe.As<T?, Target?>(ref data);
@@ -364,8 +363,9 @@ namespace DVG.SkyPirates.Shared.Data
                 (Damage.HasValue? 1 : 0) + 
                 (Destination.HasValue? 1 : 0) + 
                 (Direction.HasValue? 1 : 0) + 
-                (Dispose.HasValue? 1 : 0) + 
                 (Fixation.HasValue? 1 : 0) + 
+                (GoodsDrop.HasValue? 1 : 0) + 
+                (GoodsId.HasValue? 1 : 0) + 
                 (Health.HasValue? 1 : 0) + 
                 (HexMap.HasValue? 1 : 0) + 
                 (ImpactDistance.HasValue? 1 : 0) + 
@@ -381,7 +381,6 @@ namespace DVG.SkyPirates.Shared.Data
                 (Squad.HasValue? 1 : 0) + 
                 (SquadMember.HasValue? 1 : 0) + 
                 (SquadMemberCount.HasValue? 1 : 0) + 
-                (SyncId.HasValue? 1 : 0) + 
                 (Target.HasValue? 1 : 0) + 
                 (Targets.HasValue? 1 : 0) + 
                 (TargetSearchDistance.HasValue? 1 : 0) + 
@@ -412,10 +411,12 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(Destination);
             if(Direction.HasValue)
                 types[i++] = typeof(Direction);
-            if(Dispose.HasValue)
-                types[i++] = typeof(Dispose);
             if(Fixation.HasValue)
                 types[i++] = typeof(Fixation);
+            if(GoodsDrop.HasValue)
+                types[i++] = typeof(GoodsDrop);
+            if(GoodsId.HasValue)
+                types[i++] = typeof(GoodsId);
             if(Health.HasValue)
                 types[i++] = typeof(Health);
             if(HexMap.HasValue)
@@ -446,8 +447,6 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(SquadMember);
             if(SquadMemberCount.HasValue)
                 types[i++] = typeof(SquadMemberCount);
-            if(SyncId.HasValue)
-                types[i++] = typeof(SyncId);
             if(Target.HasValue)
                 types[i++] = typeof(Target);
             if(Targets.HasValue)
@@ -488,10 +487,12 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<Destination>();
             if(Direction.HasValue)
                 action.Invoke<Direction>();
-            if(Dispose.HasValue)
-                action.Invoke<Dispose>();
             if(Fixation.HasValue)
                 action.Invoke<Fixation>();
+            if(GoodsDrop.HasValue)
+                action.Invoke<GoodsDrop>();
+            if(GoodsId.HasValue)
+                action.Invoke<GoodsId>();
             if(Health.HasValue)
                 action.Invoke<Health>();
             if(HexMap.HasValue)
@@ -522,8 +523,6 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<SquadMember>();
             if(SquadMemberCount.HasValue)
                 action.Invoke<SquadMemberCount>();
-            if(SyncId.HasValue)
-                action.Invoke<SyncId>();
             if(Target.HasValue)
                 action.Invoke<Target>();
             if(Targets.HasValue)

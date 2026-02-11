@@ -1,5 +1,5 @@
-﻿using DVG.Core;
-using DVG.Core.Commands;
+﻿using DVG.Commands;
+using DVG.Core;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Tools.Json;
 using System.Collections.Generic;

@@ -1,7 +1,5 @@
 ﻿using Arch.Core;
-using DVG.Core;
-using DVG.Core.Components;
-using DVG.SkyPirates.Shared.Components.Special;
+using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Tools;
 

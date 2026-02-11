@@ -1,5 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Core;
+using DVG.Ids;
 using System;
 
 namespace DVG.SkyPirates.Shared.IFactories

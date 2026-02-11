@@ -1,5 +1,5 @@
 ﻿using Arch.Core;
-using DVG.Core;
+using DVG.Ids;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.Systems.Special;
 using System;

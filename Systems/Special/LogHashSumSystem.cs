@@ -1,6 +1,5 @@
 ﻿using Arch.Core;
-using DVG.Core;
-using DVG.Core.Components;
+using DVG.Components;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Collections.Generic;

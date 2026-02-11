@@ -1,7 +1,5 @@
 ﻿using Arch.Core;
-using DVG.Core;
-using DVG.Core.Components;
-using DVG.SkyPirates.Shared.Components.Special;
+using DVG.Components;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools;
 
@@ -21,6 +19,8 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             _world = world;
         }
+
+        private static int WrapTick(int tick) => Constants.WrapTick(tick);
 
         public void Tick(int tick, fix deltaTime)
         {
@@ -46,7 +46,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 var saveQuery = new SaveHistoryQuery<T>(_tick);
                 var desc = _descriptions.Get<Description<T>>();
 
-                _world.AddQuery((ref T has, ref History<T> history) => history = History<T>.Create());
+                _world.AddQuery((ref T has, ref History<T> history) => history = new History<T>(Constants.HistoryTicks));
 
                 var saveHasCmpDesc = desc.saveHasCmpDesc;
                 _world.InlineQuery<SaveHistoryQuery<T>, History<T>, T>(saveHasCmpDesc, ref saveQuery);
@@ -70,12 +70,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                history[_tick] = component;
+                history[WrapTick(_tick)] = component;
             }
 
             public void Update(ref History<T> history)
             {
-                history[_tick] = null;
+                history[WrapTick(_tick)] = null;
             }
         }
     }

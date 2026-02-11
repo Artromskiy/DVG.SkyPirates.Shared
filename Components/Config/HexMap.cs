@@ -1,4 +1,4 @@
-﻿using DVG.Core.Components.Attributes;
+﻿using DVG.Components.Attributes;
 using DVG.SkyPirates.Shared.Ids;
 using System.Collections.Generic;
 using System.Runtime.Serialization;

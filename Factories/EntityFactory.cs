@@ -1,6 +1,6 @@
 ﻿using Arch.Core;
+using DVG.Components;
 using DVG.Core.Collections;
-using DVG.SkyPirates.Shared.Components.Special;
 using DVG.SkyPirates.Shared.IFactories;
 
 namespace DVG.SkyPirates.Shared.Factories

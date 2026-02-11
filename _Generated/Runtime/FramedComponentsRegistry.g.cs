@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 using DVG.SkyPirates.Shared.Components.Framed;
 
-namespace DVG.Core.Components
+namespace DVG.Components
 {
     public static class FramedComponentsRegistry
     {

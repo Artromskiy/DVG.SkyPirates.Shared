@@ -1,6 +1,5 @@
 ﻿using Arch.Core;
 using DVG.Core;
-using System;
 
 namespace DVG.SkyPirates.Shared.IFactories
 {
@@ -9,9 +8,5 @@ namespace DVG.SkyPirates.Shared.IFactories
         Entity Get(int entityId);
         int Next();
     }
-
-    [Obsolete]
-    public interface IEntityFactory<ID> : IFactory<Entity, (ID id, int entityId)>
-        where ID : struct, IId, IEquatable<ID>
-    { }
+    //public interface IEntityFactory : IFactory<Entity, (int SyncId, )>
 }
