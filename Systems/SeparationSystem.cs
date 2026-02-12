@@ -17,10 +17,10 @@ namespace DVG.SkyPirates.Shared.Systems
         private const int SquareSize = 4;
 
         private readonly QueryDescription _separatorDesc = new QueryDescription().
-            WithAll<Position, Separator>().NotDisposing();
+            WithAll<Position, Separator, Radius>().NotDisposing();
 
         private readonly QueryDescription _separationDesc = new QueryDescription().
-            WithAll<Position, Separator, Radius>().NotDisposing();
+            WithAll<Position, Separation>().NotDisposing();
 
         private readonly Lookup2D<List<SyncIdPosition>> _partitioning = new();
         private readonly Lookup<SeparationForce> _forces = new();
@@ -42,13 +42,13 @@ namespace DVG.SkyPirates.Shared.Systems
                 _partitioning.Clear();
 
                 var partitionQuery = new PartitioningQuery(_partitioning);
-                _world.InlineQuery<PartitioningQuery, SyncId, Position>(_separatorDesc, ref partitionQuery);
+                _world.InlineQuery<PartitioningQuery, SyncId, Position>(_separationDesc, ref partitionQuery);
 
                 var forceQuery = new SumSeparationForceQuery(_partitioning, _forces, _entitiesLookup, _targetsCache);
-                _world.InlineQuery<SumSeparationForceQuery, Position, Separator, Radius>(_separationDesc, ref forceQuery);
+                _world.InlineQuery<SumSeparationForceQuery, Position, Separator, Radius>(_separatorDesc, ref forceQuery);
 
                 var separationQuery = new ApplySeparationQuery(_forces);
-                _world.InlineQuery<ApplySeparationQuery, SyncId, Position, Separation>(_separatorDesc, ref separationQuery);
+                _world.InlineQuery<ApplySeparationQuery, SyncId, Position, Separation>(_separationDesc, ref separationQuery);
             }
         }
 
@@ -103,7 +103,6 @@ namespace DVG.SkyPirates.Shared.Systems
                     var dir = otherPos - posXZ;
                     var sqrDist = fix2.SqrLength(dir);
                     var distance = Maths.Sqrt(sqrDist);
-
                     var softForce = 1 - Maths.Clamp(Maths.InvLerp(radius, extendedRadius, distance), 0, 1);
                     softForce *= softForce;
                     var hardForce = 1 - Maths.Clamp(Maths.InvLerp(0, radius, distance), 0, 1);
@@ -116,7 +115,6 @@ namespace DVG.SkyPirates.Shared.Systems
                     };
                 }
             }
-
 
             private void FindTargets(ref Position position, ref Separator separation, ref Radius radius)
             {
