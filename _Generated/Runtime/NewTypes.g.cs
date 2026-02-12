@@ -79,6 +79,22 @@ namespace DVG.SkyPirates.Shared.Components.Runtime
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
+    partial struct GoodsCollectorRadius : INewType<DVG.fix>
+    {
+        
+        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+
+        public static implicit operator GoodsCollectorRadius(DVG.fix value)
+            => new() { Value = value };
+
+        public static implicit operator DVG.fix(GoodsCollectorRadius newType)
+            => newType.Value;
+    }
+}
+
+
+namespace DVG.SkyPirates.Shared.Components.Runtime
+{
     partial struct Health : INewType<DVG.fix>
     {
         

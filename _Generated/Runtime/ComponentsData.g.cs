@@ -52,60 +52,62 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 11)]
         private FlyDestination? FlyDestination;
         [DataMember(Order = 12)]
-        private GoodsDrop? GoodsDrop;
+        private GoodsCollectorRadius? GoodsCollectorRadius;
         [DataMember(Order = 13)]
-        private GoodsId? GoodsId;
+        private GoodsDrop? GoodsDrop;
         [DataMember(Order = 14)]
-        private Health? Health;
+        private GoodsId? GoodsId;
         [DataMember(Order = 15)]
-        private HexMap? HexMap;
+        private Health? Health;
         [DataMember(Order = 16)]
-        private ImpactDistance? ImpactDistance;
+        private HexMap? HexMap;
         [DataMember(Order = 17)]
-        private Level? Level;
+        private ImpactDistance? ImpactDistance;
         [DataMember(Order = 18)]
-        private MaxHealth? MaxHealth;
+        private Level? Level;
         [DataMember(Order = 19)]
-        private MaxSpeed? MaxSpeed;
+        private MaxHealth? MaxHealth;
         [DataMember(Order = 20)]
-        private Position? Position;
+        private MaxSpeed? MaxSpeed;
         [DataMember(Order = 21)]
-        private Radius? Radius;
+        private Position? Position;
         [DataMember(Order = 22)]
-        private RandomSeed? RandomSeed;
+        private Radius? Radius;
         [DataMember(Order = 23)]
-        private RecivedDamage? RecivedDamage;
+        private RandomSeed? RandomSeed;
         [DataMember(Order = 24)]
-        private RockId? RockId;
+        private RecivedDamage? RecivedDamage;
         [DataMember(Order = 25)]
-        private Rotation? Rotation;
+        private RockId? RockId;
         [DataMember(Order = 26)]
-        private Separation? Separation;
+        private Rotation? Rotation;
         [DataMember(Order = 27)]
-        private Separator? Separator;
+        private Separation? Separation;
         [DataMember(Order = 28)]
-        private Squad? Squad;
+        private Separator? Separator;
         [DataMember(Order = 29)]
-        private SquadMember? SquadMember;
+        private Squad? Squad;
         [DataMember(Order = 30)]
-        private SquadMemberCount? SquadMemberCount;
+        private SquadMember? SquadMember;
         [DataMember(Order = 31)]
-        private SyncId? SyncId;
+        private SquadMemberCount? SquadMemberCount;
         [DataMember(Order = 32)]
-        private SyncIdReserve? SyncIdReserve;
+        private SyncId? SyncId;
         [DataMember(Order = 33)]
-        private Target? Target;
+        private SyncIdReserve? SyncIdReserve;
         [DataMember(Order = 34)]
-        private Targets? Targets;
+        private Target? Target;
         [DataMember(Order = 35)]
-        private TargetSearchDistance? TargetSearchDistance;
+        private Targets? Targets;
         [DataMember(Order = 36)]
-        private TargetSearchPosition? TargetSearchPosition;
+        private TargetSearchDistance? TargetSearchDistance;
         [DataMember(Order = 37)]
-        private Team? Team;
+        private TargetSearchPosition? TargetSearchPosition;
         [DataMember(Order = 38)]
-        private TreeId? TreeId;
+        private Team? Team;
         [DataMember(Order = 39)]
+        private TreeId? TreeId;
+        [DataMember(Order = 40)]
         private UnitId? UnitId;
 
         public T? Get<T>()
@@ -136,6 +138,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<Fixation?, T?>(ref Fixation);
             if (typeof(T) == typeof(FlyDestination))
                 return Unsafe.As<FlyDestination?, T?>(ref FlyDestination);
+            if (typeof(T) == typeof(GoodsCollectorRadius))
+                return Unsafe.As<GoodsCollectorRadius?, T?>(ref GoodsCollectorRadius);
             if (typeof(T) == typeof(GoodsDrop))
                 return Unsafe.As<GoodsDrop?, T?>(ref GoodsDrop);
             if (typeof(T) == typeof(GoodsId))
@@ -258,6 +262,11 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(FlyDestination))
             {
                 FlyDestination = Unsafe.As<T?, FlyDestination?>(ref data);
+                return;
+            }
+            if (typeof(T) == typeof(GoodsCollectorRadius))
+            {
+                GoodsCollectorRadius = Unsafe.As<T?, GoodsCollectorRadius?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(GoodsDrop))
@@ -420,6 +429,7 @@ namespace DVG.SkyPirates.Shared.Data
                 (Dispose.HasValue? 1 : 0) + 
                 (Fixation.HasValue? 1 : 0) + 
                 (FlyDestination.HasValue? 1 : 0) + 
+                (GoodsCollectorRadius.HasValue? 1 : 0) + 
                 (GoodsDrop.HasValue? 1 : 0) + 
                 (GoodsId.HasValue? 1 : 0) + 
                 (Health.HasValue? 1 : 0) + 
@@ -477,6 +487,8 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(Fixation);
             if(FlyDestination.HasValue)
                 types[i++] = typeof(FlyDestination);
+            if(GoodsCollectorRadius.HasValue)
+                types[i++] = typeof(GoodsCollectorRadius);
             if(GoodsDrop.HasValue)
                 types[i++] = typeof(GoodsDrop);
             if(GoodsId.HasValue)
@@ -565,6 +577,8 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<Fixation>();
             if(FlyDestination.HasValue)
                 action.Invoke<FlyDestination>();
+            if(GoodsCollectorRadius.HasValue)
+                action.Invoke<GoodsCollectorRadius>();
             if(GoodsDrop.HasValue)
                 action.Invoke<GoodsDrop>();
             if(GoodsId.HasValue)

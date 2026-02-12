@@ -38,6 +38,7 @@ namespace DVG.Components
             action.Invoke<Dispose>();
             action.Invoke<Fixation>();
             action.Invoke<FlyDestination>();
+            action.Invoke<GoodsCollectorRadius>();
             action.Invoke<GoodsDrop>();
             action.Invoke<GoodsId>();
             action.Invoke<Health>();
