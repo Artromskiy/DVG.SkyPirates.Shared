@@ -4,7 +4,7 @@ For Component with single field there are naming rules
 
 It is Config 
 {
-	Component's name is self explaining => Value
+	Component's name is self explaining => Value => NewType pattern used
 }
 
 It is Runtime

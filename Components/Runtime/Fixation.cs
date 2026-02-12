@@ -1,9 +1,10 @@
 ﻿using DVG.Components.Attributes;
+using DVG.NewType;
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
     [Component(true)]
-    public struct Fixation
+    public partial struct Fixation : INewType
     {
         public bool Value;
     }

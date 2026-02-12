@@ -1,9 +1,10 @@
 ﻿using DVG.Components.Attributes;
+using DVG.NewType;
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
     [Component(true)]
-    public struct Health
+    public partial struct Health : INewType
     {
         public fix Value;
     }

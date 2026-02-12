@@ -1,9 +1,10 @@
 ﻿using DVG.Components.Attributes;
+using DVG.NewType;
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
     [Component(true)]
-    public struct Position
+    public partial struct Position : INewType
     {
         public fix3 Value;
     }
