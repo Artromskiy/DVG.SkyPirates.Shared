@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             var action = new LogHashAction(_descriptions, _stringBuilder, _world);
             _stringBuilder.Clear();
-            HistoryIds.ForEachData(ref action);
+            HistoryComponentsRegistry.ForEachData(ref action);
             //Console.WriteLine($"Tick: {tick}, Hash: {action.Hash}" + Environment.NewLine + _stringBuilder.ToString());
         }
 
@@ -29,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             _stringBuilder.Clear();
             var action = new LogHashAction(_descriptions, _stringBuilder, _world);
-            HistoryIds.ForEachData(ref action);
+            HistoryComponentsRegistry.ForEachData(ref action);
             return (action.Hash, _stringBuilder.ToString());
         }
 

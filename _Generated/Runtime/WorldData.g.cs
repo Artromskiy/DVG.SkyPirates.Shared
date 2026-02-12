@@ -63,7 +63,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 17)]
         private Dictionary<int, Radius> Radius;
         [DataMember(Order = 18)]
-        private Dictionary<int, RandomSource> RandomSource;
+        private Dictionary<int, RandomSeed> RandomSeed;
         [DataMember(Order = 19)]
         private Dictionary<int, RockId> RockId;
         [DataMember(Order = 20)]
@@ -108,7 +108,7 @@ namespace DVG.SkyPirates.Shared.Data
             MaxSpeed = new();
             Position = new();
             Radius = new();
-            RandomSource = new();
+            RandomSeed = new();
             RockId = new();
             Rotation = new();
             Separation = new();
@@ -162,8 +162,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Position as Dictionary<int, T>;
             if (typeof(T) == typeof(Radius))
                 return Radius as Dictionary<int, T>;
-            if (typeof(T) == typeof(RandomSource))
-                return RandomSource as Dictionary<int, T>;
+            if (typeof(T) == typeof(RandomSeed))
+                return RandomSeed as Dictionary<int, T>;
             if (typeof(T) == typeof(RockId))
                 return RockId as Dictionary<int, T>;
             if (typeof(T) == typeof(Rotation))
@@ -284,9 +284,9 @@ namespace DVG.SkyPirates.Shared.Data
                 Radius = data as Dictionary<int, Radius>;
                 return;
             }
-            if (typeof(T) == typeof(RandomSource))
+            if (typeof(T) == typeof(RandomSeed))
             {
-                RandomSource = data as Dictionary<int, RandomSource>;
+                RandomSeed = data as Dictionary<int, RandomSeed>;
                 return;
             }
             if (typeof(T) == typeof(RockId))

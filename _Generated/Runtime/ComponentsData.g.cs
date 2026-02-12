@@ -13,7 +13,6 @@
 using System;
 using System.Runtime.Serialization;
 using System.Runtime.CompilerServices;
-using DVG.Components;
 
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Config;
@@ -71,7 +70,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 20)]
         private Radius? Radius;
         [DataMember(Order = 21)]
-        private RandomSource? RandomSource;
+        private RandomSeed? RandomSeed;
         [DataMember(Order = 22)]
         private RecivedDamage? RecivedDamage;
         [DataMember(Order = 23)]
@@ -151,8 +150,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<Position?, T?>(ref Position);
             if (typeof(T) == typeof(Radius))
                 return Unsafe.As<Radius?, T?>(ref Radius);
-            if (typeof(T) == typeof(RandomSource))
-                return Unsafe.As<RandomSource?, T?>(ref RandomSource);
+            if (typeof(T) == typeof(RandomSeed))
+                return Unsafe.As<RandomSeed?, T?>(ref RandomSeed);
             if (typeof(T) == typeof(RecivedDamage))
                 return Unsafe.As<RecivedDamage?, T?>(ref RecivedDamage);
             if (typeof(T) == typeof(RockId))
@@ -298,9 +297,9 @@ namespace DVG.SkyPirates.Shared.Data
                 Radius = Unsafe.As<T?, Radius?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(RandomSource))
+            if (typeof(T) == typeof(RandomSeed))
             {
-                RandomSource = Unsafe.As<T?, RandomSource?>(ref data);
+                RandomSeed = Unsafe.As<T?, RandomSeed?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(RecivedDamage))
@@ -412,7 +411,7 @@ namespace DVG.SkyPirates.Shared.Data
                 (MaxSpeed.HasValue? 1 : 0) + 
                 (Position.HasValue? 1 : 0) + 
                 (Radius.HasValue? 1 : 0) + 
-                (RandomSource.HasValue? 1 : 0) + 
+                (RandomSeed.HasValue? 1 : 0) + 
                 (RecivedDamage.HasValue? 1 : 0) + 
                 (RockId.HasValue? 1 : 0) + 
                 (Rotation.HasValue? 1 : 0) + 
@@ -476,8 +475,8 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(Position);
             if(Radius.HasValue)
                 types[i++] = typeof(Radius);
-            if(RandomSource.HasValue)
-                types[i++] = typeof(RandomSource);
+            if(RandomSeed.HasValue)
+                types[i++] = typeof(RandomSeed);
             if(RecivedDamage.HasValue)
                 types[i++] = typeof(RecivedDamage);
             if(RockId.HasValue)
@@ -560,8 +559,8 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<Position>();
             if(Radius.HasValue)
                 action.Invoke<Radius>();
-            if(RandomSource.HasValue)
-                action.Invoke<RandomSource>();
+            if(RandomSeed.HasValue)
+                action.Invoke<RandomSeed>();
             if(RecivedDamage.HasValue)
                 action.Invoke<RecivedDamage>();
             if(RockId.HasValue)
