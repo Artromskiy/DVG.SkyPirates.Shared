@@ -37,14 +37,11 @@ namespace DVG.SkyPirates.Shared.Systems
                 var drop = _configedEntityFactory.Create((item.GoodsId, parameters));
                 _world.Get<Position>(drop) = item.Position;
                 _world.Get<Rotation>(drop) = item.Rotation;
-                _world.Get<FlyDestination>(drop) = new()
+                _world.AddOrGet<FlyDestination>(drop) = new()
                 {
                     StartPosition = item.Position,
                     EndPosition = item.Position + item.Direction.x_y,
                 };
-                var maxSpeed = _world.Get<MaxSpeed>(drop);
-                var position = _world.Get<Position>(drop);
-                var flyDestination = _world.Get<FlyDestination>(drop);
             }
         }
 
