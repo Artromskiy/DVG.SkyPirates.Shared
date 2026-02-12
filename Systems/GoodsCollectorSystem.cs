@@ -102,7 +102,7 @@ namespace DVG.SkyPirates.Shared.Systems
                                ref GoodsCollectorRadius radius)
             {
                 fix2 center = ((fix3)collectorPos).xz;
-                fix searchRadius = radius.Value;
+                fix searchRadius = radius;
                 fix sqrSearchRadius = searchRadius * searchRadius;
 
                 var range = new fix2(searchRadius, searchRadius);
