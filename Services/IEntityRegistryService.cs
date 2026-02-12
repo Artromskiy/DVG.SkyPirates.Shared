@@ -2,7 +2,6 @@
 using DVG.Components;
 using DVG.Core.Collections;
 using DVG.SkyPirates.Shared.IServices;
-using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Services
 {
@@ -12,17 +11,17 @@ namespace DVG.SkyPirates.Shared.Services
         private int _entityIdCounter = 1;
         public void Register(Entity entity, SyncId syncId)
         {
-            Debug.Assert(!_idToEntity.TryGetValue(syncId.Value, out _));
+            _entityIdCounter = Maths.Max(_entityIdCounter, syncId.Value + 1);
             _idToEntity[syncId.Value] = entity;
         }
 
-        public void Register(SyncId syncId)
+        public void Reserve(SyncId syncId)
         {
             _entityIdCounter = Maths.Max(_entityIdCounter, syncId.Value + 1);
             _idToEntity[syncId.Value] = Entity.Null;
         }
 
-        public void Register(SyncIdReserve syncIdReserve)
+        public void Reserve(SyncIdReserve syncIdReserve)
         {
             for (int i = syncIdReserve.First; i < syncIdReserve.Count; i++)
                 _idToEntity[i] = Entity.Null;
@@ -31,6 +30,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         public SyncId Reserve()
         {
+            _idToEntity[_entityIdCounter] = Entity.Null;
             return new() { Value = _entityIdCounter++ };
         }
 
@@ -38,6 +38,8 @@ namespace DVG.SkyPirates.Shared.Services
         {
             int first = _entityIdCounter;
             _entityIdCounter += count;
+            for (int i = first; i < count; i++)
+                _idToEntity[i] = Entity.Null;
             return new() { First = first, Count = count, Current = first };
         }
 
