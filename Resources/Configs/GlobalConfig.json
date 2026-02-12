@@ -16,14 +16,18 @@
         }
       },
       "Damage": 3,
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "ImpactDistance": 3,
       "MaxHealth": 45,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
-      "Separation": {
-        "AddRadius": 0.3000030517578125,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
+      "Separation": 1,
+      "Separator": {
+        "Radius": 0.3000030517578125,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 5,
       "UnitId": "Sailor"
@@ -44,14 +48,18 @@
         }
       },
       "Damage": 4,
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "ImpactDistance": 3,
       "MaxHealth": 20,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
-      "Separation": {
-        "AddRadius": 0.3000030517578125,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
+      "Separation": 1,
+      "Separator": {
+        "Radius": 0.3000030517578125,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 5,
       "UnitId": "Rogue"
@@ -72,14 +80,18 @@
         }
       },
       "Damage": 10,
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "ImpactDistance": 3,
       "MaxHealth": 45,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
-      "Separation": {
-        "AddRadius": 0.3000030517578125,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
+      "Separation": 1,
+      "Separator": {
+        "Radius": 0.3000030517578125,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 5,
       "UnitId": "Pirate"
@@ -100,14 +112,18 @@
         }
       },
       "Damage": 6,
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "ImpactDistance": 3,
       "MaxHealth": 45,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
-      "Separation": {
-        "AddRadius": 0.3000030517578125,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
+      "Separation": 1,
+      "Separator": {
+        "Radius": 0.3000030517578125,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 5,
       "UnitId": "Skelly"
@@ -128,14 +144,18 @@
         }
       },
       "Damage": 15,
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "ImpactDistance": 3,
       "MaxHealth": 100,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
-      "Separation": {
-        "AddRadius": 0.3000030517578125,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
+      "Separation": 1,
+      "Separator": {
+        "Radius": 0.3000030517578125,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 5,
       "UnitId": "Militia"
@@ -156,14 +176,18 @@
         }
       },
       "Damage": 10,
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "ImpactDistance": 3,
       "MaxHealth": 65,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
-      "Separation": {
-        "AddRadius": 0.3000030517578125,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
+      "Separation": 1,
+      "Separator": {
+        "Radius": 0.3000030517578125,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 5,
       "UnitId": "Demon"
@@ -184,14 +208,18 @@
         }
       },
       "Damage": 7,
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "ImpactDistance": 3,
       "MaxHealth": 10,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
-      "Separation": {
-        "AddRadius": 0.3000030517578125,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
+      "Separation": 1,
+      "Separator": {
+        "Radius": 0.3000030517578125,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 5,
       "UnitId": "Buccaneer"
@@ -212,14 +240,18 @@
         }
       },
       "Damage": 7,
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "ImpactDistance": 3,
       "MaxHealth": 10,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
-      "Separation": {
-        "AddRadius": 0.3000030517578125,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
+      "Separation": 1,
+      "Separator": {
+        "Radius": 0.3000030517578125,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 5,
       "UnitId": "Bonny"
@@ -240,14 +272,18 @@
         }
       },
       "Damage": 1,
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "ImpactDistance": 3,
       "MaxHealth": 50,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
-      "Separation": {
-        "AddRadius": 0.3000030517578125,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 1
+      "Separation": 1,
+      "Separator": {
+        "Radius": 0.3000030517578125,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 5,
       "UnitId": "Imp"
@@ -269,10 +305,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -291,10 +326,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -313,10 +347,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -335,10 +368,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -357,10 +389,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -379,10 +410,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -401,10 +431,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -423,10 +452,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -445,10 +473,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -467,10 +494,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -489,10 +515,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -511,10 +536,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -533,10 +557,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -555,10 +578,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -577,10 +599,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -599,10 +620,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -621,10 +641,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -643,10 +662,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -665,10 +683,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -687,10 +704,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -709,10 +725,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -731,10 +746,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -753,10 +767,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -775,10 +788,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -797,10 +809,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -819,10 +830,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -841,10 +851,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -863,10 +872,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -885,10 +893,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -907,10 +914,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -929,10 +935,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -951,10 +956,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -973,10 +977,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -995,10 +998,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1017,10 +1019,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1039,10 +1040,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1061,10 +1061,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1083,10 +1082,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1105,10 +1103,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1127,10 +1124,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1149,10 +1145,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1171,10 +1166,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1193,10 +1187,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1215,10 +1208,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1237,10 +1229,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1259,10 +1250,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1281,10 +1271,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1303,10 +1292,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1325,10 +1313,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1347,10 +1334,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1369,10 +1355,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1391,10 +1376,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1413,10 +1397,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1435,10 +1418,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1457,10 +1439,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1479,10 +1460,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1501,10 +1481,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1523,10 +1502,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1545,10 +1523,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1567,10 +1544,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1589,10 +1565,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1611,10 +1586,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1633,10 +1607,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1655,10 +1628,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1677,10 +1649,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1699,10 +1670,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1721,10 +1691,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1743,10 +1712,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1765,10 +1733,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1787,10 +1754,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1809,10 +1775,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1831,10 +1796,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1853,10 +1817,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1875,10 +1838,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1897,10 +1859,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1919,10 +1880,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1941,10 +1901,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     },
@@ -1963,10 +1922,9 @@
       "Damage": 1,
       "ImpactDistance": 2,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TargetSearchDistance": 2
     }
@@ -1979,10 +1937,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_01_Fall"
     },
@@ -1993,10 +1950,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_01_Spring"
     },
@@ -2007,10 +1963,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_01_Winter"
     },
@@ -2021,10 +1976,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_02_Fall"
     },
@@ -2035,10 +1989,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_02_Spring"
     },
@@ -2049,10 +2002,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_02_Winter"
     },
@@ -2063,10 +2015,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_03_Fall"
     },
@@ -2077,10 +2028,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_03_Spring"
     },
@@ -2091,10 +2041,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_03_Winter"
     },
@@ -2105,10 +2054,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_04_Fall"
     },
@@ -2119,10 +2067,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_04_Spring"
     },
@@ -2133,10 +2080,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_04_Winter"
     },
@@ -2147,10 +2093,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_05_Fall"
     },
@@ -2161,10 +2106,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_05_Spring"
     },
@@ -2175,10 +2119,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_05_Winter"
     },
@@ -2189,10 +2132,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_06_Fall"
     },
@@ -2203,10 +2145,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_06_Spring"
     },
@@ -2217,10 +2158,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_06_Winter"
     },
@@ -2231,10 +2171,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_07_Fall"
     },
@@ -2245,10 +2184,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_07_Spring"
     },
@@ -2259,10 +2197,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_07_Winter"
     },
@@ -2273,10 +2210,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_08_Fall"
     },
@@ -2287,10 +2223,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_08_Spring"
     },
@@ -2301,10 +2236,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_08_Winter"
     },
@@ -2315,10 +2249,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_09_Fall"
     },
@@ -2329,10 +2262,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_09_Spring"
     },
@@ -2343,10 +2275,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_09_Winter"
     },
@@ -2357,10 +2288,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_10_Fall"
     },
@@ -2371,10 +2301,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_10_Spring"
     },
@@ -2385,10 +2314,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_10_Winter"
     },
@@ -2399,10 +2327,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_11_Fall"
     },
@@ -2413,10 +2340,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_11_Spring"
     },
@@ -2427,10 +2353,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_11_Winter"
     },
@@ -2441,10 +2366,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_12_Fall"
     },
@@ -2455,10 +2379,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_12_Spring"
     },
@@ -2469,10 +2392,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_12_Winter"
     },
@@ -2483,10 +2405,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_13_Fall"
     },
@@ -2497,10 +2418,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_13_Spring"
     },
@@ -2511,10 +2431,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_13_Winter"
     },
@@ -2525,10 +2444,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_14_Fall"
     },
@@ -2539,10 +2457,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_14_Spring"
     },
@@ -2553,10 +2470,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_14_Winter"
     },
@@ -2567,10 +2483,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_15_Fall"
     },
@@ -2581,10 +2496,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_15_Spring"
     },
@@ -2595,10 +2509,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_15_Winter"
     },
@@ -2609,10 +2522,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_16_Fall"
     },
@@ -2623,10 +2535,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_16_Spring"
     },
@@ -2637,10 +2548,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_16_Winter"
     },
@@ -2651,10 +2561,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_17_Fall"
     },
@@ -2665,10 +2574,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_17_Spring"
     },
@@ -2679,10 +2587,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_17_Winter"
     },
@@ -2693,10 +2600,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_18_Fall"
     },
@@ -2707,10 +2613,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_18_Spring"
     },
@@ -2721,10 +2626,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_18_Winter"
     },
@@ -2735,10 +2639,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_19_Fall"
     },
@@ -2749,10 +2652,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_19_Spring"
     },
@@ -2763,10 +2665,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_19_Winter"
     },
@@ -2777,10 +2678,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_20_Fall"
     },
@@ -2791,10 +2691,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_20_Spring"
     },
@@ -2805,10 +2704,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_20_Winter"
     },
@@ -2819,10 +2717,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_21_Fall"
     },
@@ -2833,10 +2730,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_21_Spring"
     },
@@ -2847,10 +2743,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_21_Winter"
     },
@@ -2861,10 +2756,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_22_Fall"
     },
@@ -2875,10 +2769,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_22_Spring"
     },
@@ -2889,10 +2782,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_22_Winter"
     },
@@ -2903,10 +2795,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_23_Fall"
     },
@@ -2917,10 +2808,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_23_Spring"
     },
@@ -2931,10 +2821,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_23_Winter"
     },
@@ -2945,10 +2834,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_24_Fall"
     },
@@ -2959,10 +2847,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_24_Spring"
     },
@@ -2973,10 +2860,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_24_Winter"
     },
@@ -2987,10 +2873,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_25_Fall"
     },
@@ -3001,10 +2886,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_25_Spring"
     },
@@ -3015,10 +2899,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_25_Winter"
     },
@@ -3029,10 +2912,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_26_Fall"
     },
@@ -3043,10 +2925,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_26_Spring"
     },
@@ -3057,10 +2938,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_26_Winter"
     },
@@ -3071,10 +2951,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_27_Fall"
     },
@@ -3085,10 +2964,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_27_Spring"
     },
@@ -3099,10 +2977,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_27_Winter"
     },
@@ -3113,10 +2990,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_28_Fall"
     },
@@ -3127,10 +3003,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_28_Spring"
     },
@@ -3141,10 +3016,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_28_Winter"
     },
@@ -3155,10 +3029,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_29_Fall"
     },
@@ -3169,10 +3042,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_29_Spring"
     },
@@ -3183,10 +3055,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_29_Winter"
     },
@@ -3197,10 +3068,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_30_Fall"
     },
@@ -3211,10 +3081,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_30_Spring"
     },
@@ -3225,10 +3094,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_30_Winter"
     },
@@ -3239,10 +3107,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_31_Fall"
     },
@@ -3253,10 +3120,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_31_Spring"
     },
@@ -3267,10 +3133,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_31_Winter"
     },
@@ -3281,10 +3146,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_32_Fall"
     },
@@ -3295,10 +3159,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_32_Spring"
     },
@@ -3309,10 +3172,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_32_Winter"
     },
@@ -3323,10 +3185,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_33_Fall"
     },
@@ -3337,10 +3198,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_33_Spring"
     },
@@ -3351,10 +3211,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_33_Winter"
     },
@@ -3365,10 +3224,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_34_Fall"
     },
@@ -3379,10 +3237,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_34_Spring"
     },
@@ -3393,10 +3250,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_34_Winter"
     },
@@ -3407,10 +3263,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_35_Fall"
     },
@@ -3421,10 +3276,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_35_Spring"
     },
@@ -3435,10 +3289,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_35_Winter"
     },
@@ -3449,10 +3302,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_36_Fall"
     },
@@ -3463,10 +3315,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_36_Spring"
     },
@@ -3477,10 +3328,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_36_Winter"
     },
@@ -3491,10 +3341,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_37_Fall"
     },
@@ -3505,10 +3354,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_37_Spring"
     },
@@ -3519,10 +3367,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "Tree_37_Winter"
     },
@@ -3533,10 +3380,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_01"
     },
@@ -3547,10 +3393,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_02"
     },
@@ -3561,10 +3406,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_03"
     },
@@ -3575,10 +3419,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_04"
     },
@@ -3589,10 +3432,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_05"
     },
@@ -3603,10 +3445,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_06"
     },
@@ -3617,10 +3458,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_07"
     },
@@ -3631,10 +3471,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_08"
     },
@@ -3645,10 +3484,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_09"
     },
@@ -3659,10 +3497,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_10"
     },
@@ -3673,10 +3510,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_11"
     },
@@ -3687,10 +3523,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_12"
     },
@@ -3701,10 +3536,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_13"
     },
@@ -3715,10 +3549,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_14"
     },
@@ -3729,10 +3562,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_15"
     },
@@ -3743,10 +3575,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_16"
     },
@@ -3757,10 +3588,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_17"
     },
@@ -3771,10 +3601,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_18"
     },
@@ -3785,10 +3614,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_19"
     },
@@ -3799,10 +3627,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_20"
     },
@@ -3813,10 +3640,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_21"
     },
@@ -3827,10 +3653,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_22"
     },
@@ -3841,10 +3666,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_23"
     },
@@ -3855,10 +3679,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_24"
     },
@@ -3869,10 +3692,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_25"
     },
@@ -3883,10 +3705,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_26"
     },
@@ -3897,10 +3718,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_27"
     },
@@ -3911,10 +3731,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_28"
     },
@@ -3925,10 +3744,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_29"
     },
@@ -3939,10 +3757,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_30"
     },
@@ -3953,10 +3770,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_31"
     },
@@ -3967,10 +3783,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_32"
     },
@@ -3981,10 +3796,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_33"
     },
@@ -3995,10 +3809,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_34"
     },
@@ -4009,10 +3822,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_35"
     },
@@ -4023,10 +3835,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_36"
     },
@@ -4037,10 +3848,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_37"
     },
@@ -4051,10 +3861,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_38"
     },
@@ -4065,10 +3874,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_39"
     },
@@ -4079,10 +3887,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_40"
     },
@@ -4093,10 +3900,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_41"
     },
@@ -4107,10 +3913,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_42"
     },
@@ -4121,10 +3926,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_43"
     },
@@ -4135,10 +3939,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_44"
     },
@@ -4149,10 +3952,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_45"
     },
@@ -4163,10 +3965,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_46"
     },
@@ -4177,10 +3978,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_47"
     },
@@ -4191,10 +3991,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_48"
     },
@@ -4205,10 +4004,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_49"
     },
@@ -4219,10 +4017,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_50"
     },
@@ -4233,10 +4030,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_51"
     },
@@ -4247,10 +4043,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_52"
     },
@@ -4261,10 +4056,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_53"
     },
@@ -4275,10 +4069,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_54"
     },
@@ -4289,10 +4082,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_55"
     },
@@ -4303,10 +4095,9 @@
       },
       "MaxHealth": 100,
       "Radius": 0.5,
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       },
       "TreeId": "TreeTrunk_56"
     }
@@ -4320,10 +4111,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_01",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4334,10 +4124,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_02",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4348,10 +4137,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_03",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4362,10 +4150,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_04",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4376,10 +4163,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_05",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4390,10 +4176,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_06",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4404,10 +4189,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_07",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4418,10 +4202,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_08",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4432,10 +4215,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_09",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4446,10 +4228,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_10",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4460,10 +4241,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_11",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4474,10 +4254,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_12",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4488,10 +4267,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_13",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4502,10 +4280,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_14",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4516,10 +4293,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_15",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4530,10 +4306,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_16",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4544,10 +4319,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_17",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4558,10 +4332,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_18",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4572,10 +4345,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_19",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4586,10 +4358,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_20",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4600,10 +4371,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_21",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4614,10 +4384,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_22",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4628,10 +4397,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_23",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4642,10 +4410,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_24",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4656,10 +4423,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_25",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4670,10 +4436,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_26",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4684,10 +4449,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_27",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4698,10 +4462,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_28",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4712,10 +4475,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_29",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4726,10 +4488,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_30",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4740,10 +4501,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_31",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4754,10 +4514,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_32",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4768,10 +4527,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_33",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4782,10 +4540,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_34",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4796,10 +4553,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_35",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4810,10 +4566,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_36",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4824,10 +4579,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_37",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4838,10 +4592,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_38",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4852,10 +4605,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_39",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4866,10 +4618,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_40",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4880,10 +4631,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_41",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4894,10 +4644,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_42",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4908,10 +4657,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_43",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4922,10 +4670,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_44",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4936,10 +4683,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_45",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4950,10 +4696,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_46",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4964,10 +4709,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_47",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4978,10 +4722,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_48",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -4992,10 +4735,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_49",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5006,10 +4748,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_50",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5020,10 +4761,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_51",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5034,10 +4774,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_52",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5048,10 +4787,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_53",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5062,10 +4800,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_54",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5076,10 +4813,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_55",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5090,10 +4826,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_56",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5104,10 +4839,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_57",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5118,10 +4852,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_58",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5132,10 +4865,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_59",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5146,10 +4878,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_60",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5160,10 +4891,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_32",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5174,10 +4904,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_01",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5188,10 +4917,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_02",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5202,10 +4930,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_03",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5216,10 +4943,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_04",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5230,10 +4956,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_05",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5244,10 +4969,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_06",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5258,10 +4982,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_07",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5272,10 +4995,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_08",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5286,10 +5008,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_09",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5300,10 +5021,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_10",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5314,10 +5034,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_11",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5328,10 +5047,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_12",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5342,10 +5060,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_13",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5356,10 +5073,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_14",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5370,10 +5086,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_15",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5384,10 +5099,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_16",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5398,10 +5112,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_17",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5412,10 +5125,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_18",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5426,10 +5138,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_19",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5440,10 +5151,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_20",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5454,10 +5164,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_21",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5468,10 +5177,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_22",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5482,10 +5190,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_23",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5496,10 +5203,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_24",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5510,10 +5216,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_25",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5524,10 +5229,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_26",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5538,10 +5242,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_27",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5552,10 +5255,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_28",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5566,10 +5268,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_29",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5580,10 +5281,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_30",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     },
     {
@@ -5594,10 +5294,9 @@
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_31",
-      "Separation": {
-        "AddRadius": 0.5,
-        "AffectingCoeff": 1,
-        "AffectedCoeff": 0
+      "Separator": {
+        "Radius": 0.5,
+        "Coefficient": 1
       }
     }
   ],
@@ -5741,10 +5440,6 @@
         "GoodsId": ""
       },
       "Add": {
-        "FlyDestination": {
-          "StartPosition": "0, 0, 0",
-          "EndPosition": "0, 0, 0"
-        },
         "Position": {
           "Value": "0, 0, 0"
         },

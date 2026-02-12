@@ -3,9 +3,9 @@
     "TreeId": "Tree_01_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -16,9 +16,9 @@
     "TreeId": "Tree_01_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -29,9 +29,9 @@
     "TreeId": "Tree_01_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -42,9 +42,9 @@
     "TreeId": "Tree_02_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -55,9 +55,9 @@
     "TreeId": "Tree_02_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -68,9 +68,9 @@
     "TreeId": "Tree_02_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -81,9 +81,9 @@
     "TreeId": "Tree_03_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -94,9 +94,9 @@
     "TreeId": "Tree_03_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -107,9 +107,9 @@
     "TreeId": "Tree_03_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -120,9 +120,9 @@
     "TreeId": "Tree_04_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -133,9 +133,9 @@
     "TreeId": "Tree_04_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -146,9 +146,9 @@
     "TreeId": "Tree_04_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -159,9 +159,9 @@
     "TreeId": "Tree_05_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -172,9 +172,9 @@
     "TreeId": "Tree_05_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -185,9 +185,9 @@
     "TreeId": "Tree_05_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -198,9 +198,9 @@
     "TreeId": "Tree_06_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -211,9 +211,9 @@
     "TreeId": "Tree_06_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -224,9 +224,9 @@
     "TreeId": "Tree_06_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -237,9 +237,9 @@
     "TreeId": "Tree_07_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -250,9 +250,9 @@
     "TreeId": "Tree_07_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -263,9 +263,9 @@
     "TreeId": "Tree_07_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -276,9 +276,9 @@
     "TreeId": "Tree_08_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -289,9 +289,9 @@
     "TreeId": "Tree_08_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -302,9 +302,9 @@
     "TreeId": "Tree_08_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -315,9 +315,9 @@
     "TreeId": "Tree_09_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -328,9 +328,9 @@
     "TreeId": "Tree_09_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -341,9 +341,9 @@
     "TreeId": "Tree_09_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -354,9 +354,9 @@
     "TreeId": "Tree_10_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -367,9 +367,9 @@
     "TreeId": "Tree_10_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -380,9 +380,9 @@
     "TreeId": "Tree_10_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -393,9 +393,9 @@
     "TreeId": "Tree_11_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -406,9 +406,9 @@
     "TreeId": "Tree_11_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -419,9 +419,9 @@
     "TreeId": "Tree_11_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -432,9 +432,9 @@
     "TreeId": "Tree_12_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -445,9 +445,9 @@
     "TreeId": "Tree_12_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -458,9 +458,9 @@
     "TreeId": "Tree_12_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -471,9 +471,9 @@
     "TreeId": "Tree_13_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -484,9 +484,9 @@
     "TreeId": "Tree_13_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -497,9 +497,9 @@
     "TreeId": "Tree_13_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -510,9 +510,9 @@
     "TreeId": "Tree_14_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -523,9 +523,9 @@
     "TreeId": "Tree_14_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -536,9 +536,9 @@
     "TreeId": "Tree_14_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -549,9 +549,9 @@
     "TreeId": "Tree_15_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -562,9 +562,9 @@
     "TreeId": "Tree_15_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -575,9 +575,9 @@
     "TreeId": "Tree_15_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -588,9 +588,9 @@
     "TreeId": "Tree_16_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -601,9 +601,9 @@
     "TreeId": "Tree_16_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -614,9 +614,9 @@
     "TreeId": "Tree_16_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -627,9 +627,9 @@
     "TreeId": "Tree_17_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -640,9 +640,9 @@
     "TreeId": "Tree_17_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -653,9 +653,9 @@
     "TreeId": "Tree_17_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -666,9 +666,9 @@
     "TreeId": "Tree_18_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -679,9 +679,9 @@
     "TreeId": "Tree_18_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -692,9 +692,9 @@
     "TreeId": "Tree_18_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -705,9 +705,9 @@
     "TreeId": "Tree_19_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -718,9 +718,9 @@
     "TreeId": "Tree_19_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -731,9 +731,9 @@
     "TreeId": "Tree_19_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -744,9 +744,9 @@
     "TreeId": "Tree_20_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -757,9 +757,9 @@
     "TreeId": "Tree_20_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -770,9 +770,9 @@
     "TreeId": "Tree_20_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -783,9 +783,9 @@
     "TreeId": "Tree_21_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -796,9 +796,9 @@
     "TreeId": "Tree_21_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -809,9 +809,9 @@
     "TreeId": "Tree_21_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -822,9 +822,9 @@
     "TreeId": "Tree_22_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -835,9 +835,9 @@
     "TreeId": "Tree_22_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -848,9 +848,9 @@
     "TreeId": "Tree_22_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -861,9 +861,9 @@
     "TreeId": "Tree_23_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -874,9 +874,9 @@
     "TreeId": "Tree_23_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -887,9 +887,9 @@
     "TreeId": "Tree_23_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -900,9 +900,9 @@
     "TreeId": "Tree_24_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -913,9 +913,9 @@
     "TreeId": "Tree_24_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -926,9 +926,9 @@
     "TreeId": "Tree_24_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -939,9 +939,9 @@
     "TreeId": "Tree_25_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -952,9 +952,9 @@
     "TreeId": "Tree_25_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -965,9 +965,9 @@
     "TreeId": "Tree_25_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -978,9 +978,9 @@
     "TreeId": "Tree_26_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -991,9 +991,9 @@
     "TreeId": "Tree_26_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1004,9 +1004,9 @@
     "TreeId": "Tree_26_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1017,9 +1017,9 @@
     "TreeId": "Tree_27_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1030,9 +1030,9 @@
     "TreeId": "Tree_27_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1043,9 +1043,9 @@
     "TreeId": "Tree_27_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1056,9 +1056,9 @@
     "TreeId": "Tree_28_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1069,9 +1069,9 @@
     "TreeId": "Tree_28_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1082,9 +1082,9 @@
     "TreeId": "Tree_28_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1095,9 +1095,9 @@
     "TreeId": "Tree_29_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1108,9 +1108,9 @@
     "TreeId": "Tree_29_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1121,9 +1121,9 @@
     "TreeId": "Tree_29_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1134,9 +1134,9 @@
     "TreeId": "Tree_30_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1147,9 +1147,9 @@
     "TreeId": "Tree_30_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1160,9 +1160,9 @@
     "TreeId": "Tree_30_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1173,9 +1173,9 @@
     "TreeId": "Tree_31_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1186,9 +1186,9 @@
     "TreeId": "Tree_31_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1199,9 +1199,9 @@
     "TreeId": "Tree_31_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1212,9 +1212,9 @@
     "TreeId": "Tree_32_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1225,9 +1225,9 @@
     "TreeId": "Tree_32_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1238,9 +1238,9 @@
     "TreeId": "Tree_32_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1251,9 +1251,9 @@
     "TreeId": "Tree_33_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1264,9 +1264,9 @@
     "TreeId": "Tree_33_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1277,9 +1277,9 @@
     "TreeId": "Tree_33_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1290,9 +1290,9 @@
     "TreeId": "Tree_34_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1303,9 +1303,9 @@
     "TreeId": "Tree_34_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1316,9 +1316,9 @@
     "TreeId": "Tree_34_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1329,9 +1329,9 @@
     "TreeId": "Tree_35_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1342,9 +1342,9 @@
     "TreeId": "Tree_35_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1355,9 +1355,9 @@
     "TreeId": "Tree_35_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1368,9 +1368,9 @@
     "TreeId": "Tree_36_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1381,9 +1381,9 @@
     "TreeId": "Tree_36_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1394,9 +1394,9 @@
     "TreeId": "Tree_36_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1407,9 +1407,9 @@
     "TreeId": "Tree_37_Fall",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1420,9 +1420,9 @@
     "TreeId": "Tree_37_Spring",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1433,9 +1433,9 @@
     "TreeId": "Tree_37_Winter",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1446,9 +1446,9 @@
     "TreeId": "TreeTrunk_01",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1459,9 +1459,9 @@
     "TreeId": "TreeTrunk_02",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1472,9 +1472,9 @@
     "TreeId": "TreeTrunk_03",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1485,9 +1485,9 @@
     "TreeId": "TreeTrunk_04",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1498,9 +1498,9 @@
     "TreeId": "TreeTrunk_05",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1511,9 +1511,9 @@
     "TreeId": "TreeTrunk_06",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1524,9 +1524,9 @@
     "TreeId": "TreeTrunk_07",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1537,9 +1537,9 @@
     "TreeId": "TreeTrunk_08",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1550,9 +1550,9 @@
     "TreeId": "TreeTrunk_09",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1563,9 +1563,9 @@
     "TreeId": "TreeTrunk_10",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1576,9 +1576,9 @@
     "TreeId": "TreeTrunk_11",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1589,9 +1589,9 @@
     "TreeId": "TreeTrunk_12",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1602,9 +1602,9 @@
     "TreeId": "TreeTrunk_13",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1615,9 +1615,9 @@
     "TreeId": "TreeTrunk_14",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1628,9 +1628,9 @@
     "TreeId": "TreeTrunk_15",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1641,9 +1641,9 @@
     "TreeId": "TreeTrunk_16",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1654,9 +1654,9 @@
     "TreeId": "TreeTrunk_17",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1667,9 +1667,9 @@
     "TreeId": "TreeTrunk_18",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1680,9 +1680,9 @@
     "TreeId": "TreeTrunk_19",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1693,9 +1693,9 @@
     "TreeId": "TreeTrunk_20",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1706,9 +1706,9 @@
     "TreeId": "TreeTrunk_21",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1719,9 +1719,9 @@
     "TreeId": "TreeTrunk_22",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1732,9 +1732,9 @@
     "TreeId": "TreeTrunk_23",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1745,9 +1745,9 @@
     "TreeId": "TreeTrunk_24",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1758,9 +1758,9 @@
     "TreeId": "TreeTrunk_25",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1771,9 +1771,9 @@
     "TreeId": "TreeTrunk_26",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1784,9 +1784,9 @@
     "TreeId": "TreeTrunk_27",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1797,9 +1797,9 @@
     "TreeId": "TreeTrunk_28",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1810,9 +1810,9 @@
     "TreeId": "TreeTrunk_29",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1823,9 +1823,9 @@
     "TreeId": "TreeTrunk_30",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1836,9 +1836,9 @@
     "TreeId": "TreeTrunk_31",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1849,9 +1849,9 @@
     "TreeId": "TreeTrunk_32",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1862,9 +1862,9 @@
     "TreeId": "TreeTrunk_33",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1875,9 +1875,9 @@
     "TreeId": "TreeTrunk_34",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1888,9 +1888,9 @@
     "TreeId": "TreeTrunk_35",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1901,9 +1901,9 @@
     "TreeId": "TreeTrunk_36",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1914,9 +1914,9 @@
     "TreeId": "TreeTrunk_37",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1927,9 +1927,9 @@
     "TreeId": "TreeTrunk_38",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1940,9 +1940,9 @@
     "TreeId": "TreeTrunk_39",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1953,9 +1953,9 @@
     "TreeId": "TreeTrunk_40",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1966,9 +1966,9 @@
     "TreeId": "TreeTrunk_41",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1979,9 +1979,9 @@
     "TreeId": "TreeTrunk_42",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1992,9 +1992,9 @@
     "TreeId": "TreeTrunk_43",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2005,9 +2005,9 @@
     "TreeId": "TreeTrunk_44",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2018,9 +2018,9 @@
     "TreeId": "TreeTrunk_45",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2031,9 +2031,9 @@
     "TreeId": "TreeTrunk_46",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2044,9 +2044,9 @@
     "TreeId": "TreeTrunk_47",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2057,9 +2057,9 @@
     "TreeId": "TreeTrunk_48",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2070,9 +2070,9 @@
     "TreeId": "TreeTrunk_49",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2083,9 +2083,9 @@
     "TreeId": "TreeTrunk_50",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2096,9 +2096,9 @@
     "TreeId": "TreeTrunk_51",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2109,9 +2109,9 @@
     "TreeId": "TreeTrunk_52",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2122,9 +2122,9 @@
     "TreeId": "TreeTrunk_53",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2135,9 +2135,9 @@
     "TreeId": "TreeTrunk_54",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2148,9 +2148,9 @@
     "TreeId": "TreeTrunk_55",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -2161,9 +2161,9 @@
     "TreeId": "TreeTrunk_56",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",

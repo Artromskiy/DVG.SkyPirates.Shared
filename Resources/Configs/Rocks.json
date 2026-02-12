@@ -3,9 +3,9 @@
     "RockId": "HardRock_01",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -16,9 +16,9 @@
     "RockId": "HardRock_02",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -29,9 +29,9 @@
     "RockId": "HardRock_03",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -42,9 +42,9 @@
     "RockId": "HardRock_04",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -55,9 +55,9 @@
     "RockId": "HardRock_05",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -68,9 +68,9 @@
     "RockId": "HardRock_06",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -81,9 +81,9 @@
     "RockId": "HardRock_07",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -94,9 +94,9 @@
     "RockId": "HardRock_08",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -107,9 +107,9 @@
     "RockId": "HardRock_09",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -120,9 +120,9 @@
     "RockId": "HardRock_10",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -133,9 +133,9 @@
     "RockId": "HardRock_11",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -146,9 +146,9 @@
     "RockId": "HardRock_12",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -159,9 +159,9 @@
     "RockId": "HardRock_13",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -172,9 +172,9 @@
     "RockId": "HardRock_14",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -185,9 +185,9 @@
     "RockId": "HardRock_15",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -198,9 +198,9 @@
     "RockId": "HardRock_16",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -211,9 +211,9 @@
     "RockId": "HardRock_17",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -224,9 +224,9 @@
     "RockId": "HardRock_18",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -237,9 +237,9 @@
     "RockId": "HardRock_19",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -250,9 +250,9 @@
     "RockId": "HardRock_20",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -263,9 +263,9 @@
     "RockId": "HardRock_21",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -276,9 +276,9 @@
     "RockId": "HardRock_22",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -289,9 +289,9 @@
     "RockId": "HardRock_23",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -302,9 +302,9 @@
     "RockId": "HardRock_24",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -315,9 +315,9 @@
     "RockId": "HardRock_25",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -328,9 +328,9 @@
     "RockId": "HardRock_26",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -341,9 +341,9 @@
     "RockId": "HardRock_27",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -354,9 +354,9 @@
     "RockId": "HardRock_28",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -367,9 +367,9 @@
     "RockId": "HardRock_29",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -380,9 +380,9 @@
     "RockId": "HardRock_30",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -393,9 +393,9 @@
     "RockId": "HardRock_31",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -406,9 +406,9 @@
     "RockId": "HardRock_32",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -419,9 +419,9 @@
     "RockId": "HardRock_33",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -432,9 +432,9 @@
     "RockId": "HardRock_34",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -445,9 +445,9 @@
     "RockId": "HardRock_35",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -458,9 +458,9 @@
     "RockId": "HardRock_36",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -471,9 +471,9 @@
     "RockId": "HardRock_37",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -484,9 +484,9 @@
     "RockId": "HardRock_38",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -497,9 +497,9 @@
     "RockId": "HardRock_39",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -510,9 +510,9 @@
     "RockId": "HardRock_40",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -523,9 +523,9 @@
     "RockId": "HardRock_41",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -536,9 +536,9 @@
     "RockId": "HardRock_42",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -549,9 +549,9 @@
     "RockId": "HardRock_43",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -562,9 +562,9 @@
     "RockId": "HardRock_44",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -575,9 +575,9 @@
     "RockId": "HardRock_45",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -588,9 +588,9 @@
     "RockId": "HardRock_46",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -601,9 +601,9 @@
     "RockId": "HardRock_47",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -614,9 +614,9 @@
     "RockId": "HardRock_48",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -627,9 +627,9 @@
     "RockId": "HardRock_49",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -640,9 +640,9 @@
     "RockId": "HardRock_50",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -653,9 +653,9 @@
     "RockId": "HardRock_51",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -666,9 +666,9 @@
     "RockId": "HardRock_52",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -679,9 +679,9 @@
     "RockId": "HardRock_53",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -692,9 +692,9 @@
     "RockId": "HardRock_54",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -705,9 +705,9 @@
     "RockId": "HardRock_55",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -718,9 +718,9 @@
     "RockId": "HardRock_56",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -731,9 +731,9 @@
     "RockId": "HardRock_57",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -744,9 +744,9 @@
     "RockId": "HardRock_58",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -757,9 +757,9 @@
     "RockId": "HardRock_59",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -770,9 +770,9 @@
     "RockId": "HardRock_60",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -783,9 +783,9 @@
     "RockId": "SoftRock_32",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -796,9 +796,9 @@
     "RockId": "SoftRock_01",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -809,9 +809,9 @@
     "RockId": "SoftRock_02",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -822,9 +822,9 @@
     "RockId": "SoftRock_03",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -835,9 +835,9 @@
     "RockId": "SoftRock_04",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -848,9 +848,9 @@
     "RockId": "SoftRock_05",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -861,9 +861,9 @@
     "RockId": "SoftRock_06",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -874,9 +874,9 @@
     "RockId": "SoftRock_07",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -887,9 +887,9 @@
     "RockId": "SoftRock_08",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -900,9 +900,9 @@
     "RockId": "SoftRock_09",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -913,9 +913,9 @@
     "RockId": "SoftRock_10",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -926,9 +926,9 @@
     "RockId": "SoftRock_11",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -939,9 +939,9 @@
     "RockId": "SoftRock_12",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -952,9 +952,9 @@
     "RockId": "SoftRock_13",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -965,9 +965,9 @@
     "RockId": "SoftRock_14",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -978,9 +978,9 @@
     "RockId": "SoftRock_15",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -991,9 +991,9 @@
     "RockId": "SoftRock_16",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1004,9 +1004,9 @@
     "RockId": "SoftRock_17",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1017,9 +1017,9 @@
     "RockId": "SoftRock_18",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1030,9 +1030,9 @@
     "RockId": "SoftRock_19",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1043,9 +1043,9 @@
     "RockId": "SoftRock_20",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1056,9 +1056,9 @@
     "RockId": "SoftRock_21",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1069,9 +1069,9 @@
     "RockId": "SoftRock_22",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1082,9 +1082,9 @@
     "RockId": "SoftRock_23",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1095,9 +1095,9 @@
     "RockId": "SoftRock_24",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1108,9 +1108,9 @@
     "RockId": "SoftRock_25",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1121,9 +1121,9 @@
     "RockId": "SoftRock_26",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1134,9 +1134,9 @@
     "RockId": "SoftRock_27",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1147,9 +1147,9 @@
     "RockId": "SoftRock_28",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1160,9 +1160,9 @@
     "RockId": "SoftRock_29",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1173,9 +1173,9 @@
     "RockId": "SoftRock_30",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",
@@ -1186,9 +1186,9 @@
     "RockId": "SoftRock_31",
     "MaxHealth": 100,
     "Radius": 0.5,
-    "Separation": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1
+    "Separator": {
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "GoodsDrop": {
       "Id": "Gold",

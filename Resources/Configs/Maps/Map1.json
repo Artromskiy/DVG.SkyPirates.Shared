@@ -1,19 +1,394 @@
 {
   "AutoHeal": {
+    "1179": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 0.579681396484375
+    },
+    "1168": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 0.67962646484375
+    },
+    "1157": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 0.819549560546875
+    },
+    "1146": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 0.979461669921875
+    },
+    "1135": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1124": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1113": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1102": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1091": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1080": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1069": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1058": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1047": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1036": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1025": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1014": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "1003": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "992": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "981": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "970": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "959": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "948": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "937": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "926": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "915": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "904": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "893": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "882": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "871": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "860": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "849": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "838": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "827": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "816": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "805": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "794": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "783": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "772": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "761": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "750": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "695": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "684": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "673": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "662": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "651": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "640": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "629": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "618": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "607": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "596": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "585": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "574": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "563": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "552": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "541": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "530": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "519": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "508": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "497": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "486": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "475": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "464": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "453": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "442": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "431": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "420": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "409": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "398": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "387": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "376": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "365": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "354": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "343": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "332": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
+    "321": {
+      "HealPerSecond": 20,
+      "HealDelay": 10,
+      "HealLoadPercent": 1
+    },
     "310": {
       "HealPerSecond": 20,
       "HealDelay": 10,
-      "HealLoadPercent": 0.7096099853515625
+      "HealLoadPercent": 1
     },
     "299": {
       "HealPerSecond": 20,
       "HealDelay": 10,
-      "HealLoadPercent": 0.799560546875
+      "HealLoadPercent": 1
     },
     "288": {
       "HealPerSecond": 20,
       "HealDelay": 10,
-      "HealLoadPercent": 0.939483642578125
+      "HealLoadPercent": 1
     },
     "277": {
       "HealPerSecond": 20,
@@ -146,14 +521,1027 @@
       "HealLoadPercent": 1
     }
   },
-  "BehaviourConfig": {},
-  "BehaviourState": {},
-  "CactusId": {},
-  "Damage": {},
+  "BehaviourConfig": {
+    "1179": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1168": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1157": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1146": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1135": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1124": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1113": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1102": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1091": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1080": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1069": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1058": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1047": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1036": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1025": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1014": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.1999969482421875,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.3000030517578125,
+        "None": 0
+      }
+    },
+    "1003": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "992": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "981": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "970": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "959": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "948": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "937": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "926": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "915": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "904": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "893": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "882": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "871": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "860": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "849": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "838": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "827": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "816": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "805": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "794": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "783": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "772": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "761": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "750": {
+      "Scenario": {
+        "PreAttack": "PostAttack",
+        "PostAttack": "Reload",
+        "Reload": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.5,
+        "PostAttack": 0.3000030517578125,
+        "Reload": 0.1999969482421875,
+        "None": 0
+      }
+    },
+    "739": {
+      "Scenario": {
+        "PreAttack": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.399993896484375,
+        "None": 0
+      }
+    },
+    "728": {
+      "Scenario": {
+        "PreAttack": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.399993896484375,
+        "None": 0
+      }
+    },
+    "717": {
+      "Scenario": {
+        "PreAttack": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.399993896484375,
+        "None": 0
+      }
+    },
+    "706": {
+      "Scenario": {
+        "PreAttack": "None",
+        "None": "None"
+      },
+      "Durations": {
+        "PreAttack": 0.399993896484375,
+        "None": 0
+      }
+    }
+  },
+  "BehaviourState": {
+    "1179": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1168": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1157": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1146": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1135": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1124": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1113": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1102": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1091": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1080": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1069": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1058": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1047": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1036": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1025": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1014": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "1003": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "992": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "981": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "970": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "959": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "948": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "937": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "926": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "915": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "904": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "893": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "882": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "871": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "860": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "849": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "838": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "827": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "816": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "805": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "794": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "783": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "772": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "761": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "750": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "739": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "728": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "717": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    },
+    "706": {
+      "State": "None",
+      "Percent": 1,
+      "Duration": 0
+    }
+  },
+  "CactusId": {
+    "739": "Cactus_39_B",
+    "728": "Cactus_39_B",
+    "717": "Cactus_39_B",
+    "706": "Cactus_39_B"
+  },
+  "Damage": {
+    "1179": 4,
+    "1168": 4,
+    "1157": 4,
+    "1146": 4,
+    "1135": 4,
+    "1124": 4,
+    "1113": 4,
+    "1102": 4,
+    "1091": 4,
+    "1080": 4,
+    "1069": 4,
+    "1058": 4,
+    "1047": 4,
+    "1036": 4,
+    "1025": 4,
+    "1014": 4,
+    "1003": 3,
+    "992": 3,
+    "981": 3,
+    "970": 3,
+    "959": 3,
+    "948": 3,
+    "937": 3,
+    "926": 3,
+    "915": 3,
+    "904": 3,
+    "893": 3,
+    "882": 3,
+    "871": 3,
+    "860": 3,
+    "849": 3,
+    "838": 3,
+    "827": 3,
+    "816": 3,
+    "805": 3,
+    "794": 3,
+    "783": 3,
+    "772": 3,
+    "761": 3,
+    "750": 3,
+    "739": 1,
+    "728": 1,
+    "717": 1,
+    "706": 1
+  },
   "Direction": {},
   "Dispose": {},
   "Fixation": {},
+  "FlyDestination": {},
   "GoodsDrop": {
+    "695": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "684": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "673": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "662": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "651": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "640": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "629": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "618": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "607": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "596": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "585": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "574": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "563": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "552": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "541": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "530": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "519": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "508": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "497": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "486": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "475": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "464": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "453": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "442": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "431": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "420": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "409": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "398": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "387": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "376": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "365": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "354": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "343": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "332": {
+      "Id": "Gold",
+      "Amount": 20
+    },
+    "321": {
+      "Id": "Gold",
+      "Amount": 20
+    },
     "310": {
       "Id": "Gold",
       "Amount": 20
@@ -273,6 +1661,81 @@
   },
   "GoodsId": {},
   "Health": {
+    "1179": 20,
+    "1168": 20,
+    "1157": 20,
+    "1146": 20,
+    "1135": 20,
+    "1124": 20,
+    "1113": 20,
+    "1102": 20,
+    "1091": 20,
+    "1080": 20,
+    "1069": 20,
+    "1058": 20,
+    "1047": 20,
+    "1036": 20,
+    "1025": 20,
+    "1014": 20,
+    "1003": 45,
+    "992": 45,
+    "981": 45,
+    "970": 45,
+    "959": 45,
+    "948": 45,
+    "937": 45,
+    "926": 45,
+    "915": 45,
+    "904": 45,
+    "893": 45,
+    "882": 45,
+    "871": 45,
+    "860": 45,
+    "849": 45,
+    "838": 45,
+    "827": 45,
+    "816": 45,
+    "805": 45,
+    "794": 45,
+    "783": 45,
+    "772": 45,
+    "761": 45,
+    "750": 45,
+    "695": 100,
+    "684": 100,
+    "673": 100,
+    "662": 100,
+    "651": 100,
+    "640": 100,
+    "629": 100,
+    "618": 100,
+    "607": 100,
+    "596": 100,
+    "585": 100,
+    "574": 100,
+    "563": 100,
+    "552": 100,
+    "541": 100,
+    "530": 100,
+    "519": 100,
+    "508": 100,
+    "497": 100,
+    "486": 100,
+    "475": 100,
+    "464": 100,
+    "453": 100,
+    "442": 100,
+    "431": 100,
+    "420": 100,
+    "409": 100,
+    "398": 100,
+    "387": 100,
+    "376": 100,
+    "365": 100,
+    "354": 100,
+    "343": 100,
+    "332": 100,
+    "321": 100,
     "310": 100,
     "299": 100,
     "288": 100,
@@ -306,53 +1769,32 @@
   "HexMap": {
     "1": {
       "Data": {
-        "1, 0, -11": "Land2",
-        "0, 0, -9": "Land2",
-        "1, 0, -10": "Land2",
         "0, 0, -11": "Land2",
-        "-1, 0, -10": "Land2",
-        "-1, 0, -9": "Land2",
-        "0, 0, -8": "Land2",
-        "1, 0, -9": "Land2",
         "0, 0, -10": "Land2",
-        "-1, 0, -8": "Land2",
-        "2, 0, -10": "Land2",
-        "2, 0, -11": "Land2",
+        "1, 0, -11": "Land2",
         "1, 0, -12": "Land2",
         "0, 0, -12": "Land2",
         "-1, 0, -11": "Land2",
-        "-2, 0, -10": "Land2",
-        "-2, 0, -9": "Land2",
-        "-2, 0, -8": "Land2",
-        "0, 0, -7": "Land2",
-        "1, 0, -8": "Land2",
-        "-1, 0, -7": "Land2",
-        "2, 0, -9": "Land2",
-        "-2, 0, -7": "Land2",
-        "3, 0, -10": "Land2",
-        "3, 0, -11": "Land2",
-        "3, 0, -12": "Land2",
+        "-1, 0, -10": "Land2",
+        "0, 0, -9": "Land2",
+        "1, 0, -10": "Land2",
+        "-1, 0, -9": "Land2",
+        "2, 0, -11": "Land2",
         "2, 0, -12": "Land2",
         "2, 0, -13": "Land2",
         "1, 0, -13": "Land2",
         "0, 0, -13": "Land2",
         "-1, 0, -12": "Land2",
         "-2, 0, -11": "Land2",
-        "-3, 0, -10": "Land2",
-        "-3, 0, -9": "Land2",
-        "-3, 0, -8": "Land2",
-        "-3, 0, -7": "Land2",
-        "0, 0, -6": "Land2",
-        "1, 0, -7": "Land2",
-        "-1, 0, -6": "Land2",
-        "2, 0, -8": "Land2",
-        "-2, 0, -6": "Land2",
-        "3, 0, -9": "Land2",
-        "-3, 0, -6": "Land2",
-        "4, 0, -10": "Land2",
-        "4, 0, -11": "Land2",
-        "4, 0, -12": "Land2",
-        "4, 0, -13": "Land2",
+        "-2, 0, -10": "Land2",
+        "-2, 0, -9": "Land2",
+        "0, 0, -8": "Land2",
+        "1, 0, -9": "Land2",
+        "-1, 0, -8": "Land2",
+        "2, 0, -10": "Land2",
+        "-2, 0, -8": "Land2",
+        "3, 0, -11": "Land2",
+        "3, 0, -12": "Land2",
         "3, 0, -13": "Land2",
         "3, 0, -14": "Land2",
         "2, 0, -14": "Land2",
@@ -361,25 +1803,19 @@
         "-1, 0, -13": "Land2",
         "-2, 0, -12": "Land2",
         "-3, 0, -11": "Land2",
-        "-4, 0, -10": "Land2",
-        "-4, 0, -9": "Land2",
-        "-4, 0, -8": "Land2",
-        "-4, 0, -7": "Land2",
-        "-4, 0, -6": "Land2",
-        "0, 0, -5": "Land2",
-        "1, 0, -6": "Land2",
-        "-1, 0, -5": "Land2",
-        "2, 0, -7": "Land2",
-        "-2, 0, -5": "Land2",
-        "3, 0, -8": "Land2",
-        "-3, 0, -5": "Land2",
-        "4, 0, -9": "Land2",
-        "-4, 0, -5": "Land2",
-        "5, 0, -10": "Land2",
-        "5, 0, -11": "Land2",
-        "5, 0, -12": "Land2",
-        "5, 0, -13": "Land2",
-        "5, 0, -14": "Land2",
+        "-3, 0, -10": "Land2",
+        "-3, 0, -9": "Land2",
+        "-3, 0, -8": "Land2",
+        "0, 0, -7": "Land2",
+        "1, 0, -8": "Land2",
+        "-1, 0, -7": "Land2",
+        "2, 0, -9": "Land2",
+        "-2, 0, -7": "Land2",
+        "3, 0, -10": "Land2",
+        "-3, 0, -7": "Land2",
+        "4, 0, -11": "Land2",
+        "4, 0, -12": "Land2",
+        "4, 0, -13": "Land2",
         "4, 0, -14": "Land2",
         "4, 0, -15": "Land2",
         "3, 0, -15": "Land2",
@@ -390,29 +1826,23 @@
         "-2, 0, -13": "Land2",
         "-3, 0, -12": "Land2",
         "-4, 0, -11": "Land2",
-        "-5, 0, -10": "Land2",
-        "-5, 0, -9": "Land2",
-        "-5, 0, -8": "Land2",
-        "-5, 0, -7": "Land2",
-        "-5, 0, -6": "Land2",
-        "-5, 0, -5": "Land2",
-        "0, 0, -4": "Land2",
-        "1, 0, -5": "Land2",
-        "-1, 0, -4": "Land2",
-        "2, 0, -6": "Land2",
-        "-2, 0, -4": "Land2",
-        "3, 0, -7": "Land2",
-        "-3, 0, -4": "Land2",
-        "4, 0, -8": "Land2",
-        "-4, 0, -4": "Land2",
-        "5, 0, -9": "Land2",
-        "-5, 0, -4": "Land2",
-        "6, 0, -10": "Land2",
-        "6, 0, -11": "Land2",
-        "6, 0, -12": "Land2",
-        "6, 0, -13": "Land2",
-        "6, 0, -14": "Land2",
-        "6, 0, -15": "Land2",
+        "-4, 0, -10": "Land2",
+        "-4, 0, -9": "Land2",
+        "-4, 0, -8": "Land2",
+        "-4, 0, -7": "Land2",
+        "0, 0, -6": "Land2",
+        "1, 0, -7": "Land2",
+        "-1, 0, -6": "Land2",
+        "2, 0, -8": "Land2",
+        "-2, 0, -6": "Land2",
+        "3, 0, -9": "Land2",
+        "-3, 0, -6": "Land2",
+        "4, 0, -10": "Land2",
+        "-4, 0, -6": "Land2",
+        "5, 0, -11": "Land2",
+        "5, 0, -12": "Land2",
+        "5, 0, -13": "Land2",
+        "5, 0, -14": "Land2",
         "5, 0, -15": "Land2",
         "5, 0, -16": "Land2",
         "4, 0, -16": "Land2",
@@ -425,33 +1855,27 @@
         "-3, 0, -13": "Land2",
         "-4, 0, -12": "Land2",
         "-5, 0, -11": "Land2",
-        "-6, 0, -10": "Land2",
-        "-6, 0, -9": "Land2",
-        "-6, 0, -8": "Land2",
-        "-6, 0, -7": "Land2",
-        "-6, 0, -6": "Land2",
-        "-6, 0, -5": "Land2",
-        "-6, 0, -4": "Land2",
-        "0, 0, -3": "Land2",
-        "1, 0, -4": "Land2",
-        "-1, 0, -3": "Land2",
-        "2, 0, -5": "Land2",
-        "-2, 0, -3": "Land2",
-        "3, 0, -6": "Land2",
-        "-3, 0, -3": "Land2",
-        "4, 0, -7": "Land2",
-        "-4, 0, -3": "Land2",
-        "5, 0, -8": "Land2",
-        "-5, 0, -3": "Land2",
-        "6, 0, -9": "Land2",
-        "-6, 0, -3": "Land2",
-        "7, 0, -10": "Land2",
-        "7, 0, -11": "Land2",
-        "7, 0, -12": "Land2",
-        "7, 0, -13": "Land2",
-        "7, 0, -14": "Land2",
-        "7, 0, -15": "Land2",
-        "7, 0, -16": "Land2",
+        "-5, 0, -10": "Land2",
+        "-5, 0, -9": "Land2",
+        "-5, 0, -8": "Land2",
+        "-5, 0, -7": "Land2",
+        "-5, 0, -6": "Land2",
+        "0, 0, -5": "Land2",
+        "1, 0, -6": "Land2",
+        "-1, 0, -5": "Land2",
+        "2, 0, -7": "Land2",
+        "-2, 0, -5": "Land2",
+        "3, 0, -8": "Land2",
+        "-3, 0, -5": "Land2",
+        "4, 0, -9": "Land2",
+        "-4, 0, -5": "Land2",
+        "5, 0, -10": "Land2",
+        "-5, 0, -5": "Land2",
+        "6, 0, -11": "Land2",
+        "6, 0, -12": "Land2",
+        "6, 0, -13": "Land2",
+        "6, 0, -14": "Land2",
+        "6, 0, -15": "Land2",
         "6, 0, -16": "Land2",
         "6, 0, -17": "Land2",
         "5, 0, -17": "Land2",
@@ -466,37 +1890,31 @@
         "-4, 0, -13": "Land2",
         "-5, 0, -12": "Land2",
         "-6, 0, -11": "Land2",
-        "-7, 0, -10": "Land2",
-        "-7, 0, -9": "Land2",
-        "-7, 0, -8": "Land2",
-        "-7, 0, -7": "Land2",
-        "-7, 0, -6": "Land2",
-        "-7, 0, -5": "Land2",
-        "-7, 0, -4": "Land2",
-        "-7, 0, -3": "Land2",
-        "0, 0, -2": "Land2",
-        "1, 0, -3": "Land2",
-        "-1, 0, -2": "Land2",
-        "2, 0, -4": "Land2",
-        "-2, 0, -2": "Land2",
-        "3, 0, -5": "Land2",
-        "-3, 0, -2": "Land2",
-        "4, 0, -6": "Land2",
-        "-4, 0, -2": "Land2",
-        "5, 0, -7": "Land2",
-        "-5, 0, -2": "Land2",
-        "6, 0, -8": "Land2",
-        "-6, 0, -2": "Land2",
-        "7, 0, -9": "Land2",
-        "-7, 0, -2": "Land2",
-        "8, 0, -10": "Land2",
-        "8, 0, -11": "Land2",
-        "8, 0, -12": "Land2",
-        "8, 0, -13": "Land2",
-        "8, 0, -14": "Land2",
-        "8, 0, -15": "Land2",
-        "8, 0, -16": "Land2",
-        "8, 0, -17": "Land2",
+        "-6, 0, -10": "Land2",
+        "-6, 0, -9": "Land2",
+        "-6, 0, -8": "Land2",
+        "-6, 0, -7": "Land2",
+        "-6, 0, -6": "Land2",
+        "-6, 0, -5": "Land2",
+        "0, 0, -4": "Land2",
+        "1, 0, -5": "Land2",
+        "-1, 0, -4": "Land2",
+        "2, 0, -6": "Land2",
+        "-2, 0, -4": "Land2",
+        "3, 0, -7": "Land2",
+        "-3, 0, -4": "Land2",
+        "4, 0, -8": "Land2",
+        "-4, 0, -4": "Land2",
+        "5, 0, -9": "Land2",
+        "-5, 0, -4": "Land2",
+        "6, 0, -10": "Land2",
+        "-6, 0, -4": "Land2",
+        "7, 0, -11": "Land2",
+        "7, 0, -12": "Land2",
+        "7, 0, -13": "Land2",
+        "7, 0, -14": "Land2",
+        "7, 0, -15": "Land2",
+        "7, 0, -16": "Land2",
         "7, 0, -17": "Land2",
         "7, 0, -18": "Land2",
         "6, 0, -18": "Land2",
@@ -513,41 +1931,35 @@
         "-5, 0, -13": "Land2",
         "-6, 0, -12": "Land2",
         "-7, 0, -11": "Land2",
-        "-8, 0, -10": "Land2",
-        "-8, 0, -9": "Land2",
-        "-8, 0, -8": "Land2",
-        "-8, 0, -7": "Land2",
-        "-8, 0, -6": "Land2",
-        "-8, 0, -5": "Land2",
-        "-8, 0, -4": "Land2",
-        "-8, 0, -3": "Land2",
-        "-8, 0, -2": "Land2",
-        "0, 0, -1": "Land2",
-        "1, 0, -2": "Land2",
-        "-1, 0, -1": "Land2",
-        "2, 0, -3": "Land2",
-        "-2, 0, -1": "Land2",
-        "3, 0, -4": "Land2",
-        "-3, 0, -1": "Land2",
-        "4, 0, -5": "Land2",
-        "-4, 0, -1": "Land2",
-        "5, 0, -6": "Land2",
-        "-5, 0, -1": "Land2",
-        "6, 0, -7": "Land2",
-        "-6, 0, -1": "Land2",
-        "7, 0, -8": "Land2",
-        "-7, 0, -1": "Land2",
-        "8, 0, -9": "Land2",
-        "-8, 0, -1": "Land2",
-        "9, 0, -10": "Land2",
-        "9, 0, -11": "Land2",
-        "9, 0, -12": "Land2",
-        "9, 0, -13": "Land2",
-        "9, 0, -14": "Land2",
-        "9, 0, -15": "Land2",
-        "9, 0, -16": "Land2",
-        "9, 0, -17": "Land2",
-        "9, 0, -18": "Land2",
+        "-7, 0, -10": "Land2",
+        "-7, 0, -9": "Land2",
+        "-7, 0, -8": "Land2",
+        "-7, 0, -7": "Land2",
+        "-7, 0, -6": "Land2",
+        "-7, 0, -5": "Land2",
+        "-7, 0, -4": "Land2",
+        "0, 0, -3": "Land2",
+        "1, 0, -4": "Land2",
+        "-1, 0, -3": "Land2",
+        "2, 0, -5": "Land2",
+        "-2, 0, -3": "Land2",
+        "3, 0, -6": "Land2",
+        "-3, 0, -3": "Land2",
+        "4, 0, -7": "Land2",
+        "-4, 0, -3": "Land2",
+        "5, 0, -8": "Land2",
+        "-5, 0, -3": "Land2",
+        "6, 0, -9": "Land2",
+        "-6, 0, -3": "Land2",
+        "7, 0, -10": "Land2",
+        "-7, 0, -3": "Land2",
+        "8, 0, -11": "Land2",
+        "8, 0, -12": "Land2",
+        "8, 0, -13": "Land2",
+        "8, 0, -14": "Land2",
+        "8, 0, -15": "Land2",
+        "8, 0, -16": "Land2",
+        "8, 0, -17": "Land2",
         "8, 0, -18": "Land2",
         "8, 0, -19": "Land2",
         "7, 0, -19": "Land2",
@@ -566,45 +1978,39 @@
         "-6, 0, -13": "Land2",
         "-7, 0, -12": "Land2",
         "-8, 0, -11": "Land2",
-        "-9, 0, -10": "Land2",
-        "-9, 0, -9": "Land2",
-        "-9, 0, -8": "Land2",
-        "-9, 0, -7": "Land2",
-        "-9, 0, -6": "Land2",
-        "-9, 0, -5": "Land2",
-        "-9, 0, -4": "Land2",
-        "-9, 0, -3": "Land2",
-        "-9, 0, -2": "Land2",
-        "-9, 0, -1": "Land2",
-        "0, 0, 0": "Land2",
-        "1, 0, -1": "Land2",
-        "-1, 0, 0": "Land2",
-        "2, 0, -2": "Land2",
-        "-2, 0, 0": "Land2",
-        "3, 0, -3": "Land2",
-        "-3, 0, 0": "Land2",
-        "4, 0, -4": "Land2",
-        "-4, 0, 0": "Land2",
-        "5, 0, -5": "Land2",
-        "-5, 0, 0": "Land2",
-        "6, 0, -6": "Land2",
-        "-6, 0, 0": "Land2",
-        "7, 0, -7": "Land2",
-        "-7, 0, 0": "Land2",
-        "8, 0, -8": "Land2",
-        "-8, 0, 0": "Land2",
-        "9, 0, -9": "Land2",
-        "-9, 0, 0": "Land2",
-        "10, 0, -10": "Land2",
-        "10, 0, -11": "Land2",
-        "10, 0, -12": "Land2",
-        "10, 0, -13": "Land2",
-        "10, 0, -14": "Land2",
-        "10, 0, -15": "Land2",
-        "10, 0, -16": "Land2",
-        "10, 0, -17": "Land2",
-        "10, 0, -18": "Land2",
-        "10, 0, -19": "Land2",
+        "-8, 0, -10": "Land2",
+        "-8, 0, -9": "Land2",
+        "-8, 0, -8": "Land2",
+        "-8, 0, -7": "Land2",
+        "-8, 0, -6": "Land2",
+        "-8, 0, -5": "Land2",
+        "-8, 0, -4": "Land2",
+        "-8, 0, -3": "Land2",
+        "0, 0, -2": "Land2",
+        "1, 0, -3": "Land2",
+        "-1, 0, -2": "Land2",
+        "2, 0, -4": "Land2",
+        "-2, 0, -2": "Land2",
+        "3, 0, -5": "Land2",
+        "-3, 0, -2": "Land2",
+        "4, 0, -6": "Land2",
+        "-4, 0, -2": "Land2",
+        "5, 0, -7": "Land2",
+        "-5, 0, -2": "Land2",
+        "6, 0, -8": "Land2",
+        "-6, 0, -2": "Land2",
+        "7, 0, -9": "Land2",
+        "-7, 0, -2": "Land2",
+        "8, 0, -10": "Land2",
+        "-8, 0, -2": "Land2",
+        "9, 0, -11": "Land2",
+        "9, 0, -12": "Land2",
+        "9, 0, -13": "Land2",
+        "9, 0, -14": "Land2",
+        "9, 0, -15": "Land2",
+        "9, 0, -16": "Land2",
+        "9, 0, -17": "Land2",
+        "9, 0, -18": "Land2",
         "9, 0, -19": "Land2",
         "9, 0, -20": "Land2",
         "8, 0, -20": "Land2",
@@ -625,49 +2031,43 @@
         "-7, 0, -13": "Land2",
         "-8, 0, -12": "Land2",
         "-9, 0, -11": "Land2",
-        "-10, 0, -10": "Land2",
-        "-10, 0, -9": "Land2",
-        "-10, 0, -8": "Land2",
-        "-10, 0, -7": "Land2",
-        "-10, 0, -6": "Land2",
-        "-10, 0, -5": "Land2",
-        "-10, 0, -4": "Land2",
-        "-10, 0, -3": "Land2",
-        "-10, 0, -2": "Land2",
-        "-10, 0, -1": "Land2",
-        "-10, 0, 0": "Land2",
-        "0, 0, 1": "Land2",
-        "1, 0, 0": "Land2",
-        "-1, 0, 1": "Land2",
-        "2, 0, -1": "Land2",
-        "-2, 0, 1": "Land2",
-        "3, 0, -2": "Land2",
-        "-3, 0, 1": "Land2",
-        "4, 0, -3": "Land2",
-        "-4, 0, 1": "Land2",
-        "5, 0, -4": "Land2",
-        "-5, 0, 1": "Land2",
-        "6, 0, -5": "Land2",
-        "-6, 0, 1": "Land2",
-        "7, 0, -6": "Land2",
-        "-7, 0, 1": "Land2",
-        "8, 0, -7": "Land2",
-        "-8, 0, 1": "Land2",
-        "9, 0, -8": "Land2",
-        "-9, 0, 1": "Land2",
-        "10, 0, -9": "Land2",
-        "-10, 0, 1": "Land2",
-        "11, 0, -10": "Land2",
-        "11, 0, -11": "Land2",
-        "11, 0, -12": "Land2",
-        "11, 0, -13": "Land2",
-        "11, 0, -14": "Land2",
-        "11, 0, -15": "Land2",
-        "11, 0, -16": "Land2",
-        "11, 0, -17": "Land2",
-        "11, 0, -18": "Land2",
-        "11, 0, -19": "Land2",
-        "11, 0, -20": "Land2",
+        "-9, 0, -10": "Land2",
+        "-9, 0, -9": "Land2",
+        "-9, 0, -8": "Land2",
+        "-9, 0, -7": "Land2",
+        "-9, 0, -6": "Land2",
+        "-9, 0, -5": "Land2",
+        "-9, 0, -4": "Land2",
+        "-9, 0, -3": "Land2",
+        "-9, 0, -2": "Land2",
+        "0, 0, -1": "Land2",
+        "1, 0, -2": "Land2",
+        "-1, 0, -1": "Land2",
+        "2, 0, -3": "Land2",
+        "-2, 0, -1": "Land2",
+        "3, 0, -4": "Land2",
+        "-3, 0, -1": "Land2",
+        "4, 0, -5": "Land2",
+        "-4, 0, -1": "Land2",
+        "5, 0, -6": "Land2",
+        "-5, 0, -1": "Land2",
+        "6, 0, -7": "Land2",
+        "-6, 0, -1": "Land2",
+        "7, 0, -8": "Land2",
+        "-7, 0, -1": "Land2",
+        "8, 0, -9": "Land2",
+        "-8, 0, -1": "Land2",
+        "9, 0, -10": "Land2",
+        "-9, 0, -1": "Land2",
+        "10, 0, -11": "Land2",
+        "10, 0, -12": "Land2",
+        "10, 0, -13": "Land2",
+        "10, 0, -14": "Land2",
+        "10, 0, -15": "Land2",
+        "10, 0, -16": "Land2",
+        "10, 0, -17": "Land2",
+        "10, 0, -18": "Land2",
+        "10, 0, -19": "Land2",
         "10, 0, -20": "Land2",
         "10, 0, -21": "Land2",
         "9, 0, -21": "Land2",
@@ -690,53 +2090,47 @@
         "-8, 0, -13": "Land2",
         "-9, 0, -12": "Land2",
         "-10, 0, -11": "Land2",
-        "-11, 0, -10": "Land2",
-        "-11, 0, -9": "Land2",
-        "-11, 0, -8": "Land2",
-        "-11, 0, -7": "Land2",
-        "-11, 0, -6": "Land2",
-        "-11, 0, -5": "Land2",
-        "-11, 0, -4": "Land2",
-        "-11, 0, -3": "Land2",
-        "-11, 0, -2": "Land2",
-        "-11, 0, -1": "Land2",
-        "-11, 0, 0": "Land2",
-        "-11, 0, 1": "Land2",
-        "0, 0, 2": "Land2",
-        "1, 0, 1": "Land2",
-        "-1, 0, 2": "Land2",
-        "2, 0, 0": "Land2",
-        "-2, 0, 2": "Land2",
-        "3, 0, -1": "Land2",
-        "-3, 0, 2": "Land2",
-        "4, 0, -2": "Land2",
-        "-4, 0, 2": "Land2",
-        "5, 0, -3": "Land2",
-        "-5, 0, 2": "Land2",
-        "6, 0, -4": "Land2",
-        "-6, 0, 2": "Land2",
-        "7, 0, -5": "Land2",
-        "-7, 0, 2": "Land2",
-        "8, 0, -6": "Land2",
-        "-8, 0, 2": "Land2",
-        "9, 0, -7": "Land2",
-        "-9, 0, 2": "Land2",
-        "10, 0, -8": "Land2",
-        "-10, 0, 2": "Land2",
-        "11, 0, -9": "Land2",
-        "-11, 0, 2": "Land2",
-        "12, 0, -10": "Land2",
-        "12, 0, -11": "Land2",
-        "12, 0, -12": "Land2",
-        "12, 0, -13": "Land2",
-        "12, 0, -14": "Land2",
-        "12, 0, -15": "Land2",
-        "12, 0, -16": "Land2",
-        "12, 0, -17": "Land2",
-        "12, 0, -18": "Land2",
-        "12, 0, -19": "Land2",
-        "12, 0, -20": "Land2",
-        "12, 0, -21": "Land2",
+        "-10, 0, -10": "Land2",
+        "-10, 0, -9": "Land2",
+        "-10, 0, -8": "Land2",
+        "-10, 0, -7": "Land2",
+        "-10, 0, -6": "Land2",
+        "-10, 0, -5": "Land2",
+        "-10, 0, -4": "Land2",
+        "-10, 0, -3": "Land2",
+        "-10, 0, -2": "Land2",
+        "-10, 0, -1": "Land2",
+        "0, 0, 0": "Land2",
+        "1, 0, -1": "Land2",
+        "-1, 0, 0": "Land2",
+        "2, 0, -2": "Land2",
+        "-2, 0, 0": "Land2",
+        "3, 0, -3": "Land2",
+        "-3, 0, 0": "Land2",
+        "4, 0, -4": "Land2",
+        "-4, 0, 0": "Land2",
+        "5, 0, -5": "Land2",
+        "-5, 0, 0": "Land2",
+        "6, 0, -6": "Land2",
+        "-6, 0, 0": "Land2",
+        "7, 0, -7": "Land2",
+        "-7, 0, 0": "Land2",
+        "8, 0, -8": "Land2",
+        "-8, 0, 0": "Land2",
+        "9, 0, -9": "Land2",
+        "-9, 0, 0": "Land2",
+        "10, 0, -10": "Land2",
+        "-10, 0, 0": "Land2",
+        "11, 0, -11": "Land2",
+        "11, 0, -12": "Land2",
+        "11, 0, -13": "Land2",
+        "11, 0, -14": "Land2",
+        "11, 0, -15": "Land2",
+        "11, 0, -16": "Land2",
+        "11, 0, -17": "Land2",
+        "11, 0, -18": "Land2",
+        "11, 0, -19": "Land2",
+        "11, 0, -20": "Land2",
         "11, 0, -21": "Land2",
         "11, 0, -22": "Land2",
         "10, 0, -22": "Land2",
@@ -761,57 +2155,51 @@
         "-9, 0, -13": "Land2",
         "-10, 0, -12": "Land2",
         "-11, 0, -11": "Land2",
-        "-12, 0, -10": "Land2",
-        "-12, 0, -9": "Land2",
-        "-12, 0, -8": "Land2",
-        "-12, 0, -7": "Land2",
-        "-12, 0, -6": "Land2",
-        "-12, 0, -5": "Land2",
-        "-12, 0, -4": "Land2",
-        "-12, 0, -3": "Land2",
-        "-12, 0, -2": "Land2",
-        "-12, 0, -1": "Land2",
-        "-12, 0, 0": "Land2",
-        "-12, 0, 1": "Land2",
-        "-12, 0, 2": "Land2",
-        "0, 0, 3": "Land2",
-        "1, 0, 2": "Land2",
-        "-1, 0, 3": "Land2",
-        "2, 0, 1": "Land2",
-        "-2, 0, 3": "Land2",
-        "3, 0, 0": "Land2",
-        "-3, 0, 3": "Land2",
-        "4, 0, -1": "Land2",
-        "-4, 0, 3": "Land2",
-        "5, 0, -2": "Land2",
-        "-5, 0, 3": "Land2",
-        "6, 0, -3": "Land2",
-        "-6, 0, 3": "Land2",
-        "7, 0, -4": "Land2",
-        "-7, 0, 3": "Land2",
-        "8, 0, -5": "Land2",
-        "-8, 0, 3": "Land2",
-        "9, 0, -6": "Land2",
-        "-9, 0, 3": "Land2",
-        "10, 0, -7": "Land2",
-        "-10, 0, 3": "Land2",
-        "11, 0, -8": "Land2",
-        "-11, 0, 3": "Land2",
-        "12, 0, -9": "Land2",
-        "-12, 0, 3": "Land2",
-        "13, 0, -10": "Land2",
-        "13, 0, -11": "Land2",
-        "13, 0, -12": "Land2",
-        "13, 0, -13": "Land2",
-        "13, 0, -14": "Land2",
-        "13, 0, -15": "Land2",
-        "13, 0, -16": "Land2",
-        "13, 0, -17": "Land2",
-        "13, 0, -18": "Land2",
-        "13, 0, -19": "Land2",
-        "13, 0, -20": "Land2",
-        "13, 0, -21": "Land2",
-        "13, 0, -22": "Land2",
+        "-11, 0, -10": "Land2",
+        "-11, 0, -9": "Land2",
+        "-11, 0, -8": "Land2",
+        "-11, 0, -7": "Land2",
+        "-11, 0, -6": "Land2",
+        "-11, 0, -5": "Land2",
+        "-11, 0, -4": "Land2",
+        "-11, 0, -3": "Land2",
+        "-11, 0, -2": "Land2",
+        "-11, 0, -1": "Land2",
+        "-11, 0, 0": "Land2",
+        "0, 0, 1": "Land2",
+        "1, 0, 0": "Land2",
+        "-1, 0, 1": "Land2",
+        "2, 0, -1": "Land2",
+        "-2, 0, 1": "Land2",
+        "3, 0, -2": "Land2",
+        "-3, 0, 1": "Land2",
+        "4, 0, -3": "Land2",
+        "-4, 0, 1": "Land2",
+        "5, 0, -4": "Land2",
+        "-5, 0, 1": "Land2",
+        "6, 0, -5": "Land2",
+        "-6, 0, 1": "Land2",
+        "7, 0, -6": "Land2",
+        "-7, 0, 1": "Land2",
+        "8, 0, -7": "Land2",
+        "-8, 0, 1": "Land2",
+        "9, 0, -8": "Land2",
+        "-9, 0, 1": "Land2",
+        "10, 0, -9": "Land2",
+        "-10, 0, 1": "Land2",
+        "11, 0, -10": "Land2",
+        "-11, 0, 1": "Land2",
+        "12, 0, -11": "Land2",
+        "12, 0, -12": "Land2",
+        "12, 0, -13": "Land2",
+        "12, 0, -14": "Land2",
+        "12, 0, -15": "Land2",
+        "12, 0, -16": "Land2",
+        "12, 0, -17": "Land2",
+        "12, 0, -18": "Land2",
+        "12, 0, -19": "Land2",
+        "12, 0, -20": "Land2",
+        "12, 0, -21": "Land2",
         "12, 0, -22": "Land2",
         "12, 0, -23": "Land2",
         "11, 0, -23": "Land2",
@@ -838,61 +2226,55 @@
         "-10, 0, -13": "Land2",
         "-11, 0, -12": "Land2",
         "-12, 0, -11": "Land2",
-        "-13, 0, -10": "Land2",
-        "-13, 0, -9": "Land2",
-        "-13, 0, -8": "Land2",
-        "-13, 0, -7": "Land2",
-        "-13, 0, -6": "Land2",
-        "-13, 0, -5": "Land2",
-        "-13, 0, -4": "Land2",
-        "-13, 0, -3": "Land2",
-        "-13, 0, -2": "Land2",
-        "-13, 0, -1": "Land2",
-        "-13, 0, 0": "Land2",
-        "-13, 0, 1": "Land2",
-        "-13, 0, 2": "Land2",
-        "-13, 0, 3": "Land2",
-        "0, 0, 4": "Land2",
-        "1, 0, 3": "Land2",
-        "-1, 0, 4": "Land2",
-        "2, 0, 2": "Land2",
-        "-2, 0, 4": "Land2",
-        "3, 0, 1": "Land2",
-        "-3, 0, 4": "Land2",
-        "4, 0, 0": "Land2",
-        "-4, 0, 4": "Land2",
-        "5, 0, -1": "Land2",
-        "-5, 0, 4": "Land2",
-        "6, 0, -2": "Land2",
-        "-6, 0, 4": "Land2",
-        "7, 0, -3": "Land2",
-        "-7, 0, 4": "Land2",
-        "8, 0, -4": "Land2",
-        "-8, 0, 4": "Land2",
-        "9, 0, -5": "Land2",
-        "-9, 0, 4": "Land2",
-        "10, 0, -6": "Land2",
-        "-10, 0, 4": "Land2",
-        "11, 0, -7": "Land2",
-        "-11, 0, 4": "Land2",
-        "12, 0, -8": "Land2",
-        "-12, 0, 4": "Land2",
-        "13, 0, -9": "Land2",
-        "-13, 0, 4": "Land2",
-        "14, 0, -10": "Land2",
-        "14, 0, -11": "Land2",
-        "14, 0, -12": "Land2",
-        "14, 0, -13": "Land2",
-        "14, 0, -14": "Land2",
-        "14, 0, -15": "Land2",
-        "14, 0, -16": "Land2",
-        "14, 0, -17": "Land2",
-        "14, 0, -18": "Land2",
-        "14, 0, -19": "Land2",
-        "14, 0, -20": "Land2",
-        "14, 0, -21": "Land2",
-        "14, 0, -22": "Land2",
-        "14, 0, -23": "Land2",
+        "-12, 0, -10": "Land2",
+        "-12, 0, -9": "Land2",
+        "-12, 0, -8": "Land2",
+        "-12, 0, -7": "Land2",
+        "-12, 0, -6": "Land2",
+        "-12, 0, -5": "Land2",
+        "-12, 0, -4": "Land2",
+        "-12, 0, -3": "Land2",
+        "-12, 0, -2": "Land2",
+        "-12, 0, -1": "Land2",
+        "-12, 0, 0": "Land2",
+        "-12, 0, 1": "Land2",
+        "0, 0, 2": "Land2",
+        "1, 0, 1": "Land2",
+        "-1, 0, 2": "Land2",
+        "2, 0, 0": "Land2",
+        "-2, 0, 2": "Land2",
+        "3, 0, -1": "Land2",
+        "-3, 0, 2": "Land2",
+        "4, 0, -2": "Land2",
+        "-4, 0, 2": "Land2",
+        "5, 0, -3": "Land2",
+        "-5, 0, 2": "Land2",
+        "6, 0, -4": "Land2",
+        "-6, 0, 2": "Land2",
+        "7, 0, -5": "Land2",
+        "-7, 0, 2": "Land2",
+        "8, 0, -6": "Land2",
+        "-8, 0, 2": "Land2",
+        "9, 0, -7": "Land2",
+        "-9, 0, 2": "Land2",
+        "10, 0, -8": "Land2",
+        "-10, 0, 2": "Land2",
+        "11, 0, -9": "Land2",
+        "-11, 0, 2": "Land2",
+        "12, 0, -10": "Land2",
+        "-12, 0, 2": "Land2",
+        "13, 0, -11": "Land2",
+        "13, 0, -12": "Land2",
+        "13, 0, -13": "Land2",
+        "13, 0, -14": "Land2",
+        "13, 0, -15": "Land2",
+        "13, 0, -16": "Land2",
+        "13, 0, -17": "Land2",
+        "13, 0, -18": "Land2",
+        "13, 0, -19": "Land2",
+        "13, 0, -20": "Land2",
+        "13, 0, -21": "Land2",
+        "13, 0, -22": "Land2",
         "13, 0, -23": "Land2",
         "13, 0, -24": "Land2",
         "12, 0, -24": "Land2",
@@ -921,65 +2303,59 @@
         "-11, 0, -13": "Land2",
         "-12, 0, -12": "Land2",
         "-13, 0, -11": "Land2",
-        "-14, 0, -10": "Land2",
-        "-14, 0, -9": "Land2",
-        "-14, 0, -8": "Land2",
-        "-14, 0, -7": "Land2",
-        "-14, 0, -6": "Land2",
-        "-14, 0, -5": "Land2",
-        "-14, 0, -4": "Land2",
-        "-14, 0, -3": "Land2",
-        "-14, 0, -2": "Land2",
-        "-14, 0, -1": "Land2",
-        "-14, 0, 0": "Land2",
-        "-14, 0, 1": "Land2",
-        "-14, 0, 2": "Land2",
-        "-14, 0, 3": "Land2",
-        "-14, 0, 4": "Land2",
-        "0, 0, 5": "Land2",
-        "1, 0, 4": "Land2",
-        "-1, 0, 5": "Land2",
-        "2, 0, 3": "Land2",
-        "-2, 0, 5": "Land2",
-        "3, 0, 2": "Land2",
-        "-3, 0, 5": "Land2",
-        "4, 0, 1": "Land2",
-        "-4, 0, 5": "Land2",
-        "5, 0, 0": "Land2",
-        "-5, 0, 5": "Land2",
-        "6, 0, -1": "Land2",
-        "-6, 0, 5": "Land2",
-        "7, 0, -2": "Land2",
-        "-7, 0, 5": "Land2",
-        "8, 0, -3": "Land2",
-        "-8, 0, 5": "Land2",
-        "9, 0, -4": "Land2",
-        "-9, 0, 5": "Land2",
-        "10, 0, -5": "Land2",
-        "-10, 0, 5": "Land2",
-        "11, 0, -6": "Land2",
-        "-11, 0, 5": "Land2",
-        "12, 0, -7": "Land2",
-        "-12, 0, 5": "Land2",
-        "13, 0, -8": "Land2",
-        "-13, 0, 5": "Land2",
-        "14, 0, -9": "Land2",
-        "-14, 0, 5": "Land2",
-        "15, 0, -10": "Land2",
-        "15, 0, -11": "Land2",
-        "15, 0, -12": "Land2",
-        "15, 0, -13": "Land2",
-        "15, 0, -14": "Land2",
-        "15, 0, -15": "Land2",
-        "15, 0, -16": "Land2",
-        "15, 0, -17": "Land2",
-        "15, 0, -18": "Land2",
-        "15, 0, -19": "Land2",
-        "15, 0, -20": "Land2",
-        "15, 0, -21": "Land2",
-        "15, 0, -22": "Land2",
-        "15, 0, -23": "Land2",
-        "15, 0, -24": "Land2",
+        "-13, 0, -10": "Land2",
+        "-13, 0, -9": "Land2",
+        "-13, 0, -8": "Land2",
+        "-13, 0, -7": "Land2",
+        "-13, 0, -6": "Land2",
+        "-13, 0, -5": "Land2",
+        "-13, 0, -4": "Land2",
+        "-13, 0, -3": "Land2",
+        "-13, 0, -2": "Land2",
+        "-13, 0, -1": "Land2",
+        "-13, 0, 0": "Land2",
+        "-13, 0, 1": "Land2",
+        "-13, 0, 2": "Land2",
+        "0, 0, 3": "Land2",
+        "1, 0, 2": "Land2",
+        "-1, 0, 3": "Land2",
+        "2, 0, 1": "Land2",
+        "-2, 0, 3": "Land2",
+        "3, 0, 0": "Land2",
+        "-3, 0, 3": "Land2",
+        "4, 0, -1": "Land2",
+        "-4, 0, 3": "Land2",
+        "5, 0, -2": "Land2",
+        "-5, 0, 3": "Land2",
+        "6, 0, -3": "Land2",
+        "-6, 0, 3": "Land2",
+        "7, 0, -4": "Land2",
+        "-7, 0, 3": "Land2",
+        "8, 0, -5": "Land2",
+        "-8, 0, 3": "Land2",
+        "9, 0, -6": "Land2",
+        "-9, 0, 3": "Land2",
+        "10, 0, -7": "Land2",
+        "-10, 0, 3": "Land2",
+        "11, 0, -8": "Land2",
+        "-11, 0, 3": "Land2",
+        "12, 0, -9": "Land2",
+        "-12, 0, 3": "Land2",
+        "13, 0, -10": "Land2",
+        "-13, 0, 3": "Land2",
+        "14, 0, -11": "Land2",
+        "14, 0, -12": "Land2",
+        "14, 0, -13": "Land2",
+        "14, 0, -14": "Land2",
+        "14, 0, -15": "Land2",
+        "14, 0, -16": "Land2",
+        "14, 0, -17": "Land2",
+        "14, 0, -18": "Land2",
+        "14, 0, -19": "Land2",
+        "14, 0, -20": "Land2",
+        "14, 0, -21": "Land2",
+        "14, 0, -22": "Land2",
+        "14, 0, -23": "Land2",
         "14, 0, -24": "Land2",
         "14, 0, -25": "Land2",
         "13, 0, -25": "Land2",
@@ -1010,69 +2386,63 @@
         "-12, 0, -13": "Land2",
         "-13, 0, -12": "Land2",
         "-14, 0, -11": "Land2",
-        "-15, 0, -10": "Land2",
-        "-15, 0, -9": "Land2",
-        "-15, 0, -8": "Land2",
-        "-15, 0, -7": "Land2",
-        "-15, 0, -6": "Land2",
-        "-15, 0, -5": "Land2",
-        "-15, 0, -4": "Land2",
-        "-15, 0, -3": "Land2",
-        "-15, 0, -2": "Land2",
-        "-15, 0, -1": "Land2",
-        "-15, 0, 0": "Land2",
-        "-15, 0, 1": "Land2",
-        "-15, 0, 2": "Land2",
-        "-15, 0, 3": "Land2",
-        "-15, 0, 4": "Land2",
-        "-15, 0, 5": "Land2",
-        "0, 0, 6": "Land2",
-        "1, 0, 5": "Land2",
-        "-1, 0, 6": "Land2",
-        "2, 0, 4": "Land2",
-        "-2, 0, 6": "Land2",
-        "3, 0, 3": "Land2",
-        "-3, 0, 6": "Land2",
-        "4, 0, 2": "Land2",
-        "-4, 0, 6": "Land2",
-        "5, 0, 1": "Land2",
-        "-5, 0, 6": "Land2",
-        "6, 0, 0": "Land2",
-        "-6, 0, 6": "Land2",
-        "7, 0, -1": "Land2",
-        "-7, 0, 6": "Land2",
-        "8, 0, -2": "Land2",
-        "-8, 0, 6": "Land2",
-        "9, 0, -3": "Land2",
-        "-9, 0, 6": "Land2",
-        "10, 0, -4": "Land2",
-        "-10, 0, 6": "Land2",
-        "11, 0, -5": "Land2",
-        "-11, 0, 6": "Land2",
-        "12, 0, -6": "Land2",
-        "-12, 0, 6": "Land2",
-        "13, 0, -7": "Land2",
-        "-13, 0, 6": "Land2",
-        "14, 0, -8": "Land2",
-        "-14, 0, 6": "Land2",
-        "15, 0, -9": "Land2",
-        "-15, 0, 6": "Land2",
-        "16, 0, -10": "Land2",
-        "16, 0, -11": "Land2",
-        "16, 0, -12": "Land2",
-        "16, 0, -13": "Land2",
-        "16, 0, -14": "Land2",
-        "16, 0, -15": "Land2",
-        "16, 0, -16": "Land2",
-        "16, 0, -17": "Land2",
-        "16, 0, -18": "Land2",
-        "16, 0, -19": "Land2",
-        "16, 0, -20": "Land2",
-        "16, 0, -21": "Land2",
-        "16, 0, -22": "Land2",
-        "16, 0, -23": "Land2",
-        "16, 0, -24": "Land2",
-        "16, 0, -25": "Land2",
+        "-14, 0, -10": "Land2",
+        "-14, 0, -9": "Land2",
+        "-14, 0, -8": "Land2",
+        "-14, 0, -7": "Land2",
+        "-14, 0, -6": "Land2",
+        "-14, 0, -5": "Land2",
+        "-14, 0, -4": "Land2",
+        "-14, 0, -3": "Land2",
+        "-14, 0, -2": "Land2",
+        "-14, 0, -1": "Land2",
+        "-14, 0, 0": "Land2",
+        "-14, 0, 1": "Land2",
+        "-14, 0, 2": "Land2",
+        "-14, 0, 3": "Land2",
+        "0, 0, 4": "Land2",
+        "1, 0, 3": "Land2",
+        "-1, 0, 4": "Land2",
+        "2, 0, 2": "Land2",
+        "-2, 0, 4": "Land2",
+        "3, 0, 1": "Land2",
+        "-3, 0, 4": "Land2",
+        "4, 0, 0": "Land2",
+        "-4, 0, 4": "Land2",
+        "5, 0, -1": "Land2",
+        "-5, 0, 4": "Land2",
+        "6, 0, -2": "Land2",
+        "-6, 0, 4": "Land2",
+        "7, 0, -3": "Land2",
+        "-7, 0, 4": "Land2",
+        "8, 0, -4": "Land2",
+        "-8, 0, 4": "Land2",
+        "9, 0, -5": "Land2",
+        "-9, 0, 4": "Land2",
+        "10, 0, -6": "Land2",
+        "-10, 0, 4": "Land2",
+        "11, 0, -7": "Land2",
+        "-11, 0, 4": "Land2",
+        "12, 0, -8": "Land2",
+        "-12, 0, 4": "Land2",
+        "13, 0, -9": "Land2",
+        "-13, 0, 4": "Land2",
+        "14, 0, -10": "Land2",
+        "-14, 0, 4": "Land2",
+        "15, 0, -11": "Land2",
+        "15, 0, -12": "Land2",
+        "15, 0, -13": "Land2",
+        "15, 0, -14": "Land2",
+        "15, 0, -15": "Land2",
+        "15, 0, -16": "Land2",
+        "15, 0, -17": "Land2",
+        "15, 0, -18": "Land2",
+        "15, 0, -19": "Land2",
+        "15, 0, -20": "Land2",
+        "15, 0, -21": "Land2",
+        "15, 0, -22": "Land2",
+        "15, 0, -23": "Land2",
+        "15, 0, -24": "Land2",
         "15, 0, -25": "Land2",
         "15, 0, -26": "Land2",
         "14, 0, -26": "Land2",
@@ -1105,73 +2475,67 @@
         "-13, 0, -13": "Land2",
         "-14, 0, -12": "Land2",
         "-15, 0, -11": "Land2",
-        "-16, 0, -10": "Land2",
-        "-16, 0, -9": "Land2",
-        "-16, 0, -8": "Land2",
-        "-16, 0, -7": "Land2",
-        "-16, 0, -6": "Land2",
-        "-16, 0, -5": "Land2",
-        "-16, 0, -4": "Land2",
-        "-16, 0, -3": "Land2",
-        "-16, 0, -2": "Land2",
-        "-16, 0, -1": "Land2",
-        "-16, 0, 0": "Land2",
-        "-16, 0, 1": "Land2",
-        "-16, 0, 2": "Land2",
-        "-16, 0, 3": "Land2",
-        "-16, 0, 4": "Land2",
-        "-16, 0, 5": "Land2",
-        "-16, 0, 6": "Land2",
-        "0, 0, 7": "Land2",
-        "1, 0, 6": "Land2",
-        "-1, 0, 7": "Land2",
-        "2, 0, 5": "Land2",
-        "-2, 0, 7": "Land2",
-        "3, 0, 4": "Land2",
-        "-3, 0, 7": "Land2",
-        "4, 0, 3": "Land2",
-        "-4, 0, 7": "Land2",
-        "5, 0, 2": "Land2",
-        "-5, 0, 7": "Land2",
-        "6, 0, 1": "Land2",
-        "-6, 0, 7": "Land2",
-        "7, 0, 0": "Land2",
-        "-7, 0, 7": "Land2",
-        "8, 0, -1": "Land2",
-        "-8, 0, 7": "Land2",
-        "9, 0, -2": "Land2",
-        "-9, 0, 7": "Land2",
-        "10, 0, -3": "Land2",
-        "-10, 0, 7": "Land2",
-        "11, 0, -4": "Land2",
-        "-11, 0, 7": "Land2",
-        "12, 0, -5": "Land2",
-        "-12, 0, 7": "Land2",
-        "13, 0, -6": "Land2",
-        "-13, 0, 7": "Land2",
-        "14, 0, -7": "Land2",
-        "-14, 0, 7": "Land2",
-        "15, 0, -8": "Land2",
-        "-15, 0, 7": "Land2",
-        "16, 0, -9": "Land2",
-        "-16, 0, 7": "Land2",
-        "17, 0, -10": "Land2",
-        "17, 0, -11": "Land2",
-        "17, 0, -12": "Land2",
-        "17, 0, -13": "Land2",
-        "17, 0, -14": "Land2",
-        "17, 0, -15": "Land2",
-        "17, 0, -16": "Land2",
-        "17, 0, -17": "Land2",
-        "17, 0, -18": "Land2",
-        "17, 0, -19": "Land2",
-        "17, 0, -20": "Land2",
-        "17, 0, -21": "Land2",
-        "17, 0, -22": "Land2",
-        "17, 0, -23": "Land2",
-        "17, 0, -24": "Land2",
-        "17, 0, -25": "Land2",
-        "17, 0, -26": "Land2",
+        "-15, 0, -10": "Land2",
+        "-15, 0, -9": "Land2",
+        "-15, 0, -8": "Land2",
+        "-15, 0, -7": "Land2",
+        "-15, 0, -6": "Land2",
+        "-15, 0, -5": "Land2",
+        "-15, 0, -4": "Land2",
+        "-15, 0, -3": "Land2",
+        "-15, 0, -2": "Land2",
+        "-15, 0, -1": "Land2",
+        "-15, 0, 0": "Land2",
+        "-15, 0, 1": "Land2",
+        "-15, 0, 2": "Land2",
+        "-15, 0, 3": "Land2",
+        "-15, 0, 4": "Land2",
+        "0, 0, 5": "Land2",
+        "1, 0, 4": "Land2",
+        "-1, 0, 5": "Land2",
+        "2, 0, 3": "Land2",
+        "-2, 0, 5": "Land2",
+        "3, 0, 2": "Land2",
+        "-3, 0, 5": "Land2",
+        "4, 0, 1": "Land2",
+        "-4, 0, 5": "Land2",
+        "5, 0, 0": "Land2",
+        "-5, 0, 5": "Land2",
+        "6, 0, -1": "Land2",
+        "-6, 0, 5": "Land2",
+        "7, 0, -2": "Land2",
+        "-7, 0, 5": "Land2",
+        "8, 0, -3": "Land2",
+        "-8, 0, 5": "Land2",
+        "9, 0, -4": "Land2",
+        "-9, 0, 5": "Land2",
+        "10, 0, -5": "Land2",
+        "-10, 0, 5": "Land2",
+        "11, 0, -6": "Land2",
+        "-11, 0, 5": "Land2",
+        "12, 0, -7": "Land2",
+        "-12, 0, 5": "Land2",
+        "13, 0, -8": "Land2",
+        "-13, 0, 5": "Land2",
+        "14, 0, -9": "Land2",
+        "-14, 0, 5": "Land2",
+        "15, 0, -10": "Land2",
+        "-15, 0, 5": "Land2",
+        "16, 0, -11": "Land2",
+        "16, 0, -12": "Land2",
+        "16, 0, -13": "Land2",
+        "16, 0, -14": "Land2",
+        "16, 0, -15": "Land2",
+        "16, 0, -16": "Land2",
+        "16, 0, -17": "Land2",
+        "16, 0, -18": "Land2",
+        "16, 0, -19": "Land2",
+        "16, 0, -20": "Land2",
+        "16, 0, -21": "Land2",
+        "16, 0, -22": "Land2",
+        "16, 0, -23": "Land2",
+        "16, 0, -24": "Land2",
+        "16, 0, -25": "Land2",
         "16, 0, -26": "Land2",
         "16, 0, -27": "Land2",
         "15, 0, -27": "Land2",
@@ -1206,77 +2570,71 @@
         "-14, 0, -13": "Land2",
         "-15, 0, -12": "Land2",
         "-16, 0, -11": "Land2",
-        "-17, 0, -10": "Land2",
-        "-17, 0, -9": "Land2",
-        "-17, 0, -8": "Land2",
-        "-17, 0, -7": "Land2",
-        "-17, 0, -6": "Land2",
-        "-17, 0, -5": "Land2",
-        "-17, 0, -4": "Land2",
-        "-17, 0, -3": "Land2",
-        "-17, 0, -2": "Land2",
-        "-17, 0, -1": "Land2",
-        "-17, 0, 0": "Land2",
-        "-17, 0, 1": "Land2",
-        "-17, 0, 2": "Land2",
-        "-17, 0, 3": "Land2",
-        "-17, 0, 4": "Land2",
-        "-17, 0, 5": "Land2",
-        "-17, 0, 6": "Land2",
-        "-17, 0, 7": "Land2",
-        "0, 0, 8": "Land2",
-        "1, 0, 7": "Land2",
-        "-1, 0, 8": "Land2",
-        "2, 0, 6": "Land2",
-        "-2, 0, 8": "Land2",
-        "3, 0, 5": "Land2",
-        "-3, 0, 8": "Land2",
-        "4, 0, 4": "Land2",
-        "-4, 0, 8": "Land2",
-        "5, 0, 3": "Land2",
-        "-5, 0, 8": "Land2",
-        "6, 0, 2": "Land2",
-        "-6, 0, 8": "Land2",
-        "7, 0, 1": "Land2",
-        "-7, 0, 8": "Land2",
-        "8, 0, 0": "Land2",
-        "-8, 0, 8": "Land2",
-        "9, 0, -1": "Land2",
-        "-9, 0, 8": "Land2",
-        "10, 0, -2": "Land2",
-        "-10, 0, 8": "Land2",
-        "11, 0, -3": "Land2",
-        "-11, 0, 8": "Land2",
-        "12, 0, -4": "Land2",
-        "-12, 0, 8": "Land2",
-        "13, 0, -5": "Land2",
-        "-13, 0, 8": "Land2",
-        "14, 0, -6": "Land2",
-        "-14, 0, 8": "Land2",
-        "15, 0, -7": "Land2",
-        "-15, 0, 8": "Land2",
-        "16, 0, -8": "Land2",
-        "-16, 0, 8": "Land2",
-        "17, 0, -9": "Land2",
-        "-17, 0, 8": "Land2",
-        "18, 0, -10": "Land2",
-        "18, 0, -11": "Land2",
-        "18, 0, -12": "Land2",
-        "18, 0, -13": "Land2",
-        "18, 0, -14": "Land2",
-        "18, 0, -15": "Land2",
-        "18, 0, -16": "Land2",
-        "18, 0, -17": "Land2",
-        "18, 0, -18": "Land2",
-        "18, 0, -19": "Land2",
-        "18, 0, -20": "Land2",
-        "18, 0, -21": "Land2",
-        "18, 0, -22": "Land2",
-        "18, 0, -23": "Land2",
-        "18, 0, -24": "Land2",
-        "18, 0, -25": "Land2",
-        "18, 0, -26": "Land2",
-        "18, 0, -27": "Land2",
+        "-16, 0, -10": "Land2",
+        "-16, 0, -9": "Land2",
+        "-16, 0, -8": "Land2",
+        "-16, 0, -7": "Land2",
+        "-16, 0, -6": "Land2",
+        "-16, 0, -5": "Land2",
+        "-16, 0, -4": "Land2",
+        "-16, 0, -3": "Land2",
+        "-16, 0, -2": "Land2",
+        "-16, 0, -1": "Land2",
+        "-16, 0, 0": "Land2",
+        "-16, 0, 1": "Land2",
+        "-16, 0, 2": "Land2",
+        "-16, 0, 3": "Land2",
+        "-16, 0, 4": "Land2",
+        "-16, 0, 5": "Land2",
+        "0, 0, 6": "Land2",
+        "1, 0, 5": "Land2",
+        "-1, 0, 6": "Land2",
+        "2, 0, 4": "Land2",
+        "-2, 0, 6": "Land2",
+        "3, 0, 3": "Land2",
+        "-3, 0, 6": "Land2",
+        "4, 0, 2": "Land2",
+        "-4, 0, 6": "Land2",
+        "5, 0, 1": "Land2",
+        "-5, 0, 6": "Land2",
+        "6, 0, 0": "Land2",
+        "-6, 0, 6": "Land2",
+        "7, 0, -1": "Land2",
+        "-7, 0, 6": "Land2",
+        "8, 0, -2": "Land2",
+        "-8, 0, 6": "Land2",
+        "9, 0, -3": "Land2",
+        "-9, 0, 6": "Land2",
+        "10, 0, -4": "Land2",
+        "-10, 0, 6": "Land2",
+        "11, 0, -5": "Land2",
+        "-11, 0, 6": "Land2",
+        "12, 0, -6": "Land2",
+        "-12, 0, 6": "Land2",
+        "13, 0, -7": "Land2",
+        "-13, 0, 6": "Land2",
+        "14, 0, -8": "Land2",
+        "-14, 0, 6": "Land2",
+        "15, 0, -9": "Land2",
+        "-15, 0, 6": "Land2",
+        "16, 0, -10": "Land2",
+        "-16, 0, 6": "Land2",
+        "17, 0, -11": "Land2",
+        "17, 0, -12": "Land2",
+        "17, 0, -13": "Land2",
+        "17, 0, -14": "Land2",
+        "17, 0, -15": "Land2",
+        "17, 0, -16": "Land2",
+        "17, 0, -17": "Land2",
+        "17, 0, -18": "Land2",
+        "17, 0, -19": "Land2",
+        "17, 0, -20": "Land2",
+        "17, 0, -21": "Land2",
+        "17, 0, -22": "Land2",
+        "17, 0, -23": "Land2",
+        "17, 0, -24": "Land2",
+        "17, 0, -25": "Land2",
+        "17, 0, -26": "Land2",
         "17, 0, -27": "Land2",
         "17, 0, -28": "Land2",
         "16, 0, -28": "Land2",
@@ -1313,6 +2671,113 @@
         "-15, 0, -13": "Land2",
         "-16, 0, -12": "Land2",
         "-17, 0, -11": "Land2",
+        "-17, 0, -10": "Land2",
+        "-17, 0, -9": "Land2",
+        "-17, 0, -8": "Land2",
+        "-17, 0, -7": "Land2",
+        "-17, 0, -6": "Land2",
+        "-17, 0, -5": "Land2",
+        "-17, 0, -4": "Land2",
+        "-17, 0, -3": "Land2",
+        "-17, 0, -2": "Land2",
+        "-17, 0, -1": "Land2",
+        "-17, 0, 0": "Land2",
+        "-17, 0, 1": "Land2",
+        "-17, 0, 2": "Land2",
+        "-17, 0, 3": "Land2",
+        "-17, 0, 4": "Land2",
+        "-17, 0, 5": "Land2",
+        "-17, 0, 6": "Land2",
+        "0, 0, 7": "Land2",
+        "1, 0, 6": "Land2",
+        "-1, 0, 7": "Land2",
+        "2, 0, 5": "Land2",
+        "-2, 0, 7": "Land2",
+        "3, 0, 4": "Land2",
+        "-3, 0, 7": "Land2",
+        "4, 0, 3": "Land2",
+        "-4, 0, 7": "Land2",
+        "5, 0, 2": "Land2",
+        "-5, 0, 7": "Land2",
+        "6, 0, 1": "Land2",
+        "-6, 0, 7": "Land2",
+        "7, 0, 0": "Land2",
+        "-7, 0, 7": "Land2",
+        "8, 0, -1": "Land2",
+        "-8, 0, 7": "Land2",
+        "9, 0, -2": "Land2",
+        "-9, 0, 7": "Land2",
+        "10, 0, -3": "Land2",
+        "-10, 0, 7": "Land2",
+        "11, 0, -4": "Land2",
+        "-11, 0, 7": "Land2",
+        "12, 0, -5": "Land2",
+        "-12, 0, 7": "Land2",
+        "13, 0, -6": "Land2",
+        "-13, 0, 7": "Land2",
+        "14, 0, -7": "Land2",
+        "-14, 0, 7": "Land2",
+        "15, 0, -8": "Land2",
+        "-15, 0, 7": "Land2",
+        "16, 0, -9": "Land2",
+        "-16, 0, 7": "Land2",
+        "17, 0, -10": "Land2",
+        "-17, 0, 7": "Land2",
+        "18, 0, -11": "Land2",
+        "18, 0, -12": "Land2",
+        "18, 0, -13": "Land2",
+        "18, 0, -14": "Land2",
+        "18, 0, -15": "Land2",
+        "18, 0, -16": "Land2",
+        "18, 0, -17": "Land2",
+        "18, 0, -18": "Land2",
+        "18, 0, -19": "Land2",
+        "18, 0, -20": "Land2",
+        "18, 0, -21": "Land2",
+        "18, 0, -22": "Land2",
+        "18, 0, -23": "Land2",
+        "18, 0, -24": "Land2",
+        "18, 0, -25": "Land2",
+        "18, 0, -26": "Land2",
+        "18, 0, -27": "Land2",
+        "18, 0, -28": "Land2",
+        "18, 0, -29": "Land2",
+        "17, 0, -29": "Land2",
+        "16, 0, -29": "Land2",
+        "15, 0, -29": "Land2",
+        "14, 0, -29": "Land2",
+        "13, 0, -29": "Land2",
+        "12, 0, -29": "Land2",
+        "11, 0, -29": "Land2",
+        "10, 0, -29": "Land2",
+        "9, 0, -29": "Land2",
+        "8, 0, -29": "Land2",
+        "7, 0, -29": "Land2",
+        "6, 0, -29": "Land2",
+        "5, 0, -29": "Land2",
+        "4, 0, -29": "Land2",
+        "3, 0, -29": "Land2",
+        "2, 0, -29": "Land2",
+        "1, 0, -29": "Land2",
+        "0, 0, -29": "Land2",
+        "-1, 0, -28": "Land2",
+        "-2, 0, -27": "Land2",
+        "-3, 0, -26": "Land2",
+        "-4, 0, -25": "Land2",
+        "-5, 0, -24": "Land2",
+        "-6, 0, -23": "Land2",
+        "-7, 0, -22": "Land2",
+        "-8, 0, -21": "Land2",
+        "-9, 0, -20": "Land2",
+        "-10, 0, -19": "Land2",
+        "-11, 0, -18": "Land2",
+        "-12, 0, -17": "Land2",
+        "-13, 0, -16": "Land2",
+        "-14, 0, -15": "Land2",
+        "-15, 0, -14": "Land2",
+        "-16, 0, -13": "Land2",
+        "-17, 0, -12": "Land2",
+        "-18, 0, -11": "Land2",
         "-18, 0, -10": "Land2",
         "-18, 0, -9": "Land2",
         "-18, 0, -8": "Land2",
@@ -1329,15 +2794,133 @@
         "-18, 0, 3": "Land2",
         "-18, 0, 4": "Land2",
         "-18, 0, 5": "Land2",
-        "-18, 0, 6": "Land2",
-        "-18, 0, 7": "Land2",
-        "-18, 0, 8": "Land2"
+        "-18, 0, 6": "Land2"
       }
     }
   },
-  "ImpactDistance": {},
+  "ImpactDistance": {
+    "1179": 3,
+    "1168": 3,
+    "1157": 3,
+    "1146": 3,
+    "1135": 3,
+    "1124": 3,
+    "1113": 3,
+    "1102": 3,
+    "1091": 3,
+    "1080": 3,
+    "1069": 3,
+    "1058": 3,
+    "1047": 3,
+    "1036": 3,
+    "1025": 3,
+    "1014": 3,
+    "1003": 3,
+    "992": 3,
+    "981": 3,
+    "970": 3,
+    "959": 3,
+    "948": 3,
+    "937": 3,
+    "926": 3,
+    "915": 3,
+    "904": 3,
+    "893": 3,
+    "882": 3,
+    "871": 3,
+    "860": 3,
+    "849": 3,
+    "838": 3,
+    "827": 3,
+    "816": 3,
+    "805": 3,
+    "794": 3,
+    "783": 3,
+    "772": 3,
+    "761": 3,
+    "750": 3,
+    "739": 2,
+    "728": 2,
+    "717": 2,
+    "706": 2
+  },
   "Level": {},
   "MaxHealth": {
+    "1179": 20,
+    "1168": 20,
+    "1157": 20,
+    "1146": 20,
+    "1135": 20,
+    "1124": 20,
+    "1113": 20,
+    "1102": 20,
+    "1091": 20,
+    "1080": 20,
+    "1069": 20,
+    "1058": 20,
+    "1047": 20,
+    "1036": 20,
+    "1025": 20,
+    "1014": 20,
+    "1003": 45,
+    "992": 45,
+    "981": 45,
+    "970": 45,
+    "959": 45,
+    "948": 45,
+    "937": 45,
+    "926": 45,
+    "915": 45,
+    "904": 45,
+    "893": 45,
+    "882": 45,
+    "871": 45,
+    "860": 45,
+    "849": 45,
+    "838": 45,
+    "827": 45,
+    "816": 45,
+    "805": 45,
+    "794": 45,
+    "783": 45,
+    "772": 45,
+    "761": 45,
+    "750": 45,
+    "695": 100,
+    "684": 100,
+    "673": 100,
+    "662": 100,
+    "651": 100,
+    "640": 100,
+    "629": 100,
+    "618": 100,
+    "607": 100,
+    "596": 100,
+    "585": 100,
+    "574": 100,
+    "563": 100,
+    "552": 100,
+    "541": 100,
+    "530": 100,
+    "519": 100,
+    "508": 100,
+    "497": 100,
+    "486": 100,
+    "475": 100,
+    "464": 100,
+    "453": 100,
+    "442": 100,
+    "431": 100,
+    "420": 100,
+    "409": 100,
+    "398": 100,
+    "387": 100,
+    "376": 100,
+    "365": 100,
+    "354": 100,
+    "343": 100,
+    "332": 100,
+    "321": 100,
     "310": 100,
     "299": 100,
     "288": 100,
@@ -1368,97 +2951,454 @@
     "13": 100,
     "2": 100
   },
-  "MaxSpeed": {},
+  "MaxSpeed": {
+    "1179": 10,
+    "1168": 10,
+    "1157": 10,
+    "1146": 10,
+    "1135": 10,
+    "1124": 10,
+    "1113": 10,
+    "1102": 10,
+    "1091": 10,
+    "1080": 10,
+    "1069": 10,
+    "1058": 10,
+    "1047": 10,
+    "1036": 10,
+    "1025": 10,
+    "1014": 10,
+    "1003": 10,
+    "992": 10,
+    "981": 10,
+    "970": 10,
+    "959": 10,
+    "948": 10,
+    "937": 10,
+    "926": 10,
+    "915": 10,
+    "904": 10,
+    "893": 10,
+    "882": 10,
+    "871": 10,
+    "860": 10,
+    "849": 10,
+    "838": 10,
+    "827": 10,
+    "816": 10,
+    "805": 10,
+    "794": 10,
+    "783": 10,
+    "772": 10,
+    "761": 10,
+    "750": 10
+  },
   "Position": {
+    "1179": {
+      "Value": "3.7047882080078125, 0, -39.6361541748046875"
+    },
+    "1168": {
+      "Value": "4.2144622802734375, 0, -39.95123291015625"
+    },
+    "1157": {
+      "Value": "2.8866119384765625, 0, -39.5188446044921875"
+    },
+    "1146": {
+      "Value": "5.007720947265625, 0, -39.644317626953125"
+    },
+    "1135": {
+      "Value": "3.8252716064453125, 0, -38.872100830078125"
+    },
+    "1124": {
+      "Value": "1.617156982421875, 0, -39.0084381103515625"
+    },
+    "1113": {
+      "Value": "3.2510223388671875, 0, -39.0431976318359375"
+    },
+    "1102": {
+      "Value": "3.07916259765625, 0, -38.263885498046875"
+    },
+    "1091": {
+      "Value": "4.5590057373046875, 0, -37.9700775146484375"
+    },
+    "1080": {
+      "Value": "2.577301025390625, 0, -38.591278076171875"
+    },
+    "1069": {
+      "Value": "4.3695068359375, 0, -38.538543701171875"
+    },
+    "1058": {
+      "Value": "4.882415771484375, 0, -40.328826904296875"
+    },
+    "1047": {
+      "Value": "2.6812744140625, 0, -37.3654937744140625"
+    },
+    "1036": {
+      "Value": "3.237579345703125, 0, -40.2335968017578125"
+    },
+    "1025": {
+      "Value": "3.6142425537109375, 0, -37.994232177734375"
+    },
+    "1014": {
+      "Value": "2.5304412841796875, 0, -40.23382568359375"
+    },
+    "1003": {
+      "Value": "-8.704620361328125, 0, -40.6373443603515625"
+    },
+    "992": {
+      "Value": "-8.26171875, 0, -41.287628173828125"
+    },
+    "981": {
+      "Value": "-9.08941650390625, 0, -41.0966644287109375"
+    },
+    "970": {
+      "Value": "-8.96630859375, 0, -40.0983123779296875"
+    },
+    "959": {
+      "Value": "-9.6762237548828125, 0, -40.4442291259765625"
+    },
+    "948": {
+      "Value": "-8.072845458984375, 0, -40.4442291259765625"
+    },
+    "937": {
+      "Value": "-8.7083892822265625, 0, -36.314605712890625"
+    },
+    "926": {
+      "Value": "-8.08526611328125, 0, -36.314605712890625"
+    },
+    "915": {
+      "Value": "-8.720184326171875, 0, -34.6067047119140625"
+    },
+    "904": {
+      "Value": "-10.4423370361328125, 0, -33.821807861328125"
+    },
+    "893": {
+      "Value": "-13.002532958984375, 0, -33.821807861328125"
+    },
+    "882": {
+      "Value": "-13.8711700439453125, 0, -33.821807861328125"
+    },
+    "871": {
+      "Value": "-15.08795166015625, 0, -35.1076812744140625"
+    },
+    "860": {
+      "Value": "-17.1713409423828125, 0, -36.2261810302734375"
+    },
+    "849": {
+      "Value": "-15.7449188232421875, 0, -37.015350341796875"
+    },
+    "838": {
+      "Value": "-14.2431793212890625, 0, -37.015350341796875"
+    },
+    "827": {
+      "Value": "-12.096588134765625, 0, -38.5112152099609375"
+    },
+    "816": {
+      "Value": "-10.488861083984375, 0, -37.015350341796875"
+    },
+    "805": {
+      "Value": "-6.8670806884765625, 0, -37.015350341796875"
+    },
+    "794": {
+      "Value": "-8.5343170166015625, 0, -38.5112152099609375"
+    },
+    "783": {
+      "Value": "-13.6260833740234375, 0, -32.92877197265625"
+    },
+    "772": {
+      "Value": "-10.39813232421875, 0, -35.0169219970703125"
+    },
+    "761": {
+      "Value": "-13.4403228759765625, 0, -35.8710784912109375"
+    },
+    "750": {
+      "Value": "-15.97686767578125, 0, -33.7750396728515625"
+    },
+    "739": {
+      "Value": "-20.659027099609375, 0, -21.2860107421875"
+    },
+    "728": {
+      "Value": "-23.067230224609375, 0, -22.050384521484375"
+    },
+    "717": {
+      "Value": "-20.494476318359375, 0, -18.0515899658203125"
+    },
+    "706": {
+      "Value": "-22.2228546142578125, 0, -17.0469818115234375"
+    },
+    "695": {
+      "Value": "18.5195770263671875, 0, -33.4561309814453125"
+    },
+    "684": {
+      "Value": "17.1883544921875, 0, -32.533721923828125"
+    },
+    "673": {
+      "Value": "15.7442779541015625, 0, -31.4586944580078125"
+    },
+    "662": {
+      "Value": "15.7134552001953125, 0, -30.35418701171875"
+    },
+    "651": {
+      "Value": "14.72979736328125, 0, -30.3092041015625"
+    },
+    "640": {
+      "Value": "16.4527740478515625, 0, -27.8126983642578125"
+    },
+    "629": {
+      "Value": "18.1570281982421875, 0, -26.506011962890625"
+    },
+    "618": {
+      "Value": "19.3231201171875, 0, -25.6118927001953125"
+    },
+    "607": {
+      "Value": "17.46783447265625, 0, -28.192230224609375"
+    },
+    "596": {
+      "Value": "16.7995758056640625, 0, -29.4022064208984375"
+    },
+    "585": {
+      "Value": "16.83026123046875, 0, -31.5458221435546875"
+    },
+    "574": {
+      "Value": "17.9146728515625, 0, -32.745330810546875"
+    },
+    "563": {
+      "Value": "20.188568115234375, 0, -33.2067718505859375"
+    },
+    "552": {
+      "Value": "23.435821533203125, 0, -30.5773773193359375"
+    },
+    "541": {
+      "Value": "23.364410400390625, 0, -31.6328277587890625"
+    },
+    "530": {
+      "Value": "24.8534393310546875, 0, -30.4883880615234375"
+    },
+    "519": {
+      "Value": "24.7671356201171875, 0, -31.502410888671875"
+    },
+    "508": {
+      "Value": "23.0386199951171875, 0, -31.892333984375"
+    },
+    "497": {
+      "Value": "21.4363250732421875, 0, -32.4062957763671875"
+    },
+    "486": {
+      "Value": "18.646514892578125, 0, -31.8492889404296875"
+    },
+    "475": {
+      "Value": "18.6676788330078125, 0, -29.356353759765625"
+    },
+    "464": {
+      "Value": "19.203857421875, 0, -28.0503692626953125"
+    },
+    "453": {
+      "Value": "20.254150390625, 0, -28.0503692626953125"
+    },
+    "442": {
+      "Value": "21.6275634765625, 0, -28.0503692626953125"
+    },
+    "431": {
+      "Value": "20.7989349365234375, 0, -29.8127899169921875"
+    },
+    "420": {
+      "Value": "20.284881591796875, 0, -29.8127899169921875"
+    },
+    "409": {
+      "Value": "19.7708892822265625, 0, -29.8127899169921875"
+    },
+    "398": {
+      "Value": "19.758941650390625, 0, -30.35418701171875"
+    },
+    "387": {
+      "Value": "18.070037841796875, 0, -30.35418701171875"
+    },
+    "376": {
+      "Value": "20.94903564453125, 0, -28.9411468505859375"
+    },
+    "365": {
+      "Value": "22.2845611572265625, 0, -30.129486083984375"
+    },
+    "354": {
+      "Value": "22.8877716064453125, 0, -29.264373779296875"
+    },
+    "343": {
+      "Value": "20.5121612548828125, 0, -31.3716278076171875"
+    },
+    "332": {
+      "Value": "22.9182891845703125, 0, -28.7550201416015625"
+    },
+    "321": {
+      "Value": "23.565277099609375, 0, -10.3427886962890625"
+    },
     "310": {
-      "Value": "5.255584716796875, 0, 7.1372528076171875"
+      "Value": "22.1786651611328125, 0, -9.2902679443359375"
     },
     "299": {
-      "Value": "5.391357421875, 0, 8.6222686767578125"
+      "Value": "24.1959075927734375, 0, -6.83795166015625"
     },
     "288": {
-      "Value": "3.1313323974609375, 0, 6.8718414306640625"
+      "Value": "22.6472625732421875, 0, -4.806884765625"
     },
     "277": {
-      "Value": "-0.0727081298828125, 0, 4.2323455810546875"
+      "Value": "20.67120361328125, 0, -6.9985809326171875"
     },
     "266": {
-      "Value": "-2.3959197998046875, 0, 4.1698760986328125"
+      "Value": "22.5162353515625, 0, -6.9985809326171875"
     },
     "255": {
-      "Value": "-1.062713623046875, 0, 5.37353515625"
+      "Value": "21.0186614990234375, 0, -5.420318603515625"
     },
     "244": {
-      "Value": "-1.030120849609375, 0, 6.5422515869140625"
+      "Value": "19.926849365234375, 0, -5.420318603515625"
     },
     "233": {
-      "Value": "1.037109375, 0, 6.019378662109375"
+      "Value": "21.55426025390625, 0, -4.0710296630859375"
     },
     "222": {
-      "Value": "3.482025146484375, 0, 8.4172210693359375"
+      "Value": "19.9871063232421875, 0, -3.6695404052734375"
     },
     "211": {
-      "Value": "1.6171875, 0, 8.897216796875"
+      "Value": "-3.0559539794921875, 0, -1.1758575439453125"
     },
     "200": {
-      "Value": "0.3787994384765625, 0, 10.7926177978515625"
+      "Value": "1.011749267578125, 0, -0.3251495361328125"
     },
     "189": {
-      "Value": "0.288116455078125, 0, 8.553924560546875"
+      "Value": "-12.5164794921875, 0, 1.2430877685546875"
     },
     "178": {
-      "Value": "-4.477203369140625, 0, 3.1791534423828125"
+      "Value": "-9.2423095703125, 0, -1.66021728515625"
     },
     "167": {
-      "Value": "-6.179931640625, 0, 3.301910400390625"
+      "Value": "-4.897491455078125, 0, -0.505645751953125"
     },
     "156": {
-      "Value": "-8.1577301025390625, 0, 3.301910400390625"
+      "Value": "-6.85723876953125, 0, 1.6207733154296875"
     },
     "145": {
-      "Value": "-6.2343292236328125, 0, 5.4377593994140625"
+      "Value": "-8.3610076904296875, 0, 1.7158355712890625"
     },
     "134": {
-      "Value": "-2.41046142578125, 0, 6.4765625"
+      "Value": "-3.7077484130859375, 0, 1.7158355712890625"
     },
     "123": {
-      "Value": "-3.7885894775390625, 0, 4.9265594482421875"
+      "Value": "-1.67578125, 0, 0.5437774658203125"
     },
     "112": {
-      "Value": "-1.1340179443359375, 0, 8.0094451904296875"
+      "Value": "2.79583740234375, 0, 1.478759765625"
     },
     "101": {
-      "Value": "-3.4950714111328125, 0, 9.7310028076171875"
+      "Value": "4.8088836669921875, 0, 3.1669921875"
     },
     "90": {
-      "Value": "-1.8411865234375, 0, 8.897216796875"
+      "Value": "0.9768218994140625, 0, 3.0196533203125"
     },
     "79": {
-      "Value": "-1.6691741943359375, 0, 10.1530303955078125"
+      "Value": "1.122100830078125, 0, 5.5449981689453125"
     },
     "68": {
-      "Value": "-3.980255126953125, 0, 7.0043487548828125"
+      "Value": "-1.98895263671875, 0, 7.62176513671875"
     },
     "57": {
-      "Value": "-4.954498291015625, 0, 8.5539398193359375"
+      "Value": "-0.3229217529296875, 0, 4.822845458984375"
     },
     "46": {
-      "Value": "-6.578460693359375, 0, 5.9543914794921875"
+      "Value": "1.706878662109375, 0, 6.651031494140625"
     },
     "35": {
-      "Value": "-8.6115875244140625, 0, 5.9543914794921875"
+      "Value": "-2.6313018798828125, 0, 4.822845458984375"
     },
     "24": {
-      "Value": "-6.441009521484375, 0, 7.87420654296875"
+      "Value": "-4.477996826171875, 0, 4.822845458984375"
     },
     "13": {
-      "Value": "-8.891326904296875, 0, 4.9901885986328125"
+      "Value": "-6.4447784423828125, 0, 4.0622100830078125"
     },
     "2": {
-      "Value": "-10.7033538818359375, 0, 4.7997283935546875"
+      "Value": "-8.1670684814453125, 0, 3.2659454345703125"
     }
   },
   "Radius": {
+    "1179": 0.3000030517578125,
+    "1168": 0.3000030517578125,
+    "1157": 0.3000030517578125,
+    "1146": 0.3000030517578125,
+    "1135": 0.3000030517578125,
+    "1124": 0.3000030517578125,
+    "1113": 0.3000030517578125,
+    "1102": 0.3000030517578125,
+    "1091": 0.3000030517578125,
+    "1080": 0.3000030517578125,
+    "1069": 0.3000030517578125,
+    "1058": 0.3000030517578125,
+    "1047": 0.3000030517578125,
+    "1036": 0.3000030517578125,
+    "1025": 0.3000030517578125,
+    "1014": 0.3000030517578125,
+    "1003": 0.3000030517578125,
+    "992": 0.3000030517578125,
+    "981": 0.3000030517578125,
+    "970": 0.3000030517578125,
+    "959": 0.3000030517578125,
+    "948": 0.3000030517578125,
+    "937": 0.3000030517578125,
+    "926": 0.3000030517578125,
+    "915": 0.3000030517578125,
+    "904": 0.3000030517578125,
+    "893": 0.3000030517578125,
+    "882": 0.3000030517578125,
+    "871": 0.3000030517578125,
+    "860": 0.3000030517578125,
+    "849": 0.3000030517578125,
+    "838": 0.3000030517578125,
+    "827": 0.3000030517578125,
+    "816": 0.3000030517578125,
+    "805": 0.3000030517578125,
+    "794": 0.3000030517578125,
+    "783": 0.3000030517578125,
+    "772": 0.3000030517578125,
+    "761": 0.3000030517578125,
+    "750": 0.3000030517578125,
+    "739": 0.5,
+    "728": 0.5,
+    "717": 0.5,
+    "706": 0.5,
+    "695": 0.5,
+    "684": 0.5,
+    "673": 0.5,
+    "662": 0.5,
+    "651": 0.5,
+    "640": 0.5,
+    "629": 0.5,
+    "618": 0.5,
+    "607": 0.5,
+    "596": 0.5,
+    "585": 0.5,
+    "574": 0.5,
+    "563": 0.5,
+    "552": 0.5,
+    "541": 0.5,
+    "530": 0.5,
+    "519": 0.5,
+    "508": 0.5,
+    "497": 0.5,
+    "486": 0.5,
+    "475": 0.5,
+    "464": 0.5,
+    "453": 0.5,
+    "442": 0.5,
+    "431": 0.5,
+    "420": 0.5,
+    "409": 0.5,
+    "398": 0.5,
+    "387": 0.5,
+    "376": 0.5,
+    "365": 0.5,
+    "354": 0.5,
+    "343": 0.5,
+    "332": 0.5,
+    "321": 0.5,
     "310": 0.5,
     "299": 0.5,
     "288": 0.5,
@@ -1490,337 +3430,1492 @@
     "2": 0.5
   },
   "RandomSeed": {
+    "1179": {
+      "Value": 1880903134
+    },
+    "1168": {
+      "Value": 2019608666
+    },
+    "1157": {
+      "Value": 1259731415
+    },
+    "1146": {
+      "Value": 1894352969
+    },
+    "1135": {
+      "Value": 757828710
+    },
+    "1124": {
+      "Value": 724496712
+    },
+    "1113": {
+      "Value": 1125343917
+    },
+    "1102": {
+      "Value": 906006558
+    },
+    "1091": {
+      "Value": 1745054393
+    },
+    "1080": {
+      "Value": 1259823385
+    },
+    "1069": {
+      "Value": 1687225791
+    },
+    "1058": {
+      "Value": 380440848
+    },
+    "1047": {
+      "Value": 133258202
+    },
+    "1036": {
+      "Value": 100467976
+    },
+    "1025": {
+      "Value": 1914738818
+    },
+    "1014": {
+      "Value": 910435373
+    },
+    "1003": {
+      "Value": 748539051
+    },
+    "992": {
+      "Value": 1327865026
+    },
+    "981": {
+      "Value": 782011324
+    },
+    "970": {
+      "Value": 609263585
+    },
+    "959": {
+      "Value": 1779442715
+    },
+    "948": {
+      "Value": 939257957
+    },
+    "937": {
+      "Value": 1481072271
+    },
+    "926": {
+      "Value": 2045521161
+    },
+    "915": {
+      "Value": 1189899667
+    },
+    "904": {
+      "Value": 196094544
+    },
+    "893": {
+      "Value": 2035877583
+    },
+    "882": {
+      "Value": 1022418885
+    },
+    "871": {
+      "Value": 1511418637
+    },
+    "860": {
+      "Value": 155801190
+    },
+    "849": {
+      "Value": 1685799139
+    },
+    "838": {
+      "Value": 431014976
+    },
+    "827": {
+      "Value": 1909387691
+    },
+    "816": {
+      "Value": 834897649
+    },
+    "805": {
+      "Value": 1939612925
+    },
+    "794": {
+      "Value": 986862045
+    },
+    "783": {
+      "Value": 910845749
+    },
+    "772": {
+      "Value": 775630998
+    },
+    "761": {
+      "Value": 336813300
+    },
+    "750": {
+      "Value": 931508143
+    },
+    "739": {
+      "Value": 357796665
+    },
+    "728": {
+      "Value": 1786599967
+    },
+    "717": {
+      "Value": 1735546103
+    },
+    "706": {
+      "Value": 1561937164
+    },
+    "695": {
+      "Value": 966624242
+    },
+    "684": {
+      "Value": 1039622349
+    },
+    "673": {
+      "Value": 116491620
+    },
+    "662": {
+      "Value": 192584757
+    },
+    "651": {
+      "Value": 48052277
+    },
+    "640": {
+      "Value": 1868662552
+    },
+    "629": {
+      "Value": 1159579395
+    },
+    "618": {
+      "Value": 240716645
+    },
+    "607": {
+      "Value": 1370173714
+    },
+    "596": {
+      "Value": 454180117
+    },
+    "585": {
+      "Value": 619702897
+    },
+    "574": {
+      "Value": 113436866
+    },
+    "563": {
+      "Value": 1446875165
+    },
+    "552": {
+      "Value": 610981618
+    },
+    "541": {
+      "Value": 1110388421
+    },
+    "530": {
+      "Value": 1682530111
+    },
+    "519": {
+      "Value": 96409309
+    },
+    "508": {
+      "Value": 2071028683
+    },
+    "497": {
+      "Value": 1133010979
+    },
+    "486": {
+      "Value": 1921004950
+    },
+    "475": {
+      "Value": 1262165003
+    },
+    "464": {
+      "Value": 1094254487
+    },
+    "453": {
+      "Value": 2007951298
+    },
+    "442": {
+      "Value": 837637923
+    },
+    "431": {
+      "Value": 880940834
+    },
+    "420": {
+      "Value": 403195549
+    },
+    "409": {
+      "Value": 1219502379
+    },
+    "398": {
+      "Value": 348522900
+    },
+    "387": {
+      "Value": 8986125
+    },
+    "376": {
+      "Value": 592589492
+    },
+    "365": {
+      "Value": 1651331803
+    },
+    "354": {
+      "Value": 839550066
+    },
+    "343": {
+      "Value": 1640582924
+    },
+    "332": {
+      "Value": 1368351890
+    },
+    "321": {
+      "Value": 1096907233
+    },
     "310": {
-      "Value": 1168036555
+      "Value": 740692542
     },
     "299": {
-      "Value": 611252746
+      "Value": 319029109
     },
     "288": {
-      "Value": 769574909
+      "Value": 572691346
     },
     "277": {
-      "Value": 1770920193
+      "Value": 1533852022
     },
     "266": {
-      "Value": 1049016721
+      "Value": 1084834070
     },
     "255": {
-      "Value": 1259902273
+      "Value": 517210594
     },
     "244": {
-      "Value": 569649708
+      "Value": 1388368596
     },
     "233": {
-      "Value": 1020949328
+      "Value": 2113157564
     },
     "222": {
-      "Value": 1460152935
+      "Value": 210259796
     },
     "211": {
-      "Value": 1600750763
+      "Value": 112940026
     },
     "200": {
-      "Value": 387632401
+      "Value": 1260958213
     },
     "189": {
-      "Value": 992217117
+      "Value": 1977945695
     },
     "178": {
-      "Value": 1888326148
+      "Value": 570752582
     },
     "167": {
-      "Value": 1382426026
+      "Value": 1712041999
     },
     "156": {
-      "Value": 1884770353
+      "Value": 933687526
     },
     "145": {
-      "Value": 1916413661
+      "Value": 2111985736
     },
     "134": {
-      "Value": 1986317831
+      "Value": 449532922
     },
     "123": {
-      "Value": 529550269
+      "Value": 1066554487
     },
     "112": {
-      "Value": 1290170679
+      "Value": 1816533481
     },
     "101": {
-      "Value": 411660855
+      "Value": 1370693508
     },
     "90": {
-      "Value": 1973305829
+      "Value": 503935929
     },
     "79": {
-      "Value": 1044443020
+      "Value": 220719345
     },
     "68": {
-      "Value": 1938762450
+      "Value": 1023408830
     },
     "57": {
-      "Value": 251400454
+      "Value": 1353164204
     },
     "46": {
-      "Value": 1631732359
+      "Value": 22308753
     },
     "35": {
-      "Value": 2016250914
+      "Value": 1393901076
     },
     "24": {
-      "Value": 1506620573
+      "Value": 117194443
     },
     "13": {
-      "Value": 1452491057
+      "Value": 69489695
     },
     "2": {
-      "Value": 739712483
+      "Value": 1923735732
     },
     "1": {
       "Value": 0
     }
   },
-  "RockId": {},
+  "RockId": {
+    "695": "HardRock_01",
+    "684": "HardRock_01",
+    "673": "HardRock_01",
+    "662": "HardRock_01",
+    "651": "HardRock_01",
+    "640": "HardRock_01",
+    "629": "HardRock_01",
+    "618": "HardRock_01",
+    "607": "HardRock_01",
+    "596": "HardRock_01",
+    "585": "HardRock_01",
+    "574": "HardRock_01",
+    "563": "HardRock_01",
+    "552": "HardRock_01",
+    "541": "HardRock_01",
+    "530": "HardRock_01",
+    "519": "HardRock_01",
+    "508": "HardRock_01",
+    "497": "HardRock_01",
+    "486": "HardRock_01",
+    "475": "HardRock_01",
+    "464": "HardRock_01",
+    "453": "HardRock_01",
+    "442": "HardRock_01",
+    "431": "HardRock_01",
+    "420": "HardRock_01",
+    "409": "HardRock_01",
+    "398": "HardRock_01",
+    "387": "HardRock_01",
+    "376": "HardRock_01",
+    "365": "HardRock_01",
+    "354": "HardRock_01",
+    "343": "HardRock_01",
+    "332": "HardRock_01"
+  },
   "Rotation": {
-    "310": {
-      "Value": 101
+    "1179": {
+      "Value": 74
     },
-    "299": {
-      "Value": 304
+    "1168": {
+      "Value": 251
     },
-    "288": {
-      "Value": 104
-    },
-    "277": {
-      "Value": 175
-    },
-    "266": {
-      "Value": 8
-    },
-    "255": {
-      "Value": 310
-    },
-    "244": {
-      "Value": 89
-    },
-    "233": {
-      "Value": 220
-    },
-    "222": {
-      "Value": 64
-    },
-    "211": {
-      "Value": 261
-    },
-    "200": {
+    "1157": {
       "Value": 147
     },
-    "189": {
-      "Value": 269
+    "1146": {
+      "Value": 116
     },
-    "178": {
-      "Value": 105
+    "1135": {
+      "Value": 341
     },
-    "167": {
-      "Value": 145
+    "1124": {
+      "Value": 228
     },
-    "156": {
-      "Value": 176
+    "1113": {
+      "Value": 160
     },
-    "145": {
-      "Value": 348
+    "1102": {
+      "Value": 123
     },
-    "134": {
-      "Value": 190
+    "1091": {
+      "Value": 204
     },
-    "123": {
-      "Value": 105
+    "1080": {
+      "Value": 7
     },
-    "112": {
-      "Value": 298
+    "1069": {
+      "Value": 356
     },
-    "101": {
-      "Value": 185
+    "1058": {
+      "Value": 271
     },
-    "90": {
-      "Value": 324
+    "1047": {
+      "Value": 7
     },
-    "79": {
+    "1036": {
+      "Value": 336
+    },
+    "1025": {
+      "Value": 1
+    },
+    "1014": {
+      "Value": 247
+    },
+    "1003": {
+      "Value": 160
+    },
+    "992": {
+      "Value": 23
+    },
+    "981": {
+      "Value": 21
+    },
+    "970": {
+      "Value": 132
+    },
+    "959": {
+      "Value": 171
+    },
+    "948": {
+      "Value": 29
+    },
+    "937": {
+      "Value": 206
+    },
+    "926": {
+      "Value": 127
+    },
+    "915": {
+      "Value": 253
+    },
+    "904": {
+      "Value": 6
+    },
+    "893": {
+      "Value": 25
+    },
+    "882": {
+      "Value": 17
+    },
+    "871": {
+      "Value": 195
+    },
+    "860": {
+      "Value": 180
+    },
+    "849": {
+      "Value": 61
+    },
+    "838": {
+      "Value": 153
+    },
+    "827": {
+      "Value": 146
+    },
+    "816": {
+      "Value": 259
+    },
+    "805": {
+      "Value": 175
+    },
+    "794": {
+      "Value": 99
+    },
+    "783": {
+      "Value": 327
+    },
+    "772": {
+      "Value": 284
+    },
+    "761": {
+      "Value": 75
+    },
+    "750": {
+      "Value": 318
+    },
+    "739": {
+      "Value": 0
+    },
+    "728": {
+      "Value": 0
+    },
+    "717": {
+      "Value": 0
+    },
+    "706": {
+      "Value": 0
+    },
+    "695": {
+      "Value": 232
+    },
+    "684": {
+      "Value": 9
+    },
+    "673": {
+      "Value": 142
+    },
+    "662": {
+      "Value": 288
+    },
+    "651": {
+      "Value": 260
+    },
+    "640": {
+      "Value": 286
+    },
+    "629": {
+      "Value": 264
+    },
+    "618": {
       "Value": 30
     },
+    "607": {
+      "Value": 134
+    },
+    "596": {
+      "Value": 264
+    },
+    "585": {
+      "Value": 122
+    },
+    "574": {
+      "Value": 318
+    },
+    "563": {
+      "Value": 249
+    },
+    "552": {
+      "Value": 227
+    },
+    "541": {
+      "Value": 23
+    },
+    "530": {
+      "Value": 323
+    },
+    "519": {
+      "Value": 150
+    },
+    "508": {
+      "Value": 63
+    },
+    "497": {
+      "Value": 356
+    },
+    "486": {
+      "Value": 151
+    },
+    "475": {
+      "Value": 55
+    },
+    "464": {
+      "Value": 313
+    },
+    "453": {
+      "Value": 295
+    },
+    "442": {
+      "Value": 93
+    },
+    "431": {
+      "Value": 154
+    },
+    "420": {
+      "Value": 230
+    },
+    "409": {
+      "Value": 161
+    },
+    "398": {
+      "Value": 170
+    },
+    "387": {
+      "Value": 203
+    },
+    "376": {
+      "Value": 143
+    },
+    "365": {
+      "Value": 342
+    },
+    "354": {
+      "Value": 312
+    },
+    "343": {
+      "Value": 345
+    },
+    "332": {
+      "Value": 325
+    },
+    "321": {
+      "Value": 236
+    },
+    "310": {
+      "Value": 135
+    },
+    "299": {
+      "Value": 59
+    },
+    "288": {
+      "Value": 263
+    },
+    "277": {
+      "Value": 273
+    },
+    "266": {
+      "Value": 44
+    },
+    "255": {
+      "Value": 211
+    },
+    "244": {
+      "Value": 10
+    },
+    "233": {
+      "Value": 210
+    },
+    "222": {
+      "Value": 118
+    },
+    "211": {
+      "Value": 318
+    },
+    "200": {
+      "Value": 235
+    },
+    "189": {
+      "Value": 180
+    },
+    "178": {
+      "Value": 42
+    },
+    "167": {
+      "Value": 340
+    },
+    "156": {
+      "Value": 240
+    },
+    "145": {
+      "Value": 314
+    },
+    "134": {
+      "Value": 236
+    },
+    "123": {
+      "Value": 194
+    },
+    "112": {
+      "Value": 351
+    },
+    "101": {
+      "Value": 139
+    },
+    "90": {
+      "Value": 148
+    },
+    "79": {
+      "Value": 84
+    },
     "68": {
-      "Value": 358
-    },
-    "57": {
-      "Value": 188
-    },
-    "46": {
       "Value": 31
     },
+    "57": {
+      "Value": 304
+    },
+    "46": {
+      "Value": 47
+    },
     "35": {
-      "Value": 73
+      "Value": 238
     },
     "24": {
-      "Value": 277
+      "Value": 17
     },
     "13": {
-      "Value": 274
+      "Value": 172
     },
     "2": {
-      "Value": 2
+      "Value": 153
     }
   },
   "Separation": {
+    "1179": {
+      "Coefficient": 1
+    },
+    "1168": {
+      "Coefficient": 1
+    },
+    "1157": {
+      "Coefficient": 1
+    },
+    "1146": {
+      "Coefficient": 1
+    },
+    "1135": {
+      "Coefficient": 1
+    },
+    "1124": {
+      "Coefficient": 1
+    },
+    "1113": {
+      "Coefficient": 1
+    },
+    "1102": {
+      "Coefficient": 1
+    },
+    "1091": {
+      "Coefficient": 1
+    },
+    "1080": {
+      "Coefficient": 1
+    },
+    "1069": {
+      "Coefficient": 1
+    },
+    "1058": {
+      "Coefficient": 1
+    },
+    "1047": {
+      "Coefficient": 1
+    },
+    "1036": {
+      "Coefficient": 1
+    },
+    "1025": {
+      "Coefficient": 1
+    },
+    "1014": {
+      "Coefficient": 1
+    },
+    "1003": {
+      "Coefficient": 1
+    },
+    "992": {
+      "Coefficient": 1
+    },
+    "981": {
+      "Coefficient": 1
+    },
+    "970": {
+      "Coefficient": 1
+    },
+    "959": {
+      "Coefficient": 1
+    },
+    "948": {
+      "Coefficient": 1
+    },
+    "937": {
+      "Coefficient": 1
+    },
+    "926": {
+      "Coefficient": 1
+    },
+    "915": {
+      "Coefficient": 1
+    },
+    "904": {
+      "Coefficient": 1
+    },
+    "893": {
+      "Coefficient": 1
+    },
+    "882": {
+      "Coefficient": 1
+    },
+    "871": {
+      "Coefficient": 1
+    },
+    "860": {
+      "Coefficient": 1
+    },
+    "849": {
+      "Coefficient": 1
+    },
+    "838": {
+      "Coefficient": 1
+    },
+    "827": {
+      "Coefficient": 1
+    },
+    "816": {
+      "Coefficient": 1
+    },
+    "805": {
+      "Coefficient": 1
+    },
+    "794": {
+      "Coefficient": 1
+    },
+    "783": {
+      "Coefficient": 1
+    },
+    "772": {
+      "Coefficient": 1
+    },
+    "761": {
+      "Coefficient": 1
+    },
+    "750": {
+      "Coefficient": 1
+    }
+  },
+  "Separator": {
+    "1179": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1168": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1157": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1146": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1135": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1124": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1113": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1102": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1091": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1080": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1069": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1058": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1047": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1036": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1025": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1014": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "1003": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "992": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "981": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "970": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "959": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "948": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "937": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "926": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "915": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "904": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "893": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "882": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "871": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "860": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "849": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "838": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "827": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "816": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "805": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "794": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "783": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "772": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "761": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "750": {
+      "Radius": 0.3000030517578125,
+      "Coefficient": 1
+    },
+    "739": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "728": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "717": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "706": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "695": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "684": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "673": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "662": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "651": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "640": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "629": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "618": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "607": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "596": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "585": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "574": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "563": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "552": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "541": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "530": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "519": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "508": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "497": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "486": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "475": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "464": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "453": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "442": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "431": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "420": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "409": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "398": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "387": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "376": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "365": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "354": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "343": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "332": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
+    "321": {
+      "Radius": 0.5,
+      "Coefficient": 1
+    },
     "310": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "299": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "288": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "277": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "266": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "255": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "244": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "233": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "222": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "211": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "200": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "189": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "178": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "167": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "156": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "145": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "134": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "123": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "112": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "101": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "90": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "79": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "68": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "57": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "46": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "35": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "24": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "13": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     },
     "2": {
-      "AddRadius": 0.5,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 0
+      "Radius": 0.5,
+      "Coefficient": 1
     }
   },
   "Squad": {},
   "SquadMember": {},
   "SyncId": {
+    "1179": {
+      "Value": 1179
+    },
+    "1168": {
+      "Value": 1168
+    },
+    "1157": {
+      "Value": 1157
+    },
+    "1146": {
+      "Value": 1146
+    },
+    "1135": {
+      "Value": 1135
+    },
+    "1124": {
+      "Value": 1124
+    },
+    "1113": {
+      "Value": 1113
+    },
+    "1102": {
+      "Value": 1102
+    },
+    "1091": {
+      "Value": 1091
+    },
+    "1080": {
+      "Value": 1080
+    },
+    "1069": {
+      "Value": 1069
+    },
+    "1058": {
+      "Value": 1058
+    },
+    "1047": {
+      "Value": 1047
+    },
+    "1036": {
+      "Value": 1036
+    },
+    "1025": {
+      "Value": 1025
+    },
+    "1014": {
+      "Value": 1014
+    },
+    "1003": {
+      "Value": 1003
+    },
+    "992": {
+      "Value": 992
+    },
+    "981": {
+      "Value": 981
+    },
+    "970": {
+      "Value": 970
+    },
+    "959": {
+      "Value": 959
+    },
+    "948": {
+      "Value": 948
+    },
+    "937": {
+      "Value": 937
+    },
+    "926": {
+      "Value": 926
+    },
+    "915": {
+      "Value": 915
+    },
+    "904": {
+      "Value": 904
+    },
+    "893": {
+      "Value": 893
+    },
+    "882": {
+      "Value": 882
+    },
+    "871": {
+      "Value": 871
+    },
+    "860": {
+      "Value": 860
+    },
+    "849": {
+      "Value": 849
+    },
+    "838": {
+      "Value": 838
+    },
+    "827": {
+      "Value": 827
+    },
+    "816": {
+      "Value": 816
+    },
+    "805": {
+      "Value": 805
+    },
+    "794": {
+      "Value": 794
+    },
+    "783": {
+      "Value": 783
+    },
+    "772": {
+      "Value": 772
+    },
+    "761": {
+      "Value": 761
+    },
+    "750": {
+      "Value": 750
+    },
+    "739": {
+      "Value": 739
+    },
+    "728": {
+      "Value": 728
+    },
+    "717": {
+      "Value": 717
+    },
+    "706": {
+      "Value": 706
+    },
+    "695": {
+      "Value": 695
+    },
+    "684": {
+      "Value": 684
+    },
+    "673": {
+      "Value": 673
+    },
+    "662": {
+      "Value": 662
+    },
+    "651": {
+      "Value": 651
+    },
+    "640": {
+      "Value": 640
+    },
+    "629": {
+      "Value": 629
+    },
+    "618": {
+      "Value": 618
+    },
+    "607": {
+      "Value": 607
+    },
+    "596": {
+      "Value": 596
+    },
+    "585": {
+      "Value": 585
+    },
+    "574": {
+      "Value": 574
+    },
+    "563": {
+      "Value": 563
+    },
+    "552": {
+      "Value": 552
+    },
+    "541": {
+      "Value": 541
+    },
+    "530": {
+      "Value": 530
+    },
+    "519": {
+      "Value": 519
+    },
+    "508": {
+      "Value": 508
+    },
+    "497": {
+      "Value": 497
+    },
+    "486": {
+      "Value": 486
+    },
+    "475": {
+      "Value": 475
+    },
+    "464": {
+      "Value": 464
+    },
+    "453": {
+      "Value": 453
+    },
+    "442": {
+      "Value": 442
+    },
+    "431": {
+      "Value": 431
+    },
+    "420": {
+      "Value": 420
+    },
+    "409": {
+      "Value": 409
+    },
+    "398": {
+      "Value": 398
+    },
+    "387": {
+      "Value": 387
+    },
+    "376": {
+      "Value": 376
+    },
+    "365": {
+      "Value": 365
+    },
+    "354": {
+      "Value": 354
+    },
+    "343": {
+      "Value": 343
+    },
+    "332": {
+      "Value": 332
+    },
+    "321": {
+      "Value": 321
+    },
     "310": {
       "Value": 310
     },
@@ -1913,6 +5008,401 @@
     }
   },
   "SyncIdReserve": {
+    "1179": {
+      "First": 1180,
+      "Count": 10,
+      "Current": 1180
+    },
+    "1168": {
+      "First": 1169,
+      "Count": 10,
+      "Current": 1169
+    },
+    "1157": {
+      "First": 1158,
+      "Count": 10,
+      "Current": 1158
+    },
+    "1146": {
+      "First": 1147,
+      "Count": 10,
+      "Current": 1147
+    },
+    "1135": {
+      "First": 1136,
+      "Count": 10,
+      "Current": 1136
+    },
+    "1124": {
+      "First": 1125,
+      "Count": 10,
+      "Current": 1125
+    },
+    "1113": {
+      "First": 1114,
+      "Count": 10,
+      "Current": 1114
+    },
+    "1102": {
+      "First": 1103,
+      "Count": 10,
+      "Current": 1103
+    },
+    "1091": {
+      "First": 1092,
+      "Count": 10,
+      "Current": 1092
+    },
+    "1080": {
+      "First": 1081,
+      "Count": 10,
+      "Current": 1081
+    },
+    "1069": {
+      "First": 1070,
+      "Count": 10,
+      "Current": 1070
+    },
+    "1058": {
+      "First": 1059,
+      "Count": 10,
+      "Current": 1059
+    },
+    "1047": {
+      "First": 1048,
+      "Count": 10,
+      "Current": 1048
+    },
+    "1036": {
+      "First": 1037,
+      "Count": 10,
+      "Current": 1037
+    },
+    "1025": {
+      "First": 1026,
+      "Count": 10,
+      "Current": 1026
+    },
+    "1014": {
+      "First": 1015,
+      "Count": 10,
+      "Current": 1015
+    },
+    "1003": {
+      "First": 1004,
+      "Count": 10,
+      "Current": 1004
+    },
+    "992": {
+      "First": 993,
+      "Count": 10,
+      "Current": 993
+    },
+    "981": {
+      "First": 982,
+      "Count": 10,
+      "Current": 982
+    },
+    "970": {
+      "First": 971,
+      "Count": 10,
+      "Current": 971
+    },
+    "959": {
+      "First": 960,
+      "Count": 10,
+      "Current": 960
+    },
+    "948": {
+      "First": 949,
+      "Count": 10,
+      "Current": 949
+    },
+    "937": {
+      "First": 938,
+      "Count": 10,
+      "Current": 938
+    },
+    "926": {
+      "First": 927,
+      "Count": 10,
+      "Current": 927
+    },
+    "915": {
+      "First": 916,
+      "Count": 10,
+      "Current": 916
+    },
+    "904": {
+      "First": 905,
+      "Count": 10,
+      "Current": 905
+    },
+    "893": {
+      "First": 894,
+      "Count": 10,
+      "Current": 894
+    },
+    "882": {
+      "First": 883,
+      "Count": 10,
+      "Current": 883
+    },
+    "871": {
+      "First": 872,
+      "Count": 10,
+      "Current": 872
+    },
+    "860": {
+      "First": 861,
+      "Count": 10,
+      "Current": 861
+    },
+    "849": {
+      "First": 850,
+      "Count": 10,
+      "Current": 850
+    },
+    "838": {
+      "First": 839,
+      "Count": 10,
+      "Current": 839
+    },
+    "827": {
+      "First": 828,
+      "Count": 10,
+      "Current": 828
+    },
+    "816": {
+      "First": 817,
+      "Count": 10,
+      "Current": 817
+    },
+    "805": {
+      "First": 806,
+      "Count": 10,
+      "Current": 806
+    },
+    "794": {
+      "First": 795,
+      "Count": 10,
+      "Current": 795
+    },
+    "783": {
+      "First": 784,
+      "Count": 10,
+      "Current": 784
+    },
+    "772": {
+      "First": 773,
+      "Count": 10,
+      "Current": 773
+    },
+    "761": {
+      "First": 762,
+      "Count": 10,
+      "Current": 762
+    },
+    "750": {
+      "First": 751,
+      "Count": 10,
+      "Current": 751
+    },
+    "739": {
+      "First": 740,
+      "Count": 10,
+      "Current": 740
+    },
+    "728": {
+      "First": 729,
+      "Count": 10,
+      "Current": 729
+    },
+    "717": {
+      "First": 718,
+      "Count": 10,
+      "Current": 718
+    },
+    "706": {
+      "First": 707,
+      "Count": 10,
+      "Current": 707
+    },
+    "695": {
+      "First": 696,
+      "Count": 10,
+      "Current": 696
+    },
+    "684": {
+      "First": 685,
+      "Count": 10,
+      "Current": 685
+    },
+    "673": {
+      "First": 674,
+      "Count": 10,
+      "Current": 674
+    },
+    "662": {
+      "First": 663,
+      "Count": 10,
+      "Current": 663
+    },
+    "651": {
+      "First": 652,
+      "Count": 10,
+      "Current": 652
+    },
+    "640": {
+      "First": 641,
+      "Count": 10,
+      "Current": 641
+    },
+    "629": {
+      "First": 630,
+      "Count": 10,
+      "Current": 630
+    },
+    "618": {
+      "First": 619,
+      "Count": 10,
+      "Current": 619
+    },
+    "607": {
+      "First": 608,
+      "Count": 10,
+      "Current": 608
+    },
+    "596": {
+      "First": 597,
+      "Count": 10,
+      "Current": 597
+    },
+    "585": {
+      "First": 586,
+      "Count": 10,
+      "Current": 586
+    },
+    "574": {
+      "First": 575,
+      "Count": 10,
+      "Current": 575
+    },
+    "563": {
+      "First": 564,
+      "Count": 10,
+      "Current": 564
+    },
+    "552": {
+      "First": 553,
+      "Count": 10,
+      "Current": 553
+    },
+    "541": {
+      "First": 542,
+      "Count": 10,
+      "Current": 542
+    },
+    "530": {
+      "First": 531,
+      "Count": 10,
+      "Current": 531
+    },
+    "519": {
+      "First": 520,
+      "Count": 10,
+      "Current": 520
+    },
+    "508": {
+      "First": 509,
+      "Count": 10,
+      "Current": 509
+    },
+    "497": {
+      "First": 498,
+      "Count": 10,
+      "Current": 498
+    },
+    "486": {
+      "First": 487,
+      "Count": 10,
+      "Current": 487
+    },
+    "475": {
+      "First": 476,
+      "Count": 10,
+      "Current": 476
+    },
+    "464": {
+      "First": 465,
+      "Count": 10,
+      "Current": 465
+    },
+    "453": {
+      "First": 454,
+      "Count": 10,
+      "Current": 454
+    },
+    "442": {
+      "First": 443,
+      "Count": 10,
+      "Current": 443
+    },
+    "431": {
+      "First": 432,
+      "Count": 10,
+      "Current": 432
+    },
+    "420": {
+      "First": 421,
+      "Count": 10,
+      "Current": 421
+    },
+    "409": {
+      "First": 410,
+      "Count": 10,
+      "Current": 410
+    },
+    "398": {
+      "First": 399,
+      "Count": 10,
+      "Current": 399
+    },
+    "387": {
+      "First": 388,
+      "Count": 10,
+      "Current": 388
+    },
+    "376": {
+      "First": 377,
+      "Count": 10,
+      "Current": 377
+    },
+    "365": {
+      "First": 366,
+      "Count": 10,
+      "Current": 366
+    },
+    "354": {
+      "First": 355,
+      "Count": 10,
+      "Current": 355
+    },
+    "343": {
+      "First": 344,
+      "Count": 10,
+      "Current": 344
+    },
+    "332": {
+      "First": 333,
+      "Count": 10,
+      "Current": 333
+    },
+    "321": {
+      "First": 322,
+      "Count": 10,
+      "Current": 322
+    },
     "310": {
       "First": 311,
       "Count": 10,
@@ -2064,8 +5554,290 @@
       "Current": 0
     }
   },
-  "TargetSearchDistance": {},
+  "TargetSearchDistance": {
+    "1179": 5,
+    "1168": 5,
+    "1157": 5,
+    "1146": 5,
+    "1135": 5,
+    "1124": 5,
+    "1113": 5,
+    "1102": 5,
+    "1091": 5,
+    "1080": 5,
+    "1069": 5,
+    "1058": 5,
+    "1047": 5,
+    "1036": 5,
+    "1025": 5,
+    "1014": 5,
+    "1003": 5,
+    "992": 5,
+    "981": 5,
+    "970": 5,
+    "959": 5,
+    "948": 5,
+    "937": 5,
+    "926": 5,
+    "915": 5,
+    "904": 5,
+    "893": 5,
+    "882": 5,
+    "871": 5,
+    "860": 5,
+    "849": 5,
+    "838": 5,
+    "827": 5,
+    "816": 5,
+    "805": 5,
+    "794": 5,
+    "783": 5,
+    "772": 5,
+    "761": 5,
+    "750": 5,
+    "739": 2,
+    "728": 2,
+    "717": 2,
+    "706": 2
+  },
   "Team": {
+    "1179": {
+      "Id": 0
+    },
+    "1168": {
+      "Id": 0
+    },
+    "1157": {
+      "Id": 0
+    },
+    "1146": {
+      "Id": 0
+    },
+    "1135": {
+      "Id": 0
+    },
+    "1124": {
+      "Id": 0
+    },
+    "1113": {
+      "Id": 0
+    },
+    "1102": {
+      "Id": 0
+    },
+    "1091": {
+      "Id": 0
+    },
+    "1080": {
+      "Id": 0
+    },
+    "1069": {
+      "Id": 0
+    },
+    "1058": {
+      "Id": 0
+    },
+    "1047": {
+      "Id": 0
+    },
+    "1036": {
+      "Id": 0
+    },
+    "1025": {
+      "Id": 0
+    },
+    "1014": {
+      "Id": 0
+    },
+    "1003": {
+      "Id": 0
+    },
+    "992": {
+      "Id": 0
+    },
+    "981": {
+      "Id": 0
+    },
+    "970": {
+      "Id": 0
+    },
+    "959": {
+      "Id": 0
+    },
+    "948": {
+      "Id": 0
+    },
+    "937": {
+      "Id": 0
+    },
+    "926": {
+      "Id": 0
+    },
+    "915": {
+      "Id": 0
+    },
+    "904": {
+      "Id": 0
+    },
+    "893": {
+      "Id": 0
+    },
+    "882": {
+      "Id": 0
+    },
+    "871": {
+      "Id": 0
+    },
+    "860": {
+      "Id": 0
+    },
+    "849": {
+      "Id": 0
+    },
+    "838": {
+      "Id": 0
+    },
+    "827": {
+      "Id": 0
+    },
+    "816": {
+      "Id": 0
+    },
+    "805": {
+      "Id": 0
+    },
+    "794": {
+      "Id": 0
+    },
+    "783": {
+      "Id": 0
+    },
+    "772": {
+      "Id": 0
+    },
+    "761": {
+      "Id": 0
+    },
+    "750": {
+      "Id": 0
+    },
+    "739": {
+      "Id": 0
+    },
+    "728": {
+      "Id": 0
+    },
+    "717": {
+      "Id": 0
+    },
+    "706": {
+      "Id": 0
+    },
+    "695": {
+      "Id": 0
+    },
+    "684": {
+      "Id": 0
+    },
+    "673": {
+      "Id": 0
+    },
+    "662": {
+      "Id": 0
+    },
+    "651": {
+      "Id": 0
+    },
+    "640": {
+      "Id": 0
+    },
+    "629": {
+      "Id": 0
+    },
+    "618": {
+      "Id": 0
+    },
+    "607": {
+      "Id": 0
+    },
+    "596": {
+      "Id": 0
+    },
+    "585": {
+      "Id": 0
+    },
+    "574": {
+      "Id": 0
+    },
+    "563": {
+      "Id": 0
+    },
+    "552": {
+      "Id": 0
+    },
+    "541": {
+      "Id": 0
+    },
+    "530": {
+      "Id": 0
+    },
+    "519": {
+      "Id": 0
+    },
+    "508": {
+      "Id": 0
+    },
+    "497": {
+      "Id": 0
+    },
+    "486": {
+      "Id": 0
+    },
+    "475": {
+      "Id": 0
+    },
+    "464": {
+      "Id": 0
+    },
+    "453": {
+      "Id": 0
+    },
+    "442": {
+      "Id": 0
+    },
+    "431": {
+      "Id": 0
+    },
+    "420": {
+      "Id": 0
+    },
+    "409": {
+      "Id": 0
+    },
+    "398": {
+      "Id": 0
+    },
+    "387": {
+      "Id": 0
+    },
+    "376": {
+      "Id": 0
+    },
+    "365": {
+      "Id": 0
+    },
+    "354": {
+      "Id": 0
+    },
+    "343": {
+      "Id": 0
+    },
+    "332": {
+      "Id": 0
+    },
+    "321": {
+      "Id": 0
+    },
     "310": {
       "Id": 0
     },
@@ -2155,35 +5927,77 @@
     }
   },
   "TreeId": {
-    "310": "Tree_01_Spring",
-    "299": "Tree_01_Spring",
-    "288": "Tree_01_Spring",
-    "277": "Tree_01_Spring",
-    "266": "Tree_01_Spring",
-    "255": "Tree_01_Spring",
-    "244": "Tree_01_Spring",
-    "233": "Tree_01_Spring",
-    "222": "Tree_01_Spring",
-    "211": "Tree_01_Spring",
-    "200": "Tree_01_Spring",
-    "189": "Tree_01_Spring",
-    "178": "Tree_01_Spring",
-    "167": "Tree_01_Spring",
-    "156": "Tree_01_Spring",
-    "145": "Tree_01_Spring",
-    "134": "Tree_01_Spring",
-    "123": "Tree_01_Spring",
-    "112": "Tree_01_Spring",
-    "101": "Tree_01_Spring",
-    "90": "Tree_01_Spring",
-    "79": "Tree_01_Spring",
-    "68": "Tree_01_Spring",
-    "57": "Tree_01_Spring",
-    "46": "Tree_01_Spring",
-    "35": "Tree_01_Spring",
-    "24": "Tree_01_Spring",
-    "13": "Tree_01_Spring",
-    "2": "Tree_01_Spring"
+    "321": "Tree_27_Spring",
+    "310": "Tree_13_Fall",
+    "299": "Tree_23_Fall",
+    "288": "Tree_20_Fall",
+    "277": "Tree_05_Fall",
+    "266": "TreeTrunk_45",
+    "255": "TreeTrunk_47",
+    "244": "TreeTrunk_28",
+    "233": "Tree_27_Fall",
+    "222": "Tree_23_Winter",
+    "211": "Tree_15_Spring",
+    "200": "Tree_15_Spring",
+    "189": "Tree_15_Spring",
+    "178": "Tree_15_Spring",
+    "167": "Tree_15_Spring",
+    "156": "Tree_15_Spring",
+    "145": "Tree_15_Spring",
+    "134": "Tree_15_Spring",
+    "123": "Tree_15_Spring",
+    "112": "Tree_15_Spring",
+    "101": "Tree_15_Spring",
+    "90": "Tree_15_Spring",
+    "79": "Tree_15_Spring",
+    "68": "Tree_15_Spring",
+    "57": "Tree_15_Spring",
+    "46": "Tree_15_Spring",
+    "35": "Tree_15_Spring",
+    "24": "Tree_15_Spring",
+    "13": "Tree_15_Spring",
+    "2": "Tree_15_Spring"
   },
-  "UnitId": {}
+  "UnitId": {
+    "1179": "Rogue",
+    "1168": "Rogue",
+    "1157": "Rogue",
+    "1146": "Rogue",
+    "1135": "Rogue",
+    "1124": "Rogue",
+    "1113": "Rogue",
+    "1102": "Rogue",
+    "1091": "Rogue",
+    "1080": "Rogue",
+    "1069": "Rogue",
+    "1058": "Rogue",
+    "1047": "Rogue",
+    "1036": "Rogue",
+    "1025": "Rogue",
+    "1014": "Rogue",
+    "1003": "Sailor",
+    "992": "Sailor",
+    "981": "Sailor",
+    "970": "Sailor",
+    "959": "Sailor",
+    "948": "Sailor",
+    "937": "Sailor",
+    "926": "Sailor",
+    "915": "Sailor",
+    "904": "Sailor",
+    "893": "Sailor",
+    "882": "Sailor",
+    "871": "Sailor",
+    "860": "Sailor",
+    "849": "Sailor",
+    "838": "Sailor",
+    "827": "Sailor",
+    "816": "Sailor",
+    "805": "Sailor",
+    "794": "Sailor",
+    "783": "Sailor",
+    "772": "Sailor",
+    "761": "Sailor",
+    "750": "Sailor"
+  }
 }

@@ -7,11 +7,12 @@
     "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
-    "Separation": {
-      "AddRadius": 0.3,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 1
+    "Separator": {
+      "Radius": 0.3,
+      "Coefficient": 1
     },
+    "Separation": 1,
+    "GoodsCollectorRadius": 2,
     "BehaviourConfig": {
       "Durations": {
         "PreAttack": 0.5,
@@ -25,6 +26,10 @@
         "Reload": "None",
         "None": "None"
       }
+    },
+    "GoodsDrop": {
+      "Id": "Gold",
+      "Amount": 20
     }
   },
   {
@@ -35,11 +40,12 @@
     "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
-    "Separation": {
-      "AddRadius": 0.3,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 1
+    "Separator": {
+      "Radius": 0.3,
+      "Coefficient": 1
     },
+    "Separation": 1,
+    "GoodsCollectorRadius": 2,
     "BehaviourConfig": {
       "Durations": {
         "PreAttack": 0.2,
@@ -53,6 +59,10 @@
         "Reload": "None",
         "None": "None"
       }
+    },
+    "GoodsDrop": {
+      "Id": "Gold",
+      "Amount": 20
     }
   },
   {
@@ -63,11 +73,12 @@
     "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
-    "Separation": {
-      "AddRadius": 0.3,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 1
+    "Separator": {
+      "Radius": 0.3,
+      "Coefficient": 1
     },
+    "Separation": 1,
+    "GoodsCollectorRadius": 2,
     "BehaviourConfig": {
       "Durations": {
         "PreAttack": 0.35,
@@ -81,6 +92,10 @@
         "Reload": "None",
         "None": "None"
       }
+    },
+    "GoodsDrop": {
+      "Id": "Gold",
+      "Amount": 20
     }
   },
   {
@@ -91,11 +106,12 @@
     "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
-    "Separation": {
-      "AddRadius": 0.3,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 1
+    "Separator": {
+      "Radius": 0.3,
+      "Coefficient": 1
     },
+    "Separation": 1,
+    "GoodsCollectorRadius": 2,
     "BehaviourConfig": {
       "Durations": {
         "PreAttack": 0.35,
@@ -109,6 +125,10 @@
         "Reload": "None",
         "None": "None"
       }
+    },
+    "GoodsDrop": {
+      "Id": "Gold",
+      "Amount": 20
     }
   },
   {
@@ -119,11 +139,12 @@
     "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
-    "Separation": {
-      "AddRadius": 0.3,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 1
+    "Separator": {
+      "Radius": 0.3,
+      "Coefficient": 1
     },
+    "Separation": 1,
+    "GoodsCollectorRadius": 2,
     "BehaviourConfig": {
       "Durations": {
         "PreAttack": 0.7,
@@ -137,6 +158,10 @@
         "Reload": "None",
         "None": "None"
       }
+    },
+    "GoodsDrop": {
+      "Id": "Gold",
+      "Amount": 20
     }
   },
   {
@@ -147,11 +172,12 @@
     "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
-    "Separation": {
-      "AddRadius": 0.3,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 1
+    "Separator": {
+      "Radius": 0.3,
+      "Coefficient": 1
     },
+    "Separation": 1,
+    "GoodsCollectorRadius": 2,
     "BehaviourConfig": {
       "Durations": {
         "PreAttack": 0.7,
@@ -165,6 +191,10 @@
         "Reload": "None",
         "None": "None"
       }
+    },
+    "GoodsDrop": {
+      "Id": "Gold",
+      "Amount": 20
     }
   },
   {
@@ -175,11 +205,12 @@
     "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
-    "Separation": {
-      "AddRadius": 0.3,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 1
+    "Separator": {
+      "Radius": 0.3,
+      "Coefficient": 1
     },
+    "Separation": 1,
+    "GoodsCollectorRadius": 2,
     "BehaviourConfig": {
       "Durations": {
         "PreAttack": 0.3,
@@ -193,6 +224,10 @@
         "Reload": "None",
         "None": "None"
       }
+    },
+    "GoodsDrop": {
+      "Id": "Gold",
+      "Amount": 20
     }
   },
   {
@@ -203,11 +238,12 @@
     "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
-    "Separation": {
-      "AddRadius": 0.3,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 1
+    "Separator": {
+      "Radius": 0.3,
+      "Coefficient": 1
     },
+    "Separation": 1,
+    "GoodsCollectorRadius": 2,
     "BehaviourConfig": {
       "Durations": {
         "PreAttack": 0.5,
@@ -221,6 +257,10 @@
         "Reload": "None",
         "None": "None"
       }
+    },
+    "GoodsDrop": {
+      "Id": "Gold",
+      "Amount": 20
     }
   },
   {
@@ -231,11 +271,12 @@
     "TargetSearchDistance": 5,
     "MaxSpeed": 10,
     "Radius": 0.3,
-    "Separation": {
-      "AddRadius": 0.3,
-      "AffectingCoeff": 1,
-      "AffectedCoeff": 1
+    "Separator": {
+      "Radius": 0.3,
+      "Coefficient": 1
     },
+    "Separation": 1,
+    "GoodsCollectorRadius": 2,
     "BehaviourConfig": {
       "Durations": {
         "PreAttack": 0.2,
@@ -249,6 +290,10 @@
         "Reload": "None",
         "None": "None"
       }
+    },
+    "GoodsDrop": {
+      "Id": "Gold",
+      "Amount": 20
     }
   }
 ]
