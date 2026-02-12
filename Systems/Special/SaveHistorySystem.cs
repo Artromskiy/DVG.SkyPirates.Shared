@@ -25,7 +25,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public void Tick(int tick, fix deltaTime)
         {
             var action = new SaveHistoryAction(_desc, _world, tick);
-            HistoryIds.ForEachData(ref action);
+            HistoryComponentsRegistry.ForEachData(ref action);
         }
 
         private readonly struct SaveHistoryAction : IStructGenericAction

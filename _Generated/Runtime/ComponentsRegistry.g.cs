@@ -47,7 +47,7 @@ namespace DVG.Components
             action.Invoke<MaxSpeed>();
             action.Invoke<Position>();
             action.Invoke<Radius>();
-            action.Invoke<RandomSource>();
+            action.Invoke<RandomSeed>();
             action.Invoke<RecivedDamage>();
             action.Invoke<RockId>();
             action.Invoke<Rotation>();

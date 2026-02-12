@@ -31,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Factories
         {
             var worldData = new WorldData();
             var packAction = new PackAction(_world, worldData, _desc);
-            HistoryIds.ForEachData(ref packAction);
+            HistoryComponentsRegistry.ForEachData(ref packAction);
             return worldData;
         }
 
@@ -44,7 +44,7 @@ namespace DVG.SkyPirates.Shared.Factories
                 _entityFactory.Create(new(syncId, default, default));
             }
             var unpackAction = new ExtractAction(_entityRegistryService, worldData, _world);
-            HistoryIds.ForEachData(ref unpackAction);
+            HistoryComponentsRegistry.ForEachData(ref unpackAction);
         }
 
         private readonly struct PackAction : IStructGenericAction

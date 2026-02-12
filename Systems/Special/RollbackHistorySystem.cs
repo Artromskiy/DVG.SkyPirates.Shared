@@ -29,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public void Tick(int tick, fix deltaTime)
         {
             var action = new ApplyHistoryAction(_desc, _entitiesCache, _world, tick);
-            HistoryIds.ForEachData(ref action);
+            HistoryComponentsRegistry.ForEachData(ref action);
         }
 
 
