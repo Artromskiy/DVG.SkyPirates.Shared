@@ -16,11 +16,11 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private const int SquareSize = 4;
 
-        private readonly QueryDescription _affectedDesc = new QueryDescription().
-            WithAll<Position, Separation>().NotDisposing();
+        private readonly QueryDescription _separatorDesc = new QueryDescription().
+            WithAll<Position, Separator>().NotDisposing();
 
-        private readonly QueryDescription _affectingDesc = new QueryDescription().
-            WithAll<Position, Separation, Radius>().NotDisposing();
+        private readonly QueryDescription _separationDesc = new QueryDescription().
+            WithAll<Position, Separator, Radius>().NotDisposing();
 
         private readonly Lookup2D<List<SyncIdPosition>> _partitioning = new();
         private readonly Lookup<SeparationForce> _forces = new();
@@ -42,13 +42,13 @@ namespace DVG.SkyPirates.Shared.Systems
                 _partitioning.Clear();
 
                 var partitionQuery = new PartitioningQuery(_partitioning);
-                _world.InlineQuery<PartitioningQuery, SyncId, Position>(_affectedDesc, ref partitionQuery);
+                _world.InlineQuery<PartitioningQuery, SyncId, Position>(_separatorDesc, ref partitionQuery);
 
                 var forceQuery = new SumSeparationForceQuery(_partitioning, _forces, _entitiesLookup, _targetsCache);
-                _world.InlineQuery<SumSeparationForceQuery, Position, Separation, Radius>(_affectingDesc, ref forceQuery);
+                _world.InlineQuery<SumSeparationForceQuery, Position, Separator, Radius>(_separationDesc, ref forceQuery);
 
                 var separationQuery = new ApplySeparationQuery(_forces);
-                _world.InlineQuery<ApplySeparationQuery, SyncId, Position, Separation>(_affectedDesc, ref separationQuery);
+                _world.InlineQuery<ApplySeparationQuery, SyncId, Position, Separation>(_separatorDesc, ref separationQuery);
             }
         }
 
@@ -65,12 +65,12 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 _forces.TryGetValue(syncId.Value, out var force);
                 var forcesCount = force.ForcesCount == 0 ? 1 : force.ForcesCount;
-                var offset = force.Force * (separation.AffectedCoeff / forcesCount);
+                var offset = force.Force * (separation.Coefficient / forcesCount);
                 position += offset.x_y;
             }
         }
 
-        private readonly struct SumSeparationForceQuery : IForEach<Position, Separation, Radius>
+        private readonly struct SumSeparationForceQuery : IForEach<Position, Separator, Radius>
         {
             private readonly Lookup2D<List<SyncIdPosition>> _partitioning;
             private readonly Lookup<SeparationForce> _forces;
@@ -85,13 +85,13 @@ namespace DVG.SkyPirates.Shared.Systems
                 _targetsCache = targetsCache;
             }
 
-            public void Update(ref Position position, ref Separation separation, ref Radius circleShape)
+            public void Update(ref Position position, ref Separator separation, ref Radius circleShape)
             {
                 FindTargets(ref position, ref separation, ref circleShape);
 
                 fix2 posXZ = ((fix3)position).xz;
                 fix radius = circleShape;
-                fix addRadius = separation.AddRadius;
+                fix addRadius = separation.Radius;
                 fix extendedRadius = radius + addRadius;
 
                 foreach (var other in _targetsCache)
@@ -108,7 +108,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     softForce *= softForce;
                     var hardForce = 1 - Maths.Clamp(Maths.InvLerp(0, radius, distance), 0, 1);
                     dir = sqrDist == 0 ? fix2.zero : dir / distance;
-                    var force = dir * (hardForce + softForce) * separation.AffectingCoeff;
+                    var force = dir * (hardForce + softForce) * separation.Coefficient;
                     _forces[other.SyncId.Value] = new()
                     {
                         Force = separationForce.Force + force,
@@ -118,12 +118,12 @@ namespace DVG.SkyPirates.Shared.Systems
             }
 
 
-            private void FindTargets(ref Position position, ref Separation separation, ref Radius circleShape)
+            private void FindTargets(ref Position position, ref Separator separation, ref Radius radius)
             {
                 _entititesLookup.Clear();
                 _targetsCache.Clear();
 
-                var distance = circleShape + separation.AddRadius;
+                var distance = radius + separation.Radius;
                 var pos = ((fix3)position).xz;
                 var range = new fix2(distance, distance);
                 var min = GetQuantizedSquare(pos - range);
