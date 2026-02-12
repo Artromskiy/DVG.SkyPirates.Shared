@@ -21,6 +21,8 @@ namespace DVG.SkyPirates.Shared.Factories
                 TryAdd(item);
             foreach (var item in config.Rocks)
                 TryAdd(item);
+            foreach (var item in config.Goods)
+                TryAdd(item);
         }
 
         private void TryAdd(ComponentsData data)

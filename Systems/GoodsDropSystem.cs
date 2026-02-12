@@ -1,7 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Config;
-using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Ids;
@@ -19,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly IConfigedEntityFactory<GoodsId> _configedEntityFactory;
         private readonly World _world;
 
-        private readonly List<DropInfo> _dropsData = new();
+        private readonly List<DropInfo> _dropInfos = new();
 
         public GoodsDropSystem(IConfigedEntityFactory<GoodsId> configedEntityFactory, World world)
         {
@@ -29,22 +28,31 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _dropsData.Clear();
-            var query = new CreateGoodsQuery();
+            _dropInfos.Clear();
+            var query = new CreateGoodsQuery(_dropInfos);
             _world.InlineQuery<CreateGoodsQuery, Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>(_desc, ref query);
-            foreach (var item in _dropsData)
+            foreach (var item in _dropInfos)
             {
                 EntityParameters parameters = new(item.SyncId, default, default);
                 var drop = _configedEntityFactory.Create((item.GoodsId, parameters));
                 _world.Get<Position>(drop) = item.Position;
-                _world.Get<Destination>(drop).Position = item.Position.Value + item.Direction.x_y;
-                //_world.Get<>
+                _world.Get<FlyDestination>(drop) = new()
+                {
+                    StartPosition = item.Position.Value,
+                    EndPosition = item.Position.Value + item.Direction.x_y,
+                };
             }
         }
 
         private readonly struct CreateGoodsQuery : IForEach<Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>
         {
-            private readonly List<DropInfo> _drops;
+            private readonly List<DropInfo> _dropInfos;
+
+            public CreateGoodsQuery(List<DropInfo> dropInfos)
+            {
+                _dropInfos = dropInfos;
+            }
+
             public void Update(ref Health health, ref GoodsDrop goods, ref Position position, ref SyncIdReserve syncIdReserve, ref RandomSeed seed)
             {
                 if (health.Value > 0)
@@ -69,7 +77,7 @@ namespace DVG.SkyPirates.Shared.Systems
                             y = seed.NextRange((fix)(-1),(fix)1),
                         }
                     };
-                    _drops.Add(drop);
+                    _dropInfos.Add(drop);
                 }
             }
         }
