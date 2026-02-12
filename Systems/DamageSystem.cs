@@ -29,8 +29,8 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(ref Health health, ref RecivedDamage recivedDamage)
             {
-                health.Value -= recivedDamage.Value;
-                recivedDamage.Value = 0;
+                health -= (fix)recivedDamage;
+                recivedDamage = fix.Zero;
             }
         }
     }

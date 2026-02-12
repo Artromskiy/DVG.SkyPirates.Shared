@@ -66,7 +66,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 _forces.TryGetValue(syncId.Value, out var force);
                 var forcesCount = force.ForcesCount == 0 ? 1 : force.ForcesCount;
                 var offset = force.Force * (separation.AffectedCoeff / forcesCount);
-                position.Value += offset.x_y;
+                position += offset.x_y;
             }
         }
 
@@ -89,14 +89,14 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 FindTargets(ref position, ref separation, ref circleShape);
 
-                fix2 posXZ = position.Value.xz;
-                fix radius = circleShape.Value;
+                fix2 posXZ = ((fix3)position).xz;
+                fix radius = circleShape;
                 fix addRadius = separation.AddRadius;
                 fix extendedRadius = radius + addRadius;
 
                 foreach (var other in _targetsCache)
                 {
-                    var otherPos = other.Position.Value.xz;
+                    var otherPos = ((fix3)other.Position).xz;
                     if (!_forces.TryGetValue(other.SyncId.Value, out var separationForce))
                         _forces[other.SyncId.Value] = separationForce = new SeparationForce();
 
@@ -123,8 +123,8 @@ namespace DVG.SkyPirates.Shared.Systems
                 _entititesLookup.Clear();
                 _targetsCache.Clear();
 
-                var distance = circleShape.Value + separation.AddRadius;
-                var pos = position.Value.xz;
+                var distance = circleShape + separation.AddRadius;
+                var pos = ((fix3)position).xz;
                 var range = new fix2(distance, distance);
                 var min = GetQuantizedSquare(pos - range);
                 var max = GetQuantizedSquare(pos + range);
@@ -143,7 +143,7 @@ namespace DVG.SkyPirates.Shared.Systems
                             if (_entititesLookup.Has(item.SyncId.Value))
                                 continue;
 
-                            var itemPos = item.Position.Value.xz;
+                            var itemPos = ((fix3)item.Position).xz;
                             if (fix2.SqrDistance(itemPos, pos) < sqrDistance)
                             {
                                 _targetsCache.Add(item);
@@ -166,7 +166,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public readonly void Update(ref SyncId syncId, ref Position position)
             {
-                var intPos = GetQuantizedSquare(position.Value.xz);
+                var intPos = GetQuantizedSquare(((fix3)position).xz);
                 if (!_targets.TryGetValue(intPos.x, intPos.y, out var quadrant))
                     _targets[intPos.x, intPos.y] = quadrant = new();
                 quadrant.Add(new(syncId, position));

@@ -15,7 +15,8 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _world.AddQuery((ref MaxHealth maxHealth, ref Health health) => health.Value = maxHealth.Value);
+            _world.AddQuery((ref MaxHealth maxHealth, ref Health health) =>
+                health = (fix)maxHealth);
         }
     }
 }

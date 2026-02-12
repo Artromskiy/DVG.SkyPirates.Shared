@@ -42,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _targetsCache.Clear();
             FindTargets(ref searchDistance, ref searchPosition, ref team, _targetsCache);
 
-            var origin = position.Value.xz;
+            var origin = ((fix3)position).xz;
 
             Entity? best = null;
             fix bestDist = fix.MaxValue;
@@ -50,7 +50,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             foreach (var entity in _targetsCache)
             {
-                var targetPosXZ = _world.Get<Position>(entity).Value.xz;
+                var targetPosXZ = ((fix3)_world.Get<Position>(entity)).xz;
                 var syncId = _world.Get<SyncId>(entity).Value;
                 var dist = fix2.SqrDistance(targetPosXZ, origin);
 
@@ -67,7 +67,6 @@ namespace DVG.SkyPirates.Shared.Systems
             return best;
         }
 
-
         public void FindTargets(
             ref TargetSearchDistance searchDistance,
             ref TargetSearchPosition searchPosition,
@@ -75,14 +74,14 @@ namespace DVG.SkyPirates.Shared.Systems
             List<Entity> targets)
         {
             _entitiesLookup.Clear();
-            var center = searchPosition.Value.xz;
-            var distance = searchDistance.Value;
+            var center = ((fix3)searchPosition).xz;
+            fix distance = searchDistance;
 
             var range = new fix2(distance, distance);
             var min = GetQuantizedSquare(center - range);
             var max = GetQuantizedSquare(center + range);
-            var searchPositionXZ = searchPosition.Value.xz;
-            var sqrSearchDistance = searchDistance.Value * searchDistance.Value;
+            var searchPositionXZ = center;
+            var sqrSearchDistance = distance * distance;
 
             foreach (var kv in _targets)
             {
@@ -103,7 +102,7 @@ namespace DVG.SkyPirates.Shared.Systems
                             if (_entitiesLookup.Has(list[i].Id))
                                 continue;
 
-                            if (fix2.SqrDistance(_world.Get<Position>(list[i]).Value.xz, searchPositionXZ) < sqrSearchDistance)
+                            if (fix2.SqrDistance(((fix3)_world.Get<Position>(list[i])).xz, searchPositionXZ) < sqrSearchDistance)
                             {
                                 targets.Add(list[i]);
                                 _entitiesLookup.Add(list[i].Id);
@@ -134,7 +133,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(Entity e, ref Position p, ref Team t)
             {
-                var quad = GetQuantizedSquare(p.Value.xz);
+                var quad = GetQuantizedSquare(((fix3)p).xz);
 
                 if (!_targets.TryGetValue(t.Id, out var team))
                     _targets[t.Id] = team = new();

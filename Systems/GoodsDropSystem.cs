@@ -38,8 +38,8 @@ namespace DVG.SkyPirates.Shared.Systems
                 _world.Get<Position>(drop) = item.Position;
                 _world.Get<FlyDestination>(drop) = new()
                 {
-                    StartPosition = item.Position.Value,
-                    EndPosition = item.Position.Value + item.Direction.x_y,
+                    StartPosition = item.Position,
+                    EndPosition = item.Position + item.Direction.x_y,
                 };
             }
         }
@@ -55,7 +55,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(ref Health health, ref GoodsDrop goods, ref Position position, ref SyncIdReserve syncIdReserve, ref RandomSeed seed)
             {
-                if (health.Value > 0)
+                if (health > fix.Zero)
                     return;
 
                 int dropsCount = Maths.Min(goods.Amount, syncIdReserve.Count);

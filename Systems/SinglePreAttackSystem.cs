@@ -47,8 +47,8 @@ namespace DVG.SkyPirates.Shared.Systems
                     return;
 
                 var targetPos = _world.Get<Position>(target.Entity.Value);
-                var sqrDistance = fix3.SqrDistance(targetPos.Value, position.Value);
-                var impactSqrDistance = impactDistance.Value * impactDistance.Value;
+                var sqrDistance = fix3.SqrDistance(targetPos, position);
+                var impactSqrDistance = (fix)impactDistance * impactDistance;
 
                 if (sqrDistance > impactSqrDistance)
                     return;

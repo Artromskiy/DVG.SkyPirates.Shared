@@ -33,17 +33,17 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
             SetDirection(ref _world.Get<Direction>(entity), ref _world.Get<Rotation>(entity), cmd.Data.Direction);
 
-            _world.Get<Fixation>(entity).Value = cmd.Data.Fixation;
+            _world.Get<Fixation>(entity) = cmd.Data.Fixation;
         }
 
         public void SetDirection(ref Direction direction, ref Rotation rotation, fix2 targetDirection)
         {
-            direction.Value = targetDirection;
-            if (fix2.SqrLength(direction.Value) == 0)
+            direction = targetDirection;
+            if (fix2.SqrLength(direction) == 0)
                 return;
 
-            var rotationRadians = MathsExtensions.GetRotation(direction.Value);
-            rotation.Value = Maths.Degrees(rotationRadians);
+            var rotationRadians = MathsExtensions.GetRotation(direction);
+            rotation = Maths.Degrees(rotationRadians);
         }
     }
 }

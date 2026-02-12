@@ -27,8 +27,8 @@ namespace DVG.SkyPirates.Shared.Systems
 
             _world.Query(in _destinationQuery, (ref Destination destination, ref Position position, ref Rotation rotation) =>
             {
-                destination.Position = position.Value;
-                destination.Rotation = rotation.Value;
+                destination.Position = position;
+                destination.Rotation = rotation;
             });
         }
     }

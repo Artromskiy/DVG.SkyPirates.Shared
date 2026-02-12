@@ -48,13 +48,14 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             _options.Converters.Add(new StringFuncConverter<double3>(value => double3.Parse(value, format)));
             _options.Converters.Add(new StringFuncConverter<double4>(value => double4.Parse(value, format)));
 
-            _options.Converters.Add(new FixFuncConverter<Health>(value => new() { Value = value }, value => value.Value));
-            _options.Converters.Add(new FixFuncConverter<Radius>(value => new() { Value = value }, value => value.Value));
-            _options.Converters.Add(new FixFuncConverter<Damage>(value => new() { Value = value }, value => value.Value));
-            _options.Converters.Add(new FixFuncConverter<MaxSpeed>(value => new() { Value = value }, value => value.Value));
-            _options.Converters.Add(new FixFuncConverter<MaxHealth>(value => new() { Value = value }, value => value.Value));
-            _options.Converters.Add(new FixFuncConverter<ImpactDistance>(value => new() { Value = value }, value => value.Value));
-            _options.Converters.Add(new FixFuncConverter<TargetSearchDistance>(value => new() { Value = value }, value => value.Value));
+            // NewType implicit casting used
+            _options.Converters.Add(new FixFuncConverter<Health>(value => value, value => value));
+            _options.Converters.Add(new FixFuncConverter<Radius>(value => value, value => value));
+            _options.Converters.Add(new FixFuncConverter<Damage>(value => value, value => value));
+            _options.Converters.Add(new FixFuncConverter<MaxSpeed>(value => value, value => value));
+            _options.Converters.Add(new FixFuncConverter<MaxHealth>(value => value, value => value));
+            _options.Converters.Add(new FixFuncConverter<ImpactDistance>(value => value, value => value));
+            _options.Converters.Add(new FixFuncConverter<TargetSearchDistance>(value => value, value => value));
 
             _options.Converters.Add(new IdConverter<CheatingId>());
             _options.Converters.Add(new IdConverter<GoodsId>());

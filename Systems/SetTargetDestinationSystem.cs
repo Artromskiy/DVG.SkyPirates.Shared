@@ -45,24 +45,24 @@ namespace DVG.SkyPirates.Shared.Systems
                     return;
                 }
 
-                destination.Position = position.Value;
-                destination.Rotation = rotation.Value;
+                destination.Position = position;
+                destination.Rotation = rotation;
 
-                var targetPos = _world.Get<Position>(target.Entity.Value).Value;
-                var impactReduced = impactDistance.Value - _reduceImpactDistance;
+                fix3 targetPos = _world.Get<Position>(target.Entity.Value);
+                var impactReduced = impactDistance - _reduceImpactDistance;
                 var impactSqrDistance = impactReduced * impactReduced;
 
-                var sqrDistance = fix3.SqrDistance(targetPos, position.Value);
+                var sqrDistance = fix3.SqrDistance(targetPos, position);
 
                 if (sqrDistance != 0)
                 {
-                    var direction = targetPos - position.Value;
+                    var direction = targetPos - position;
                     destination.Rotation = Maths.Degrees(MathsExtensions.GetRotation(direction.xz));
                 }
 
                 if (sqrDistance > impactSqrDistance)
                 {
-                    destination.Position = fix3.MoveTowards(targetPos, position.Value, impactReduced);
+                    destination.Position = fix3.MoveTowards(targetPos, position, impactReduced);
                 }
             }
         }

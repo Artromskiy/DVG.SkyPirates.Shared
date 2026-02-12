@@ -25,7 +25,7 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             public void Update(ref Position position, ref CachePosition cachePosition)
             {
-                cachePosition.Value = position.Value;
+                cachePosition = (fix3)position;
             }
         }
     }

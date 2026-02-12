@@ -28,8 +28,8 @@ namespace DVG.SkyPirates.Shared.Factories
             var entity = _commandEntityFactory.Create(new EntityParameters(syncId, default, default));
             _world.Add<Squad>(entity);
             _entityDependencyService.EnsureDependencies(entity);
-            _world.Get<Radius>(entity).Value = fix.One / 3;
-            _world.Get<MaxSpeed>(entity).Value = 7;
+            _world.Get<Radius>(entity) = fix.One / 3;
+            _world.Get<MaxSpeed>(entity) = (fix)7;
             _world.Get<Team>(entity).Id = cmd.ClientId;
             return entity;
         }

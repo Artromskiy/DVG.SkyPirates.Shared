@@ -43,17 +43,17 @@ namespace DVG.SkyPirates.Shared.Systems
                 if (targets.Entities == null || targets.Entities.Count == 0)
                     return;
 
-                var impactSqrDistance = impactDistance.Value * impactDistance.Value;
+                var impactSqrDistance = (fix)impactDistance * impactDistance;
                 for (int i = 0; i < targets.Entities.Count; i++)
                 {
 
                     var targetPos = _world.Get<Position>(targets.Entities[i]);
-                    var sqrDistance = fix3.SqrDistance(targetPos.Value, position.Value);
+                    var sqrDistance = fix3.SqrDistance(targetPos, position);
 
                     if (sqrDistance > impactSqrDistance)
                         continue;
 
-                    _world.Get<RecivedDamage>(targets.Entities[i]).Value += damage.Value;
+                    _world.Get<RecivedDamage>(targets.Entities[i]) += (fix)damage;
                 }
             }
         }

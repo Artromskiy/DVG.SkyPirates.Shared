@@ -25,7 +25,7 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             public readonly void Update(ref TargetSearchPosition searchPosition, ref Position position)
             {
-                searchPosition.Value = position.Value;
+                searchPosition = (fix3)position;
             }
         }
     }

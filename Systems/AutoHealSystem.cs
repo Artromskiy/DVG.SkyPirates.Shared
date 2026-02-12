@@ -36,11 +36,11 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(ref Health health, ref MaxHealth maxHealth, ref AutoHeal autoHeal, ref RecivedDamage recivedDamage)
             {
-                autoHeal.HealLoadPercent = recivedDamage.Value > 0 ? 0 :
+                autoHeal.HealLoadPercent = recivedDamage > fix.Zero ? 0 :
                     Maths.MoveTowards(autoHeal.HealLoadPercent, 1, _deltaTime / autoHeal.HealDelay);
 
-                health.Value = autoHeal.HealLoadPercent != 1 ? health.Value :
-                    Maths.MoveTowards(health.Value, maxHealth.Value, autoHeal.HealPerSecond * _deltaTime);
+                health = autoHeal.HealLoadPercent != 1 ? health :
+                    Maths.MoveTowards(health, maxHealth, autoHeal.HealPerSecond * _deltaTime);
             }
         }
     }

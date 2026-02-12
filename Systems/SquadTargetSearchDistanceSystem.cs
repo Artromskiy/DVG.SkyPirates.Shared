@@ -46,9 +46,9 @@ namespace DVG.SkyPirates.Shared.Systems
                 ref SquadMemberCount memberCount,
                 ref TargetSearchDistance searchDistance)
             {
-                fix addRadius = memberCount.Value == 0 ? 0 :
-                    _factory.Create(memberCount.Value).Radius;
-                searchDistance.Value = fixation.Value ? 0 : BaseRange + addRadius;
+                fix addRadius = memberCount == 0 ? 0 :
+                    _factory.Create(memberCount).Radius;
+                searchDistance = fixation ? 0 : BaseRange + addRadius;
             }
         }
     }

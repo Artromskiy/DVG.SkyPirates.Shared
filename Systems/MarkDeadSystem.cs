@@ -42,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public readonly void Update(Entity entity, ref Health health)
             {
-                if (health.Value <= 0)
+                if (health <= fix.Zero)
                     _dead.Add(entity);
             }
         }

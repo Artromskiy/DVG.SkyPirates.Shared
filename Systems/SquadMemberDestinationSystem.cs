@@ -118,12 +118,12 @@ namespace DVG.SkyPirates.Shared.Systems
                 ref SquadMember member,
                 ref Destination destination)
             {
-                var unitsCount = _dataPerSquad[member.SquadId].MemberCount.Value;
+                var unitsCount = _dataPerSquad[member.SquadId].MemberCount;
                 var circles = _factory.Create(unitsCount);
                 var order = _orderPerUnit[syncId.Value];
                 var local = circles.Points[order];
-                destination.Position = _dataPerSquad[member.SquadId].Position.Value + local.x_y;
-                destination.Rotation = _dataPerSquad[member.SquadId].Rotation.Value;
+                destination.Position = _dataPerSquad[member.SquadId].Position + local.x_y;
+                destination.Rotation = _dataPerSquad[member.SquadId].Rotation;
             }
         }
 

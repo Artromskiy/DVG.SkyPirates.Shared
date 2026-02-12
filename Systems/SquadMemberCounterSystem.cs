@@ -68,7 +68,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 ref SquadMemberCount memberCount)
             {
                 _unitCounts.TryGetValue(syncId.Value, out var count);
-                memberCount.Value = count;
+                memberCount = count;
             }
         }
     }

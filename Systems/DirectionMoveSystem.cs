@@ -31,8 +31,8 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public readonly void Update(ref Position position, ref Direction direction, ref MaxSpeed maxSpeed)
             {
-                var deltaMove = (direction.Value * maxSpeed.Value * _deltaTime).x_y;
-                position.Value += deltaMove;
+                var deltaMove = ((fix2)direction * maxSpeed * _deltaTime).x_y;
+                position += deltaMove;
             }
         }
     }

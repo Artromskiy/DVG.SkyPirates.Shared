@@ -47,21 +47,21 @@ namespace DVG.SkyPirates.Shared.Systems
 
             private void MoveTowardsDestination(ref Position position, Destination destination, MaxSpeed moveSpeed)
             {
-                position.Value = fix3.MoveTowards(
-                    position.Value,
+                position = fix3.MoveTowards(
+                    position,
                     destination.Position,
-                    moveSpeed.Value * _deltaTime);
+                    moveSpeed * _deltaTime);
             }
 
             private void RotateTowardsDestination(ref Rotation rotation, Position position, Destination destination)
             {
-                var dir = destination.Position.xz - position.Value.xz;
+                var dir = destination.Position.xz - ((fix3)position).xz;
                 var rotateTo = fix2.SqrLength(dir) != 0
                     ? Maths.Degrees(MathsExtensions.GetRotation(dir))
                     : destination.Rotation;
 
-                rotation.Value = Maths.RotateTowards(
-                    rotation.Value,
+                rotation = Maths.RotateTowards(
+                    rotation,
                     rotateTo,
                     RotateSpeed * _deltaTime);
             }

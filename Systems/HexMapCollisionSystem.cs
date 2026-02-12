@@ -46,11 +46,12 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(ref Position position, ref CachePosition cachePosition, ref Radius radius)
             {
-                FindSegments(cachePosition.Value.xz);
+                var xz = ((fix3)cachePosition).xz;
+                FindSegments(xz);
 
                 var solvedPos = Spatial.SolveCircleMove(_segmentsCache.Value,
-                    cachePosition.Value.xz, position.Value.xz, radius.Value).x_y;
-                position.Value = solvedPos;
+                    xz, ((fix3)position).xz, radius).x_y;
+                position = solvedPos;
             }
 
             private void FindSegments(fix2 from)

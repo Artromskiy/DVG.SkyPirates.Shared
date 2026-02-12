@@ -40,14 +40,14 @@ namespace DVG.SkyPirates.Shared.Systems
                 var end = fly.EndPosition;
                 var start = fly.StartPosition;
 
-                var nextPos = fix3.MoveTowards(position.Value, end, DeltaTime * flySpeed);
+                var nextPos = fix3.MoveTowards(position, end, DeltaTime * flySpeed);
                 var totalDist = fix3.Distance(start, end);
                 var currentDist = fix3.Distance(start, nextPos);
                 fix t = Maths.InvLerp(0, totalDist, currentDist);
                 var arc = 4 * t * (1 - t);
                 nextPos.y += ArcHeight * arc;
 
-                position.Value = nextPos;
+                position = nextPos;
             }
         }
     }
