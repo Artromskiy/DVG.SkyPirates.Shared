@@ -1,0 +1,34 @@
+[
+  {
+    "GoodsId": "Gold",
+    "MaxSpeed": 5
+  },
+  {
+    "GoodsId": "Wood",
+    "MaxSpeed": 5
+  },
+  {
+    "GoodsId": "Spice",
+    "MaxSpeed": 5
+  },
+  {
+    "GoodsId": "Sugar",
+    "MaxSpeed": 5
+  },
+  {
+    "GoodsId": "Tea",
+    "MaxSpeed": 5
+  },
+  {
+    "GoodsId": "Coffee",
+    "MaxSpeed": 5
+  },
+  {
+    "GoodsId": "Sail",
+    "MaxSpeed": 5
+  },
+  {
+    "GoodsId": "Rope",
+    "MaxSpeed": 5
+  }
+]

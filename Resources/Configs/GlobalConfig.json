@@ -1973,6 +1973,10 @@
   ],
   "Trees": [
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -1983,6 +1987,10 @@
       "TreeId": "Tree_01_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -1993,6 +2001,10 @@
       "TreeId": "Tree_01_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2003,6 +2015,10 @@
       "TreeId": "Tree_01_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2013,6 +2029,10 @@
       "TreeId": "Tree_02_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2023,6 +2043,10 @@
       "TreeId": "Tree_02_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2033,6 +2057,10 @@
       "TreeId": "Tree_02_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2043,6 +2071,10 @@
       "TreeId": "Tree_03_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2053,6 +2085,10 @@
       "TreeId": "Tree_03_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2063,6 +2099,10 @@
       "TreeId": "Tree_03_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2073,6 +2113,10 @@
       "TreeId": "Tree_04_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2083,6 +2127,10 @@
       "TreeId": "Tree_04_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2093,6 +2141,10 @@
       "TreeId": "Tree_04_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2103,6 +2155,10 @@
       "TreeId": "Tree_05_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2113,6 +2169,10 @@
       "TreeId": "Tree_05_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2123,6 +2183,10 @@
       "TreeId": "Tree_05_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2133,6 +2197,10 @@
       "TreeId": "Tree_06_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2143,6 +2211,10 @@
       "TreeId": "Tree_06_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2153,6 +2225,10 @@
       "TreeId": "Tree_06_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2163,6 +2239,10 @@
       "TreeId": "Tree_07_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2173,6 +2253,10 @@
       "TreeId": "Tree_07_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2183,6 +2267,10 @@
       "TreeId": "Tree_07_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2193,6 +2281,10 @@
       "TreeId": "Tree_08_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2203,6 +2295,10 @@
       "TreeId": "Tree_08_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2213,6 +2309,10 @@
       "TreeId": "Tree_08_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2223,6 +2323,10 @@
       "TreeId": "Tree_09_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2233,6 +2337,10 @@
       "TreeId": "Tree_09_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2243,6 +2351,10 @@
       "TreeId": "Tree_09_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2253,6 +2365,10 @@
       "TreeId": "Tree_10_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2263,6 +2379,10 @@
       "TreeId": "Tree_10_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2273,6 +2393,10 @@
       "TreeId": "Tree_10_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2283,6 +2407,10 @@
       "TreeId": "Tree_11_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2293,6 +2421,10 @@
       "TreeId": "Tree_11_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2303,6 +2435,10 @@
       "TreeId": "Tree_11_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2313,6 +2449,10 @@
       "TreeId": "Tree_12_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2323,6 +2463,10 @@
       "TreeId": "Tree_12_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2333,6 +2477,10 @@
       "TreeId": "Tree_12_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2343,6 +2491,10 @@
       "TreeId": "Tree_13_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2353,6 +2505,10 @@
       "TreeId": "Tree_13_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2363,6 +2519,10 @@
       "TreeId": "Tree_13_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2373,6 +2533,10 @@
       "TreeId": "Tree_14_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2383,6 +2547,10 @@
       "TreeId": "Tree_14_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2393,6 +2561,10 @@
       "TreeId": "Tree_14_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2403,6 +2575,10 @@
       "TreeId": "Tree_15_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2413,6 +2589,10 @@
       "TreeId": "Tree_15_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2423,6 +2603,10 @@
       "TreeId": "Tree_15_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2433,6 +2617,10 @@
       "TreeId": "Tree_16_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2443,6 +2631,10 @@
       "TreeId": "Tree_16_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2453,6 +2645,10 @@
       "TreeId": "Tree_16_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2463,6 +2659,10 @@
       "TreeId": "Tree_17_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2473,6 +2673,10 @@
       "TreeId": "Tree_17_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2483,6 +2687,10 @@
       "TreeId": "Tree_17_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2493,6 +2701,10 @@
       "TreeId": "Tree_18_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2503,6 +2715,10 @@
       "TreeId": "Tree_18_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2513,6 +2729,10 @@
       "TreeId": "Tree_18_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2523,6 +2743,10 @@
       "TreeId": "Tree_19_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2533,6 +2757,10 @@
       "TreeId": "Tree_19_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2543,6 +2771,10 @@
       "TreeId": "Tree_19_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2553,6 +2785,10 @@
       "TreeId": "Tree_20_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2563,6 +2799,10 @@
       "TreeId": "Tree_20_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2573,6 +2813,10 @@
       "TreeId": "Tree_20_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2583,6 +2827,10 @@
       "TreeId": "Tree_21_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2593,6 +2841,10 @@
       "TreeId": "Tree_21_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2603,6 +2855,10 @@
       "TreeId": "Tree_21_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2613,6 +2869,10 @@
       "TreeId": "Tree_22_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2623,6 +2883,10 @@
       "TreeId": "Tree_22_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2633,6 +2897,10 @@
       "TreeId": "Tree_22_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2643,6 +2911,10 @@
       "TreeId": "Tree_23_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2653,6 +2925,10 @@
       "TreeId": "Tree_23_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2663,6 +2939,10 @@
       "TreeId": "Tree_23_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2673,6 +2953,10 @@
       "TreeId": "Tree_24_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2683,6 +2967,10 @@
       "TreeId": "Tree_24_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2693,6 +2981,10 @@
       "TreeId": "Tree_24_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2703,6 +2995,10 @@
       "TreeId": "Tree_25_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2713,6 +3009,10 @@
       "TreeId": "Tree_25_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2723,6 +3023,10 @@
       "TreeId": "Tree_25_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2733,6 +3037,10 @@
       "TreeId": "Tree_26_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2743,6 +3051,10 @@
       "TreeId": "Tree_26_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2753,6 +3065,10 @@
       "TreeId": "Tree_26_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2763,6 +3079,10 @@
       "TreeId": "Tree_27_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2773,6 +3093,10 @@
       "TreeId": "Tree_27_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2783,6 +3107,10 @@
       "TreeId": "Tree_27_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2793,6 +3121,10 @@
       "TreeId": "Tree_28_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2803,6 +3135,10 @@
       "TreeId": "Tree_28_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2813,6 +3149,10 @@
       "TreeId": "Tree_28_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2823,6 +3163,10 @@
       "TreeId": "Tree_29_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2833,6 +3177,10 @@
       "TreeId": "Tree_29_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2843,6 +3191,10 @@
       "TreeId": "Tree_29_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2853,6 +3205,10 @@
       "TreeId": "Tree_30_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2863,6 +3219,10 @@
       "TreeId": "Tree_30_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2873,6 +3233,10 @@
       "TreeId": "Tree_30_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2883,6 +3247,10 @@
       "TreeId": "Tree_31_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2893,6 +3261,10 @@
       "TreeId": "Tree_31_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2903,6 +3275,10 @@
       "TreeId": "Tree_31_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2913,6 +3289,10 @@
       "TreeId": "Tree_32_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2923,6 +3303,10 @@
       "TreeId": "Tree_32_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2933,6 +3317,10 @@
       "TreeId": "Tree_32_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2943,6 +3331,10 @@
       "TreeId": "Tree_33_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2953,6 +3345,10 @@
       "TreeId": "Tree_33_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2963,6 +3359,10 @@
       "TreeId": "Tree_33_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2973,6 +3373,10 @@
       "TreeId": "Tree_34_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2983,6 +3387,10 @@
       "TreeId": "Tree_34_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -2993,6 +3401,10 @@
       "TreeId": "Tree_34_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3003,6 +3415,10 @@
       "TreeId": "Tree_35_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3013,6 +3429,10 @@
       "TreeId": "Tree_35_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3023,6 +3443,10 @@
       "TreeId": "Tree_35_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3033,6 +3457,10 @@
       "TreeId": "Tree_36_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3043,6 +3471,10 @@
       "TreeId": "Tree_36_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3053,6 +3485,10 @@
       "TreeId": "Tree_36_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3063,6 +3499,10 @@
       "TreeId": "Tree_37_Fall"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3073,6 +3513,10 @@
       "TreeId": "Tree_37_Spring"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3083,6 +3527,10 @@
       "TreeId": "Tree_37_Winter"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3093,6 +3541,10 @@
       "TreeId": "TreeTrunk_01"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3103,6 +3555,10 @@
       "TreeId": "TreeTrunk_02"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3113,6 +3569,10 @@
       "TreeId": "TreeTrunk_03"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3123,6 +3583,10 @@
       "TreeId": "TreeTrunk_04"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3133,6 +3597,10 @@
       "TreeId": "TreeTrunk_05"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3143,6 +3611,10 @@
       "TreeId": "TreeTrunk_06"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3153,6 +3625,10 @@
       "TreeId": "TreeTrunk_07"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3163,6 +3639,10 @@
       "TreeId": "TreeTrunk_08"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3173,6 +3653,10 @@
       "TreeId": "TreeTrunk_09"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3183,6 +3667,10 @@
       "TreeId": "TreeTrunk_10"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3193,6 +3681,10 @@
       "TreeId": "TreeTrunk_11"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3203,6 +3695,10 @@
       "TreeId": "TreeTrunk_12"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3213,6 +3709,10 @@
       "TreeId": "TreeTrunk_13"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3223,6 +3723,10 @@
       "TreeId": "TreeTrunk_14"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3233,6 +3737,10 @@
       "TreeId": "TreeTrunk_15"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3243,6 +3751,10 @@
       "TreeId": "TreeTrunk_16"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3253,6 +3765,10 @@
       "TreeId": "TreeTrunk_17"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3263,6 +3779,10 @@
       "TreeId": "TreeTrunk_18"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3273,6 +3793,10 @@
       "TreeId": "TreeTrunk_19"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3283,6 +3807,10 @@
       "TreeId": "TreeTrunk_20"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3293,6 +3821,10 @@
       "TreeId": "TreeTrunk_21"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3303,6 +3835,10 @@
       "TreeId": "TreeTrunk_22"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3313,6 +3849,10 @@
       "TreeId": "TreeTrunk_23"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3323,6 +3863,10 @@
       "TreeId": "TreeTrunk_24"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3333,6 +3877,10 @@
       "TreeId": "TreeTrunk_25"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3343,6 +3891,10 @@
       "TreeId": "TreeTrunk_26"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3353,6 +3905,10 @@
       "TreeId": "TreeTrunk_27"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3363,6 +3919,10 @@
       "TreeId": "TreeTrunk_28"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3373,6 +3933,10 @@
       "TreeId": "TreeTrunk_29"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3383,6 +3947,10 @@
       "TreeId": "TreeTrunk_30"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3393,6 +3961,10 @@
       "TreeId": "TreeTrunk_31"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3403,6 +3975,10 @@
       "TreeId": "TreeTrunk_32"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3413,6 +3989,10 @@
       "TreeId": "TreeTrunk_33"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3423,6 +4003,10 @@
       "TreeId": "TreeTrunk_34"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3433,6 +4017,10 @@
       "TreeId": "TreeTrunk_35"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3443,6 +4031,10 @@
       "TreeId": "TreeTrunk_36"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3453,6 +4045,10 @@
       "TreeId": "TreeTrunk_37"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3463,6 +4059,10 @@
       "TreeId": "TreeTrunk_38"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3473,6 +4073,10 @@
       "TreeId": "TreeTrunk_39"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3483,6 +4087,10 @@
       "TreeId": "TreeTrunk_40"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3493,6 +4101,10 @@
       "TreeId": "TreeTrunk_41"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3503,6 +4115,10 @@
       "TreeId": "TreeTrunk_42"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3513,6 +4129,10 @@
       "TreeId": "TreeTrunk_43"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3523,6 +4143,10 @@
       "TreeId": "TreeTrunk_44"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3533,6 +4157,10 @@
       "TreeId": "TreeTrunk_45"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3543,6 +4171,10 @@
       "TreeId": "TreeTrunk_46"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3553,6 +4185,10 @@
       "TreeId": "TreeTrunk_47"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3563,6 +4199,10 @@
       "TreeId": "TreeTrunk_48"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3573,6 +4213,10 @@
       "TreeId": "TreeTrunk_49"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3583,6 +4227,10 @@
       "TreeId": "TreeTrunk_50"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3593,6 +4241,10 @@
       "TreeId": "TreeTrunk_51"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3603,6 +4255,10 @@
       "TreeId": "TreeTrunk_52"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3613,6 +4269,10 @@
       "TreeId": "TreeTrunk_53"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3623,6 +4283,10 @@
       "TreeId": "TreeTrunk_54"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3633,6 +4297,10 @@
       "TreeId": "TreeTrunk_55"
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "Separation": {
@@ -3645,6 +4313,10 @@
   ],
   "Rocks": [
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_01",
@@ -3655,6 +4327,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_02",
@@ -3665,6 +4341,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_03",
@@ -3675,6 +4355,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_04",
@@ -3685,6 +4369,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_05",
@@ -3695,6 +4383,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_06",
@@ -3705,6 +4397,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_07",
@@ -3715,6 +4411,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_08",
@@ -3725,6 +4425,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_09",
@@ -3735,6 +4439,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_10",
@@ -3745,6 +4453,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_11",
@@ -3755,6 +4467,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_12",
@@ -3765,6 +4481,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_13",
@@ -3775,6 +4495,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_14",
@@ -3785,6 +4509,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_15",
@@ -3795,6 +4523,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_16",
@@ -3805,6 +4537,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_17",
@@ -3815,6 +4551,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_18",
@@ -3825,6 +4565,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_19",
@@ -3835,6 +4579,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_20",
@@ -3845,6 +4593,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_21",
@@ -3855,6 +4607,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_22",
@@ -3865,6 +4621,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_23",
@@ -3875,6 +4635,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_24",
@@ -3885,6 +4649,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_25",
@@ -3895,6 +4663,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_26",
@@ -3905,6 +4677,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_27",
@@ -3915,6 +4691,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_28",
@@ -3925,6 +4705,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_29",
@@ -3935,6 +4719,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_30",
@@ -3945,6 +4733,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_31",
@@ -3955,6 +4747,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_32",
@@ -3965,6 +4761,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_33",
@@ -3975,6 +4775,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_34",
@@ -3985,6 +4789,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_35",
@@ -3995,6 +4803,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_36",
@@ -4005,6 +4817,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_37",
@@ -4015,6 +4831,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_38",
@@ -4025,6 +4845,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_39",
@@ -4035,6 +4859,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_40",
@@ -4045,6 +4873,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_41",
@@ -4055,6 +4887,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_42",
@@ -4065,6 +4901,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_43",
@@ -4075,6 +4915,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_44",
@@ -4085,6 +4929,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_45",
@@ -4095,6 +4943,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_46",
@@ -4105,6 +4957,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_47",
@@ -4115,6 +4971,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_48",
@@ -4125,6 +4985,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_49",
@@ -4135,6 +4999,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_50",
@@ -4145,6 +5013,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_51",
@@ -4155,6 +5027,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_52",
@@ -4165,6 +5041,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_53",
@@ -4175,6 +5055,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_54",
@@ -4185,6 +5069,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_55",
@@ -4195,6 +5083,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_56",
@@ -4205,6 +5097,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_57",
@@ -4215,6 +5111,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_58",
@@ -4225,6 +5125,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_59",
@@ -4235,6 +5139,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "HardRock_60",
@@ -4245,6 +5153,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_32",
@@ -4255,6 +5167,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_01",
@@ -4265,6 +5181,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_02",
@@ -4275,6 +5195,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_03",
@@ -4285,6 +5209,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_04",
@@ -4295,6 +5223,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_05",
@@ -4305,6 +5237,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_06",
@@ -4315,6 +5251,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_07",
@@ -4325,6 +5265,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_08",
@@ -4335,6 +5279,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_09",
@@ -4345,6 +5293,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_10",
@@ -4355,6 +5307,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_11",
@@ -4365,6 +5321,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_12",
@@ -4375,6 +5335,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_13",
@@ -4385,6 +5349,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_14",
@@ -4395,6 +5363,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_15",
@@ -4405,6 +5377,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_16",
@@ -4415,6 +5391,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_17",
@@ -4425,6 +5405,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_18",
@@ -4435,6 +5419,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_19",
@@ -4445,6 +5433,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_20",
@@ -4455,6 +5447,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_21",
@@ -4465,6 +5461,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_22",
@@ -4475,6 +5475,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_23",
@@ -4485,6 +5489,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_24",
@@ -4495,6 +5503,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_25",
@@ -4505,6 +5517,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_26",
@@ -4515,6 +5531,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_27",
@@ -4525,6 +5545,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_28",
@@ -4535,6 +5559,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_29",
@@ -4545,6 +5573,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_30",
@@ -4555,6 +5587,10 @@
       }
     },
     {
+      "GoodsDrop": {
+        "Id": "Gold",
+        "Amount": 20
+      },
       "MaxHealth": 100,
       "Radius": 0.5,
       "RockId": "SoftRock_31",
@@ -4563,6 +5599,40 @@
         "AffectingCoeff": 1,
         "AffectedCoeff": 0
       }
+    }
+  ],
+  "Goods": [
+    {
+      "GoodsId": "Gold",
+      "MaxSpeed": 5
+    },
+    {
+      "GoodsId": "Wood",
+      "MaxSpeed": 5
+    },
+    {
+      "GoodsId": "Spice",
+      "MaxSpeed": 5
+    },
+    {
+      "GoodsId": "Sugar",
+      "MaxSpeed": 5
+    },
+    {
+      "GoodsId": "Tea",
+      "MaxSpeed": 5
+    },
+    {
+      "GoodsId": "Coffee",
+      "MaxSpeed": 5
+    },
+    {
+      "GoodsId": "Sail",
+      "MaxSpeed": 5
+    },
+    {
+      "GoodsId": "Rope",
+      "MaxSpeed": 5
     }
   ],
   "ComponentDependencies": [
@@ -4663,6 +5733,23 @@
         },
         "Team": {
           "Id": 0
+        }
+      }
+    },
+    {
+      "Has": {
+        "GoodsId": ""
+      },
+      "Add": {
+        "FlyDestination": {
+          "StartPosition": "0, 0, 0",
+          "EndPosition": "0, 0, 0"
+        },
+        "Position": {
+          "Value": "0, 0, 0"
+        },
+        "Rotation": {
+          "Value": 0
         }
       }
     },

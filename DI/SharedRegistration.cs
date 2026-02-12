@@ -54,6 +54,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(SquadMemberDestinationSystem), // positioning of squad members
                 typeof(SquadMemberSearchSyncSystem), // copies TargetSearch from squad to members
                 typeof(DirectionMoveSystem), // moves entities with Direction (squads)
+                typeof(FlyMoveSystem),
                 typeof(SetSingleTargetSystem),
                 typeof(SetMultiTargetSystem),
 

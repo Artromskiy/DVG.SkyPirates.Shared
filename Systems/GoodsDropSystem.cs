@@ -36,18 +36,21 @@ namespace DVG.SkyPirates.Shared.Systems
                 EntityParameters parameters = new(item.SyncId, default, default);
                 var drop = _configedEntityFactory.Create((item.GoodsId, parameters));
                 _world.Get<Position>(drop) = item.Position;
+                _world.Get<Rotation>(drop) = item.Rotation;
                 _world.Get<FlyDestination>(drop) = new()
                 {
                     StartPosition = item.Position,
                     EndPosition = item.Position + item.Direction.x_y,
                 };
+                var maxSpeed = _world.Get<MaxSpeed>(drop);
+                var position = _world.Get<Position>(drop);
+                var flyDestination = _world.Get<FlyDestination>(drop);
             }
         }
 
         private readonly struct CreateGoodsQuery : IForEach<Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>
         {
             private readonly List<DropInfo> _dropInfos;
-
             public CreateGoodsQuery(List<DropInfo> dropInfos)
             {
                 _dropInfos = dropInfos;
@@ -58,6 +61,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 if (health > fix.Zero)
                     return;
 
+                fix range = 3;
                 int dropsCount = Maths.Min(goods.Amount, syncIdReserve.Count);
                 int maxAmountPerDrop = goods.Amount / dropsCount;
                 var remainingAmount = goods.Amount;
@@ -73,9 +77,10 @@ namespace DVG.SkyPirates.Shared.Systems
                         SyncId = { Value = syncIdReserve.Current++ },
                         Direction =
                         {
-                            x = seed.NextRange((fix)(-1),(fix)1),
-                            y = seed.NextRange((fix)(-1),(fix)1),
-                        }
+                            x = seed.NextRange(-range, range),
+                            y = seed.NextRange(-range, range),
+                        },
+                        Rotation = { Value = seed.NextRange(0, 361) },
                     };
                     _dropInfos.Add(drop);
                 }
@@ -85,6 +90,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private struct DropInfo
         {
             public Position Position;
+            public Rotation Rotation;
             public GoodsId GoodsId;
             public SyncId SyncId;
             public fix2 Direction;

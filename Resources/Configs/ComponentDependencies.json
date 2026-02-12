@@ -62,6 +62,16 @@
   },
   {
     "Has": {
+      "GoodsId": {}
+    },
+    "Add": {
+      "Position": {},
+      "Rotation": {},
+      "FlyDestination": {}
+    }
+  },
+  {
+    "Has": {
       "Position": {}
     },
     "Add": {
