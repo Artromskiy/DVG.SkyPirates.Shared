@@ -221,6 +221,22 @@ namespace DVG.SkyPirates.Shared.Components.Runtime
 }
 
 
+namespace DVG.SkyPirates.Shared.Components.Config
+{
+    partial struct Separation : INewType<DVG.fix>
+    {
+        
+        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+
+        public static implicit operator Separation(DVG.fix value)
+            => new() { Value = value };
+
+        public static implicit operator DVG.fix(Separation newType)
+            => newType.Value;
+    }
+}
+
+
 namespace DVG.SkyPirates.Shared.Components.Framed
 {
     partial struct SquadMemberCount : INewType<System.Int32>

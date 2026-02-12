@@ -65,7 +65,7 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 _forces.TryGetValue(syncId.Value, out var force);
                 var forcesCount = force.ForcesCount == 0 ? 1 : force.ForcesCount;
-                var offset = force.Force * (separation.Coefficient / forcesCount);
+                var offset = force.Force * (separation.Value / forcesCount);
                 position += offset.x_y;
             }
         }

@@ -1,10 +1,11 @@
 ﻿using DVG.Components.Attributes;
+using DVG.NewType;
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
     [Component(true)]
-    public struct Separation
+    public partial struct Separation : INewType
     {
-        public fix Coefficient;
+        public fix Value;
     }
 }
