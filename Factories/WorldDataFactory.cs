@@ -37,12 +37,15 @@ namespace DVG.SkyPirates.Shared.Factories
 
         public void Extract(WorldData worldData)
         {
-            foreach (var item in worldData.Get<SyncId>())
-            {
-                var syncId = item.Value;
+            foreach (var syncId in worldData.Get<SyncId>().Values)
                 _entityRegistryService.Register(syncId);
+
+            foreach (var syncIdReserve in worldData.Get<SyncIdReserve>().Values)
+                _entityRegistryService.Register(syncIdReserve);
+
+            foreach (var syncId in worldData.Get<SyncId>().Values)
                 _entityFactory.Create(new(syncId, default, default));
-            }
+
             var unpackAction = new ExtractAction(_entityRegistryService, worldData, _world);
             HistoryComponentsRegistry.ForEachData(ref unpackAction);
         }

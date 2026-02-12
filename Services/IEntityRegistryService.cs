@@ -22,6 +22,13 @@ namespace DVG.SkyPirates.Shared.Services
             _idToEntity[syncId.Value] = Entity.Null;
         }
 
+        public void Register(SyncIdReserve syncIdReserve)
+        {
+            for (int i = syncIdReserve.First; i < syncIdReserve.Count; i++)
+                _idToEntity[i] = Entity.Null;
+            _entityIdCounter = Maths.Max(_entityIdCounter, syncIdReserve.First + syncIdReserve.Count);
+        }
+
         public SyncId Reserve()
         {
             return new() { Value = _entityIdCounter++ };

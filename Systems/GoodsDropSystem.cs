@@ -17,12 +17,13 @@ namespace DVG.SkyPirates.Shared.Systems
             WithAll<Health, GoodsDrop>().NotDisposing();
 
         private readonly IConfigedEntityFactory<GoodsId> _configedEntityFactory;
-
-        private readonly List<DropInfo> _dropsData = new();
         private readonly World _world;
 
-        public GoodsDropSystem(World world)
+        private readonly List<DropInfo> _dropsData = new();
+
+        public GoodsDropSystem(IConfigedEntityFactory<GoodsId> configedEntityFactory, World world)
         {
+            _configedEntityFactory = configedEntityFactory;
             _world = world;
         }
 
