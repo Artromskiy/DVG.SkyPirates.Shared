@@ -82,28 +82,30 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 26)]
         private Separation? Separation;
         [DataMember(Order = 27)]
-        private Squad? Squad;
+        private Separator? Separator;
         [DataMember(Order = 28)]
-        private SquadMember? SquadMember;
+        private Squad? Squad;
         [DataMember(Order = 29)]
-        private SquadMemberCount? SquadMemberCount;
+        private SquadMember? SquadMember;
         [DataMember(Order = 30)]
-        private SyncId? SyncId;
+        private SquadMemberCount? SquadMemberCount;
         [DataMember(Order = 31)]
-        private SyncIdReserve? SyncIdReserve;
+        private SyncId? SyncId;
         [DataMember(Order = 32)]
-        private Target? Target;
+        private SyncIdReserve? SyncIdReserve;
         [DataMember(Order = 33)]
-        private Targets? Targets;
+        private Target? Target;
         [DataMember(Order = 34)]
-        private TargetSearchDistance? TargetSearchDistance;
+        private Targets? Targets;
         [DataMember(Order = 35)]
-        private TargetSearchPosition? TargetSearchPosition;
+        private TargetSearchDistance? TargetSearchDistance;
         [DataMember(Order = 36)]
-        private Team? Team;
+        private TargetSearchPosition? TargetSearchPosition;
         [DataMember(Order = 37)]
-        private TreeId? TreeId;
+        private Team? Team;
         [DataMember(Order = 38)]
+        private TreeId? TreeId;
+        [DataMember(Order = 39)]
         private UnitId? UnitId;
 
         public T? Get<T>()
@@ -164,6 +166,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<Rotation?, T?>(ref Rotation);
             if (typeof(T) == typeof(Separation))
                 return Unsafe.As<Separation?, T?>(ref Separation);
+            if (typeof(T) == typeof(Separator))
+                return Unsafe.As<Separator?, T?>(ref Separator);
             if (typeof(T) == typeof(Squad))
                 return Unsafe.As<Squad?, T?>(ref Squad);
             if (typeof(T) == typeof(SquadMember))
@@ -331,6 +335,11 @@ namespace DVG.SkyPirates.Shared.Data
                 Separation = Unsafe.As<T?, Separation?>(ref data);
                 return;
             }
+            if (typeof(T) == typeof(Separator))
+            {
+                Separator = Unsafe.As<T?, Separator?>(ref data);
+                return;
+            }
             if (typeof(T) == typeof(Squad))
             {
                 Squad = Unsafe.As<T?, Squad?>(ref data);
@@ -426,6 +435,7 @@ namespace DVG.SkyPirates.Shared.Data
                 (RockId.HasValue? 1 : 0) + 
                 (Rotation.HasValue? 1 : 0) + 
                 (Separation.HasValue? 1 : 0) + 
+                (Separator.HasValue? 1 : 0) + 
                 (Squad.HasValue? 1 : 0) + 
                 (SquadMember.HasValue? 1 : 0) + 
                 (SquadMemberCount.HasValue? 1 : 0) + 
@@ -497,6 +507,8 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(Rotation);
             if(Separation.HasValue)
                 types[i++] = typeof(Separation);
+            if(Separator.HasValue)
+                types[i++] = typeof(Separator);
             if(Squad.HasValue)
                 types[i++] = typeof(Squad);
             if(SquadMember.HasValue)
@@ -583,6 +595,8 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<Rotation>();
             if(Separation.HasValue)
                 action.Invoke<Separation>();
+            if(Separator.HasValue)
+                action.Invoke<Separator>();
             if(Squad.HasValue)
                 action.Invoke<Squad>();
             if(SquadMember.HasValue)

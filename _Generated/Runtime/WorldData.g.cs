@@ -73,20 +73,22 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 22)]
         private Dictionary<int, Separation> Separation;
         [DataMember(Order = 23)]
-        private Dictionary<int, Squad> Squad;
+        private Dictionary<int, Separator> Separator;
         [DataMember(Order = 24)]
-        private Dictionary<int, SquadMember> SquadMember;
+        private Dictionary<int, Squad> Squad;
         [DataMember(Order = 25)]
-        private Dictionary<int, SyncId> SyncId;
+        private Dictionary<int, SquadMember> SquadMember;
         [DataMember(Order = 26)]
-        private Dictionary<int, SyncIdReserve> SyncIdReserve;
+        private Dictionary<int, SyncId> SyncId;
         [DataMember(Order = 27)]
-        private Dictionary<int, TargetSearchDistance> TargetSearchDistance;
+        private Dictionary<int, SyncIdReserve> SyncIdReserve;
         [DataMember(Order = 28)]
-        private Dictionary<int, Team> Team;
+        private Dictionary<int, TargetSearchDistance> TargetSearchDistance;
         [DataMember(Order = 29)]
-        private Dictionary<int, TreeId> TreeId;
+        private Dictionary<int, Team> Team;
         [DataMember(Order = 30)]
+        private Dictionary<int, TreeId> TreeId;
+        [DataMember(Order = 31)]
         private Dictionary<int, UnitId> UnitId;
 
         public WorldData()
@@ -115,6 +117,7 @@ namespace DVG.SkyPirates.Shared.Data
             RockId = new();
             Rotation = new();
             Separation = new();
+            Separator = new();
             Squad = new();
             SquadMember = new();
             SyncId = new();
@@ -175,6 +178,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Rotation as Dictionary<int, T>;
             if (typeof(T) == typeof(Separation))
                 return Separation as Dictionary<int, T>;
+            if (typeof(T) == typeof(Separator))
+                return Separator as Dictionary<int, T>;
             if (typeof(T) == typeof(Squad))
                 return Squad as Dictionary<int, T>;
             if (typeof(T) == typeof(SquadMember))
@@ -312,6 +317,11 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(Separation))
             {
                 Separation = data as Dictionary<int, Separation>;
+                return;
+            }
+            if (typeof(T) == typeof(Separator))
+            {
+                Separator = data as Dictionary<int, Separator>;
                 return;
             }
             if (typeof(T) == typeof(Squad))
