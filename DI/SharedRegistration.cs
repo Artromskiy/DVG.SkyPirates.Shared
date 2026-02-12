@@ -70,6 +70,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(AutoHealSystem),
                 typeof(DamageSystem),
                 typeof(GoodsDropSystem),
+                typeof(GoodsCollectorSystem),
                 typeof(MarkDeadSystem),
                 //typeof(LogHashSumSystem),
             };
