@@ -30,7 +30,7 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             _dropsData.Clear();
             var query = new CreateGoodsQuery();
-            _world.InlineQuery<CreateGoodsQuery, Health, GoodsDrop, Position, SyncIdReserve, RandomSource>(_desc, ref query);
+            _world.InlineQuery<CreateGoodsQuery, Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>(_desc, ref query);
             foreach (var item in _dropsData)
             {
                 EntityParameters parameters = new(item.SyncId, default, default);
@@ -41,10 +41,10 @@ namespace DVG.SkyPirates.Shared.Systems
             }
         }
 
-        private readonly struct CreateGoodsQuery : IForEach<Health, GoodsDrop, Position, SyncIdReserve, RandomSource>
+        private readonly struct CreateGoodsQuery : IForEach<Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>
         {
             private readonly List<DropInfo> _drops;
-            public void Update(ref Health health, ref GoodsDrop goods, ref Position position, ref SyncIdReserve syncIdReserve, ref RandomSource randomSource)
+            public void Update(ref Health health, ref GoodsDrop goods, ref Position position, ref SyncIdReserve syncIdReserve, ref RandomSeed seed)
             {
                 if (health.Value > 0)
                     return;
@@ -64,8 +64,8 @@ namespace DVG.SkyPirates.Shared.Systems
                         SyncId = { Value = syncIdReserve.Current++ },
                         Direction =
                         {
-                            x = randomSource.NextRange((fix)(-1),(fix)1),
-                            y = randomSource.NextRange((fix)(-1),(fix)1),
+                            x = seed.NextRange((fix)(-1),(fix)1),
+                            y = seed.NextRange((fix)(-1),(fix)1),
                         }
                     };
                     _drops.Add(drop);
