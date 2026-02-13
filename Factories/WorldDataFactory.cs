@@ -1,9 +1,9 @@
 ﻿using Arch.Core;
+using DVG.Collections;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
-using DVG.SkyPirates.Shared.Tools;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Factories
@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Factories
         {
             public QueryDescription Desc = new QueryDescription().WithAll<T, SyncId>();
         }
-        private readonly GenericCollection _desc = new();
+        private readonly GenericCreator _desc = new();
 
         private readonly IEntityRegistryService _entityRegistryService;
         private readonly IEntityFactory _entityFactory;
@@ -52,11 +52,11 @@ namespace DVG.SkyPirates.Shared.Factories
 
         private readonly struct PackAction : IStructGenericAction
         {
-            private readonly GenericCollection _desc;
+            private readonly GenericCreator _desc;
             private readonly WorldData _worldData;
             private readonly World _world;
 
-            public PackAction(World world, WorldData entities, GenericCollection desc)
+            public PackAction(World world, WorldData entities, GenericCreator desc)
             {
                 _world = world;
                 _worldData = entities;

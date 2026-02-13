@@ -1,7 +1,7 @@
 ﻿using Arch.Core;
+using DVG.Collections;
 using DVG.Components;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using DVG.SkyPirates.Shared.Tools;
 using System;
 using System.Collections.Generic;
 
@@ -15,7 +15,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             public readonly QueryDescription addDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
             public readonly QueryDescription tickDesc = new QueryDescription().WithAll<History<T>, T>();
         }
-        private readonly GenericCollection _desc = new();
+        private readonly GenericCreator _desc = new();
         private readonly List<Entity> _entitiesCache = new();
         private readonly World _world;
 
@@ -35,12 +35,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         private readonly struct ApplyHistoryAction : IStructGenericAction
         {
-            private readonly GenericCollection _descriptions;
+            private readonly GenericCreator _descriptions;
             private readonly List<Entity> _entities;
             private readonly World _world;
             private readonly int _tick;
 
-            public ApplyHistoryAction(GenericCollection descriptions, List<Entity> entities, World world, int tick)
+            public ApplyHistoryAction(GenericCreator descriptions, List<Entity> entities, World world, int tick)
             {
                 _descriptions = descriptions;
                 _entities = entities;
