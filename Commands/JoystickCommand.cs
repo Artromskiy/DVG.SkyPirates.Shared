@@ -1,4 +1,5 @@
-﻿using DVG.Core.Commands.Attributes;
+﻿using DVG.Components;
+using DVG.Core.Commands.Attributes;
 using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Commands
@@ -7,15 +8,8 @@ namespace DVG.SkyPirates.Shared.Commands
     [DataContract]
     public partial struct JoystickCommand
     {
-        [DataMember(Order = 0)]
-        public fix2 Direction { get; set; }
-        [DataMember(Order = 1)]
-        public bool Fixation { get; set; }
-
-        public JoystickCommand(fix2 direction, bool fixation)
-        {
-            Direction = direction;
-            Fixation = fixation;
-        }
+        public SyncId Target;
+        public fix2 Direction;
+        public bool Fixation;
     }
 }

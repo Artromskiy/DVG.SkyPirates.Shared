@@ -1,7 +1,4 @@
 ﻿using Arch.Core;
-using DVG.Commands;
-using DVG.Components;
-using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Data;
@@ -22,15 +19,14 @@ namespace DVG.SkyPirates.Shared.Factories
             _world = world;
         }
 
-        public Entity Create(Command<SpawnSquadCommand> cmd)
+        public Entity Create((EntityParameters entityParameters, Team team) parameters)
         {
-            SyncId syncId = new() { Value = cmd.EntityId };
-            var entity = _commandEntityFactory.Create(new EntityParameters(syncId, default, default));
+            var entity = _commandEntityFactory.Create(parameters.entityParameters);
             _world.Add<Squad>(entity);
             _entityDependencyService.EnsureDependencies(entity);
             _world.Get<Radius>(entity) = fix.One / 3;
             _world.Get<MaxSpeed>(entity) = (fix)7;
-            _world.Get<Team>(entity).Id = cmd.ClientId;
+            _world.Get<Team>(entity) = parameters.team;
             return entity;
         }
     }

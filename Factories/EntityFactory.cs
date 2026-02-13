@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Factories
             if (!_entityRegistryService.TryGet(parameters.SyncId, out var entity) ||
                 entity == null || !_world.IsAlive(entity))
             {
-                entity = _world.Create(parameters.SyncId, parameters.SyncIdReserve, parameters.RandomSource);
+                entity = _world.Create(parameters.SyncId, parameters.SyncIdReserve, parameters.RandomSeed);
                 _entityRegistryService.Register(entity, parameters.SyncId);
             }
             return entity;

@@ -6,13 +6,13 @@ namespace DVG.SkyPirates.Shared.Data
     {
         public readonly SyncId SyncId;
         public readonly SyncIdReserve SyncIdReserve;
-        public readonly RandomSeed RandomSource;
+        public readonly RandomSeed RandomSeed;
 
-        public EntityParameters(SyncId syncId, SyncIdReserve syncIdReserve, RandomSeed randomSource)
+        public EntityParameters(SyncId syncId, SyncIdReserve syncIdReserve, RandomSeed randomSeed)
         {
             SyncId = syncId;
             SyncIdReserve = syncIdReserve;
-            RandomSource = randomSource;
+            RandomSeed = randomSeed;
         }
     }
 }

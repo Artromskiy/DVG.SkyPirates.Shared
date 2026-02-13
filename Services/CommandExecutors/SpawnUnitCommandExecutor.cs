@@ -31,13 +31,12 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 !_world.IsAlive(squad) ||
                 !_world.Has<Position, Squad>(squad))
             {
-                Console.WriteLine($"Attempt to use command for entity {cmd.EntityId}, which is not created");
+                Console.WriteLine($"Attempt to use command for entity {cmd.Data.SquadId}, which is not created");
                 return;
             }
 
             var pos = _world.Get<Position>(squad);
-            SyncId syncId = new() { Value = cmd.EntityId };
-            var unit = _unitFactory.Create((cmd.Data.UnitId, new(syncId, default, default)));
+            var unit = _unitFactory.Create((cmd.Data.UnitId, cmd.Data.CreationData));
 
             _world.Get<Team>(unit).Id = cmd.ClientId;
             _world.Get<Position>(unit) = pos;

@@ -8,6 +8,7 @@ using System;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
+    [Obsolete]
     public class JoysticCommandExecutor : ICommandExecutor<JoystickCommand>
     {
         private readonly IEntityRegistryService _entityRegistryService;
@@ -21,13 +22,13 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<JoystickCommand> cmd)
         {
-            _entityRegistryService.TryGet(new() { Value = cmd.EntityId }, out var entity);
+            _entityRegistryService.TryGet(cmd.Data.Target, out var entity);
 
             if (entity == Entity.Null ||
                 !_world.IsAlive(entity) ||
-                !_world.Has<Direction, Direction, Fixation>(entity))
+                !_world.Has<Direction, Fixation>(entity))
             {
-                Console.WriteLine($"Attempt to use command for entity {cmd.EntityId}, which is not created");
+                Console.WriteLine($"Attempt to use command for entity {cmd.Data.Target}, which is not created");
                 return;
             }
 
