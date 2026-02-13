@@ -1,9 +1,14 @@
-﻿using DVG.Core.Commands.Attributes;
+﻿using DVG.Components;
+using DVG.Core.Commands.Attributes;
 using System.Runtime.Serialization;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
     [Command]
     [DataContract]
-    public readonly partial struct SpawnSquadCommand { }
+    public partial struct SpawnSquadCommand
+    {
+        public RandomSeed RandomSeed;
+        public SyncIdReserve SyncIdReserve;
+    }
 }

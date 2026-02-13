@@ -37,6 +37,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 var drop = _configedEntityFactory.Create((item.GoodsId, parameters));
                 _world.Get<Position>(drop) = item.Position;
                 _world.Get<Rotation>(drop) = item.Rotation;
+                _world.Get<GoodsDrop>(drop).Amount = item.Amount;
                 _world.AddOrGet<FlyDestination>(drop) = new()
                 {
                     StartPosition = item.Position,

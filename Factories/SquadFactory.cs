@@ -25,7 +25,7 @@ namespace DVG.SkyPirates.Shared.Factories
         public Entity Create(Command<SpawnSquadCommand> cmd)
         {
             SyncId syncId = new() { Value = cmd.EntityId };
-            var entity = _commandEntityFactory.Create(new EntityParameters(syncId, default, default));
+            var entity = _commandEntityFactory.Create(new EntityParameters(syncId, cmd.Data.SyncIdReserve, cmd.Data.RandomSeed));
             _world.Add<Squad>(entity);
             _entityDependencyService.EnsureDependencies(entity);
             _world.Get<Radius>(entity) = fix.One / 3;
