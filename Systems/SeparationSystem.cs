@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// </summary>
     public sealed class SeparationSystem : ITickableExecutor
     {
-        private const int SquareSize = 4;
+        public static int SquareSize = 4;
 
         private readonly QueryDescription _separatorDesc = new QueryDescription().
             WithAll<Position, Separator, Radius>().NotDisposing();
@@ -25,8 +25,6 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly Lookup2D<List<SyncIdPosition>> _partitioning = new();
         private readonly Lookup<SeparationForce> _forces = new();
         private readonly Lookup _entitiesLookup = new();
-
-        private readonly List<SyncIdPosition> _targetsCache = new();
 
         private readonly World _world;
         public SeparationSystem(World world)
@@ -44,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 var partitionQuery = new PartitioningQuery(_partitioning);
                 _world.InlineQuery<PartitioningQuery, SyncId, Position>(_separationDesc, ref partitionQuery);
 
-                var forceQuery = new SumSeparationForceQuery(_partitioning, _forces, _entitiesLookup, _targetsCache);
+                var forceQuery = new SumSeparationForceQuery(_partitioning, _forces, _entitiesLookup);
                 _world.InlineQuery<SumSeparationForceQuery, Position, Separator, Radius>(_separatorDesc, ref forceQuery);
 
                 var separationQuery = new ApplySeparationQuery(_forces);
@@ -65,7 +63,7 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 _forces.TryGetValue(syncId.Value, out var force);
                 var forcesCount = force.ForcesCount == 0 ? 1 : force.ForcesCount;
-                var offset = force.Force * (separation.Value / forcesCount);
+                var offset = separation.Value / forcesCount * force.Force;
                 position += offset.x_y;
             }
         }
@@ -74,79 +72,77 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             private readonly Lookup2D<List<SyncIdPosition>> _partitioning;
             private readonly Lookup<SeparationForce> _forces;
-            private readonly Lookup _entititesLookup;
-            private readonly List<SyncIdPosition> _targetsCache;
+            private readonly Lookup _entitiesLookup;
 
-            public SumSeparationForceQuery(Lookup2D<List<SyncIdPosition>> partitioning, Lookup<SeparationForce> forces, Lookup entititesLookup, List<SyncIdPosition> targetsCache)
+            public SumSeparationForceQuery(Lookup2D<List<SyncIdPosition>> partitioning, Lookup<SeparationForce> forces, Lookup entitiesLookup)
             {
                 _partitioning = partitioning;
                 _forces = forces;
-                _entititesLookup = entititesLookup;
-                _targetsCache = targetsCache;
+                _entitiesLookup = entitiesLookup;
             }
 
-            public void Update(ref Position position, ref Separator separation, ref Radius circleShape)
+            public void Update(ref Position position, ref Separator separation, ref Radius radius)
             {
-                FindTargets(ref position, ref separation, ref circleShape);
-
-                fix2 posXZ = ((fix3)position).xz;
-                fix radius = circleShape;
-                fix addRadius = separation.Radius;
-                fix extendedRadius = radius + addRadius;
-
-                foreach (var other in _targetsCache)
-                {
-                    var otherPos = ((fix3)other.Position).xz;
-                    if (!_forces.TryGetValue(other.SyncId.Value, out var separationForce))
-                        _forces[other.SyncId.Value] = separationForce = new SeparationForce();
-
-                    var dir = otherPos - posXZ;
-                    var sqrDist = fix2.SqrLength(dir);
-                    var distance = Maths.Sqrt(sqrDist);
-                    var softForce = 1 - Maths.Clamp(Maths.InvLerp(radius, extendedRadius, distance), 0, 1);
-                    softForce *= softForce;
-                    var hardForce = 1 - Maths.Clamp(Maths.InvLerp(0, radius, distance), 0, 1);
-                    dir = sqrDist == 0 ? fix2.zero : dir / distance;
-                    var force = dir * (hardForce + softForce) * separation.Coefficient;
-                    _forces[other.SyncId.Value] = new()
-                    {
-                        Force = separationForce.Force + force,
-                        ForcesCount = separationForce.ForcesCount + 1
-                    };
-                }
+                UpdateInPlace(ref position, ref separation, ref radius);
             }
 
-            private void FindTargets(ref Position position, ref Separator separation, ref Radius radius)
+            public void UpdateInPlace(ref Position position, ref Separator separation, ref Radius radius)
             {
-                _entititesLookup.Clear();
-                _targetsCache.Clear();
+                _entitiesLookup.Clear();
 
-                var distance = radius + separation.Radius;
+                var hardRadius = radius;
+                var maxDistance = hardRadius + separation.Radius;
                 var pos = ((fix3)position).xz;
-                var range = new fix2(distance, distance);
-                var min = GetQuantizedSquare(pos - range);
-                var max = GetQuantizedSquare(pos + range);
-                var sqrDistance = distance * distance;
+                var range = new fix2(maxDistance);
+                var min = pos - range;
+                var max = pos + range;
+                var minQ = GetQuantizedSquare(min);
+                var maxQ = GetQuantizedSquare(max);
+                var maxSqrDistance = maxDistance * maxDistance;
 
-                for (int y = min.y; y <= max.y; y++)
+                for (int y = minQ.y; y <= maxQ.y; y++)
                 {
-                    for (int x = min.x; x <= max.x; x++)
+                    for (int x = minQ.x; x <= maxQ.x; x++)
                     {
                         if (!_partitioning.TryGetValue(x, y, out var quadrant))
                             continue;
 
-                        for (int i = 0; i < quadrant.Count; i++)
+                        int count = quadrant.Count;
+                        for (int i = 0; i < count; i++)
                         {
-                            SyncIdPosition item = quadrant[i];
-                            if (_entititesLookup.Has(item.SyncId.Value))
+                            SyncIdPosition other = quadrant[i];
+                            if (_entitiesLookup.Has(other.SyncId.Value))
                                 continue;
 
-                            var itemPos = ((fix3)item.Position).xz;
-                            if (fix2.SqrDistance(itemPos, pos) < sqrDistance)
+                            var otherPos = ((fix3)other.Position).xz;
+
+                            if (otherPos == pos)
+                                continue;
+
+                            if (otherPos.x < min.x || otherPos.x > max.x ||
+                                otherPos.y < min.y || otherPos.y > max.y)
+                                continue;
+
+                            var dir = otherPos - pos;
+                            var sqrDistance = fix2.SqrLength(dir);
+                            if (sqrDistance >= maxSqrDistance)
+                                continue;
+
+                            _entitiesLookup.Add(other.SyncId.Value);
+
+                            if (!_forces.TryGetValue(other.SyncId.Value, out var separationForce))
+                                _forces[other.SyncId.Value] = separationForce = new SeparationForce();
+
+                            var distance = Maths.Sqrt(sqrDistance);
+                            var softForce = Maths.Clamp(Maths.InvLerp(maxDistance, hardRadius, distance), 0, 1);
+                            var hardForce = Maths.Clamp(hardRadius == fix.Zero ? 0 : Maths.InvLerp(hardRadius, 0, distance), 0, 1);
+                            dir = sqrDistance == 0 ? fix2.zero : dir / distance;
+                            var force = Maths.Max(hardForce, softForce * softForce) * separation.Coefficient * dir;
+                            _forces[other.SyncId.Value] = new()
                             {
-                                _targetsCache.Add(item);
-                                _entititesLookup.Add(item.SyncId.Value);
-                            }
+                                Force = separationForce.Force + force,
+                                ForcesCount = separationForce.ForcesCount + 1
+                            };
                         }
                     }
                 }

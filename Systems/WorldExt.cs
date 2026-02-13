@@ -1,7 +1,7 @@
 ﻿using Arch.Core;
+using DVG.Collections;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
-using DVG.SkyPirates.Shared.Tools;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -20,7 +20,7 @@ namespace DVG.SkyPirates.Shared.Systems
             public QueryDescription Desc = new QueryDescription().WithAll<All>().WithNone<None>();
         }
 
-        private static readonly GenericCollection _desc = new();
+        private static readonly GenericCreator _desc = new();
 
         public static QueryDescription NotDisposing(this QueryDescription desc)
         {

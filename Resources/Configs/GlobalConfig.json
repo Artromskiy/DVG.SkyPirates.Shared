@@ -16,6 +16,7 @@
         }
       },
       "Damage": 3,
+      "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Id": "Gold",
         "Amount": 20
@@ -48,6 +49,7 @@
         }
       },
       "Damage": 4,
+      "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Id": "Gold",
         "Amount": 20
@@ -80,6 +82,7 @@
         }
       },
       "Damage": 10,
+      "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Id": "Gold",
         "Amount": 20
@@ -112,6 +115,7 @@
         }
       },
       "Damage": 6,
+      "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Id": "Gold",
         "Amount": 20
@@ -144,6 +148,7 @@
         }
       },
       "Damage": 15,
+      "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Id": "Gold",
         "Amount": 20
@@ -176,6 +181,7 @@
         }
       },
       "Damage": 10,
+      "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Id": "Gold",
         "Amount": 20
@@ -208,6 +214,7 @@
         }
       },
       "Damage": 7,
+      "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Id": "Gold",
         "Amount": 20
@@ -240,6 +247,7 @@
         }
       },
       "Damage": 7,
+      "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Id": "Gold",
         "Amount": 20
@@ -272,6 +280,7 @@
         }
       },
       "Damage": 1,
+      "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Id": "Gold",
         "Amount": 20
@@ -5440,6 +5449,10 @@
         "GoodsId": ""
       },
       "Add": {
+        "GoodsDrop": {
+          "Id": null,
+          "Amount": 0
+        },
         "Position": {
           "Value": "0, 0, 0"
         },

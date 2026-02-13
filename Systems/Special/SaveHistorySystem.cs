@@ -1,7 +1,7 @@
 ﻿using Arch.Core;
+using DVG.Collections;
 using DVG.Components;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using DVG.SkyPirates.Shared.Tools;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
@@ -12,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             public readonly QueryDescription saveHasCmpDesc = new QueryDescription().WithAll<History<T>, T>();
             public readonly QueryDescription saveNoCmpDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
         }
-        private readonly GenericCollection _desc = new();
+        private readonly GenericCreator _desc = new();
         private readonly World _world;
 
         public SaveHistorySystem(World world)
@@ -30,11 +30,11 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         private readonly struct SaveHistoryAction : IStructGenericAction
         {
-            private readonly GenericCollection _descriptions;
+            private readonly GenericCreator _descriptions;
             private readonly World _world;
             private readonly int _tick;
 
-            public SaveHistoryAction(GenericCollection descriptions, World world, int tick)
+            public SaveHistoryAction(GenericCreator descriptions, World world, int tick)
             {
                 _descriptions = descriptions;
                 _world = world;
