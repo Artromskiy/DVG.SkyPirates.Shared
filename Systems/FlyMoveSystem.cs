@@ -42,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(Entity entity, ref Position position, ref FlyDestination fly, ref MaxSpeed maxSpeed)
             {
-                const int ArcHeight = 3;
+                const int ArcHeight = 4;
 
                 var end = fly.EndPosition;
                 var start = fly.StartPosition;

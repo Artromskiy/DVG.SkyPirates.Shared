@@ -8,8 +8,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -21,8 +22,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -34,8 +36,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -47,8 +50,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -60,8 +64,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -73,8 +78,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -86,8 +92,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -99,8 +106,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -112,8 +120,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -125,8 +134,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -138,8 +148,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -151,8 +162,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -164,8 +176,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -177,8 +190,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -190,8 +204,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -203,8 +218,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -216,8 +232,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -229,8 +246,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -242,8 +260,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -255,8 +274,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -268,8 +288,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -281,8 +302,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -294,8 +316,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -307,8 +330,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -320,8 +344,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -333,8 +358,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -346,8 +372,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -359,8 +386,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -372,8 +400,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -385,8 +414,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -398,8 +428,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -411,8 +442,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -424,8 +456,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -437,8 +470,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -450,8 +484,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -463,8 +498,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -476,8 +512,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -489,8 +526,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -502,8 +540,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -515,8 +554,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -528,8 +568,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -541,8 +582,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -554,8 +596,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -567,8 +610,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -580,8 +624,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -593,8 +638,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -606,8 +652,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -619,8 +666,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -632,8 +680,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -645,8 +694,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -658,8 +708,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -671,8 +722,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -684,8 +736,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -697,8 +750,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -710,8 +764,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -723,8 +778,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -736,8 +792,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -749,8 +806,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -762,8 +820,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -775,8 +834,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -788,8 +848,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -801,8 +862,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -814,8 +876,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -827,8 +890,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -840,8 +904,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -853,8 +918,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -866,8 +932,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -879,8 +946,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -892,8 +960,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -905,8 +974,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -918,8 +988,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -931,8 +1002,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -944,8 +1016,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -957,8 +1030,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -970,8 +1044,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -983,8 +1058,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -996,8 +1072,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1009,8 +1086,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1022,8 +1100,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1035,8 +1114,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1048,8 +1128,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1061,8 +1142,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1074,8 +1156,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1087,8 +1170,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1100,8 +1184,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1113,8 +1198,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1126,8 +1212,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1139,8 +1226,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1152,8 +1240,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1165,8 +1254,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1178,8 +1268,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
     }
   },
   {
@@ -1191,8 +1282,534 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
+    }
+  },
+  {
+    "GoodsDrop": {
+      "Values": {
+        "Sugar": 20
+      }
     }
   }
 ]

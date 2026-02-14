@@ -18,12 +18,12 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly Lookup2D<List<DropRef>> _partitioning = new();
         private readonly Lookup<BestCollector> _bestCollectors = new();
-        private readonly Lookup<List<GoodsDrop>> _collectorsDrops = new();
+        private readonly Lookup<List<GoodsData>> _collectorsDrops = new();
 
         private readonly List<Entity> _removeDrops = new();
 
         private readonly QueryDescription _dropsDesc =
-            new QueryDescription().WithAll<GoodsId, SyncId, Position, GoodsDrop>().
+            new QueryDescription().WithAll<GoodsId, SyncId, Position, GoodsAmount>().
             WithNone<FlyDestination>().NotDisposing();
 
         // if something is collector and collectable at same time => heat death of the universe
@@ -49,10 +49,10 @@ namespace DVG.SkyPirates.Shared.Systems
             _world.InlineQuery<SelectBestQuery, SyncId, Position, GoodsCollectorRadius>(_collectorsDesc, ref selectBestQuery);
 
             var applyQuery = new MoveToBestQuery(_bestCollectors, _collectorsDrops, _removeDrops);
-            _world.InlineEntityQuery<MoveToBestQuery, SyncId, GoodsDrop, Position, MaxSpeed>(_dropsDesc, ref applyQuery);
+            _world.InlineEntityQuery<MoveToBestQuery, SyncId, GoodsId, GoodsAmount, Position, MaxSpeed>(_dropsDesc, ref applyQuery);
 
             var collectQuery = new CollectQuery(_collectorsDrops);
-            _world.InlineQuery<CollectQuery, SyncId, GoodsDrop>(_dropsDesc, ref collectQuery);
+            _world.InlineQuery<CollectQuery, SyncId, GoodsDrop>(_collectorsDesc, ref collectQuery);
 
             foreach (var item in _removeDrops)
                 _world.Add<Dispose>(item);
@@ -155,20 +155,20 @@ namespace DVG.SkyPirates.Shared.Systems
             }
         }
 
-        private readonly struct MoveToBestQuery : IForEachWithEntity<SyncId, GoodsDrop, Position, MaxSpeed>
+        private readonly struct MoveToBestQuery : IForEachWithEntity<SyncId, GoodsId, GoodsAmount, Position, MaxSpeed>
         {
             private readonly Lookup<BestCollector> _best;
-            private readonly Lookup<List<GoodsDrop>> _collectorsDrops;
+            private readonly Lookup<List<GoodsData>> _collectorsDrops;
             private readonly List<Entity> _removeDrops;
 
-            public MoveToBestQuery(Lookup<BestCollector> best, Lookup<List<GoodsDrop>> collectorsDrops, List<Entity> removeDrops)
+            public MoveToBestQuery(Lookup<BestCollector> best, Lookup<List<GoodsData>> collectorsDrops, List<Entity> removeDrops)
             {
                 _best = best;
                 _collectorsDrops = collectorsDrops;
                 _removeDrops = removeDrops;
             }
 
-            public void Update(Entity entity, ref SyncId dropId, ref GoodsDrop drop, ref Position position, ref MaxSpeed maxSpeed)
+            public void Update(Entity entity, ref SyncId dropId, ref GoodsId goodsId, ref GoodsAmount goodsAmount, ref Position position, ref MaxSpeed maxSpeed)
             {
                 if (_best.TryGetValue(dropId.Value, out var best))
                 {
@@ -177,8 +177,8 @@ namespace DVG.SkyPirates.Shared.Systems
                     {
                         _removeDrops.Add(entity);
                         if (!_collectorsDrops.TryGetValue(best.CollectorSyncId.Value, out var collected))
-                            _collectorsDrops[best.CollectorSyncId.Value] = collected = new List<GoodsDrop>();
-                        collected.Add(drop);
+                            _collectorsDrops[best.CollectorSyncId.Value] = collected = new List<GoodsData>();
+                        collected.Add(new() { GoodsId = goodsId, GoodsAmount = goodsAmount });
                     }
                 }
             }
@@ -187,9 +187,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly struct CollectQuery : IForEach<SyncId, GoodsDrop>
         {
-            private readonly Lookup<List<GoodsDrop>> _collectorsDrops;
+            private readonly Lookup<List<GoodsData>> _collectorsDrops;
 
-            public CollectQuery(Lookup<List<GoodsDrop>> collectorsDrops)
+            public CollectQuery(Lookup<List<GoodsData>> collectorsDrops)
             {
                 _collectorsDrops = collectorsDrops;
             }
@@ -200,7 +200,10 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     foreach (var item in toCollect)
                     {
-                        drop.Amount += item.Amount;
+                        if (!drop.Values.ContainsKey(item.GoodsId))
+                            drop.Values.Add(item.GoodsId, item.GoodsAmount.Value);
+                        else
+                            drop.Values[item.GoodsId] += item.GoodsAmount.Value;
                     }
                 }
             }
@@ -217,6 +220,12 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             public int SyncId;
             public fix2 PositionXZ;
+        }
+
+        private struct GoodsData
+        {
+            public GoodsAmount GoodsAmount;
+            public GoodsId GoodsId;
         }
 
         private struct BestCollector

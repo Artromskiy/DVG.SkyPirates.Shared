@@ -18,13 +18,15 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         static SerializationUTF8()
         {
             _buffer = new ArrayBufferWriter<byte>();
-            _options = new(JsonSerializerOptions.Default);
-            _options.IncludeFields = true;
-            _options.IgnoreReadOnlyFields = false;
-            _options.IgnoreReadOnlyProperties = false;
-            _options.WriteIndented = true;
-            _options.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-            _options.TypeInfoResolver = new DataContractResolver();
+            _options = new(JsonSerializerOptions.Default)
+            {
+                IncludeFields = true,
+                IgnoreReadOnlyFields = false,
+                IgnoreReadOnlyProperties = false,
+                WriteIndented = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                TypeInfoResolver = new DataContractResolver(),
+            };
             var format = CultureInfo.InvariantCulture;
 
             _options.Converters.Add(new FixConverter());

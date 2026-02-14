@@ -30,5 +30,9 @@
   {
     "GoodsId": "Rope",
     "MaxSpeed": 5
+  },
+  {
+    "GoodsId": "Rum",
+    "MaxSpeed": 5
   }
 ]

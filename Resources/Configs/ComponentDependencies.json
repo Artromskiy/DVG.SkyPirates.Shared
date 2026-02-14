@@ -67,15 +67,7 @@
     "Add": {
       "Position": {},
       "Rotation": {},
-      "GoodsDrop": {}
-    }
-  },
-  {
-    "Has": {
-      "Position": {}
-    },
-    "Add": {
-      "CachePosition": {}
+      "GoodsAmount": {}
     }
   },
   {
@@ -91,6 +83,14 @@
         "HealPerSecond": 20,
         "HealDelay": 10
       }
+    }
+  },
+  {
+    "Has": {
+      "Position": {}
+    },
+    "Add": {
+      "CachePosition": {}
     }
   },
   {

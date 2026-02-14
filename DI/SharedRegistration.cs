@@ -43,6 +43,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             var tickableExecutors = new Type[]
             {
+                typeof(ComponentRefCopySystem), // deep copy ref containing components to new frame
                 typeof(ComponentDependenciesSystem), // creates dependant components
                 typeof(EnsureSystem), // ensures
                 typeof(ClearSystem), // cleanups

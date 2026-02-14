@@ -8,8 +8,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -21,8 +22,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -34,8 +36,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -47,8 +50,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -60,8 +64,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -73,8 +78,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -86,8 +92,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -99,8 +106,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -112,8 +120,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -125,8 +134,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -138,8 +148,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -151,8 +162,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -164,8 +176,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -177,8 +190,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -190,8 +204,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -203,8 +218,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -216,8 +232,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -229,8 +246,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -242,8 +260,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -255,8 +274,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -268,8 +288,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -281,8 +302,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -294,8 +316,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -307,8 +330,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -320,8 +344,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -333,8 +358,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -346,8 +372,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -359,8 +386,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -372,8 +400,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -385,8 +414,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -398,8 +428,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -411,8 +442,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -424,8 +456,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -437,8 +470,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -450,8 +484,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -463,8 +498,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -476,8 +512,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -489,8 +526,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -502,8 +540,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -515,8 +554,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -528,8 +568,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -541,8 +582,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -554,8 +596,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -567,8 +610,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -580,8 +624,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -593,8 +638,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -606,8 +652,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -619,8 +666,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -632,8 +680,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -645,8 +694,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -658,8 +708,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -671,8 +722,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -684,8 +736,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -697,8 +750,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -710,8 +764,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -723,8 +778,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -736,8 +792,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -749,8 +806,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -762,8 +820,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -775,8 +834,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -788,8 +848,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -801,8 +862,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -814,8 +876,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -827,8 +890,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -840,8 +904,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -853,8 +918,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -866,8 +932,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -879,8 +946,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -892,8 +960,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -905,8 +974,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -918,8 +988,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -931,8 +1002,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -944,8 +1016,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -957,8 +1030,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -970,8 +1044,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -983,8 +1058,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -996,8 +1072,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1009,8 +1086,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1022,8 +1100,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1035,8 +1114,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1048,8 +1128,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1061,8 +1142,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1074,8 +1156,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1087,8 +1170,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1100,8 +1184,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1113,8 +1198,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1126,8 +1212,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1139,8 +1226,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1152,8 +1240,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1165,8 +1254,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1178,8 +1268,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1191,8 +1282,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1204,8 +1296,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1217,8 +1310,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1230,8 +1324,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1243,8 +1338,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1256,8 +1352,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1269,8 +1366,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1282,8 +1380,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1295,8 +1394,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1308,8 +1408,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1321,8 +1422,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1334,8 +1436,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1347,8 +1450,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1360,8 +1464,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1373,8 +1478,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1386,8 +1492,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1399,8 +1506,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1412,8 +1520,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1425,8 +1534,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1438,8 +1548,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1451,8 +1562,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1464,8 +1576,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1477,8 +1590,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1490,8 +1604,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1503,8 +1618,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1516,8 +1632,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1529,8 +1646,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1542,8 +1660,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1555,8 +1674,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1568,8 +1688,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1581,8 +1702,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1594,8 +1716,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1607,8 +1730,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1620,8 +1744,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1633,8 +1758,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1646,8 +1772,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1659,8 +1786,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1672,8 +1800,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1685,8 +1814,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1698,8 +1828,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1711,8 +1842,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1724,8 +1856,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1737,8 +1870,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1750,8 +1884,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1763,8 +1898,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1776,8 +1912,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1789,8 +1926,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1802,8 +1940,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1815,8 +1954,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1828,8 +1968,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1841,8 +1982,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1854,8 +1996,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1867,8 +2010,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1880,8 +2024,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1893,8 +2038,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1906,8 +2052,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1919,8 +2066,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1932,8 +2080,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1945,8 +2094,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1958,8 +2108,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1971,8 +2122,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1984,8 +2136,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -1997,8 +2150,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2010,8 +2164,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2023,8 +2178,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2036,8 +2192,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2049,8 +2206,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2062,8 +2220,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2075,8 +2234,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2088,8 +2248,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2101,8 +2262,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2114,8 +2276,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2127,8 +2290,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2140,8 +2304,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2153,8 +2318,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   },
   {
@@ -2166,8 +2332,9 @@
       "Coefficient": 1
     },
     "GoodsDrop": {
-      "Id": "Gold",
-      "Amount": 20
+      "Values": {
+        "Wood": 20
+      }
     }
   }
 ]

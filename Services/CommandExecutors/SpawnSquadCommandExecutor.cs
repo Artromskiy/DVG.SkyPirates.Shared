@@ -1,5 +1,6 @@
 ﻿using DVG.Commands;
 using DVG.SkyPirates.Shared.Commands;
+using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 
@@ -18,7 +19,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<SpawnSquadCommand> cmd)
         {
-            var squad = _squadFactory.Create(cmd);
+            Team team = new() { Id = cmd.ClientId };
+            var squad = _squadFactory.Create((cmd.Data.CreationData, team));
         }
     }
 }
