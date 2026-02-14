@@ -29,11 +29,13 @@ namespace DVG.Components
             action.Invoke<BehaviourConfig>();
             action.Invoke<BehaviourState>();
             action.Invoke<CactusId>();
+            action.Invoke<ClientId>();
             action.Invoke<Damage>();
             action.Invoke<Direction>();
             action.Invoke<Dispose>();
             action.Invoke<Fixation>();
             action.Invoke<FlyDestination>();
+            action.Invoke<GoodsAmount>();
             action.Invoke<GoodsCollectorRadius>();
             action.Invoke<GoodsDrop>();
             action.Invoke<GoodsId>();

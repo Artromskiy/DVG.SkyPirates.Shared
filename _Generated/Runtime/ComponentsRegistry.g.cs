@@ -31,6 +31,7 @@ namespace DVG.Components
             action.Invoke<BehaviourState>();
             action.Invoke<CachePosition>();
             action.Invoke<CactusId>();
+            action.Invoke<ClientId>();
             action.Invoke<Collision>();
             action.Invoke<Damage>();
             action.Invoke<Destination>();
@@ -38,6 +39,7 @@ namespace DVG.Components
             action.Invoke<Dispose>();
             action.Invoke<Fixation>();
             action.Invoke<FlyDestination>();
+            action.Invoke<GoodsAmount>();
             action.Invoke<GoodsCollectorRadius>();
             action.Invoke<GoodsDrop>();
             action.Invoke<GoodsId>();

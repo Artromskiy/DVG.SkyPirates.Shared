@@ -201,9 +201,9 @@ namespace DVG.SkyPirates.Shared.Systems
                     foreach (var item in toCollect)
                     {
                         if (!drop.Values.ContainsKey(item.GoodsId))
-                            drop.Values.Add(item.GoodsId, item.GoodsAmount.Value);
+                            drop.Values.Add(item.GoodsId, item.GoodsAmount);
                         else
-                            drop.Values[item.GoodsId] += item.GoodsAmount.Value;
+                            drop.Values[item.GoodsId] += item.GoodsAmount;
                     }
                 }
             }
