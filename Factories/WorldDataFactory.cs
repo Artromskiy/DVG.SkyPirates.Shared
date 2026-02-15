@@ -48,6 +48,7 @@ namespace DVG.SkyPirates.Shared.Factories
 
             var unpackAction = new ExtractAction(_entityRegistryService, worldData, _world);
             HistoryComponentsRegistry.ForEachData(ref unpackAction);
+            _world.TrimExcess();
         }
 
         private readonly struct PackAction : IStructGenericAction

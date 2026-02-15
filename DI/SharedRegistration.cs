@@ -6,6 +6,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Services;
 using DVG.SkyPirates.Shared.Services.CommandExecutors;
 using DVG.SkyPirates.Shared.Systems;
+using DVG.SkyPirates.Shared.Systems.Special;
 using SimpleInjector;
 using System;
 
@@ -24,7 +25,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(JoysticCommandExecutor)
                 //typeof(CommandLogger)
             };
-            //RegisterSingleton(typeof(IPathFactory<>), typeof(ResourcesFactory<>));
+
             World.SharedJobScheduler = new Schedulers.JobScheduler(new Schedulers.JobScheduler.Config() { MaxExpectedConcurrentJobs = 4, ThreadCount = 4, ThreadPrefixName = "ECS_" });
             container.RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
             container.RegisterSingleton(typeof(IConfigedEntityFactory<>), typeof(ConfigedEntityFactory<>));
@@ -41,9 +42,13 @@ namespace DVG.SkyPirates.Shared.DI
             container.RegisterSingleton<ICommandExecutorService, CommandExecutorService>();
             container.Collection.Register<ICommandExecutor>(commandExecutors, Lifestyle.Singleton);
 
+            container.RegisterSingleton<IPooledItemsProvider, PooledItemsProvider>();
+            container.RegisterSingleton<IRollbackHistorySystem, RollbackHistorySystem>();
+            container.RegisterSingleton<ISaveHistorySystem, SaveHistorySystem>();
+            container.RegisterSingleton<IDisposeSystem, DisposeSystem>();
+
             var tickableExecutors = new Type[]
             {
-                typeof(ComponentRefCopySystem), // deep copy ref containing components to new frame
                 typeof(ComponentDependenciesSystem), // creates dependant components
                 typeof(EnsureSystem), // ensures
                 typeof(ClearSystem), // cleanups
@@ -59,7 +64,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(SetSingleTargetSystem),
                 typeof(SetMultiTargetSystem),
 
-                typeof(SetTargetDestinationSystem), // set destination to target or skips
+                typeof(SetTargetDestinationSystem), // sets destination to target or skips
                 typeof(MoveSystem),
                 typeof(SeparationSystem),
                 typeof(HexMapCollisionSystem),
@@ -72,6 +77,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(DamageSystem),
                 typeof(GoodsDropSystem),
                 typeof(GoodsCollectorSystem),
+                typeof(SquadGoodsDistributionSystem), // distributes goods across squad members
                 typeof(MarkDeadSystem),
                 //typeof(LogHashSumSystem),
             };

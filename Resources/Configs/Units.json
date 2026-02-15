@@ -29,9 +29,8 @@
     },
     "GoodsDrop": {
       "Values": {
-        "Gold": 20,
-        "Wood": 5,
-        "Rum": 1
+        "Gold": 5,
+        "Rum": 2
       }
     }
   },
@@ -65,9 +64,8 @@
     },
     "GoodsDrop": {
       "Values": {
-        "Gold": 20,
-        "Wood": 5,
-        "Rum": 1
+        "Gold": 5,
+        "Rum": 2
       }
     }
   },
@@ -101,9 +99,8 @@
     },
     "GoodsDrop": {
       "Values": {
-        "Gold": 20,
-        "Wood": 5,
-        "Rum": 1
+        "Gold": 5,
+        "Rum": 2
       }
     }
   },
@@ -137,9 +134,8 @@
     },
     "GoodsDrop": {
       "Values": {
-        "Gold": 20,
-        "Wood": 5,
-        "Rum": 1
+        "Gold": 5,
+        "Rum": 2
       }
     }
   },
@@ -173,9 +169,8 @@
     },
     "GoodsDrop": {
       "Values": {
-        "Gold": 20,
-        "Wood": 5,
-        "Rum": 1
+        "Gold": 5,
+        "Rum": 2
       }
     }
   },
@@ -209,9 +204,8 @@
     },
     "GoodsDrop": {
       "Values": {
-        "Gold": 20,
-        "Wood": 5,
-        "Rum": 1
+        "Gold": 5,
+        "Rum": 2
       }
     }
   },
@@ -245,9 +239,8 @@
     },
     "GoodsDrop": {
       "Values": {
-        "Gold": 20,
-        "Wood": 5,
-        "Rum": 1
+        "Gold": 5,
+        "Rum": 2
       }
     }
   },
@@ -281,9 +274,8 @@
     },
     "GoodsDrop": {
       "Values": {
-        "Gold": 20,
-        "Wood": 5,
-        "Rum": 1
+        "Gold": 5,
+        "Rum": 2
       }
     }
   },
@@ -317,9 +309,8 @@
     },
     "GoodsDrop": {
       "Values": {
-        "Gold": 20,
-        "Wood": 5,
-        "Rum": 1
+        "Gold": 5,
+        "Rum": 2
       }
     }
   }

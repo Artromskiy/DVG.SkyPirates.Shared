@@ -1,5 +1,6 @@
 ﻿using Arch.Core;
 using Arch.Core.Utils;
+using DVG.Collections;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
@@ -14,6 +15,11 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly World _world;
         private readonly DependencyData[] _dependencies;
 
+        private class Description<T>
+        {
+            public QueryDescription Desc;
+        }
+
         public ComponentDependenciesSystem(IGlobalConfigFactory configFactory, World world)
         {
             var config = configFactory.Create().ComponentDependencies;
@@ -23,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 HashSet<Type> allComponents = new();
                 Signature allSignature = new(Array.ConvertAll(dependency.Has.GetTypes(), Component.GetComponentType));
-                return new DependencyData(allSignature, dependency.Add, dependency.DefaultOnAdd);
+                return new DependencyData(allSignature, dependency.Add, dependency.DefaultOnAdd, new());
             });
         }
 
@@ -31,7 +37,7 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             foreach (var data in _dependencies)
             {
-                var ensureAction = new AddComponentAction(_world, data.HasComponentSignature, data.DefaultComponentData);
+                var ensureAction = new AddComponentAction(_world, data.HasComponentSignature, data.SignatureCache, data.DefaultComponentData);
                 data.AddComponentData.ForEach(ref ensureAction);
             }
         }
@@ -40,18 +46,24 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             private readonly World _world;
             private readonly Signature _allSignature;
+            private readonly GenericCreator _signatureCache;
             private readonly ComponentsData _defaults;
 
-            public AddComponentAction(World world, Signature allSignature, ComponentsData defaults)
+            public AddComponentAction(World world, Signature allSignature, GenericCreator signatureCache, ComponentsData defaults)
             {
                 _world = world;
                 _allSignature = allSignature;
+                _signatureCache = signatureCache;
                 _defaults = defaults;
             }
 
             public void Invoke<T>() where T : struct
             {
-                var desc = new QueryDescription(all: _allSignature, none: Component<T, Dispose>.Signature);
+                var descContainer = _signatureCache.Get<Description<T>>();
+                if (descContainer.Desc == default)
+                    descContainer.Desc = new QueryDescription(all: _allSignature, none: Component<T, Dispose>.Signature);
+
+                var desc = descContainer.Desc;
                 var defaultValue = _defaults?.Get<T>();
                 if (_world.CountEntities(desc) > 0)
                     _world.Add(desc, defaultValue ?? default);
@@ -63,12 +75,14 @@ namespace DVG.SkyPirates.Shared.Systems
             public readonly Signature HasComponentSignature;
             public readonly ComponentsData AddComponentData;
             public readonly ComponentsData DefaultComponentData;
+            public readonly GenericCreator SignatureCache;
 
-            public DependencyData(Signature hasComponentSignature, ComponentsData addComponentData, ComponentsData defaultComponentData)
+            public DependencyData(Signature hasComponentSignature, ComponentsData addComponentData, ComponentsData defaultComponentData, GenericCreator signatureCache)
             {
                 HasComponentSignature = hasComponentSignature;
                 AddComponentData = addComponentData;
                 DefaultComponentData = defaultComponentData;
+                SignatureCache = signatureCache;
             }
         }
     }

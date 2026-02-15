@@ -4,7 +4,6 @@ using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using DVG.SkyPirates.Shared.Systems.Special;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services
@@ -25,33 +24,27 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly IPreTickableExecutorService _preTickableExecutorService;
         private readonly IPostTickableExecutorService _postTickableExecutorService;
 
-        private readonly RollbackHistorySystem _rollbackHistorySystem;
-        private readonly SaveHistorySystem _saveHistorySystem;
-        private readonly DisposeSystem _destructSystem;
+        private readonly IRollbackHistorySystem _rollbackHistorySystem;
+        private readonly ISaveHistorySystem _saveHistorySystem;
+        private readonly IDisposeSystem _disposeSystem;
         private readonly World _world;
 
-        public TimelineService(
-            World world,
-            ICommandRecieveService commandRecieveService,
-            ICommandExecutorService commandExecutorService,
-            ITickableExecutorService tickableExecutorService,
-            IPreTickableExecutorService preTickableExecutorService,
-            IPostTickableExecutorService postTickableExecutorService)
+        public TimelineService(ICommandRecieveService commandRecieveService, ICommandExecutorService commandExecutorService, ITickableExecutorService tickableExecutorService, IPreTickableExecutorService preTickableExecutorService, IPostTickableExecutorService postTickableExecutorService, IRollbackHistorySystem rollbackHistorySystem, ISaveHistorySystem saveHistorySystem, IDisposeSystem disposeSystem, World world)
         {
-            _rollbackHistorySystem = new(world);
-            _saveHistorySystem = new(world);
-            _destructSystem = new(world);
-            _world = world;
-
             _commandRecieveService = commandRecieveService;
             _commandExecutorService = commandExecutorService;
             _tickableExecutorService = tickableExecutorService;
             _preTickableExecutorService = preTickableExecutorService;
             _postTickableExecutorService = postTickableExecutorService;
+            _rollbackHistorySystem = rollbackHistorySystem;
+            _saveHistorySystem = saveHistorySystem;
+            _disposeSystem = disposeSystem;
+            _world = world;
 
             var action = new RegisterRecieverAction(this, _commandRecieveService);
             CommandIds.ForEachData(ref action);
         }
+
 
         public void AddCommand<T>(Command<T> command)
             where T : ICommandData
@@ -103,12 +96,12 @@ namespace DVG.SkyPirates.Shared.Services
             {
                 _commandExecutorService.Execute(GetCommands(i));
                 _tickableExecutorService.Tick(i, Constants.TickTime);
+                _disposeSystem.Tick(CurrentTick, Constants.TickTime);
                 _saveHistorySystem.Tick(i, Constants.TickTime);
             }
             CurrentTick = toTick;
             _rollbackTo = null;
 
-            _destructSystem.Tick(CurrentTick, Constants.TickTime);
             _postTickableExecutorService.Tick(CurrentTick, Constants.TickTime);
         }
 

@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
-    internal sealed class SaveHistorySystem : ITickableExecutor
+    internal sealed class SaveHistorySystem : ISaveHistorySystem
     {
         private sealed class Description<T> where T : struct
         {
@@ -43,14 +43,14 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public void Invoke<T>() where T : struct
             {
-                var saveQuery = new SaveHistoryQuery<T>(_tick);
+                var saveQuery = new SaveHistoryQuery<T>(WrapTick(_tick));
                 var desc = _descriptions.Get<Description<T>>();
 
                 _world.AddQuery((ref T has, ref History<T> history) => history = new History<T>(Constants.HistoryTicks));
 
+                // if history was inline array we could write faster
                 var saveHasCmpDesc = desc.saveHasCmpDesc;
                 _world.InlineQuery<SaveHistoryQuery<T>, History<T>, T>(saveHasCmpDesc, ref saveQuery);
-
                 var saveNoCmpDesc = desc.saveNoCmpDesc;
                 _world.InlineQuery<SaveHistoryQuery<T>, History<T>>(saveNoCmpDesc, ref saveQuery);
             }
@@ -70,12 +70,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                history[WrapTick(_tick)] = component;
+                history[_tick] = component;
             }
 
             public void Update(ref History<T> history)
             {
-                history[WrapTick(_tick)] = null;
+                history[_tick] = null;
             }
         }
     }

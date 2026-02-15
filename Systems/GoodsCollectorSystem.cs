@@ -5,6 +5,7 @@ using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -14,7 +15,6 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private const int SquareSize = 5;
 
-        private readonly World _world;
 
         private readonly Lookup2D<List<DropRef>> _partitioning = new();
         private readonly Lookup<BestCollector> _bestCollectors = new();
@@ -29,6 +29,8 @@ namespace DVG.SkyPirates.Shared.Systems
         // if something is collector and collectable at same time => heat death of the universe
         private readonly QueryDescription _collectorsDesc =
             new QueryDescription().WithAll<SyncId, Position, GoodsDrop, GoodsCollectorRadius>().NotDisposing();
+
+        private readonly World _world;
 
         public GoodsCollectorSystem(World world)
         {
@@ -198,12 +200,17 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 if (_collectorsDrops.TryGetValue(collectoId.Value, out var toCollect))
                 {
+                    var values = drop.Values.ToBuilder();
                     foreach (var item in toCollect)
                     {
-                        if (!drop.Values.ContainsKey(item.GoodsId))
-                            drop.Values.Add(item.GoodsId, item.GoodsAmount);
-                        else
-                            drop.Values[item.GoodsId] += item.GoodsAmount;
+                        if (!values.ContainsKey(item.GoodsId))
+                            values[item.GoodsId] = 0;
+                        values[item.GoodsId] += item.GoodsAmount;
+                    }
+                    drop = new() { Values = values.ToImmutable() };
+                    foreach (var item in values)
+                    {
+                        Console.WriteLine($"Collected and got {item.Key}: {item.Value}");
                     }
                 }
             }

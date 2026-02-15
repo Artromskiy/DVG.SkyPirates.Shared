@@ -13,30 +13,24 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class GoodsDropSystem : ITickableExecutor
     {
-        private readonly QueryDescription _removeDesc = new QueryDescription().
-            WithAll<GoodsDrop>().NotDisposing();
-
         private readonly QueryDescription _createDesc = new QueryDescription().
             WithAll<Health, GoodsDrop>().NotDisposing();
 
-        private readonly IConfigedEntityFactory<GoodsId> _configedEntityFactory;
         private readonly World _world;
+        private readonly IConfigedEntityFactory<GoodsId> _configedEntityFactory;
 
         private readonly List<DropInfo> _dropInfos = new();
-        private readonly SortedList<GoodsId, int> _goodsRemoveCache = new();
 
-        public GoodsDropSystem(IConfigedEntityFactory<GoodsId> configedEntityFactory, World world)
+        public GoodsDropSystem(World world, IConfigedEntityFactory<GoodsId> configedEntityFactory)
         {
-            _configedEntityFactory = configedEntityFactory;
             _world = world;
+            _configedEntityFactory = configedEntityFactory;
         }
 
         public void Tick(int tick, fix deltaTime)
         {
             _dropInfos.Clear();
 
-            var removeEmptyQuery = new RemoveEmptyGoodsQuery(_goodsRemoveCache);
-            _world.InlineQuery<RemoveEmptyGoodsQuery, GoodsDrop>(in _removeDesc, ref removeEmptyQuery);
             var createQuery = new CreateGoodsQuery(_dropInfos);
             _world.InlineQuery<CreateGoodsQuery, Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>(_createDesc, ref createQuery);
             foreach (var item in _dropInfos)
@@ -52,32 +46,6 @@ namespace DVG.SkyPirates.Shared.Systems
                     StartPosition = item.Position,
                     EndPosition = item.Position + item.Direction.x_y,
                 };
-            }
-        }
-
-        private readonly struct RemoveEmptyGoodsQuery : IForEach<GoodsDrop>
-        {
-            private readonly SortedList<GoodsId, int> _goodsCache;
-
-            public RemoveEmptyGoodsQuery(SortedList<GoodsId, int> goodsCache)
-            {
-                _goodsCache = goodsCache;
-            }
-
-            public void Update(ref GoodsDrop goods)
-            {
-                _goodsCache.Clear();
-
-                foreach (var item in goods.Values)
-                    if (item.Value > 0)
-                        _goodsCache.Add(item.Key, item.Value);
-
-                if (goods.Values.Count == _goodsCache.Count)
-                    return;
-
-                goods.Values.Clear();
-                foreach (var item in _goodsCache)
-                    goods.Values.Add(item.Key, item.Value);
             }
         }
 
@@ -113,11 +81,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
                 int range = 4;
 
-                for (int i = 0; i < goods.Values.Count; i++)
+                int i = 0;
+                foreach (var (goodsId, totalAmount) in goods.Values)
                 {
-                    var goodsId = goods.Values.Keys[i];
-                    int totalAmount = goods.Values.Values[i];
-
                     int slots = baseSlots + (i < remainderSlots ? 1 : 0);
 
                     int baseAmount = totalAmount / slots;
@@ -126,6 +92,8 @@ namespace DVG.SkyPirates.Shared.Systems
                     for (int j = 0; j < slots; j++)
                     {
                         int amount = baseAmount + (j < remainderAmount ? 1 : 0);
+                        if (amount == 0)
+                            continue;
 
                         var drop = new DropInfo
                         {
@@ -143,6 +111,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
                         _dropInfos.Add(drop);
                     }
+                    i++;
                 }
             }
 

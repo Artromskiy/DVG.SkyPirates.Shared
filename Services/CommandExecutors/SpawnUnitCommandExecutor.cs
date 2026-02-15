@@ -2,11 +2,13 @@
 using DVG.Commands;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Commands;
+using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using System;
+using System.Collections.Immutable;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
@@ -40,6 +42,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
             _world.Get<Team>(unit).Id = cmd.ClientId;
             _world.Get<Position>(unit) = pos;
+            _world.Get<GoodsDrop>(unit) = new() { Values = ImmutableSortedDictionary.Create<GoodsId, int>() };
             _world.AddOrGet<SquadMember>(unit).SquadId = _world.Get<SyncId>(squad).Value;
         }
 

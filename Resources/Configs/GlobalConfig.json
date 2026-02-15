@@ -19,9 +19,8 @@
       "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Values": {
-          "Gold": 20,
-          "Rum": 1,
-          "Wood": 5
+          "Gold": 5,
+          "Rum": 2
         }
       },
       "ImpactDistance": 3,
@@ -55,9 +54,8 @@
       "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Values": {
-          "Gold": 20,
-          "Rum": 1,
-          "Wood": 5
+          "Gold": 5,
+          "Rum": 2
         }
       },
       "ImpactDistance": 3,
@@ -91,9 +89,8 @@
       "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Values": {
-          "Gold": 20,
-          "Rum": 1,
-          "Wood": 5
+          "Gold": 5,
+          "Rum": 2
         }
       },
       "ImpactDistance": 3,
@@ -127,9 +124,8 @@
       "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Values": {
-          "Gold": 20,
-          "Rum": 1,
-          "Wood": 5
+          "Gold": 5,
+          "Rum": 2
         }
       },
       "ImpactDistance": 3,
@@ -163,9 +159,8 @@
       "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Values": {
-          "Gold": 20,
-          "Rum": 1,
-          "Wood": 5
+          "Gold": 5,
+          "Rum": 2
         }
       },
       "ImpactDistance": 3,
@@ -199,9 +194,8 @@
       "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Values": {
-          "Gold": 20,
-          "Rum": 1,
-          "Wood": 5
+          "Gold": 5,
+          "Rum": 2
         }
       },
       "ImpactDistance": 3,
@@ -235,9 +229,8 @@
       "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Values": {
-          "Gold": 20,
-          "Rum": 1,
-          "Wood": 5
+          "Gold": 5,
+          "Rum": 2
         }
       },
       "ImpactDistance": 3,
@@ -271,9 +264,8 @@
       "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Values": {
-          "Gold": 20,
-          "Rum": 1,
-          "Wood": 5
+          "Gold": 5,
+          "Rum": 2
         }
       },
       "ImpactDistance": 3,
@@ -307,9 +299,8 @@
       "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Values": {
-          "Gold": 20,
-          "Rum": 1,
-          "Wood": 5
+          "Gold": 5,
+          "Rum": 2
         }
       },
       "ImpactDistance": 3,
@@ -4309,7 +4300,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4323,7 +4314,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4337,7 +4328,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4351,7 +4342,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4365,7 +4356,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4379,7 +4370,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4393,7 +4384,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4407,7 +4398,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4421,7 +4412,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4435,7 +4426,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4449,7 +4440,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4463,7 +4454,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4477,7 +4468,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4491,7 +4482,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4505,7 +4496,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4519,7 +4510,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4533,7 +4524,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4547,7 +4538,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4561,7 +4552,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4575,7 +4566,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4589,7 +4580,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4603,7 +4594,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4617,7 +4608,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4631,7 +4622,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4645,7 +4636,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4659,7 +4650,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4673,7 +4664,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4687,7 +4678,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4701,7 +4692,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4715,7 +4706,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4729,7 +4720,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4743,7 +4734,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4757,7 +4748,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4771,7 +4762,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4785,7 +4776,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4799,7 +4790,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4813,7 +4804,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4827,7 +4818,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4841,7 +4832,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4855,7 +4846,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4869,7 +4860,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4883,7 +4874,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4897,7 +4888,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4911,7 +4902,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4925,7 +4916,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4939,7 +4930,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4953,7 +4944,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4967,7 +4958,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4981,7 +4972,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -4995,7 +4986,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5009,7 +5000,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5023,7 +5014,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5037,7 +5028,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5051,7 +5042,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5065,7 +5056,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5079,7 +5070,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5093,7 +5084,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5107,7 +5098,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5121,7 +5112,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5135,7 +5126,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5149,7 +5140,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5163,7 +5154,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5177,7 +5168,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5191,7 +5182,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5205,7 +5196,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5219,7 +5210,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5233,7 +5224,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5247,7 +5238,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5261,7 +5252,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5275,7 +5266,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5289,7 +5280,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5303,7 +5294,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5317,7 +5308,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5331,7 +5322,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5345,7 +5336,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5359,7 +5350,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5373,7 +5364,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5387,7 +5378,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5401,7 +5392,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5415,7 +5406,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5429,7 +5420,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5443,7 +5434,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5457,7 +5448,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5471,7 +5462,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5485,7 +5476,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5499,7 +5490,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5513,7 +5504,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5527,7 +5518,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5541,7 +5532,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5555,7 +5546,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5569,7 +5560,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5583,7 +5574,7 @@
     {
       "GoodsDrop": {
         "Values": {
-          "Sugar": 20
+          "Gold": 1
         }
       },
       "MaxHealth": 100,
@@ -5592,531 +5583,6 @@
       "Separator": {
         "Radius": 0.5,
         "Coefficient": 1
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
-      }
-    },
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Sugar": 20
-        }
       }
     }
   ],
@@ -6264,6 +5730,9 @@
         "GoodsId": ""
       },
       "Add": {
+        "GoodsAmount": {
+          "Value": 0
+        },
         "Position": {
           "Value": "0, 0, 0"
         },

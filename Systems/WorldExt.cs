@@ -39,8 +39,9 @@ namespace DVG.SkyPirates.Shared.Systems
         public static void AddQuery<Has, Add>(this World world, ForEach<Has, Add> forEach)
         {
             var addDesc = _desc.Get<WithAllWithNone<Has, Add>>().Desc;
+            if (world.CountEntities(addDesc) == 0)
+                return;
             var queryDesc = _desc.Get<WithAll<Add, Temp>>().Desc;
-
             world.Add<Add, Temp>(addDesc);
             world.Query(queryDesc, forEach);
             world.Remove<Temp>(queryDesc);

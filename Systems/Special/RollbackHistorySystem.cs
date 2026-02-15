@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
-    internal sealed class RollbackHistorySystem : IPreTickableExecutor
+    internal sealed class RollbackHistorySystem : IRollbackHistorySystem
     {
         private sealed class Description<T> where T : struct
         {
