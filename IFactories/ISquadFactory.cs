@@ -5,5 +5,5 @@ using DVG.SkyPirates.Shared.Data;
 
 namespace DVG.SkyPirates.Shared.IFactories
 {
-    public interface ISquadFactory : IFactory<Entity, (EntityParameters entityParameters, Team team)> { }
+    public interface ISquadFactory : IFactory<Entity, (EntityParameters entityParameters, TeamId team)> { }
 }

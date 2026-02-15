@@ -9,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Services
     {
         private const int MaxCount = 1000;
         private readonly GenericCollection _genericPool = new();
-        public void Dispose() => _genericPool.Clear();
+        public void Dispose() => _genericPool.Dispose();
 
         public T Get<T>() where T : new()
         {

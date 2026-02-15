@@ -19,7 +19,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<SpawnSquadCommand> cmd)
         {
-            Team team = new() { Id = cmd.ClientId };
+            TeamId team = new() { Value = cmd.ClientId };
             var squad = _squadFactory.Create((cmd.Data.CreationData, team));
         }
     }

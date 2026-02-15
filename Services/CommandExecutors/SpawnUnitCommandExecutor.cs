@@ -40,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             var pos = _world.Get<Position>(squad);
             var unit = _unitFactory.Create((cmd.Data.UnitId, cmd.Data.CreationData));
 
-            _world.Get<Team>(unit).Id = cmd.ClientId;
+            _world.Get<TeamId>(unit).Value = cmd.ClientId;
             _world.Get<Position>(unit) = pos;
             _world.Get<GoodsDrop>(unit) = new() { Values = ImmutableSortedDictionary.Create<GoodsId, int>() };
             _world.AddOrGet<SquadMember>(unit).SquadId = _world.Get<SyncId>(squad).Value;

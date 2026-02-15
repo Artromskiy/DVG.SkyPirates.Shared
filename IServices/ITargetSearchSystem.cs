@@ -13,12 +13,12 @@ namespace DVG.SkyPirates.Shared.IServices
             ref Position position,
             ref TargetSearchDistance searchDistance,
             ref TargetSearchPosition searchPosition,
-            ref Team team);
+            ref TeamId team);
 
         void FindTargets(
             ref TargetSearchDistance searchDistance,
             ref TargetSearchPosition searchPosition,
-            ref Team team,
+            ref TeamId team,
             List<Entity> targets);
     }
 }

@@ -16,8 +16,8 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SquadGoodsDistributionSystem : ITickableExecutor
     {
         private readonly World _world;
-        private readonly Dictionary<int, IDictionary<GoodsId, int>> _goodsPerSquad = new();
-        private readonly Dictionary<int, IDictionary<GoodsId, int>> _goodsPerUnit = new();
+        private readonly Dictionary<int, Dictionary<GoodsId, int>> _goodsPerSquad = new();
+        private readonly Dictionary<int, SortedList<GoodsId, int>> _goodsPerUnit = new();
         private readonly Dictionary<int, List<SyncId>> _unitsPerSquad = new();
 
         private readonly QueryDescription _unitsDesc = new QueryDescription().
@@ -30,7 +30,8 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            _unitsPerSquad.Clear();
+            foreach (var item in _unitsPerSquad)
+                item.Value.Clear();
             foreach (var item in _goodsPerSquad)
                 item.Value.Clear();
             foreach (var item in _goodsPerUnit)
@@ -82,9 +83,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly struct SquadMembersDistributeQuery : IForEach<SyncId, GoodsDrop>
         {
-            private readonly IDictionary<int, IDictionary<GoodsId, int>> _goodsPerUnit;
+            private readonly Dictionary<int, SortedList<GoodsId, int>> _goodsPerUnit;
 
-            public SquadMembersDistributeQuery(IDictionary<int, IDictionary<GoodsId, int>> goodsPerUnit)
+            public SquadMembersDistributeQuery(Dictionary<int, SortedList<GoodsId, int>> goodsPerUnit)
             {
                 _goodsPerUnit = goodsPerUnit;
             }
@@ -108,10 +109,10 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly struct SquadMembersCollectQuery : IForEach<SquadMember, GoodsDrop, SyncId>
         {
-            private readonly Dictionary<int, IDictionary<GoodsId, int>> _goodsPerSquad;
+            private readonly Dictionary<int, Dictionary<GoodsId, int>> _goodsPerSquad;
             private readonly Dictionary<int, List<SyncId>> _unitsPerSquad;
 
-            public SquadMembersCollectQuery(Dictionary<int, IDictionary<GoodsId, int>> goodsPerSquad, Dictionary<int, List<SyncId>> unitsPerSquad)
+            public SquadMembersCollectQuery(Dictionary<int, Dictionary<GoodsId, int>> goodsPerSquad, Dictionary<int, List<SyncId>> unitsPerSquad)
             {
                 _goodsPerSquad = goodsPerSquad;
                 _unitsPerSquad = unitsPerSquad;

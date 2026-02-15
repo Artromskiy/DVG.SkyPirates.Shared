@@ -5,7 +5,6 @@ using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -208,10 +207,6 @@ namespace DVG.SkyPirates.Shared.Systems
                         values[item.GoodsId] += item.GoodsAmount;
                     }
                     drop = new() { Values = values.ToImmutable() };
-                    foreach (var item in values)
-                    {
-                        Console.WriteLine($"Collected and got {item.Key}: {item.Value}");
-                    }
                 }
             }
         }

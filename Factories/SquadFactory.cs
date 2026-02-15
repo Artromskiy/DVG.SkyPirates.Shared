@@ -19,14 +19,14 @@ namespace DVG.SkyPirates.Shared.Factories
             _world = world;
         }
 
-        public Entity Create((EntityParameters entityParameters, Team team) parameters)
+        public Entity Create((EntityParameters entityParameters, TeamId team) parameters)
         {
             var entity = _commandEntityFactory.Create(parameters.entityParameters);
             _world.Add<Squad>(entity);
             _entityDependencyService.EnsureDependencies(entity);
             _world.Get<Radius>(entity) = fix.One / 3;
             _world.Get<MaxSpeed>(entity) = (fix)7;
-            _world.Get<Team>(entity) = parameters.team;
+            _world.Get<TeamId>(entity) = parameters.team;
             return entity;
         }
     }

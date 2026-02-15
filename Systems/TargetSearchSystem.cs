@@ -16,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class TargetSearchSystem : ITargetSearchSystem // Should be used before any Position/Team writes for accurate search
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<RecivedDamage, Position, Team>().NotDisposing();
+            WithAll<RecivedDamage, Position, TeamId>().NotDisposing();
 
         private const int SquareSize = 5;
 
@@ -37,7 +37,7 @@ namespace DVG.SkyPirates.Shared.Systems
             ref Position position,
             ref TargetSearchDistance searchDistance,
             ref TargetSearchPosition searchPosition,
-            ref Team team)
+            ref TeamId team)
         {
             _targetsCache.Clear();
             FindTargets(ref searchDistance, ref searchPosition, ref team, _targetsCache);
@@ -70,7 +70,7 @@ namespace DVG.SkyPirates.Shared.Systems
         public void FindTargets(
             ref TargetSearchDistance searchDistance,
             ref TargetSearchPosition searchPosition,
-            ref Team team,
+            ref TeamId team,
             List<Entity> targets)
         {
             _entitiesLookup.Clear();
@@ -85,7 +85,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             foreach (var kv in _targets)
             {
-                if (kv.Key == team.Id)
+                if (kv.Key == team.Value)
                     continue;
 
                 var grid = kv.Value;
@@ -119,10 +119,10 @@ namespace DVG.SkyPirates.Shared.Systems
                 team.Clear();
 
             var query = new PartitionQuery(_targets);
-            _world.InlineEntityQuery<PartitionQuery, Position, Team>(_desc, ref query);
+            _world.InlineEntityQuery<PartitionQuery, Position, TeamId>(_desc, ref query);
         }
 
-        private readonly struct PartitionQuery : IForEachWithEntity<Position, Team>
+        private readonly struct PartitionQuery : IForEachWithEntity<Position, TeamId>
         {
             private readonly Dictionary<int, Lookup2D<List<Entity>>> _targets;
 
@@ -131,12 +131,12 @@ namespace DVG.SkyPirates.Shared.Systems
                 _targets = targets;
             }
 
-            public void Update(Entity e, ref Position p, ref Team t)
+            public void Update(Entity e, ref Position p, ref TeamId t)
             {
                 var quad = GetQuantizedSquare(((fix3)p).xz);
 
-                if (!_targets.TryGetValue(t.Id, out var team))
-                    _targets[t.Id] = team = new();
+                if (!_targets.TryGetValue(t.Value, out var team))
+                    _targets[t.Value] = team = new();
 
                 if (!team.TryGetValue(quad.x, quad.y, out var list))
                     team[quad.x, quad.y] = list = new List<Entity>(8);

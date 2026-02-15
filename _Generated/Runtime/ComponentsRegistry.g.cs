@@ -66,7 +66,7 @@ namespace DVG.Components
             action.Invoke<Targets>();
             action.Invoke<TargetSearchDistance>();
             action.Invoke<TargetSearchPosition>();
-            action.Invoke<Team>();
+            action.Invoke<TeamId>();
             action.Invoke<TreeId>();
             action.Invoke<UnitId>();
         }

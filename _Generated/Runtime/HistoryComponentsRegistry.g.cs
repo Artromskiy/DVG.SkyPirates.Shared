@@ -57,7 +57,7 @@ namespace DVG.Components
             action.Invoke<SyncId>();
             action.Invoke<SyncIdReserve>();
             action.Invoke<TargetSearchDistance>();
-            action.Invoke<Team>();
+            action.Invoke<TeamId>();
             action.Invoke<TreeId>();
             action.Invoke<UnitId>();
         }

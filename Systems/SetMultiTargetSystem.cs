@@ -11,7 +11,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SetMultiTargetSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, Team>().NotDisposing();
+            WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, TeamId>().NotDisposing();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;
@@ -27,11 +27,11 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new SetTargetQuery(_targetSearch, _targetsCache);
-            _world.InlineQuery<SetTargetQuery, TargetSearchDistance, TargetSearchPosition, Targets, Team>(_desc, ref query);
+            _world.InlineQuery<SetTargetQuery, TargetSearchDistance, TargetSearchPosition, Targets, TeamId>(_desc, ref query);
         }
 
         private readonly struct SetTargetQuery :
-            IForEach<TargetSearchDistance, TargetSearchPosition, Targets, Team>
+            IForEach<TargetSearchDistance, TargetSearchPosition, Targets, TeamId>
         {
             private readonly ITargetSearchSystem _targetSearch;
             private readonly List<Entity> _targetsCache;
@@ -42,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 _targetsCache = targetsCache;
             }
 
-            public void Update(ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Targets target, ref Team team)
+            public void Update(ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Targets target, ref TeamId team)
             {
                 _targetsCache.Clear();
                 _targetSearch.FindTargets(ref searchDistance, ref searchPosition, ref team, _targetsCache);

@@ -91,7 +91,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 31)]
         private Dictionary<int, TargetSearchDistance> TargetSearchDistance;
         [DataMember(Order = 32)]
-        private Dictionary<int, Team> Team;
+        private Dictionary<int, TeamId> Team;
         [DataMember(Order = 33)]
         private Dictionary<int, TreeId> TreeId;
         [DataMember(Order = 34)]
@@ -205,7 +205,7 @@ namespace DVG.SkyPirates.Shared.Data
                 return SyncIdReserve as Dictionary<int, T>;
             if (typeof(T) == typeof(TargetSearchDistance))
                 return TargetSearchDistance as Dictionary<int, T>;
-            if (typeof(T) == typeof(Team))
+            if (typeof(T) == typeof(TeamId))
                 return Team as Dictionary<int, T>;
             if (typeof(T) == typeof(TreeId))
                 return TreeId as Dictionary<int, T>;
@@ -379,9 +379,9 @@ namespace DVG.SkyPirates.Shared.Data
                 TargetSearchDistance = data as Dictionary<int, TargetSearchDistance>;
                 return;
             }
-            if (typeof(T) == typeof(Team))
+            if (typeof(T) == typeof(TeamId))
             {
-                Team = data as Dictionary<int, Team>;
+                Team = data as Dictionary<int, TeamId>;
                 return;
             }
             if (typeof(T) == typeof(TreeId))

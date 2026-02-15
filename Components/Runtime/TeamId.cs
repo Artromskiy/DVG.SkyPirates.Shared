@@ -1,12 +1,11 @@
 ﻿using DVG.Components.Attributes;
-using System;
+using DVG.NewType;
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
     [Component(true)]
-    [Obsolete("Rename to TeamId and use NewType")]
-    public struct Team
+    public struct TeamId : INewType
     {
-        public int Id;
+        public int Value;
     }
 }

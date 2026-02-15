@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SetSingleTargetSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Target, Team>().NotDisposing();
+            WithAll<Position, Target, TeamId>().NotDisposing();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;
@@ -26,11 +26,11 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var query = new SetTargetQuery(_targetSearch);
-            _world.InlineQuery<SetTargetQuery, Position, TargetSearchDistance, TargetSearchPosition, Target, Team>(_desc, ref query);
+            _world.InlineQuery<SetTargetQuery, Position, TargetSearchDistance, TargetSearchPosition, Target, TeamId>(_desc, ref query);
         }
 
         private readonly struct SetTargetQuery :
-            IForEach<Position, TargetSearchDistance, TargetSearchPosition, Target, Team>
+            IForEach<Position, TargetSearchDistance, TargetSearchPosition, Target, TeamId>
         {
             private readonly ITargetSearchSystem _targetSearch;
 
@@ -39,7 +39,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 _targetSearch = targetSearch;
             }
 
-            public void Update(ref Position position, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Target target, ref Team team)
+            public void Update(ref Position position, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Target target, ref TeamId team)
             {
                 target.Entity = _targetSearch.FindTarget(ref position, ref searchDistance, ref searchPosition, ref team);
             }

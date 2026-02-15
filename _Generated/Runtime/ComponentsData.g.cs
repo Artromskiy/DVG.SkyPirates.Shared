@@ -108,7 +108,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 39)]
         private TargetSearchPosition? TargetSearchPosition;
         [DataMember(Order = 40)]
-        private Team? Team;
+        private TeamId? Team;
         [DataMember(Order = 41)]
         private TreeId? TreeId;
         [DataMember(Order = 42)]
@@ -198,8 +198,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<TargetSearchDistance?, T?>(ref TargetSearchDistance);
             if (typeof(T) == typeof(TargetSearchPosition))
                 return Unsafe.As<TargetSearchPosition?, T?>(ref TargetSearchPosition);
-            if (typeof(T) == typeof(Team))
-                return Unsafe.As<Team?, T?>(ref Team);
+            if (typeof(T) == typeof(TeamId))
+                return Unsafe.As<TeamId?, T?>(ref Team);
             if (typeof(T) == typeof(TreeId))
                 return Unsafe.As<TreeId?, T?>(ref TreeId);
             if (typeof(T) == typeof(UnitId))
@@ -412,9 +412,9 @@ namespace DVG.SkyPirates.Shared.Data
                 TargetSearchPosition = Unsafe.As<T?, TargetSearchPosition?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Team))
+            if (typeof(T) == typeof(TeamId))
             {
-                Team = Unsafe.As<T?, Team?>(ref data);
+                Team = Unsafe.As<T?, TeamId?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(TreeId))
@@ -564,7 +564,7 @@ namespace DVG.SkyPirates.Shared.Data
             if(TargetSearchPosition.HasValue)
                 types[i++] = typeof(TargetSearchPosition);
             if(Team.HasValue)
-                types[i++] = typeof(Team);
+                types[i++] = typeof(TeamId);
             if(TreeId.HasValue)
                 types[i++] = typeof(TreeId);
             if(UnitId.HasValue)
@@ -658,7 +658,7 @@ namespace DVG.SkyPirates.Shared.Data
             if(TargetSearchPosition.HasValue)
                 action.Invoke<TargetSearchPosition>();
             if(Team.HasValue)
-                action.Invoke<Team>();
+                action.Invoke<TeamId>();
             if(TreeId.HasValue)
                 action.Invoke<TreeId>();
             if(UnitId.HasValue)
