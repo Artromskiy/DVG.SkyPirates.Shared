@@ -2,11 +2,6 @@
 using DVG.SkyPirates.Shared.Ids;
 using System.Collections.Immutable;
 
-namespace System.Runtime.CompilerServices
-{
-    public interface IsExternalInit { }
-}
-
 namespace DVG.SkyPirates.Shared.Components.Config
 {
     [Component(true)]

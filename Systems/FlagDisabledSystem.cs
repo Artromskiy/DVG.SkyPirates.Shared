@@ -3,7 +3,6 @@ using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -30,12 +29,6 @@ namespace DVG.SkyPirates.Shared.Systems
             fix4 minMax = default;
             minMax.xy = pos - new fix2(10);
             minMax.zw = pos + new fix2(10);
-
-            //                           xz/yw                  xz/yw
-            Debug.DrawLine((float3)minMax.xy.x_y, (float3)minMax.xw.x_y, Color.red, 0.1f);
-            Debug.DrawLine((float3)minMax.xy.x_y, (float3)minMax.zy.x_y, Color.red, 0.1f);
-            Debug.DrawLine((float3)minMax.zw.x_y, (float3)minMax.xw.x_y, Color.red, 0.1f);
-            Debug.DrawLine((float3)minMax.zw.x_y, (float3)minMax.zy.x_y, Color.red, 0.1f);
 
             var selectToDisable = new SelectDisableQuery(minMax, _toDisable);
             var selectToEnable = new SelectEnableQuery(minMax, _toEnable);

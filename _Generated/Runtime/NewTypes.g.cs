@@ -316,3 +316,19 @@ namespace DVG.SkyPirates.Shared.Components.Framed
     }
 }
 
+
+namespace DVG.SkyPirates.Shared.Components.Runtime
+{
+    partial struct TeamId : INewType<System.Int32>
+    {
+        
+        System.Int32 INewType<System.Int32>.Value { readonly get => Value; set => Value = value; }
+
+        public static implicit operator TeamId(System.Int32 value)
+            => new() { Value = value };
+
+        public static implicit operator System.Int32(TeamId newType)
+            => newType.Value;
+    }
+}
+

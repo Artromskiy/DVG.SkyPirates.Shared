@@ -85,7 +85,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             foreach (var kv in _targets)
             {
-                if (kv.Key == team.Value)
+                if (kv.Key == team)
                     continue;
 
                 var grid = kv.Value;
@@ -131,17 +131,17 @@ namespace DVG.SkyPirates.Shared.Systems
                 _targets = targets;
             }
 
-            public void Update(Entity e, ref Position p, ref TeamId t)
+            public void Update(Entity entity, ref Position position, ref TeamId teamId)
             {
-                var quad = GetQuantizedSquare(((fix3)p).xz);
+                var quad = GetQuantizedSquare(position.Value.xz);
 
-                if (!_targets.TryGetValue(t.Value, out var team))
-                    _targets[t.Value] = team = new();
+                if (!_targets.TryGetValue(teamId, out var team))
+                    _targets[teamId] = team = new();
 
                 if (!team.TryGetValue(quad.x, quad.y, out var list))
                     team[quad.x, quad.y] = list = new List<Entity>(8);
 
-                list.Add(e);
+                list.Add(entity);
             }
         }
 

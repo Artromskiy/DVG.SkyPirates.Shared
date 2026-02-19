@@ -40,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 5)]
         private ClientId? ClientId;
         [DataMember(Order = 6)]
-        private Collide? Collision;
+        private Collide? Collide;
         [DataMember(Order = 7)]
         private Damage? Damage;
         [DataMember(Order = 8)]
@@ -48,7 +48,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 9)]
         private Direction? Direction;
         [DataMember(Order = 10)]
-        private Disposing? Dispose;
+        private Disposing? Disposing;
         [DataMember(Order = 11)]
         private Fixation? Fixation;
         [DataMember(Order = 12)]
@@ -108,7 +108,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 39)]
         private TargetSearchPosition? TargetSearchPosition;
         [DataMember(Order = 40)]
-        private TeamId? Team;
+        private TeamId? TeamId;
         [DataMember(Order = 41)]
         private TreeId? TreeId;
         [DataMember(Order = 42)]
@@ -131,7 +131,7 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(ClientId))
                 return Unsafe.As<ClientId?, T?>(ref ClientId);
             if (typeof(T) == typeof(Collide))
-                return Unsafe.As<Collide?, T?>(ref Collision);
+                return Unsafe.As<Collide?, T?>(ref Collide);
             if (typeof(T) == typeof(Damage))
                 return Unsafe.As<Damage?, T?>(ref Damage);
             if (typeof(T) == typeof(Destination))
@@ -139,7 +139,7 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(Direction))
                 return Unsafe.As<Direction?, T?>(ref Direction);
             if (typeof(T) == typeof(Disposing))
-                return Unsafe.As<Disposing?, T?>(ref Dispose);
+                return Unsafe.As<Disposing?, T?>(ref Disposing);
             if (typeof(T) == typeof(Fixation))
                 return Unsafe.As<Fixation?, T?>(ref Fixation);
             if (typeof(T) == typeof(FlyDestination))
@@ -199,7 +199,7 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(TargetSearchPosition))
                 return Unsafe.As<TargetSearchPosition?, T?>(ref TargetSearchPosition);
             if (typeof(T) == typeof(TeamId))
-                return Unsafe.As<TeamId?, T?>(ref Team);
+                return Unsafe.As<TeamId?, T?>(ref TeamId);
             if (typeof(T) == typeof(TreeId))
                 return Unsafe.As<TreeId?, T?>(ref TreeId);
             if (typeof(T) == typeof(UnitId))
@@ -244,7 +244,7 @@ namespace DVG.SkyPirates.Shared.Data
             }
             if (typeof(T) == typeof(Collide))
             {
-                Collision = Unsafe.As<T?, Collide?>(ref data);
+                Collide = Unsafe.As<T?, Collide?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Damage))
@@ -264,7 +264,7 @@ namespace DVG.SkyPirates.Shared.Data
             }
             if (typeof(T) == typeof(Disposing))
             {
-                Dispose = Unsafe.As<T?, Disposing?>(ref data);
+                Disposing = Unsafe.As<T?, Disposing?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Fixation))
@@ -414,7 +414,7 @@ namespace DVG.SkyPirates.Shared.Data
             }
             if (typeof(T) == typeof(TeamId))
             {
-                Team = Unsafe.As<T?, TeamId?>(ref data);
+                TeamId = Unsafe.As<T?, TeamId?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(TreeId))
@@ -441,11 +441,11 @@ namespace DVG.SkyPirates.Shared.Data
                 (CachePosition.HasValue? 1 : 0) + 
                 (CactusId.HasValue? 1 : 0) + 
                 (ClientId.HasValue? 1 : 0) + 
-                (Collision.HasValue? 1 : 0) + 
+                (Collide.HasValue? 1 : 0) + 
                 (Damage.HasValue? 1 : 0) + 
                 (Destination.HasValue? 1 : 0) + 
                 (Direction.HasValue? 1 : 0) + 
-                (Dispose.HasValue? 1 : 0) + 
+                (Disposing.HasValue? 1 : 0) + 
                 (Fixation.HasValue? 1 : 0) + 
                 (FlyDestination.HasValue? 1 : 0) + 
                 (GoodsAmount.HasValue? 1 : 0) + 
@@ -475,7 +475,7 @@ namespace DVG.SkyPirates.Shared.Data
                 (Targets.HasValue? 1 : 0) + 
                 (TargetSearchDistance.HasValue? 1 : 0) + 
                 (TargetSearchPosition.HasValue? 1 : 0) + 
-                (Team.HasValue? 1 : 0) + 
+                (TeamId.HasValue? 1 : 0) + 
                 (TreeId.HasValue? 1 : 0) + 
                 (UnitId.HasValue? 1 : 0);
             
@@ -495,7 +495,7 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(CactusId);
             if(ClientId.HasValue)
                 types[i++] = typeof(ClientId);
-            if(Collision.HasValue)
+            if(Collide.HasValue)
                 types[i++] = typeof(Collide);
             if(Damage.HasValue)
                 types[i++] = typeof(Damage);
@@ -503,7 +503,7 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(Destination);
             if(Direction.HasValue)
                 types[i++] = typeof(Direction);
-            if(Dispose.HasValue)
+            if(Disposing.HasValue)
                 types[i++] = typeof(Disposing);
             if(Fixation.HasValue)
                 types[i++] = typeof(Fixation);
@@ -563,7 +563,7 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(TargetSearchDistance);
             if(TargetSearchPosition.HasValue)
                 types[i++] = typeof(TargetSearchPosition);
-            if(Team.HasValue)
+            if(TeamId.HasValue)
                 types[i++] = typeof(TeamId);
             if(TreeId.HasValue)
                 types[i++] = typeof(TreeId);
@@ -589,7 +589,7 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<CactusId>();
             if(ClientId.HasValue)
                 action.Invoke<ClientId>();
-            if(Collision.HasValue)
+            if(Collide.HasValue)
                 action.Invoke<Collide>();
             if(Damage.HasValue)
                 action.Invoke<Damage>();
@@ -597,7 +597,7 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<Destination>();
             if(Direction.HasValue)
                 action.Invoke<Direction>();
-            if(Dispose.HasValue)
+            if(Disposing.HasValue)
                 action.Invoke<Disposing>();
             if(Fixation.HasValue)
                 action.Invoke<Fixation>();
@@ -657,7 +657,7 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<TargetSearchDistance>();
             if(TargetSearchPosition.HasValue)
                 action.Invoke<TargetSearchPosition>();
-            if(Team.HasValue)
+            if(TeamId.HasValue)
                 action.Invoke<TeamId>();
             if(TreeId.HasValue)
                 action.Invoke<TreeId>();

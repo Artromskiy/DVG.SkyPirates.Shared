@@ -41,7 +41,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 6)]
         private Dictionary<int, Direction> Direction;
         [DataMember(Order = 7)]
-        private Dictionary<int, Disposing> Dispose;
+        private Dictionary<int, Disposing> Disposing;
         [DataMember(Order = 8)]
         private Dictionary<int, Fixation> Fixation;
         [DataMember(Order = 9)]
@@ -91,7 +91,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 31)]
         private Dictionary<int, TargetSearchDistance> TargetSearchDistance;
         [DataMember(Order = 32)]
-        private Dictionary<int, TeamId> Team;
+        private Dictionary<int, TeamId> TeamId;
         [DataMember(Order = 33)]
         private Dictionary<int, TreeId> TreeId;
         [DataMember(Order = 34)]
@@ -107,7 +107,7 @@ namespace DVG.SkyPirates.Shared.Data
             ClientId = new();
             Damage = new();
             Direction = new();
-            Dispose = new();
+            Disposing = new();
             Fixation = new();
             FlyDestination = new();
             GoodsAmount = new();
@@ -132,7 +132,7 @@ namespace DVG.SkyPirates.Shared.Data
             SyncId = new();
             SyncIdReserve = new();
             TargetSearchDistance = new();
-            Team = new();
+            TeamId = new();
             TreeId = new();
             UnitId = new();
         }
@@ -156,7 +156,7 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(Direction))
                 return Direction as Dictionary<int, T>;
             if (typeof(T) == typeof(Disposing))
-                return Dispose as Dictionary<int, T>;
+                return Disposing as Dictionary<int, T>;
             if (typeof(T) == typeof(Fixation))
                 return Fixation as Dictionary<int, T>;
             if (typeof(T) == typeof(FlyDestination))
@@ -206,7 +206,7 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(TargetSearchDistance))
                 return TargetSearchDistance as Dictionary<int, T>;
             if (typeof(T) == typeof(TeamId))
-                return Team as Dictionary<int, T>;
+                return TeamId as Dictionary<int, T>;
             if (typeof(T) == typeof(TreeId))
                 return TreeId as Dictionary<int, T>;
             if (typeof(T) == typeof(UnitId))
@@ -256,7 +256,7 @@ namespace DVG.SkyPirates.Shared.Data
             }
             if (typeof(T) == typeof(Disposing))
             {
-                Dispose = data as Dictionary<int, Disposing>;
+                Disposing = data as Dictionary<int, Disposing>;
                 return;
             }
             if (typeof(T) == typeof(Fixation))
@@ -381,7 +381,7 @@ namespace DVG.SkyPirates.Shared.Data
             }
             if (typeof(T) == typeof(TeamId))
             {
-                Team = data as Dictionary<int, TeamId>;
+                TeamId = data as Dictionary<int, TeamId>;
                 return;
             }
             if (typeof(T) == typeof(TreeId))
