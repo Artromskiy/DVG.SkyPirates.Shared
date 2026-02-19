@@ -42,5 +42,6 @@ namespace DVG.SkyPirates.Shared.Ids
         public static bool operator !=(RockId a, RockId b) => !(a == b);
 
         public static implicit operator string(RockId id) => id.Value;
+        public static implicit operator RockId(string value) => new(value);
     }
 }

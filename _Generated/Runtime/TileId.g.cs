@@ -42,5 +42,6 @@ namespace DVG.SkyPirates.Shared.Ids
         public static bool operator !=(TileId a, TileId b) => !(a == b);
 
         public static implicit operator string(TileId id) => id.Value;
+        public static implicit operator TileId(string value) => new(value);
     }
 }

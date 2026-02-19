@@ -42,5 +42,6 @@ namespace DVG.SkyPirates.Shared.Ids
         public static bool operator !=(CheatingId a, CheatingId b) => !(a == b);
 
         public static implicit operator string(CheatingId id) => id.Value;
+        public static implicit operator CheatingId(string value) => new(value);
     }
 }

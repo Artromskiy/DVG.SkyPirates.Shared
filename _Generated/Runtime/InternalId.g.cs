@@ -42,5 +42,6 @@ namespace DVG.SkyPirates.Shared.Ids
         public static bool operator !=(InternalId a, InternalId b) => !(a == b);
 
         public static implicit operator string(InternalId id) => id.Value;
+        public static implicit operator InternalId(string value) => new(value);
     }
 }
