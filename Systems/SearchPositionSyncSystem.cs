@@ -7,7 +7,7 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class SearchPositionSyncSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<TargetSearchPosition, Position>().NotDisposing();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<TargetSearchPosition, Position>().NotDisposing().NotDisabled();
         private readonly World _world;
 
         public SearchPositionSyncSystem(World world)

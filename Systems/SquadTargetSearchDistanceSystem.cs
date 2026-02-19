@@ -12,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private const int BaseRange = 3;
 
         private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SquadMemberCount, Fixation, TargetSearchDistance>().NotDisposing();
+            WithAll<Squad, SquadMemberCount, Fixation, TargetSearchDistance>().NotDisposing().NotDisabled();
 
         private readonly IPackedCirclesFactory _packedCirclesFactory;
         private readonly World _world;

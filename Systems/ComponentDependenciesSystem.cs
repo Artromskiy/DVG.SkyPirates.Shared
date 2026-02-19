@@ -61,7 +61,7 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 var descContainer = _signatureCache.Get<Description<T>>();
                 if (descContainer.Desc == default)
-                    descContainer.Desc = new QueryDescription(all: _allSignature, none: Component<T, Dispose>.Signature);
+                    descContainer.Desc = new QueryDescription(all: _allSignature, none: Component<T, Disposing>.Signature);
 
                 var desc = descContainer.Desc;
                 var defaultValue = _defaults?.Get<T>();

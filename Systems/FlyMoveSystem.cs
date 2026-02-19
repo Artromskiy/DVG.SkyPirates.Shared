@@ -9,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class FlyMoveSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, FlyDestination, MaxSpeed>().NotDisposing();
+            WithAll<Position, FlyDestination, MaxSpeed>().NotDisposing().NotDisabled();
 
         private readonly List<Entity> _finished = new();
 
@@ -23,21 +23,37 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             _finished.Clear();
-            var query = new FlyQueryQuery(deltaTime, _finished);
-            _world.InlineEntityQuery<FlyQueryQuery, Position, FlyDestination, MaxSpeed>(in _desc, ref query);
+            var flyQuery = new FlyQuery(deltaTime);
+            _world.InlineEntityQuery<FlyQuery, Position, FlyDestination, MaxSpeed>(in _desc, ref flyQuery);
+            var flyEndQuery = new FlyEndQuery(_finished);
+            _world.InlineEntityQuery<FlyEndQuery, Position, FlyDestination, MaxSpeed>(in _desc, ref flyEndQuery);
             foreach (var item in _finished)
                 _world.Remove<FlyDestination>(item);
         }
 
-        private readonly struct FlyQueryQuery : IForEachWithEntity<Position, FlyDestination, MaxSpeed>
+        private readonly struct FlyEndQuery : IForEachWithEntity<Position, FlyDestination, MaxSpeed>
         {
-            private readonly fix DeltaTime;
             private readonly List<Entity> _finished;
 
-            public FlyQueryQuery(fix deltaTime, List<Entity> finished)
+            public FlyEndQuery(List<Entity> finished)
+            {
+                _finished = finished;
+            }
+
+            public void Update(Entity entity, ref Position position, ref FlyDestination fly, ref MaxSpeed maxSpeed)
+            {
+                if (position == fly.EndPosition)
+                    _finished.Add(entity);
+            }
+        }
+
+        private readonly struct FlyQuery : IForEachWithEntity<Position, FlyDestination, MaxSpeed>
+        {
+            private readonly fix DeltaTime;
+
+            public FlyQuery(fix deltaTime)
             {
                 DeltaTime = deltaTime;
-                _finished = finished;
             }
 
             public void Update(Entity entity, ref Position position, ref FlyDestination fly, ref MaxSpeed maxSpeed)
@@ -57,8 +73,6 @@ namespace DVG.SkyPirates.Shared.Systems
                 var arc = 4 * percent * (1 - percent);
                 position = new fix3(currentXZ.x, currentY + arc * ArcHeight, currentXZ.y);
 
-                if (position == end)
-                    _finished.Add(entity);
             }
         }
     }

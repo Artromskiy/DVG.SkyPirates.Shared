@@ -21,7 +21,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly Dictionary<int, List<SyncId>> _unitsPerSquad = new();
 
         private readonly QueryDescription _unitsDesc = new QueryDescription().
-            WithAll<SquadMember, SyncId, GoodsDrop>().NotDisposing();
+            WithAll<SquadMember, SyncId, GoodsDrop>().NotDisposing().NotDisabled();
 
         public SquadGoodsDistributionSystem(World world)
         {

@@ -12,9 +12,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
     {
         private class Description<T>
         {
-            public readonly QueryDescription Desc = new QueryDescription().WithAll<T, Dispose, Temp>();
+            public readonly QueryDescription Desc = new QueryDescription().WithAll<T, Disposing, Temp>();
         }
-        private readonly QueryDescription _descSearch = new QueryDescription().WithAll<Dispose>();
+        private readonly QueryDescription _descSearch = new QueryDescription().WithAll<Disposing>();
         private readonly List<Entity> _entitiesCache = new();
         private readonly GenericCreator _disposeDesc = new();
 
@@ -31,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             _entitiesCache.Clear();
             var query = new SelectToDispose(_entitiesCache);
-            _world.InlineEntityQuery<SelectToDispose, Dispose>(_descSearch, ref query);
+            _world.InlineEntityQuery<SelectToDispose, Disposing>(_descSearch, ref query);
             foreach (var entity in _entitiesCache)
                 _world.Add<Temp>(entity);
 
@@ -77,7 +77,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             }
         }
 
-        private readonly struct SelectToDispose : IForEachWithEntity<Dispose>
+        private readonly struct SelectToDispose : IForEachWithEntity<Disposing>
         {
             private readonly List<Entity> _entities;
 
@@ -86,7 +86,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 _entities = entities;
             }
 
-            public void Update(Entity entity, ref Dispose destruct)
+            public void Update(Entity entity, ref Disposing destruct)
             {
                 if (++destruct.TicksPassed > Constants.HistoryTicks)
                     _entities.Add(entity);

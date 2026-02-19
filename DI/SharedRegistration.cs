@@ -16,6 +16,7 @@ namespace DVG.SkyPirates.Shared.DI
     {
         public static void Register(Container container)
         {
+            Console.WriteLine("[DI] SharedRegistration start");
             container.RegisterSingleton(() => World.Create());
 
             var commandExecutors = new Type[]
@@ -47,12 +48,15 @@ namespace DVG.SkyPirates.Shared.DI
             container.RegisterSingleton<ISaveHistorySystem, SaveHistorySystem>();
             container.RegisterSingleton<IDisposeSystem, DisposeSystem>();
 
+
+
             var tickableExecutors = new Type[]
             {
                 typeof(ComponentDependenciesSystem), // creates dependant components
                 typeof(EnsureSystem), // ensures
                 typeof(ClearSystem), // cleanups
                 typeof(CachePositionSystem),
+                typeof(FlagDisabledSystem),
                 typeof(TargetSearchSystem), // cache target search
                 typeof(SearchPositionSyncSystem), // sync Positon and TargetSearchPosition
                 typeof(SquadMemberCounterSystem), // set count of members to squad
@@ -68,6 +72,7 @@ namespace DVG.SkyPirates.Shared.DI
                 typeof(MoveSystem),
                 typeof(SeparationSystem),
                 typeof(HexMapCollisionSystem),
+                typeof(SimpleHeightSystem),
                 typeof(SimpleBehaviourSystem),
                 typeof(SinglePreAttackSystem),
                 typeof(MultiPreAttackSystem),

@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SingleImpactSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<BehaviourState, Damage, ImpactDistance, Position, Target>().NotDisposing();
+            WithAll<BehaviourState, Damage, ImpactDistance, Position, Target>().NotDisposing().NotDisabled();
 
         private readonly World _world;
 

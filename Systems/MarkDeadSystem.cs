@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
     [Obsolete]
     public sealed class MarkDeadSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health>().NotDisposing();
+        private readonly QueryDescription _desc = new QueryDescription().WithAll<Health>().NotDisposing().NotDisabled();
 
         private readonly List<Entity> _dead = new();
 
@@ -27,7 +27,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _world.InlineEntityQuery<SelectDeadQuery, Health>(_desc, ref query);
             foreach (var item in _dead)
             {
-                _world.Add<Dispose>(item);
+                _world.Add<Disposing>(item);
             }
         }
 

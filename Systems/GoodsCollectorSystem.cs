@@ -23,11 +23,11 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly QueryDescription _dropsDesc =
             new QueryDescription().WithAll<GoodsId, SyncId, Position, GoodsAmount>().
-            WithNone<FlyDestination>().NotDisposing();
+            WithNone<FlyDestination>().NotDisposing().NotDisabled();
 
         // if something is collector and collectable at same time => heat death of the universe
         private readonly QueryDescription _collectorsDesc =
-            new QueryDescription().WithAll<SyncId, Position, GoodsDrop, GoodsCollectorRadius>().NotDisposing();
+            new QueryDescription().WithAll<SyncId, Position, GoodsDrop, GoodsCollectorRadius>().NotDisposing().NotDisabled();
 
         private readonly World _world;
 
@@ -56,7 +56,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _world.InlineQuery<CollectQuery, SyncId, GoodsDrop>(_collectorsDesc, ref collectQuery);
 
             foreach (var item in _removeDrops)
-                _world.Add<Dispose>(item);
+                _world.Add<Disposing>(item);
         }
 
         private readonly struct PartitionQuery : IForEach<SyncId, Position>

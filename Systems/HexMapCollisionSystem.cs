@@ -1,11 +1,13 @@
 ﻿using Arch.Core;
 using DVG.Core;
-using DVG.Core.Physics;
+using DVG.Physics;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -13,8 +15,9 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class HexMapCollisionSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, CachePosition, Radius, Collision>().NotDisposing();
+            WithAll<Position, CachePosition, Radius, Collide>().NotDisposing().NotDisabled();
 
+        public static event Action<Segment[], fix2, fix2, fix> OnFailedToSolve;
         private readonly ThreadLocal<List<Segment>> _segmentsCache = new(() => new List<Segment>());
         private readonly World _world;
 
@@ -46,52 +49,62 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(ref Position position, ref CachePosition cachePosition, ref Radius radius)
             {
-                var xz = ((fix3)cachePosition).xz;
-                FindSegments(xz);
-
-                var solvedPos = Spatial.SolveCircleMove(_segmentsCache.Value,
-                    xz, ((fix3)position).xz, radius).x_y;
-                position = solvedPos;
+                FindSegments(cachePosition);
+                Solvers.Segments = _segmentsCache.Value.ToArray();
+                fix2 solvedPos = fix2.zero;
+                bool failed = false;
+                try
+                {
+                    solvedPos = Solvers.CircleSlide(cachePosition.Value.xz, position.Value.xz - cachePosition.Value.xz, radius);
+                }
+                catch { failed = true; }
+                position.Value.xz = solvedPos;
+                failed |= !Walkable(Hex.WorldToAxial(position.Value));
+                if (failed)
+                {
+                    position.Value = cachePosition;
+                    OnFailedToSolve?.Invoke(Solvers.Segments.ToArray(), cachePosition.Value.xz, position.Value.xz, radius);
+                }
+                Debug.Assert(!failed, "Failed to solve collision");
             }
 
-            private void FindSegments(fix2 from)
+            private void FindSegments(fix3 from)
             {
                 _segmentsCache.Value.Clear();
                 var axialFrom = Hex.WorldToAxial(from);
 
                 foreach (var item in Hex.AxialNear)
                 {
-                    var offsetted = item + axialFrom;
+                    var offsetted = item.x_y + axialFrom;
 
                     if (Walkable(offsetted))
                     {
                         continue;
                     }
 
-                    var worldFloor = Hex.AxialToWorld(offsetted);
+                    var worldFloor = Hex.AxialToWorld(offsetted.xz);
                     for (int i = 0; i < Hex.Points.Length; i++)
                     {
                         var s = worldFloor + Hex.Points[i];
                         var e = worldFloor + Hex.Points[(i + 1) % Hex.Points.Length];
-                        _segmentsCache.Value.Add(new(s, e, Hex.Normals[i]));
+                        _segmentsCache.Value.Add(new(s, e));
                     }
                 }
             }
 
-            private bool Walkable(int2 axial)
+            private bool Walkable(int3 axial)
             {
-                var floor = axial.x_y;
-
-                var up = floor;
-                up.y = 1;
-
-                var down = floor;
-                down.y = -1;
+                bool zero = _hexMap.Data.ContainsKey(axial);
+                var up = new int3(0, 1, 0);
+                bool p1 = _hexMap.Data.ContainsKey(axial + up);
+                bool p2 = _hexMap.Data.ContainsKey(axial + up * 2);
+                bool p3 = _hexMap.Data.ContainsKey(axial + up * 3);
+                bool m1 = _hexMap.Data.ContainsKey(axial - up);
 
                 return
-                    !_hexMap.Data.ContainsKey(up) &&
-                    !_hexMap.Data.ContainsKey(down) &&
-                    _hexMap.Data.ContainsKey(floor);
+                    (zero && !p1 && !p2) ||
+                    (p1 && !p2 && !p3) ||
+                    (m1 && !zero && !p1);
             }
         }
     }

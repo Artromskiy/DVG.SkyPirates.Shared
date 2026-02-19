@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class MoveSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Rotation, Destination, MaxSpeed>().NotDisposing();
+            WithAll<Position, Rotation, Destination, MaxSpeed>().NotDisposing().NotDisabled();
 
         private readonly World _world;
         private const int RotateSpeed = 720;

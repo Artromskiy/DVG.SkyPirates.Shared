@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class GoodsDropSystem : ITickableExecutor
     {
         private readonly QueryDescription _createDesc = new QueryDescription().
-            WithAll<Health, GoodsDrop>().NotDisposing();
+            WithAll<Health, GoodsDrop>().NotDisposing().NotDisabled();
 
         private readonly World _world;
         private readonly IConfigedEntityFactory<GoodsId> _configedEntityFactory;

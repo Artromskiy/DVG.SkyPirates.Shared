@@ -12,10 +12,10 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SquadMemberDestinationSystem : ITickableExecutor
     {
         private readonly QueryDescription _unitsDesc = new QueryDescription().
-            WithAll<SquadMember, Destination>().NotDisposing();
+            WithAll<SquadMember, Destination>().NotDisposing().NotDisabled();
 
         private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad>().NotDisposing();
+            WithAll<Squad>().NotDisposing().NotDisabled();
 
         private readonly World _world;
         private readonly IPackedCirclesFactory _packedCirclesFactory;

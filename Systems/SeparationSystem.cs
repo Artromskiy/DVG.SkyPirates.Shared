@@ -17,10 +17,10 @@ namespace DVG.SkyPirates.Shared.Systems
         public static int SquareSize = 4;
 
         private readonly QueryDescription _separatorDesc = new QueryDescription().
-            WithAll<Position, Separator, Radius>().NotDisposing();
+            WithAll<Position, Separator, Radius>().NotDisposing().NotDisabled();
 
         private readonly QueryDescription _separationDesc = new QueryDescription().
-            WithAll<Position, Separation>().NotDisposing();
+            WithAll<Position, Separation>().NotDisposing().NotDisabled();
 
         private readonly Lookup2D<List<SyncIdPosition>> _partitioning = new();
         private readonly Lookup<SeparationForce> _forces = new();

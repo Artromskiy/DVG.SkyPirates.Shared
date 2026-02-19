@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using DVG.Collections;
 using DVG.Components;
+using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Data;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -24,7 +25,13 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public static QueryDescription NotDisposing(this QueryDescription desc)
         {
-            var none = Signature.Add(desc.None, Component<Dispose>.Signature);
+            var none = Signature.Add(desc.None, Component<Disposing>.Signature);
+            return new QueryDescription(desc.All, desc.Any, none, desc.Exclusive);
+        }
+
+        public static QueryDescription NotDisabled(this QueryDescription desc)
+        {
+            var none = Signature.Add(desc.None, Component<Disabled>.Signature);
             return new QueryDescription(desc.All, desc.Any, none, desc.Exclusive);
         }
 
@@ -32,8 +39,16 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             var query = new FirstOrDefaultQuery<T>();
             var desc = _desc.Get<WithAll<T>>().Desc;
-            world.InlineQuery<FirstOrDefaultQuery<T>, T>(in desc, ref query);
+            world.InlineEntityQuery<FirstOrDefaultQuery<T>, T>(in desc, ref query);
             return query.Value;
+        }
+
+        public static Entity FirstOrDefaultEntity<T>(this World world) where T : struct
+        {
+            var query = new FirstOrDefaultQuery<T>();
+            var desc = _desc.Get<WithAll<T>>().Desc;
+            world.InlineEntityQuery<FirstOrDefaultQuery<T>, T>(in desc, ref query);
+            return query.Entity;
         }
 
         public static void AddQuery<Has, Add>(this World world, ForEach<Has, Add> forEach)
@@ -53,17 +68,20 @@ namespace DVG.SkyPirates.Shared.Systems
             ComponentsRegistry.ForEachData(ref action);
         }
 
-        private struct FirstOrDefaultQuery<T> : IForEach<T>
+        private struct FirstOrDefaultQuery<T> : IForEachWithEntity<T>
         {
             public T Value;
+            public Entity Entity;
+
             private bool _valueSet;
-            public void Update(ref T t)
+            public void Update(Entity e, ref T t)
             {
                 if (_valueSet)
                     return;
 
                 _valueSet = true;
                 Value = t;
+                Entity = e;
             }
         }
 
