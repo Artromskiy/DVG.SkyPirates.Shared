@@ -32,11 +32,11 @@ namespace DVG.Components
             action.Invoke<CachePosition>();
             action.Invoke<CactusId>();
             action.Invoke<ClientId>();
-            action.Invoke<Collision>();
+            action.Invoke<Collide>();
             action.Invoke<Damage>();
             action.Invoke<Destination>();
             action.Invoke<Direction>();
-            action.Invoke<Dispose>();
+            action.Invoke<Disposing>();
             action.Invoke<Fixation>();
             action.Invoke<FlyDestination>();
             action.Invoke<GoodsAmount>();

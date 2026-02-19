@@ -40,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 5)]
         private ClientId? ClientId;
         [DataMember(Order = 6)]
-        private Collision? Collision;
+        private Collide? Collision;
         [DataMember(Order = 7)]
         private Damage? Damage;
         [DataMember(Order = 8)]
@@ -48,7 +48,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 9)]
         private Direction? Direction;
         [DataMember(Order = 10)]
-        private Dispose? Dispose;
+        private Disposing? Dispose;
         [DataMember(Order = 11)]
         private Fixation? Fixation;
         [DataMember(Order = 12)]
@@ -130,16 +130,16 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<CactusId?, T?>(ref CactusId);
             if (typeof(T) == typeof(ClientId))
                 return Unsafe.As<ClientId?, T?>(ref ClientId);
-            if (typeof(T) == typeof(Collision))
-                return Unsafe.As<Collision?, T?>(ref Collision);
+            if (typeof(T) == typeof(Collide))
+                return Unsafe.As<Collide?, T?>(ref Collision);
             if (typeof(T) == typeof(Damage))
                 return Unsafe.As<Damage?, T?>(ref Damage);
             if (typeof(T) == typeof(Destination))
                 return Unsafe.As<Destination?, T?>(ref Destination);
             if (typeof(T) == typeof(Direction))
                 return Unsafe.As<Direction?, T?>(ref Direction);
-            if (typeof(T) == typeof(Dispose))
-                return Unsafe.As<Dispose?, T?>(ref Dispose);
+            if (typeof(T) == typeof(Disposing))
+                return Unsafe.As<Disposing?, T?>(ref Dispose);
             if (typeof(T) == typeof(Fixation))
                 return Unsafe.As<Fixation?, T?>(ref Fixation);
             if (typeof(T) == typeof(FlyDestination))
@@ -242,9 +242,9 @@ namespace DVG.SkyPirates.Shared.Data
                 ClientId = Unsafe.As<T?, ClientId?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Collision))
+            if (typeof(T) == typeof(Collide))
             {
-                Collision = Unsafe.As<T?, Collision?>(ref data);
+                Collision = Unsafe.As<T?, Collide?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Damage))
@@ -262,9 +262,9 @@ namespace DVG.SkyPirates.Shared.Data
                 Direction = Unsafe.As<T?, Direction?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Dispose))
+            if (typeof(T) == typeof(Disposing))
             {
-                Dispose = Unsafe.As<T?, Dispose?>(ref data);
+                Dispose = Unsafe.As<T?, Disposing?>(ref data);
                 return;
             }
             if (typeof(T) == typeof(Fixation))
@@ -496,7 +496,7 @@ namespace DVG.SkyPirates.Shared.Data
             if(ClientId.HasValue)
                 types[i++] = typeof(ClientId);
             if(Collision.HasValue)
-                types[i++] = typeof(Collision);
+                types[i++] = typeof(Collide);
             if(Damage.HasValue)
                 types[i++] = typeof(Damage);
             if(Destination.HasValue)
@@ -504,7 +504,7 @@ namespace DVG.SkyPirates.Shared.Data
             if(Direction.HasValue)
                 types[i++] = typeof(Direction);
             if(Dispose.HasValue)
-                types[i++] = typeof(Dispose);
+                types[i++] = typeof(Disposing);
             if(Fixation.HasValue)
                 types[i++] = typeof(Fixation);
             if(FlyDestination.HasValue)
@@ -590,7 +590,7 @@ namespace DVG.SkyPirates.Shared.Data
             if(ClientId.HasValue)
                 action.Invoke<ClientId>();
             if(Collision.HasValue)
-                action.Invoke<Collision>();
+                action.Invoke<Collide>();
             if(Damage.HasValue)
                 action.Invoke<Damage>();
             if(Destination.HasValue)
@@ -598,7 +598,7 @@ namespace DVG.SkyPirates.Shared.Data
             if(Direction.HasValue)
                 action.Invoke<Direction>();
             if(Dispose.HasValue)
-                action.Invoke<Dispose>();
+                action.Invoke<Disposing>();
             if(Fixation.HasValue)
                 action.Invoke<Fixation>();
             if(FlyDestination.HasValue)

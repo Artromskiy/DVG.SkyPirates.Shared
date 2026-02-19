@@ -41,7 +41,7 @@ namespace DVG.SkyPirates.Shared.Data
         [DataMember(Order = 6)]
         private Dictionary<int, Direction> Direction;
         [DataMember(Order = 7)]
-        private Dictionary<int, Dispose> Dispose;
+        private Dictionary<int, Disposing> Dispose;
         [DataMember(Order = 8)]
         private Dictionary<int, Fixation> Fixation;
         [DataMember(Order = 9)]
@@ -155,7 +155,7 @@ namespace DVG.SkyPirates.Shared.Data
                 return Damage as Dictionary<int, T>;
             if (typeof(T) == typeof(Direction))
                 return Direction as Dictionary<int, T>;
-            if (typeof(T) == typeof(Dispose))
+            if (typeof(T) == typeof(Disposing))
                 return Dispose as Dictionary<int, T>;
             if (typeof(T) == typeof(Fixation))
                 return Fixation as Dictionary<int, T>;
@@ -254,9 +254,9 @@ namespace DVG.SkyPirates.Shared.Data
                 Direction = data as Dictionary<int, Direction>;
                 return;
             }
-            if (typeof(T) == typeof(Dispose))
+            if (typeof(T) == typeof(Disposing))
             {
-                Dispose = data as Dictionary<int, Dispose>;
+                Dispose = data as Dictionary<int, Disposing>;
                 return;
             }
             if (typeof(T) == typeof(Fixation))
