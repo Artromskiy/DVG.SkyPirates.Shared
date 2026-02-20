@@ -32,14 +32,14 @@ namespace DVG.SkyPirates.Shared.Ids
         }
 
         [IgnoreDataMember]
-        public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
-        public readonly bool Equals(TileId other) => Value == other.Value || (IsNone && other.IsNone);
+        public readonly bool IsNone => string.IsNullOrWhiteSpace(Value) || string.Equals(Value, NoneValue, StringComparison.Ordinal);
+        public readonly bool Equals(TileId other) => (IsNone && other.IsNone) || string.Equals(Value, other.Value, StringComparison.Ordinal);
         public readonly int CompareTo(TileId other) => Equals(other) ? 0 : string.Compare(Value, other.Value, StringComparison.Ordinal);
         public override readonly bool Equals(object obj) => obj is TileId other && Equals(other);
         public override readonly string ToString() => Value;
-        public override readonly int GetHashCode() => IsNone ? 0 : Value.GetHashCode();
-        public static bool operator ==(TileId a, TileId b) => a.Value == b.Value || (a.IsNone && b.IsNone);
-        public static bool operator !=(TileId a, TileId b) => !(a == b);
+        public override readonly int GetHashCode() => IsNone ? 0 : Value.GetHashCode(StringComparison.Ordinal);
+        public static bool operator ==(TileId a, TileId b) => a.Equals(b);
+        public static bool operator !=(TileId a, TileId b) => !a.Equals(b);
 
         public static implicit operator string(TileId id) => id.Value;
         public static implicit operator TileId(string value) => new(value);
