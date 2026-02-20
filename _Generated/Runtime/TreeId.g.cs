@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Ids
         [IgnoreDataMember]
         public readonly bool IsNone => string.IsNullOrEmpty(Value) || Value == NoneValue;
         public readonly bool Equals(TreeId other) => Value == other.Value || (IsNone && other.IsNone);
-        public readonly int CompareTo(TreeId other) => Equals(other) ? 0 : string.Compare(Value, other.Value);
+        public readonly int CompareTo(TreeId other) => Equals(other) ? 0 : string.Compare(Value, other.Value, StringComparison.Ordinal);
         public override readonly bool Equals(object obj) => obj is TreeId other && Equals(other);
         public override readonly string ToString() => Value;
         public override readonly int GetHashCode() => IsNone ? 0 : Value.GetHashCode();
