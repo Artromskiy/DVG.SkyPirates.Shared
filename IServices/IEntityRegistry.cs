@@ -3,7 +3,7 @@ using DVG.Components;
 
 namespace DVG.SkyPirates.Shared.IServices
 {
-    public interface IEntityRegistryService
+    public interface IEntityRegistry
     {
         void Reserve(SyncId syncId);
         void Register(Entity entity, SyncId syncId);

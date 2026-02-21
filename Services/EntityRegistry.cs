@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.IServices;
 
 namespace DVG.SkyPirates.Shared.Services
 {
-    public class EntityRegistryService : IEntityRegistryService
+    public class EntityRegistry : IEntityRegistry
     {
         private readonly Lookup<Entity> _idToEntity = new();
         private int _entityIdCounter = 1;
