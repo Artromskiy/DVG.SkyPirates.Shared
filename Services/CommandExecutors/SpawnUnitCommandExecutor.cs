@@ -4,6 +4,7 @@ using DVG.Components;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
@@ -17,14 +18,14 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
     public class SpawnUnitCommandExecutor :
         ICommandExecutor<SpawnUnitCommand>
     {
-        private readonly IGlobalConfigFactory _globalConfigFactory;
+        private readonly UnitsInfoConfig _unitsInfoConfig;
         private readonly IEntityRegistry _entityRegistryService;
         private readonly IConfigedEntityFactory<UnitId> _unitFactory;
         private readonly World _world;
 
-        public SpawnUnitCommandExecutor(IGlobalConfigFactory globalConfigFactory, IEntityRegistry entityRegistryService, IConfigedEntityFactory<UnitId> unitFactory, World world)
+        public SpawnUnitCommandExecutor(UnitsInfoConfig unitsInfoConfig, IEntityRegistry entityRegistryService, IConfigedEntityFactory<UnitId> unitFactory, World world)
         {
-            _globalConfigFactory = globalConfigFactory;
+            _unitsInfoConfig = unitsInfoConfig;
             _entityRegistryService = entityRegistryService;
             _unitFactory = unitFactory;
             _world = world;
@@ -63,16 +64,15 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             // end => redistribution system will do the work
 
             var squadId = _world.Get<SyncId>(squad);
-            var price = Array.Find(_globalConfigFactory.Create().UnitsInfos, i => i.UnitId == unitId)?.RumPrice;
-            if (price == null)
+            if (!_unitsInfoConfig.TryGetValue(unitId, out var info))
                 return false;
-
+            var price = info.RumPrice;
             ref var drop = ref _world.Get<GoodsDrop>(squad);
             var squadRum = drop.Values.GetValueOrDefault("Rum");
             if (squadRum >= price)
             {
                 var newDrop = drop.Values.ToBuilder();
-                newDrop["Rum"] -= price.Value;
+                newDrop["Rum"] -= price;
                 drop = new() { Values = newDrop.ToImmutable() };
                 return true;
             }
@@ -95,11 +95,11 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                     units.Add((entity, drop, syncId));
             });
 
-            int leftPrice = price.Value;
+            int leftPrice = price;
 
             // remove from squad
             var squadNewDrop = drop.Values.ToBuilder();
-            var removeSquad = Maths.Min(squadRum, price.Value);
+            var removeSquad = Maths.Min(squadRum, price);
             if (squadRum > 0)
             {
                 squadNewDrop["Rum"] -= removeSquad;

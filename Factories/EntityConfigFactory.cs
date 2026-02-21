@@ -10,19 +10,18 @@ namespace DVG.SkyPirates.Shared.Factories
     {
         private readonly Dictionary<T, ComponentsData> _entities = new();
 
-        public EntityConfigFactory(IGlobalConfigFactory globalConfigFactory)
+        public EntityConfigFactory(GlobalConfig config)
         {
-            var config = globalConfigFactory.Create();
             foreach (var item in config.UnitsStats)
-                TryAdd(item);
-            foreach (var item in config.Cactuses)
-                TryAdd(item);
-            foreach (var item in config.Trees)
-                TryAdd(item);
-            foreach (var item in config.Rocks)
-                TryAdd(item);
-            foreach (var item in config.Goods)
-                TryAdd(item);
+                TryAdd(item.Value);
+            foreach (var item in config.CactusesStats)
+                TryAdd(item.Value);
+            foreach (var item in config.TreesStats)
+                TryAdd(item.Value);
+            foreach (var item in config.RocksStats)
+                TryAdd(item.Value);
+            foreach (var item in config.GoodsStats)
+                TryAdd(item.Value);
         }
 
         private void TryAdd(ComponentsData data)

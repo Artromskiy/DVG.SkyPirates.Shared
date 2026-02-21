@@ -7,12 +7,12 @@ namespace DVG.SkyPirates.Shared.Factories
     public class EntityDependencyService : IEntityDependencyService
     {
         private readonly World _world;
-        private readonly EnsureConfig[] _dependencies;
+        private readonly ComponentDependenciesConfig _dependencies;
 
-        public EntityDependencyService(World world, IGlobalConfigFactory globalConfigFactory)
+        public EntityDependencyService(World world, ComponentDependenciesConfig dependencies)
         {
             _world = world;
-            _dependencies = globalConfigFactory.Create().ComponentDependencies;
+            _dependencies = dependencies;
         }
 
         public void EnsureDependencies(Entity entity)

@@ -1,4 +1,6 @@
 ﻿using Arch.Core;
+using DVG.Core;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Factories;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
@@ -22,7 +24,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
             RegisterSingleton(typeof(IConfigedEntityFactory<>), typeof(ConfigedEntityFactory<>));
-            RegisterSingleton<IGlobalConfigFactory, GlobalConfigFactory>();
+            RegisterFactorySingleton<IGlobalConfigFactory, GlobalConfigFactory, GlobalConfig>();
             RegisterSingleton<IPackedCirclesFactory, PackedCirclesFactory>();
             RegisterSingleton<IWorldDataFactory, WorldDataFactory>();
             RegisterSingleton<IEntityFactory, EntityFactory>();
@@ -47,6 +49,10 @@ namespace DVG.SkyPirates.Shared.DI
 
             Collection.Register<ITickableExecutor>(TickableExecutors, Lifestyle.Singleton);
             Collection.Register<ICommandExecutor>(CommandExecutors, Lifestyle.Singleton);
+
+            var globalConfigType = typeof(GlobalConfig);
+            foreach (var item in globalConfigType.GetFields())
+                RegisterSingleton(item.FieldType, () => item.GetValue(GetInstance<GlobalConfig>()));
         }
 
         private static Type[] TickableExecutors => new Type[]
@@ -93,5 +99,13 @@ namespace DVG.SkyPirates.Shared.DI
             typeof(JoysticCommandExecutor)
             //typeof(CommandLogger)
         };
+
+        protected void RegisterFactorySingleton<TService, TImplementation, TInstance>()
+            where TImplementation : class, TService
+            where TService : class, IFactory<TInstance>
+        {
+            RegisterSingleton<TService, TImplementation>();
+            RegisterSingleton(typeof(TInstance), () => GetInstance<TService>().Create());
+        }
     }
 }

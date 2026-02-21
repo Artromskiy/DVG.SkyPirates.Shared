@@ -1,6 +1,6 @@
 {
-  "UnitsStats": [
-    {
+  "UnitsStats": {
+    "Sailor": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "PostAttack",
@@ -35,7 +35,7 @@
       "TargetSearchDistance": 5,
       "UnitId": "Sailor"
     },
-    {
+    "Rogue": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "PostAttack",
@@ -70,7 +70,7 @@
       "TargetSearchDistance": 5,
       "UnitId": "Rogue"
     },
-    {
+    "Pirate": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "PostAttack",
@@ -105,7 +105,7 @@
       "TargetSearchDistance": 5,
       "UnitId": "Pirate"
     },
-    {
+    "Skelly": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "PostAttack",
@@ -140,7 +140,7 @@
       "TargetSearchDistance": 5,
       "UnitId": "Skelly"
     },
-    {
+    "Militia": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "PostAttack",
@@ -175,7 +175,7 @@
       "TargetSearchDistance": 5,
       "UnitId": "Militia"
     },
-    {
+    "Demon": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "PostAttack",
@@ -210,7 +210,7 @@
       "TargetSearchDistance": 5,
       "UnitId": "Demon"
     },
-    {
+    "Buccaneer": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "PostAttack",
@@ -245,7 +245,7 @@
       "TargetSearchDistance": 5,
       "UnitId": "Buccaneer"
     },
-    {
+    "Bonny": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "PostAttack",
@@ -280,7 +280,7 @@
       "TargetSearchDistance": 5,
       "UnitId": "Bonny"
     },
-    {
+    "Imp": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "PostAttack",
@@ -315,9 +315,9 @@
       "TargetSearchDistance": 5,
       "UnitId": "Imp"
     }
-  ],
-  "Cactuses": [
-    {
+  },
+  "CactusesStats": {
+    "Cactus_39_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -338,7 +338,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_02_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -359,7 +359,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_03_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -380,7 +380,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_05_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -401,7 +401,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_06_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -422,7 +422,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_07_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -443,7 +443,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_08_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -464,7 +464,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_09_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -485,7 +485,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_10_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -506,7 +506,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_11_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -527,7 +527,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_12_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -548,7 +548,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_13_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -569,7 +569,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_15_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -590,7 +590,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_16_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -611,7 +611,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_18_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -632,7 +632,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_18_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -653,7 +653,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_23_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -674,7 +674,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_25_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -695,7 +695,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_26_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -716,7 +716,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_26_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -737,7 +737,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_30_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -758,7 +758,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_32_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -779,7 +779,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_36_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -800,7 +800,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_37_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -821,7 +821,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_38_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -842,7 +842,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_01_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -863,7 +863,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_01_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -884,7 +884,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_02_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -905,7 +905,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_03_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -926,7 +926,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_04_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -947,7 +947,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_04_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -968,7 +968,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_05_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -989,7 +989,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_06_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1010,7 +1010,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_07_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1031,7 +1031,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_08_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1052,7 +1052,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_09_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1073,7 +1073,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_10_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1094,7 +1094,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_11_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1115,7 +1115,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_12_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1136,7 +1136,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_13_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1157,7 +1157,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_14_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1178,7 +1178,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_14_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1199,7 +1199,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_15_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1220,7 +1220,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_16_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1241,7 +1241,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_17_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1262,7 +1262,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_17_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1283,7 +1283,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_19_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1304,7 +1304,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_19_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1325,7 +1325,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_20_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1346,7 +1346,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_20_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1367,7 +1367,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_21_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1388,7 +1388,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_21_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1409,7 +1409,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_22_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1430,7 +1430,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_22_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1451,7 +1451,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_23_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1472,7 +1472,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_24_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1493,7 +1493,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_24_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1514,7 +1514,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_25_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1535,7 +1535,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_27_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1556,7 +1556,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_27_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1577,7 +1577,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_28_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1598,7 +1598,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_28_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1619,7 +1619,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_29_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1640,7 +1640,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_29_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1661,7 +1661,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_30_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1682,7 +1682,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_31_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1703,7 +1703,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_31_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1724,7 +1724,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_32_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1745,7 +1745,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_33_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1766,7 +1766,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_33_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1787,7 +1787,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_34_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1808,7 +1808,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_34_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1829,7 +1829,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_35_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1850,7 +1850,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_35_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1871,7 +1871,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_36_B": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1892,7 +1892,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_37_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1913,7 +1913,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_38_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1934,7 +1934,7 @@
       },
       "TargetSearchDistance": 2
     },
-    {
+    "Cactus_39_A": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "None",
@@ -1955,9 +1955,9 @@
       },
       "TargetSearchDistance": 2
     }
-  ],
-  "Trees": [
-    {
+  },
+  "TreesStats": {
+    "Tree_01_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -1971,7 +1971,7 @@
       },
       "TreeId": "Tree_01_Fall"
     },
-    {
+    "Tree_01_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -1985,7 +1985,7 @@
       },
       "TreeId": "Tree_01_Spring"
     },
-    {
+    "Tree_01_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -1999,7 +1999,7 @@
       },
       "TreeId": "Tree_01_Winter"
     },
-    {
+    "Tree_02_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2013,7 +2013,7 @@
       },
       "TreeId": "Tree_02_Fall"
     },
-    {
+    "Tree_02_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2027,7 +2027,7 @@
       },
       "TreeId": "Tree_02_Spring"
     },
-    {
+    "Tree_02_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2041,7 +2041,7 @@
       },
       "TreeId": "Tree_02_Winter"
     },
-    {
+    "Tree_03_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2055,7 +2055,7 @@
       },
       "TreeId": "Tree_03_Fall"
     },
-    {
+    "Tree_03_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2069,7 +2069,7 @@
       },
       "TreeId": "Tree_03_Spring"
     },
-    {
+    "Tree_03_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2083,7 +2083,7 @@
       },
       "TreeId": "Tree_03_Winter"
     },
-    {
+    "Tree_04_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2097,7 +2097,7 @@
       },
       "TreeId": "Tree_04_Fall"
     },
-    {
+    "Tree_04_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2111,7 +2111,7 @@
       },
       "TreeId": "Tree_04_Spring"
     },
-    {
+    "Tree_04_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2125,7 +2125,7 @@
       },
       "TreeId": "Tree_04_Winter"
     },
-    {
+    "Tree_05_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2139,7 +2139,7 @@
       },
       "TreeId": "Tree_05_Fall"
     },
-    {
+    "Tree_05_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2153,7 +2153,7 @@
       },
       "TreeId": "Tree_05_Spring"
     },
-    {
+    "Tree_05_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2167,7 +2167,7 @@
       },
       "TreeId": "Tree_05_Winter"
     },
-    {
+    "Tree_06_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2181,7 +2181,7 @@
       },
       "TreeId": "Tree_06_Fall"
     },
-    {
+    "Tree_06_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2195,7 +2195,7 @@
       },
       "TreeId": "Tree_06_Spring"
     },
-    {
+    "Tree_06_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2209,7 +2209,7 @@
       },
       "TreeId": "Tree_06_Winter"
     },
-    {
+    "Tree_07_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2223,7 +2223,7 @@
       },
       "TreeId": "Tree_07_Fall"
     },
-    {
+    "Tree_07_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2237,7 +2237,7 @@
       },
       "TreeId": "Tree_07_Spring"
     },
-    {
+    "Tree_07_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2251,7 +2251,7 @@
       },
       "TreeId": "Tree_07_Winter"
     },
-    {
+    "Tree_08_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2265,7 +2265,7 @@
       },
       "TreeId": "Tree_08_Fall"
     },
-    {
+    "Tree_08_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2279,7 +2279,7 @@
       },
       "TreeId": "Tree_08_Spring"
     },
-    {
+    "Tree_08_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2293,7 +2293,7 @@
       },
       "TreeId": "Tree_08_Winter"
     },
-    {
+    "Tree_09_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2307,7 +2307,7 @@
       },
       "TreeId": "Tree_09_Fall"
     },
-    {
+    "Tree_09_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2321,7 +2321,7 @@
       },
       "TreeId": "Tree_09_Spring"
     },
-    {
+    "Tree_09_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2335,7 +2335,7 @@
       },
       "TreeId": "Tree_09_Winter"
     },
-    {
+    "Tree_10_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2349,7 +2349,7 @@
       },
       "TreeId": "Tree_10_Fall"
     },
-    {
+    "Tree_10_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2363,7 +2363,7 @@
       },
       "TreeId": "Tree_10_Spring"
     },
-    {
+    "Tree_10_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2377,7 +2377,7 @@
       },
       "TreeId": "Tree_10_Winter"
     },
-    {
+    "Tree_11_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2391,7 +2391,7 @@
       },
       "TreeId": "Tree_11_Fall"
     },
-    {
+    "Tree_11_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2405,7 +2405,7 @@
       },
       "TreeId": "Tree_11_Spring"
     },
-    {
+    "Tree_11_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2419,7 +2419,7 @@
       },
       "TreeId": "Tree_11_Winter"
     },
-    {
+    "Tree_12_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2433,7 +2433,7 @@
       },
       "TreeId": "Tree_12_Fall"
     },
-    {
+    "Tree_12_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2447,7 +2447,7 @@
       },
       "TreeId": "Tree_12_Spring"
     },
-    {
+    "Tree_12_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2461,7 +2461,7 @@
       },
       "TreeId": "Tree_12_Winter"
     },
-    {
+    "Tree_13_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2475,7 +2475,7 @@
       },
       "TreeId": "Tree_13_Fall"
     },
-    {
+    "Tree_13_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2489,7 +2489,7 @@
       },
       "TreeId": "Tree_13_Spring"
     },
-    {
+    "Tree_13_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2503,7 +2503,7 @@
       },
       "TreeId": "Tree_13_Winter"
     },
-    {
+    "Tree_14_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2517,7 +2517,7 @@
       },
       "TreeId": "Tree_14_Fall"
     },
-    {
+    "Tree_14_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2531,7 +2531,7 @@
       },
       "TreeId": "Tree_14_Spring"
     },
-    {
+    "Tree_14_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2545,7 +2545,7 @@
       },
       "TreeId": "Tree_14_Winter"
     },
-    {
+    "Tree_15_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2559,7 +2559,7 @@
       },
       "TreeId": "Tree_15_Fall"
     },
-    {
+    "Tree_15_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2573,7 +2573,7 @@
       },
       "TreeId": "Tree_15_Spring"
     },
-    {
+    "Tree_15_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2587,7 +2587,7 @@
       },
       "TreeId": "Tree_15_Winter"
     },
-    {
+    "Tree_16_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2601,7 +2601,7 @@
       },
       "TreeId": "Tree_16_Fall"
     },
-    {
+    "Tree_16_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2615,7 +2615,7 @@
       },
       "TreeId": "Tree_16_Spring"
     },
-    {
+    "Tree_16_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2629,7 +2629,7 @@
       },
       "TreeId": "Tree_16_Winter"
     },
-    {
+    "Tree_17_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2643,7 +2643,7 @@
       },
       "TreeId": "Tree_17_Fall"
     },
-    {
+    "Tree_17_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2657,7 +2657,7 @@
       },
       "TreeId": "Tree_17_Spring"
     },
-    {
+    "Tree_17_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2671,7 +2671,7 @@
       },
       "TreeId": "Tree_17_Winter"
     },
-    {
+    "Tree_18_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2685,7 +2685,7 @@
       },
       "TreeId": "Tree_18_Fall"
     },
-    {
+    "Tree_18_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2699,7 +2699,7 @@
       },
       "TreeId": "Tree_18_Spring"
     },
-    {
+    "Tree_18_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2713,7 +2713,7 @@
       },
       "TreeId": "Tree_18_Winter"
     },
-    {
+    "Tree_19_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2727,7 +2727,7 @@
       },
       "TreeId": "Tree_19_Fall"
     },
-    {
+    "Tree_19_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2741,7 +2741,7 @@
       },
       "TreeId": "Tree_19_Spring"
     },
-    {
+    "Tree_19_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2755,7 +2755,7 @@
       },
       "TreeId": "Tree_19_Winter"
     },
-    {
+    "Tree_20_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2769,7 +2769,7 @@
       },
       "TreeId": "Tree_20_Fall"
     },
-    {
+    "Tree_20_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2783,7 +2783,7 @@
       },
       "TreeId": "Tree_20_Spring"
     },
-    {
+    "Tree_20_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2797,7 +2797,7 @@
       },
       "TreeId": "Tree_20_Winter"
     },
-    {
+    "Tree_21_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2811,7 +2811,7 @@
       },
       "TreeId": "Tree_21_Fall"
     },
-    {
+    "Tree_21_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2825,7 +2825,7 @@
       },
       "TreeId": "Tree_21_Spring"
     },
-    {
+    "Tree_21_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2839,7 +2839,7 @@
       },
       "TreeId": "Tree_21_Winter"
     },
-    {
+    "Tree_22_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2853,7 +2853,7 @@
       },
       "TreeId": "Tree_22_Fall"
     },
-    {
+    "Tree_22_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2867,7 +2867,7 @@
       },
       "TreeId": "Tree_22_Spring"
     },
-    {
+    "Tree_22_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2881,7 +2881,7 @@
       },
       "TreeId": "Tree_22_Winter"
     },
-    {
+    "Tree_23_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2895,7 +2895,7 @@
       },
       "TreeId": "Tree_23_Fall"
     },
-    {
+    "Tree_23_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2909,7 +2909,7 @@
       },
       "TreeId": "Tree_23_Spring"
     },
-    {
+    "Tree_23_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2923,7 +2923,7 @@
       },
       "TreeId": "Tree_23_Winter"
     },
-    {
+    "Tree_24_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2937,7 +2937,7 @@
       },
       "TreeId": "Tree_24_Fall"
     },
-    {
+    "Tree_24_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2951,7 +2951,7 @@
       },
       "TreeId": "Tree_24_Spring"
     },
-    {
+    "Tree_24_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2965,7 +2965,7 @@
       },
       "TreeId": "Tree_24_Winter"
     },
-    {
+    "Tree_25_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2979,7 +2979,7 @@
       },
       "TreeId": "Tree_25_Fall"
     },
-    {
+    "Tree_25_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -2993,7 +2993,7 @@
       },
       "TreeId": "Tree_25_Spring"
     },
-    {
+    "Tree_25_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3007,7 +3007,7 @@
       },
       "TreeId": "Tree_25_Winter"
     },
-    {
+    "Tree_26_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3021,7 +3021,7 @@
       },
       "TreeId": "Tree_26_Fall"
     },
-    {
+    "Tree_26_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3035,7 +3035,7 @@
       },
       "TreeId": "Tree_26_Spring"
     },
-    {
+    "Tree_26_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3049,7 +3049,7 @@
       },
       "TreeId": "Tree_26_Winter"
     },
-    {
+    "Tree_27_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3063,7 +3063,7 @@
       },
       "TreeId": "Tree_27_Fall"
     },
-    {
+    "Tree_27_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3077,7 +3077,7 @@
       },
       "TreeId": "Tree_27_Spring"
     },
-    {
+    "Tree_27_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3091,7 +3091,7 @@
       },
       "TreeId": "Tree_27_Winter"
     },
-    {
+    "Tree_28_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3105,7 +3105,7 @@
       },
       "TreeId": "Tree_28_Fall"
     },
-    {
+    "Tree_28_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3119,7 +3119,7 @@
       },
       "TreeId": "Tree_28_Spring"
     },
-    {
+    "Tree_28_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3133,7 +3133,7 @@
       },
       "TreeId": "Tree_28_Winter"
     },
-    {
+    "Tree_29_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3147,7 +3147,7 @@
       },
       "TreeId": "Tree_29_Fall"
     },
-    {
+    "Tree_29_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3161,7 +3161,7 @@
       },
       "TreeId": "Tree_29_Spring"
     },
-    {
+    "Tree_29_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3175,7 +3175,7 @@
       },
       "TreeId": "Tree_29_Winter"
     },
-    {
+    "Tree_30_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3189,7 +3189,7 @@
       },
       "TreeId": "Tree_30_Fall"
     },
-    {
+    "Tree_30_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3203,7 +3203,7 @@
       },
       "TreeId": "Tree_30_Spring"
     },
-    {
+    "Tree_30_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3217,7 +3217,7 @@
       },
       "TreeId": "Tree_30_Winter"
     },
-    {
+    "Tree_31_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3231,7 +3231,7 @@
       },
       "TreeId": "Tree_31_Fall"
     },
-    {
+    "Tree_31_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3245,7 +3245,7 @@
       },
       "TreeId": "Tree_31_Spring"
     },
-    {
+    "Tree_31_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3259,7 +3259,7 @@
       },
       "TreeId": "Tree_31_Winter"
     },
-    {
+    "Tree_32_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3273,7 +3273,7 @@
       },
       "TreeId": "Tree_32_Fall"
     },
-    {
+    "Tree_32_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3287,7 +3287,7 @@
       },
       "TreeId": "Tree_32_Spring"
     },
-    {
+    "Tree_32_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3301,7 +3301,7 @@
       },
       "TreeId": "Tree_32_Winter"
     },
-    {
+    "Tree_33_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3315,7 +3315,7 @@
       },
       "TreeId": "Tree_33_Fall"
     },
-    {
+    "Tree_33_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3329,7 +3329,7 @@
       },
       "TreeId": "Tree_33_Spring"
     },
-    {
+    "Tree_33_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3343,7 +3343,7 @@
       },
       "TreeId": "Tree_33_Winter"
     },
-    {
+    "Tree_34_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3357,7 +3357,7 @@
       },
       "TreeId": "Tree_34_Fall"
     },
-    {
+    "Tree_34_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3371,7 +3371,7 @@
       },
       "TreeId": "Tree_34_Spring"
     },
-    {
+    "Tree_34_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3385,7 +3385,7 @@
       },
       "TreeId": "Tree_34_Winter"
     },
-    {
+    "Tree_35_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3399,7 +3399,7 @@
       },
       "TreeId": "Tree_35_Fall"
     },
-    {
+    "Tree_35_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3413,7 +3413,7 @@
       },
       "TreeId": "Tree_35_Spring"
     },
-    {
+    "Tree_35_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3427,7 +3427,7 @@
       },
       "TreeId": "Tree_35_Winter"
     },
-    {
+    "Tree_36_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3441,7 +3441,7 @@
       },
       "TreeId": "Tree_36_Fall"
     },
-    {
+    "Tree_36_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3455,7 +3455,7 @@
       },
       "TreeId": "Tree_36_Spring"
     },
-    {
+    "Tree_36_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3469,7 +3469,7 @@
       },
       "TreeId": "Tree_36_Winter"
     },
-    {
+    "Tree_37_Fall": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3483,7 +3483,7 @@
       },
       "TreeId": "Tree_37_Fall"
     },
-    {
+    "Tree_37_Spring": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3497,7 +3497,7 @@
       },
       "TreeId": "Tree_37_Spring"
     },
-    {
+    "Tree_37_Winter": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3511,7 +3511,7 @@
       },
       "TreeId": "Tree_37_Winter"
     },
-    {
+    "TreeTrunk_01": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3525,7 +3525,7 @@
       },
       "TreeId": "TreeTrunk_01"
     },
-    {
+    "TreeTrunk_02": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3539,7 +3539,7 @@
       },
       "TreeId": "TreeTrunk_02"
     },
-    {
+    "TreeTrunk_03": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3553,7 +3553,7 @@
       },
       "TreeId": "TreeTrunk_03"
     },
-    {
+    "TreeTrunk_04": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3567,7 +3567,7 @@
       },
       "TreeId": "TreeTrunk_04"
     },
-    {
+    "TreeTrunk_05": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3581,7 +3581,7 @@
       },
       "TreeId": "TreeTrunk_05"
     },
-    {
+    "TreeTrunk_06": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3595,7 +3595,7 @@
       },
       "TreeId": "TreeTrunk_06"
     },
-    {
+    "TreeTrunk_07": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3609,7 +3609,7 @@
       },
       "TreeId": "TreeTrunk_07"
     },
-    {
+    "TreeTrunk_08": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3623,7 +3623,7 @@
       },
       "TreeId": "TreeTrunk_08"
     },
-    {
+    "TreeTrunk_09": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3637,7 +3637,7 @@
       },
       "TreeId": "TreeTrunk_09"
     },
-    {
+    "TreeTrunk_10": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3651,7 +3651,7 @@
       },
       "TreeId": "TreeTrunk_10"
     },
-    {
+    "TreeTrunk_11": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3665,7 +3665,7 @@
       },
       "TreeId": "TreeTrunk_11"
     },
-    {
+    "TreeTrunk_12": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3679,7 +3679,7 @@
       },
       "TreeId": "TreeTrunk_12"
     },
-    {
+    "TreeTrunk_13": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3693,7 +3693,7 @@
       },
       "TreeId": "TreeTrunk_13"
     },
-    {
+    "TreeTrunk_14": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3707,7 +3707,7 @@
       },
       "TreeId": "TreeTrunk_14"
     },
-    {
+    "TreeTrunk_15": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3721,7 +3721,7 @@
       },
       "TreeId": "TreeTrunk_15"
     },
-    {
+    "TreeTrunk_16": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3735,7 +3735,7 @@
       },
       "TreeId": "TreeTrunk_16"
     },
-    {
+    "TreeTrunk_17": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3749,7 +3749,7 @@
       },
       "TreeId": "TreeTrunk_17"
     },
-    {
+    "TreeTrunk_18": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3763,7 +3763,7 @@
       },
       "TreeId": "TreeTrunk_18"
     },
-    {
+    "TreeTrunk_19": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3777,7 +3777,7 @@
       },
       "TreeId": "TreeTrunk_19"
     },
-    {
+    "TreeTrunk_20": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3791,7 +3791,7 @@
       },
       "TreeId": "TreeTrunk_20"
     },
-    {
+    "TreeTrunk_21": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3805,7 +3805,7 @@
       },
       "TreeId": "TreeTrunk_21"
     },
-    {
+    "TreeTrunk_22": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3819,7 +3819,7 @@
       },
       "TreeId": "TreeTrunk_22"
     },
-    {
+    "TreeTrunk_23": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3833,7 +3833,7 @@
       },
       "TreeId": "TreeTrunk_23"
     },
-    {
+    "TreeTrunk_24": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3847,7 +3847,7 @@
       },
       "TreeId": "TreeTrunk_24"
     },
-    {
+    "TreeTrunk_25": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3861,7 +3861,7 @@
       },
       "TreeId": "TreeTrunk_25"
     },
-    {
+    "TreeTrunk_26": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3875,7 +3875,7 @@
       },
       "TreeId": "TreeTrunk_26"
     },
-    {
+    "TreeTrunk_27": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3889,7 +3889,7 @@
       },
       "TreeId": "TreeTrunk_27"
     },
-    {
+    "TreeTrunk_28": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3903,7 +3903,7 @@
       },
       "TreeId": "TreeTrunk_28"
     },
-    {
+    "TreeTrunk_29": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3917,7 +3917,7 @@
       },
       "TreeId": "TreeTrunk_29"
     },
-    {
+    "TreeTrunk_30": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3931,7 +3931,7 @@
       },
       "TreeId": "TreeTrunk_30"
     },
-    {
+    "TreeTrunk_31": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3945,7 +3945,7 @@
       },
       "TreeId": "TreeTrunk_31"
     },
-    {
+    "TreeTrunk_32": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3959,7 +3959,7 @@
       },
       "TreeId": "TreeTrunk_32"
     },
-    {
+    "TreeTrunk_33": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3973,7 +3973,7 @@
       },
       "TreeId": "TreeTrunk_33"
     },
-    {
+    "TreeTrunk_34": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -3987,7 +3987,7 @@
       },
       "TreeId": "TreeTrunk_34"
     },
-    {
+    "TreeTrunk_35": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4001,7 +4001,7 @@
       },
       "TreeId": "TreeTrunk_35"
     },
-    {
+    "TreeTrunk_36": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4015,7 +4015,7 @@
       },
       "TreeId": "TreeTrunk_36"
     },
-    {
+    "TreeTrunk_37": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4029,7 +4029,7 @@
       },
       "TreeId": "TreeTrunk_37"
     },
-    {
+    "TreeTrunk_38": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4043,7 +4043,7 @@
       },
       "TreeId": "TreeTrunk_38"
     },
-    {
+    "TreeTrunk_39": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4057,7 +4057,7 @@
       },
       "TreeId": "TreeTrunk_39"
     },
-    {
+    "TreeTrunk_40": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4071,7 +4071,7 @@
       },
       "TreeId": "TreeTrunk_40"
     },
-    {
+    "TreeTrunk_41": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4085,7 +4085,7 @@
       },
       "TreeId": "TreeTrunk_41"
     },
-    {
+    "TreeTrunk_42": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4099,7 +4099,7 @@
       },
       "TreeId": "TreeTrunk_42"
     },
-    {
+    "TreeTrunk_43": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4113,7 +4113,7 @@
       },
       "TreeId": "TreeTrunk_43"
     },
-    {
+    "TreeTrunk_44": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4127,7 +4127,7 @@
       },
       "TreeId": "TreeTrunk_44"
     },
-    {
+    "TreeTrunk_45": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4141,7 +4141,7 @@
       },
       "TreeId": "TreeTrunk_45"
     },
-    {
+    "TreeTrunk_46": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4155,7 +4155,7 @@
       },
       "TreeId": "TreeTrunk_46"
     },
-    {
+    "TreeTrunk_47": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4169,7 +4169,7 @@
       },
       "TreeId": "TreeTrunk_47"
     },
-    {
+    "TreeTrunk_48": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4183,7 +4183,7 @@
       },
       "TreeId": "TreeTrunk_48"
     },
-    {
+    "TreeTrunk_49": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4197,7 +4197,7 @@
       },
       "TreeId": "TreeTrunk_49"
     },
-    {
+    "TreeTrunk_50": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4211,7 +4211,7 @@
       },
       "TreeId": "TreeTrunk_50"
     },
-    {
+    "TreeTrunk_51": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4225,7 +4225,7 @@
       },
       "TreeId": "TreeTrunk_51"
     },
-    {
+    "TreeTrunk_52": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4239,7 +4239,7 @@
       },
       "TreeId": "TreeTrunk_52"
     },
-    {
+    "TreeTrunk_53": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4253,7 +4253,7 @@
       },
       "TreeId": "TreeTrunk_53"
     },
-    {
+    "TreeTrunk_54": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4267,7 +4267,7 @@
       },
       "TreeId": "TreeTrunk_54"
     },
-    {
+    "TreeTrunk_55": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4281,7 +4281,7 @@
       },
       "TreeId": "TreeTrunk_55"
     },
-    {
+    "TreeTrunk_56": {
       "GoodsDrop": {
         "Values": {
           "Wood": 20
@@ -4295,9 +4295,9 @@
       },
       "TreeId": "TreeTrunk_56"
     }
-  ],
-  "Rocks": [
-    {
+  },
+  "RocksStats": {
+    "HardRock_01": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4311,7 +4311,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_02": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4325,7 +4325,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_03": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4339,7 +4339,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_04": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4353,7 +4353,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_05": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4367,7 +4367,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_06": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4381,7 +4381,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_07": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4395,7 +4395,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_08": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4409,7 +4409,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_09": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4423,7 +4423,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_10": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4437,7 +4437,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_11": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4451,7 +4451,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_12": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4465,7 +4465,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_13": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4479,7 +4479,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_14": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4493,7 +4493,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_15": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4507,7 +4507,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_16": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4521,7 +4521,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_17": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4535,7 +4535,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_18": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4549,7 +4549,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_19": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4563,7 +4563,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_20": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4577,7 +4577,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_21": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4591,7 +4591,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_22": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4605,7 +4605,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_23": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4619,7 +4619,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_24": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4633,7 +4633,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_25": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4647,7 +4647,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_26": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4661,7 +4661,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_27": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4675,7 +4675,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_28": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4689,7 +4689,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_29": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4703,7 +4703,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_30": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4717,7 +4717,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_31": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4731,7 +4731,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_32": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4745,7 +4745,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_33": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4759,7 +4759,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_34": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4773,7 +4773,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_35": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4787,7 +4787,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_36": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4801,7 +4801,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_37": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4815,7 +4815,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_38": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4829,7 +4829,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_39": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4843,7 +4843,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_40": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4857,7 +4857,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_41": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4871,7 +4871,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_42": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4885,7 +4885,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_43": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4899,7 +4899,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_44": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4913,7 +4913,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_45": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4927,7 +4927,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_46": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4941,7 +4941,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_47": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4955,7 +4955,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_48": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4969,7 +4969,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_49": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4983,7 +4983,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_50": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -4997,7 +4997,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_51": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5011,7 +5011,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_52": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5025,7 +5025,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_53": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5039,7 +5039,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_54": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5053,7 +5053,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_55": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5067,7 +5067,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_56": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5081,7 +5081,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_57": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5095,7 +5095,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_58": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5109,7 +5109,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_59": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5123,7 +5123,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "HardRock_60": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5137,7 +5137,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_32": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5151,7 +5151,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_01": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5165,7 +5165,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_02": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5179,7 +5179,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_03": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5193,7 +5193,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_04": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5207,7 +5207,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_05": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5221,7 +5221,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_06": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5235,7 +5235,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_07": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5249,7 +5249,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_08": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5263,7 +5263,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_09": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5277,7 +5277,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_10": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5291,7 +5291,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_11": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5305,7 +5305,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_12": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5319,7 +5319,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_13": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5333,7 +5333,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_14": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5347,7 +5347,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_15": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5361,7 +5361,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_16": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5375,7 +5375,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_17": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5389,7 +5389,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_18": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5403,7 +5403,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_19": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5417,7 +5417,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_20": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5431,7 +5431,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_21": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5445,7 +5445,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_22": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5459,7 +5459,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_23": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5473,7 +5473,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_24": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5487,7 +5487,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_25": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5501,7 +5501,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_26": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5515,7 +5515,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_27": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5529,7 +5529,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_28": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5543,7 +5543,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_29": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5557,7 +5557,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_30": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5571,7 +5571,7 @@
         "Coefficient": 1
       }
     },
-    {
+    "SoftRock_31": {
       "GoodsDrop": {
         "Values": {
           "Gold": 1
@@ -5585,56 +5585,83 @@
         "Coefficient": 1
       }
     }
-  ],
-  "Goods": [
-    {
+  },
+  "GoodsStats": {
+    "Gold": {
       "GoodsId": "Gold",
       "MaxSpeed": 5
     },
-    {
+    "Wood": {
       "GoodsId": "Wood",
       "MaxSpeed": 5
     },
-    {
+    "Spice": {
       "GoodsId": "Spice",
       "MaxSpeed": 5
     },
-    {
+    "Sugar": {
       "GoodsId": "Sugar",
       "MaxSpeed": 5
     },
-    {
+    "Tea": {
       "GoodsId": "Tea",
       "MaxSpeed": 5
     },
-    {
+    "Coffee": {
       "GoodsId": "Coffee",
       "MaxSpeed": 5
     },
-    {
+    "Sail": {
       "GoodsId": "Sail",
       "MaxSpeed": 5
     },
-    {
+    "Rope": {
       "GoodsId": "Rope",
       "MaxSpeed": 5
     },
-    {
+    "Rum": {
       "GoodsId": "Rum",
       "MaxSpeed": 5
     }
-  ],
-  "Squad": [
-    {
-      "GoodsDrop": {
-        "Values": {
-          "Rum": 3
-        }
-      },
-      "MaxSpeed": 7,
-      "Radius": 0.399993896484375
+  },
+  "UnitsInfos": {
+    "Sailor": {
+      "UnitId": "Sailor",
+      "RumPrice": 1
+    },
+    "Rogue": {
+      "UnitId": "Rogue",
+      "RumPrice": 1
+    },
+    "Pirate": {
+      "UnitId": "Pirate",
+      "RumPrice": 2
+    },
+    "Skelly": {
+      "UnitId": "Skelly",
+      "RumPrice": 2
+    },
+    "Militia": {
+      "UnitId": "Militia",
+      "RumPrice": 3
+    },
+    "Demon": {
+      "UnitId": "Demon",
+      "RumPrice": 2
+    },
+    "Buccaneer": {
+      "UnitId": "Buccaneer",
+      "RumPrice": 2
+    },
+    "Bonny": {
+      "UnitId": "Bonny",
+      "RumPrice": 2
+    },
+    "Imp": {
+      "UnitId": "Imp",
+      "RumPrice": 1
     }
-  ],
+  },
   "ComponentDependencies": [
     {
       "Has": {
@@ -5810,42 +5837,24 @@
       }
     }
   ],
-  "UnitsInfos": [
+  "SquadStats": [
     {
-      "UnitId": "Sailor",
-      "RumPrice": 1
-    },
-    {
-      "UnitId": "Rogue",
-      "RumPrice": 1
-    },
-    {
-      "UnitId": "Pirate",
-      "RumPrice": 2
-    },
-    {
-      "UnitId": "Skelly",
-      "RumPrice": 2
-    },
-    {
-      "UnitId": "Militia",
-      "RumPrice": 3
-    },
-    {
-      "UnitId": "Demon",
-      "RumPrice": 2
-    },
-    {
-      "UnitId": "Buccaneer",
-      "RumPrice": 2
-    },
-    {
-      "UnitId": "Bonny",
-      "RumPrice": 2
-    },
-    {
-      "UnitId": "Imp",
-      "RumPrice": 1
+      "GoodsDrop": {
+        "Values": {
+          "Rum": 3
+        }
+      },
+      "MaxSpeed": 7,
+      "Radius": 0.399993896484375
     }
-  ]
+  ],
+  "CameraConfig": {
+    "MinXAngle": 55,
+    "MaxXAngle": 55,
+    "MinFov": 30,
+    "MaxFov": 30,
+    "MinDistance": 40,
+    "MaxDistance": 40,
+    "SmoothMoveTime": 0.149993896484375
+  }
 }

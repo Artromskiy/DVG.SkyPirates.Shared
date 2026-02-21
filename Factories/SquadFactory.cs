@@ -8,14 +8,14 @@ namespace DVG.SkyPirates.Shared.Factories
 {
     public class SquadFactory : ISquadFactory
     {
-        private readonly IGlobalConfigFactory _globalConfigFactory;
+        private readonly SquadStatsConfig _squadStats;
         private readonly IEntityDependencyService _entityDependencyService;
         private readonly IEntityFactory _commandEntityFactory;
         private readonly World _world;
 
-        public SquadFactory(IGlobalConfigFactory globalConfigFactory, IEntityDependencyService entityDependencyService, IEntityFactory commandEntityFactory, World world)
+        public SquadFactory(SquadStatsConfig squadStats, IEntityDependencyService entityDependencyService, IEntityFactory commandEntityFactory, World world)
         {
-            _globalConfigFactory = globalConfigFactory;
+            _squadStats = squadStats;
             _entityDependencyService = entityDependencyService;
             _commandEntityFactory = commandEntityFactory;
             _world = world;
@@ -26,7 +26,7 @@ namespace DVG.SkyPirates.Shared.Factories
             var entity = _commandEntityFactory.Create(parameters.entityParameters);
             _world.Add<Squad>(entity);
             _entityDependencyService.EnsureDependencies(entity);
-            _world.SetEntityData(entity, _globalConfigFactory.Create().Squad[0]);
+            _world.SetEntityData(entity, _squadStats[0]);
             _world.Get<TeamId>(entity) = parameters.team;
             return entity;
         }

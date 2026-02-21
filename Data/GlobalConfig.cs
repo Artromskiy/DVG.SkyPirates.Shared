@@ -1,15 +1,19 @@
-﻿namespace DVG.SkyPirates.Shared.Data
+﻿
+namespace DVG.SkyPirates.Shared.Data
 {
     public class GlobalConfig
     {
-        public ComponentsData[] UnitsStats;
-        public ComponentsData[] Cactuses;
-        public ComponentsData[] Trees;
-        public ComponentsData[] Rocks;
-        public ComponentsData[] Goods;
-        public ComponentsData[] Squad;
-        public EnsureConfig[] ComponentDependencies;
+        public UnitsStatsConfig UnitsStats;
+        public CactusesStatsConfig CactusesStats;
+        public TreesStatsConfig TreesStats;
+        public RocksStatsConfig RocksStats;
+        public GoodsStatsConfig GoodsStats;
+        public UnitsInfoConfig UnitsInfos;
 
-        public UnitInfoData[] UnitsInfos;
+        public ComponentDependenciesConfig ComponentDependencies;
+
+        public SquadStatsConfig SquadStats;
+        public CameraConfig CameraConfig;
+
     }
 }

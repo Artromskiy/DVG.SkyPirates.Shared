@@ -14,11 +14,11 @@ namespace DVG.SkyPirates.Shared.Tools.Json
     {
         private static Utf8JsonWriter? _writer;
         private static readonly ArrayBufferWriter<byte> _buffer;
-        private static readonly JsonSerializerOptions _options;
+        public static readonly JsonSerializerOptions Options;
         static SerializationUTF8()
         {
             _buffer = new ArrayBufferWriter<byte>();
-            _options = new(JsonSerializerOptions.Default)
+            Options = new(JsonSerializerOptions.Default)
             {
                 IncludeFields = true,
                 IgnoreReadOnlyFields = false,
@@ -29,46 +29,46 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             };
             var format = CultureInfo.InvariantCulture;
 
-            _options.Converters.Add(new FixConverter());
+            Options.Converters.Add(new FixConverter());
 
-            _options.Converters.Add(new StringFuncConverter<bool2>(value => bool2.Parse(value)));
-            _options.Converters.Add(new StringFuncConverter<bool3>(value => bool3.Parse(value)));
-            _options.Converters.Add(new StringFuncConverter<bool4>(value => bool4.Parse(value)));
-            _options.Converters.Add(new StringFuncConverter<fix2>(value => fix2.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<fix3>(value => fix3.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<fix4>(value => fix4.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<int2>(value => int2.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<int3>(value => int3.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<int4>(value => int4.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<uint2>(value => uint2.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<uint3>(value => uint3.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<uint4>(value => uint4.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<float2>(value => float2.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<float3>(value => float3.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<float4>(value => float4.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<double2>(value => double2.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<double3>(value => double3.Parse(value, format)));
-            _options.Converters.Add(new StringFuncConverter<double4>(value => double4.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<bool2>(value => bool2.Parse(value)));
+            Options.Converters.Add(new StringFuncConverter<bool3>(value => bool3.Parse(value)));
+            Options.Converters.Add(new StringFuncConverter<bool4>(value => bool4.Parse(value)));
+            Options.Converters.Add(new StringFuncConverter<fix2>(value => fix2.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<fix3>(value => fix3.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<fix4>(value => fix4.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<int2>(value => int2.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<int3>(value => int3.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<int4>(value => int4.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<uint2>(value => uint2.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<uint3>(value => uint3.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<uint4>(value => uint4.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<float2>(value => float2.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<float3>(value => float3.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<float4>(value => float4.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<double2>(value => double2.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<double3>(value => double3.Parse(value, format)));
+            Options.Converters.Add(new StringFuncConverter<double4>(value => double4.Parse(value, format)));
 
             // NewType implicit casting used
-            _options.Converters.Add(new FixFuncConverter<Health>(value => value, value => value));
-            _options.Converters.Add(new FixFuncConverter<Radius>(value => value, value => value));
-            _options.Converters.Add(new FixFuncConverter<Damage>(value => value, value => value));
-            _options.Converters.Add(new FixFuncConverter<MaxSpeed>(value => value, value => value));
-            _options.Converters.Add(new FixFuncConverter<MaxHealth>(value => value, value => value));
-            _options.Converters.Add(new FixFuncConverter<Separation>(value => value, value => value));
-            _options.Converters.Add(new FixFuncConverter<ImpactDistance>(value => value, value => value));
-            _options.Converters.Add(new FixFuncConverter<GoodsCollectorRadius>(value => value, value => value));
-            _options.Converters.Add(new FixFuncConverter<TargetSearchDistance>(value => value, value => value));
+            Options.Converters.Add(new FixFuncConverter<Health>(value => value, value => value));
+            Options.Converters.Add(new FixFuncConverter<Radius>(value => value, value => value));
+            Options.Converters.Add(new FixFuncConverter<Damage>(value => value, value => value));
+            Options.Converters.Add(new FixFuncConverter<MaxSpeed>(value => value, value => value));
+            Options.Converters.Add(new FixFuncConverter<MaxHealth>(value => value, value => value));
+            Options.Converters.Add(new FixFuncConverter<Separation>(value => value, value => value));
+            Options.Converters.Add(new FixFuncConverter<ImpactDistance>(value => value, value => value));
+            Options.Converters.Add(new FixFuncConverter<GoodsCollectorRadius>(value => value, value => value));
+            Options.Converters.Add(new FixFuncConverter<TargetSearchDistance>(value => value, value => value));
 
-            _options.Converters.Add(new IdConverter<CheatingId>());
-            _options.Converters.Add(new IdConverter<GoodsId>());
-            _options.Converters.Add(new IdConverter<StateId>());
-            _options.Converters.Add(new IdConverter<TileId>());
-            _options.Converters.Add(new IdConverter<UnitId>());
-            _options.Converters.Add(new IdConverter<CactusId>());
-            _options.Converters.Add(new IdConverter<TreeId>());
-            _options.Converters.Add(new IdConverter<RockId>());
+            Options.Converters.Add(new IdConverter<CheatingId>());
+            Options.Converters.Add(new IdConverter<GoodsId>());
+            Options.Converters.Add(new IdConverter<StateId>());
+            Options.Converters.Add(new IdConverter<TileId>());
+            Options.Converters.Add(new IdConverter<UnitId>());
+            Options.Converters.Add(new IdConverter<CactusId>());
+            Options.Converters.Add(new IdConverter<TreeId>());
+            Options.Converters.Add(new IdConverter<RockId>());
         }
 
         public static string Serialize<T>(T data)
@@ -97,14 +97,14 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                 Indented = true,
                 SkipValidation = true,
             });
-            JsonSerializer.Serialize(_writer, data, _options);
+            JsonSerializer.Serialize(_writer, data, Options);
         }
 
 
         public static T Deserialize<T>(ReadOnlyMemory<byte> data)
         {
             var reader = new Utf8JsonReader(data.Span);
-            return JsonSerializer.Deserialize<T>(ref reader, _options);
+            return JsonSerializer.Deserialize<T>(ref reader, Options);
         }
     }
 }

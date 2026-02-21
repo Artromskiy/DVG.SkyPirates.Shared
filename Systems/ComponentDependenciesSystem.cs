@@ -3,7 +3,6 @@ using Arch.Core.Utils;
 using DVG.Collections;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
-using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Collections.Generic;
@@ -20,17 +19,16 @@ namespace DVG.SkyPirates.Shared.Systems
             public QueryDescription Desc;
         }
 
-        public ComponentDependenciesSystem(IGlobalConfigFactory configFactory, World world)
+        public ComponentDependenciesSystem(ComponentDependenciesConfig componentDependencies, World world)
         {
-            var config = configFactory.Create().ComponentDependencies;
             _world = world;
 
-            _dependencies = Array.ConvertAll(config, dependency =>
+            _dependencies = componentDependencies.ConvertAll(dependency =>
             {
                 HashSet<Type> allComponents = new();
                 Signature allSignature = new(Array.ConvertAll(dependency.Has.GetTypes(), Component.GetComponentType));
                 return new DependencyData(allSignature, dependency.Add, dependency.DefaultOnAdd, new());
-            });
+            }).ToArray();
         }
 
         public void Tick(int tick, fix deltaTime)
