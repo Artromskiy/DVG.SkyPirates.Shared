@@ -1,7 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Collections;
 using DVG.Components;
-using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Collections.Generic;
@@ -18,12 +17,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         private readonly List<Entity> _entitiesCache = new();
         private readonly GenericCreator _disposeDesc = new();
 
-        private readonly IPooledItemsProvider _pooledItemsProvider;
         private readonly World _world;
 
-        public DisposeSystem(IPooledItemsProvider pooledItemsProvider, World world)
+        public DisposeSystem(World world)
         {
-            _pooledItemsProvider = pooledItemsProvider;
             _world = world;
         }
 
@@ -35,7 +32,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             foreach (var entity in _entitiesCache)
                 _world.Add<Temp>(entity);
 
-            var disposeCallAction = new DisposeCallAction(_world, _disposeDesc, _pooledItemsProvider);
+            var disposeCallAction = new DisposeCallAction(_world, _disposeDesc);
             DisposableComponentsRegistry.ForEachData(ref disposeCallAction);
 
             _world.Destroy(new QueryDescription().WithAll<Temp>());
@@ -45,35 +42,23 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             private readonly World _world;
             private readonly GenericCreator _desc;
-            private readonly IPooledItemsProvider _pooledItemsProvider;
 
-            public DisposeCallAction(World world, GenericCreator desc, IPooledItemsProvider pooledItemsProvider)
+            public DisposeCallAction(World world, GenericCreator desc)
             {
                 _world = world;
                 _desc = desc;
-                _pooledItemsProvider = pooledItemsProvider;
             }
 
             public void Invoke<T>() where T : struct, IDisposable
             {
-                var query = new DisposeQuery<T>(_pooledItemsProvider);
+                var query = new DisposeQuery<T>();
                 var desc = _desc.Get<Description<T>>().Desc;
                 _world.InlineQuery<DisposeQuery<T>, T>(in desc, ref query);
             }
 
             private readonly struct DisposeQuery<T> : IForEach<T> where T : struct, IDisposable
             {
-                private readonly IPooledItemsProvider _pooledItemsProvider;
-
-                public DisposeQuery(IPooledItemsProvider pooledItemsProvider)
-                {
-                    _pooledItemsProvider = pooledItemsProvider;
-                }
-
-                public readonly void Update(ref T component)
-                {
-                    _pooledItemsProvider.Return(component);
-                }
+                public readonly void Update(ref T component) => component.Dispose();
             }
         }
 
