@@ -30,7 +30,7 @@ namespace DVG.SkyPirates.Shared.DI
             RegisterSingleton<ISquadFactory, SquadFactory>();
 
             RegisterSingleton<IEntityDependencyService, EntityDependencyService>();
-            RegisterSingleton<IEntityRegistryService, EntityRegistryService>();
+            RegisterSingleton<IEntityRegistry, EntityRegistry>();
 
             RegisterSingleton<IPooledItemsProvider, PooledItemsProvider>();
             RegisterSingleton<ITargetSearchSystem, TargetSearchSystem>();
