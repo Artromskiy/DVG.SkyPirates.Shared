@@ -8,9 +8,9 @@ namespace DVG.SkyPirates.Shared.Factories
     public class EntityFactory : IEntityFactory
     {
         private readonly World _world;
-        private readonly IEntityRegistryService _entityRegistryService;
+        private readonly IEntityRegistry _entityRegistryService;
 
-        public EntityFactory(World world, IEntityRegistryService entityRegistryService)
+        public EntityFactory(World world, IEntityRegistry entityRegistryService)
         {
             _world = world;
             _entityRegistryService = entityRegistryService;

@@ -11,10 +11,10 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
     [Obsolete]
     public class JoysticCommandExecutor : ICommandExecutor<JoystickCommand>
     {
-        private readonly IEntityRegistryService _entityRegistryService;
+        private readonly IEntityRegistry _entityRegistryService;
         private readonly World _world;
 
-        public JoysticCommandExecutor(IEntityRegistryService entityRegistryService, World world)
+        public JoysticCommandExecutor(IEntityRegistry entityRegistryService, World world)
         {
             _entityRegistryService = entityRegistryService;
             _world = world;

@@ -16,11 +16,11 @@ namespace DVG.SkyPirates.Shared.Factories
         }
         private readonly GenericCreator _desc = new();
 
-        private readonly IEntityRegistryService _entityRegistryService;
+        private readonly IEntityRegistry _entityRegistryService;
         private readonly IEntityFactory _entityFactory;
         private readonly World _world;
 
-        public WorldDataFactory(IEntityRegistryService entityRegistryService, IEntityFactory entityFactory, World world)
+        public WorldDataFactory(IEntityRegistry entityRegistryService, IEntityFactory entityFactory, World world)
         {
             _entityRegistryService = entityRegistryService;
             _entityFactory = entityFactory;
@@ -90,11 +90,11 @@ namespace DVG.SkyPirates.Shared.Factories
 
         private readonly struct ExtractAction : IStructGenericAction
         {
-            private readonly IEntityRegistryService _entityRegistryService;
+            private readonly IEntityRegistry _entityRegistryService;
             private readonly WorldData _worldData;
             private readonly World _world;
 
-            public ExtractAction(IEntityRegistryService entityRegistryService, WorldData worldData, World world)
+            public ExtractAction(IEntityRegistry entityRegistryService, WorldData worldData, World world)
             {
                 _entityRegistryService = entityRegistryService;
                 _worldData = worldData;

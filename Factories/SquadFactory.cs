@@ -1,19 +1,21 @@
 ﻿using Arch.Core;
-using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
+using DVG.SkyPirates.Shared.Systems;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
     public class SquadFactory : ISquadFactory
     {
+        private readonly IGlobalConfigFactory _globalConfigFactory;
         private readonly IEntityDependencyService _entityDependencyService;
         private readonly IEntityFactory _commandEntityFactory;
         private readonly World _world;
 
-        public SquadFactory(IEntityDependencyService entityDependencyService, IEntityFactory commandEntityFactory, World world)
+        public SquadFactory(IGlobalConfigFactory globalConfigFactory, IEntityDependencyService entityDependencyService, IEntityFactory commandEntityFactory, World world)
         {
+            _globalConfigFactory = globalConfigFactory;
             _entityDependencyService = entityDependencyService;
             _commandEntityFactory = commandEntityFactory;
             _world = world;
@@ -24,8 +26,7 @@ namespace DVG.SkyPirates.Shared.Factories
             var entity = _commandEntityFactory.Create(parameters.entityParameters);
             _world.Add<Squad>(entity);
             _entityDependencyService.EnsureDependencies(entity);
-            _world.Get<Radius>(entity) = fix.One / 3;
-            _world.Get<MaxSpeed>(entity) = (fix)7;
+            _world.SetEntityData(entity, _globalConfigFactory.Create().Squad[0]);
             _world.Get<TeamId>(entity) = parameters.team;
             return entity;
         }

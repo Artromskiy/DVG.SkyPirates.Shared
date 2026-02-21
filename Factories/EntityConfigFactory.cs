@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Factories
         public EntityConfigFactory(IGlobalConfigFactory globalConfigFactory)
         {
             var config = globalConfigFactory.Create();
-            foreach (var item in config.Units)
+            foreach (var item in config.UnitsStats)
                 TryAdd(item);
             foreach (var item in config.Cactuses)
                 TryAdd(item);
