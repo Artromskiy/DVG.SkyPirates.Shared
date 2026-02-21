@@ -1,6 +1,7 @@
 ﻿using Arch.Core;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -23,6 +24,9 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly QueryDescription _unitsDesc = new QueryDescription().
             WithAll<SquadMember, SyncId, GoodsDrop>().NotDisposing().NotDisabled();
 
+        private readonly QueryDescription _squadDesc = new QueryDescription().
+            WithAll<Squad, SyncId, GoodsDrop, SquadMemberCount>().NotDisposing().NotDisabled();
+
         public SquadGoodsDistributionSystem(World world)
         {
             _world = world;
@@ -39,6 +43,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
             var squadMembersQuery = new SquadMembersCollectQuery(_goodsPerSquad, _unitsPerSquad);
             _world.InlineQuery<SquadMembersCollectQuery, SquadMember, GoodsDrop, SyncId>(_unitsDesc, ref squadMembersQuery);
+            // will redistribute only if there's members
+            var squadGoodsQuery = new SquadGoodsCollectQuery(_goodsPerSquad);
+            _world.InlineQuery<SquadGoodsCollectQuery, GoodsDrop, SyncId, SquadMemberCount>(_squadDesc, ref squadGoodsQuery);
 
             foreach (var item in _unitsPerSquad)
                 item.Value.Sort((u1, u2) => u1.Value.CompareTo(u2.Value));
@@ -68,7 +75,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         var syncId = units[i];
 
                         if (!_goodsPerUnit.TryGetValue(syncId, out var unitGoods))
-                            _goodsPerUnit[syncId] = unitGoods = new SortedList<GoodsId, int>();
+                            _goodsPerUnit[syncId] = unitGoods = new();
 
                         if (!unitGoods.ContainsKey(goodsId))
                             unitGoods[goodsId] = 0;
@@ -99,11 +106,39 @@ namespace DVG.SkyPirates.Shared.Systems
                     return;
                 }
 
-                // uses object comparer by default!!!
                 if (drop.Values?.SequenceEqual(distributedDrop, KeyValuePairComparer<GoodsId, int>.Default) ?? false)
                     return;
 
                 drop = new() { Values = distributedDrop.ToImmutableSortedDictionary() };
+            }
+        }
+
+        private readonly struct SquadGoodsCollectQuery : IForEach<GoodsDrop, SyncId, SquadMemberCount>
+        {
+            private readonly Dictionary<int, Dictionary<GoodsId, int>> _goodsPerSquad;
+
+            public SquadGoodsCollectQuery(Dictionary<int, Dictionary<GoodsId, int>> goodsPerSquad)
+            {
+                _goodsPerSquad = goodsPerSquad;
+            }
+
+            public void Update(ref GoodsDrop goods, ref SyncId syncId, ref SquadMemberCount memberCount)
+            {
+                if (memberCount.Value == 0)
+                    return;
+
+                if (!_goodsPerSquad.TryGetValue(syncId, out var squadGoods))
+                    _goodsPerSquad[syncId] = squadGoods = new();
+
+                foreach (var item in goods.Values)
+                {
+                    if (item.Value <= 0)
+                        continue;
+
+                    if (!squadGoods.TryAdd(item.Key, item.Value))
+                        squadGoods[item.Key] += item.Value;
+                }
+                goods = new() { Values = ImmutableSortedDictionary<GoodsId, int>.Empty };
             }
         }
 
@@ -123,7 +158,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 if (drop.Values != null)
                 {
                     if (!_goodsPerSquad.TryGetValue(member.SquadId, out var squadGoods))
-                        _goodsPerSquad[member.SquadId] = squadGoods = new Dictionary<GoodsId, int>();
+                        _goodsPerSquad[member.SquadId] = squadGoods = new();
 
                     foreach (var item in drop.Values)
                     {
