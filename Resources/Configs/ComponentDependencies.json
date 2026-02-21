@@ -6,14 +6,12 @@
     "Add": {
       "Position": {},
       "Rotation": {},
-      "Team": {},
-      "Collision": {},
+      "TeamId": {},
+      "Collide": {},
       "Direction": {},
       "Fixation": {},
-      "MaxSpeed": {},
       "SquadMemberCount": {},
-      "TargetSearchDistance": {},
-      "Radius": {}
+      "TargetSearchDistance": {}
     }
   },
   {
@@ -23,8 +21,8 @@
     "Add": {
       "Position": {},
       "Rotation": {},
-      "Team": {},
-      "Collision": {},
+      "TeamId": {},
+      "Collide": {},
       "Target": {},
       "Destination": {}
     }
@@ -36,7 +34,7 @@
     "Add": {
       "Position": {},
       "Rotation": {},
-      "Team": {},
+      "TeamId": {},
       "Targets": {}
     }
   },
@@ -47,7 +45,7 @@
     "Add": {
       "Position": {},
       "Rotation": {},
-      "Team": {}
+      "TeamId": {}
     }
   },
   {
@@ -57,7 +55,7 @@
     "Add": {
       "Position": {},
       "Rotation": {},
-      "Team": {}
+      "TeamId": {}
     }
   },
   {

@@ -1,7 +1,7 @@
 [
   {
     "RockId": "HardRock_01",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -15,7 +15,7 @@
   },
   {
     "RockId": "HardRock_02",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -29,7 +29,7 @@
   },
   {
     "RockId": "HardRock_03",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -43,7 +43,7 @@
   },
   {
     "RockId": "HardRock_04",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -57,7 +57,7 @@
   },
   {
     "RockId": "HardRock_05",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -71,7 +71,7 @@
   },
   {
     "RockId": "HardRock_06",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -85,7 +85,7 @@
   },
   {
     "RockId": "HardRock_07",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -99,7 +99,7 @@
   },
   {
     "RockId": "HardRock_08",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -113,7 +113,7 @@
   },
   {
     "RockId": "HardRock_09",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -127,7 +127,7 @@
   },
   {
     "RockId": "HardRock_10",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -141,7 +141,7 @@
   },
   {
     "RockId": "HardRock_11",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -155,7 +155,7 @@
   },
   {
     "RockId": "HardRock_12",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -169,7 +169,7 @@
   },
   {
     "RockId": "HardRock_13",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -183,7 +183,7 @@
   },
   {
     "RockId": "HardRock_14",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -197,7 +197,7 @@
   },
   {
     "RockId": "HardRock_15",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -211,7 +211,7 @@
   },
   {
     "RockId": "HardRock_16",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -225,7 +225,7 @@
   },
   {
     "RockId": "HardRock_17",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -239,7 +239,7 @@
   },
   {
     "RockId": "HardRock_18",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -253,7 +253,7 @@
   },
   {
     "RockId": "HardRock_19",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -267,7 +267,7 @@
   },
   {
     "RockId": "HardRock_20",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -281,7 +281,7 @@
   },
   {
     "RockId": "HardRock_21",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -295,7 +295,7 @@
   },
   {
     "RockId": "HardRock_22",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -309,7 +309,7 @@
   },
   {
     "RockId": "HardRock_23",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -323,7 +323,7 @@
   },
   {
     "RockId": "HardRock_24",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -337,7 +337,7 @@
   },
   {
     "RockId": "HardRock_25",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -351,7 +351,7 @@
   },
   {
     "RockId": "HardRock_26",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -365,7 +365,7 @@
   },
   {
     "RockId": "HardRock_27",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -379,7 +379,7 @@
   },
   {
     "RockId": "HardRock_28",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -393,7 +393,7 @@
   },
   {
     "RockId": "HardRock_29",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -407,7 +407,7 @@
   },
   {
     "RockId": "HardRock_30",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -421,7 +421,7 @@
   },
   {
     "RockId": "HardRock_31",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -435,7 +435,7 @@
   },
   {
     "RockId": "HardRock_32",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -449,7 +449,7 @@
   },
   {
     "RockId": "HardRock_33",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -463,7 +463,7 @@
   },
   {
     "RockId": "HardRock_34",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -477,7 +477,7 @@
   },
   {
     "RockId": "HardRock_35",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -491,7 +491,7 @@
   },
   {
     "RockId": "HardRock_36",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -505,7 +505,7 @@
   },
   {
     "RockId": "HardRock_37",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -519,7 +519,7 @@
   },
   {
     "RockId": "HardRock_38",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -533,7 +533,7 @@
   },
   {
     "RockId": "HardRock_39",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -547,7 +547,7 @@
   },
   {
     "RockId": "HardRock_40",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -561,7 +561,7 @@
   },
   {
     "RockId": "HardRock_41",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -575,7 +575,7 @@
   },
   {
     "RockId": "HardRock_42",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -589,7 +589,7 @@
   },
   {
     "RockId": "HardRock_43",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -603,7 +603,7 @@
   },
   {
     "RockId": "HardRock_44",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -617,7 +617,7 @@
   },
   {
     "RockId": "HardRock_45",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -631,7 +631,7 @@
   },
   {
     "RockId": "HardRock_46",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -645,7 +645,7 @@
   },
   {
     "RockId": "HardRock_47",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -659,7 +659,7 @@
   },
   {
     "RockId": "HardRock_48",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -673,7 +673,7 @@
   },
   {
     "RockId": "HardRock_49",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -687,7 +687,7 @@
   },
   {
     "RockId": "HardRock_50",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -701,7 +701,7 @@
   },
   {
     "RockId": "HardRock_51",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -715,7 +715,7 @@
   },
   {
     "RockId": "HardRock_52",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -729,7 +729,7 @@
   },
   {
     "RockId": "HardRock_53",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -743,7 +743,7 @@
   },
   {
     "RockId": "HardRock_54",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -757,7 +757,7 @@
   },
   {
     "RockId": "HardRock_55",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -771,7 +771,7 @@
   },
   {
     "RockId": "HardRock_56",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -785,7 +785,7 @@
   },
   {
     "RockId": "HardRock_57",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -799,7 +799,7 @@
   },
   {
     "RockId": "HardRock_58",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -813,7 +813,7 @@
   },
   {
     "RockId": "HardRock_59",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -827,7 +827,7 @@
   },
   {
     "RockId": "HardRock_60",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -841,7 +841,7 @@
   },
   {
     "RockId": "SoftRock_32",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -855,7 +855,7 @@
   },
   {
     "RockId": "SoftRock_01",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -869,7 +869,7 @@
   },
   {
     "RockId": "SoftRock_02",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -883,7 +883,7 @@
   },
   {
     "RockId": "SoftRock_03",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -897,7 +897,7 @@
   },
   {
     "RockId": "SoftRock_04",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -911,7 +911,7 @@
   },
   {
     "RockId": "SoftRock_05",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -925,7 +925,7 @@
   },
   {
     "RockId": "SoftRock_06",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -939,7 +939,7 @@
   },
   {
     "RockId": "SoftRock_07",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -953,7 +953,7 @@
   },
   {
     "RockId": "SoftRock_08",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -967,7 +967,7 @@
   },
   {
     "RockId": "SoftRock_09",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -981,7 +981,7 @@
   },
   {
     "RockId": "SoftRock_10",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -995,7 +995,7 @@
   },
   {
     "RockId": "SoftRock_11",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1009,7 +1009,7 @@
   },
   {
     "RockId": "SoftRock_12",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1023,7 +1023,7 @@
   },
   {
     "RockId": "SoftRock_13",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1037,7 +1037,7 @@
   },
   {
     "RockId": "SoftRock_14",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1051,7 +1051,7 @@
   },
   {
     "RockId": "SoftRock_15",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1065,7 +1065,7 @@
   },
   {
     "RockId": "SoftRock_16",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1079,7 +1079,7 @@
   },
   {
     "RockId": "SoftRock_17",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1093,7 +1093,7 @@
   },
   {
     "RockId": "SoftRock_18",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1107,7 +1107,7 @@
   },
   {
     "RockId": "SoftRock_19",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1121,7 +1121,7 @@
   },
   {
     "RockId": "SoftRock_20",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1135,7 +1135,7 @@
   },
   {
     "RockId": "SoftRock_21",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1149,7 +1149,7 @@
   },
   {
     "RockId": "SoftRock_22",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1163,7 +1163,7 @@
   },
   {
     "RockId": "SoftRock_23",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1177,7 +1177,7 @@
   },
   {
     "RockId": "SoftRock_24",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1191,7 +1191,7 @@
   },
   {
     "RockId": "SoftRock_25",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1205,7 +1205,7 @@
   },
   {
     "RockId": "SoftRock_26",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1219,7 +1219,7 @@
   },
   {
     "RockId": "SoftRock_27",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1233,7 +1233,7 @@
   },
   {
     "RockId": "SoftRock_28",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1247,7 +1247,7 @@
   },
   {
     "RockId": "SoftRock_29",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1261,7 +1261,7 @@
   },
   {
     "RockId": "SoftRock_30",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
@@ -1275,7 +1275,7 @@
   },
   {
     "RockId": "SoftRock_31",
-    "MaxHealth": 100,
+    "MaxHealth": 30,
     "Radius": 0.5,
     "Separator": {
       "Radius": 0.5,
