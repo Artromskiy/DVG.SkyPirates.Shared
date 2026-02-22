@@ -57,6 +57,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             Options.Converters.Add(new FixFuncConverter<MaxSpeed>(value => value, value => value));
             Options.Converters.Add(new FixFuncConverter<MaxHealth>(value => value, value => value));
             Options.Converters.Add(new FixFuncConverter<Separation>(value => value, value => value));
+            Options.Converters.Add(new FixFuncConverter<ActivityRange>(value => value, value => value));
             Options.Converters.Add(new FixFuncConverter<ImpactDistance>(value => value, value => value));
             Options.Converters.Add(new FixFuncConverter<GoodsCollectorRadius>(value => value, value => value));
             Options.Converters.Add(new FixFuncConverter<TargetSearchDistance>(value => value, value => value));

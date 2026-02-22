@@ -5668,6 +5668,7 @@
         "Squad": {}
       },
       "Add": {
+        "ActivityRange": 0,
         "Collide": {},
         "Direction": {
           "Value": "0, 0"

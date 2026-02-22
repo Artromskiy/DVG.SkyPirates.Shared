@@ -11,8 +11,10 @@
       "Direction": {},
       "Fixation": {},
       "SquadMemberCount": {},
-      "TargetSearchDistance": {}
-    }
+      "TargetSearchDistance": {},
+      "ActivityRange": {}
+    },
+    "ActivityRange": 15
   },
   {
     "Has": {
