@@ -60,9 +60,11 @@ namespace DVG.SkyPirates.Shared.Services
                 var commands = _commands;
                 _recieveService.RegisterReciever<T>(c =>
                 {
-                    if (!commands.TryGet<Dictionary<int, Command<T>>>(out var typedCommands))
+                    if (!commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
                         commands.Add(typedCommands = new());
-                    typedCommands.Add(c.Tick, c);
+                    if (!typedCommands.TryGetValue(c.Tick, out var tickCommands))
+                        tickCommands = new();
+                    tickCommands.Add(c);
                 });
 
                 var executor = _executor as ICommandExecutor<T>;
@@ -70,11 +72,12 @@ namespace DVG.SkyPirates.Shared.Services
 
                 wrappedCall = (i) =>
                 {
-                    if (!commands.TryGet<Dictionary<int, Command<T>>>(out var typedCommands))
+                    if (!commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
                         return;
-                    if (!typedCommands.TryGetValue(i, out var command))
+                    if (!typedCommands.TryGetValue(i, out var tickCommands))
                         return;
-                    executor.Execute(command);
+                    foreach (var cmd in tickCommands)
+                        executor.Execute(cmd);
                 };
             }
         }
