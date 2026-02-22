@@ -30,10 +30,9 @@ namespace DVG.SkyPirates.Shared.Services
             _disposeSystem = disposeSystem;
         }
 
-        public void Tick()
+        public void TickTo(int targetTick)
         {
-            var nextTick = CurrentTick + 1;
-            _preTickableExecutorService.Tick(nextTick, Constants.TickTime);
+            _preTickableExecutorService.Tick(targetTick, Constants.TickTime);
 
             if (DirtyTick <= CurrentTick)
             {
@@ -41,12 +40,12 @@ namespace DVG.SkyPirates.Shared.Services
             }
 
             var fromTick = CurrentTick + 1;
-            for (int i = fromTick; i <= nextTick; i++)
+            for (int i = fromTick; i <= targetTick; i++)
                 Tick(i);
 
             DirtyTick = int.MaxValue;
 
-            _postTickableExecutorService.Tick(nextTick, Constants.TickTime);
+            _postTickableExecutorService.Tick(targetTick, Constants.TickTime);
         }
 
         public void GoTo(int tick)

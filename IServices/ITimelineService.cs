@@ -4,7 +4,7 @@
     {
         int CurrentTick { get; set; }
         int DirtyTick { get; set; }
-        void Tick();
+        void TickTo(int targetTick);
         void GoTo(int tick);
     }
 }
