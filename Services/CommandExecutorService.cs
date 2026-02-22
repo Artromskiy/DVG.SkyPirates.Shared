@@ -26,9 +26,9 @@ namespace DVG.SkyPirates.Shared.Services
             }).ToArray();
         }
 
-        public Dictionary<int, Command<T>> GetCommands<T>()
+        public Dictionary<int, List<Command<T>>> GetCommands<T>()
         {
-            _commands.TryGet<Dictionary<int, Command<T>>>(out var typedCommands);
+            _commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands);
             return typedCommands;
         }
 
