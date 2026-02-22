@@ -63,7 +63,7 @@ namespace DVG.SkyPirates.Shared.Services
                     if (!commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
                         commands.Add(typedCommands = new());
                     if (!typedCommands.TryGetValue(c.Tick, out var tickCommands))
-                        tickCommands = new();
+                        typedCommands[c.Tick] = tickCommands = new();
                     tickCommands.Add(c);
                 });
 
