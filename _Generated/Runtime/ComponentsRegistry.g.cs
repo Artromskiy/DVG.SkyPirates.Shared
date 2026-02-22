@@ -13,8 +13,8 @@
 using System;
 using System.Collections.Generic;
 
-using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.Components;
@@ -26,6 +26,7 @@ namespace DVG.Components
         public static void ForEachData<T>(ref T action)
             where T: IStructGenericAction
         {
+            action.Invoke<ActivityRange>();
             action.Invoke<AutoHeal>();
             action.Invoke<BehaviourConfig>();
             action.Invoke<BehaviourState>();

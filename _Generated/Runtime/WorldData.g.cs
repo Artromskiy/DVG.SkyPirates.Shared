@@ -14,8 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.Components;
 
@@ -27,79 +27,82 @@ namespace DVG.SkyPirates.Shared.Data
     {
 
         [DataMember(Order = 0)]
-        private Dictionary<int, AutoHeal> AutoHeal;
+        private Dictionary<int, ActivityRange> ActivityRange;
         [DataMember(Order = 1)]
-        private Dictionary<int, BehaviourConfig> BehaviourConfig;
+        private Dictionary<int, AutoHeal> AutoHeal;
         [DataMember(Order = 2)]
-        private Dictionary<int, BehaviourState> BehaviourState;
+        private Dictionary<int, BehaviourConfig> BehaviourConfig;
         [DataMember(Order = 3)]
-        private Dictionary<int, CactusId> CactusId;
+        private Dictionary<int, BehaviourState> BehaviourState;
         [DataMember(Order = 4)]
-        private Dictionary<int, ClientId> ClientId;
+        private Dictionary<int, CactusId> CactusId;
         [DataMember(Order = 5)]
-        private Dictionary<int, Damage> Damage;
+        private Dictionary<int, ClientId> ClientId;
         [DataMember(Order = 6)]
-        private Dictionary<int, Direction> Direction;
+        private Dictionary<int, Damage> Damage;
         [DataMember(Order = 7)]
-        private Dictionary<int, Disposing> Disposing;
+        private Dictionary<int, Direction> Direction;
         [DataMember(Order = 8)]
-        private Dictionary<int, Fixation> Fixation;
+        private Dictionary<int, Disposing> Disposing;
         [DataMember(Order = 9)]
-        private Dictionary<int, FlyDestination> FlyDestination;
+        private Dictionary<int, Fixation> Fixation;
         [DataMember(Order = 10)]
-        private Dictionary<int, GoodsAmount> GoodsAmount;
+        private Dictionary<int, FlyDestination> FlyDestination;
         [DataMember(Order = 11)]
-        private Dictionary<int, GoodsCollectorRadius> GoodsCollectorRadius;
+        private Dictionary<int, GoodsAmount> GoodsAmount;
         [DataMember(Order = 12)]
-        private Dictionary<int, GoodsDrop> GoodsDrop;
+        private Dictionary<int, GoodsCollectorRadius> GoodsCollectorRadius;
         [DataMember(Order = 13)]
-        private Dictionary<int, GoodsId> GoodsId;
+        private Dictionary<int, GoodsDrop> GoodsDrop;
         [DataMember(Order = 14)]
-        private Dictionary<int, Health> Health;
+        private Dictionary<int, GoodsId> GoodsId;
         [DataMember(Order = 15)]
-        private Dictionary<int, HexMap> HexMap;
+        private Dictionary<int, Health> Health;
         [DataMember(Order = 16)]
-        private Dictionary<int, ImpactDistance> ImpactDistance;
+        private Dictionary<int, HexMap> HexMap;
         [DataMember(Order = 17)]
-        private Dictionary<int, Level> Level;
+        private Dictionary<int, ImpactDistance> ImpactDistance;
         [DataMember(Order = 18)]
-        private Dictionary<int, MaxHealth> MaxHealth;
+        private Dictionary<int, Level> Level;
         [DataMember(Order = 19)]
-        private Dictionary<int, MaxSpeed> MaxSpeed;
+        private Dictionary<int, MaxHealth> MaxHealth;
         [DataMember(Order = 20)]
-        private Dictionary<int, Position> Position;
+        private Dictionary<int, MaxSpeed> MaxSpeed;
         [DataMember(Order = 21)]
-        private Dictionary<int, Radius> Radius;
+        private Dictionary<int, Position> Position;
         [DataMember(Order = 22)]
-        private Dictionary<int, RandomSeed> RandomSeed;
+        private Dictionary<int, Radius> Radius;
         [DataMember(Order = 23)]
-        private Dictionary<int, RockId> RockId;
+        private Dictionary<int, RandomSeed> RandomSeed;
         [DataMember(Order = 24)]
-        private Dictionary<int, Rotation> Rotation;
+        private Dictionary<int, RockId> RockId;
         [DataMember(Order = 25)]
-        private Dictionary<int, Separation> Separation;
+        private Dictionary<int, Rotation> Rotation;
         [DataMember(Order = 26)]
-        private Dictionary<int, Separator> Separator;
+        private Dictionary<int, Separation> Separation;
         [DataMember(Order = 27)]
-        private Dictionary<int, Squad> Squad;
+        private Dictionary<int, Separator> Separator;
         [DataMember(Order = 28)]
-        private Dictionary<int, SquadMember> SquadMember;
+        private Dictionary<int, Squad> Squad;
         [DataMember(Order = 29)]
-        private Dictionary<int, SyncId> SyncId;
+        private Dictionary<int, SquadMember> SquadMember;
         [DataMember(Order = 30)]
-        private Dictionary<int, SyncIdReserve> SyncIdReserve;
+        private Dictionary<int, SyncId> SyncId;
         [DataMember(Order = 31)]
-        private Dictionary<int, TargetSearchDistance> TargetSearchDistance;
+        private Dictionary<int, SyncIdReserve> SyncIdReserve;
         [DataMember(Order = 32)]
-        private Dictionary<int, TeamId> TeamId;
+        private Dictionary<int, TargetSearchDistance> TargetSearchDistance;
         [DataMember(Order = 33)]
-        private Dictionary<int, TreeId> TreeId;
+        private Dictionary<int, TeamId> TeamId;
         [DataMember(Order = 34)]
+        private Dictionary<int, TreeId> TreeId;
+        [DataMember(Order = 35)]
         private Dictionary<int, UnitId> UnitId;
 
         public WorldData()
         {
 
+            ActivityRange = new();
             AutoHeal = new();
             BehaviourConfig = new();
             BehaviourState = new();
@@ -141,6 +144,8 @@ namespace DVG.SkyPirates.Shared.Data
             where T : struct
         {
 
+            if (typeof(T) == typeof(ActivityRange))
+                return ActivityRange as Dictionary<int, T>;
             if (typeof(T) == typeof(AutoHeal))
                 return AutoHeal as Dictionary<int, T>;
             if (typeof(T) == typeof(BehaviourConfig))
@@ -219,6 +224,11 @@ namespace DVG.SkyPirates.Shared.Data
             where T : struct
         {
 
+            if (typeof(T) == typeof(ActivityRange))
+            {
+                ActivityRange = data as Dictionary<int, ActivityRange>;
+                return;
+            }
             if (typeof(T) == typeof(AutoHeal))
             {
                 AutoHeal = data as Dictionary<int, AutoHeal>;

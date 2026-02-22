@@ -14,8 +14,8 @@ using System;
 using System.Runtime.Serialization;
 using System.Runtime.CompilerServices;
 
-using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.Components;
@@ -28,90 +28,92 @@ namespace DVG.SkyPirates.Shared.Data
     {
 
         [DataMember(Order = 0)]
-        private AutoHeal? AutoHeal;
+        private ActivityRange? ActivityRange;
         [DataMember(Order = 1)]
-        private BehaviourConfig? BehaviourConfig;
+        private AutoHeal? AutoHeal;
         [DataMember(Order = 2)]
-        private BehaviourState? BehaviourState;
+        private BehaviourConfig? BehaviourConfig;
         [DataMember(Order = 3)]
-        private CachePosition? CachePosition;
+        private BehaviourState? BehaviourState;
         [DataMember(Order = 4)]
-        private CactusId? CactusId;
+        private CachePosition? CachePosition;
         [DataMember(Order = 5)]
-        private ClientId? ClientId;
+        private CactusId? CactusId;
         [DataMember(Order = 6)]
-        private Collide? Collide;
+        private ClientId? ClientId;
         [DataMember(Order = 7)]
-        private Damage? Damage;
+        private Collide? Collide;
         [DataMember(Order = 8)]
-        private Destination? Destination;
+        private Damage? Damage;
         [DataMember(Order = 9)]
-        private Direction? Direction;
+        private Destination? Destination;
         [DataMember(Order = 10)]
-        private Disposing? Disposing;
+        private Direction? Direction;
         [DataMember(Order = 11)]
-        private Fixation? Fixation;
+        private Disposing? Disposing;
         [DataMember(Order = 12)]
-        private FlyDestination? FlyDestination;
+        private Fixation? Fixation;
         [DataMember(Order = 13)]
-        private GoodsAmount? GoodsAmount;
+        private FlyDestination? FlyDestination;
         [DataMember(Order = 14)]
-        private GoodsCollectorRadius? GoodsCollectorRadius;
+        private GoodsAmount? GoodsAmount;
         [DataMember(Order = 15)]
-        private GoodsDrop? GoodsDrop;
+        private GoodsCollectorRadius? GoodsCollectorRadius;
         [DataMember(Order = 16)]
-        private GoodsId? GoodsId;
+        private GoodsDrop? GoodsDrop;
         [DataMember(Order = 17)]
-        private Health? Health;
+        private GoodsId? GoodsId;
         [DataMember(Order = 18)]
-        private HexMap? HexMap;
+        private Health? Health;
         [DataMember(Order = 19)]
-        private ImpactDistance? ImpactDistance;
+        private HexMap? HexMap;
         [DataMember(Order = 20)]
-        private Level? Level;
+        private ImpactDistance? ImpactDistance;
         [DataMember(Order = 21)]
-        private MaxHealth? MaxHealth;
+        private Level? Level;
         [DataMember(Order = 22)]
-        private MaxSpeed? MaxSpeed;
+        private MaxHealth? MaxHealth;
         [DataMember(Order = 23)]
-        private Position? Position;
+        private MaxSpeed? MaxSpeed;
         [DataMember(Order = 24)]
-        private Radius? Radius;
+        private Position? Position;
         [DataMember(Order = 25)]
-        private RandomSeed? RandomSeed;
+        private Radius? Radius;
         [DataMember(Order = 26)]
-        private RecivedDamage? RecivedDamage;
+        private RandomSeed? RandomSeed;
         [DataMember(Order = 27)]
-        private RockId? RockId;
+        private RecivedDamage? RecivedDamage;
         [DataMember(Order = 28)]
-        private Rotation? Rotation;
+        private RockId? RockId;
         [DataMember(Order = 29)]
-        private Separation? Separation;
+        private Rotation? Rotation;
         [DataMember(Order = 30)]
-        private Separator? Separator;
+        private Separation? Separation;
         [DataMember(Order = 31)]
-        private Squad? Squad;
+        private Separator? Separator;
         [DataMember(Order = 32)]
-        private SquadMember? SquadMember;
+        private Squad? Squad;
         [DataMember(Order = 33)]
-        private SquadMemberCount? SquadMemberCount;
+        private SquadMember? SquadMember;
         [DataMember(Order = 34)]
-        private SyncId? SyncId;
+        private SquadMemberCount? SquadMemberCount;
         [DataMember(Order = 35)]
-        private SyncIdReserve? SyncIdReserve;
+        private SyncId? SyncId;
         [DataMember(Order = 36)]
-        private Target? Target;
+        private SyncIdReserve? SyncIdReserve;
         [DataMember(Order = 37)]
-        private Targets? Targets;
+        private Target? Target;
         [DataMember(Order = 38)]
-        private TargetSearchDistance? TargetSearchDistance;
+        private Targets? Targets;
         [DataMember(Order = 39)]
-        private TargetSearchPosition? TargetSearchPosition;
+        private TargetSearchDistance? TargetSearchDistance;
         [DataMember(Order = 40)]
-        private TeamId? TeamId;
+        private TargetSearchPosition? TargetSearchPosition;
         [DataMember(Order = 41)]
-        private TreeId? TreeId;
+        private TeamId? TeamId;
         [DataMember(Order = 42)]
+        private TreeId? TreeId;
+        [DataMember(Order = 43)]
         private UnitId? UnitId;
 
         public T? Get<T>()
@@ -119,6 +121,8 @@ namespace DVG.SkyPirates.Shared.Data
         {
             Type type = typeof(T);
 
+            if (type == typeof(ActivityRange))
+                return Unsafe.As<ActivityRange?, T?>(ref ActivityRange);
             if (type == typeof(AutoHeal))
                 return Unsafe.As<AutoHeal?, T?>(ref AutoHeal);
             if (type == typeof(BehaviourConfig))
@@ -214,6 +218,11 @@ namespace DVG.SkyPirates.Shared.Data
         {
             Type type = typeof(T);
 
+            if (type == typeof(ActivityRange))
+            {
+                ActivityRange = Unsafe.As<T?, ActivityRange?>(ref data);
+                return;
+            }
             if (type == typeof(AutoHeal))
             {
                 AutoHeal = Unsafe.As<T?, AutoHeal?>(ref data);
@@ -437,6 +446,7 @@ namespace DVG.SkyPirates.Shared.Data
         {
             int typesCount = 
 
+                (ActivityRange.HasValue? 1 : 0) + 
                 (AutoHeal.HasValue? 1 : 0) + 
                 (BehaviourConfig.HasValue? 1 : 0) + 
                 (BehaviourState.HasValue? 1 : 0) + 
@@ -485,6 +495,8 @@ namespace DVG.SkyPirates.Shared.Data
             int i = 0;
 
 
+            if(ActivityRange.HasValue)
+                types[i++] = typeof(ActivityRange);
             if(AutoHeal.HasValue)
                 types[i++] = typeof(AutoHeal);
             if(BehaviourConfig.HasValue)
@@ -579,6 +591,8 @@ namespace DVG.SkyPirates.Shared.Data
             where T: IStructGenericAction
         {
 
+            if(ActivityRange.HasValue)
+                action.Invoke<ActivityRange>();
             if(AutoHeal.HasValue)
                 action.Invoke<AutoHeal>();
             if(BehaviourConfig.HasValue)

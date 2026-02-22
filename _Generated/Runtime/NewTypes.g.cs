@@ -13,6 +13,22 @@
 using System;
 using DVG.NewType;
 
+namespace DVG.SkyPirates.Shared.Components.Config
+{
+    partial struct ActivityRange : INewType<DVG.fix>
+    {
+        
+        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+
+        public static implicit operator ActivityRange(DVG.fix value)
+            => new() { Value = value };
+
+        public static implicit operator DVG.fix(ActivityRange newType)
+            => newType.Value;
+    }
+}
+
+
 namespace DVG.SkyPirates.Shared.Components.Framed
 {
     partial struct CachePosition : INewType<DVG.fix3>
