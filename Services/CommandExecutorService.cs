@@ -26,6 +26,12 @@ namespace DVG.SkyPirates.Shared.Services
             }).ToArray();
         }
 
+        public Dictionary<int, Command<T>> GetCommands<T>()
+        {
+            _commands.TryGet<Dictionary<int, Command<T>>>(out var typedCommands);
+            return typedCommands;
+        }
+
         public void Tick(int tick, fix deltaTime)
         {
             foreach (var (_, executorCall) in _executors)

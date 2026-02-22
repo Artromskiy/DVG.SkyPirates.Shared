@@ -37,8 +37,7 @@ namespace DVG.SkyPirates.Shared.Services
 
             if (DirtyTick != CurrentTick)
             {
-                _rollbackHistorySystem.Tick(DirtyTick - 1, Constants.TickTime);
-                CurrentTick = DirtyTick - 1;
+                GoTo(DirtyTick - 1);
             }
 
             var fromTick = CurrentTick + 1;

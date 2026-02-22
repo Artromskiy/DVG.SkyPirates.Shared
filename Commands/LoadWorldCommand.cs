@@ -7,14 +7,10 @@ namespace DVG.SkyPirates.Shared.Commands
     public partial struct LoadWorldCommand
     {
         public WorldData WorldData { get; set; }
-        public CommandsData CommandsData { get; set; }
-        public int CurrentTick { get; set; }
 
-        public LoadWorldCommand(WorldData worldData, CommandsData commandsData, int currentTick)
+        public LoadWorldCommand(WorldData worldData)
         {
             WorldData = worldData;
-            CommandsData = commandsData;
-            CurrentTick = currentTick;
         }
     }
 }
