@@ -1,16 +1,14 @@
-﻿using Arch.Core;
-using DVG.SkyPirates.Shared.IServices;
+﻿using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Services
 {
     public class TimelineService : ITimelineService
     {
-        private const int RollbackInitTicks = 50;
         // last saved state
         public int CurrentTick { get; private set; } = -1;
         // tick before not applied command
-        private int? _rollbackTo;
+        public int DirtyTick { get; set; } = -1;
 
         private readonly ICommandExecutorService _commandExecutorService;
         private readonly ITickableExecutorService _tickableExecutorService;
@@ -20,9 +18,8 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly IRollbackHistorySystem _rollbackHistorySystem;
         private readonly ISaveHistorySystem _saveHistorySystem;
         private readonly IDisposeSystem _disposeSystem;
-        private readonly World _world;
 
-        public TimelineService(ICommandExecutorService commandExecutorService, ITickableExecutorService tickableExecutorService, IPreTickableExecutorService preTickableExecutorService, IPostTickableExecutorService postTickableExecutorService, IRollbackHistorySystem rollbackHistorySystem, ISaveHistorySystem saveHistorySystem, IDisposeSystem disposeSystem, World world)
+        public TimelineService(ICommandExecutorService commandExecutorService, ITickableExecutorService tickableExecutorService, IPreTickableExecutorService preTickableExecutorService, IPostTickableExecutorService postTickableExecutorService, IRollbackHistorySystem rollbackHistorySystem, ISaveHistorySystem saveHistorySystem, IDisposeSystem disposeSystem)
         {
             _commandExecutorService = commandExecutorService;
             _tickableExecutorService = tickableExecutorService;
@@ -31,31 +28,41 @@ namespace DVG.SkyPirates.Shared.Services
             _rollbackHistorySystem = rollbackHistorySystem;
             _saveHistorySystem = saveHistorySystem;
             _disposeSystem = disposeSystem;
-            _world = world;
         }
 
         public void Tick()
         {
-            _preTickableExecutorService.Tick(CurrentTick, Constants.TickTime);
+            var nextTick = CurrentTick + 1;
+            _preTickableExecutorService.Tick(nextTick, Constants.TickTime);
 
-            if (_rollbackTo.HasValue)
+            if (DirtyTick != CurrentTick)
             {
-                _rollbackHistorySystem.Tick(_rollbackTo.Value, Constants.TickTime);
+                _rollbackHistorySystem.Tick(DirtyTick - 1, Constants.TickTime);
+                CurrentTick = DirtyTick - 1;
             }
 
-            var fromTick = Maths.Min(_rollbackTo ?? CurrentTick, CurrentTick) + 1;
-            var toTick = CurrentTick + 1;
-            for (int i = fromTick; i <= toTick; i++)
-            {
-                _commandExecutorService.Tick(i, Constants.TickTime);
-                _tickableExecutorService.Tick(i, Constants.TickTime);
-                _disposeSystem.Tick(CurrentTick, Constants.TickTime);
-                _saveHistorySystem.Tick(i, Constants.TickTime);
-            }
-            CurrentTick = toTick;
-            _rollbackTo = null;
+            var fromTick = CurrentTick + 1;
+            for (int i = fromTick; i <= nextTick; i++)
+                Tick(i);
 
-            _postTickableExecutorService.Tick(CurrentTick, Constants.TickTime);
+            DirtyTick = CurrentTick;
+
+            _postTickableExecutorService.Tick(nextTick, Constants.TickTime);
+        }
+
+        public void GoTo(int tick)
+        {
+            _rollbackHistorySystem.Tick(tick, Constants.TickTime);
+            CurrentTick = tick;
+        }
+
+        private void Tick(int tick)
+        {
+            CurrentTick = tick;
+            _commandExecutorService.Tick(CurrentTick, Constants.TickTime);
+            _tickableExecutorService.Tick(CurrentTick, Constants.TickTime);
+            _disposeSystem.Tick(CurrentTick, Constants.TickTime);
+            _saveHistorySystem.Tick(CurrentTick, Constants.TickTime);
         }
     }
 }
