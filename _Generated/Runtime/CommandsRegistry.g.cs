@@ -51,15 +51,15 @@ namespace DVG.Commands
             where T : IGenericAction
         {
 
-            if(id == 0)
-                action.Invoke<JoystickCommand>();
             if(id == 1)
-                action.Invoke<LoadWorldCommand>();
+                action.Invoke<JoystickCommand>();
             if(id == 2)
-                action.Invoke<SpawnSquadCommand>();
+                action.Invoke<LoadWorldCommand>();
             if(id == 3)
-                action.Invoke<SpawnUnitCommand>();
+                action.Invoke<SpawnSquadCommand>();
             if(id == 4)
+                action.Invoke<SpawnUnitCommand>();
+            if(id == 5)
                 action.Invoke<TickSyncCommand>();
         }
     }

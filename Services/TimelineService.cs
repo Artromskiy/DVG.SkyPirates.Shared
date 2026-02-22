@@ -6,9 +6,9 @@ namespace DVG.SkyPirates.Shared.Services
     public class TimelineService : ITimelineService
     {
         // last saved state
-        public int CurrentTick { get; private set; } = -1;
+        public int CurrentTick { get; set; } = -1;
         // tick before not applied command
-        public int DirtyTick { get; set; } = -1;
+        public int DirtyTick { get; set; } = int.MaxValue;
 
         private readonly ICommandExecutorService _commandExecutorService;
         private readonly ITickableExecutorService _tickableExecutorService;
@@ -35,7 +35,7 @@ namespace DVG.SkyPirates.Shared.Services
             var nextTick = CurrentTick + 1;
             _preTickableExecutorService.Tick(nextTick, Constants.TickTime);
 
-            if (DirtyTick != CurrentTick)
+            if (DirtyTick <= CurrentTick)
             {
                 GoTo(DirtyTick - 1);
             }
@@ -44,7 +44,7 @@ namespace DVG.SkyPirates.Shared.Services
             for (int i = fromTick; i <= nextTick; i++)
                 Tick(i);
 
-            DirtyTick = CurrentTick;
+            DirtyTick = int.MaxValue;
 
             _postTickableExecutorService.Tick(nextTick, Constants.TickTime);
         }

@@ -14,7 +14,9 @@
       "TargetSearchDistance": {},
       "ActivityRange": {}
     },
-    "ActivityRange": 15
+    "DefaultOnAdd": {
+      "ActivityRange": 15
+    }
   },
   {
     "Has": {

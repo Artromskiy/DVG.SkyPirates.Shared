@@ -2,7 +2,7 @@
 {
     public interface ITimelineService
     {
-        int CurrentTick { get; }
+        int CurrentTick { get; set; }
         int DirtyTick { get; set; }
         void Tick();
         void GoTo(int tick);

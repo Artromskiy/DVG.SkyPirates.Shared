@@ -5689,6 +5689,9 @@
         "TeamId": {
           "Value": 0
         }
+      },
+      "DefaultOnAdd": {
+        "ActivityRange": 15
       }
     },
     {
