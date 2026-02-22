@@ -6,8 +6,7 @@ using DVG.SkyPirates.Shared.IServices;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    public class SpawnSquadCommandExecutor :
-        ICommandExecutor<SpawnSquadCommand>
+    public class SpawnSquadCommandExecutor : ICommandExecutor<SpawnSquadCommand>
     {
         private readonly ISquadFactory _squadFactory;
 

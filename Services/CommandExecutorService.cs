@@ -1,78 +1,75 @@
-﻿using DVG.Commands;
+﻿using DVG.Collections;
+using DVG.Commands;
 using DVG.SkyPirates.Shared.IServices;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace DVG.SkyPirates.Shared.Services
 {
     public class CommandExecutorService : ICommandExecutorService
     {
-        private readonly ICommandExecutor[] _executors;
-        private readonly ICommandExecutorWrapper[] _executorWrappers;
+        private readonly ICommandRecieveService _recieveService;
 
-        public CommandExecutorService(IEnumerable<ICommandExecutor> executors)
+        private readonly GenericCollection _commands = new();
+        private readonly (ICommandExecutor executor, Action<int> executorCall)[] _executors;
+
+        public CommandExecutorService(ICommandRecieveService recieveService, IEnumerable<ICommandExecutor> executors)
         {
-            _executors = executors.ToArray();
-            List<ICommandExecutorWrapper> _wrappersList = new List<ICommandExecutorWrapper>();
-            foreach (var item in _executors)
+            _recieveService = recieveService;
+            _executors = executors.Select(e =>
             {
-                var action = new TryCreateWrapper(_wrappersList, item);
-                CommandIds.ForEachData(ref action);
+                var action = new CommandCallAction(_recieveService, _commands, e);
+                e.ForEach(ref action);
+                return (e, action.wrappedCall);
+            }).ToArray();
+        }
+
+        public void Tick(int tick, fix deltaTime)
+        {
+            foreach (var (_, executorCall) in _executors)
+            {
+                executorCall(tick);
             }
-            _executorWrappers = _wrappersList.ToArray();
         }
 
-        public void Execute(CommandCollection commands)
+        private struct CommandCallAction : IGenericAction
         {
-            foreach (var item in _executorWrappers)
+            private readonly ICommandRecieveService _recieveService;
+            private readonly GenericCollection _commands;
+            private readonly ICommandExecutor _executor;
+            public Action<int> wrappedCall;
+
+            public CommandCallAction(ICommandRecieveService recieveService, GenericCollection commands, ICommandExecutor executor)
             {
-                item.Execute(commands);
-            }
-        }
-
-        private interface ICommandExecutorWrapper
-        {
-            void Execute(CommandCollection commands);
-        }
-
-        private class CommandExecutorWrapper<T> : ICommandExecutorWrapper
-            where T : ICommandData
-        {
-            private readonly ICommandExecutor<T> _executor;
-
-            public CommandExecutorWrapper(ICommandExecutor<T> executor)
-            {
+                _recieveService = recieveService;
+                _commands = commands;
                 _executor = executor;
+                wrappedCall = null!;
             }
 
-            public void Execute(CommandCollection commands)
+            public void Invoke<T>()
             {
-                var genericCollection = commands.GetCollection<T>();
-                if (genericCollection == null)
-                    return;
-                foreach (var cmd in genericCollection)
+                var commands = _commands;
+                _recieveService.RegisterReciever<T>(c =>
                 {
-                    _executor.Execute(cmd);
-                }
-            }
-        }
+                    if (!commands.TryGet<Dictionary<int, Command<T>>>(out var typedCommands))
+                        commands.Add(typedCommands = new());
+                    typedCommands.Add(c.Tick, c);
+                });
 
+                var executor = _executor as ICommandExecutor<T>;
+                Debug.Assert(executor is not null);
 
-        private struct TryCreateWrapper : IGenericAction<ICommandData>
-        {
-            public List<ICommandExecutorWrapper> _wrappers;
-            public ICommandExecutor _executor;
-
-            public TryCreateWrapper(List<ICommandExecutorWrapper> wrappers, ICommandExecutor executor) : this()
-            {
-                _wrappers = wrappers;
-                _executor = executor;
-            }
-
-            public readonly void Invoke<T>() where T : ICommandData
-            {
-                if (_executor is ICommandExecutor<T> genericExecutor)
-                    _wrappers.Add(new CommandExecutorWrapper<T>(genericExecutor));
+                wrappedCall = (i) =>
+                {
+                    if (!commands.TryGet<Dictionary<int, Command<T>>>(out var typedCommands))
+                        return;
+                    if (!typedCommands.TryGetValue(i, out var command))
+                        return;
+                    executor.Execute(command);
+                };
             }
         }
     }

@@ -1,10 +1,6 @@
 ﻿using Arch.Core;
-using DVG.Commands;
-using DVG.SkyPirates.Shared.Commands;
-using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services
 {
@@ -16,9 +12,6 @@ namespace DVG.SkyPirates.Shared.Services
         // tick before not applied command
         private int? _rollbackTo;
 
-        private readonly Dictionary<int, CommandCollection> _commands = new();
-
-        private readonly ICommandRecieveService _commandRecieveService;
         private readonly ICommandExecutorService _commandExecutorService;
         private readonly ITickableExecutorService _tickableExecutorService;
         private readonly IPreTickableExecutorService _preTickableExecutorService;
@@ -29,9 +22,8 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly IDisposeSystem _disposeSystem;
         private readonly World _world;
 
-        public TimelineService(ICommandRecieveService commandRecieveService, ICommandExecutorService commandExecutorService, ITickableExecutorService tickableExecutorService, IPreTickableExecutorService preTickableExecutorService, IPostTickableExecutorService postTickableExecutorService, IRollbackHistorySystem rollbackHistorySystem, ISaveHistorySystem saveHistorySystem, IDisposeSystem disposeSystem, World world)
+        public TimelineService(ICommandExecutorService commandExecutorService, ITickableExecutorService tickableExecutorService, IPreTickableExecutorService preTickableExecutorService, IPostTickableExecutorService postTickableExecutorService, IRollbackHistorySystem rollbackHistorySystem, ISaveHistorySystem saveHistorySystem, IDisposeSystem disposeSystem, World world)
         {
-            _commandRecieveService = commandRecieveService;
             _commandExecutorService = commandExecutorService;
             _tickableExecutorService = tickableExecutorService;
             _preTickableExecutorService = preTickableExecutorService;
@@ -40,45 +32,6 @@ namespace DVG.SkyPirates.Shared.Services
             _saveHistorySystem = saveHistorySystem;
             _disposeSystem = disposeSystem;
             _world = world;
-
-            var action = new RegisterRecieverAction(this, _commandRecieveService);
-            CommandIds.ForEachData(ref action);
-        }
-
-
-        public void AddCommand<T>(Command<T> command)
-            where T : ICommandData
-        {
-            var tick = command.Tick;
-            var cmdRollback = tick - 1;
-            GetCommands(tick).Add(command);
-
-            _rollbackTo = cmdRollback < CurrentTick &&
-                (!_rollbackTo.HasValue || cmdRollback < _rollbackTo.Value) ?
-                cmdRollback :
-                _rollbackTo;
-        }
-
-        public void RemoveCommand<T>(Command<T> command)
-            where T : ICommandData
-        {
-            var tick = command.Tick;
-            var cmdRollback = tick - 1;
-            GetCommands(tick).Remove<T>(command.ClientId);
-
-            _rollbackTo = cmdRollback < CurrentTick &&
-                (!_rollbackTo.HasValue || cmdRollback < _rollbackTo.Value) ?
-                cmdRollback :
-                _rollbackTo;
-        }
-
-        private CommandCollection GetCommands(int tick)
-        {
-            if (!_commands.TryGetValue(tick, out var commandCollection))
-            {
-                _commands[tick] = commandCollection = new CommandCollection();
-            }
-            return commandCollection;
         }
 
         public void Tick()
@@ -94,7 +47,7 @@ namespace DVG.SkyPirates.Shared.Services
             var toTick = CurrentTick + 1;
             for (int i = fromTick; i <= toTick; i++)
             {
-                _commandExecutorService.Execute(GetCommands(i));
+                _commandExecutorService.Tick(i, Constants.TickTime);
                 _tickableExecutorService.Tick(i, Constants.TickTime);
                 _disposeSystem.Tick(CurrentTick, Constants.TickTime);
                 _saveHistorySystem.Tick(i, Constants.TickTime);
@@ -103,56 +56,6 @@ namespace DVG.SkyPirates.Shared.Services
             _rollbackTo = null;
 
             _postTickableExecutorService.Tick(CurrentTick, Constants.TickTime);
-        }
-
-        private List<CommandCollection> GetCommandsAfter(int tick)
-        {
-            List<CommandCollection> commands = new();
-            foreach (var item in _commands)
-                if (item.Key > tick)
-                    commands.Add(item.Value);
-            return commands;
-        }
-
-        public void Init(LoadWorldCommand timelineStart)
-        {
-            CurrentTick = timelineStart.CurrentTick - RollbackInitTicks;
-            //WorldDataFactory.Extract(_world, timelineStart.WorldData);
-            // TODO
-            CommandsDataSerializer.Deserialize(this, timelineStart.CommandsData);
-            for (int i = 0; i < RollbackInitTicks; i++)
-            {
-                Tick();
-            }
-            _world.TrimExcess();
-        }
-
-        public LoadWorldCommand GetIniter()
-        {
-            int targetTick = CurrentTick - RollbackInitTicks;
-            _rollbackHistorySystem.Tick(targetTick, Constants.TickTime);
-            //var worldData = WorldDataFactory.Create(_world);
-            var worldData = new WorldData(); // TODO
-            var commandsData = CommandsDataSerializer.Serialize(GetCommandsAfter(targetTick));
-            _rollbackHistorySystem.Tick(CurrentTick, Constants.TickTime);
-            return new LoadWorldCommand(worldData, commandsData, CurrentTick);
-        }
-
-        private readonly struct RegisterRecieverAction : IGenericAction<ICommandData>
-        {
-            private readonly ITimelineService _timelineService;
-            private readonly ICommandRecieveService _recieveService;
-
-            public RegisterRecieverAction(ITimelineService timelineService, ICommandRecieveService recieveService)
-            {
-                _timelineService = timelineService;
-                _recieveService = recieveService;
-            }
-
-            public void Invoke<T>() where T : ICommandData
-            {
-                _recieveService.RegisterReciever<T>(_timelineService.AddCommand);
-            }
         }
     }
 }

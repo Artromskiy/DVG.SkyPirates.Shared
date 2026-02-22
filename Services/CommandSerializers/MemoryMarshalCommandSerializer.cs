@@ -9,7 +9,6 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
     public class MemoryMarshalCommandSerializer : ICommandSerializer
     {
         public void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data)
-            where T : ICommandData
         {
             var span = MemoryMarshal.CreateReadOnlySpan(ref data, 1);
             ReadOnlySpan<byte> spanBytes = MemoryMarshal.AsBytes(span);
@@ -17,7 +16,6 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
         }
 
         public Command<T> Deserialize<T>(ReadOnlyMemory<byte> data)
-            where T : ICommandData
         {
             Command<T> result;
             try

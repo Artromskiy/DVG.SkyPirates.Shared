@@ -15,8 +15,7 @@ using System.Linq;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    public class SpawnUnitCommandExecutor :
-        ICommandExecutor<SpawnUnitCommand>
+    public class SpawnUnitCommandExecutor : ICommandExecutor<SpawnUnitCommand>
     {
         private readonly UnitsInfoConfig _unitsInfoConfig;
         private readonly IEntityRegistry _entityRegistryService;

@@ -3,8 +3,8 @@ using DVG.SkyPirates.Shared.IServices;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    public class EmptyCommandExecutor : ICommandExecutor<ICommandData>
+    public class EmptyCommandExecutor : ICommandExecutor
     {
-        public void Execute(Command<ICommandData> cmd) { }
+        public void Execute<T>(Command<T> cmd) { }
     }
 }

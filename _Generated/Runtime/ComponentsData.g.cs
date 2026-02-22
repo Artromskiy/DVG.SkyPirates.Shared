@@ -117,318 +117,320 @@ namespace DVG.SkyPirates.Shared.Data
         public T? Get<T>()
             where T : struct
         {
+            Type type = typeof(T);
 
-            if (typeof(T) == typeof(AutoHeal))
+            if (type == typeof(AutoHeal))
                 return Unsafe.As<AutoHeal?, T?>(ref AutoHeal);
-            if (typeof(T) == typeof(BehaviourConfig))
+            if (type == typeof(BehaviourConfig))
                 return Unsafe.As<BehaviourConfig?, T?>(ref BehaviourConfig);
-            if (typeof(T) == typeof(BehaviourState))
+            if (type == typeof(BehaviourState))
                 return Unsafe.As<BehaviourState?, T?>(ref BehaviourState);
-            if (typeof(T) == typeof(CachePosition))
+            if (type == typeof(CachePosition))
                 return Unsafe.As<CachePosition?, T?>(ref CachePosition);
-            if (typeof(T) == typeof(CactusId))
+            if (type == typeof(CactusId))
                 return Unsafe.As<CactusId?, T?>(ref CactusId);
-            if (typeof(T) == typeof(ClientId))
+            if (type == typeof(ClientId))
                 return Unsafe.As<ClientId?, T?>(ref ClientId);
-            if (typeof(T) == typeof(Collide))
+            if (type == typeof(Collide))
                 return Unsafe.As<Collide?, T?>(ref Collide);
-            if (typeof(T) == typeof(Damage))
+            if (type == typeof(Damage))
                 return Unsafe.As<Damage?, T?>(ref Damage);
-            if (typeof(T) == typeof(Destination))
+            if (type == typeof(Destination))
                 return Unsafe.As<Destination?, T?>(ref Destination);
-            if (typeof(T) == typeof(Direction))
+            if (type == typeof(Direction))
                 return Unsafe.As<Direction?, T?>(ref Direction);
-            if (typeof(T) == typeof(Disposing))
+            if (type == typeof(Disposing))
                 return Unsafe.As<Disposing?, T?>(ref Disposing);
-            if (typeof(T) == typeof(Fixation))
+            if (type == typeof(Fixation))
                 return Unsafe.As<Fixation?, T?>(ref Fixation);
-            if (typeof(T) == typeof(FlyDestination))
+            if (type == typeof(FlyDestination))
                 return Unsafe.As<FlyDestination?, T?>(ref FlyDestination);
-            if (typeof(T) == typeof(GoodsAmount))
+            if (type == typeof(GoodsAmount))
                 return Unsafe.As<GoodsAmount?, T?>(ref GoodsAmount);
-            if (typeof(T) == typeof(GoodsCollectorRadius))
+            if (type == typeof(GoodsCollectorRadius))
                 return Unsafe.As<GoodsCollectorRadius?, T?>(ref GoodsCollectorRadius);
-            if (typeof(T) == typeof(GoodsDrop))
+            if (type == typeof(GoodsDrop))
                 return Unsafe.As<GoodsDrop?, T?>(ref GoodsDrop);
-            if (typeof(T) == typeof(GoodsId))
+            if (type == typeof(GoodsId))
                 return Unsafe.As<GoodsId?, T?>(ref GoodsId);
-            if (typeof(T) == typeof(Health))
+            if (type == typeof(Health))
                 return Unsafe.As<Health?, T?>(ref Health);
-            if (typeof(T) == typeof(HexMap))
+            if (type == typeof(HexMap))
                 return Unsafe.As<HexMap?, T?>(ref HexMap);
-            if (typeof(T) == typeof(ImpactDistance))
+            if (type == typeof(ImpactDistance))
                 return Unsafe.As<ImpactDistance?, T?>(ref ImpactDistance);
-            if (typeof(T) == typeof(Level))
+            if (type == typeof(Level))
                 return Unsafe.As<Level?, T?>(ref Level);
-            if (typeof(T) == typeof(MaxHealth))
+            if (type == typeof(MaxHealth))
                 return Unsafe.As<MaxHealth?, T?>(ref MaxHealth);
-            if (typeof(T) == typeof(MaxSpeed))
+            if (type == typeof(MaxSpeed))
                 return Unsafe.As<MaxSpeed?, T?>(ref MaxSpeed);
-            if (typeof(T) == typeof(Position))
+            if (type == typeof(Position))
                 return Unsafe.As<Position?, T?>(ref Position);
-            if (typeof(T) == typeof(Radius))
+            if (type == typeof(Radius))
                 return Unsafe.As<Radius?, T?>(ref Radius);
-            if (typeof(T) == typeof(RandomSeed))
+            if (type == typeof(RandomSeed))
                 return Unsafe.As<RandomSeed?, T?>(ref RandomSeed);
-            if (typeof(T) == typeof(RecivedDamage))
+            if (type == typeof(RecivedDamage))
                 return Unsafe.As<RecivedDamage?, T?>(ref RecivedDamage);
-            if (typeof(T) == typeof(RockId))
+            if (type == typeof(RockId))
                 return Unsafe.As<RockId?, T?>(ref RockId);
-            if (typeof(T) == typeof(Rotation))
+            if (type == typeof(Rotation))
                 return Unsafe.As<Rotation?, T?>(ref Rotation);
-            if (typeof(T) == typeof(Separation))
+            if (type == typeof(Separation))
                 return Unsafe.As<Separation?, T?>(ref Separation);
-            if (typeof(T) == typeof(Separator))
+            if (type == typeof(Separator))
                 return Unsafe.As<Separator?, T?>(ref Separator);
-            if (typeof(T) == typeof(Squad))
+            if (type == typeof(Squad))
                 return Unsafe.As<Squad?, T?>(ref Squad);
-            if (typeof(T) == typeof(SquadMember))
+            if (type == typeof(SquadMember))
                 return Unsafe.As<SquadMember?, T?>(ref SquadMember);
-            if (typeof(T) == typeof(SquadMemberCount))
+            if (type == typeof(SquadMemberCount))
                 return Unsafe.As<SquadMemberCount?, T?>(ref SquadMemberCount);
-            if (typeof(T) == typeof(SyncId))
+            if (type == typeof(SyncId))
                 return Unsafe.As<SyncId?, T?>(ref SyncId);
-            if (typeof(T) == typeof(SyncIdReserve))
+            if (type == typeof(SyncIdReserve))
                 return Unsafe.As<SyncIdReserve?, T?>(ref SyncIdReserve);
-            if (typeof(T) == typeof(Target))
+            if (type == typeof(Target))
                 return Unsafe.As<Target?, T?>(ref Target);
-            if (typeof(T) == typeof(Targets))
+            if (type == typeof(Targets))
                 return Unsafe.As<Targets?, T?>(ref Targets);
-            if (typeof(T) == typeof(TargetSearchDistance))
+            if (type == typeof(TargetSearchDistance))
                 return Unsafe.As<TargetSearchDistance?, T?>(ref TargetSearchDistance);
-            if (typeof(T) == typeof(TargetSearchPosition))
+            if (type == typeof(TargetSearchPosition))
                 return Unsafe.As<TargetSearchPosition?, T?>(ref TargetSearchPosition);
-            if (typeof(T) == typeof(TeamId))
+            if (type == typeof(TeamId))
                 return Unsafe.As<TeamId?, T?>(ref TeamId);
-            if (typeof(T) == typeof(TreeId))
+            if (type == typeof(TreeId))
                 return Unsafe.As<TreeId?, T?>(ref TreeId);
-            if (typeof(T) == typeof(UnitId))
+            if (type == typeof(UnitId))
                 return Unsafe.As<UnitId?, T?>(ref UnitId);
 
-            throw new NotSupportedException(typeof(T).Name);
+            throw new NotSupportedException(type.Name);
         }
 
         public void Set<T>(T? data)
             where T : struct
         {
+            Type type = typeof(T);
 
-            if (typeof(T) == typeof(AutoHeal))
+            if (type == typeof(AutoHeal))
             {
                 AutoHeal = Unsafe.As<T?, AutoHeal?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(BehaviourConfig))
+            if (type == typeof(BehaviourConfig))
             {
                 BehaviourConfig = Unsafe.As<T?, BehaviourConfig?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(BehaviourState))
+            if (type == typeof(BehaviourState))
             {
                 BehaviourState = Unsafe.As<T?, BehaviourState?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(CachePosition))
+            if (type == typeof(CachePosition))
             {
                 CachePosition = Unsafe.As<T?, CachePosition?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(CactusId))
+            if (type == typeof(CactusId))
             {
                 CactusId = Unsafe.As<T?, CactusId?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(ClientId))
+            if (type == typeof(ClientId))
             {
                 ClientId = Unsafe.As<T?, ClientId?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Collide))
+            if (type == typeof(Collide))
             {
                 Collide = Unsafe.As<T?, Collide?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Damage))
+            if (type == typeof(Damage))
             {
                 Damage = Unsafe.As<T?, Damage?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Destination))
+            if (type == typeof(Destination))
             {
                 Destination = Unsafe.As<T?, Destination?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Direction))
+            if (type == typeof(Direction))
             {
                 Direction = Unsafe.As<T?, Direction?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Disposing))
+            if (type == typeof(Disposing))
             {
                 Disposing = Unsafe.As<T?, Disposing?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Fixation))
+            if (type == typeof(Fixation))
             {
                 Fixation = Unsafe.As<T?, Fixation?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(FlyDestination))
+            if (type == typeof(FlyDestination))
             {
                 FlyDestination = Unsafe.As<T?, FlyDestination?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(GoodsAmount))
+            if (type == typeof(GoodsAmount))
             {
                 GoodsAmount = Unsafe.As<T?, GoodsAmount?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(GoodsCollectorRadius))
+            if (type == typeof(GoodsCollectorRadius))
             {
                 GoodsCollectorRadius = Unsafe.As<T?, GoodsCollectorRadius?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(GoodsDrop))
+            if (type == typeof(GoodsDrop))
             {
                 GoodsDrop = Unsafe.As<T?, GoodsDrop?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(GoodsId))
+            if (type == typeof(GoodsId))
             {
                 GoodsId = Unsafe.As<T?, GoodsId?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Health))
+            if (type == typeof(Health))
             {
                 Health = Unsafe.As<T?, Health?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(HexMap))
+            if (type == typeof(HexMap))
             {
                 HexMap = Unsafe.As<T?, HexMap?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(ImpactDistance))
+            if (type == typeof(ImpactDistance))
             {
                 ImpactDistance = Unsafe.As<T?, ImpactDistance?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Level))
+            if (type == typeof(Level))
             {
                 Level = Unsafe.As<T?, Level?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(MaxHealth))
+            if (type == typeof(MaxHealth))
             {
                 MaxHealth = Unsafe.As<T?, MaxHealth?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(MaxSpeed))
+            if (type == typeof(MaxSpeed))
             {
                 MaxSpeed = Unsafe.As<T?, MaxSpeed?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Position))
+            if (type == typeof(Position))
             {
                 Position = Unsafe.As<T?, Position?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Radius))
+            if (type == typeof(Radius))
             {
                 Radius = Unsafe.As<T?, Radius?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(RandomSeed))
+            if (type == typeof(RandomSeed))
             {
                 RandomSeed = Unsafe.As<T?, RandomSeed?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(RecivedDamage))
+            if (type == typeof(RecivedDamage))
             {
                 RecivedDamage = Unsafe.As<T?, RecivedDamage?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(RockId))
+            if (type == typeof(RockId))
             {
                 RockId = Unsafe.As<T?, RockId?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Rotation))
+            if (type == typeof(Rotation))
             {
                 Rotation = Unsafe.As<T?, Rotation?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Separation))
+            if (type == typeof(Separation))
             {
                 Separation = Unsafe.As<T?, Separation?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Separator))
+            if (type == typeof(Separator))
             {
                 Separator = Unsafe.As<T?, Separator?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Squad))
+            if (type == typeof(Squad))
             {
                 Squad = Unsafe.As<T?, Squad?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(SquadMember))
+            if (type == typeof(SquadMember))
             {
                 SquadMember = Unsafe.As<T?, SquadMember?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(SquadMemberCount))
+            if (type == typeof(SquadMemberCount))
             {
                 SquadMemberCount = Unsafe.As<T?, SquadMemberCount?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(SyncId))
+            if (type == typeof(SyncId))
             {
                 SyncId = Unsafe.As<T?, SyncId?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(SyncIdReserve))
+            if (type == typeof(SyncIdReserve))
             {
                 SyncIdReserve = Unsafe.As<T?, SyncIdReserve?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Target))
+            if (type == typeof(Target))
             {
                 Target = Unsafe.As<T?, Target?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(Targets))
+            if (type == typeof(Targets))
             {
                 Targets = Unsafe.As<T?, Targets?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(TargetSearchDistance))
+            if (type == typeof(TargetSearchDistance))
             {
                 TargetSearchDistance = Unsafe.As<T?, TargetSearchDistance?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(TargetSearchPosition))
+            if (type == typeof(TargetSearchPosition))
             {
                 TargetSearchPosition = Unsafe.As<T?, TargetSearchPosition?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(TeamId))
+            if (type == typeof(TeamId))
             {
                 TeamId = Unsafe.As<T?, TeamId?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(TreeId))
+            if (type == typeof(TreeId))
             {
                 TreeId = Unsafe.As<T?, TreeId?>(ref data);
                 return;
             }
-            if (typeof(T) == typeof(UnitId))
+            if (type == typeof(UnitId))
             {
                 UnitId = Unsafe.As<T?, UnitId?>(ref data);
                 return;
             }
 
-            throw new NotSupportedException(typeof(T).Name);
+            throw new NotSupportedException(type.Name);
         }
 
         public Type[] GetTypes()

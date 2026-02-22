@@ -2,10 +2,20 @@
 
 namespace DVG.SkyPirates.Shared.IServices
 {
-    public interface ICommandExecutor { }
-    public interface ICommandExecutor<T> : ICommandExecutor
-        where T : ICommandData
+    public interface ICommandExecutor : IGenericCaller
     {
-        void Execute(Command<T> cmd);
+        void Execute<T>(Command<T> cmd);
+        void IGenericCaller.ForEach<A>(ref A action) { }
+    }
+
+    public interface ICommandExecutor<K> : ICommandExecutor
+    {
+        void Execute(Command<K> cmd);
+        void ICommandExecutor.Execute<T>(Command<T> cmd) { }
+
+        void IGenericCaller.ForEach<A>(ref A action)
+        {
+            action.Invoke<K>();
+        }
     }
 }

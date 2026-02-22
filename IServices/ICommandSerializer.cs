@@ -6,7 +6,7 @@ namespace DVG.SkyPirates.Shared.IServices
 {
     public interface ICommandSerializer
     {
-        void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data) where T : ICommandData;
-        Command<T> Deserialize<T>(ReadOnlyMemory<byte> data) where T : ICommandData;
+        void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data);
+        Command<T> Deserialize<T>(ReadOnlyMemory<byte> data);
     }
 }

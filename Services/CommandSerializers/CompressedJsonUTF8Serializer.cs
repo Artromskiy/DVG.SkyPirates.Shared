@@ -12,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
     {
         private readonly ArrayBufferWriter<byte> _buffer = new();
 
-        public Command<T> Deserialize<T>(ReadOnlyMemory<byte> data) where T : ICommandData
+        public Command<T> Deserialize<T>(ReadOnlyMemory<byte> data)
         {
             _buffer.Clear();
             Decompress(data, _buffer);
@@ -20,7 +20,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandSerializers
             return SerializationUTF8.Deserialize<Command<T>>(_buffer.WrittenMemory);
         }
 
-        public void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data) where T : ICommandData
+        public void Serialize<T>(IBufferWriter<byte> buffer, ref Command<T> data)
         {
             _buffer.Clear();
             SerializationUTF8.Serialize(data, _buffer);

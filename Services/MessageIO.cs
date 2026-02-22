@@ -26,8 +26,7 @@ namespace DVG.SkyPirates.Shared.Services
             _commandSerializer = commandSerializer;
         }
 
-        public bool RecieveMessage<T>(Message message, ushort client, out Command<T> command)
-            where T : ICommandData
+        public bool RecieveMessage<T>(Message message, int client, out Command<T> command)
         {
             bool splitted = message.GetBool();
             _buffer.Clear();
@@ -49,7 +48,8 @@ namespace DVG.SkyPirates.Shared.Services
             {
                 // read uid // 2^16 max
                 ushort uid = message.GetUShort();
-                var key = (client, uid);
+
+                var key = checked(((ushort)client, uid));
                 if (!_splitMessages.TryGetValue(key, out var storage))
                     _splitMessages[key] = storage =
                         _queue.TryDequeue(out storage) ? storage : new(this);
@@ -70,7 +70,6 @@ namespace DVG.SkyPirates.Shared.Services
         }
 
         public List<Message> GetMessages<T>(Command<T> data, List<Message> messages)
-            where T : ICommandData
         {
             _buffer.Clear();
             _commandSerializer.Serialize(_buffer, ref data);
@@ -88,7 +87,6 @@ namespace DVG.SkyPirates.Shared.Services
         }
 
         private List<Message> GetSplitted<T>(ReadOnlySpan<byte> written, List<Message> messages)
-            where T : ICommandData
         {
             // write true if splitted
             // write true if last split index
@@ -99,7 +97,7 @@ namespace DVG.SkyPirates.Shared.Services
                 (written.Length % SplitSize == 0 ? 0 : 1);
             if (splitCount > ushort.MaxValue)
                 throw new NotSupportedException();
-            var commandId = CommandIds.GetId<T>();
+            var commandId = CommandsRegistry.GetId<T>();
             ushort uid = _splitMessageId++;
             for (int i = 0; i < splitCount; i++)
             {
@@ -118,9 +116,8 @@ namespace DVG.SkyPirates.Shared.Services
         }
 
         private List<Message> GetSingle<T>(ReadOnlySpan<byte> written, List<Message> messages)
-            where T : ICommandData
         {
-            var commandId = CommandIds.GetId<T>();
+            var commandId = CommandsRegistry.GetId<T>();
             var message = Message.Create(MessageSendMode.Reliable, (ushort)commandId);
             message.AddBool(false);
             WriteToMessage(written, message);
