@@ -65,7 +65,7 @@ namespace DVG.SkyPirates.Shared.Systems
         public static void SetEntityData(this World world, Entity entity, ComponentsData config)
         {
             var action = new ApplyEntityData(entity, world, config);
-            ComponentsRegistry.ForEachData(ref action);
+            config.ForEach(ref action);
         }
 
         private struct FirstOrDefaultQuery<T> : IForEachWithEntity<T>
@@ -100,9 +100,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Invoke<T>() where T : struct
             {
-                var cmp = _config.Get<T>();
-                if (cmp.HasValue)
-                    _world.AddOrGet<T>(_entity) = cmp.Value;
+                _world.AddOrGet<T>(_entity) = _config.Get<T>().Value;
             }
         }
     }
