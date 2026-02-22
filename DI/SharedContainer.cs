@@ -94,6 +94,7 @@ namespace DVG.SkyPirates.Shared.DI
 
         private static Type[] CommandExecutors => new Type[]
         {
+            typeof(LoadWorldCommandExecutor),
             typeof(SpawnSquadCommandExecutor),
             typeof(SpawnUnitCommandExecutor),
             typeof(JoysticCommandExecutor)
