@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Systems
             WithAll<SquadMember, TargetSearchDistance, TargetSearchPosition>().NotDisposing().NotDisabled();
 
         private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SyncId, TargetSearchDistance, TargetSearchPosition>().NotDisposing().NotDisabled();
+            WithAll<Squad, SyncId, TargetSearchDistance, TargetSearchPosition, Fixation>().NotDisposing().NotDisabled();
 
         private readonly World _world;
 
@@ -30,7 +30,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _searchDataPerSquad.Clear();
 
             var cacheQuery = new CacheSquadSearchQuery(_searchDataPerSquad);
-            _world.InlineQuery<CacheSquadSearchQuery, SyncId, TargetSearchPosition, TargetSearchDistance>
+            _world.InlineQuery<CacheSquadSearchQuery, SyncId, TargetSearchPosition, TargetSearchDistance, Fixation>
                 (in _squadsDesc, ref cacheQuery);
 
             var setDataQuery = new SetMembersTargetSearchDataQuery(_searchDataPerSquad);
@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 (_unitsDesc, ref setDataQuery);
         }
 
-        private readonly struct CacheSquadSearchQuery : IForEach<SyncId, TargetSearchPosition, TargetSearchDistance>
+        private readonly struct CacheSquadSearchQuery : IForEach<SyncId, TargetSearchPosition, TargetSearchDistance, Fixation>
         {
             private readonly Lookup<TargetSearchData> _searchDataPerSquad;
             public CacheSquadSearchQuery(Lookup<TargetSearchData> searchDataPerSquad)
@@ -46,9 +46,10 @@ namespace DVG.SkyPirates.Shared.Systems
                 _searchDataPerSquad = searchDataPerSquad;
             }
 
-            public void Update(ref SyncId syncId, ref TargetSearchPosition searchPosition, ref TargetSearchDistance searchDistance)
+            public void Update(ref SyncId syncId, ref TargetSearchPosition searchPosition, ref TargetSearchDistance searchDistance, ref Fixation fixation)
             {
-                _searchDataPerSquad[syncId.Value] = new(searchPosition, searchDistance);
+                TargetSearchDistance distance = fixation ? fix.Zero : searchDistance;
+                _searchDataPerSquad[syncId.Value] = new(searchPosition, distance);
             }
         }
 

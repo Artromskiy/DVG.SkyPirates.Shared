@@ -58,7 +58,7 @@
           "Rum": 2
         }
       },
-      "ImpactDistance": 3,
+      "ImpactDistance": 2,
       "MaxHealth": 20,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
@@ -163,7 +163,7 @@
           "Rum": 2
         }
       },
-      "ImpactDistance": 3,
+      "ImpactDistance": 2,
       "MaxHealth": 100,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
@@ -198,7 +198,7 @@
           "Rum": 2
         }
       },
-      "ImpactDistance": 3,
+      "ImpactDistance": 2,
       "MaxHealth": 50,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
@@ -268,8 +268,8 @@
           "Rum": 2
         }
       },
-      "ImpactDistance": 7,
-      "MaxHealth": 100,
+      "ImpactDistance": 5,
+      "MaxHealth": 10,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
       "Separation": 1,

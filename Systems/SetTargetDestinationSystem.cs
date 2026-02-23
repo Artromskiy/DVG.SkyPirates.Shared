@@ -12,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// </summary>
     public sealed class SetTargetDestinationSystem : ITickableExecutor
     {
-        private static readonly fix _reduceImpactDistance = 1;
+        private static readonly fix _reduceImpactDistance = fix.One / 2;
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Destination, Position, ImpactDistance, Target>().NotDisposing().NotDisabled();
 

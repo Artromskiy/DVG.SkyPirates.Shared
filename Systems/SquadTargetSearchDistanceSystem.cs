@@ -13,9 +13,9 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private static readonly fix _baseRange = 1;
         private readonly QueryDescription _squadsMembers = new QueryDescription().
-            WithAll<SquadMember, ImpactDistance>();
+            WithAll<SquadMember, ImpactDistance>().NotDisposing().NotDisabled();
         private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SquadMemberCount, Fixation, TargetSearchDistance>().NotDisposing().NotDisabled();
+            WithAll<Squad, SquadMemberCount, TargetSearchDistance>().NotDisposing().NotDisabled();
 
         private readonly Dictionary<int, fix> _maxImpactDistancePerSquad = new();
         private readonly PackedCirclesConfig _circlesConfig;
@@ -31,19 +31,33 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             _maxImpactDistancePerSquad.Clear();
-            _world.Query(in _squadsMembers, (ref SquadMember member, ref ImpactDistance impactDistance) =>
-            {
-                _maxImpactDistancePerSquad[member.SquadId] =
-                    Maths.Max(_maxImpactDistancePerSquad.GetValueOrDefault(member.SquadId), impactDistance);
-            });
+            var impactQuery = new CollectImpactDistancesQuery(_maxImpactDistancePerSquad);
+            _world.InlineQuery<CollectImpactDistancesQuery, SquadMember, ImpactDistance>(in _squadsMembers, ref impactQuery);
 
             var squadQuery = new ApplyRangeQuery(_circlesConfig, _maxImpactDistancePerSquad);
-            _world.InlineQuery<ApplyRangeQuery, SyncId, Fixation, SquadMemberCount, TargetSearchDistance>(
+            _world.InlineQuery<ApplyRangeQuery, SyncId, SquadMemberCount, TargetSearchDistance>(
                 _squadsDesc, ref squadQuery);
         }
 
+        private readonly struct CollectImpactDistancesQuery : IForEach<SquadMember, ImpactDistance>
+        {
+            private readonly Dictionary<int, fix> _maxImpactDistancePerSquad;
+
+            public CollectImpactDistancesQuery(Dictionary<int, fix> maxImpactDistancePerSquad)
+            {
+                _maxImpactDistancePerSquad = maxImpactDistancePerSquad;
+            }
+
+            public void Update(ref SquadMember member, ref ImpactDistance impactDistance)
+            {
+                var currentImpactDistance = _maxImpactDistancePerSquad.GetValueOrDefault(member.SquadId);
+                _maxImpactDistancePerSquad[member.SquadId] =
+                    Maths.Max(currentImpactDistance, impactDistance);
+            }
+        }
+
         private readonly struct ApplyRangeQuery
-            : IForEach<SyncId, Fixation, SquadMemberCount, TargetSearchDistance>
+            : IForEach<SyncId, SquadMemberCount, TargetSearchDistance>
         {
             private readonly PackedCirclesConfig _circlesConfig;
             private readonly Dictionary<int, fix> _maxImpactDistancePerSquad;
@@ -56,13 +70,12 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(
                 ref SyncId syncId,
-                ref Fixation fixation,
                 ref SquadMemberCount memberCount,
                 ref TargetSearchDistance searchDistance)
             {
                 fix squadRadius = memberCount == 0 ? 0 : _circlesConfig[memberCount].Radius;
                 var maxImpactDistance = _maxImpactDistancePerSquad.GetValueOrDefault(syncId);
-                searchDistance = fixation ? 0 : maxImpactDistance + _baseRange + squadRadius;
+                searchDistance = maxImpactDistance + _baseRange + squadRadius;
             }
         }
     }
