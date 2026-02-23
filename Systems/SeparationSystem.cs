@@ -39,6 +39,10 @@ namespace DVG.SkyPirates.Shared.Systems
                 _forces.Clear();
                 _partitioning.Clear();
 
+                // we can turn problem upside down, so Separator writes to cells
+                // Separation searches and updates forces applied to self
+                // This can be done in parallel if force is a component
+
                 var partitionQuery = new PartitioningQuery(_partitioning);
                 _world.InlineQuery<PartitioningQuery, SyncId, Position>(_separationDesc, ref partitionQuery);
 

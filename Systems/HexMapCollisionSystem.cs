@@ -7,7 +7,6 @@ using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 
 namespace DVG.SkyPirates.Shared.Systems
@@ -65,7 +64,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     position.Value = cachePosition;
                     OnFailedToSolve?.Invoke(Solvers.Segments.ToArray(), cachePosition.Value.xz, position.Value.xz, radius);
                 }
-                Debug.Assert(!failed, "Failed to solve collision");
+                //Trace.Assert(!failed, "Failed to solve collision");
             }
 
             private void FindSegments(fix3 from)

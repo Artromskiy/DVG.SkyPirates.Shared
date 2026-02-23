@@ -23,7 +23,7 @@ namespace DVG.SkyPirates.Shared.Ids
             public static readonly UnitId Buccaneer = new UnitId("Buccaneer");
             public static readonly UnitId Rogue = new UnitId("Rogue");
             public static readonly UnitId Skelly = new UnitId("Skelly");
-            public static readonly UnitId Archy = new UnitId("Archy");
+            public static readonly UnitId Bonny = new UnitId("Bonny");
             public static readonly UnitId Daemon = new UnitId("Daemon");
             public static readonly UnitId Imp = new UnitId("Imp");
             public static readonly UnitId Militia = new UnitId("Militia");
@@ -35,7 +35,7 @@ namespace DVG.SkyPirates.Shared.Ids
                 new UnitId("Buccaneer"),
                 new UnitId("Rogue"),
                 new UnitId("Skelly"),
-                new UnitId("Archy"),
+                new UnitId("Bonny"),
                 new UnitId("Daemon"),
                 new UnitId("Imp"),
                 new UnitId("Militia"),
