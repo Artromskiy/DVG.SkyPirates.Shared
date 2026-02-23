@@ -3,7 +3,7 @@ using DVG.Components;
 using DVG.Core.Collections;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
-using DVG.SkyPirates.Shared.IFactories;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 
@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Systems
             WithAll<Squad>().NotDisposing().NotDisabled();
 
         private readonly World _world;
-        private readonly IPackedCirclesFactory _packedCirclesFactory;
+        private readonly PackedCirclesConfig _circlesConfig;
 
         private readonly Lookup<int> _orderPerUnit = new();
         private readonly Lookup<SquadData> _dataPerSquad = new();
@@ -26,10 +26,10 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly Queue<List<SyncId>> _unitsCache = new();
 
-        public SquadMemberDestinationSystem(World world, IPackedCirclesFactory packedCirclesFactory)
+        public SquadMemberDestinationSystem(World world, PackedCirclesConfig circlesConfig)
         {
             _world = world;
-            _packedCirclesFactory = packedCirclesFactory;
+            _circlesConfig = circlesConfig;
         }
 
         public void Tick(int tick, fix deltaTime)
@@ -58,7 +58,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 }
             }
 
-            var applyQuery = new ApplySquadMembersDestinationQuery(_orderPerUnit, _dataPerSquad, _packedCirclesFactory);
+            var applyQuery = new ApplySquadMembersDestinationQuery(_orderPerUnit, _dataPerSquad, _circlesConfig);
             _world.InlineQuery<ApplySquadMembersDestinationQuery, SyncId, SquadMember, Destination>
                 (_unitsDesc, ref applyQuery);
         }
@@ -103,13 +103,13 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             private readonly Lookup<int> _orderPerUnit;
             private readonly Lookup<SquadData> _dataPerSquad;
-            private readonly IPackedCirclesFactory _factory;
+            private readonly PackedCirclesConfig _circlesConfig;
 
-            public ApplySquadMembersDestinationQuery(Lookup<int> orderPerUnit, Lookup<SquadData> dataPerSquad, IPackedCirclesFactory factory)
+            public ApplySquadMembersDestinationQuery(Lookup<int> orderPerUnit, Lookup<SquadData> dataPerSquad, PackedCirclesConfig circlesConfig)
             {
                 _orderPerUnit = orderPerUnit;
                 _dataPerSquad = dataPerSquad;
-                _factory = factory;
+                _circlesConfig = circlesConfig;
             }
 
             // Get squad position, offset from it, set as destination
@@ -119,7 +119,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 ref Destination destination)
             {
                 var unitsCount = _dataPerSquad[member.SquadId].MemberCount;
-                var circles = _factory.Create(unitsCount);
+                var circles = _circlesConfig[unitsCount];
                 var order = _orderPerUnit[syncId.Value];
                 var local = circles.Points[order];
                 destination.Position = _dataPerSquad[member.SquadId].Position + local.x_y;

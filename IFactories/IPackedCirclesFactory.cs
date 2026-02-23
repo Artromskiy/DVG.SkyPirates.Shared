@@ -3,5 +3,5 @@ using DVG.SkyPirates.Shared.Data;
 
 namespace DVG.SkyPirates.Shared.IFactories
 {
-    public interface IPackedCirclesFactory : IFactory<PackedCirclesData, int> { }
+    public interface IPackedCirclesFactory : IFactory<PackedCirclesConfig> { }
 }

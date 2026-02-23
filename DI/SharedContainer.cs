@@ -19,13 +19,13 @@ namespace DVG.SkyPirates.Shared.DI
     {
         public SharedContainer()
         {
-            Debug.WriteLine("[DI] SharedRegistration start");
+            Debug.WriteLine("[DI] SharedContainer Start");
             RegisterSingleton(() => World.Create());
 
             RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
             RegisterSingleton(typeof(IConfigedEntityFactory<>), typeof(ConfigedEntityFactory<>));
             RegisterFactorySingleton<IGlobalConfigFactory, GlobalConfigFactory, GlobalConfig>();
-            RegisterSingleton<IPackedCirclesFactory, PackedCirclesFactory>();
+            RegisterFactorySingleton<IPackedCirclesFactory, PackedCirclesFactory, PackedCirclesConfig>();
             RegisterSingleton<IWorldDataFactory, WorldDataFactory>();
             RegisterSingleton<IEntityFactory, EntityFactory>();
             RegisterSingleton<IHexMapFactory, HexMapFactory>();

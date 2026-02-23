@@ -3,7 +3,7 @@ using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
-using DVG.SkyPirates.Shared.IFactories;
+using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 
@@ -11,32 +11,33 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class SquadTargetSearchDistanceSystem : ITickableExecutor
     {
+        private static readonly fix _baseRange = 1;
         private readonly QueryDescription _squadsMembers = new QueryDescription().
             WithAll<SquadMember, ImpactDistance>();
         private readonly QueryDescription _squadsDesc = new QueryDescription().
             WithAll<Squad, SquadMemberCount, Fixation, TargetSearchDistance>().NotDisposing().NotDisabled();
 
-        private readonly Dictionary<int, fix> _rangePerSquad = new();
-        private readonly IPackedCirclesFactory _packedCirclesFactory;
+        private readonly Dictionary<int, fix> _maxImpactDistancePerSquad = new();
+        private readonly PackedCirclesConfig _circlesConfig;
         private readonly World _world;
 
 
-        public SquadTargetSearchDistanceSystem(IPackedCirclesFactory packedCirclesFactory, World world)
+        public SquadTargetSearchDistanceSystem(PackedCirclesConfig circlesConfig, World world)
         {
-            _packedCirclesFactory = packedCirclesFactory;
+            _circlesConfig = circlesConfig;
             _world = world;
         }
 
         public void Tick(int tick, fix deltaTime)
         {
-            _rangePerSquad.Clear();
+            _maxImpactDistancePerSquad.Clear();
             _world.Query(in _squadsMembers, (ref SquadMember member, ref ImpactDistance impactDistance) =>
             {
-                _rangePerSquad[member.SquadId] =
-                    Maths.Max(_rangePerSquad.GetValueOrDefault(member.SquadId), impactDistance);
+                _maxImpactDistancePerSquad[member.SquadId] =
+                    Maths.Max(_maxImpactDistancePerSquad.GetValueOrDefault(member.SquadId), impactDistance);
             });
 
-            var squadQuery = new ApplyRangeQuery(_packedCirclesFactory, _rangePerSquad);
+            var squadQuery = new ApplyRangeQuery(_circlesConfig, _maxImpactDistancePerSquad);
             _world.InlineQuery<ApplyRangeQuery, SyncId, Fixation, SquadMemberCount, TargetSearchDistance>(
                 _squadsDesc, ref squadQuery);
         }
@@ -44,13 +45,13 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly struct ApplyRangeQuery
             : IForEach<SyncId, Fixation, SquadMemberCount, TargetSearchDistance>
         {
-            private readonly IPackedCirclesFactory _factory;
-            private readonly Dictionary<int, fix> _rangePerSquad;
+            private readonly PackedCirclesConfig _circlesConfig;
+            private readonly Dictionary<int, fix> _maxImpactDistancePerSquad;
 
-            public ApplyRangeQuery(IPackedCirclesFactory factory, Dictionary<int, fix> rangePerSquad)
+            public ApplyRangeQuery(PackedCirclesConfig circlesConfig, Dictionary<int, fix> maxImpactDistancePerSquad)
             {
-                _factory = factory;
-                _rangePerSquad = rangePerSquad;
+                _circlesConfig = circlesConfig;
+                _maxImpactDistancePerSquad = maxImpactDistancePerSquad;
             }
 
             public void Update(
@@ -59,8 +60,9 @@ namespace DVG.SkyPirates.Shared.Systems
                 ref SquadMemberCount memberCount,
                 ref TargetSearchDistance searchDistance)
             {
-                fix addRadius = memberCount == 0 ? 0 : _factory.Create(memberCount).Radius;
-                searchDistance = fixation ? 0 : _rangePerSquad.GetValueOrDefault(syncId) + addRadius;
+                fix squadRadius = memberCount == 0 ? 0 : _circlesConfig[memberCount].Radius;
+                var maxImpactDistance = _maxImpactDistancePerSquad.GetValueOrDefault(syncId);
+                searchDistance = fixation ? 0 : maxImpactDistance + _baseRange + squadRadius;
             }
         }
     }
