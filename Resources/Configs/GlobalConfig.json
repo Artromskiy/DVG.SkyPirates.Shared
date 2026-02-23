@@ -23,7 +23,7 @@
           "Rum": 2
         }
       },
-      "ImpactDistance": 3,
+      "ImpactDistance": 4,
       "MaxHealth": 45,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
@@ -149,9 +149,9 @@
           "None": "None"
         },
         "Durations": {
-          "PreAttack": 0.6999969482421875,
+          "PreAttack": 0.5,
           "PostAttack": 0.3000030517578125,
-          "Reload": 0.3000030517578125,
+          "Reload": 0.5,
           "None": 0
         }
       },
@@ -175,7 +175,42 @@
       "TargetSearchDistance": 5,
       "UnitId": "Militia"
     },
-    "Demon": {
+    "Imp": {
+      "BehaviourConfig": {
+        "Scenario": {
+          "PreAttack": "PostAttack",
+          "PostAttack": "Reload",
+          "Reload": "None",
+          "None": "None"
+        },
+        "Durations": {
+          "PreAttack": 0.1999969482421875,
+          "PostAttack": 0.1999969482421875,
+          "Reload": 0.100006103515625,
+          "None": 0
+        }
+      },
+      "Damage": 1,
+      "GoodsCollectorRadius": 2,
+      "GoodsDrop": {
+        "Values": {
+          "Gold": 5,
+          "Rum": 2
+        }
+      },
+      "ImpactDistance": 3,
+      "MaxHealth": 50,
+      "MaxSpeed": 10,
+      "Radius": 0.3000030517578125,
+      "Separation": 1,
+      "Separator": {
+        "Radius": 0.3000030517578125,
+        "Coefficient": 1
+      },
+      "TargetSearchDistance": 5,
+      "UnitId": "Imp"
+    },
+    "Daemon": {
       "BehaviourConfig": {
         "Scenario": {
           "PreAttack": "PostAttack",
@@ -198,7 +233,7 @@
           "Rum": 2
         }
       },
-      "ImpactDistance": 3,
+      "ImpactDistance": 4,
       "MaxHealth": 65,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
@@ -208,7 +243,7 @@
         "Coefficient": 1
       },
       "TargetSearchDistance": 5,
-      "UnitId": "Demon"
+      "UnitId": "Daemon"
     },
     "Buccaneer": {
       "BehaviourConfig": {
@@ -225,7 +260,7 @@
           "None": 0
         }
       },
-      "Damage": 7,
+      "Damage": 15,
       "GoodsCollectorRadius": 2,
       "GoodsDrop": {
         "Values": {
@@ -233,8 +268,8 @@
           "Rum": 2
         }
       },
-      "ImpactDistance": 3,
-      "MaxHealth": 10,
+      "ImpactDistance": 7,
+      "MaxHealth": 100,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
       "Separation": 1,
@@ -268,7 +303,7 @@
           "Rum": 2
         }
       },
-      "ImpactDistance": 3,
+      "ImpactDistance": 7,
       "MaxHealth": 10,
       "MaxSpeed": 10,
       "Radius": 0.3000030517578125,
@@ -279,41 +314,6 @@
       },
       "TargetSearchDistance": 5,
       "UnitId": "Bonny"
-    },
-    "Imp": {
-      "BehaviourConfig": {
-        "Scenario": {
-          "PreAttack": "PostAttack",
-          "PostAttack": "Reload",
-          "Reload": "None",
-          "None": "None"
-        },
-        "Durations": {
-          "PreAttack": 0.1999969482421875,
-          "PostAttack": 0.3000030517578125,
-          "Reload": 0.3000030517578125,
-          "None": 0
-        }
-      },
-      "Damage": 1,
-      "GoodsCollectorRadius": 2,
-      "GoodsDrop": {
-        "Values": {
-          "Gold": 5,
-          "Rum": 2
-        }
-      },
-      "ImpactDistance": 3,
-      "MaxHealth": 50,
-      "MaxSpeed": 10,
-      "Radius": 0.3000030517578125,
-      "Separation": 1,
-      "Separator": {
-        "Radius": 0.3000030517578125,
-        "Coefficient": 1
-      },
-      "TargetSearchDistance": 5,
-      "UnitId": "Imp"
     }
   },
   "CactusesStats": {
@@ -5645,8 +5645,12 @@
       "UnitId": "Militia",
       "RumPrice": 3
     },
-    "Demon": {
-      "UnitId": "Demon",
+    "Imp": {
+      "UnitId": "Imp",
+      "RumPrice": 1
+    },
+    "Daemon": {
+      "UnitId": "Daemon",
       "RumPrice": 2
     },
     "Buccaneer": {
@@ -5656,10 +5660,6 @@
     "Bonny": {
       "UnitId": "Bonny",
       "RumPrice": 2
-    },
-    "Imp": {
-      "UnitId": "Imp",
-      "RumPrice": 1
     }
   },
   "ComponentDependencies": [

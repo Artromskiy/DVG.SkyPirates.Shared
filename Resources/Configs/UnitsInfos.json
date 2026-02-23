@@ -20,7 +20,11 @@
     "RumPrice": 3
   },
   {
-    "UnitId": "Demon",
+    "UnitId": "Imp",
+    "RumPrice": 1
+  },
+  {
+    "UnitId": "Daemon",
     "RumPrice": 2
   },
   {
@@ -30,9 +34,5 @@
   {
     "UnitId": "Bonny",
     "RumPrice": 2
-  },
-  {
-    "UnitId": "Imp",
-    "RumPrice": 1
   }
 ]

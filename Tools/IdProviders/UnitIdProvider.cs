@@ -13,8 +13,8 @@ namespace DVG.SkyPirates.Shared.Tools.IdProviders
             new("Buccaneer"),
             new("Rogue"),
             new("Skelly"),
-            new("Archy"),
-            new("Demon"),
+            new("Bonny"),
+            new("Daemon"),
             new("Imp"),
             new("Militia"),
         };
