@@ -86,12 +86,12 @@ namespace DVG.SkyPirates.Shared.Systems
                 UpdateInPlace(ref position, ref separation, ref radius);
             }
 
-            public void UpdateInPlace(ref Position position, ref Separator separation, ref Radius radius)
+            public void UpdateInPlace(ref Position position, ref Separator separator, ref Radius radius)
             {
                 _entitiesLookup.Clear();
 
                 var hardRadius = radius;
-                var maxDistance = hardRadius + separation.Radius;
+                var maxDistance = hardRadius + separator.Radius;
                 var pos = ((fix3)position).xz;
                 var range = new fix2(maxDistance);
                 var min = pos - range;
@@ -137,7 +137,7 @@ namespace DVG.SkyPirates.Shared.Systems
                             var softForce = Maths.Clamp(Maths.InvLerp(maxDistance, hardRadius, distance), 0, 1);
                             var hardForce = Maths.Clamp(hardRadius == fix.Zero ? 0 : Maths.InvLerp(hardRadius, 0, distance), 0, 1);
                             dir = sqrDistance == 0 ? fix2.zero : dir / distance;
-                            var force = Maths.Max(hardForce, softForce * softForce) * separation.Coefficient * dir;
+                            var force = Maths.Max(hardForce, softForce * softForce) * separator.Coefficient * dir;
                             _forces[other.SyncId.Value] = new()
                             {
                                 Force = separationForce.Force + force,
