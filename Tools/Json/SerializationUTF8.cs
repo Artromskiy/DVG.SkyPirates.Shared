@@ -1,6 +1,5 @@
 ﻿using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
-using DVG.SkyPirates.Shared.Ids;
 using System;
 using System.Buffers;
 using System.Globalization;
@@ -62,14 +61,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             Options.Converters.Add(new FixFuncConverter<GoodsCollectorRadius>(value => value, value => value));
             Options.Converters.Add(new FixFuncConverter<TargetSearchDistance>(value => value, value => value));
 
-            Options.Converters.Add(new IdConverter<CheatingId>());
-            Options.Converters.Add(new IdConverter<GoodsId>());
-            Options.Converters.Add(new IdConverter<StateId>());
-            Options.Converters.Add(new IdConverter<TileId>());
-            Options.Converters.Add(new IdConverter<UnitId>());
-            Options.Converters.Add(new IdConverter<CactusId>());
-            Options.Converters.Add(new IdConverter<TreeId>());
-            Options.Converters.Add(new IdConverter<RockId>());
+            Options.Converters.Add(new IdConverterFactory());
         }
 
         public static string Serialize<T>(T data)

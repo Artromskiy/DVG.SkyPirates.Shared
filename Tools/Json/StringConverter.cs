@@ -1,15 +1,9 @@
-﻿using DVG.Ids;
-using DVG.SkyPirates.Shared.Ids;
-using System;
+﻿using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace DVG.SkyPirates.Shared.Tools.Json
 {
-    public class IdConverter<T> : StringConverter<T> where T : struct, IId
-    {
-        protected override T Parse(string value) => IdFactory.Create<T>(value);
-    }
 
     public class StringFuncConverter<T> : StringConverter<T>
     {
