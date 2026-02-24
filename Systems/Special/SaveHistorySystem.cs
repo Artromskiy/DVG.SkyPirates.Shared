@@ -24,8 +24,25 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         public void Tick(int tick, fix deltaTime)
         {
-            var action = new SaveHistoryAction(_desc, _world, tick);
-            HistoryComponentsRegistry.ForEachData(ref action);
+            var addAction = new AddHistoryAction(_world);
+            var saveAction = new SaveHistoryAction(_desc, _world, tick);
+            HistoryComponentsRegistry.ForEachData(ref addAction);
+            HistoryComponentsRegistry.ForEachData(ref saveAction);
+        }
+
+        private readonly struct AddHistoryAction : IStructGenericAction
+        {
+            private readonly World _world;
+
+            public AddHistoryAction(World world)
+            {
+                _world = world;
+            }
+
+            public void Invoke<T>() where T : struct
+            {
+                _world.AddQuery((ref T has, ref History<T> history) => history = new History<T>(Constants.HistoryTicks));
+            }
         }
 
         private readonly struct SaveHistoryAction : IStructGenericAction
@@ -45,8 +62,6 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             {
                 var saveQuery = new SaveHistoryQuery<T>(WrapTick(_tick));
                 var desc = _descriptions.Get<Description<T>>();
-
-                _world.AddQuery((ref T has, ref History<T> history) => history = new History<T>(Constants.HistoryTicks));
 
                 // if history was inline array we could write faster
                 var saveHasCmpDesc = desc.saveHasCmpDesc;
@@ -68,15 +83,11 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 _tick = tick;
             }
 
-            public readonly void Update(ref History<T> history, ref T component)
-            {
+            public readonly void Update(ref History<T> history, ref T component) =>
                 history[_tick] = component;
-            }
 
-            public void Update(ref History<T> history)
-            {
+            public void Update(ref History<T> history) =>
                 history[_tick] = null;
-            }
         }
     }
 }

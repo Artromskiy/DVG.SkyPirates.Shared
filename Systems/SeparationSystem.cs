@@ -8,25 +8,23 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    /// <summary>
-    /// Moves Entity's <see href="Position"/> and <see href="Rotation"/> 
-    /// with speed <see href="MoveSpeed"/> towards <see href="Destination"/>
-    /// </summary>
     public sealed class SeparationSystem : ITickableExecutor
     {
         public static int SquareSize = 4;
 
         private readonly QueryDescription _separatorDesc = new QueryDescription().
-            WithAll<Position, Separator, Radius>().NotDisposing().NotDisabled();
+            WithAll<SyncId, Position, Separator, Radius>().
+            NotDisposing().NotDisabled();
 
         private readonly QueryDescription _separationDesc = new QueryDescription().
-            WithAll<Position, Separation>().NotDisposing().NotDisabled();
+            WithAll<Position, Separation>().
+            NotDisposing().NotDisabled();
 
-        private readonly Lookup2D<List<SyncIdPosition>> _partitioning = new();
-        private readonly Lookup<SeparationForce> _forces = new();
-        private readonly Lookup _entitiesLookup = new();
+        private readonly Lookup2D<List<SeparatorEntry>> _partitioning = new();
+        private readonly HashSet<int> _syncIdCache = new();
 
         private readonly World _world;
+
         public SeparationSystem(World world)
         {
             _world = world;
@@ -34,164 +32,135 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            for (int i = 0; i < 2; i++)
-            {
-                _forces.Clear();
-                _partitioning.Clear();
+            _partitioning.Clear();
 
-                // we can turn problem upside down, so Separator writes to cells
-                // Separation searches and updates forces applied to self
-                // This can be done in parallel if force is a component
+            var partitionQuery = new PartitionQuery(_partitioning);
+            _world.InlineQuery<PartitionQuery, SyncId, Position, Separator, Radius>(_separatorDesc, ref partitionQuery);
 
-                var partitionQuery = new PartitioningQuery(_partitioning);
-                _world.InlineQuery<PartitioningQuery, SyncId, Position>(_separationDesc, ref partitionQuery);
-
-                var forceQuery = new SumSeparationForceQuery(_partitioning, _forces, _entitiesLookup);
-                _world.InlineQuery<SumSeparationForceQuery, Position, Separator, Radius>(_separatorDesc, ref forceQuery);
-
-                var separationQuery = new ApplySeparationQuery(_forces);
-                _world.InlineQuery<ApplySeparationQuery, SyncId, Position, Separation>(_separationDesc, ref separationQuery);
-            }
+            var separationQuery = new SeparationQuery(_syncIdCache, _partitioning);
+            _world.InlineQuery<SeparationQuery, Position, Separation>(_separationDesc, ref separationQuery);
         }
 
-        private readonly struct ApplySeparationQuery : IForEach<SyncId, Position, Separation>
+        private readonly struct SeparationQuery : IForEach<Position, Separation>
         {
-            private readonly Lookup<SeparationForce> _forces;
+            private readonly HashSet<int> _written;
+            private readonly Lookup2D<List<SeparatorEntry>> _grid;
 
-            public ApplySeparationQuery(Lookup<SeparationForce> forces)
+            public SeparationQuery(HashSet<int> written, Lookup2D<List<SeparatorEntry>> grid)
             {
-                _forces = forces;
+                _written = written;
+                _grid = grid;
             }
 
-            public readonly void Update(ref SyncId syncId, ref Position position, ref Separation separation)
+            public void Update(ref Position position, ref Separation separation)
             {
-                _forces.TryGetValue(syncId.Value, out var force);
-                var forcesCount = force.ForcesCount == 0 ? 1 : force.ForcesCount;
-                var offset = separation.Value / forcesCount * force.Force;
-                position += offset.x_y;
-            }
-        }
-
-        private readonly struct SumSeparationForceQuery : IForEach<Position, Separator, Radius>
-        {
-            private readonly Lookup2D<List<SyncIdPosition>> _partitioning;
-            private readonly Lookup<SeparationForce> _forces;
-            private readonly Lookup _entitiesLookup;
-
-            public SumSeparationForceQuery(Lookup2D<List<SyncIdPosition>> partitioning, Lookup<SeparationForce> forces, Lookup entitiesLookup)
-            {
-                _partitioning = partitioning;
-                _forces = forces;
-                _entitiesLookup = entitiesLookup;
-            }
-
-            public void Update(ref Position position, ref Separator separation, ref Radius radius)
-            {
-                UpdateInPlace(ref position, ref separation, ref radius);
-            }
-
-            public void UpdateInPlace(ref Position position, ref Separator separator, ref Radius radius)
-            {
-                _entitiesLookup.Clear();
-
-                var hardRadius = radius;
-                var maxDistance = hardRadius + separator.Radius;
+                _written.Clear();
                 var pos = ((fix3)position).xz;
-                var range = new fix2(maxDistance);
-                var min = pos - range;
-                var max = pos + range;
-                var minQ = GetQuantizedSquare(min);
-                var maxQ = GetQuantizedSquare(max);
-                var maxSqrDistance = maxDistance * maxDistance;
+
+                var q = GetQuantizedSquare(pos);
+
+                fix2 totalForce = fix2.zero;
+                int forcesCount = 0;
+
+
+                if (!_grid.TryGetValue(q.x, q.y, out var list))
+                    return;
+
+
+                int count = list.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    var other = list[i];
+                    if (!_written.Add(other.SyncId))
+                        continue;
+
+                    var dir = pos - other.Position;
+                    var sqrDistance = fix2.SqrLength(dir);
+
+                    if (sqrDistance == 0)
+                        continue;
+
+                    var maxDistance = other.Radius + other.SeparatorRadius;
+                    var maxSqrDistance = maxDistance * maxDistance;
+                    if (sqrDistance > maxSqrDistance)
+                        continue;
+
+                    var distance = Maths.Sqrt(sqrDistance);
+                    dir /= distance;
+
+                    var softForce = Maths.Clamp(Maths.InvLerp(maxDistance, other.Radius, distance), 0, 1);
+
+                    var hardForce = Maths.Clamp(other.Radius == fix.Zero ? 0 :
+                        Maths.InvLerp(other.Radius, 0, distance), 0, 1);
+
+                    var force = Maths.Max(hardForce, softForce * softForce) *
+                        other.SeparatorCoefficient * dir;
+
+                    totalForce += force;
+                    forcesCount++;
+                }
+
+                if (forcesCount > 0)
+                {
+                    var offset = separation.Value / forcesCount * totalForce;
+                    position += offset.x_y;
+                }
+            }
+        }
+
+        private readonly struct PartitionQuery : IForEach<SyncId, Position, Separator, Radius>
+        {
+            private readonly Lookup2D<List<SeparatorEntry>> _grid;
+
+            public PartitionQuery(Lookup2D<List<SeparatorEntry>> grid)
+            {
+                _grid = grid;
+            }
+
+            public void Update(ref SyncId syncId, ref Position position, ref Separator separator, ref Radius radius)
+            {
+                var pos = ((fix3)position).xz;
+
+                var range = new fix2(radius.Value);
+                var minQ = GetQuantizedSquare(pos - range);
+                var maxQ = GetQuantizedSquare(pos + range);
 
                 for (int y = minQ.y; y <= maxQ.y; y++)
                 {
                     for (int x = minQ.x; x <= maxQ.x; x++)
                     {
-                        if (!_partitioning.TryGetValue(x, y, out var quadrant))
-                            continue;
+                        if (!_grid.TryGetValue(x, y, out var list))
+                            _grid[x, y] = list = new List<SeparatorEntry>(8);
 
-                        int count = quadrant.Count;
-                        for (int i = 0; i < count; i++)
-                        {
-                            SyncIdPosition other = quadrant[i];
-                            if (_entitiesLookup.Has(other.SyncId.Value))
-                                continue;
-
-                            var otherPos = ((fix3)other.Position).xz;
-
-                            if (otherPos == pos)
-                                continue;
-
-                            if (otherPos.x < min.x || otherPos.x > max.x ||
-                                otherPos.y < min.y || otherPos.y > max.y)
-                                continue;
-
-                            var dir = otherPos - pos;
-                            var sqrDistance = fix2.SqrLength(dir);
-                            if (sqrDistance >= maxSqrDistance)
-                                continue;
-
-                            _entitiesLookup.Add(other.SyncId.Value);
-
-                            if (!_forces.TryGetValue(other.SyncId.Value, out var separationForce))
-                                _forces[other.SyncId.Value] = separationForce = new SeparationForce();
-
-                            var distance = Maths.Sqrt(sqrDistance);
-                            var softForce = Maths.Clamp(Maths.InvLerp(maxDistance, hardRadius, distance), 0, 1);
-                            var hardForce = Maths.Clamp(hardRadius == fix.Zero ? 0 : Maths.InvLerp(hardRadius, 0, distance), 0, 1);
-                            dir = sqrDistance == 0 ? fix2.zero : dir / distance;
-                            var force = Maths.Max(hardForce, softForce * softForce) * separator.Coefficient * dir;
-                            _forces[other.SyncId.Value] = new()
-                            {
-                                Force = separationForce.Force + force,
-                                ForcesCount = separationForce.ForcesCount + 1
-                            };
-                        }
+                        list.Add(new SeparatorEntry(syncId, position, separator, radius.Value));
                     }
                 }
             }
         }
 
-        private readonly struct PartitioningQuery : IForEach<SyncId, Position>
-        {
-            private readonly Lookup2D<List<SyncIdPosition>> _targets;
-
-            public PartitioningQuery(Lookup2D<List<SyncIdPosition>> targets)
-            {
-                _targets = targets;
-            }
-
-            public readonly void Update(ref SyncId syncId, ref Position position)
-            {
-                var intPos = GetQuantizedSquare(((fix3)position).xz);
-                if (!_targets.TryGetValue(intPos.x, intPos.y, out var quadrant))
-                    _targets[intPos.x, intPos.y] = quadrant = new();
-                quadrant.Add(new(syncId, position));
-            }
-        }
-
         private static int2 GetQuantizedSquare(fix2 position)
         {
-            return new int2((int)position.x / SquareSize, (int)position.y / SquareSize);
+            return new int2(
+                (int)position.x / SquareSize,
+                (int)position.y / SquareSize);
         }
 
-        private readonly struct SyncIdPosition
+        private readonly struct SeparatorEntry
         {
             public readonly SyncId SyncId;
-            public readonly Position Position;
+            public readonly fix2 Position;
+            public readonly fix SeparatorRadius;
+            public readonly fix SeparatorCoefficient;
+            public readonly fix Radius;
 
-            public SyncIdPosition(SyncId syncId, Position position)
+            public SeparatorEntry(SyncId syncId, Position position, Separator separator, Radius radius)
             {
                 SyncId = syncId;
-                Position = position;
+                Position = position.Value.xz;
+                SeparatorRadius = separator.Radius;
+                SeparatorCoefficient = separator.Coefficient;
+                Radius = radius;
             }
-        }
-
-        private struct SeparationForce
-        {
-            public fix2 Force;
-            public int ForcesCount;
         }
     }
 }

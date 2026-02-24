@@ -13,7 +13,9 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly List<Entity> _toDisable = new();
         private readonly List<Entity> _toEnable = new();
         private readonly List<fix4> _activeQuads = new();
+
         private readonly QueryDescription _activityRanges = new QueryDescription().WithAll<ActivityRange, Position>().NotDisposing();
+
         private readonly QueryDescription _enabled = new QueryDescription().WithAll<Position>().WithNone<Disabled>().NotDisposing();
         private readonly QueryDescription _disabled = new QueryDescription().WithAll<Position, Disabled>().NotDisposing();
 
@@ -37,10 +39,10 @@ namespace DVG.SkyPirates.Shared.Systems
                 _activeQuads.Add(minMax);
             });
 
-            var selectToDisable = new SelectDisableQuery(_activeQuads, _toDisable);
-            var selectToEnable = new SelectEnableQuery(_activeQuads, _toEnable);
-            _world.InlineEntityQuery<SelectDisableQuery, Position>(in _disabled, ref selectToDisable);
-            _world.InlineEntityQuery<SelectEnableQuery, Position>(in _enabled, ref selectToEnable);
+            var selectToDisable = new SelectToDisableQuery(_activeQuads, _toDisable);
+            var selectToEnable = new SelectToEnableQuery(_activeQuads, _toEnable);
+            _world.InlineEntityQuery<SelectToDisableQuery, Position>(in _enabled, ref selectToDisable);
+            _world.InlineEntityQuery<SelectToEnableQuery, Position>(in _disabled, ref selectToEnable);
 
             foreach (var item in _toEnable)
                 _world.Remove<Disabled>(item);
@@ -48,44 +50,39 @@ namespace DVG.SkyPirates.Shared.Systems
                 _world.Add<Disabled>(item);
         }
 
-        private readonly struct SelectDisableQuery : IForEachWithEntity<Position>
+        private readonly struct SelectToDisableQuery : IForEachWithEntity<Position>
         {
             private readonly List<fix4> _minMaxs;
-            private readonly List<Entity> _mark;
+            private readonly List<Entity> _selection;
 
-            public SelectDisableQuery(List<fix4> minMaxs, List<Entity> mark)
+            public SelectToDisableQuery(List<fix4> minMaxs, List<Entity> mark)
             {
                 _minMaxs = minMaxs;
-                _mark = mark;
+                _selection = mark;
             }
 
             public readonly void Update(Entity entity, ref Position position)
             {
                 var xz = position.Value.xz;
 
-                bool mark = true;
+                bool anyInside = false;
                 for (int i = 0; i < _minMaxs.Count; i++)
-                {
-                    var minMax = _minMaxs[i];
-                    if (xz.x < minMax.x || xz.y < minMax.y || xz.x > minMax.z || xz.y > minMax.y)
-                        mark &= true;
-                }
-                if (mark)
-                {
-                    _mark.Add(entity);
-                }
+                    anyInside |= Inside(xz, _minMaxs[i]);
+
+                if (!anyInside)
+                    _selection.Add(entity);
             }
         }
 
-        private readonly struct SelectEnableQuery : IForEachWithEntity<Position>
+        private readonly struct SelectToEnableQuery : IForEachWithEntity<Position>
         {
             private readonly List<fix4> _minMaxs;
-            private readonly List<Entity> _unmark;
+            private readonly List<Entity> _selection;
 
-            public SelectEnableQuery(List<fix4> minMaxs, List<Entity> unmark)
+            public SelectToEnableQuery(List<fix4> minMaxs, List<Entity> unmark)
             {
                 _minMaxs = minMaxs;
-                _unmark = unmark;
+                _selection = unmark;
             }
 
             public readonly void Update(Entity entity, ref Position position)
@@ -93,14 +90,18 @@ namespace DVG.SkyPirates.Shared.Systems
                 var xz = position.Value.xz;
                 for (int i = 0; i < _minMaxs.Count; i++)
                 {
-                    var minMax = _minMaxs[i];
-                    if (xz.x >= minMax.x && xz.y >= minMax.y && xz.x <= minMax.z && xz.y <= minMax.y)
+                    if (Inside(xz, _minMaxs[i]))
                     {
-                        _unmark.Add(entity);
+                        _selection.Add(entity);
                         return;
                     }
                 }
             }
+        }
+
+        private static bool Inside(fix2 point, fix4 minMax)
+        {
+            return point.x >= minMax.x && point.y >= minMax.y && point.x <= minMax.z && point.y <= minMax.w;
         }
     }
 }

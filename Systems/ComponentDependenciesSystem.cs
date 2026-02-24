@@ -38,6 +38,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 var ensureAction = new AddComponentAction(_world, data.HasComponentSignature, data.SignatureCache, data.DefaultComponentData);
                 data.AddComponentData.ForEach(ref ensureAction);
             }
+            _world.TrimExcess();
         }
 
         private readonly struct AddComponentAction : IStructGenericAction

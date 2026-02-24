@@ -9,6 +9,7 @@ using DVG.SkyPirates.Shared.Services;
 using DVG.SkyPirates.Shared.Services.CommandExecutors;
 using DVG.SkyPirates.Shared.Systems;
 using DVG.SkyPirates.Shared.Systems.Special;
+using Schedulers;
 using SimpleInjector;
 using System;
 using System.Diagnostics;
@@ -20,7 +21,12 @@ namespace DVG.SkyPirates.Shared.DI
         public SharedContainer()
         {
             Debug.WriteLine("[DI] SharedContainer Start");
-            RegisterSingleton(() => World.Create());
+            RegisterSingleton(() =>
+            {
+                var world = World.Create();
+                World.SharedJobScheduler = new JobScheduler(new JobScheduler.Config());
+                return world;
+            });
 
             RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
             RegisterSingleton(typeof(IConfigedEntityFactory<>), typeof(ConfigedEntityFactory<>));
