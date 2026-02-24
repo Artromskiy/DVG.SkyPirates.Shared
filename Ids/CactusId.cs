@@ -1,9 +1,9 @@
 ﻿using DVG.Components.Attributes;
-using DVG.Core.Ids.Attributes;
+using DVG.Ids.Attributes;
 
 namespace DVG.SkyPirates.Shared.Ids
 {
-    [Id]
+    [Id(false)]
     [Component(true)]
     public partial struct CactusId { }
 }

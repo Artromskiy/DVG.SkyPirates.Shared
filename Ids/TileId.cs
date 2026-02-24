@@ -1,7 +1,7 @@
-﻿using DVG.Core.Ids.Attributes;
+﻿using DVG.Ids.Attributes;
 
 namespace DVG.SkyPirates.Shared.Ids
 {
-    [Id]
+    [Id(false)]
     public partial struct TileId { }
 }
