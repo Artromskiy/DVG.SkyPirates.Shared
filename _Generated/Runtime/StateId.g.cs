@@ -22,7 +22,7 @@ namespace DVG.SkyPirates.Shared.Ids
     {
         private int _value;
         public string Value;
-        string IId.Value => ToString();
+        string IId.Value => Value;
         public static readonly StateId None = new StateId("None");
         [IgnoreDataMember]
         public readonly bool IsNone => _value == 0;
