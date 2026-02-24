@@ -17,10 +17,8 @@ using System.Runtime.Serialization;
 namespace DVG.SkyPirates.Shared.Ids
 {
     [Serializable]
-    [DataContract]
     partial struct TreeId : IId, IEquatable<TreeId>, IComparable<TreeId>
     {
-        [DataMember(Order = 0)]
         public string Value;
         string IId.Value => Value;
         private const string NoneValue = "None";

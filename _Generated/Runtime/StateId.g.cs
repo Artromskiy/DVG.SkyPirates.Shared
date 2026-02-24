@@ -21,19 +21,23 @@ namespace DVG.SkyPirates.Shared.Ids
     partial struct StateId : IId, IEquatable<StateId>, IComparable<StateId>
     {
         private int _value;
+        public string Value;
         string IId.Value => ToString();
-        public static readonly StateId None = new StateId(0);
+        public static readonly StateId None = new StateId("None");
         [IgnoreDataMember]
         public readonly bool IsNone => _value == 0;
 
-        private StateId(int value) => _value = value;
-        public StateId(string value) => _value = Registry.GetOrCreate(value);
+        public StateId(string value)
+        {
+            Value = value;
+            _value = Registry.GetOrCreate(Value);
+        }
 
         public readonly bool Equals(StateId other) => _value == other._value;
-        public readonly int CompareTo(StateId other) => Registry.Compare(this._value, other._value);
+        public readonly int CompareTo(StateId other) => Registry.Compare(this, other);
         public override readonly bool Equals(object obj) => obj is StateId other && Equals(other);
         public override readonly int GetHashCode() => _value;
-        public override readonly string ToString() => Registry.GetString(_value);
+        public override readonly string ToString() => Value;
 
         public static bool operator ==(StateId a, StateId b) => a.Equals(b);
         public static bool operator !=(StateId a, StateId b) => !a.Equals(b);
@@ -54,16 +58,16 @@ namespace DVG.SkyPirates.Shared.Ids
             private static readonly Dictionary<(int, int), int> _comparisonCache = new();
             private static int _counter = 1;
 
-            public static int Compare(int lhs, int rhs)
+            public static int Compare(StateId lhs, StateId rhs)
             {
                 if (lhs == rhs)
                     return 0;
-                var lkey = (lhs, rhs);
+                var lkey = (lhs._value, rhs._value);
                 if(!_comparisonCache.TryGetValue(lkey, out var comparison))
                 {
-                    comparison = string.Compare(GetString(lhs), GetString(rhs), StringComparison.OrdinalIgnoreCase);
+                    comparison = string.Compare(lhs.Value, rhs.Value, StringComparison.OrdinalIgnoreCase);
                     _comparisonCache.Add(lkey, comparison);
-                    _comparisonCache.Add((rhs, lhs), -comparison);
+                    _comparisonCache.Add((rhs._value, lhs._value), -comparison);
                 }
                 return comparison;
             }
@@ -81,10 +85,6 @@ namespace DVG.SkyPirates.Shared.Ids
                 _idToString[id] = value;
                 return id;
             }
-
-            public static string GetString(int id) => id == 0 ?
-                "None" :
-                _idToString[id];
         }
     }
 }
