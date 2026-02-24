@@ -2,6 +2,7 @@
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
+using System.Collections.Frozen;
 
 namespace DVG.SkyPirates.Shared.Factories
 {
@@ -20,7 +21,8 @@ namespace DVG.SkyPirates.Shared.Factories
         {
             EntityParameters entityParameters = new(new() { Value = parameters }, default, default);
             var entity = _commandEntityFactory.Create(entityParameters);
-            _world.AddOrGet<HexMap>(entity).Data = new();
+            _world.AddOrGet<HexMap>(entity).Data = FrozenDictionary<int3, Ids.TileId>.Empty;
+            //_world.AddOrGet<HexMap>(entity).Data = new();
             return entity;
         }
     }

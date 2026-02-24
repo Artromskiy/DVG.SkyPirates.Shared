@@ -1,12 +1,12 @@
 ﻿using DVG.Components.Attributes;
 using DVG.SkyPirates.Shared.Ids;
-using System.Collections.Generic;
+using System.Collections.Frozen;
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
     [Component(true)]
     public struct HexMap
     {
-        public Dictionary<int3, TileId> Data;
+        public FrozenDictionary<int3, TileId> Data;
     }
 }

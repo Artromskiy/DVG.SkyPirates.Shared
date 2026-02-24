@@ -42,7 +42,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(ref BehaviourState behaviour, ref BehaviourConfig behaviourConfig)
             {
-                if (behaviour.Percent != 1 && behaviour.ForceState == null)
+                // skip if no force state and we are at none
+                if (behaviour.ForceState == null && (
+                    behaviour.Percent != 1 || behaviour.State.IsNone))
                     return;
 
                 StateId targetState = behaviour.ForceState ??=

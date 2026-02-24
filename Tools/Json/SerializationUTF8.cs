@@ -62,6 +62,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             Options.Converters.Add(new FixFuncConverter<TargetSearchDistance>(value => value, value => value));
 
             Options.Converters.Add(new IdConverterFactory());
+            Options.Converters.Add(new FrozenDictionaryConverterFactory());
         }
 
         public static string Serialize<T>(T data)

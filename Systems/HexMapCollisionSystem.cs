@@ -18,6 +18,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public static event Action<Segment[], fix2, fix2, fix> OnFailedToSolve;
         private readonly ThreadLocal<List<Segment>> _segmentsCache = new(() => new List<Segment>());
+        private readonly Dictionary<int3, bool> _walkabilityCache = new();
         private readonly World _world;
 
         public HexMapCollisionSystem(World world)
@@ -31,7 +32,7 @@ namespace DVG.SkyPirates.Shared.Systems
             if (hexMap.Data == null)
                 return;
 
-            var query = new SolveCollsionQuery(hexMap, _segmentsCache);
+            var query = new SolveCollsionQuery(hexMap, _segmentsCache, _walkabilityCache);
             _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, Radius>(_desc, ref query);
         }
 
@@ -39,11 +40,13 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             private readonly HexMap _hexMap;
             private readonly ThreadLocal<List<Segment>> _segmentsCache;
+            private readonly Dictionary<int3, bool> _walkabilityCache;
 
-            public SolveCollsionQuery(HexMap hexMap, ThreadLocal<List<Segment>> segmentsCache)
+            public SolveCollsionQuery(HexMap hexMap, ThreadLocal<List<Segment>> segmentsCache, Dictionary<int3, bool> walkabilityCache)
             {
                 _hexMap = hexMap;
                 _segmentsCache = segmentsCache;
+                _walkabilityCache = walkabilityCache;
             }
 
             public void Update(ref Position position, ref CachePosition cachePosition, ref Radius radius)
@@ -93,14 +96,16 @@ namespace DVG.SkyPirates.Shared.Systems
 
             private bool Walkable(int3 axial)
             {
+                if (_walkabilityCache.TryGetValue(axial, out var walkable))
+                    return walkable;
+
                 bool zero = _hexMap.Data.ContainsKey(axial);
                 var up = new int3(0, 1, 0);
                 bool p1 = _hexMap.Data.ContainsKey(axial + up);
                 bool p2 = _hexMap.Data.ContainsKey(axial + up * 2);
                 bool p3 = _hexMap.Data.ContainsKey(axial + up * 3);
                 bool m1 = _hexMap.Data.ContainsKey(axial - up);
-
-                return
+                return _walkabilityCache[axial] =
                     (zero && !p1 && !p2) ||
                     (p1 && !p2 && !p3) ||
                     (m1 && !zero && !p1);

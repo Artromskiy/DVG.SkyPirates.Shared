@@ -26,15 +26,15 @@ namespace DVG.SkyPirates.Shared.Systems
             if (hexMap.Data == null)
                 return;
 
-            var query = new SolveCollsionQuery(hexMap);
-            _world.InlineQuery<SolveCollsionQuery, Position>(_desc, ref query);
+            var query = new SolveHeightQuery(hexMap);
+            _world.InlineQuery<SolveHeightQuery, Position>(_desc, ref query);
         }
 
-        private readonly struct SolveCollsionQuery : IForEach<Position>
+        private readonly struct SolveHeightQuery : IForEach<Position>
         {
             private readonly HexMap _hexMap;
 
-            public SolveCollsionQuery(HexMap hexMap)
+            public SolveHeightQuery(HexMap hexMap)
             {
                 _hexMap = hexMap;
             }
