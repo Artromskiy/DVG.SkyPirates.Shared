@@ -3,7 +3,7 @@ using DVG.Ids.Attributes;
 
 namespace DVG.SkyPirates.Shared.Ids
 {
-    [Id(false)]
+    [Id(true)]
     [Component(true)]
     public partial struct GoodsId { }
 }
