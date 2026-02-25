@@ -62,7 +62,7 @@ namespace DVG.SkyPirates.Shared.Systems
             world.Remove<Temp>(queryDesc);
         }
 
-        public static void SetEntityData(this World world, Entity entity, ComponentsData config)
+        public static void SetEntityData(this World world, Entity entity, ComponentsSet config)
         {
             var action = new ApplyEntityData(entity, world, config);
             config.ForEach(ref action);
@@ -89,9 +89,9 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             private readonly Entity _entity;
             private readonly World _world;
-            private readonly ComponentsData _config;
+            private readonly ComponentsSet _config;
 
-            public ApplyEntityData(Entity entity, World world, ComponentsData config)
+            public ApplyEntityData(Entity entity, World world, ComponentsSet config)
             {
                 _entity = entity;
                 _world = world;

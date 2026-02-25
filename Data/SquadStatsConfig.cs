@@ -2,5 +2,5 @@
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    public sealed class SquadStatsConfig : List<ComponentsData> { }
+    public sealed class SquadStatsConfig : List<ComponentsSet> { }
 }

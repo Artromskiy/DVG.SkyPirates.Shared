@@ -46,9 +46,9 @@ namespace DVG.SkyPirates.Shared.Systems
             private readonly World _world;
             private readonly Signature _allSignature;
             private readonly GenericCreator _signatureCache;
-            private readonly ComponentsData _defaults;
+            private readonly ComponentsSet _defaults;
 
-            public AddComponentAction(World world, Signature allSignature, GenericCreator signatureCache, ComponentsData defaults)
+            public AddComponentAction(World world, Signature allSignature, GenericCreator signatureCache, ComponentsSet defaults)
             {
                 _world = world;
                 _allSignature = allSignature;
@@ -72,11 +72,11 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly struct DependencyData
         {
             public readonly Signature HasComponentSignature;
-            public readonly ComponentsData AddComponentData;
-            public readonly ComponentsData DefaultComponentData;
+            public readonly ComponentsSet AddComponentData;
+            public readonly ComponentsSet DefaultComponentData;
             public readonly GenericCreator SignatureCache;
 
-            public DependencyData(Signature hasComponentSignature, ComponentsData addComponentData, ComponentsData defaultComponentData, GenericCreator signatureCache)
+            public DependencyData(Signature hasComponentSignature, ComponentsSet addComponentData, ComponentsSet defaultComponentData, GenericCreator signatureCache)
             {
                 HasComponentSignature = hasComponentSignature;
                 AddComponentData = addComponentData;

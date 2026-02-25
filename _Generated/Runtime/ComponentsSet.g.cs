@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Data
 {
     [Serializable]
     [DataContract]
-    public sealed class ComponentsData: IStructGenericCaller
+    public sealed class ComponentsSet: IStructGenericCaller
     {
 
         [DataMember(Order = 0)]

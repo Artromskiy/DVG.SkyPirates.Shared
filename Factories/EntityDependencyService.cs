@@ -50,11 +50,11 @@ namespace DVG.SkyPirates.Shared.Factories
 
         private readonly struct AddAction : IStructGenericAction
         {
-            private readonly ComponentsData _defaults;
+            private readonly ComponentsSet _defaults;
             private readonly World _world;
             private readonly Entity _entity;
 
-            public AddAction(ComponentsData defaults, World world, Entity entity)
+            public AddAction(ComponentsSet defaults, World world, Entity entity)
             {
                 _defaults = defaults;
                 _world = world;

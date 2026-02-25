@@ -26,77 +26,77 @@ namespace DVG.SkyPirates.Shared.Data
     public sealed class WorldData
     {
 
-        [DataMember(Order = 0)]
+        [DataMember]
         private Dictionary<int, ActivityRange> ActivityRange;
-        [DataMember(Order = 1)]
+        [DataMember]
         private Dictionary<int, AutoHeal> AutoHeal;
-        [DataMember(Order = 2)]
+        [DataMember]
         private Dictionary<int, BehaviourConfig> BehaviourConfig;
-        [DataMember(Order = 3)]
+        [DataMember]
         private Dictionary<int, BehaviourState> BehaviourState;
-        [DataMember(Order = 4)]
+        [DataMember]
         private Dictionary<int, CactusId> CactusId;
-        [DataMember(Order = 5)]
+        [DataMember]
         private Dictionary<int, ClientId> ClientId;
-        [DataMember(Order = 6)]
+        [DataMember]
         private Dictionary<int, Damage> Damage;
-        [DataMember(Order = 7)]
+        [DataMember]
         private Dictionary<int, Direction> Direction;
-        [DataMember(Order = 8)]
+        [DataMember]
         private Dictionary<int, Disposing> Disposing;
-        [DataMember(Order = 9)]
+        [DataMember]
         private Dictionary<int, Fixation> Fixation;
-        [DataMember(Order = 10)]
+        [DataMember]
         private Dictionary<int, FlyDestination> FlyDestination;
-        [DataMember(Order = 11)]
+        [DataMember]
         private Dictionary<int, GoodsAmount> GoodsAmount;
-        [DataMember(Order = 12)]
+        [DataMember]
         private Dictionary<int, GoodsCollectorRadius> GoodsCollectorRadius;
-        [DataMember(Order = 13)]
+        [DataMember]
         private Dictionary<int, GoodsDrop> GoodsDrop;
-        [DataMember(Order = 14)]
+        [DataMember]
         private Dictionary<int, GoodsId> GoodsId;
-        [DataMember(Order = 15)]
+        [DataMember]
         private Dictionary<int, Health> Health;
-        [DataMember(Order = 16)]
+        [DataMember]
         private Dictionary<int, HexMap> HexMap;
-        [DataMember(Order = 17)]
+        [DataMember]
         private Dictionary<int, ImpactDistance> ImpactDistance;
-        [DataMember(Order = 18)]
+        [DataMember]
         private Dictionary<int, Level> Level;
-        [DataMember(Order = 19)]
+        [DataMember]
         private Dictionary<int, MaxHealth> MaxHealth;
-        [DataMember(Order = 20)]
+        [DataMember]
         private Dictionary<int, MaxSpeed> MaxSpeed;
-        [DataMember(Order = 21)]
+        [DataMember]
         private Dictionary<int, Position> Position;
-        [DataMember(Order = 22)]
+        [DataMember]
         private Dictionary<int, Radius> Radius;
-        [DataMember(Order = 23)]
+        [DataMember]
         private Dictionary<int, RandomSeed> RandomSeed;
-        [DataMember(Order = 24)]
+        [DataMember]
         private Dictionary<int, RockId> RockId;
-        [DataMember(Order = 25)]
+        [DataMember]
         private Dictionary<int, Rotation> Rotation;
-        [DataMember(Order = 26)]
+        [DataMember]
         private Dictionary<int, Separation> Separation;
-        [DataMember(Order = 27)]
+        [DataMember]
         private Dictionary<int, Separator> Separator;
-        [DataMember(Order = 28)]
+        [DataMember]
         private Dictionary<int, Squad> Squad;
-        [DataMember(Order = 29)]
+        [DataMember]
         private Dictionary<int, SquadMember> SquadMember;
-        [DataMember(Order = 30)]
+        [DataMember]
         private Dictionary<int, SyncId> SyncId;
-        [DataMember(Order = 31)]
+        [DataMember]
         private Dictionary<int, SyncIdReserve> SyncIdReserve;
-        [DataMember(Order = 32)]
+        [DataMember]
         private Dictionary<int, TargetSearchDistance> TargetSearchDistance;
-        [DataMember(Order = 33)]
+        [DataMember]
         private Dictionary<int, TeamId> TeamId;
-        [DataMember(Order = 34)]
+        [DataMember]
         private Dictionary<int, TreeId> TreeId;
-        [DataMember(Order = 35)]
+        [DataMember]
         private Dictionary<int, UnitId> UnitId;
 
         public WorldData()

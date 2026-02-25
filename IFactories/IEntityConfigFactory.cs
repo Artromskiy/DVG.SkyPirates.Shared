@@ -5,5 +5,5 @@ using System;
 
 namespace DVG.SkyPirates.Shared.IFactories
 {
-    public interface IEntityConfigFactory<T> : IFactory<ComponentsData, T> where T : struct, IId, IEquatable<T> { }
+    public interface IEntityConfigFactory<T> : IFactory<ComponentsSet, T> where T : struct, IId, IEquatable<T> { }
 }

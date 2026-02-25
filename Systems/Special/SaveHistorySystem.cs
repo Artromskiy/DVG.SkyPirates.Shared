@@ -41,7 +41,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public void Invoke<T>() where T : struct
             {
-                _world.AddQuery((ref T has, ref History<T> history) => history = new History<T>(Constants.HistoryTicks));
+                _world.AddQuery((ref T has, ref History<T> history) => history = new History<T>());
             }
         }
 
