@@ -26,6 +26,10 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             };
             var format = CultureInfo.InvariantCulture;
 
+            Options.Converters.Add(new FixConverter());
+            Options.Converters.Add(new IdConverterFactory());
+            Options.Converters.Add(new NewTypeConverterFactory());
+            Options.Converters.Add(new FrozenDictionaryConverterFactory());
 
             Options.Converters.Add(new VectorConverter<fix, fix2>());
             Options.Converters.Add(new VectorConverter<fix, fix3>());
@@ -45,11 +49,6 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             Options.Converters.Add(new VectorConverter<double, double2>());
             Options.Converters.Add(new VectorConverter<double, double3>());
             Options.Converters.Add(new VectorConverter<double, double4>());
-
-            Options.Converters.Add(new FixConverter());
-            Options.Converters.Add(new IdConverterFactory());
-            Options.Converters.Add(new NewTypeConverterFactory());
-            Options.Converters.Add(new FrozenDictionaryConverterFactory());
         }
 
         public static string Serialize<T>(T data)
