@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using DVG.Core;
 using DVG.Physics;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;

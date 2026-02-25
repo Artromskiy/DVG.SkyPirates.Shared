@@ -25,8 +25,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
         public override V ReadAsPropertyName(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            object[] values = Array.ConvertAll(reader.GetString()!.
-                Replace(" ", string.Empty).Split(","), e =>
+            object[] values = Array.ConvertAll(reader.GetString()!.Split(","), e =>
                 (object)JsonSerializer.Deserialize<T>(e, options)!);
 
             return (V)Activator.CreateInstance(typeToConvert, values);
@@ -35,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         public override void Write(Utf8JsonWriter writer, V value, JsonSerializerOptions options)
         {
             var bufferWriter = new ArrayBufferWriter<byte>();
-            using var innerWriter = new Utf8JsonWriter(bufferWriter, new() { Indented = false, });
+            using var innerWriter = new Utf8JsonWriter(bufferWriter, new() { Indented = false });
             JsonSerializer.Serialize(innerWriter, GetRawValues(value), options);
             innerWriter.Flush();
             writer.WriteRawValue(bufferWriter.WrittenSpan);
