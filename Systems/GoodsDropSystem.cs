@@ -13,6 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class GoodsDropSystem : ITickableExecutor
     {
+        private static readonly fix DropRange = fix.One * 5 / 2;
         private readonly QueryDescription _createDesc = new QueryDescription().
             WithAll<Health, GoodsDrop>().NotDisposing().NotDisabled();
 
@@ -79,7 +80,6 @@ namespace DVG.SkyPirates.Shared.Systems
                 int baseSlots = dropsCount / typesCount;
                 int remainderSlots = dropsCount % typesCount;
 
-                int range = 4;
 
                 int i = 0;
                 foreach (var (goodsId, totalAmount) in goods.Values)
@@ -103,8 +103,8 @@ namespace DVG.SkyPirates.Shared.Systems
                             SyncId = syncIdReserve.GetNext(),
                             Direction =
                             {
-                                x = seed.NextFixRange(-range, range),
-                                y = seed.NextFixRange(-range, range),
+                                x = seed.NextFixRange(-DropRange, DropRange),
+                                y = seed.NextFixRange(-DropRange, DropRange),
                             },
                             Rotation = seed.NextFixRange(0, 360)
                         };
