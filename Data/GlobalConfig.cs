@@ -14,6 +14,5 @@ namespace DVG.SkyPirates.Shared.Data
 
         public SquadStatsConfig SquadStats;
         public CameraConfig CameraConfig;
-
     }
 }

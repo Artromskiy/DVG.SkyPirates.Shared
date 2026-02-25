@@ -22,7 +22,6 @@ namespace DVG.SkyPirates.Shared.Systems
         public ComponentDependenciesSystem(ComponentDependenciesConfig componentDependencies, World world)
         {
             _world = world;
-
             _dependencies = componentDependencies.ConvertAll(dependency =>
             {
                 HashSet<Type> allComponents = new();
@@ -64,19 +63,18 @@ namespace DVG.SkyPirates.Shared.Systems
 
                 var desc = descContainer.Desc;
                 var defaultValue = _defaults?.Get<T>();
-                if (_world.CountEntities(desc) > 0)
-                    _world.Add(desc, defaultValue ?? default);
+                _world.Add(desc, defaultValue ?? default);
             }
         }
 
         private readonly struct DependencyData
         {
             public readonly Signature HasComponentSignature;
-            public readonly ComponentsSet AddComponentData;
+            public readonly ComponentsMask AddComponentData;
             public readonly ComponentsSet DefaultComponentData;
             public readonly GenericCreator SignatureCache;
 
-            public DependencyData(Signature hasComponentSignature, ComponentsSet addComponentData, ComponentsSet defaultComponentData, GenericCreator signatureCache)
+            public DependencyData(Signature hasComponentSignature, ComponentsMask addComponentData, ComponentsSet defaultComponentData, GenericCreator signatureCache)
             {
                 HasComponentSignature = hasComponentSignature;
                 AddComponentData = addComponentData;

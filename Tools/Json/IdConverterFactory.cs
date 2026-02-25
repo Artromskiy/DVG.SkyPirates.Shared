@@ -23,12 +23,14 @@ namespace DVG.SkyPirates.Shared.Tools.Json
     {
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return (T)Activator.CreateInstance(typeof(T), reader.GetString());
+            string parameter = reader.GetString();
+            parameter = string.IsNullOrEmpty(parameter) ? "None" : parameter;
+            return (T)Activator.CreateInstance(typeof(T), parameter);
         }
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
-            writer.WriteStringValue(value.Value);
+            JsonSerializer.Serialize(writer, value.Value, options);
         }
 
         public override T ReadAsPropertyName(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

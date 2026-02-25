@@ -5665,30 +5665,18 @@
   "ComponentDependencies": [
     {
       "Has": {
-        "Squad": {}
+        "Squad": true
       },
       "Add": {
-        "ActivityRange": 0,
-        "Collide": {},
-        "Direction": {
-          "Value": "0, 0"
-        },
-        "Fixation": {
-          "Value": false
-        },
-        "Position": {
-          "Value": "0, 0, 0"
-        },
-        "Rotation": {
-          "Value": 0
-        },
-        "SquadMemberCount": {
-          "Value": 0
-        },
-        "TargetSearchDistance": 0,
-        "TeamId": {
-          "Value": 0
-        }
+        "ActivityRange": true,
+        "Collide": true,
+        "Direction": true,
+        "Fixation": true,
+        "Position": true,
+        "Rotation": true,
+        "SquadMemberCount": true,
+        "TargetSearchDistance": true,
+        "TeamId": true
       },
       "DefaultOnAdd": {
         "ActivityRange": 15
@@ -5696,148 +5684,96 @@
     },
     {
       "Has": {
-        "UnitId": ""
+        "UnitId": true
       },
       "Add": {
-        "Collide": {},
-        "Destination": {
-          "Position": "0, 0, 0",
-          "Rotation": 0
-        },
-        "Position": {
-          "Value": "0, 0, 0"
-        },
-        "Rotation": {
-          "Value": 0
-        },
-        "Target": {},
-        "TeamId": {
-          "Value": 0
-        }
+        "Collide": true,
+        "Destination": true,
+        "Position": true,
+        "Rotation": true,
+        "Target": true,
+        "TeamId": true
       }
     },
     {
       "Has": {
-        "CactusId": ""
+        "CactusId": true
       },
       "Add": {
-        "Position": {
-          "Value": "0, 0, 0"
-        },
-        "Rotation": {
-          "Value": 0
-        },
-        "Targets": {},
-        "TeamId": {
-          "Value": 0
-        }
+        "Position": true,
+        "Rotation": true,
+        "Targets": true,
+        "TeamId": true
       }
     },
     {
       "Has": {
-        "TreeId": ""
+        "TreeId": true
       },
       "Add": {
-        "Position": {
-          "Value": "0, 0, 0"
-        },
-        "Rotation": {
-          "Value": 0
-        },
-        "TeamId": {
-          "Value": 0
-        }
+        "Position": true,
+        "Rotation": true,
+        "TeamId": true
       }
     },
     {
       "Has": {
-        "RockId": ""
+        "RockId": true
       },
       "Add": {
-        "Position": {
-          "Value": "0, 0, 0"
-        },
-        "Rotation": {
-          "Value": 0
-        },
-        "TeamId": {
-          "Value": 0
-        }
+        "Position": true,
+        "Rotation": true,
+        "TeamId": true
       }
     },
     {
       "Has": {
-        "GoodsId": ""
+        "GoodsId": true
       },
       "Add": {
-        "GoodsAmount": {
-          "Value": 0
-        },
-        "Position": {
-          "Value": "0, 0, 0"
-        },
-        "Rotation": {
-          "Value": 0
-        }
+        "GoodsAmount": true,
+        "Position": true,
+        "Rotation": true
       }
     },
     {
       "Has": {
-        "MaxHealth": 0
+        "MaxHealth": true
       },
       "Add": {
-        "AutoHeal": {
-          "HealPerSecond": 0,
-          "HealDelay": 0,
-          "HealLoadPercent": 0
-        },
-        "RecivedDamage": {
-          "Value": 0
-        }
+        "AutoHeal": true,
+        "RecivedDamage": true
       },
       "DefaultOnAdd": {
         "AutoHeal": {
           "HealPerSecond": 20,
-          "HealDelay": 10,
-          "HealLoadPercent": 0
+          "HealDelay": 10
         }
       }
     },
     {
       "Has": {
-        "Position": {
-          "Value": "0, 0, 0"
-        }
+        "Position": true
       },
       "Add": {
-        "CachePosition": {
-          "Value": "0, 0, 0"
-        }
+        "CachePosition": true
       }
     },
     {
       "Has": {
-        "BehaviourConfig": {}
+        "BehaviourConfig": true
       },
       "Add": {
-        "BehaviourState": {
-          "State": null,
-          "Percent": 0,
-          "Duration": 0
-        }
+        "BehaviourState": true
       }
     },
     {
       "Has": {
-        "Position": {
-          "Value": "0, 0, 0"
-        },
-        "TargetSearchDistance": 0
+        "Position": true,
+        "TargetSearchDistance": true
       },
       "Add": {
-        "TargetSearchPosition": {
-          "Value": "0, 0, 0"
-        }
+        "TargetSearchPosition": true
       }
     }
   ],

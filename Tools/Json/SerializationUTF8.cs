@@ -1,6 +1,4 @@
-﻿using DVG.SkyPirates.Shared.Components.Config;
-using DVG.SkyPirates.Shared.Components.Runtime;
-using System;
+﻿using System;
 using System.Buffers;
 using System.Globalization;
 using System.Text;
@@ -23,45 +21,34 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                 IgnoreReadOnlyFields = false,
                 IgnoreReadOnlyProperties = false,
                 WriteIndented = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
                 TypeInfoResolver = new DataContractResolver(),
             };
             var format = CultureInfo.InvariantCulture;
 
+
+            Options.Converters.Add(new VectorConverter<fix, fix2>());
+            Options.Converters.Add(new VectorConverter<fix, fix3>());
+            Options.Converters.Add(new VectorConverter<fix, fix4>());
+            Options.Converters.Add(new VectorConverter<bool, bool2>());
+            Options.Converters.Add(new VectorConverter<bool, bool3>());
+            Options.Converters.Add(new VectorConverter<bool, bool4>());
+            Options.Converters.Add(new VectorConverter<int, int2>());
+            Options.Converters.Add(new VectorConverter<int, int3>());
+            Options.Converters.Add(new VectorConverter<int, int4>());
+            Options.Converters.Add(new VectorConverter<uint, uint2>());
+            Options.Converters.Add(new VectorConverter<uint, uint3>());
+            Options.Converters.Add(new VectorConverter<uint, uint4>());
+            Options.Converters.Add(new VectorConverter<float, float2>());
+            Options.Converters.Add(new VectorConverter<float, float3>());
+            Options.Converters.Add(new VectorConverter<float, float4>());
+            Options.Converters.Add(new VectorConverter<double, double2>());
+            Options.Converters.Add(new VectorConverter<double, double3>());
+            Options.Converters.Add(new VectorConverter<double, double4>());
+
             Options.Converters.Add(new FixConverter());
-
-            Options.Converters.Add(new StringFuncConverter<bool2>(value => bool2.Parse(value)));
-            Options.Converters.Add(new StringFuncConverter<bool3>(value => bool3.Parse(value)));
-            Options.Converters.Add(new StringFuncConverter<bool4>(value => bool4.Parse(value)));
-            Options.Converters.Add(new StringFuncConverter<fix2>(value => fix2.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<fix3>(value => fix3.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<fix4>(value => fix4.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<int2>(value => int2.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<int3>(value => int3.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<int4>(value => int4.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<uint2>(value => uint2.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<uint3>(value => uint3.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<uint4>(value => uint4.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<float2>(value => float2.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<float3>(value => float3.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<float4>(value => float4.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<double2>(value => double2.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<double3>(value => double3.Parse(value, format)));
-            Options.Converters.Add(new StringFuncConverter<double4>(value => double4.Parse(value, format)));
-
-            // NewType implicit casting used
-            Options.Converters.Add(new FixFuncConverter<Health>(value => value, value => value));
-            Options.Converters.Add(new FixFuncConverter<Radius>(value => value, value => value));
-            Options.Converters.Add(new FixFuncConverter<Damage>(value => value, value => value));
-            Options.Converters.Add(new FixFuncConverter<MaxSpeed>(value => value, value => value));
-            Options.Converters.Add(new FixFuncConverter<MaxHealth>(value => value, value => value));
-            Options.Converters.Add(new FixFuncConverter<Separation>(value => value, value => value));
-            Options.Converters.Add(new FixFuncConverter<ActivityRange>(value => value, value => value));
-            Options.Converters.Add(new FixFuncConverter<ImpactDistance>(value => value, value => value));
-            Options.Converters.Add(new FixFuncConverter<GoodsCollectorRadius>(value => value, value => value));
-            Options.Converters.Add(new FixFuncConverter<TargetSearchDistance>(value => value, value => value));
-
             Options.Converters.Add(new IdConverterFactory());
+            Options.Converters.Add(new NewTypeConverterFactory());
             Options.Converters.Add(new FrozenDictionaryConverterFactory());
         }
 

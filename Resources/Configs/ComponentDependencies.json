@@ -1,18 +1,18 @@
 [
   {
     "Has": {
-      "Squad": {}
+      "Squad": true
     },
     "Add": {
-      "Position": {},
-      "Rotation": {},
-      "TeamId": {},
-      "Collide": {},
-      "Direction": {},
-      "Fixation": {},
-      "SquadMemberCount": {},
-      "TargetSearchDistance": {},
-      "ActivityRange": {}
+      "Position": true,
+      "Rotation": true,
+      "TeamId": true,
+      "Collide": true,
+      "Direction": true,
+      "Fixation": true,
+      "SquadMemberCount": true,
+      "TargetSearchDistance": true,
+      "ActivityRange": true
     },
     "DefaultOnAdd": {
       "ActivityRange": 15
@@ -20,65 +20,65 @@
   },
   {
     "Has": {
-      "UnitId": {}
+      "UnitId": true
     },
     "Add": {
-      "Position": {},
-      "Rotation": {},
-      "TeamId": {},
-      "Collide": {},
-      "Target": {},
-      "Destination": {}
+      "Position": true,
+      "Rotation": true,
+      "TeamId": true,
+      "Collide": true,
+      "Target": true,
+      "Destination": true
     }
   },
   {
     "Has": {
-      "CactusId": {}
+      "CactusId": true
     },
     "Add": {
-      "Position": {},
-      "Rotation": {},
-      "TeamId": {},
-      "Targets": {}
+      "Position": true,
+      "Rotation": true,
+      "TeamId": true,
+      "Targets": true
     }
   },
   {
     "Has": {
-      "TreeId": {}
+      "TreeId": true
     },
     "Add": {
-      "Position": {},
-      "Rotation": {},
-      "TeamId": {}
+      "Position": true,
+      "Rotation": true,
+      "TeamId": true
     }
   },
   {
     "Has": {
-      "RockId": {}
+      "RockId": true
     },
     "Add": {
-      "Position": {},
-      "Rotation": {},
-      "TeamId": {}
+      "Position": true,
+      "Rotation": true,
+      "TeamId": true
     }
   },
   {
     "Has": {
-      "GoodsId": {}
+      "GoodsId": true
     },
     "Add": {
-      "Position": {},
-      "Rotation": {},
-      "GoodsAmount": {}
+      "Position": true,
+      "Rotation": true,
+      "GoodsAmount": true
     }
   },
   {
     "Has": {
-      "MaxHealth": {}
+      "MaxHealth": true
     },
     "Add": {
-      "RecivedDamage": {},
-      "AutoHeal": {}
+      "RecivedDamage": true,
+      "AutoHeal": true
     },
     "DefaultOnAdd": {
       "AutoHeal": {
@@ -89,27 +89,27 @@
   },
   {
     "Has": {
-      "Position": {}
+      "Position": true
     },
     "Add": {
-      "CachePosition": {}
+      "CachePosition": true
     }
   },
   {
     "Has": {
-      "BehaviourConfig": {}
+      "BehaviourConfig": true
     },
     "Add": {
-      "BehaviourState": {}
+      "BehaviourState": true
     }
   },
   {
     "Has": {
-      "Position": {},
-      "TargetSearchDistance": {}
+      "Position": true,
+      "TargetSearchDistance": true
     },
     "Add": {
-      "TargetSearchPosition": {}
+      "TargetSearchPosition": true
     }
   }
 ]

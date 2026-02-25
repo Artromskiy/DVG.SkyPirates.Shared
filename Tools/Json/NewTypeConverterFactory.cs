@@ -12,9 +12,11 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
         public override JsonConverter CreateConverter(Type type, JsonSerializerOptions options)
         {
-            var valueType = type.GetProperty("Value").PropertyType;
+            var valueType = type.GetProperty("Value")?.PropertyType ??
+                type.GetField("Value").FieldType;
             var converterType = typeof(NewTypeConverter<,>).MakeGenericType(type, valueType);
-            return (JsonConverter)Activator.CreateInstance(converterType);
+            var converter = (JsonConverter)Activator.CreateInstance(converterType);
+            return converter;
         }
     }
 
@@ -23,16 +25,14 @@ namespace DVG.SkyPirates.Shared.Tools.Json
     {
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            var value = JsonSerializer.Deserialize<V>(ref reader, options);
             var newType = Activator.CreateInstance<T>();
-            newType.Value = value!;
+            newType.Value = JsonSerializer.Deserialize<V>(ref reader, options);
             return newType;
         }
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
             JsonSerializer.Serialize(writer, value.Value, options);
-            writer.WriteStringValue(value.ToString());
         }
 
         public override T ReadAsPropertyName(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -42,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
         public override void WriteAsPropertyName(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
-            writer.WritePropertyName(JsonSerializer.Serialize(value, options));
+            writer.WritePropertyName(JsonSerializer.Serialize(value.Value, options));
         }
     }
 }
