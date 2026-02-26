@@ -31,6 +31,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         {
             var vector = new V();
             var span = MemoryMarshal.CreateSpan(ref Unsafe.As<V, T>(ref vector), _count);
+
             for (int i = 0; i < _count; i++)
             {
                 reader.Read();
@@ -65,17 +66,19 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         public override void Write(Utf8JsonWriter writer, V vector, JsonSerializerOptions options)
         {
             var span = MemoryMarshal.CreateSpan(ref Unsafe.As<V, T>(ref vector), _count);
-            _bufferWriter.Clear();
+            _bufferCache.Clear();
             _bufferCache.Write(_arrayStart);
             for (int i = 0; i < _count; i++)
             {
                 _jsonWriter.Reset();
+                _bufferWriter.Clear();
                 JsonSerializer.Serialize(_jsonWriter, span[i], options);
                 _bufferCache.Write(_bufferWriter.WrittenSpan);
-                if (i == _count - 1)
+                if (i != _count - 1)
                     _bufferCache.Write(_comma);
             }
             _bufferCache.Write(_arrayEnd);
+            var res = Encoding.UTF8.GetString(_bufferCache.WrittenSpan);
             writer.WriteRawValue(_bufferCache.WrittenSpan);
         }
 
@@ -86,9 +89,10 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             for (int i = 0; i < _count; i++)
             {
                 _jsonWriter.Reset();
+                _bufferWriter.Clear();
                 JsonSerializer.Serialize(_jsonWriter, span[i], options);
                 _bufferCache.Write(_bufferWriter.WrittenSpan);
-                if (i == _count - 1)
+                if (i != _count - 1)
                     _bufferCache.Write(_comma);
             }
             writer.WritePropertyName(_bufferCache.WrittenSpan);
