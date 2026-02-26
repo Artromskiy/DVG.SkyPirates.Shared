@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Buffers;
-using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -8,38 +9,42 @@ using System.Text.Json.Serialization;
 namespace DVG.SkyPirates.Shared.Tools.Json
 {
     public class VectorConverter<T, V> : JsonConverter<V>
+        where V : unmanaged
+        where T : unmanaged
     {
-        private object[] _values;
-        private Utf8JsonWriter _jsonWriter;
+        private readonly int _count = (int)typeof(V).GetProperty("Count").GetValue(new V());
+
+        private readonly Utf8JsonWriter _jsonWriter;
         private readonly ArrayBufferWriter<byte> _bufferWriter = new();
-        private readonly int _count = (int)typeof(V).GetField("Count").GetRawConstantValue();
-        private readonly PropertyInfo _indexer = Array.Find(typeof(V).GetProperties(), p =>
-        {
-            var parameters = p.GetIndexParameters();
-            return parameters.Length == 1 && parameters[0].ParameterType == typeof(int);
-        });
+        private readonly ArrayBufferWriter<byte> _bufferCache = new();
+
         private readonly byte[] _arrayStart = Encoding.UTF8.GetBytes("[");
         private readonly byte[] _arrayEnd = Encoding.UTF8.GetBytes("]");
+        private readonly byte[] _comma = Encoding.UTF8.GetBytes(",");
 
-        private object[] Values => _values ??= new object[_count];
-        private Utf8JsonWriter JsonWriter => _jsonWriter ??= new(_bufferWriter, new() { Indented = false });
+        public VectorConverter()
+        {
+            _jsonWriter = new(_bufferWriter, new() { Indented = false });
+        }
 
         public override V Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            Array.Clear(Values, 0, _count);
-
+            var vector = new V();
+            var span = MemoryMarshal.CreateSpan(ref Unsafe.As<V, T>(ref vector), _count);
             for (int i = 0; i < _count; i++)
             {
                 reader.Read();
-                Values[i] = JsonSerializer.Deserialize<T>(ref reader, options);
+                span[i] = JsonSerializer.Deserialize<T>(ref reader, options);
             }
             reader.Read();
-            return (V)Activator.CreateInstance(typeToConvert, Values);
+            return vector;
         }
 
         public override V ReadAsPropertyName(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            Array.Clear(Values, 0, _count);
+            var vector = new V();
+            var span = MemoryMarshal.CreateSpan(ref Unsafe.As<V, T>(ref vector), _count);
+
             _bufferWriter.Clear();
 
             _bufferWriter.Write(_arrayStart);
@@ -52,34 +57,41 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             for (int i = 0; i < _count; i++)
             {
                 innerReader.Read();
-                Values[i] = JsonSerializer.Deserialize<T>(ref innerReader, options);
+                span[i] = JsonSerializer.Deserialize<T>(ref innerReader, options);
             }
-            return (V)Activator.CreateInstance(typeToConvert, Values);
+            return vector;
         }
 
-        public override void Write(Utf8JsonWriter writer, V value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, V vector, JsonSerializerOptions options)
         {
+            var span = MemoryMarshal.CreateSpan(ref Unsafe.As<V, T>(ref vector), _count);
             _bufferWriter.Clear();
-            JsonWriter.Reset();
-            object[] index = new object[1];
+            _bufferCache.Write(_arrayStart);
             for (int i = 0; i < _count; i++)
             {
-                index[0] = i;
-                JsonSerializer.Serialize(JsonWriter, _indexer.GetValue(value, index), options);
+                _jsonWriter.Reset();
+                JsonSerializer.Serialize(_jsonWriter, span[i], options);
+                _bufferCache.Write(_bufferWriter.WrittenSpan);
+                if (i == _count - 1)
+                    _bufferCache.Write(_comma);
             }
-            writer.WriteRawValue(_bufferWriter.WrittenSpan);
+            _bufferCache.Write(_arrayEnd);
+            writer.WriteRawValue(_bufferCache.WrittenSpan);
         }
 
-        public override void WriteAsPropertyName(Utf8JsonWriter writer, V value, JsonSerializerOptions options)
+        public override void WriteAsPropertyName(Utf8JsonWriter writer, V vector, JsonSerializerOptions options)
         {
-            JsonWriter.Reset();
-            object[] index = new object[1];
+            var span = MemoryMarshal.CreateSpan(ref Unsafe.As<V, T>(ref vector), _count);
+            _bufferCache.Clear();
             for (int i = 0; i < _count; i++)
             {
-                index[0] = i;
-                JsonSerializer.Serialize(JsonWriter, _indexer.GetValue(value, index), options);
+                _jsonWriter.Reset();
+                JsonSerializer.Serialize(_jsonWriter, span[i], options);
+                _bufferCache.Write(_bufferWriter.WrittenSpan);
+                if (i == _count - 1)
+                    _bufferCache.Write(_comma);
             }
-            writer.WritePropertyName(_bufferWriter.WrittenSpan);
+            writer.WritePropertyName(_bufferCache.WrittenSpan);
         }
     }
 }
