@@ -22,6 +22,7 @@ namespace DVG.Commands
         public static void ForEach<T>(ref T action)
             where T: IGenericAction
         {
+            action.Invoke<InvalidateCommand>();
             action.Invoke<JoystickCommand>();
             action.Invoke<LoadWorldCommand>();
             action.Invoke<SpawnSquadCommand>();
@@ -33,16 +34,18 @@ namespace DVG.Commands
         {
             Type type = typeof(T);
 
-            if (type == typeof(JoystickCommand))
+            if (type == typeof(InvalidateCommand))
                 return 1;
-            if (type == typeof(LoadWorldCommand))
+            if (type == typeof(JoystickCommand))
                 return 2;
-            if (type == typeof(SpawnSquadCommand))
+            if (type == typeof(LoadWorldCommand))
                 return 3;
-            if (type == typeof(SpawnUnitCommand))
+            if (type == typeof(SpawnSquadCommand))
                 return 4;
-            if (type == typeof(TickSyncCommand))
+            if (type == typeof(SpawnUnitCommand))
                 return 5;
+            if (type == typeof(TickSyncCommand))
+                return 6;
 
             throw new NotSupportedException(type.Name);
         }
@@ -52,14 +55,16 @@ namespace DVG.Commands
         {
 
             if(id == 1)
-                action.Invoke<JoystickCommand>();
+                action.Invoke<InvalidateCommand>();
             if(id == 2)
-                action.Invoke<LoadWorldCommand>();
+                action.Invoke<JoystickCommand>();
             if(id == 3)
-                action.Invoke<SpawnSquadCommand>();
+                action.Invoke<LoadWorldCommand>();
             if(id == 4)
-                action.Invoke<SpawnUnitCommand>();
+                action.Invoke<SpawnSquadCommand>();
             if(id == 5)
+                action.Invoke<SpawnUnitCommand>();
+            if(id == 6)
                 action.Invoke<TickSyncCommand>();
         }
     }
