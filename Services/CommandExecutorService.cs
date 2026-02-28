@@ -10,12 +10,12 @@ namespace DVG.SkyPirates.Shared.Services
 {
     public class CommandExecutorService : ICommandExecutorService
     {
-        private readonly ICommandRecieveService _recieveService;
+        private readonly ICommandReciever _recieveService;
 
         private readonly GenericCollection _commands = new();
         private readonly (ICommandExecutor executor, Action<int> executorCall)[] _executors;
 
-        public CommandExecutorService(ICommandRecieveService recieveService, IEnumerable<ICommandExecutor> executors)
+        public CommandExecutorService(ICommandReciever recieveService, IEnumerable<ICommandExecutor> executors)
         {
             _recieveService = recieveService;
             _executors = executors.Select(e =>
@@ -42,12 +42,12 @@ namespace DVG.SkyPirates.Shared.Services
 
         private struct CommandCallAction : IGenericAction
         {
-            private readonly ICommandRecieveService _recieveService;
+            private readonly ICommandReciever _recieveService;
             private readonly GenericCollection _commands;
             private readonly ICommandExecutor _executor;
             public Action<int> wrappedCall;
 
-            public CommandCallAction(ICommandRecieveService recieveService, GenericCollection commands, ICommandExecutor executor)
+            public CommandCallAction(ICommandReciever recieveService, GenericCollection commands, ICommandExecutor executor)
             {
                 _recieveService = recieveService;
                 _commands = commands;
