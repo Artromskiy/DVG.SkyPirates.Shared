@@ -3,7 +3,6 @@ using DVG.Collections;
 using DVG.Components;
 using System;
 using System.Collections.Generic;
-using UnityEngine.Profiling;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
@@ -30,20 +29,16 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         public void GoTo(int tick)
         {
-            Profiler.BeginSample(nameof(RollbackHistorySystem));
             var action = new SetHistoryAction(_creator, _entitiesCache, _world, tick);
             HistoryComponentsRegistry.ForEachData(ref action);
-            Profiler.EndSample();
         }
 
         public void RollBack(int tick)
         {
-            Profiler.BeginSample(nameof(RollbackHistorySystem));
             var action = new SetHistoryAction(_creator, _entitiesCache, _world, tick);
             HistoryComponentsRegistry.ForEachData(ref action);
             var clearAction = new ClearHistoryAction(_world, tick, _creator);
             HistoryComponentsRegistry.ForEachData(ref clearAction);
-            Profiler.EndSample();
         }
 
         private readonly struct ClearHistoryAction : IStructGenericAction

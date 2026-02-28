@@ -1,7 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Collections;
 using DVG.Components;
-using UnityEngine.Profiling;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
@@ -25,13 +24,11 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         public void Save(int tick)
         {
-            Profiler.BeginSample(nameof(SaveHistorySystem));
             var addAction = new AddHistoryAction(_world);
             HistoryComponentsRegistry.ForEachData(ref addAction);
 
             var saveAction = new SaveHistoryAction(_desc, _world, tick);
             HistoryComponentsRegistry.ForEachData(ref saveAction);
-            Profiler.EndSample();
         }
 
         private readonly struct AddHistoryAction : IStructGenericAction
