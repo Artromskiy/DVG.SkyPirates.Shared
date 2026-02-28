@@ -1,5 +1,4 @@
-﻿using DVG.SkyPirates.Shared.IFactories;
-using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+﻿using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools.Json;
 using System;
 using System.Buffers;
@@ -8,16 +7,12 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Nodes;
-
-using Pair = System.Collections.Generic.KeyValuePair<string, System.Text.Json.Nodes.JsonNode?>;
 
 namespace DVG.SkyPirates.Shared.Services
 {
     public class HashSumService : ITickableExecutor
     {
         private readonly IHistorySystem _historySystem;
-        private readonly IWorldDataFactory _worldDataFactory;
         private readonly ArrayBufferWriter<byte> _bufferWriter;
         private readonly Utf8JsonWriter _jsonWriter;
         private readonly HashAlgorithm _hashing;
@@ -26,10 +21,9 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly byte[] _hashResult;
         private string? _sHash;
 
-        public HashSumService(IHistorySystem historySystem, IWorldDataFactory worldDataFactory)
+        public HashSumService(IHistorySystem historySystem)
         {
             _historySystem = historySystem;
-            _worldDataFactory = worldDataFactory;
 
             _bufferWriter = new ArrayBufferWriter<byte>();
             _jsonWriter = new(_bufferWriter);
@@ -41,14 +35,14 @@ namespace DVG.SkyPirates.Shared.Services
         public void Tick(int tick)
         {
             int targetTick = Maths.Max(0, tick - Constants.ValidTicksCount);
-            _historySystem.GoTo(targetTick);
-            var worldData = _worldDataFactory.Create();
-            _historySystem.GoTo(tick);
+            var worldData = _historySystem.GetSnapshot(targetTick);
             using var document = JsonSerializer.SerializeToDocument(worldData, SerializationUTF8.Options);
             _jsonWriter.Reset();
             _bufferWriter.Clear();
             WriteOrdered(_jsonWriter, document.RootElement);
-            _hashing.TryComputeHash(_bufferWriter.WrittenSpan, _hashResult, out _);
+            _jsonWriter.Flush();
+            if (!_hashing.TryComputeHash(_bufferWriter.WrittenSpan, _hashResult, out _))
+                Debug.Assert(false, "Failed to get HashSum");
 
             _sBuilder.Clear();
             for (int i = 0; i < _hashResult.Length; i++)
@@ -57,22 +51,6 @@ namespace DVG.SkyPirates.Shared.Services
             _sHash = _sBuilder.ToString();
 
             Debug.WriteLine($"Tick: {targetTick}. Hash: {_sHash}");
-        }
-
-        private JsonNode? SortNode(JsonNode? node)
-        {
-            return node switch
-            {
-                null => null,
-                JsonObject => new JsonObject(node.AsObject().
-                    OrderBy(item => item.Key, StringComparer.Ordinal).
-                    Select(item => new Pair(item.Key, SortNode(item.Value)))),
-                JsonArray => new JsonArray(node.AsArray().
-                    Select(item => SortNode(item)).ToArray()),
-                JsonValue => node.DeepClone(),
-
-                _ => throw new NotImplementedException(),
-            };
         }
 
         private void WriteOrdered(Utf8JsonWriter jsonWriter, JsonElement element)
@@ -86,12 +64,12 @@ namespace DVG.SkyPirates.Shared.Services
                     jsonWriter.WritePropertyName(prop.Name);
                     WriteOrdered(jsonWriter, prop.Value);
                 }
-                _jsonWriter.WriteEndObject();
+                jsonWriter.WriteEndObject();
             }
 
             else if (element.ValueKind is JsonValueKind.Array)
             {
-                _jsonWriter.WriteStartArray();
+                jsonWriter.WriteStartArray();
                 foreach (var item in element.EnumerateArray())
                     WriteOrdered(jsonWriter, item);
                 jsonWriter.WriteEndArray();
