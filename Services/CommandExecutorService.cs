@@ -1,7 +1,7 @@
 ﻿using DVG.Collections;
 using DVG.Commands;
+using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IServices;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,20 +10,22 @@ namespace DVG.SkyPirates.Shared.Services
 {
     public class CommandExecutorService : ICommandExecutorService
     {
-        private readonly ICommandReciever _recieveService;
+        private readonly ICommandReciever _commandReciever;
 
         private readonly GenericCollection _commands = new();
-        private readonly (ICommandExecutor executor, Action<int> executorCall)[] _executors;
+        private readonly ICommandExecutor[] _executors;
 
-        public CommandExecutorService(ICommandReciever recieveService, IEnumerable<ICommandExecutor> executors)
+        public CommandExecutorService(ICommandReciever commandReciever, IEnumerable<ICommandExecutor> executors)
         {
-            _recieveService = recieveService;
-            _executors = executors.Select(e =>
+            _commandReciever = commandReciever;
+            _executors = executors.ToArray();
+
+            _commandReciever.RegisterReciever<InvalidateCommand>(Invalidate);
+            foreach (ICommandExecutor executor in _executors)
             {
-                var action = new CommandCallAction(_recieveService, _commands, e);
-                e.ForEach(ref action);
-                return (e, action.wrappedCall);
-            }).ToArray();
+                var action = new RegisterRecieverAction(_commandReciever, _commands);
+                executor.Call(ref action);
+            }
         }
 
         public Dictionary<int, List<Command<T>>> GetCommands<T>()
@@ -34,51 +36,97 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick(int tick, fix deltaTime)
         {
-            foreach (var (_, executorCall) in _executors)
+            foreach (var executor in _executors)
             {
-                executorCall(tick);
+                var action = new ExecuteCommandAction(_commands, executor, tick);
+                executor.Call(ref action);
             }
         }
 
-        private struct CommandCallAction : IGenericAction
+        private void Invalidate(Command<InvalidateCommand> invalid)
         {
-            private readonly ICommandReciever _recieveService;
+            var invalidateAction = new InvalidateAction(_commands, invalid.Tick, invalid.ClientId);
+            CommandsRegistry.Call(invalid.Data.CommandId, ref invalidateAction);
+        }
+
+        private readonly struct ExecuteCommandAction : IGenericAction
+        {
             private readonly GenericCollection _commands;
             private readonly ICommandExecutor _executor;
-            public Action<int> wrappedCall;
+            private readonly int _tick;
 
-            public CommandCallAction(ICommandReciever recieveService, GenericCollection commands, ICommandExecutor executor)
+            public ExecuteCommandAction(GenericCollection commands, ICommandExecutor executor, int tick)
             {
-                _recieveService = recieveService;
                 _commands = commands;
                 _executor = executor;
-                wrappedCall = null!;
+                _tick = tick;
             }
 
             public void Invoke<T>()
             {
-                var commands = _commands;
-                _recieveService.RegisterReciever<T>(c =>
-                {
-                    if (!commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
-                        commands.Add(typedCommands = new());
-                    if (!typedCommands.TryGetValue(c.Tick, out var tickCommands))
-                        typedCommands[c.Tick] = tickCommands = new();
-                    tickCommands.Add(c);
-                });
+                if (!_commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
+                    return;
+                if (!typedCommands.TryGetValue(_tick, out var tickCommands))
+                    return;
 
                 var executor = _executor as ICommandExecutor<T>;
                 Debug.Assert(executor is not null);
 
-                wrappedCall = (i) =>
-                {
-                    if (!commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
-                        return;
-                    if (!typedCommands.TryGetValue(i, out var tickCommands))
-                        return;
-                    foreach (var cmd in tickCommands)
-                        executor.Execute(cmd);
-                };
+                foreach (var cmd in tickCommands)
+                    executor.Execute(cmd);
+            }
+        }
+
+        private readonly struct InvalidateAction : IGenericAction
+        {
+            private readonly GenericCollection _commands;
+            private readonly int _tick;
+            private readonly int _clientId;
+
+            public InvalidateAction(GenericCollection commands, int tick, int clientId)
+            {
+                _commands = commands;
+                _tick = tick;
+                _clientId = clientId;
+            }
+
+            public void Invoke<T>()
+            {
+                if (!_commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
+                    return;
+                if (!typedCommands.TryGetValue(_tick, out var tickCommands))
+                    return;
+
+                var match = tickCommands.FindIndex(Match);
+                tickCommands.RemoveAt(match);
+            }
+            private bool Match<T>(Command<T> c) => c.ClientId == _clientId;
+        }
+
+        private readonly struct RegisterRecieverAction : IGenericAction
+        {
+            private readonly ICommandReciever _commandReciever;
+            private readonly GenericCollection _commands;
+
+            public RegisterRecieverAction(ICommandReciever commandReciever, GenericCollection commands)
+            {
+                _commandReciever = commandReciever;
+                _commands = commands;
+            }
+
+            public readonly void Invoke<T>()
+            {
+                var commands = _commands;
+                _commandReciever.RegisterReciever<T>(Recieve);
+            }
+
+            private readonly void Recieve<T>(Command<T> command)
+            {
+                if (!_commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
+                    _commands.Add(typedCommands = new());
+                if (!typedCommands.TryGetValue(command.Tick, out var tickCommands))
+                    typedCommands[command.Tick] = tickCommands = new();
+                tickCommands.Add(command);
             }
         }
     }

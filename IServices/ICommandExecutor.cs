@@ -5,7 +5,7 @@ namespace DVG.SkyPirates.Shared.IServices
     public interface ICommandExecutor : IGenericCaller
     {
         void Execute<T>(Command<T> cmd);
-        void IGenericCaller.ForEach<A>(ref A action) { }
+        void IGenericCaller.Call<A>(ref A action) { }
     }
 
     public interface ICommandExecutor<K> : ICommandExecutor
@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.IServices
         void Execute(Command<K> cmd);
         void ICommandExecutor.Execute<T>(Command<T> cmd) { }
 
-        void IGenericCaller.ForEach<A>(ref A action)
+        void IGenericCaller.Call<A>(ref A action)
         {
             action.Invoke<K>();
         }

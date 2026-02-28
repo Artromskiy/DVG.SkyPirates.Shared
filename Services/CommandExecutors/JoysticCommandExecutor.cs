@@ -8,7 +8,7 @@ using System;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    [Obsolete]
+    [Obsolete("Should handle if squad is empty")]
     public class JoysticCommandExecutor : ICommandExecutor<JoystickCommand>
     {
         private readonly IEntityRegistry _entityRegistryService;
