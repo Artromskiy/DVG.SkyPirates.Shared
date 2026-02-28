@@ -8,7 +8,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SquadMemberSearchSyncSystem : ITickableExecutor
+    public class SquadMemberSearchSyncSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _unitsDesc = new QueryDescription().
             WithAll<SquadMember, TargetSearchDistance, TargetSearchPosition>().

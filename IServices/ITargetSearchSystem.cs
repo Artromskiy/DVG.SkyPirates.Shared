@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.IServices
 {
-    public interface ITargetSearchSystem : ITickableExecutor
+    public interface ITargetSearchSystem : IDeltaTickableExecutor
     {
         Entity? FindTarget(
             ref Position position,

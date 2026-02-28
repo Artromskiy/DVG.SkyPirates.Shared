@@ -49,11 +49,10 @@ namespace DVG.SkyPirates.Shared.DI
             RegisterSingleton<IHistorySystem, HistorySystem>();
             RegisterSingleton<IDisposeSystem, DisposeSystem>();
 
-            RegisterSingleton<ITickableExecutorService, TickableExecutorService>();
-            RegisterSingleton<IPreTickableExecutorService, PreTickableExecutorService>();
-            RegisterSingleton<IPostTickableExecutorService, PostTickableExecutorService>();
+            RegisterSingleton(typeof(IDeltaTickableService<>), typeof(DeltaTickableService<>));
+            RegisterSingleton(typeof(ITickableService<>), typeof(TickableService<>));
 
-            Collection.Register<ITickableExecutor>(TickableExecutors, Lifestyle.Singleton);
+            Collection.Register<IDeltaTickableExecutor>(TickableExecutors, Lifestyle.Singleton);
             Collection.Register<ICommandExecutor>(CommandExecutors, Lifestyle.Singleton);
 
             var globalConfigType = typeof(GlobalConfig);

@@ -14,7 +14,7 @@ using System.Linq;
 namespace DVG.SkyPirates.Shared.Systems
 {
     // another heat death of universe system
-    public class SquadGoodsDistributionSystem : ITickableExecutor
+    public class SquadGoodsDistributionSystem : IDeltaTickableExecutor
     {
         private readonly World _world;
         private readonly Dictionary<int, Dictionary<GoodsId, int>> _goodsPerSquad = new();

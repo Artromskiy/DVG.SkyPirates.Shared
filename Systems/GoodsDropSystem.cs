@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class GoodsDropSystem : ITickableExecutor
+    public class GoodsDropSystem : IDeltaTickableExecutor
     {
         private static readonly fix DropRange = fix.One * 5 / 2;
         private readonly QueryDescription _createDesc = new QueryDescription().

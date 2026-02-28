@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// <summary>
     /// Switches <see cref="BehaviourState"/> to PreAttack if State is None and Target is in ImpactDistance
     /// </summary>
-    public sealed class SinglePreAttackSystem : ITickableExecutor
+    public sealed class SinglePreAttackSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<BehaviourState, ImpactDistance, Position, Target>().NotDisposing().NotDisabled();

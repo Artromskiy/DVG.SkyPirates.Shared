@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class DirectionMoveSystem : ITickableExecutor
+    public class DirectionMoveSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, Direction, MaxSpeed>().NotDisposing().NotDisabled();

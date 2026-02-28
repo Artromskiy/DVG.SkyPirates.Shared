@@ -5,7 +5,7 @@ namespace DVG.SkyPirates.Shared.IServices
 {
     public interface ICommandExecutorService
     {
-        void Tick(int tick, fix deltaTime);
+        void Tick(int tick);
         Dictionary<int, List<Command<T>>> GetCommands<T>();
     }
 }

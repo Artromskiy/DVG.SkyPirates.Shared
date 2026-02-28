@@ -7,7 +7,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SquadMemberCounterSystem : ITickableExecutor
+    public class SquadMemberCounterSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _unitsDesc = new QueryDescription().
             WithAll<SquadMember>().NotDisposing().NotDisabled();

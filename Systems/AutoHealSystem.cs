@@ -6,7 +6,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public sealed class AutoHealSystem : ITickableExecutor
+    public sealed class AutoHealSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _healLoadDesc = new QueryDescription().
             WithAll<Health, MaxHealth, AutoHeal, RecivedDamage>().NotDisposing().NotDisabled();

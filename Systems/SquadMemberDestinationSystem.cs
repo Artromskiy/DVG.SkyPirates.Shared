@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SquadMemberDestinationSystem : ITickableExecutor
+    public class SquadMemberDestinationSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _unitsDesc = new QueryDescription().
             WithAll<SquadMember, Destination>().NotDisposing().NotDisabled();

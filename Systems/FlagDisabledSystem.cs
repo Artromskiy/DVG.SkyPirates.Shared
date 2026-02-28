@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class FlagDisabledSystem : ITickableExecutor
+    public class FlagDisabledSystem : IDeltaTickableExecutor
     {
         private readonly World _world;
         private readonly List<Entity> _toDisable = new();

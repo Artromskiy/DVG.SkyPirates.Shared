@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public sealed class SeparationSystem : ITickableExecutor
+    public sealed class SeparationSystem : IDeltaTickableExecutor
     {
         public static int SquareSize = 4;
 

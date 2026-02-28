@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace DVG.SkyPirates.Shared.Systems
 {
     [Obsolete]
-    public sealed class MarkDeadSystem : ITickableExecutor
+    public sealed class MarkDeadSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Health>().
             NotDisposing().NotDisabled();

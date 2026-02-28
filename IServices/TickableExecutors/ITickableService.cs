@@ -1,6 +1,6 @@
 ﻿namespace DVG.SkyPirates.Shared.IServices.TickableExecutors
 {
-    public interface IDisposeSystem
+    public interface ITickableService<T>
     {
         void Tick(int tick);
     }

@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Services
             return typedCommands;
         }
 
-        public void Tick(int tick, fix deltaTime)
+        public void Tick(int tick)
         {
             foreach (var executor in _executors)
             {

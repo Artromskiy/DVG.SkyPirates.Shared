@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SimpleHeightSystem : ITickableExecutor
+    public class SimpleHeightSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, CachePosition, Radius, Collide>().NotDisposing().NotDisabled();

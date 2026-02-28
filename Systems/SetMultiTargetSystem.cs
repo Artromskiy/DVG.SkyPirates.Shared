@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SetMultiTargetSystem : ITickableExecutor
+    public class SetMultiTargetSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, TeamId>().

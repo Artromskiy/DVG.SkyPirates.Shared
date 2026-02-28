@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public sealed class CachePositionSystem : ITickableExecutor
+    public sealed class CachePositionSystem : IDeltaTickableExecutor
     {
         private QueryDescription _desc = new QueryDescription().
             WithAll<Position, CachePosition>().NotDisposing().NotDisabled();

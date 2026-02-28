@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SquadTargetSearchDistanceSystem : ITickableExecutor
+    public class SquadTargetSearchDistanceSystem : IDeltaTickableExecutor
     {
         private static readonly fix _baseRange = 1;
 

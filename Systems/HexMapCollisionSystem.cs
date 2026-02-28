@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public sealed class HexMapCollisionSystem : ITickableExecutor
+    public sealed class HexMapCollisionSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, CachePosition, Radius, Collide>().NotDisposing().NotDisabled();

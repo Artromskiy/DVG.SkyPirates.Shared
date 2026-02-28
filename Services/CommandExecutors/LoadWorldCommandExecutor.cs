@@ -11,9 +11,10 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         private readonly IWorldDataFactory _worldDataFactory;
         private readonly IHistorySystem _historySystem;
 
-        public LoadWorldCommandExecutor(IWorldDataFactory worldDataFactory)
+        public LoadWorldCommandExecutor(IWorldDataFactory worldDataFactory, IHistorySystem historySystem)
         {
             _worldDataFactory = worldDataFactory;
+            _historySystem = historySystem;
         }
 
         public void Execute(Command<LoadWorldCommand> cmd)

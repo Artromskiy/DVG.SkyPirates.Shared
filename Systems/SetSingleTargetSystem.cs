@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// <summary>
     /// Sets value to <see href="Target"/> if it matches <see href="TargetSearchData"/> and <see href="TeamId"/> conditions
     /// </summary>
-    public sealed class SetSingleTargetSystem : ITickableExecutor
+    public sealed class SetSingleTargetSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, Target, TeamId>().NotDisposing().NotDisabled();

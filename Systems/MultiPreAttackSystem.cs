@@ -7,7 +7,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class MultiPreAttackSystem : ITickableExecutor
+    public class MultiPreAttackSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<BehaviourState, ImpactDistance, Position, Targets>().NotDisposing().NotDisabled();

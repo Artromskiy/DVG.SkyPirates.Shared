@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class FramedComponentsSystem : ITickableExecutor
+    public class FramedComponentsSystem : IDeltaTickableExecutor
     {
         private class Description<T>
         {

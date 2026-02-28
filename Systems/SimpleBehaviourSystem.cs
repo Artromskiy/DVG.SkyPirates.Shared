@@ -6,7 +6,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public sealed class SimpleBehaviourSystem : ITickableExecutor
+    public sealed class SimpleBehaviourSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _descSwitch = new QueryDescription().
             WithAll<BehaviourState, BehaviourConfig>().NotDisposing().NotDisabled();

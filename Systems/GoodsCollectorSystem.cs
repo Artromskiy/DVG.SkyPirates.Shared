@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace DVG.SkyPirates.Shared.Systems
 {
     // crazy stuff
-    public sealed class GoodsCollectorSystem : ITickableExecutor
+    public sealed class GoodsCollectorSystem : IDeltaTickableExecutor
     {
         private const int SquareSize = 5;
 

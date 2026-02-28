@@ -11,27 +11,21 @@ namespace DVG.SkyPirates.Shared.Services
         public int DirtyTick { get; set; } = int.MaxValue;
 
         private readonly ICommandExecutorService _commandExecutorService;
-        private readonly ITickableExecutorService _tickableExecutorService;
-        private readonly IPreTickableExecutorService _preTickableExecutorService;
-        private readonly IPostTickableExecutorService _postTickableExecutorService;
+        private readonly IDeltaTickableService<IDeltaTickableExecutor> _deltaTickableService;
 
         private readonly IHistorySystem _historySystem;
         private readonly IDisposeSystem _disposeSystem;
 
-        public TimelineService(ICommandExecutorService commandExecutorService, ITickableExecutorService tickableExecutorService, IPreTickableExecutorService preTickableExecutorService, IPostTickableExecutorService postTickableExecutorService, IHistorySystem historySystem, IDisposeSystem disposeSystem)
+        public TimelineService(ICommandExecutorService commandExecutorService, IDeltaTickableService<IDeltaTickableExecutor> deltaTickableService, IHistorySystem historySystem, IDisposeSystem disposeSystem)
         {
             _commandExecutorService = commandExecutorService;
-            _tickableExecutorService = tickableExecutorService;
-            _preTickableExecutorService = preTickableExecutorService;
-            _postTickableExecutorService = postTickableExecutorService;
+            _deltaTickableService = deltaTickableService;
             _historySystem = historySystem;
             _disposeSystem = disposeSystem;
         }
 
-        public void TickTo(int targetTick)
+        public void Tick(int tick)
         {
-            _preTickableExecutorService.Tick(targetTick, Constants.TickTime);
-
             if (DirtyTick <= CurrentTick)
             {
                 _historySystem.Rollback(DirtyTick - 1);
@@ -39,27 +33,21 @@ namespace DVG.SkyPirates.Shared.Services
             }
 
             var fromTick = CurrentTick + 1;
-            for (int i = fromTick; i <= targetTick; i++)
-                Tick(i);
-
+            for (int i = fromTick; i <= tick; i++)
+            {
+                CurrentTick = i;
+                _commandExecutorService.Tick(CurrentTick);
+                _deltaTickableService.Tick(CurrentTick, Constants.TickTime);
+                _disposeSystem.Tick(CurrentTick);
+                _historySystem.Save(CurrentTick);
+            }
             DirtyTick = int.MaxValue;
-
-            _postTickableExecutorService.Tick(targetTick, Constants.TickTime);
         }
 
         public void GoTo(int tick)
         {
             _historySystem.GoTo(tick);
             CurrentTick = tick;
-        }
-
-        private void Tick(int tick)
-        {
-            CurrentTick = tick;
-            _commandExecutorService.Tick(CurrentTick, Constants.TickTime);
-            _tickableExecutorService.Tick(CurrentTick, Constants.TickTime);
-            _disposeSystem.Tick(CurrentTick, Constants.TickTime);
-            _historySystem.Save(CurrentTick);
         }
     }
 }

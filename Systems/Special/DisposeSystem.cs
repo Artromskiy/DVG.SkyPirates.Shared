@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             _world = world;
         }
 
-        public void Tick(int tick, fix deltaTime)
+        public void Tick(int tick)
         {
             _entitiesCache.Clear();
             var query = new SelectToDispose(_entitiesCache);

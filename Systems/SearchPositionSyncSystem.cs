@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class SearchPositionSyncSystem : ITickableExecutor
+    public class SearchPositionSyncSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<TargetSearchPosition, Position>().NotDisposing().NotDisabled();
