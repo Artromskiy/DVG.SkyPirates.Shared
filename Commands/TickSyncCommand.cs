@@ -1,7 +1,7 @@
-﻿using DVG.Core.Commands.Attributes;
+﻿using DVG.Commands.Attributes;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
-    [Command]
+    [Command(false)]
     public partial struct TickSyncCommand { }
 }

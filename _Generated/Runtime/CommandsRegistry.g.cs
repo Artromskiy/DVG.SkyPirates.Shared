@@ -50,10 +50,29 @@ namespace DVG.Commands
             throw new NotSupportedException(type.Name);
         }
 
+        public static bool IsPredicted<T>()
+        {
+            Type type = typeof(T);
+
+            if(type == typeof(InvalidateCommand))
+                return false;
+            if(type == typeof(JoystickCommand))
+                return true;
+            if(type == typeof(LoadWorldCommand))
+                return false;
+            if(type == typeof(SpawnSquadCommand))
+                return false;
+            if(type == typeof(SpawnUnitCommand))
+                return false;
+            if(type == typeof(TickSyncCommand))
+                return false;
+
+            throw new NotSupportedException(type.Name);
+        }
+
         public static void Call<T>(int id, ref T action)
             where T : IGenericAction
         {
-
             if(id == 1)
                 action.Invoke<InvalidateCommand>();
             if(id == 2)

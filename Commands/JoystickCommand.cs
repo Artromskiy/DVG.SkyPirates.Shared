@@ -1,9 +1,9 @@
-﻿using DVG.Components;
-using DVG.Core.Commands.Attributes;
+﻿using DVG.Commands.Attributes;
+using DVG.Components;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
-    [Command]
+    [Command(true)]
     public partial struct JoystickCommand
     {
         public SyncId Target;

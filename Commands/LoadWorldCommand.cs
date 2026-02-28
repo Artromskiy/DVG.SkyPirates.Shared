@@ -1,9 +1,9 @@
-﻿using DVG.Core.Commands.Attributes;
+﻿using DVG.Commands.Attributes;
 using DVG.SkyPirates.Shared.Data;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
-    [Command]
+    [Command(false)]
     public partial struct LoadWorldCommand
     {
         public WorldData WorldData { get; set; }

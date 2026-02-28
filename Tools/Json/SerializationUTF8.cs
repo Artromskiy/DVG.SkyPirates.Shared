@@ -80,7 +80,6 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             JsonSerializer.Serialize(_writer, data, Options);
         }
 
-
         public static T Deserialize<T>(ReadOnlyMemory<byte> data)
         {
             var reader = new Utf8JsonReader(data.Span);
