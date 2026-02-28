@@ -1,7 +1,6 @@
-﻿using DVG.SkyPirates.Client.IServices;
-using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+﻿using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
-namespace Assets.Scripts.SkyPirates.Shared.Services
+namespace DVG.SkyPirates.Shared.Services
 {
     public class TickCounterService : ITickCounterService, ITickableExecutor
     {
