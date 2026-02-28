@@ -1,7 +1,7 @@
 ﻿using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Profiling;
+//using UnityEngine.Profiling;
 
 namespace DVG.SkyPirates.Shared.Services
 {
@@ -19,9 +19,9 @@ namespace DVG.SkyPirates.Shared.Services
             for (int i = 0; i < _executors.Length; i++)
             {
                 ITickableExecutor item = _executors[i];
-                Profiler.BeginSample(item.GetType().Name);
+                //Profiler.BeginSample(item.GetType().Name);
                 item.Tick(tick, deltaTime);
-                Profiler.EndSample();
+                //Profiler.EndSample();
             }
         }
     }
