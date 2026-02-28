@@ -27,7 +27,8 @@ namespace DVG.SkyPirates.Shared.Systems
 
         // if something is collector and collectable at same time => heat death of the universe
         private readonly QueryDescription _collectorsDesc =
-            new QueryDescription().WithAll<SyncId, Position, GoodsDrop, GoodsCollectorRadius>().NotDisposing().NotDisabled();
+            new QueryDescription().WithAll<SyncId, Position, GoodsDrop, GoodsCollectorRadius>().
+            NotDisposing().NotDisabled();
 
         private readonly World _world;
 

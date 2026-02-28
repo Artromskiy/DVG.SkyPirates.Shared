@@ -11,10 +11,12 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SquadMemberSearchSyncSystem : ITickableExecutor
     {
         private readonly QueryDescription _unitsDesc = new QueryDescription().
-            WithAll<SquadMember, TargetSearchDistance, TargetSearchPosition>().NotDisposing().NotDisabled();
+            WithAll<SquadMember, TargetSearchDistance, TargetSearchPosition>().
+            NotDisposing().NotDisabled();
 
         private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SyncId, TargetSearchDistance, TargetSearchPosition, Fixation>().NotDisposing().NotDisabled();
+            WithAll<Squad, SyncId, TargetSearchDistance, TargetSearchPosition, Fixation>().
+            NotDisposing().NotDisabled();
 
         private readonly World _world;
 

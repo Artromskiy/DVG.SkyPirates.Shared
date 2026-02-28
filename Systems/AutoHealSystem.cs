@@ -8,8 +8,11 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class AutoHealSystem : ITickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().
+        private readonly QueryDescription _healLoadDesc = new QueryDescription().
             WithAll<Health, MaxHealth, AutoHeal, RecivedDamage>().NotDisposing().NotDisabled();
+
+        private readonly QueryDescription _healDesc = new QueryDescription().
+            WithAll<Health, MaxHealth, AutoHeal>().NotDisposing().NotDisabled();
 
         private readonly World _world;
 
@@ -20,12 +23,31 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new HealQuery(deltaTime);
-            _world.InlineQuery<HealQuery, Health, MaxHealth, AutoHeal, RecivedDamage>(_desc, ref query);
+            var healLoadQuery = new HealLoadQuery(deltaTime);
+            _world.InlineQuery<HealLoadQuery, AutoHeal, RecivedDamage>(_healLoadDesc, ref healLoadQuery);
+
+            var healQuery = new HealQuery(deltaTime);
+            _world.InlineQuery<HealQuery, Health, MaxHealth, AutoHeal>(_healDesc, ref healQuery);
         }
 
-        private readonly struct HealQuery :
-            IForEach<Health, MaxHealth, AutoHeal, RecivedDamage>
+        private readonly struct HealLoadQuery :
+            IForEach<AutoHeal, RecivedDamage>
+        {
+            private readonly fix _deltaTime;
+
+            public HealLoadQuery(fix deltaTime)
+            {
+                _deltaTime = deltaTime;
+            }
+
+            public void Update(ref AutoHeal autoHeal, ref RecivedDamage recivedDamage)
+            {
+                autoHeal.HealLoadPercent = recivedDamage > fix.Zero ? 0 :
+                    Maths.MoveTowards(autoHeal.HealLoadPercent, 1, _deltaTime / autoHeal.HealDelay);
+            }
+        }
+
+        private readonly struct HealQuery : IForEach<Health, MaxHealth, AutoHeal>
         {
             private readonly fix _deltaTime;
 
@@ -34,11 +56,8 @@ namespace DVG.SkyPirates.Shared.Systems
                 _deltaTime = deltaTime;
             }
 
-            public void Update(ref Health health, ref MaxHealth maxHealth, ref AutoHeal autoHeal, ref RecivedDamage recivedDamage)
+            public void Update(ref Health health, ref MaxHealth maxHealth, ref AutoHeal autoHeal)
             {
-                autoHeal.HealLoadPercent = recivedDamage > fix.Zero ? 0 :
-                    Maths.MoveTowards(autoHeal.HealLoadPercent, 1, _deltaTime / autoHeal.HealDelay);
-
                 health = autoHeal.HealLoadPercent != 1 ? health :
                     Maths.MoveTowards(health, maxHealth, autoHeal.HealPerSecond * _deltaTime);
             }

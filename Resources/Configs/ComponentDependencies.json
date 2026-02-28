@@ -10,12 +10,7 @@
       "Collide": true,
       "Direction": true,
       "Fixation": true,
-      "SquadMemberCount": true,
-      "TargetSearchDistance": true,
-      "ActivityRange": true
-    },
-    "DefaultOnAdd": {
-      "ActivityRange": 15
+      "TargetSearchDistance": true
     }
   },
   {
@@ -26,9 +21,7 @@
       "Position": true,
       "Rotation": true,
       "TeamId": true,
-      "Collide": true,
-      "Target": true,
-      "Destination": true
+      "Collide": true
     }
   },
   {
@@ -38,8 +31,7 @@
     "Add": {
       "Position": true,
       "Rotation": true,
-      "TeamId": true,
-      "Targets": true
+      "TeamId": true
     }
   },
   {
@@ -77,22 +69,8 @@
       "MaxHealth": true
     },
     "Add": {
-      "RecivedDamage": true,
-      "AutoHeal": true
-    },
-    "DefaultOnAdd": {
-      "AutoHeal": {
-        "HealPerSecond": 20,
-        "HealDelay": 10
-      }
-    }
-  },
-  {
-    "Has": {
-      "Position": true
-    },
-    "Add": {
-      "CachePosition": true
+      "AutoHeal": true,
+      "Health": true
     }
   },
   {
@@ -101,15 +79,6 @@
     },
     "Add": {
       "BehaviourState": true
-    }
-  },
-  {
-    "Has": {
-      "Position": true,
-      "TargetSearchDistance": true
-    },
-    "Add": {
-      "TargetSearchPosition": true
     }
   }
 ]

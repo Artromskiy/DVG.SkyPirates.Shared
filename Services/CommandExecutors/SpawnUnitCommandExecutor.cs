@@ -78,7 +78,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
             var totalRum = squadRum;
             var desc = new QueryDescription().WithAll<SquadMember, GoodsDrop>();
-            _world.Query(desc, (ref SquadMember member, ref GoodsDrop drop) =>
+            _world.Query(in desc, (ref SquadMember member, ref GoodsDrop drop) =>
             {
                 if (member.SquadId == squadId)
                     totalRum += drop.Values.GetValueOrDefault("Rum");

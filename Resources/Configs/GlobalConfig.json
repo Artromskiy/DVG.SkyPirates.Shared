@@ -5662,24 +5662,71 @@
       "RumPrice": 2
     }
   },
+  "FramedComponentDependencies": [
+    {
+      "Has": {
+        "UnitId": true
+      },
+      "Add": {
+        "Destination": true,
+        "Target": true
+      }
+    },
+    {
+      "Has": {
+        "CactusId": true
+      },
+      "Add": {
+        "Targets": true
+      }
+    },
+    {
+      "Has": {
+        "MaxHealth": true
+      },
+      "Add": {
+        "RecivedDamage": true
+      }
+    },
+    {
+      "Has": {
+        "Position": true
+      },
+      "Add": {
+        "CachePosition": true
+      }
+    },
+    {
+      "Has": {
+        "Position": true,
+        "TargetSearchDistance": true
+      },
+      "Add": {
+        "TargetSearchPosition": true
+      }
+    },
+    {
+      "Has": {
+        "Squad": true
+      },
+      "Add": {
+        "SquadMemberCount": true
+      }
+    }
+  ],
   "ComponentDependencies": [
     {
       "Has": {
         "Squad": true
       },
       "Add": {
-        "ActivityRange": true,
         "Collide": true,
         "Direction": true,
         "Fixation": true,
         "Position": true,
         "Rotation": true,
-        "SquadMemberCount": true,
         "TargetSearchDistance": true,
         "TeamId": true
-      },
-      "DefaultOnAdd": {
-        "ActivityRange": 15
       }
     },
     {
@@ -5688,10 +5735,8 @@
       },
       "Add": {
         "Collide": true,
-        "Destination": true,
         "Position": true,
         "Rotation": true,
-        "Target": true,
         "TeamId": true
       }
     },
@@ -5702,7 +5747,6 @@
       "Add": {
         "Position": true,
         "Rotation": true,
-        "Targets": true,
         "TeamId": true
       }
     },
@@ -5742,21 +5786,7 @@
       },
       "Add": {
         "AutoHeal": true,
-        "RecivedDamage": true
-      },
-      "DefaultOnAdd": {
-        "AutoHeal": {
-          "HealPerSecond": 20,
-          "HealDelay": 10
-        }
-      }
-    },
-    {
-      "Has": {
-        "Position": true
-      },
-      "Add": {
-        "CachePosition": true
+        "Health": true
       }
     },
     {
@@ -5766,19 +5796,27 @@
       "Add": {
         "BehaviourState": true
       }
-    },
+    }
+  ],
+  "ComponentDefaults": [
     {
-      "Has": {
-        "Position": true,
-        "TargetSearchDistance": true
+      "Default": {
+        "AutoHeal": {
+          "HealPerSecond": 20,
+          "HealDelay": 10
+        }
       },
-      "Add": {
-        "TargetSearchPosition": true
+      "CopyFrom": {
+        "MaxHealth": true
+      },
+      "CopyTo": {
+        "Health": true
       }
     }
   ],
   "SquadStats": [
     {
+      "ActivityRange": 15,
       "GoodsDrop": {
         "Values": {
           "Rum": 3

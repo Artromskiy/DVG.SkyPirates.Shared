@@ -1,21 +1,24 @@
 ﻿using Arch.Core;
 using DVG.Collections;
 using DVG.Components;
-using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Collections.Generic;
+using UnityEngine.Profiling;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
-    internal sealed class RollbackHistorySystem : IRollbackHistorySystem
+    internal sealed class RollbackHistorySystem
     {
         private sealed class Description<T> where T : struct
         {
             public readonly QueryDescription removeDesc = new QueryDescription().WithAll<History<T>, T>();
             public readonly QueryDescription addDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
             public readonly QueryDescription tickDesc = new QueryDescription().WithAll<History<T>, T>();
+
+            public readonly QueryDescription historyDesc = new QueryDescription().WithAll<History<T>>();
         }
-        private readonly GenericCreator _desc = new();
+
+        private readonly GenericCreator _creator = new();
         private readonly List<Entity> _entitiesCache = new();
         private readonly World _world;
 
@@ -24,25 +27,65 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             _world = world;
         }
 
-        private static int WrapTick(int tick) => Constants.WrapTick(tick);
 
-        public void Tick(int tick, fix deltaTime)
+        public void GoTo(int tick)
         {
-            var action = new ApplyHistoryAction(_desc, _entitiesCache, _world, tick);
+            Profiler.BeginSample(nameof(RollbackHistorySystem));
+            var action = new SetHistoryAction(_creator, _entitiesCache, _world, tick);
             HistoryComponentsRegistry.ForEachData(ref action);
+            Profiler.EndSample();
         }
 
-
-        private readonly struct ApplyHistoryAction : IStructGenericAction
+        public void RollBack(int tick)
         {
-            private readonly GenericCreator _descriptions;
+            Profiler.BeginSample(nameof(RollbackHistorySystem));
+            var action = new SetHistoryAction(_creator, _entitiesCache, _world, tick);
+            HistoryComponentsRegistry.ForEachData(ref action);
+            var clearAction = new ClearHistoryAction(_world, tick, _creator);
+            HistoryComponentsRegistry.ForEachData(ref clearAction);
+            Profiler.EndSample();
+        }
+
+        private readonly struct ClearHistoryAction : IStructGenericAction
+        {
+            private readonly World _world;
+            private readonly int _tick;
+            private readonly GenericCreator _creator;
+
+            public ClearHistoryAction(World world, int tick, GenericCreator creator)
+            {
+                _world = world;
+                _tick = tick;
+                _creator = creator;
+            }
+
+            public void Invoke<T>() where T : struct
+            {
+                ClearHistoryQuery<T> clearQuery = new(_tick);
+                var desc = _creator.Get<Description<T>>().historyDesc;
+                _world.InlineQuery<ClearHistoryQuery<T>, History<T>>(in desc, ref clearQuery);
+            }
+
+            private readonly struct ClearHistoryQuery<T> : IForEach<History<T>> where T : struct
+            {
+                private readonly int _tick;
+                public ClearHistoryQuery(int tick) => _tick = tick;
+
+                public readonly void Update(ref History<T> history) =>
+                    history.Rollback(_tick);
+            }
+        }
+
+        private readonly struct SetHistoryAction : IStructGenericAction
+        {
+            private readonly GenericCreator _creator;
             private readonly List<Entity> _entities;
             private readonly World _world;
             private readonly int _tick;
 
-            public ApplyHistoryAction(GenericCreator descriptions, List<Entity> entities, World world, int tick)
+            public SetHistoryAction(GenericCreator creator, List<Entity> entities, World world, int tick)
             {
-                _descriptions = descriptions;
+                _creator = creator;
                 _entities = entities;
                 _world = world;
                 _tick = tick;
@@ -50,7 +93,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public void Invoke<T>() where T : struct
             {
-                var desc = _descriptions.Get<Description<T>>();
+                var desc = _creator.Get<Description<T>>();
                 RemoveComponents<T>(desc.removeDesc);
                 AddComponents<T>(desc.addDesc);
                 SetComponentsData<T>(desc.tickDesc);
@@ -98,7 +141,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (history[WrapTick(_tick)].HasValue)
+                if (history[_tick].HasValue)
                     _entities.Add(entity);
             }
         }
@@ -117,7 +160,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public readonly void Update(Entity entity, ref History<T> history)
             {
-                if (!history[WrapTick(_tick)].HasValue)
+                if (!history[_tick].HasValue)
                     _entities.Add(entity);
             }
         }
@@ -134,7 +177,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public readonly void Update(ref History<T> history, ref T component)
             {
-                var cmp = history[WrapTick(_tick)];
+                var cmp = history[_tick];
 
                 if (!cmp.HasValue)
                     throw new InvalidOperationException();

@@ -12,8 +12,10 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SquadTargetSearchDistanceSystem : ITickableExecutor
     {
         private static readonly fix _baseRange = 1;
+
         private readonly QueryDescription _squadsMembers = new QueryDescription().
             WithAll<SquadMember, ImpactDistance>().NotDisposing().NotDisabled();
+
         private readonly QueryDescription _squadsDesc = new QueryDescription().
             WithAll<Squad, SquadMemberCount, TargetSearchDistance>().NotDisposing().NotDisabled();
 

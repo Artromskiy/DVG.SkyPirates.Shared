@@ -11,7 +11,8 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SetMultiTargetSystem : ITickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, TeamId>().NotDisposing().NotDisabled();
+            WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, TeamId>().
+            NotDisposing().NotDisabled();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;

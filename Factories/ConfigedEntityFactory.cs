@@ -2,6 +2,7 @@
 using DVG.Ids;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
+using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Systems;
 using System;
 
@@ -12,14 +13,16 @@ namespace DVG.SkyPirates.Shared.Factories
     {
         private readonly IEntityFactory _entityFactory;
         private readonly IEntityConfigFactory<T> _entityConfigFactory;
-        private readonly IEntityDependencyService _entityDependencyService;
+        private readonly IComponentDependenciesService _entityDependencyService;
+        private readonly IComponentDefaultsService _componentDefaultsService;
         private readonly World _world;
 
-        public ConfigedEntityFactory(IEntityFactory entityFactory, IEntityConfigFactory<T> entityConfigFactory, IEntityDependencyService entityDependencyService, World world)
+        public ConfigedEntityFactory(IEntityFactory entityFactory, IEntityConfigFactory<T> entityConfigFactory, IComponentDependenciesService entityDependencyService, IComponentDefaultsService componentDefaultsService, World world)
         {
             _entityFactory = entityFactory;
             _entityConfigFactory = entityConfigFactory;
             _entityDependencyService = entityDependencyService;
+            _componentDefaultsService = componentDefaultsService;
             _world = world;
         }
 
@@ -28,7 +31,8 @@ namespace DVG.SkyPirates.Shared.Factories
             var config = _entityConfigFactory.Create(parameters.Id);
             var entity = _entityFactory.Create(parameters.parameters);
             _world.SetEntityData(entity, config);
-            _entityDependencyService.EnsureDependencies(entity);
+            _entityDependencyService.AddDependencies(entity);
+            _componentDefaultsService.SetDefaults(entity);
             return entity;
         }
     }

@@ -37,7 +37,8 @@ namespace DVG.SkyPirates.Shared.DI
             RegisterSingleton<IHexMapFactory, HexMapFactory>();
             RegisterSingleton<ISquadFactory, SquadFactory>();
 
-            RegisterSingleton<IEntityDependencyService, EntityDependencyService>();
+            RegisterSingleton<IComponentDependenciesService, ComponentDependenciesService>();
+            RegisterSingleton<IComponentDefaultsService, ComponentDefaultsService>();
             RegisterSingleton<IEntityRegistry, EntityRegistry>();
 
             RegisterSingleton<IPooledItemsProvider, PooledItemsProvider>();
@@ -45,8 +46,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             RegisterSingleton<ITimelineService, TimelineService>();
             RegisterSingleton<ICommandExecutorService, CommandExecutorService>();
-            RegisterSingleton<IRollbackHistorySystem, RollbackHistorySystem>();
-            RegisterSingleton<ISaveHistorySystem, SaveHistorySystem>();
+            RegisterSingleton<IHistorySystem, HistorySystem>();
             RegisterSingleton<IDisposeSystem, DisposeSystem>();
 
             RegisterSingleton<ITickableExecutorService, TickableExecutorService>();
@@ -63,11 +63,10 @@ namespace DVG.SkyPirates.Shared.DI
 
         private static Type[] TickableExecutors => new Type[]
         {
-            typeof(ComponentDependenciesSystem), // creates dependant components
-            typeof(EnsureSystem), // ensures
-            typeof(ClearSystem), // cleanups
-            typeof(CachePositionSystem),
+            typeof(FramedComponentsSystem), // cleanups
             typeof(FlagDisabledSystem),
+            typeof(CachePositionSystem),
+            typeof(SetDestinationSystem),
             typeof(TargetSearchSystem), // cache target search
             typeof(SearchPositionSyncSystem), // sync Positon and TargetSearchPosition
             typeof(SquadMemberCounterSystem), // set count of members to squad

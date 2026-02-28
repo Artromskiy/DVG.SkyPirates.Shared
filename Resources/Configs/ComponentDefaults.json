@@ -1,0 +1,16 @@
+[
+  {
+    "Default": {
+      "AutoHeal": {
+        "HealPerSecond": 20,
+        "HealDelay": 10
+      }
+    },
+    "CopyFrom": {
+      "MaxHealth": true
+    },
+    "CopyTo": {
+      "Health": true
+    }
+  }
+]

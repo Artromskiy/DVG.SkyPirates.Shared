@@ -1,17 +1,20 @@
 ﻿using Arch.Core;
 using DVG.Collections;
 using DVG.Components;
-using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using UnityEngine.Profiling;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
-    internal sealed class SaveHistorySystem : ISaveHistorySystem
+    internal sealed class SaveHistorySystem
     {
         private sealed class Description<T> where T : struct
         {
-            public readonly QueryDescription saveHasCmpDesc = new QueryDescription().WithAll<History<T>, T>();
-            public readonly QueryDescription saveNoCmpDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
+            public readonly QueryDescription saveHasCmpDesc = new QueryDescription().
+                WithAll<History<T>, T>().NotDisabled();
+            public readonly QueryDescription saveNoCmpDesc = new QueryDescription().
+                WithAll<History<T>>().WithNone<T>().NotDisabled();
         }
+
         private readonly GenericCreator _desc = new();
         private readonly World _world;
 
@@ -20,14 +23,15 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             _world = world;
         }
 
-        private static int WrapTick(int tick) => Constants.WrapTick(tick);
-
-        public void Tick(int tick, fix deltaTime)
+        public void Save(int tick)
         {
+            Profiler.BeginSample(nameof(SaveHistorySystem));
             var addAction = new AddHistoryAction(_world);
-            var saveAction = new SaveHistoryAction(_desc, _world, tick);
             HistoryComponentsRegistry.ForEachData(ref addAction);
+
+            var saveAction = new SaveHistoryAction(_desc, _world, tick);
             HistoryComponentsRegistry.ForEachData(ref saveAction);
+            Profiler.EndSample();
         }
 
         private readonly struct AddHistoryAction : IStructGenericAction
@@ -61,31 +65,31 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public void Invoke<T>() where T : struct
             {
-                var saveQuery = new SaveHistoryQuery<T>(WrapTick(_tick));
                 var desc = _descriptions.Get<Description<T>>();
-
-                // if history was inline array we could write faster
+                var saveHasQuery = new SetHasHistoryQuery<T>(_tick);
+                var saveNoQuery = new SetNoHistoryQuery<T>(_tick);
                 var saveHasCmpDesc = desc.saveHasCmpDesc;
-                _world.InlineQuery<SaveHistoryQuery<T>, History<T>, T>(saveHasCmpDesc, ref saveQuery);
+                _world.InlineQuery<SetHasHistoryQuery<T>, History<T>, T>(in saveHasCmpDesc, ref saveHasQuery);
                 var saveNoCmpDesc = desc.saveNoCmpDesc;
-                _world.InlineQuery<SaveHistoryQuery<T>, History<T>>(saveNoCmpDesc, ref saveQuery);
+                _world.InlineQuery<SetNoHistoryQuery<T>, History<T>>(in saveNoCmpDesc, ref saveNoQuery);
             }
         }
 
-        private readonly struct SaveHistoryQuery<T> :
-            IForEach<History<T>, T>,
-            IForEach<History<T>>
+        private readonly struct SetHasHistoryQuery<T> : IForEach<History<T>, T>
             where T : struct
         {
             private readonly int _tick;
-
-            public SaveHistoryQuery(int tick)
-            {
-                _tick = tick;
-            }
+            public SetHasHistoryQuery(int tick) => _tick = tick;
 
             public readonly void Update(ref History<T> history, ref T component) =>
                 history[_tick] = component;
+        }
+
+        private readonly struct SetNoHistoryQuery<T> : IForEach<History<T>>
+            where T : struct
+        {
+            private readonly int _tick;
+            public SetNoHistoryQuery(int tick) => _tick = tick;
 
             public void Update(ref History<T> history) =>
                 history[_tick] = null;

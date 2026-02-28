@@ -78,7 +78,6 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                     _bufferCache.Write(_comma);
             }
             _bufferCache.Write(_arrayEnd);
-            var res = Encoding.UTF8.GetString(_bufferCache.WrittenSpan);
             writer.WriteRawValue(_bufferCache.WrittenSpan);
         }
 

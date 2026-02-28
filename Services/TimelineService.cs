@@ -15,18 +15,16 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly IPreTickableExecutorService _preTickableExecutorService;
         private readonly IPostTickableExecutorService _postTickableExecutorService;
 
-        private readonly IRollbackHistorySystem _rollbackHistorySystem;
-        private readonly ISaveHistorySystem _saveHistorySystem;
+        private readonly IHistorySystem _historySystem;
         private readonly IDisposeSystem _disposeSystem;
 
-        public TimelineService(ICommandExecutorService commandExecutorService, ITickableExecutorService tickableExecutorService, IPreTickableExecutorService preTickableExecutorService, IPostTickableExecutorService postTickableExecutorService, IRollbackHistorySystem rollbackHistorySystem, ISaveHistorySystem saveHistorySystem, IDisposeSystem disposeSystem)
+        public TimelineService(ICommandExecutorService commandExecutorService, ITickableExecutorService tickableExecutorService, IPreTickableExecutorService preTickableExecutorService, IPostTickableExecutorService postTickableExecutorService, IHistorySystem historySystem, IDisposeSystem disposeSystem)
         {
             _commandExecutorService = commandExecutorService;
             _tickableExecutorService = tickableExecutorService;
             _preTickableExecutorService = preTickableExecutorService;
             _postTickableExecutorService = postTickableExecutorService;
-            _rollbackHistorySystem = rollbackHistorySystem;
-            _saveHistorySystem = saveHistorySystem;
+            _historySystem = historySystem;
             _disposeSystem = disposeSystem;
         }
 
@@ -36,7 +34,8 @@ namespace DVG.SkyPirates.Shared.Services
 
             if (DirtyTick <= CurrentTick)
             {
-                GoTo(DirtyTick - 1);
+                _historySystem.Rollback(DirtyTick - 1);
+                CurrentTick = DirtyTick - 1;
             }
 
             var fromTick = CurrentTick + 1;
@@ -50,7 +49,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void GoTo(int tick)
         {
-            _rollbackHistorySystem.Tick(tick, Constants.TickTime);
+            _historySystem.GoTo(tick);
             CurrentTick = tick;
         }
 
@@ -60,7 +59,7 @@ namespace DVG.SkyPirates.Shared.Services
             _commandExecutorService.Tick(CurrentTick, Constants.TickTime);
             _tickableExecutorService.Tick(CurrentTick, Constants.TickTime);
             _disposeSystem.Tick(CurrentTick, Constants.TickTime);
-            _saveHistorySystem.Tick(CurrentTick, Constants.TickTime);
+            _historySystem.Save(CurrentTick);
         }
     }
 }

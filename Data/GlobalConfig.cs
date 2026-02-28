@@ -10,7 +10,9 @@ namespace DVG.SkyPirates.Shared.Data
         public GoodsStatsConfig GoodsStats;
         public UnitsInfoConfig UnitsInfos;
 
+        public FramedComponentDependenciesConfig FramedComponentDependencies;
         public ComponentDependenciesConfig ComponentDependencies;
+        public ComponentDefaultsConfig ComponentDefaults;
 
         public SquadStatsConfig SquadStats;
         public CameraConfig CameraConfig;

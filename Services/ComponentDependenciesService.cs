@@ -1,21 +1,21 @@
 ﻿using Arch.Core;
 using DVG.SkyPirates.Shared.Data;
-using DVG.SkyPirates.Shared.IFactories;
+using DVG.SkyPirates.Shared.IServices;
 
-namespace DVG.SkyPirates.Shared.Factories
+namespace DVG.SkyPirates.Shared.Services
 {
-    public class EntityDependencyService : IEntityDependencyService
+    public class ComponentDependenciesService : IComponentDependenciesService
     {
         private readonly World _world;
         private readonly ComponentDependenciesConfig _dependencies;
 
-        public EntityDependencyService(World world, ComponentDependenciesConfig dependencies)
+        public ComponentDependenciesService(World world, ComponentDependenciesConfig dependencies)
         {
             _world = world;
             _dependencies = dependencies;
         }
 
-        public void EnsureDependencies(Entity entity)
+        public void AddDependencies(Entity entity)
         {
             foreach (var config in _dependencies)
             {
@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Factories
                 if (!hasAll.Value)
                     continue;
 
-                var add = new AddAction(config.DefaultOnAdd, _world, entity);
+                var add = new AddAction(_world, entity);
                 config.Add.ForEach(ref add);
             }
         }
@@ -50,21 +50,18 @@ namespace DVG.SkyPirates.Shared.Factories
 
         private readonly struct AddAction : IStructGenericAction
         {
-            private readonly ComponentsSet _defaults;
             private readonly World _world;
             private readonly Entity _entity;
 
-            public AddAction(ComponentsSet defaults, World world, Entity entity)
+            public AddAction(World world, Entity entity)
             {
-                _defaults = defaults;
                 _world = world;
                 _entity = entity;
             }
 
             public void Invoke<T>() where T : struct
             {
-                T defaultValue = _defaults?.Get<T>() ?? default;
-                _world.AddOrGet<T>(_entity) = defaultValue;
+                _world.AddOrGet<T>(_entity) = default;
             }
         }
     }

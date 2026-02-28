@@ -23,13 +23,13 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private static readonly GenericCreator _desc = new();
 
-        public static QueryDescription NotDisposing(this QueryDescription desc)
+        public static QueryDescription NotDisposing(this in QueryDescription desc)
         {
             var none = Signature.Add(desc.None, Component<Disposing>.Signature);
             return new QueryDescription(desc.All, desc.Any, none, desc.Exclusive);
         }
 
-        public static QueryDescription NotDisabled(this QueryDescription desc)
+        public static QueryDescription NotDisabled(this in QueryDescription desc)
         {
             var none = Signature.Add(desc.None, Component<Disabled>.Signature);
             return new QueryDescription(desc.All, desc.Any, none, desc.Exclusive);
@@ -54,12 +54,12 @@ namespace DVG.SkyPirates.Shared.Systems
         public static void AddQuery<Has, Add>(this World world, ForEach<Has, Add> forEach)
         {
             var addDesc = _desc.Get<WithAllWithNone<Has, Add>>().Desc;
-            if (world.CountEntities(addDesc) == 0)
+            if (world.CountEntities(in addDesc) == 0)
                 return;
             var queryDesc = _desc.Get<WithAll<Add, Temp>>().Desc;
-            world.Add<Add, Temp>(addDesc);
-            world.Query(queryDesc, forEach);
-            world.Remove<Temp>(queryDesc);
+            world.Add<Add, Temp>(in addDesc);
+            world.Query(in queryDesc, forEach);
+            world.Remove<Temp>(in queryDesc);
         }
 
         public static void SetEntityData(this World world, Entity entity, ComponentsSet config)

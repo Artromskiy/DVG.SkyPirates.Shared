@@ -9,61 +9,81 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class ComponentDependenciesSystem : ITickableExecutor
+    public class FramedComponentsSystem : ITickableExecutor
     {
+        private class Description<T>
+        {
+            public QueryDescription RemoveDesc = new QueryDescription().WithAll<T>();
+            public QueryDescription? AddDesc;
+        }
+        private readonly GenericCreator _creator = new();
+
         private readonly World _world;
         private readonly DependencyData[] _dependencies;
 
-        private class Description<T>
-        {
-            public QueryDescription Desc;
-        }
-
-        public ComponentDependenciesSystem(ComponentDependenciesConfig componentDependencies, World world)
+        public FramedComponentsSystem(FramedComponentDependenciesConfig componentDependencies, World world)
         {
             _world = world;
             _dependencies = componentDependencies.ConvertAll(dependency =>
             {
                 HashSet<Type> allComponents = new();
                 Signature allSignature = new(Array.ConvertAll(dependency.Has.GetTypes(), Component.GetComponentType));
-                return new DependencyData(allSignature, dependency.Add, dependency.DefaultOnAdd, new());
+                return new DependencyData(allSignature, dependency.Add, new());
             }).ToArray();
         }
 
         public void Tick(int tick, fix deltaTime)
         {
+            var removeFramedAction = new ClearFramedAction(_world, _creator);
+            FramedComponentsRegistry.ForEachData(ref removeFramedAction);
             foreach (var data in _dependencies)
             {
-                var ensureAction = new AddComponentAction(_world, data.HasComponentSignature, data.SignatureCache, data.DefaultComponentData);
+                var ensureAction = new AddComponentAction(_world, data.HasComponentSignature, data.SignatureCache);
                 data.AddComponentData.ForEach(ref ensureAction);
             }
             _world.TrimExcess();
         }
+
+        private readonly struct ClearFramedAction : IStructGenericAction
+        {
+            private readonly World _world;
+            private readonly GenericCreator _creator;
+
+            public ClearFramedAction(World world, GenericCreator creator)
+            {
+                _world = world;
+                _creator = creator;
+            }
+
+            public void Invoke<T>() where T : struct
+            {
+                var desc = _creator.Get<Description<T>>().RemoveDesc;
+                _world.Set<T>(desc, default);
+            }
+        }
+
 
         private readonly struct AddComponentAction : IStructGenericAction
         {
             private readonly World _world;
             private readonly Signature _allSignature;
             private readonly GenericCreator _signatureCache;
-            private readonly ComponentsSet _defaults;
 
-            public AddComponentAction(World world, Signature allSignature, GenericCreator signatureCache, ComponentsSet defaults)
+            public AddComponentAction(World world, Signature allSignature, GenericCreator signatureCache)
             {
                 _world = world;
                 _allSignature = allSignature;
                 _signatureCache = signatureCache;
-                _defaults = defaults;
             }
 
             public void Invoke<T>() where T : struct
             {
                 var descContainer = _signatureCache.Get<Description<T>>();
-                if (descContainer.Desc == default)
-                    descContainer.Desc = new QueryDescription(all: _allSignature, none: Component<T, Disposing>.Signature);
+                descContainer.AddDesc ??= new QueryDescription(all: _allSignature, none: Component<T, Disposing>.Signature);
 
-                var desc = descContainer.Desc;
-                var defaultValue = _defaults?.Get<T>();
-                _world.Add(desc, defaultValue ?? default);
+                var desc = descContainer.AddDesc.Value;
+                if (_world.CountEntities(in desc) > 0)
+                    _world.Add<T>(in desc);
             }
         }
 
@@ -71,14 +91,12 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             public readonly Signature HasComponentSignature;
             public readonly ComponentsMask AddComponentData;
-            public readonly ComponentsSet DefaultComponentData;
             public readonly GenericCreator SignatureCache;
 
-            public DependencyData(Signature hasComponentSignature, ComponentsMask addComponentData, ComponentsSet defaultComponentData, GenericCreator signatureCache)
+            public DependencyData(Signature hasComponentSignature, ComponentsMask addComponentData, GenericCreator signatureCache)
             {
                 HasComponentSignature = hasComponentSignature;
                 AddComponentData = addComponentData;
-                DefaultComponentData = defaultComponentData;
                 SignatureCache = signatureCache;
             }
         }

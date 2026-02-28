@@ -4,7 +4,6 @@
     {
         public static bool ClientPredicted<T>()
         {
-            return false;
             return typeof(T) == typeof(JoystickCommand);
         }
     }
