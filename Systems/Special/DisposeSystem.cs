@@ -73,7 +73,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public void Update(Entity entity, ref Disposing destruct)
             {
-                if (++destruct.TicksPassed > Constants.HistoryTicks)
+                if (++destruct.TicksPassed > Constants.MaxHistoryTicks)
                     _entities.Add(entity);
             }
         }
