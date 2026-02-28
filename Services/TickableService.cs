@@ -5,7 +5,7 @@ using System.Linq;
 namespace DVG.SkyPirates.Shared.Services
 {
     public class TickableService<T> : ITickableService<T>
-        where T : ITickableExecutor
+        where T : ITickable
     {
         private readonly T[] _executors;
 
