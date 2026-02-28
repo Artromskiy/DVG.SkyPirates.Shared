@@ -32,7 +32,6 @@ namespace DVG.SkyPirates.Shared.DI
             RegisterSingleton(typeof(IConfigedEntityFactory<>), typeof(ConfigedEntityFactory<>));
             RegisterFactorySingleton<IGlobalConfigFactory, GlobalConfigFactory, GlobalConfig>();
             RegisterFactorySingleton<IPackedCirclesFactory, PackedCirclesFactory, PackedCirclesConfig>();
-            RegisterSingleton<IWorldDataFactory, WorldDataFactory>();
             RegisterSingleton<IEntityFactory, EntityFactory>();
             RegisterSingleton<IHexMapFactory, HexMapFactory>();
             RegisterSingleton<ISquadFactory, SquadFactory>();

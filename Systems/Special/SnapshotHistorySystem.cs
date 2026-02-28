@@ -6,9 +6,9 @@ using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
 
-namespace DVG.SkyPirates.Shared.Factories
+namespace DVG.SkyPirates.Shared.Systems.Special
 {
-    public class WorldDataFactory : IWorldDataFactory
+    public class SnapshotHistorySystem
     {
         private class Description<T>
         {
@@ -16,85 +16,91 @@ namespace DVG.SkyPirates.Shared.Factories
         }
         private readonly GenericCreator _desc = new();
 
-        private readonly IEntityRegistry _entityRegistryService;
-        private readonly IEntityFactory _entityFactory;
         private readonly World _world;
+        private readonly IEntityFactory _entityFactory;
+        private readonly IEntityRegistry _entityRegistry;
 
-        public WorldDataFactory(IEntityRegistry entityRegistryService, IEntityFactory entityFactory, World world)
+        public SnapshotHistorySystem(World world, IEntityFactory entityFactory, IEntityRegistry entityRegistry)
         {
-            _entityRegistryService = entityRegistryService;
-            _entityFactory = entityFactory;
             _world = world;
+            _entityFactory = entityFactory;
+            _entityRegistry = entityRegistry;
         }
 
-        public WorldData Create()
+        public WorldData GetSnapshot(int tick)
         {
             var worldData = new WorldData();
-            var packAction = new PackAction(_world, worldData, _desc);
+            var packAction = new GetAction(_world, worldData, _desc, tick);
             HistoryComponentsRegistry.ForEachData(ref packAction);
             return worldData;
         }
 
-        public void Extract(WorldData worldData)
+        public void ApplySnapshot(WorldData snapshot)
         {
-            foreach (var syncId in worldData.Get<SyncId>().Values)
-                _entityRegistryService.Reserve(syncId);
+            foreach (var syncId in snapshot.Get<SyncId>().Values)
+                _entityRegistry.Reserve(syncId);
 
-            foreach (var syncIdReserve in worldData.Get<SyncIdReserve>().Values)
-                _entityRegistryService.Reserve(syncIdReserve);
+            foreach (var syncIdReserve in snapshot.Get<SyncIdReserve>().Values)
+                _entityRegistry.Reserve(syncIdReserve);
 
-            foreach (var syncId in worldData.Get<SyncId>().Values)
+            foreach (var syncId in snapshot.Get<SyncId>().Values)
                 _entityFactory.Create(new(syncId, default, default));
 
-            var unpackAction = new ExtractAction(_entityRegistryService, worldData, _world);
+            var unpackAction = new ApplyAction(_entityRegistry, snapshot, _world);
             HistoryComponentsRegistry.ForEachData(ref unpackAction);
             _world.TrimExcess();
         }
 
-        private readonly struct PackAction : IStructGenericAction
+        private readonly struct GetAction : IStructGenericAction
         {
             private readonly GenericCreator _desc;
             private readonly WorldData _worldData;
             private readonly World _world;
+            private readonly int _tick;
 
-            public PackAction(World world, WorldData entities, GenericCreator desc)
+            public GetAction(World world, WorldData entities, GenericCreator desc, int tick)
             {
                 _world = world;
                 _worldData = entities;
                 _desc = desc;
+                _tick = tick;
             }
 
             public readonly void Invoke<T>() where T : struct
             {
                 var components = _worldData.Get<T>();
-                var query = new PackQuery<T>(components);
+                var query = new PackQuery<T>(components, _tick);
                 var desc = _desc.Get<Description<T>>().Desc;
-                _world.InlineQuery<PackQuery<T>, T, SyncId>(desc, ref query);
+                _world.InlineQuery<PackQuery<T>, History<T>, SyncId>(desc, ref query);
             }
 
-            private readonly struct PackQuery<T> : IForEach<T, SyncId> where T : struct
+            private readonly struct PackQuery<T> : IForEach<History<T>, SyncId> where T : struct
             {
                 private readonly Dictionary<int, T> _components;
+                private readonly int _tick;
 
-                public PackQuery(Dictionary<int, T> components)
+                public PackQuery(Dictionary<int, T> components, int tick)
                 {
                     _components = components;
+                    _tick = tick;
                 }
 
-                public void Update(ref T component, ref SyncId id)
+                public void Update(ref History<T> history, ref SyncId id)
                 {
-                    _components[id.Value] = component;
+                    var component = history[_tick];
+                    if (component != null)
+                        _components[id.Value] = component.Value;
                 }
             }
         }
 
-        private readonly struct ExtractAction : IStructGenericAction
+        private readonly struct ApplyAction : IStructGenericAction
         {
             private readonly IEntityRegistry _entityRegistryService;
             private readonly WorldData _worldData;
             private readonly World _world;
 
-            public ExtractAction(IEntityRegistry entityRegistryService, WorldData worldData, World world)
+            public ApplyAction(IEntityRegistry entityRegistryService, WorldData worldData, World world)
             {
                 _entityRegistryService = entityRegistryService;
                 _worldData = worldData;
