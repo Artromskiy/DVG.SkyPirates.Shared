@@ -7,6 +7,7 @@ using System.Text;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
+    [Obsolete]
     public sealed class LogHashSumSystem : IDeltaTickableExecutor
     {
         private readonly Descriptions _descriptions = new Descriptions();
