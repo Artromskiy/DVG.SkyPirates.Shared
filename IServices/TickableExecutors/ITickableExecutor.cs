@@ -1,9 +1,10 @@
 ﻿namespace DVG.SkyPirates.Shared.IServices.TickableExecutors
 {
     public interface ITickableExecutor :
+        ITickable,
         IPreTickable,
         IPostTickable,
-        ITickable
+        IInTickable
     { }
 
     public interface ITickable
@@ -13,4 +14,5 @@
 
     public interface IPreTickable : ITickable { }
     public interface IPostTickable : ITickable { }
+    public interface IInTickable : ITickable { }
 }

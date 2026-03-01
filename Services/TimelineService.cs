@@ -12,14 +12,16 @@ namespace DVG.SkyPirates.Shared.Services
 
         private readonly ICommandExecutorService _commandExecutorService;
         private readonly IDeltaTickableService<IDeltaTickableExecutor> _deltaTickableService;
+        private readonly ITickableService<IInTickable> _inTickables;
 
         private readonly IHistorySystem _historySystem;
         private readonly IDisposeSystem _disposeSystem;
 
-        public TimelineService(ICommandExecutorService commandExecutorService, IDeltaTickableService<IDeltaTickableExecutor> deltaTickableService, IHistorySystem historySystem, IDisposeSystem disposeSystem)
+        public TimelineService(ICommandExecutorService commandExecutorService, IDeltaTickableService<IDeltaTickableExecutor> deltaTickableService, ITickableService<IInTickable> inTickables, IHistorySystem historySystem, IDisposeSystem disposeSystem)
         {
             _commandExecutorService = commandExecutorService;
             _deltaTickableService = deltaTickableService;
+            _inTickables = inTickables;
             _historySystem = historySystem;
             _disposeSystem = disposeSystem;
         }
@@ -40,6 +42,7 @@ namespace DVG.SkyPirates.Shared.Services
                 _deltaTickableService.Tick(CurrentTick, Constants.TickTime);
                 _disposeSystem.Tick(CurrentTick);
                 _historySystem.Save(CurrentTick);
+                _inTickables.Tick(CurrentTick);
             }
             DirtyTick = int.MaxValue;
         }
