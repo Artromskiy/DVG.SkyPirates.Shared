@@ -93,7 +93,8 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public void Update(Entity entity, ref Disposing disposing)
             {
-                if (disposing.StartTick + Constants.MaxHistoryTicks > _tick)
+                int disposeTick = disposing.StartTick + Constants.MaxHistoryTicks;
+                if (_tick >= disposeTick)
                     _entities.Add(entity);
             }
         }
