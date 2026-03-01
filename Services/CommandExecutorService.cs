@@ -21,10 +21,10 @@ namespace DVG.SkyPirates.Shared.Services
             _executors = executors.ToArray();
 
             _commandReciever.RegisterReciever<InvalidateCommand>(Invalidate);
+            var registerAction = new RegisterRecieverAction(_commandReciever, _commands);
             foreach (ICommandExecutor executor in _executors)
             {
-                var action = new RegisterRecieverAction(_commandReciever, _commands);
-                executor.Call(ref action);
+                executor.Call(ref registerAction);
             }
         }
 
@@ -32,6 +32,15 @@ namespace DVG.SkyPirates.Shared.Services
         {
             _commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands);
             return typedCommands;
+        }
+
+        public CommandsData GetCommands()
+        {
+            CommandsData commandsData = new();
+            var packCommandAction = new PackCommand(commandsData, _commands);
+            foreach (ICommandExecutor executor in _executors)
+                executor.Call(ref packCommandAction);
+            return commandsData;
         }
 
         public void Tick(int tick)
@@ -127,6 +136,24 @@ namespace DVG.SkyPirates.Shared.Services
                 if (!typedCommands.TryGetValue(command.Tick, out var tickCommands))
                     typedCommands[command.Tick] = tickCommands = new();
                 tickCommands.Add(command);
+            }
+        }
+
+        private readonly struct PackCommand : IGenericAction
+        {
+            private readonly CommandsData _commandsData;
+            private readonly GenericCollection _commands;
+
+            public PackCommand(CommandsData commandsData, GenericCollection commands)
+            {
+                _commandsData = commandsData;
+                _commands = commands;
+            }
+
+            public readonly void Invoke<T>()
+            {
+                if (_commands.TryGet<Dictionary<int, List<Command<T>>>>(out var commands))
+                    _commandsData.Set(commands);
             }
         }
     }

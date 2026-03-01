@@ -1,4 +1,5 @@
 ﻿using DVG.Commands;
+using DVG.SkyPirates.Shared.Commands;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.IServices
@@ -7,5 +8,6 @@ namespace DVG.SkyPirates.Shared.IServices
     {
         void Tick(int tick);
         Dictionary<int, List<Command<T>>> GetCommands<T>();
+        CommandsData GetCommands();
     }
 }
