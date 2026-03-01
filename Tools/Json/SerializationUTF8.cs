@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CommunityToolkit.HighPerformance;
+using System;
 using System.Buffers;
+using System.IO.Compression;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -74,12 +76,12 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
         public static void Serialize<T>(T data, IBufferWriter<byte> buffer)
         {
-            _writer?.Reset(buffer);
             _writer ??= new Utf8JsonWriter(buffer, new JsonWriterOptions()
             {
                 Indented = true,
                 SkipValidation = true,
             });
+            _writer?.Reset(buffer);
             JsonSerializer.Serialize(_writer, data, Options);
         }
 
@@ -87,6 +89,46 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         {
             var reader = new Utf8JsonReader(data.Span);
             return JsonSerializer.Deserialize<T>(ref reader, Options);
+        }
+
+        public static T DeserializeCompressed<T>(ReadOnlyMemory<byte> data)
+        {
+            _buffer.Clear();
+            Decompress(data, _buffer);
+            return Deserialize<T>(_buffer.WrittenMemory);
+        }
+
+        public static void SerializeCompressed<T>(IBufferWriter<byte> buffer, T data)
+        {
+            _buffer.Clear();
+            Serialize(data, _buffer);
+            Compress(_buffer.WrittenMemory, buffer);
+        }
+
+        public static string SerializeOrdered<T>(T data)
+        {
+            var document = JsonSerializer.SerializeToDocument(data, Options);
+            _buffer.Clear();
+            _writer.Reset(_buffer);
+            _writer.WriteOrdered(document.RootElement);
+            _writer.Flush();
+            return Encoding.UTF8.GetString(_buffer.WrittenSpan);
+        }
+
+        private static void Compress(ReadOnlyMemory<byte> from, IBufferWriter<byte> to)
+        {
+            using var output = to.AsStream();
+            using var input = from.AsStream();
+            using DeflateStream dstream = new(output, CompressionLevel.Fastest);
+            dstream.Write(from.Span);
+        }
+
+        private static void Decompress(ReadOnlyMemory<byte> from, IBufferWriter<byte> to)
+        {
+            using var input = from.AsStream();
+            using var output = to.AsStream();
+            using DeflateStream dstream = new(input, CompressionMode.Decompress);
+            dstream.CopyTo(output);
         }
     }
 }
