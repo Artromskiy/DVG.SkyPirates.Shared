@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             public readonly QueryDescription Desc = new QueryDescription().WithAll<T, Disposing, Temp>();
         }
-        private readonly QueryDescription _descSearch = new QueryDescription().WithAll<Disposing>();
+        private readonly QueryDescription _disposingDesc = new QueryDescription().WithAll<Disposing>();
         private readonly List<Entity> _entitiesCache = new();
         private readonly GenericCreator _disposeDesc = new();
 
@@ -27,8 +27,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public void Tick(int tick)
         {
             _entitiesCache.Clear();
-            var query = new SelectToDispose(_entitiesCache);
-            _world.InlineEntityQuery<SelectToDispose, Disposing>(_descSearch, ref query);
+            var initDisposing = new InitDiposing(tick);
+            _world.InlineQuery<InitDiposing, Disposing>(in _disposingDesc, ref initDisposing);
+            var selectToDispose = new SelectToDispose(tick, _entitiesCache);
+            _world.InlineEntityQuery<SelectToDispose, Disposing>(in _disposingDesc, ref selectToDispose);
             foreach (var entity in _entitiesCache)
                 _world.Add<Temp>(entity);
 
@@ -62,21 +64,38 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             }
         }
 
-        private readonly struct SelectToDispose : IForEachWithEntity<Disposing>
+        private readonly struct InitDiposing : IForEach<Disposing>
         {
-            private readonly List<Entity> _entities;
+            private readonly int _tick;
 
-            public SelectToDispose(List<Entity> entities)
+            public InitDiposing(int tick)
             {
-                _entities = entities;
+                _tick = tick;
             }
 
-            public void Update(Entity entity, ref Disposing destruct)
+            public void Update(ref Disposing disposing)
             {
-                if (++destruct.TicksPassed > Constants.MaxHistoryTicks)
-                    _entities.Add(entity);
+                if (disposing.StartTick == 0)
+                    disposing.StartTick = _tick;
             }
         }
 
+        private readonly struct SelectToDispose : IForEachWithEntity<Disposing>
+        {
+            private readonly int _tick;
+            private readonly List<Entity> _entities;
+
+            public SelectToDispose(int tick, List<Entity> entities)
+            {
+                _tick = tick;
+                _entities = entities;
+            }
+
+            public void Update(Entity entity, ref Disposing disposing)
+            {
+                if (disposing.StartTick + Constants.MaxHistoryTicks > _tick)
+                    _entities.Add(entity);
+            }
+        }
     }
 }
