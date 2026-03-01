@@ -21,83 +21,45 @@ using DVG.Components;
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    [Serializable]
-    [DataContract]
     public sealed class WorldData
     {
 
-        [DataMember]
-        private Dictionary<int, ActivityRange> ActivityRange;
-        [DataMember]
-        private Dictionary<int, AutoHeal> AutoHeal;
-        [DataMember]
-        private Dictionary<int, BehaviourConfig> BehaviourConfig;
-        [DataMember]
-        private Dictionary<int, BehaviourState> BehaviourState;
-        [DataMember]
-        private Dictionary<int, CactusId> CactusId;
-        [DataMember]
-        private Dictionary<int, ClientId> ClientId;
-        [DataMember]
-        private Dictionary<int, Damage> Damage;
-        [DataMember]
-        private Dictionary<int, Direction> Direction;
-        [DataMember]
-        private Dictionary<int, Disposing> Disposing;
-        [DataMember]
-        private Dictionary<int, Fixation> Fixation;
-        [DataMember]
-        private Dictionary<int, FlyDestination> FlyDestination;
-        [DataMember]
-        private Dictionary<int, GoodsAmount> GoodsAmount;
-        [DataMember]
-        private Dictionary<int, GoodsCollectorRadius> GoodsCollectorRadius;
-        [DataMember]
-        private Dictionary<int, GoodsDrop> GoodsDrop;
-        [DataMember]
-        private Dictionary<int, GoodsId> GoodsId;
-        [DataMember]
-        private Dictionary<int, Health> Health;
-        [DataMember]
-        private Dictionary<int, HexMap> HexMap;
-        [DataMember]
-        private Dictionary<int, ImpactDistance> ImpactDistance;
-        [DataMember]
-        private Dictionary<int, Level> Level;
-        [DataMember]
-        private Dictionary<int, MaxHealth> MaxHealth;
-        [DataMember]
-        private Dictionary<int, MaxSpeed> MaxSpeed;
-        [DataMember]
-        private Dictionary<int, Position> Position;
-        [DataMember]
-        private Dictionary<int, Radius> Radius;
-        [DataMember]
-        private Dictionary<int, RandomSeed> RandomSeed;
-        [DataMember]
-        private Dictionary<int, RockId> RockId;
-        [DataMember]
-        private Dictionary<int, Rotation> Rotation;
-        [DataMember]
-        private Dictionary<int, Separation> Separation;
-        [DataMember]
-        private Dictionary<int, Separator> Separator;
-        [DataMember]
-        private Dictionary<int, Squad> Squad;
-        [DataMember]
-        private Dictionary<int, SquadMember> SquadMember;
-        [DataMember]
-        private Dictionary<int, SyncId> SyncId;
-        [DataMember]
-        private Dictionary<int, SyncIdReserve> SyncIdReserve;
-        [DataMember]
-        private Dictionary<int, TargetSearchDistance> TargetSearchDistance;
-        [DataMember]
-        private Dictionary<int, TeamId> TeamId;
-        [DataMember]
-        private Dictionary<int, TreeId> TreeId;
-        [DataMember]
-        private Dictionary<int, UnitId> UnitId;
+        public Dictionary<int, ActivityRange> ActivityRange;
+        public Dictionary<int, AutoHeal> AutoHeal;
+        public Dictionary<int, BehaviourConfig> BehaviourConfig;
+        public Dictionary<int, BehaviourState> BehaviourState;
+        public Dictionary<int, CactusId> CactusId;
+        public Dictionary<int, ClientId> ClientId;
+        public Dictionary<int, Damage> Damage;
+        public Dictionary<int, Direction> Direction;
+        public Dictionary<int, Disposing> Disposing;
+        public Dictionary<int, Fixation> Fixation;
+        public Dictionary<int, FlyDestination> FlyDestination;
+        public Dictionary<int, GoodsAmount> GoodsAmount;
+        public Dictionary<int, GoodsCollectorRadius> GoodsCollectorRadius;
+        public Dictionary<int, GoodsDrop> GoodsDrop;
+        public Dictionary<int, GoodsId> GoodsId;
+        public Dictionary<int, Health> Health;
+        public Dictionary<int, HexMap> HexMap;
+        public Dictionary<int, ImpactDistance> ImpactDistance;
+        public Dictionary<int, Level> Level;
+        public Dictionary<int, MaxHealth> MaxHealth;
+        public Dictionary<int, MaxSpeed> MaxSpeed;
+        public Dictionary<int, Position> Position;
+        public Dictionary<int, Radius> Radius;
+        public Dictionary<int, RandomSeed> RandomSeed;
+        public Dictionary<int, RockId> RockId;
+        public Dictionary<int, Rotation> Rotation;
+        public Dictionary<int, Separation> Separation;
+        public Dictionary<int, Separator> Separator;
+        public Dictionary<int, Squad> Squad;
+        public Dictionary<int, SquadMember> SquadMember;
+        public Dictionary<int, SyncId> SyncId;
+        public Dictionary<int, SyncIdReserve> SyncIdReserve;
+        public Dictionary<int, TargetSearchDistance> TargetSearchDistance;
+        public Dictionary<int, TeamId> TeamId;
+        public Dictionary<int, TreeId> TreeId;
+        public Dictionary<int, UnitId> UnitId;
 
         public WorldData()
         {

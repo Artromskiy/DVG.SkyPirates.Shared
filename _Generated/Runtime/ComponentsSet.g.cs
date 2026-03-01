@@ -22,99 +22,53 @@ using DVG.Components;
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    [Serializable]
-    [DataContract]
     public sealed class ComponentsSet: IStructGenericCaller
     {
 
-        [DataMember]
-        private ActivityRange? ActivityRange;
-        [DataMember]
-        private AutoHeal? AutoHeal;
-        [DataMember]
-        private BehaviourConfig? BehaviourConfig;
-        [DataMember]
-        private BehaviourState? BehaviourState;
-        [DataMember]
-        private CachePosition? CachePosition;
-        [DataMember]
-        private CactusId? CactusId;
-        [DataMember]
-        private ClientId? ClientId;
-        [DataMember]
-        private Collide? Collide;
-        [DataMember]
-        private Damage? Damage;
-        [DataMember]
-        private Destination? Destination;
-        [DataMember]
-        private Direction? Direction;
-        [DataMember]
-        private Disposing? Disposing;
-        [DataMember]
-        private Fixation? Fixation;
-        [DataMember]
-        private FlyDestination? FlyDestination;
-        [DataMember]
-        private GoodsAmount? GoodsAmount;
-        [DataMember]
-        private GoodsCollectorRadius? GoodsCollectorRadius;
-        [DataMember]
-        private GoodsDrop? GoodsDrop;
-        [DataMember]
-        private GoodsId? GoodsId;
-        [DataMember]
-        private Health? Health;
-        [DataMember]
-        private HexMap? HexMap;
-        [DataMember]
-        private ImpactDistance? ImpactDistance;
-        [DataMember]
-        private Level? Level;
-        [DataMember]
-        private MaxHealth? MaxHealth;
-        [DataMember]
-        private MaxSpeed? MaxSpeed;
-        [DataMember]
-        private Position? Position;
-        [DataMember]
-        private Radius? Radius;
-        [DataMember]
-        private RandomSeed? RandomSeed;
-        [DataMember]
-        private RecivedDamage? RecivedDamage;
-        [DataMember]
-        private RockId? RockId;
-        [DataMember]
-        private Rotation? Rotation;
-        [DataMember]
-        private Separation? Separation;
-        [DataMember]
-        private Separator? Separator;
-        [DataMember]
-        private Squad? Squad;
-        [DataMember]
-        private SquadMember? SquadMember;
-        [DataMember]
-        private SquadMemberCount? SquadMemberCount;
-        [DataMember]
-        private SyncId? SyncId;
-        [DataMember]
-        private SyncIdReserve? SyncIdReserve;
-        [DataMember]
-        private Target? Target;
-        [DataMember]
-        private Targets? Targets;
-        [DataMember]
-        private TargetSearchDistance? TargetSearchDistance;
-        [DataMember]
-        private TargetSearchPosition? TargetSearchPosition;
-        [DataMember]
-        private TeamId? TeamId;
-        [DataMember]
-        private TreeId? TreeId;
-        [DataMember]
-        private UnitId? UnitId;
+        public ActivityRange? ActivityRange;
+        public AutoHeal? AutoHeal;
+        public BehaviourConfig? BehaviourConfig;
+        public BehaviourState? BehaviourState;
+        public CachePosition? CachePosition;
+        public CactusId? CactusId;
+        public ClientId? ClientId;
+        public Collide? Collide;
+        public Damage? Damage;
+        public Destination? Destination;
+        public Direction? Direction;
+        public Disposing? Disposing;
+        public Fixation? Fixation;
+        public FlyDestination? FlyDestination;
+        public GoodsAmount? GoodsAmount;
+        public GoodsCollectorRadius? GoodsCollectorRadius;
+        public GoodsDrop? GoodsDrop;
+        public GoodsId? GoodsId;
+        public Health? Health;
+        public HexMap? HexMap;
+        public ImpactDistance? ImpactDistance;
+        public Level? Level;
+        public MaxHealth? MaxHealth;
+        public MaxSpeed? MaxSpeed;
+        public Position? Position;
+        public Radius? Radius;
+        public RandomSeed? RandomSeed;
+        public RecivedDamage? RecivedDamage;
+        public RockId? RockId;
+        public Rotation? Rotation;
+        public Separation? Separation;
+        public Separator? Separator;
+        public Squad? Squad;
+        public SquadMember? SquadMember;
+        public SquadMemberCount? SquadMemberCount;
+        public SyncId? SyncId;
+        public SyncIdReserve? SyncIdReserve;
+        public Target? Target;
+        public Targets? Targets;
+        public TargetSearchDistance? TargetSearchDistance;
+        public TargetSearchPosition? TargetSearchPosition;
+        public TeamId? TeamId;
+        public TreeId? TreeId;
+        public UnitId? UnitId;
 
         public T? Get<T>()
             where T : struct

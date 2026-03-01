@@ -22,99 +22,53 @@ using DVG.Components;
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    [Serializable]
-    [DataContract]
     public sealed class ComponentsMask: IStructGenericCaller
     {
 
-        [DataMember]
-        private bool ActivityRange;
-        [DataMember]
-        private bool AutoHeal;
-        [DataMember]
-        private bool BehaviourConfig;
-        [DataMember]
-        private bool BehaviourState;
-        [DataMember]
-        private bool CachePosition;
-        [DataMember]
-        private bool CactusId;
-        [DataMember]
-        private bool ClientId;
-        [DataMember]
-        private bool Collide;
-        [DataMember]
-        private bool Damage;
-        [DataMember]
-        private bool Destination;
-        [DataMember]
-        private bool Direction;
-        [DataMember]
-        private bool Disposing;
-        [DataMember]
-        private bool Fixation;
-        [DataMember]
-        private bool FlyDestination;
-        [DataMember]
-        private bool GoodsAmount;
-        [DataMember]
-        private bool GoodsCollectorRadius;
-        [DataMember]
-        private bool GoodsDrop;
-        [DataMember]
-        private bool GoodsId;
-        [DataMember]
-        private bool Health;
-        [DataMember]
-        private bool HexMap;
-        [DataMember]
-        private bool ImpactDistance;
-        [DataMember]
-        private bool Level;
-        [DataMember]
-        private bool MaxHealth;
-        [DataMember]
-        private bool MaxSpeed;
-        [DataMember]
-        private bool Position;
-        [DataMember]
-        private bool Radius;
-        [DataMember]
-        private bool RandomSeed;
-        [DataMember]
-        private bool RecivedDamage;
-        [DataMember]
-        private bool RockId;
-        [DataMember]
-        private bool Rotation;
-        [DataMember]
-        private bool Separation;
-        [DataMember]
-        private bool Separator;
-        [DataMember]
-        private bool Squad;
-        [DataMember]
-        private bool SquadMember;
-        [DataMember]
-        private bool SquadMemberCount;
-        [DataMember]
-        private bool SyncId;
-        [DataMember]
-        private bool SyncIdReserve;
-        [DataMember]
-        private bool Target;
-        [DataMember]
-        private bool Targets;
-        [DataMember]
-        private bool TargetSearchDistance;
-        [DataMember]
-        private bool TargetSearchPosition;
-        [DataMember]
-        private bool TeamId;
-        [DataMember]
-        private bool TreeId;
-        [DataMember]
-        private bool UnitId;
+        public bool ActivityRange;
+        public bool AutoHeal;
+        public bool BehaviourConfig;
+        public bool BehaviourState;
+        public bool CachePosition;
+        public bool CactusId;
+        public bool ClientId;
+        public bool Collide;
+        public bool Damage;
+        public bool Destination;
+        public bool Direction;
+        public bool Disposing;
+        public bool Fixation;
+        public bool FlyDestination;
+        public bool GoodsAmount;
+        public bool GoodsCollectorRadius;
+        public bool GoodsDrop;
+        public bool GoodsId;
+        public bool Health;
+        public bool HexMap;
+        public bool ImpactDistance;
+        public bool Level;
+        public bool MaxHealth;
+        public bool MaxSpeed;
+        public bool Position;
+        public bool Radius;
+        public bool RandomSeed;
+        public bool RecivedDamage;
+        public bool RockId;
+        public bool Rotation;
+        public bool Separation;
+        public bool Separator;
+        public bool Squad;
+        public bool SquadMember;
+        public bool SquadMemberCount;
+        public bool SyncId;
+        public bool SyncIdReserve;
+        public bool Target;
+        public bool Targets;
+        public bool TargetSearchDistance;
+        public bool TargetSearchPosition;
+        public bool TeamId;
+        public bool TreeId;
+        public bool UnitId;
 
         public bool Get<T>()
             where T : struct
