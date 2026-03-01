@@ -10,9 +10,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 {
     public class SnapshotHistorySystem
     {
-        private class Description<T>
+        private class Description<T> where T : struct
         {
-            public QueryDescription Desc = new QueryDescription().WithAll<T, SyncId>();
+            public QueryDescription Desc = new QueryDescription().WithAll<History<T>>();
         }
         private readonly GenericCreator _desc = new();
 
@@ -30,8 +30,8 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public WorldData GetSnapshot(int tick)
         {
             var worldData = new WorldData();
-            var packAction = new GetAction(_world, worldData, _desc, tick);
-            HistoryComponentsRegistry.ForEachData(ref packAction);
+            var getAction = new GetAction(_world, worldData, _desc, tick);
+            HistoryComponentsRegistry.ForEachData(ref getAction);
             return worldData;
         }
 
@@ -77,10 +77,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 var components = _worldData.Get<T>();
                 var query = new PackQuery<T>(components, _tick);
                 var desc = _desc.Get<Description<T>>().Desc;
-                _world.InlineQuery<PackQuery<T>, History<T>, SyncId>(desc, ref query);
+                _world.InlineQuery<PackQuery<T>, History<T>, History<SyncId>>(desc, ref query);
             }
 
-            private readonly struct PackQuery<T> : IForEach<History<T>, SyncId> where T : struct
+            private readonly struct PackQuery<T> : IForEach<History<T>, History<SyncId>> where T : struct
             {
                 private readonly Dictionary<int, T> _components;
                 private readonly int _tick;
@@ -91,11 +91,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                     _tick = tick;
                 }
 
-                public void Update(ref History<T> history, ref SyncId id)
+                public void Update(ref History<T> history, ref History<SyncId> id)
                 {
-                    var component = history[_tick];
-                    if (component != null)
-                        _components[id.Value] = component.Value;
+                    var historyComponent = history[_tick];
+                    var idComponent = id[_tick];
+                    if (historyComponent.HasValue && idComponent.HasValue)
+                        _components[idComponent.Value] = historyComponent.Value;
                 }
             }
         }
