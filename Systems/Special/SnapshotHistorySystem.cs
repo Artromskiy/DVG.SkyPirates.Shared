@@ -44,8 +44,14 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 _entityRegistry.Reserve(syncIdReserve);
 
             foreach (var syncId in snapshot.Get<SyncId>().Values)
-                _entityFactory.Create(new(syncId, default, default));
-
+            {
+                _entityFactory.Create(new()
+                {
+                    SyncId = syncId,
+                    RandomSeed = default,
+                    SyncIdReserve = default,
+                });
+            }
             var unpackAction = new ApplyAction(_entityRegistry, snapshot, _world);
             HistoryComponentsRegistry.ForEachData(ref unpackAction);
             _world.TrimExcess();

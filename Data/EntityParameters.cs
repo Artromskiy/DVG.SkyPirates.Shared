@@ -2,11 +2,11 @@
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    public readonly struct EntityParameters
+    public struct EntityParameters
     {
-        public readonly SyncId SyncId;
-        public readonly SyncIdReserve SyncIdReserve;
-        public readonly RandomSeed RandomSeed;
+        public SyncId SyncId;
+        public SyncIdReserve SyncIdReserve;
+        public RandomSeed RandomSeed;
 
         public EntityParameters(SyncId syncId, SyncIdReserve syncIdReserve, RandomSeed randomSeed)
         {

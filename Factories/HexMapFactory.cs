@@ -19,7 +19,12 @@ namespace DVG.SkyPirates.Shared.Factories
 
         public Entity Create(int parameters)
         {
-            EntityParameters entityParameters = new(new() { Value = parameters }, default, default);
+            EntityParameters entityParameters = new()
+            {
+                SyncId = parameters,
+                RandomSeed = default,
+                SyncIdReserve = default,
+            };
             var entity = _commandEntityFactory.Create(entityParameters);
             _world.AddOrGet<HexMap>(entity).Data = FrozenDictionary<int3, Ids.TileId>.Empty;
             //_world.AddOrGet<HexMap>(entity).Data = new();

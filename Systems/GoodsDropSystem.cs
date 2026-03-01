@@ -36,7 +36,13 @@ namespace DVG.SkyPirates.Shared.Systems
             _world.InlineQuery<CreateGoodsQuery, Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>(_createDesc, ref createQuery);
             foreach (var item in _dropInfos)
             {
-                EntityParameters parameters = new(item.SyncId, default, default);
+                EntityParameters parameters = new()
+                {
+                    SyncId = item.SyncId,
+                    RandomSeed = default,
+                    SyncIdReserve = default,
+                };
+
                 var drop = _configedEntityFactory.Create((item.GoodsId, parameters));
                 _world.Get<Position>(drop) = item.Position;
                 _world.Get<Rotation>(drop) = item.Rotation;
