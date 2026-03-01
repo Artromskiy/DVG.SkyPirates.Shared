@@ -2,6 +2,7 @@
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools.Json;
+using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -75,6 +76,8 @@ namespace DVG.SkyPirates.Shared.Services
             entry.data = worldData;
             entry.version++;
             _hashHistory[tick] = entry;
+
+            Console.WriteLine(_sHash);
         }
     }
 }
