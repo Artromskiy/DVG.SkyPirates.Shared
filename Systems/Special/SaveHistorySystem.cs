@@ -14,6 +14,11 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 WithAll<History<T>>().WithNone<T>().NotDisabled();
         }
 
+        private readonly QueryDescription _setHasDisposingDesc = new QueryDescription().
+            WithAll<History<Disposing>, Disposing>();
+        private readonly QueryDescription _setNoDisposingDesc = new QueryDescription().
+            WithAll<History<Disposing>, Disposing>();
+
         private readonly GenericCreator _desc = new();
         private readonly World _world;
 
@@ -29,6 +34,14 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             var saveAction = new SaveHistoryAction(_desc, _world, tick);
             HistoryComponentsRegistry.ForEachData(ref saveAction);
+
+            var setHasDisposing = new SetHasHistoryQuery<Disposing>(tick);
+            var setNoDisposing = new SetNoHistoryQuery<Disposing>(tick);
+
+            _world.InlineQuery<SetHasHistoryQuery<Disposing>, History<Disposing>, Disposing>
+                (_setHasDisposingDesc, ref setHasDisposing);
+            _world.InlineQuery<SetNoHistoryQuery<Disposing>, History<Disposing>>
+                (_setNoDisposingDesc, ref setNoDisposing);
         }
 
         private readonly struct AddHistoryAction : IStructGenericAction
