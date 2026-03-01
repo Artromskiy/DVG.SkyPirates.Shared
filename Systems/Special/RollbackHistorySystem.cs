@@ -17,6 +17,8 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             public readonly QueryDescription historyDesc = new QueryDescription().WithAll<History<T>>();
         }
 
+        private readonly QueryDescription _noSyncId = new QueryDescription().WithNone<SyncId>();
+
         private readonly GenericCreator _creator = new();
         private readonly List<Entity> _entitiesCache = new();
         private readonly World _world;
@@ -39,6 +41,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             HistoryComponentsRegistry.ForEachData(ref action);
             var clearAction = new ClearHistoryAction(_world, tick, _creator);
             HistoryComponentsRegistry.ForEachData(ref clearAction);
+            _world.Destroy(_noSyncId);
         }
 
         private readonly struct ClearHistoryAction : IStructGenericAction
