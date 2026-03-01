@@ -27,93 +27,93 @@ namespace DVG.SkyPirates.Shared.Data
     public sealed class ComponentsMask: IStructGenericCaller
     {
 
-        [DataMember(Order = 0)]
+        [DataMember]
         private bool ActivityRange;
-        [DataMember(Order = 1)]
+        [DataMember]
         private bool AutoHeal;
-        [DataMember(Order = 2)]
+        [DataMember]
         private bool BehaviourConfig;
-        [DataMember(Order = 3)]
+        [DataMember]
         private bool BehaviourState;
-        [DataMember(Order = 4)]
+        [DataMember]
         private bool CachePosition;
-        [DataMember(Order = 5)]
+        [DataMember]
         private bool CactusId;
-        [DataMember(Order = 6)]
+        [DataMember]
         private bool ClientId;
-        [DataMember(Order = 7)]
+        [DataMember]
         private bool Collide;
-        [DataMember(Order = 8)]
+        [DataMember]
         private bool Damage;
-        [DataMember(Order = 9)]
+        [DataMember]
         private bool Destination;
-        [DataMember(Order = 10)]
+        [DataMember]
         private bool Direction;
-        [DataMember(Order = 11)]
+        [DataMember]
         private bool Disposing;
-        [DataMember(Order = 12)]
+        [DataMember]
         private bool Fixation;
-        [DataMember(Order = 13)]
+        [DataMember]
         private bool FlyDestination;
-        [DataMember(Order = 14)]
+        [DataMember]
         private bool GoodsAmount;
-        [DataMember(Order = 15)]
+        [DataMember]
         private bool GoodsCollectorRadius;
-        [DataMember(Order = 16)]
+        [DataMember]
         private bool GoodsDrop;
-        [DataMember(Order = 17)]
+        [DataMember]
         private bool GoodsId;
-        [DataMember(Order = 18)]
+        [DataMember]
         private bool Health;
-        [DataMember(Order = 19)]
+        [DataMember]
         private bool HexMap;
-        [DataMember(Order = 20)]
+        [DataMember]
         private bool ImpactDistance;
-        [DataMember(Order = 21)]
+        [DataMember]
         private bool Level;
-        [DataMember(Order = 22)]
+        [DataMember]
         private bool MaxHealth;
-        [DataMember(Order = 23)]
+        [DataMember]
         private bool MaxSpeed;
-        [DataMember(Order = 24)]
+        [DataMember]
         private bool Position;
-        [DataMember(Order = 25)]
+        [DataMember]
         private bool Radius;
-        [DataMember(Order = 26)]
+        [DataMember]
         private bool RandomSeed;
-        [DataMember(Order = 27)]
+        [DataMember]
         private bool RecivedDamage;
-        [DataMember(Order = 28)]
+        [DataMember]
         private bool RockId;
-        [DataMember(Order = 29)]
+        [DataMember]
         private bool Rotation;
-        [DataMember(Order = 30)]
+        [DataMember]
         private bool Separation;
-        [DataMember(Order = 31)]
+        [DataMember]
         private bool Separator;
-        [DataMember(Order = 32)]
+        [DataMember]
         private bool Squad;
-        [DataMember(Order = 33)]
+        [DataMember]
         private bool SquadMember;
-        [DataMember(Order = 34)]
+        [DataMember]
         private bool SquadMemberCount;
-        [DataMember(Order = 35)]
+        [DataMember]
         private bool SyncId;
-        [DataMember(Order = 36)]
+        [DataMember]
         private bool SyncIdReserve;
-        [DataMember(Order = 37)]
+        [DataMember]
         private bool Target;
-        [DataMember(Order = 38)]
+        [DataMember]
         private bool Targets;
-        [DataMember(Order = 39)]
+        [DataMember]
         private bool TargetSearchDistance;
-        [DataMember(Order = 40)]
+        [DataMember]
         private bool TargetSearchPosition;
-        [DataMember(Order = 41)]
+        [DataMember]
         private bool TeamId;
-        [DataMember(Order = 42)]
+        [DataMember]
         private bool TreeId;
-        [DataMember(Order = 43)]
+        [DataMember]
         private bool UnitId;
 
         public bool Get<T>()

@@ -27,93 +27,93 @@ namespace DVG.SkyPirates.Shared.Data
     public sealed class ComponentsSet: IStructGenericCaller
     {
 
-        [DataMember(Order = 0)]
+        [DataMember]
         private ActivityRange? ActivityRange;
-        [DataMember(Order = 1)]
+        [DataMember]
         private AutoHeal? AutoHeal;
-        [DataMember(Order = 2)]
+        [DataMember]
         private BehaviourConfig? BehaviourConfig;
-        [DataMember(Order = 3)]
+        [DataMember]
         private BehaviourState? BehaviourState;
-        [DataMember(Order = 4)]
+        [DataMember]
         private CachePosition? CachePosition;
-        [DataMember(Order = 5)]
+        [DataMember]
         private CactusId? CactusId;
-        [DataMember(Order = 6)]
+        [DataMember]
         private ClientId? ClientId;
-        [DataMember(Order = 7)]
+        [DataMember]
         private Collide? Collide;
-        [DataMember(Order = 8)]
+        [DataMember]
         private Damage? Damage;
-        [DataMember(Order = 9)]
+        [DataMember]
         private Destination? Destination;
-        [DataMember(Order = 10)]
+        [DataMember]
         private Direction? Direction;
-        [DataMember(Order = 11)]
+        [DataMember]
         private Disposing? Disposing;
-        [DataMember(Order = 12)]
+        [DataMember]
         private Fixation? Fixation;
-        [DataMember(Order = 13)]
+        [DataMember]
         private FlyDestination? FlyDestination;
-        [DataMember(Order = 14)]
+        [DataMember]
         private GoodsAmount? GoodsAmount;
-        [DataMember(Order = 15)]
+        [DataMember]
         private GoodsCollectorRadius? GoodsCollectorRadius;
-        [DataMember(Order = 16)]
+        [DataMember]
         private GoodsDrop? GoodsDrop;
-        [DataMember(Order = 17)]
+        [DataMember]
         private GoodsId? GoodsId;
-        [DataMember(Order = 18)]
+        [DataMember]
         private Health? Health;
-        [DataMember(Order = 19)]
+        [DataMember]
         private HexMap? HexMap;
-        [DataMember(Order = 20)]
+        [DataMember]
         private ImpactDistance? ImpactDistance;
-        [DataMember(Order = 21)]
+        [DataMember]
         private Level? Level;
-        [DataMember(Order = 22)]
+        [DataMember]
         private MaxHealth? MaxHealth;
-        [DataMember(Order = 23)]
+        [DataMember]
         private MaxSpeed? MaxSpeed;
-        [DataMember(Order = 24)]
+        [DataMember]
         private Position? Position;
-        [DataMember(Order = 25)]
+        [DataMember]
         private Radius? Radius;
-        [DataMember(Order = 26)]
+        [DataMember]
         private RandomSeed? RandomSeed;
-        [DataMember(Order = 27)]
+        [DataMember]
         private RecivedDamage? RecivedDamage;
-        [DataMember(Order = 28)]
+        [DataMember]
         private RockId? RockId;
-        [DataMember(Order = 29)]
+        [DataMember]
         private Rotation? Rotation;
-        [DataMember(Order = 30)]
+        [DataMember]
         private Separation? Separation;
-        [DataMember(Order = 31)]
+        [DataMember]
         private Separator? Separator;
-        [DataMember(Order = 32)]
+        [DataMember]
         private Squad? Squad;
-        [DataMember(Order = 33)]
+        [DataMember]
         private SquadMember? SquadMember;
-        [DataMember(Order = 34)]
+        [DataMember]
         private SquadMemberCount? SquadMemberCount;
-        [DataMember(Order = 35)]
+        [DataMember]
         private SyncId? SyncId;
-        [DataMember(Order = 36)]
+        [DataMember]
         private SyncIdReserve? SyncIdReserve;
-        [DataMember(Order = 37)]
+        [DataMember]
         private Target? Target;
-        [DataMember(Order = 38)]
+        [DataMember]
         private Targets? Targets;
-        [DataMember(Order = 39)]
+        [DataMember]
         private TargetSearchDistance? TargetSearchDistance;
-        [DataMember(Order = 40)]
+        [DataMember]
         private TargetSearchPosition? TargetSearchPosition;
-        [DataMember(Order = 41)]
+        [DataMember]
         private TeamId? TeamId;
-        [DataMember(Order = 42)]
+        [DataMember]
         private TreeId? TreeId;
-        [DataMember(Order = 43)]
+        [DataMember]
         private UnitId? UnitId;
 
         public T? Get<T>()
