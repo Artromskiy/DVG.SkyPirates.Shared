@@ -64,13 +64,12 @@ namespace DVG.SkyPirates.Shared.Services
         {
             if (element.ValueKind is JsonValueKind.Object)
             {
-                var properties = element.EnumerateObject().OrderBy(p => p.Name, StringComparer.Ordinal);
                 var count = element.GetPropertyCount();
                 var i = count;
                 var array = ArrayPool<JsonProperty>.Shared.Rent(count);
                 foreach (var item in element.EnumerateObject())
                     array[--i] = item;
-                Array.Sort(array, JsonPropertyComparer.Default);
+                Array.Sort(array, 0, count, JsonPropertyComparer.Default);
 
                 jsonWriter.WriteStartObject();
                 for (; i < count; i++)
