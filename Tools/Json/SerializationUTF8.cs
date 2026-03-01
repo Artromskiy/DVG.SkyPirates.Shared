@@ -11,12 +11,14 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 {
     public static class SerializationUTF8
     {
-        private static Utf8JsonWriter? _writer;
+        private static readonly Utf8JsonWriter _writer;
         private static readonly ArrayBufferWriter<byte> _buffer;
         public static readonly JsonSerializerOptions Options;
         static SerializationUTF8()
         {
             _buffer = new ArrayBufferWriter<byte>();
+            _writer = new(_buffer, new JsonWriterOptions() { Indented = true });
+
             Options = new(JsonSerializerDefaults.Strict)
             {
                 IncludeFields = true,
@@ -76,12 +78,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
         public static void Serialize<T>(T data, IBufferWriter<byte> buffer)
         {
-            _writer ??= new Utf8JsonWriter(buffer, new JsonWriterOptions()
-            {
-                Indented = true,
-                SkipValidation = true,
-            });
-            _writer?.Reset(buffer);
+            _writer.Reset(buffer);
             JsonSerializer.Serialize(_writer, data, Options);
         }
 
