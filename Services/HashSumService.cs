@@ -1,9 +1,7 @@
 ﻿using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Tools.Json;
-using System;
 using System.Buffers;
 using System.Diagnostics;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -17,6 +15,7 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly Utf8JsonWriter _jsonWriter;
         private readonly HashAlgorithm _hashing;
         private readonly StringBuilder _sBuilder;
+        private readonly JsonSerializerOptions _serializerOptions;
 
         private readonly byte[] _hashResult;
         private string? _sHash;
@@ -25,8 +24,12 @@ namespace DVG.SkyPirates.Shared.Services
         {
             _historySystem = historySystem;
 
+            _serializerOptions = new(SerializationUTF8.Options)
+            {
+                WriteIndented = false,
+            };
             _bufferWriter = new ArrayBufferWriter<byte>();
-            _jsonWriter = new(_bufferWriter);
+            _jsonWriter = new(_bufferWriter, new JsonWriterOptions() { Indented = true, SkipValidation = true });
             _hashing = SHA512.Create();
             _sBuilder = new StringBuilder();
             _hashResult = new byte[_hashing.HashSize / 8];
@@ -36,11 +39,9 @@ namespace DVG.SkyPirates.Shared.Services
         {
             int targetTick = Maths.Max(0, tick - Constants.ValidTicksCount);
             var worldData = _historySystem.GetSnapshot(targetTick);
-            using var document = JsonSerializer.SerializeToDocument(worldData, SerializationUTF8.Options);
             _jsonWriter.Reset();
             _bufferWriter.Clear();
-            WriteOrdered(_jsonWriter, document.RootElement);
-            _jsonWriter.Flush();
+            JsonSerializer.Serialize(_jsonWriter, worldData, _serializerOptions);
             if (!_hashing.TryComputeHash(_bufferWriter.WrittenSpan, _hashResult, out _))
                 Debug.Assert(false, "Failed to get HashSum");
 
@@ -51,34 +52,6 @@ namespace DVG.SkyPirates.Shared.Services
             _sHash = _sBuilder.ToString();
 
             Debug.WriteLine($"Tick: {targetTick}. Hash: {_sHash}");
-        }
-
-        private void WriteOrdered(Utf8JsonWriter jsonWriter, JsonElement element)
-        {
-            if (element.ValueKind is JsonValueKind.Object)
-            {
-                jsonWriter.WriteStartObject();
-                var properties = element.EnumerateObject().OrderBy(p => p.Name, StringComparer.Ordinal);
-                foreach (var prop in properties)
-                {
-                    jsonWriter.WritePropertyName(prop.Name);
-                    WriteOrdered(jsonWriter, prop.Value);
-                }
-                jsonWriter.WriteEndObject();
-            }
-
-            else if (element.ValueKind is JsonValueKind.Array)
-            {
-                jsonWriter.WriteStartArray();
-                foreach (var item in element.EnumerateArray())
-                    WriteOrdered(jsonWriter, item);
-                jsonWriter.WriteEndArray();
-            }
-
-            else
-            {
-                element.WriteTo(jsonWriter);
-            }
         }
     }
 }

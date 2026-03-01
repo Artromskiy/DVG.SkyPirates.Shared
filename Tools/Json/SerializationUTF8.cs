@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Buffers;
-using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 namespace DVG.SkyPirates.Shared.Tools.Json
 {
@@ -15,21 +15,24 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         static SerializationUTF8()
         {
             _buffer = new ArrayBufferWriter<byte>();
-            Options = new(JsonSerializerOptions.Default)
+            Options = new(JsonSerializerDefaults.Strict)
             {
                 IncludeFields = true,
                 IgnoreReadOnlyFields = false,
                 IgnoreReadOnlyProperties = false,
                 WriteIndented = true,
+                AllowDuplicateProperties = false,
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
-                TypeInfoResolver = new DataContractResolver(),
+                TypeInfoResolver = new DefaultJsonTypeInfoResolver().
+                WithAddedModifier(IgnoreMod.Modify).
+                WithAddedModifier(OrderMod.Modify),
             };
-            var format = CultureInfo.InvariantCulture;
 
             Options.Converters.Add(new FixConverter());
             Options.Converters.Add(new IdConverterFactory());
             Options.Converters.Add(new NewTypeConverterFactory());
             Options.Converters.Add(new FrozenDictionaryConverterFactory());
+            Options.Converters.Add(new ImmutableSortedDictionaryConverterFactory());
 
             Options.Converters.Add(new VectorConverter<fix, fix2>());
             Options.Converters.Add(new VectorConverter<fix, fix3>());
