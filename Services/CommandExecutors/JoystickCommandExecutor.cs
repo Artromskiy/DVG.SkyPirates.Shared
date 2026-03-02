@@ -9,12 +9,12 @@ using System;
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
     [Obsolete("Should handle if squad is empty")]
-    public class JoysticCommandExecutor : ICommandExecutor<JoystickCommand>
+    public class JoystickCommandExecutor : ICommandExecutor<JoystickCommand>
     {
         private readonly IEntityRegistry _entityRegistryService;
         private readonly World _world;
 
-        public JoysticCommandExecutor(IEntityRegistry entityRegistryService, World world)
+        public JoystickCommandExecutor(IEntityRegistry entityRegistryService, World world)
         {
             _entityRegistryService = entityRegistryService;
             _world = world;

@@ -100,7 +100,7 @@ namespace DVG.SkyPirates.Shared.DI
             typeof(LoadWorldCommandExecutor),
             typeof(SpawnSquadCommandExecutor),
             typeof(SpawnUnitCommandExecutor),
-            typeof(JoysticCommandExecutor)
+            typeof(JoystickCommandExecutor)
             //typeof(CommandLogger)
         };
 
