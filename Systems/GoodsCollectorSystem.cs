@@ -57,7 +57,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _world.InlineQuery<CollectQuery, SyncId, GoodsDrop>(_collectorsDesc, ref collectQuery);
 
             foreach (var item in _removeDrops)
-                _world.Add<Disposing>(item);
+                _world.Add<Disposing>(item, new() { StartTick = tick });
         }
 
         private readonly struct PartitionQuery : IForEach<SyncId, Position>

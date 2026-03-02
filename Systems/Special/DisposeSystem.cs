@@ -26,10 +26,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         public void Tick(int tick)
         {
+            return;
             _entitiesCache.Clear();
             var initDisposing = new InitDiposing(tick);
             _world.InlineQuery<InitDiposing, Disposing>(in _disposingDesc, ref initDisposing);
-            return;
             var selectToDispose = new SelectToDispose(tick, _entitiesCache);
             _world.InlineEntityQuery<SelectToDispose, Disposing>(in _disposingDesc, ref selectToDispose);
             foreach (var entity in _entitiesCache)

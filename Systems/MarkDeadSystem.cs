@@ -28,7 +28,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _world.InlineEntityQuery<SelectDeadQuery, Health>(_desc, ref query);
             foreach (var item in _dead)
             {
-                _world.Add<Disposing>(item);
+                _world.Add<Disposing>(item, new() { StartTick = tick });
             }
         }
 
