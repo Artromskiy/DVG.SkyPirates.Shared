@@ -17,7 +17,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         private readonly QueryDescription _setHasDisposingDesc = new QueryDescription().
             WithAll<History<Disposing>, Disposing>();
         private readonly QueryDescription _setNoDisposingDesc = new QueryDescription().
-            WithAll<History<Disposing>, Disposing>();
+            WithAll<History<Disposing>>().WithNone<Disposing>();
 
         private readonly GenericCreator _desc = new();
         private readonly World _world;
