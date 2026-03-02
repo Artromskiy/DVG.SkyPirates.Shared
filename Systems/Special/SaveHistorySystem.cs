@@ -9,9 +9,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         private sealed class Description<T> where T : struct
         {
             public readonly QueryDescription saveHasCmpDesc = new QueryDescription().
-                WithAll<History<T>, T>().NotDisabled();
+                WithAll<History<T>, T>().NotDisabled().NotDisposing();
             public readonly QueryDescription saveNoCmpDesc = new QueryDescription().
-                WithAll<History<T>>().WithNone<T>().NotDisabled();
+                WithAll<History<T>>().WithNone<T>().NotDisabled().NotDisposing();
         }
 
         private readonly QueryDescription _setHasDisposingDesc = new QueryDescription().
