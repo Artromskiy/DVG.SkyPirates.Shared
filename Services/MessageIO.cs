@@ -1,5 +1,5 @@
 ﻿using DVG.Commands;
-using DVG.SkyPirates.Shared.IServices;
+using DVG.SkyPirates.Shared.Tools.Json;
 using Riptide;
 using System;
 using System.Buffers;
@@ -11,7 +11,6 @@ namespace DVG.SkyPirates.Shared.Services
     {
         private byte[] _tempBytes = Array.Empty<byte>();
         private readonly ArrayBufferWriter<byte> _buffer = new();
-        private readonly ICommandSerializer _commandSerializer;
         private ushort _splitMessageId;
 
         // split  last + index + uid
@@ -21,9 +20,9 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly Dictionary<(ushort client, ushort uid), SplitMessageStorage> _splitMessages = new();
         private readonly Queue<SplitMessageStorage> _queue = new();
 
-        public MessageIO(ICommandSerializer commandSerializer)
+        public MessageIO()
         {
-            _commandSerializer = commandSerializer;
+
         }
 
         public bool RecieveMessage<T>(Message message, int client, out Command<T> command)
@@ -41,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Services
                 message.GetBytes(length, _tempBytes);
                 _tempBytes.CopyTo(writeMemory);
                 _buffer.Advance(length);
-                command = _commandSerializer.Deserialize<T>(_buffer.WrittenMemory);
+                command = SerializationUTF8.DeserializeCompressed<Command<T>>(_buffer.WrittenMemory);
                 return true;
             }
             else
@@ -58,7 +57,7 @@ namespace DVG.SkyPirates.Shared.Services
 
                 if (storage.Recieved(_buffer))
                 {
-                    command = _commandSerializer.Deserialize<T>(_buffer.WrittenMemory);
+                    command = SerializationUTF8.DeserializeCompressed<Command<T>>(_buffer.WrittenMemory);
                     storage.Clear();
                     _splitMessages.Remove(key);
                     _queue.Enqueue(storage);
@@ -72,7 +71,7 @@ namespace DVG.SkyPirates.Shared.Services
         public List<Message> GetMessages<T>(Command<T> data, List<Message> messages)
         {
             _buffer.Clear();
-            _commandSerializer.Serialize(_buffer, ref data);
+            SerializationUTF8.SerializeCompressed(_buffer, data);
             var written = _buffer.WrittenSpan;
             //Console.WriteLine($"Message size: {written.Length} bytes");
             if (written.Length >= SplitSize) // need to split
