@@ -6,7 +6,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
-    internal sealed class HistorySystem : IHistorySystem
+    public sealed class HistorySystem : IHistorySystem
     {
         private readonly SaveHistorySystem _save;
         private readonly RollbackHistorySystem _rollBack;
@@ -32,6 +32,11 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public void Save(int tick)
         {
             _save.Save(tick);
+        }
+
+        public void SaveBaseline()
+        {
+            _save.SaveBaseline();
         }
 
         public void ApplySnapshot(WorldData snapshot)

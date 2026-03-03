@@ -17,7 +17,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         public void Execute(Command<LoadWorldCommand> cmd)
         {
             _historySystem.ApplySnapshot(cmd.Data.WorldData);
-            _historySystem.Save(cmd.Tick - 1);
+            _historySystem.SaveBaseline();
         }
     }
 }

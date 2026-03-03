@@ -12,6 +12,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 WithAll<History<T>, T>().NotDisabled().Alive();
             public readonly QueryDescription saveNoCmpDesc = new QueryDescription().
                 WithAll<History<T>>().WithNone<T>().NotDisabled().Alive();
+
+            public readonly QueryDescription saveBaselineDesc = new QueryDescription().
+                WithAll<History<T>, T>().Alive();
         }
 
         private readonly QueryDescription _setHasAliveDesc = new QueryDescription().
@@ -42,6 +45,15 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 (_setHasAliveDesc, ref setHasDisposing);
             _world.InlineQuery<SetNoHistoryQuery<Alive>, History<Alive>>
                 (_setNoAliveDesc, ref setNoDisposing);
+        }
+
+        public void SaveBaseline()
+        {
+            var addAction = new AddHistoryAction(_world);
+            HistoryComponentsRegistry.ForEachData(ref addAction);
+
+            var saveAction = new SaveBaselineHistoryAction(_desc, _world);
+            HistoryComponentsRegistry.ForEachData(ref saveAction);
         }
 
         private readonly struct AddHistoryAction : IStructGenericAction
@@ -75,12 +87,14 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             public void Invoke<T>() where T : struct
             {
+                if (typeof(T) == typeof(Alive))
+                    return;
                 var desc = _descriptions.Get<Description<T>>();
                 var saveHasQuery = new SetHasHistoryQuery<T>(_tick);
                 var saveNoQuery = new SetNoHistoryQuery<T>(_tick);
                 var saveHasCmpDesc = desc.saveHasCmpDesc;
-                _world.InlineQuery<SetHasHistoryQuery<T>, History<T>, T>(in saveHasCmpDesc, ref saveHasQuery);
                 var saveNoCmpDesc = desc.saveNoCmpDesc;
+                _world.InlineQuery<SetHasHistoryQuery<T>, History<T>, T>(in saveHasCmpDesc, ref saveHasQuery);
                 _world.InlineQuery<SetNoHistoryQuery<T>, History<T>>(in saveNoCmpDesc, ref saveNoQuery);
             }
         }
@@ -104,5 +118,39 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             public void Update(ref History<T> history) =>
                 history[_tick] = null;
         }
+
+
+        private readonly struct SaveBaselineHistoryAction : IStructGenericAction
+        {
+            private readonly GenericCreator _descriptions;
+            private readonly World _world;
+
+            public SaveBaselineHistoryAction(GenericCreator descriptions, World world)
+            {
+                _descriptions = descriptions;
+                _world = world;
+            }
+
+            public void Invoke<T>() where T : struct
+            {
+                if (typeof(T) == typeof(Alive))
+                    return;
+                var desc = _descriptions.Get<Description<T>>();
+                var saveQuery = new SetBaselineHistoryQuery<T>();
+                var saveDesc = desc.saveBaselineDesc;
+                _world.InlineQuery<SetBaselineHistoryQuery<T>, History<T>, T>(in saveDesc, ref saveQuery);
+            }
+        }
+
+        private readonly struct SetBaselineHistoryQuery<T> : IForEach<History<T>, T>
+            where T : struct
+        {
+            public readonly void Update(ref History<T> history, ref T component)
+            {
+                history.Rollback(int.MinValue);
+                history[int.MinValue] = component;
+            }
+        }
+
     }
 }
