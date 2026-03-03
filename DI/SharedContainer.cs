@@ -28,6 +28,8 @@ namespace DVG.SkyPirates.Shared.DI
                 return world;
             });
 
+            RegisterSingleton<TimelineWriter>();
+
             RegisterSingleton(typeof(IEntityConfigFactory<>), typeof(EntityConfigFactory<>));
             RegisterSingleton(typeof(IConfigedEntityFactory<>), typeof(ConfigedEntityFactory<>));
             RegisterFactorySingleton<IGlobalConfigFactory, GlobalConfigFactory, GlobalConfig>();
