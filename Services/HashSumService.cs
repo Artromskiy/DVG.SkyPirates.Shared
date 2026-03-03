@@ -5,9 +5,7 @@ using DVG.SkyPirates.Shared.Tools.Json;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Security.Cryptography;
-using System.Text;
+using System.IO.Hashing;
 using System.Text.Json;
 
 namespace DVG.SkyPirates.Shared.Services
@@ -17,12 +15,7 @@ namespace DVG.SkyPirates.Shared.Services
         private readonly IHistorySystem _historySystem;
         private readonly ArrayBufferWriter<byte> _bufferWriter;
         private readonly Utf8JsonWriter _jsonWriter;
-        private readonly HashAlgorithm _hashing;
-        private readonly StringBuilder _sBuilder;
         private readonly JsonSerializerOptions _serializerOptions;
-
-        private readonly byte[] _hashResult;
-        private string? _sHash;
 
         private readonly Dictionary<int, (string hash, WorldData data, int version)> _hashHistory = new();
 
@@ -36,9 +29,6 @@ namespace DVG.SkyPirates.Shared.Services
             };
             _bufferWriter = new ArrayBufferWriter<byte>();
             _jsonWriter = new(_bufferWriter, new JsonWriterOptions() { Indented = false, SkipValidation = true });
-            _hashing = SHA512.Create();
-            _sBuilder = new StringBuilder();
-            _hashResult = new byte[_hashing.HashSize / 8];
         }
 
         public (string hash, WorldData snapshot, int version) GetSnapshot(int tick)
@@ -58,26 +48,21 @@ namespace DVG.SkyPirates.Shared.Services
             using var document = JsonSerializer.SerializeToDocument(worldData, _serializerOptions);
             _jsonWriter.Reset();
             _bufferWriter.Clear();
+            //There are probably hashing algorithms that don't depend on order, xor or sum :)
             _jsonWriter.WriteOrdered(document.RootElement);
             _jsonWriter.Flush();
-            if (!_hashing.TryComputeHash(_bufferWriter.WrittenSpan, _hashResult, out _))
-                Debug.Assert(false, "Failed to get HashSum");
 
-            _sBuilder.Clear();
-            for (int i = 0; i < _hashResult.Length; i++)
-                _sBuilder.Append(_hashResult[i].ToString("x2"));
-
-            _sHash = _sBuilder.ToString();
+            var hash = XxHash32.HashToUInt32(_bufferWriter.WrittenSpan);
 
             if (!_hashHistory.TryGetValue(tick, out var entry))
                 _hashHistory[tick] = entry = new();
 
-            entry.hash = _sHash;
+            entry.hash = hash.ToString();
             entry.data = worldData;
             entry.version++;
             _hashHistory[tick] = entry;
 
-            Console.WriteLine(_sHash);
+            Console.WriteLine(hash);
         }
     }
 }
