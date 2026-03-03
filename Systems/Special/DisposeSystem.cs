@@ -13,7 +13,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             public readonly QueryDescription Desc = new QueryDescription().WithAll<T, Temp>();
         }
-        private readonly QueryDescription _disposingDesc = new QueryDescription().WithAll<History<Alive>>();
+
+        private readonly QueryDescription _disposingDesc = new QueryDescription().
+            WithAll<History<Alive>>().WithNone<Alive>();
+
         private readonly List<Entity> _entitiesCache = new();
         private readonly GenericCreator _disposeDesc = new();
 
@@ -26,9 +29,8 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         public void Tick(int tick)
         {
-            return;
             _entitiesCache.Clear();
-            var selectToDispose = new SelectToDispose(tick, _entitiesCache);
+            var selectToDispose = new SelectToDispose(_entitiesCache);
             _world.InlineEntityQuery<SelectToDispose, History<Alive>>(in _disposingDesc, ref selectToDispose);
             foreach (var entity in _entitiesCache)
                 _world.Add<Temp>(entity);
@@ -66,21 +68,23 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         private readonly struct SelectToDispose : IForEachWithEntity<History<Alive>>
         {
-            private readonly int _tick;
             private readonly List<Entity> _entities;
 
-            public SelectToDispose(int tick, List<Entity> entities)
+            public SelectToDispose(List<Entity> entities)
             {
-                _tick = tick;
                 _entities = entities;
             }
 
             public void Update(Entity entity, ref History<Alive> aliveHistory)
             {
-                // try get nearest alive and dispose if too far
-                //int disposeTick = disposing.StartTick + Constants.MaxHistoryTicks;
-                //if (_tick >= disposeTick)
-                //    _entities.Add(entity);
+                if (aliveHistory.Count != Constants.MaxHistoryTicks)
+                    return;
+
+                for (int i = 0; i < Constants.MaxHistoryTicks; i++)
+                    if (aliveHistory._values[i].HasValue)
+                        return;
+
+                _entities.Add(entity);
             }
         }
     }
