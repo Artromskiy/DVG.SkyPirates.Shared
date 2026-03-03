@@ -25,6 +25,7 @@ namespace DVG.SkyPirates.Shared.Factories
                 entity = _world.Create();
                 _entityRegistryService.Register(entity, parameters.SyncId);
             }
+            _world.AddOrGet<Alive>(entity);
             _world.AddOrGet<SyncId>(entity) = parameters.SyncId;
             _world.AddOrGet<SyncIdReserve>(entity) = parameters.SyncIdReserve;
             _world.AddOrGet<RandomSeed>(entity) = parameters.RandomSeed;
