@@ -8,6 +8,7 @@ using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
+using DVG.SkyPirates.Shared.Systems;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -22,6 +23,10 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         private readonly IConfigedEntityFactory<UnitId> _unitFactory;
         private readonly World _world;
 
+        private static readonly GoodsId _rum = "Rum";
+        private readonly QueryDescription _desc = new QueryDescription().
+            WithAll<SquadMember, GoodsDrop>().NotDisabled().Alive();
+
         public SpawnUnitCommandExecutor(UnitsInfoConfig unitsInfoConfig, IEntityRegistry entityRegistryService, IConfigedEntityFactory<UnitId> unitFactory, World world)
         {
             _unitsInfoConfig = unitsInfoConfig;
@@ -35,7 +40,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _entityRegistryService.TryGet(new SyncId() { Value = cmd.Data.SquadId }, out var squad);
             if (squad == Entity.Null ||
                 !_world.IsAlive(squad) ||
-                !_world.Has<Position, Squad>(squad))
+                !_world.Has<Position, Squad>(squad) ||
+                !_world.Has<Alive>(squad))
             {
                 Console.WriteLine($"Attempt to use command for entity {cmd.Data.SquadId}, which is not created");
                 return;
@@ -67,28 +73,27 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 return false;
             var price = info.RumPrice;
             ref var drop = ref _world.Get<GoodsDrop>(squad);
-            var squadRum = drop.Values.GetValueOrDefault("Rum");
+            var squadRum = drop.Values.GetValueOrDefault(_rum);
             if (squadRum >= price)
             {
                 var newDrop = drop.Values.ToBuilder();
-                newDrop["Rum"] -= price;
+                newDrop[_rum] -= price;
                 drop = new() { Values = newDrop.ToImmutable() };
                 return true;
             }
 
             var totalRum = squadRum;
-            var desc = new QueryDescription().WithAll<SquadMember, GoodsDrop>();
-            _world.Query(in desc, (ref SquadMember member, ref GoodsDrop drop) =>
+            _world.Query(in _desc, (ref SquadMember member, ref GoodsDrop drop) =>
             {
                 if (member.SquadId == squadId)
-                    totalRum += drop.Values.GetValueOrDefault("Rum");
+                    totalRum += drop.Values.GetValueOrDefault(_rum);
             });
 
             if (totalRum < price)
                 return false;
 
             List<(Entity entity, GoodsDrop drop, SyncId syncId)> units = new();
-            _world.Query(desc, (Entity entity, ref SquadMember member, ref GoodsDrop drop, ref SyncId syncId) =>
+            _world.Query(in _desc, (Entity entity, ref SquadMember member, ref GoodsDrop drop, ref SyncId syncId) =>
             {
                 if (member.SquadId == squadId)
                     units.Add((entity, drop, syncId));
@@ -101,7 +106,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             var removeSquad = Maths.Min(squadRum, price);
             if (squadRum > 0)
             {
-                squadNewDrop["Rum"] -= removeSquad;
+                squadNewDrop[_rum] -= removeSquad;
                 leftPrice -= removeSquad;
                 drop = new() { Values = squadNewDrop.ToImmutable() };
             }
@@ -109,12 +114,12 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             // remove from units
             foreach (var unit in units.OrderBy(u => u.syncId.Value))
             {
-                int count = unit.drop.Values.GetValueOrDefault("Rum");
+                int count = unit.drop.Values.GetValueOrDefault(_rum);
                 var remove = Maths.Min(count, leftPrice);
                 if (remove == 0)
                     continue;
                 var newDrop = unit.drop.Values.ToBuilder();
-                newDrop["Rum"] -= remove;
+                newDrop[_rum] -= remove;
                 leftPrice -= remove;
                 _world.Get<GoodsDrop>(unit.entity) = new() { Values = newDrop.ToImmutable() };
                 if (leftPrice == 0)
