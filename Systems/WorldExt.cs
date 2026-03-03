@@ -23,10 +23,10 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private static readonly GenericCreator _desc = new();
 
-        public static QueryDescription NotDisposing(this in QueryDescription desc)
+        public static QueryDescription Alive(this in QueryDescription desc)
         {
-            var none = Signature.Add(desc.None, Component<Disposing>.Signature);
-            return new QueryDescription(desc.All, desc.Any, none, desc.Exclusive);
+            var all = Signature.Add(desc.All, Component<Alive>.Signature);
+            return new QueryDescription(all, desc.Any, desc.None, desc.Exclusive);
         }
 
         public static QueryDescription NotDisabled(this in QueryDescription desc)

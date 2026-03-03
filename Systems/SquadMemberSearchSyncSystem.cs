@@ -12,11 +12,11 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private readonly QueryDescription _unitsDesc = new QueryDescription().
             WithAll<SquadMember, TargetSearchDistance, TargetSearchPosition>().
-            NotDisposing().NotDisabled();
+            Alive().NotDisabled();
 
         private readonly QueryDescription _squadsDesc = new QueryDescription().
             WithAll<Squad, SyncId, TargetSearchDistance, TargetSearchPosition, Fixation>().
-            NotDisposing().NotDisabled();
+            Alive().NotDisabled();
 
         private readonly World _world;
 

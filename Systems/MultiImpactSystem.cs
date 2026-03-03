@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class MultiImpactSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<BehaviourState, Damage, ImpactDistance, Position, Targets>().NotDisposing().NotDisabled();
+            WithAll<BehaviourState, Damage, ImpactDistance, Position, Targets>().Alive().NotDisabled();
 
         private readonly World _world;
 

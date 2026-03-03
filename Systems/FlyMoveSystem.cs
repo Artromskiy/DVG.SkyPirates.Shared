@@ -9,7 +9,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class FlyMoveSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, FlyDestination, MaxSpeed>().NotDisposing().NotDisabled();
+            WithAll<Position, FlyDestination, MaxSpeed>().Alive().NotDisabled();
 
         private readonly List<Entity> _finished = new();
 

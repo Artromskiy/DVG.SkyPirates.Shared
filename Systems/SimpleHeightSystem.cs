@@ -10,7 +10,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SimpleHeightSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, CachePosition, Radius, Collide>().NotDisposing().NotDisabled();
+            WithAll<Position, CachePosition, Radius, Collide>().Alive().NotDisabled();
 
         private readonly World _world;
 

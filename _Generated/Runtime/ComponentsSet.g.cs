@@ -15,10 +15,10 @@ using System.Runtime.Serialization;
 using System.Runtime.CompilerServices;
 
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.Components;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -26,6 +26,7 @@ namespace DVG.SkyPirates.Shared.Data
     {
 
         public ActivityRange? ActivityRange;
+        public Alive? Alive;
         public AutoHeal? AutoHeal;
         public BehaviourConfig? BehaviourConfig;
         public BehaviourState? BehaviourState;
@@ -36,7 +37,6 @@ namespace DVG.SkyPirates.Shared.Data
         public Damage? Damage;
         public Destination? Destination;
         public Direction? Direction;
-        public Disposing? Disposing;
         public Fixation? Fixation;
         public FlyDestination? FlyDestination;
         public GoodsAmount? GoodsAmount;
@@ -77,6 +77,8 @@ namespace DVG.SkyPirates.Shared.Data
 
             if (type == typeof(ActivityRange))
                 return Unsafe.As<ActivityRange?, T?>(ref ActivityRange);
+            if (type == typeof(Alive))
+                return Unsafe.As<Alive?, T?>(ref Alive);
             if (type == typeof(AutoHeal))
                 return Unsafe.As<AutoHeal?, T?>(ref AutoHeal);
             if (type == typeof(BehaviourConfig))
@@ -97,8 +99,6 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<Destination?, T?>(ref Destination);
             if (type == typeof(Direction))
                 return Unsafe.As<Direction?, T?>(ref Direction);
-            if (type == typeof(Disposing))
-                return Unsafe.As<Disposing?, T?>(ref Disposing);
             if (type == typeof(Fixation))
                 return Unsafe.As<Fixation?, T?>(ref Fixation);
             if (type == typeof(FlyDestination))
@@ -177,6 +177,11 @@ namespace DVG.SkyPirates.Shared.Data
                 ActivityRange = Unsafe.As<T?, ActivityRange?>(ref data);
                 return;
             }
+            if (type == typeof(Alive))
+            {
+                Alive = Unsafe.As<T?, Alive?>(ref data);
+                return;
+            }
             if (type == typeof(AutoHeal))
             {
                 AutoHeal = Unsafe.As<T?, AutoHeal?>(ref data);
@@ -225,11 +230,6 @@ namespace DVG.SkyPirates.Shared.Data
             if (type == typeof(Direction))
             {
                 Direction = Unsafe.As<T?, Direction?>(ref data);
-                return;
-            }
-            if (type == typeof(Disposing))
-            {
-                Disposing = Unsafe.As<T?, Disposing?>(ref data);
                 return;
             }
             if (type == typeof(Fixation))
@@ -401,6 +401,7 @@ namespace DVG.SkyPirates.Shared.Data
             int typesCount = 
 
                 (ActivityRange.HasValue? 1 : 0) + 
+                (Alive.HasValue? 1 : 0) + 
                 (AutoHeal.HasValue? 1 : 0) + 
                 (BehaviourConfig.HasValue? 1 : 0) + 
                 (BehaviourState.HasValue? 1 : 0) + 
@@ -411,7 +412,6 @@ namespace DVG.SkyPirates.Shared.Data
                 (Damage.HasValue? 1 : 0) + 
                 (Destination.HasValue? 1 : 0) + 
                 (Direction.HasValue? 1 : 0) + 
-                (Disposing.HasValue? 1 : 0) + 
                 (Fixation.HasValue? 1 : 0) + 
                 (FlyDestination.HasValue? 1 : 0) + 
                 (GoodsAmount.HasValue? 1 : 0) + 
@@ -451,6 +451,8 @@ namespace DVG.SkyPirates.Shared.Data
 
             if(ActivityRange.HasValue)
                 types[i++] = typeof(ActivityRange);
+            if(Alive.HasValue)
+                types[i++] = typeof(Alive);
             if(AutoHeal.HasValue)
                 types[i++] = typeof(AutoHeal);
             if(BehaviourConfig.HasValue)
@@ -471,8 +473,6 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(Destination);
             if(Direction.HasValue)
                 types[i++] = typeof(Direction);
-            if(Disposing.HasValue)
-                types[i++] = typeof(Disposing);
             if(Fixation.HasValue)
                 types[i++] = typeof(Fixation);
             if(FlyDestination.HasValue)
@@ -547,6 +547,8 @@ namespace DVG.SkyPirates.Shared.Data
 
             if(ActivityRange.HasValue)
                 action.Invoke<ActivityRange>();
+            if(Alive.HasValue)
+                action.Invoke<Alive>();
             if(AutoHeal.HasValue)
                 action.Invoke<AutoHeal>();
             if(BehaviourConfig.HasValue)
@@ -567,8 +569,6 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<Destination>();
             if(Direction.HasValue)
                 action.Invoke<Direction>();
-            if(Disposing.HasValue)
-                action.Invoke<Disposing>();
             if(Fixation.HasValue)
                 action.Invoke<Fixation>();
             if(FlyDestination.HasValue)

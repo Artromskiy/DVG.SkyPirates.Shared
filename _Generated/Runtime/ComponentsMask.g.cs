@@ -15,10 +15,10 @@ using System.Runtime.Serialization;
 using System.Runtime.CompilerServices;
 
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.Components;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -26,6 +26,7 @@ namespace DVG.SkyPirates.Shared.Data
     {
 
         public bool ActivityRange;
+        public bool Alive;
         public bool AutoHeal;
         public bool BehaviourConfig;
         public bool BehaviourState;
@@ -36,7 +37,6 @@ namespace DVG.SkyPirates.Shared.Data
         public bool Damage;
         public bool Destination;
         public bool Direction;
-        public bool Disposing;
         public bool Fixation;
         public bool FlyDestination;
         public bool GoodsAmount;
@@ -77,6 +77,8 @@ namespace DVG.SkyPirates.Shared.Data
 
             if (type == typeof(ActivityRange))
                 return ActivityRange;
+            if (type == typeof(Alive))
+                return Alive;
             if (type == typeof(AutoHeal))
                 return AutoHeal;
             if (type == typeof(BehaviourConfig))
@@ -97,8 +99,6 @@ namespace DVG.SkyPirates.Shared.Data
                 return Destination;
             if (type == typeof(Direction))
                 return Direction;
-            if (type == typeof(Disposing))
-                return Disposing;
             if (type == typeof(Fixation))
                 return Fixation;
             if (type == typeof(FlyDestination))
@@ -177,6 +177,11 @@ namespace DVG.SkyPirates.Shared.Data
                 ActivityRange = data;
                 return;
             }
+            if (type == typeof(Alive))
+            {
+                Alive = data;
+                return;
+            }
             if (type == typeof(AutoHeal))
             {
                 AutoHeal = data;
@@ -225,11 +230,6 @@ namespace DVG.SkyPirates.Shared.Data
             if (type == typeof(Direction))
             {
                 Direction = data;
-                return;
-            }
-            if (type == typeof(Disposing))
-            {
-                Disposing = data;
                 return;
             }
             if (type == typeof(Fixation))
@@ -401,6 +401,7 @@ namespace DVG.SkyPirates.Shared.Data
             int typesCount = 
 
                 (ActivityRange? 1 : 0) + 
+                (Alive? 1 : 0) + 
                 (AutoHeal? 1 : 0) + 
                 (BehaviourConfig? 1 : 0) + 
                 (BehaviourState? 1 : 0) + 
@@ -411,7 +412,6 @@ namespace DVG.SkyPirates.Shared.Data
                 (Damage? 1 : 0) + 
                 (Destination? 1 : 0) + 
                 (Direction? 1 : 0) + 
-                (Disposing? 1 : 0) + 
                 (Fixation? 1 : 0) + 
                 (FlyDestination? 1 : 0) + 
                 (GoodsAmount? 1 : 0) + 
@@ -451,6 +451,8 @@ namespace DVG.SkyPirates.Shared.Data
 
             if(ActivityRange)
                 types[i++] = typeof(ActivityRange);
+            if(Alive)
+                types[i++] = typeof(Alive);
             if(AutoHeal)
                 types[i++] = typeof(AutoHeal);
             if(BehaviourConfig)
@@ -471,8 +473,6 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(Destination);
             if(Direction)
                 types[i++] = typeof(Direction);
-            if(Disposing)
-                types[i++] = typeof(Disposing);
             if(Fixation)
                 types[i++] = typeof(Fixation);
             if(FlyDestination)
@@ -547,6 +547,8 @@ namespace DVG.SkyPirates.Shared.Data
 
             if(ActivityRange)
                 action.Invoke<ActivityRange>();
+            if(Alive)
+                action.Invoke<Alive>();
             if(AutoHeal)
                 action.Invoke<AutoHeal>();
             if(BehaviourConfig)
@@ -567,8 +569,6 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<Destination>();
             if(Direction)
                 action.Invoke<Direction>();
-            if(Disposing)
-                action.Invoke<Disposing>();
             if(Fixation)
                 action.Invoke<Fixation>();
             if(FlyDestination)

@@ -1,5 +1,4 @@
 ﻿using Arch.Core;
-using Arch.Core.Utils;
 using DVG.Collections;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
@@ -28,7 +27,8 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 HashSet<Type> allComponents = new();
                 Signature allSignature = new(Array.ConvertAll(dependency.Has.GetTypes(), Component.GetComponentType));
-                return new DependencyData(allSignature, dependency.Add, new());
+                var allAlive = Signature.Add(allSignature, Component<Alive>.Signature);
+                return new DependencyData(allAlive, dependency.Add, new());
             }).ToArray();
         }
 
@@ -66,20 +66,20 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly struct AddComponentAction : IStructGenericAction
         {
             private readonly World _world;
-            private readonly Signature _allSignature;
+            private readonly Signature _signature;
             private readonly GenericCreator _signatureCache;
 
-            public AddComponentAction(World world, Signature allSignature, GenericCreator signatureCache)
+            public AddComponentAction(World world, Signature signature, GenericCreator signatureCache)
             {
                 _world = world;
-                _allSignature = allSignature;
+                _signature = signature;
                 _signatureCache = signatureCache;
             }
 
             public void Invoke<T>() where T : struct
             {
                 var descContainer = _signatureCache.Get<Description<T>>();
-                descContainer.AddDesc ??= new QueryDescription(all: _allSignature, none: Component<T, Disposing>.Signature);
+                descContainer.AddDesc ??= new QueryDescription(all: _signature, none: Component<T>.Signature);
 
                 var desc = descContainer.AddDesc.Value;
                 if (_world.CountEntities(in desc) > 0)

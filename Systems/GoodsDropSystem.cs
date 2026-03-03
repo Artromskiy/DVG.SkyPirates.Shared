@@ -15,7 +15,7 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private static readonly fix DropRange = fix.One * 5 / 2;
         private readonly QueryDescription _createDesc = new QueryDescription().
-            WithAll<Health, GoodsDrop>().NotDisposing().NotDisabled();
+            WithAll<Health, GoodsDrop>().Alive().NotDisabled();
 
         private readonly World _world;
         private readonly IConfigedEntityFactory<GoodsId> _configedEntityFactory;

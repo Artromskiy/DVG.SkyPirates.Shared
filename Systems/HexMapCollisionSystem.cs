@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class HexMapCollisionSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, CachePosition, Radius, Collide>().NotDisposing().NotDisabled();
+            WithAll<Position, CachePosition, Radius, Collide>().Alive().NotDisabled();
 
         public static event Action<Segment[], fix2, fix2, fix> OnFailedToSolve;
         private readonly ThreadLocal<List<Segment>> _segmentsCache = new(() => new List<Segment>());

@@ -10,10 +10,10 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SquadMemberCounterSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _unitsDesc = new QueryDescription().
-            WithAll<SquadMember>().NotDisposing().NotDisabled();
+            WithAll<SquadMember>().Alive().NotDisabled();
 
         private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SyncId>().NotDisposing().NotDisabled();
+            WithAll<Squad, SyncId>().Alive().NotDisabled();
 
         private readonly World _world;
 

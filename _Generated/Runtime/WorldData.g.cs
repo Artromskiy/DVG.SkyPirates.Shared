@@ -15,9 +15,9 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.Components;
 
 namespace DVG.SkyPirates.Shared.Data
 {
@@ -25,6 +25,7 @@ namespace DVG.SkyPirates.Shared.Data
     {
 
         public Dictionary<int, ActivityRange> ActivityRange;
+        public Dictionary<int, Alive> Alive;
         public Dictionary<int, AutoHeal> AutoHeal;
         public Dictionary<int, BehaviourConfig> BehaviourConfig;
         public Dictionary<int, BehaviourState> BehaviourState;
@@ -32,7 +33,6 @@ namespace DVG.SkyPirates.Shared.Data
         public Dictionary<int, ClientId> ClientId;
         public Dictionary<int, Damage> Damage;
         public Dictionary<int, Direction> Direction;
-        public Dictionary<int, Disposing> Disposing;
         public Dictionary<int, Fixation> Fixation;
         public Dictionary<int, FlyDestination> FlyDestination;
         public Dictionary<int, GoodsAmount> GoodsAmount;
@@ -65,6 +65,7 @@ namespace DVG.SkyPirates.Shared.Data
         {
 
             ActivityRange = new();
+            Alive = new();
             AutoHeal = new();
             BehaviourConfig = new();
             BehaviourState = new();
@@ -72,7 +73,6 @@ namespace DVG.SkyPirates.Shared.Data
             ClientId = new();
             Damage = new();
             Direction = new();
-            Disposing = new();
             Fixation = new();
             FlyDestination = new();
             GoodsAmount = new();
@@ -108,6 +108,8 @@ namespace DVG.SkyPirates.Shared.Data
 
             if (typeof(T) == typeof(ActivityRange))
                 return ActivityRange as Dictionary<int, T>;
+            if (typeof(T) == typeof(Alive))
+                return Alive as Dictionary<int, T>;
             if (typeof(T) == typeof(AutoHeal))
                 return AutoHeal as Dictionary<int, T>;
             if (typeof(T) == typeof(BehaviourConfig))
@@ -122,8 +124,6 @@ namespace DVG.SkyPirates.Shared.Data
                 return Damage as Dictionary<int, T>;
             if (typeof(T) == typeof(Direction))
                 return Direction as Dictionary<int, T>;
-            if (typeof(T) == typeof(Disposing))
-                return Disposing as Dictionary<int, T>;
             if (typeof(T) == typeof(Fixation))
                 return Fixation as Dictionary<int, T>;
             if (typeof(T) == typeof(FlyDestination))
@@ -191,6 +191,11 @@ namespace DVG.SkyPirates.Shared.Data
                 ActivityRange = data as Dictionary<int, ActivityRange>;
                 return;
             }
+            if (typeof(T) == typeof(Alive))
+            {
+                Alive = data as Dictionary<int, Alive>;
+                return;
+            }
             if (typeof(T) == typeof(AutoHeal))
             {
                 AutoHeal = data as Dictionary<int, AutoHeal>;
@@ -224,11 +229,6 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(Direction))
             {
                 Direction = data as Dictionary<int, Direction>;
-                return;
-            }
-            if (typeof(T) == typeof(Disposing))
-            {
-                Disposing = data as Dictionary<int, Disposing>;
                 return;
             }
             if (typeof(T) == typeof(Fixation))

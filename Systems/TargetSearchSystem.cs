@@ -16,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class TargetSearchSystem : ITargetSearchSystem // Should be used before any Position/Team writes for accurate search
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<RecivedDamage, Position, TeamId>().NotDisposing().NotDisabled();
+            WithAll<RecivedDamage, Position, TeamId>().Alive().NotDisabled();
 
         private const int SquareSize = 5;
 

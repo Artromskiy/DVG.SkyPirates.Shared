@@ -8,7 +8,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class SetDestinationSystem : IDeltaTickableExecutor
     {
         private QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Rotation, Destination>().NotDisposing().NotDisabled();
+            WithAll<Position, Rotation, Destination>().Alive().NotDisabled();
 
         private readonly World _world;
 

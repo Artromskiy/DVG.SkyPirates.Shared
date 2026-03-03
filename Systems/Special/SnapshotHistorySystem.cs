@@ -12,8 +12,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
     {
         private class Description<T> where T : struct
         {
-            public QueryDescription Desc = new QueryDescription().WithAll<History<T>>();
+            public QueryDescription Desc = new QueryDescription().
+                WithAll<History<T>, History<SyncId>, History<Alive>>();
         }
+
         private readonly GenericCreator _desc = new();
 
         private readonly World _world;
@@ -77,10 +79,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 var components = _worldData.Get<T>();
                 var query = new PackQuery<T>(components, _tick);
                 var desc = _desc.Get<Description<T>>().Desc;
-                _world.InlineQuery<PackQuery<T>, History<T>, History<SyncId>>(desc, ref query);
+                _world.InlineQuery<PackQuery<T>, History<T>, History<SyncId>, History<Alive>>(desc, ref query);
             }
 
-            private readonly struct PackQuery<T> : IForEach<History<T>, History<SyncId>> where T : struct
+            private readonly struct PackQuery<T> : IForEach<History<T>, History<SyncId>, History<Alive>> where T : struct
             {
                 private readonly Dictionary<int, T> _components;
                 private readonly int _tick;
@@ -91,11 +93,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                     _tick = tick;
                 }
 
-                public void Update(ref History<T> history, ref History<SyncId> id)
+                public void Update(ref History<T> history, ref History<SyncId> id, ref History<Alive> alive)
                 {
                     var historyComponent = history[_tick];
                     var idComponent = id[_tick];
-                    if (historyComponent.HasValue && idComponent.HasValue)
+                    var aliveComponent = alive[_tick].HasValue;
+                    if (historyComponent.HasValue && idComponent.HasValue && aliveComponent)
                         _components[idComponent.Value] = historyComponent.Value;
                 }
             }

@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SinglePreAttackSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<BehaviourState, ImpactDistance, Position, Target>().NotDisposing().NotDisabled();
+            WithAll<BehaviourState, ImpactDistance, Position, Target>().Alive().NotDisabled();
 
         private readonly World _world;
 

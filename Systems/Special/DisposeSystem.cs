@@ -11,9 +11,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
     {
         private class Description<T>
         {
-            public readonly QueryDescription Desc = new QueryDescription().WithAll<T, Disposing, Temp>();
+            public readonly QueryDescription Desc = new QueryDescription().WithAll<T, Temp>();
         }
-        private readonly QueryDescription _disposingDesc = new QueryDescription().WithAll<Disposing>();
+        private readonly QueryDescription _disposingDesc = new QueryDescription().WithAll<History<Alive>>();
         private readonly List<Entity> _entitiesCache = new();
         private readonly GenericCreator _disposeDesc = new();
 
@@ -28,10 +28,8 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             return;
             _entitiesCache.Clear();
-            var initDisposing = new InitDiposing(tick);
-            _world.InlineQuery<InitDiposing, Disposing>(in _disposingDesc, ref initDisposing);
             var selectToDispose = new SelectToDispose(tick, _entitiesCache);
-            _world.InlineEntityQuery<SelectToDispose, Disposing>(in _disposingDesc, ref selectToDispose);
+            _world.InlineEntityQuery<SelectToDispose, History<Alive>>(in _disposingDesc, ref selectToDispose);
             foreach (var entity in _entitiesCache)
                 _world.Add<Temp>(entity);
 
@@ -65,23 +63,8 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             }
         }
 
-        private readonly struct InitDiposing : IForEach<Disposing>
-        {
-            private readonly int _tick;
 
-            public InitDiposing(int tick)
-            {
-                _tick = tick;
-            }
-
-            public void Update(ref Disposing disposing)
-            {
-                if (disposing.StartTick == 0)
-                    disposing.StartTick = _tick;
-            }
-        }
-
-        private readonly struct SelectToDispose : IForEachWithEntity<Disposing>
+        private readonly struct SelectToDispose : IForEachWithEntity<History<Alive>>
         {
             private readonly int _tick;
             private readonly List<Entity> _entities;
@@ -92,11 +75,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 _entities = entities;
             }
 
-            public void Update(Entity entity, ref Disposing disposing)
+            public void Update(Entity entity, ref History<Alive> aliveHistory)
             {
-                int disposeTick = disposing.StartTick + Constants.MaxHistoryTicks;
-                if (_tick >= disposeTick)
-                    _entities.Add(entity);
+                // try get nearest alive and dispose if too far
+                //int disposeTick = disposing.StartTick + Constants.MaxHistoryTicks;
+                //if (_tick >= disposeTick)
+                //    _entities.Add(entity);
             }
         }
     }

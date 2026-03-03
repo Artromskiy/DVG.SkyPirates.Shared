@@ -8,7 +8,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class CachePositionSystem : IDeltaTickableExecutor
     {
         private QueryDescription _desc = new QueryDescription().
-            WithAll<Position, CachePosition>().NotDisposing().NotDisabled();
+            WithAll<Position, CachePosition>().Alive().NotDisabled();
 
         private readonly World _world;
 

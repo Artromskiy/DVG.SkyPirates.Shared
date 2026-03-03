@@ -14,10 +14,10 @@ using System;
 using System.Collections.Generic;
 
 using DVG.SkyPirates.Shared.Components.Config;
+using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Ids;
-using DVG.Components;
 
 namespace DVG.Components
 {
@@ -27,6 +27,7 @@ namespace DVG.Components
             where T: IStructGenericAction
         {
             action.Invoke<ActivityRange>();
+            action.Invoke<Alive>();
             action.Invoke<AutoHeal>();
             action.Invoke<BehaviourConfig>();
             action.Invoke<BehaviourState>();
@@ -37,7 +38,6 @@ namespace DVG.Components
             action.Invoke<Damage>();
             action.Invoke<Destination>();
             action.Invoke<Direction>();
-            action.Invoke<Disposing>();
             action.Invoke<Fixation>();
             action.Invoke<FlyDestination>();
             action.Invoke<GoodsAmount>();

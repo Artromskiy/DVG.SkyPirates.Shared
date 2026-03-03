@@ -14,11 +14,11 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly QueryDescription _separatorDesc = new QueryDescription().
             WithAll<SyncId, Position, Separator, Radius>().
-            NotDisposing().NotDisabled();
+            Alive().NotDisabled();
 
         private readonly QueryDescription _separationDesc = new QueryDescription().
             WithAll<Position, Separation>().
-            NotDisposing().NotDisabled();
+            Alive().NotDisabled();
 
         private readonly Lookup2D<List<SeparatorEntry>> _partitioning = new();
         private readonly HashSet<int> _syncIdCache = new();

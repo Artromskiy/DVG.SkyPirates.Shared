@@ -12,7 +12,7 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, TeamId>().
-            NotDisposing().NotDisabled();
+            Alive().NotDisabled();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;

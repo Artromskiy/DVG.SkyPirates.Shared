@@ -14,10 +14,10 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly List<Entity> _toEnable = new();
         private readonly List<fix4> _activeQuads = new();
 
-        private readonly QueryDescription _activityRanges = new QueryDescription().WithAll<ActivityRange, Position>().NotDisposing();
+        private readonly QueryDescription _activityRanges = new QueryDescription().WithAll<ActivityRange, Position>().Alive();
 
-        private readonly QueryDescription _enabled = new QueryDescription().WithAll<Position>().WithNone<Disabled>().NotDisposing();
-        private readonly QueryDescription _disabled = new QueryDescription().WithAll<Position, Disabled>().NotDisposing();
+        private readonly QueryDescription _enabled = new QueryDescription().WithAll<Position>().WithNone<Disabled>().Alive();
+        private readonly QueryDescription _disabled = new QueryDescription().WithAll<Position, Disabled>().Alive();
 
         public FlagDisabledSystem(World world)
         {

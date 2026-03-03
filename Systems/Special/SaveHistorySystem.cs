@@ -9,15 +9,15 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         private sealed class Description<T> where T : struct
         {
             public readonly QueryDescription saveHasCmpDesc = new QueryDescription().
-                WithAll<History<T>, T>().NotDisabled().NotDisposing();
+                WithAll<History<T>, T>().NotDisabled().Alive();
             public readonly QueryDescription saveNoCmpDesc = new QueryDescription().
-                WithAll<History<T>>().WithNone<T>().NotDisabled().NotDisposing();
+                WithAll<History<T>>().WithNone<T>().NotDisabled().Alive();
         }
 
-        private readonly QueryDescription _setHasDisposingDesc = new QueryDescription().
-            WithAll<History<Disposing>, Disposing>();
-        private readonly QueryDescription _setNoDisposingDesc = new QueryDescription().
-            WithAll<History<Disposing>>().WithNone<Disposing>();
+        private readonly QueryDescription _setHasAliveDesc = new QueryDescription().
+            WithAll<History<Alive>, Alive>();
+        private readonly QueryDescription _setNoAliveDesc = new QueryDescription().
+            WithAll<History<Alive>>().WithNone<Alive>();
 
         private readonly GenericCreator _desc = new();
         private readonly World _world;
@@ -35,13 +35,13 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             var saveAction = new SaveHistoryAction(_desc, _world, tick);
             HistoryComponentsRegistry.ForEachData(ref saveAction);
 
-            var setHasDisposing = new SetHasHistoryQuery<Disposing>(tick);
-            var setNoDisposing = new SetNoHistoryQuery<Disposing>(tick);
+            var setHasDisposing = new SetHasHistoryQuery<Alive>(tick);
+            var setNoDisposing = new SetNoHistoryQuery<Alive>(tick);
 
-            _world.InlineQuery<SetHasHistoryQuery<Disposing>, History<Disposing>, Disposing>
-                (_setHasDisposingDesc, ref setHasDisposing);
-            _world.InlineQuery<SetNoHistoryQuery<Disposing>, History<Disposing>>
-                (_setNoDisposingDesc, ref setNoDisposing);
+            _world.InlineQuery<SetHasHistoryQuery<Alive>, History<Alive>, Alive>
+                (_setHasAliveDesc, ref setHasDisposing);
+            _world.InlineQuery<SetNoHistoryQuery<Alive>, History<Alive>>
+                (_setNoAliveDesc, ref setNoDisposing);
         }
 
         private readonly struct AddHistoryAction : IStructGenericAction

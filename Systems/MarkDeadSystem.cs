@@ -11,7 +11,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class MarkDeadSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().WithAll<Health>().
-            NotDisposing().NotDisabled();
+            Alive().NotDisabled();
 
         private readonly List<Entity> _dead = new();
 
@@ -28,7 +28,7 @@ namespace DVG.SkyPirates.Shared.Systems
             _world.InlineEntityQuery<SelectDeadQuery, Health>(_desc, ref query);
             foreach (var item in _dead)
             {
-                _world.Add<Disposing>(item, new() { StartTick = tick });
+                _world.Remove<Alive>(item);
             }
         }
 

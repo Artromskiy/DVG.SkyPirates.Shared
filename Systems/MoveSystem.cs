@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class MoveSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Rotation, Destination, MaxSpeed>().NotDisposing().NotDisabled();
+            WithAll<Position, Rotation, Destination, MaxSpeed>().Alive().NotDisabled();
 
         private readonly World _world;
         private const int RotateSpeed = 720;

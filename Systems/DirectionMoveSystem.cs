@@ -8,7 +8,7 @@ namespace DVG.SkyPirates.Shared.Systems
     public class DirectionMoveSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Direction, MaxSpeed>().NotDisposing().NotDisabled();
+            WithAll<Position, Direction, MaxSpeed>().Alive().NotDisabled();
 
         private readonly World _world;
         public DirectionMoveSystem(World world)

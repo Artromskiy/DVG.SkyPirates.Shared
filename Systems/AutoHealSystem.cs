@@ -9,10 +9,10 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class AutoHealSystem : IDeltaTickableExecutor
     {
         private readonly QueryDescription _healLoadDesc = new QueryDescription().
-            WithAll<Health, MaxHealth, AutoHeal, RecivedDamage>().NotDisposing().NotDisabled();
+            WithAll<Health, MaxHealth, AutoHeal, RecivedDamage>().Alive().NotDisabled();
 
         private readonly QueryDescription _healDesc = new QueryDescription().
-            WithAll<Health, MaxHealth, AutoHeal>().NotDisposing().NotDisabled();
+            WithAll<Health, MaxHealth, AutoHeal>().Alive().NotDisabled();
 
         private readonly World _world;
 

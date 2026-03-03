@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private static readonly fix _reduceImpactDistance = fix.One / 2;
         private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Destination, Position, ImpactDistance, Target>().NotDisposing().NotDisabled();
+            WithAll<Destination, Position, ImpactDistance, Target>().Alive().NotDisabled();
 
         private readonly World _world;
 

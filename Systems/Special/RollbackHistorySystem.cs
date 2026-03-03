@@ -12,12 +12,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             public readonly QueryDescription removeDesc = new QueryDescription().WithAll<History<T>, T>();
             public readonly QueryDescription addDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
-            public readonly QueryDescription tickDesc = new QueryDescription().WithAll<History<T>, T>();
+            public readonly QueryDescription applyDesc = new QueryDescription().WithAll<History<T>, T>();
 
             public readonly QueryDescription historyDesc = new QueryDescription().WithAll<History<T>>();
         }
-
-        private readonly QueryDescription _noSyncId = new QueryDescription().WithNone<SyncId>();
 
         private readonly GenericCreator _creator = new();
         private readonly List<Entity> _entitiesCache = new();
@@ -41,7 +39,6 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             HistoryComponentsRegistry.ForEachData(ref action);
             var clearAction = new ClearHistoryAction(_world, tick, _creator);
             HistoryComponentsRegistry.ForEachData(ref clearAction);
-            _world.Destroy(_noSyncId);
         }
 
         private readonly struct ClearHistoryAction : IStructGenericAction
@@ -94,7 +91,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 var desc = _creator.Get<Description<T>>();
                 RemoveComponents<T>(desc.removeDesc);
                 AddComponents<T>(desc.addDesc);
-                SetComponentsData<T>(desc.tickDesc);
+                SetHistory<T>(desc.applyDesc);
             }
 
             private void RemoveComponents<T>(QueryDescription desc) where T : struct
@@ -117,7 +114,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                     _world.Add<T>(item);
             }
 
-            private void SetComponentsData<T>(QueryDescription desc) where T : struct
+            private void SetHistory<T>(QueryDescription desc) where T : struct
             {
                 var query = new SetHistoryQuery<T>(_tick);
                 _world.InlineQuery<SetHistoryQuery<T>, History<T>, T>

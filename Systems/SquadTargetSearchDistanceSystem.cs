@@ -14,10 +14,10 @@ namespace DVG.SkyPirates.Shared.Systems
         private static readonly fix _baseRange = 1;
 
         private readonly QueryDescription _squadsMembers = new QueryDescription().
-            WithAll<SquadMember, ImpactDistance>().NotDisposing().NotDisabled();
+            WithAll<SquadMember, ImpactDistance>().Alive().NotDisabled();
 
         private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SquadMemberCount, TargetSearchDistance>().NotDisposing().NotDisabled();
+            WithAll<Squad, SquadMemberCount, TargetSearchDistance>().Alive().NotDisabled();
 
         private readonly Dictionary<int, fix> _maxImpactDistancePerSquad = new();
         private readonly PackedCirclesConfig _circlesConfig;
