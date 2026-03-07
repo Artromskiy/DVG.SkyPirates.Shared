@@ -6,18 +6,17 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DVG.SkyPirates.Shared.Tools.Json
 {
     public static class SerializationUTF8
     {
-        private static readonly Utf8JsonWriter _writer;
-        private static readonly ArrayBufferWriter<byte> _buffer;
+        private static readonly ThreadLocal<Writers> _writers = new(() => new Writers());
         public static readonly JsonSerializerOptions Options;
         static SerializationUTF8()
         {
-            _buffer = new ArrayBufferWriter<byte>();
-            _writer = new(_buffer, new JsonWriterOptions() { Indented = true });
 
             Options = new(JsonSerializerDefaults.Strict)
             {
@@ -60,26 +59,29 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
         public static string Serialize<T>(T data)
         {
-            _buffer.Clear();
-            Serialize(data, _buffer);
+            var buffer = _writers.Value.Buffer;
+            buffer.Clear();
+            Serialize(data, buffer);
 
-            return Encoding.UTF8.GetString(_buffer.WrittenSpan);
+            return Encoding.UTF8.GetString(buffer.WrittenSpan);
         }
 
         public static T Deserialize<T>(string json)
         {
-            _buffer.Clear();
+            var buffer = _writers.Value.Buffer;
+            buffer.Clear();
             int count = Encoding.UTF8.GetByteCount(json);
-            count = Encoding.UTF8.GetBytes(json, _buffer.GetSpan(count));
-            _buffer.Advance(count);
+            count = Encoding.UTF8.GetBytes(json, buffer.GetSpan(count));
+            buffer.Advance(count);
 
-            return Deserialize<T>(_buffer.WrittenMemory);
+            return Deserialize<T>(buffer.WrittenMemory);
         }
 
         public static void Serialize<T>(T data, IBufferWriter<byte> buffer)
         {
-            _writer.Reset(buffer);
-            JsonSerializer.Serialize(_writer, data, Options);
+            var writer = _writers.Value.Writer;
+            writer.Reset(buffer);
+            JsonSerializer.Serialize(writer, data, Options);
         }
 
         public static T Deserialize<T>(ReadOnlyMemory<byte> data)
@@ -88,31 +90,49 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             return JsonSerializer.Deserialize<T>(ref reader, Options);
         }
 
-        public static T DeserializeCompressed<T>(ReadOnlyMemory<byte> data)
+        public static ValueTask<T> DeserializeAsync<T>(ReadOnlyMemory<byte> data)
         {
-            _buffer.Clear();
-            Decompress(data, _buffer);
-            return Deserialize<T>(_buffer.WrittenMemory);
+            return JsonSerializer.DeserializeAsync<T>(data.AsStream(), Options);
         }
 
-        public static void SerializeCompressed<T>(IBufferWriter<byte> buffer, T data)
+        public static T DeserializeCompressed<T>(ReadOnlyMemory<byte> data)
         {
-            _buffer.Clear();
-            Serialize(data, _buffer);
-            Compress(_buffer.WrittenMemory, buffer);
+            var buffer = _writers.Value.Buffer;
+            buffer.Clear();
+            Decompress(data, buffer);
+            return Deserialize<T>(buffer.WrittenMemory);
+        }
+
+        public static void SerializeCompressed<T>(IBufferWriter<byte> to, T data)
+        {
+            var buffer = _writers.Value.Buffer;
+            buffer.Clear();
+            Serialize(data, buffer);
+            Compress(buffer.WrittenMemory, to);
         }
 
         public static string SerializeOrdered<T>(T data)
         {
+            var buffer = _writers.Value.Buffer;
+            var writer = _writers.Value.Writer;
             var document = JsonSerializer.SerializeToDocument(data, Options);
-            _buffer.Clear();
-            _writer.Reset(_buffer);
-            _writer.WriteOrdered(document.RootElement);
-            _writer.Flush();
-            return Encoding.UTF8.GetString(_buffer.WrittenSpan);
+            buffer.Clear();
+            writer.Reset(buffer);
+            writer.WriteOrdered(document.RootElement);
+            writer.Flush();
+            return Encoding.UTF8.GetString(buffer.WrittenSpan);
         }
 
-        private static void Compress(ReadOnlyMemory<byte> from, IBufferWriter<byte> to)
+        public static void SerializeOrdered<T>(T data, IBufferWriter<byte> to)
+        {
+            var writer = _writers.Value.Writer;
+            var document = JsonSerializer.SerializeToDocument(data, Options);
+            writer.Reset(to);
+            writer.WriteOrdered(document.RootElement);
+            writer.Flush();
+        }
+
+        public static void Compress(ReadOnlyMemory<byte> from, IBufferWriter<byte> to)
         {
             using var output = to.AsStream();
             using var input = from.AsStream();
@@ -120,12 +140,24 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             dstream.Write(from.Span);
         }
 
-        private static void Decompress(ReadOnlyMemory<byte> from, IBufferWriter<byte> to)
+        public static void Decompress(ReadOnlyMemory<byte> from, IBufferWriter<byte> to)
         {
             using var input = from.AsStream();
             using var output = to.AsStream();
             using DeflateStream dstream = new(input, CompressionMode.Decompress);
             dstream.CopyTo(output);
+        }
+
+        private class Writers
+        {
+            public readonly Utf8JsonWriter Writer;
+            public readonly ArrayBufferWriter<byte> Buffer;
+
+            public Writers()
+            {
+                Buffer = new ArrayBufferWriter<byte>();
+                Writer = new(Buffer, new JsonWriterOptions() { Indented = true });
+            }
         }
     }
 }
