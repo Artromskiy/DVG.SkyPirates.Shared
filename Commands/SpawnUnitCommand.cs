@@ -6,7 +6,7 @@ using DVG.SkyPirates.Shared.Ids;
 namespace DVG.SkyPirates.Shared.Commands
 {
     [Command(false)]
-    public partial struct SpawnUnitCommand
+    public struct SpawnUnitCommand
     {
         public SyncId SquadId;
 
