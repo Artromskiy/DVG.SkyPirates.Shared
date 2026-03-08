@@ -17,10 +17,11 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick(int tick)
         {
-            var snapshot = _historySystem.GetSnapshot(tick - Constants.MaxHistoryTicks + 1);
+            var snapshotTick = tick - Constants.MaxHistoryTicks + 1;
+            var snapshot = _historySystem.GetSnapshot(snapshotTick);
             var trim = new TrimWorldData(snapshot);
             HistoryComponentsRegistry.ForEachData(ref trim);
-            _timeline[tick] = snapshot;
+            _timeline[snapshotTick] = snapshot;
         }
 
         public Dictionary<int, WorldData> GetSnapshots() => _timeline;
