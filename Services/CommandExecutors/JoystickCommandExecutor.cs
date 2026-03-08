@@ -1,5 +1,6 @@
 ﻿using Arch.Core;
 using DVG.Commands;
+using DVG.Components;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices;
@@ -26,25 +27,21 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
             if (entity == Entity.Null ||
                 !_world.IsAlive(entity) ||
-                !_world.Has<Direction, Fixation>(entity))
+                !_world.Has<Alive>(entity))
             {
                 Console.WriteLine($"Attempt to use command for entity {cmd.Data.Target}, which is not created");
                 return;
             }
 
-            SetDirection(ref _world.Get<Direction>(entity), ref _world.Get<Rotation>(entity), cmd.Data.Direction);
+            ref var dir = ref _world.Get<Direction>(entity);
+            ref var rot = ref _world.Get<Rotation>(entity);
+            ref var fix = ref _world.Get<Fixation>(entity);
+            dir = cmd.Data.Direction;
+            fix = cmd.Data.Fixation;
 
-            _world.Get<Fixation>(entity) = cmd.Data.Fixation;
-        }
-
-        public void SetDirection(ref Direction direction, ref Rotation rotation, fix2 targetDirection)
-        {
-            direction = targetDirection;
-            if (fix2.SqrLength(direction) == 0)
+            if (fix2.SqrLength(dir) == 0)
                 return;
-
-            var rotationRadians = MathsExtensions.GetRotation(direction);
-            rotation = Maths.Degrees(rotationRadians);
+            rot = Maths.Degrees(MathsExtensions.GetRotation(dir));
         }
     }
 }

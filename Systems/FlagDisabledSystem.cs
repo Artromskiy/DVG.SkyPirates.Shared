@@ -65,12 +65,11 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 var xz = position.Value.xz;
 
-                bool anyInside = false;
                 for (int i = 0; i < _minMaxs.Count; i++)
-                    anyInside |= Inside(xz, _minMaxs[i]);
+                    if (Inside(xz, _minMaxs[i]))
+                        return;
 
-                if (!anyInside)
-                    _selection.Add(entity);
+                _selection.Add(entity);
             }
         }
 
@@ -89,13 +88,8 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 var xz = position.Value.xz;
                 for (int i = 0; i < _minMaxs.Count; i++)
-                {
                     if (Inside(xz, _minMaxs[i]))
-                    {
-                        _selection.Add(entity);
-                        return;
-                    }
-                }
+                        _selection.Add(entity); return;
             }
         }
 
