@@ -15,7 +15,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
     {
         private readonly int _count = (int)typeof(V).GetProperty("Count").GetValue(new V());
 
-        private readonly ThreadLocal<Writers> _writers = new(() => new Writers());
+        private readonly ThreadLocal<Writers> _writers = new(() => new());
 
         private readonly byte[] _arrayStart = Encoding.UTF8.GetBytes("[");
         private readonly byte[] _arrayEnd = Encoding.UTF8.GetBytes("]");

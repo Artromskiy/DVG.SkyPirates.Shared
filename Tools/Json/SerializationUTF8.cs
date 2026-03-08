@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 {
     public static class SerializationUTF8
     {
-        private static readonly ThreadLocal<Writers> _writers = new(() => new Writers());
+        private static readonly ThreadLocal<Writers> _writers = new(() => new());
         public static readonly JsonSerializerOptions Options;
         static SerializationUTF8()
         {
