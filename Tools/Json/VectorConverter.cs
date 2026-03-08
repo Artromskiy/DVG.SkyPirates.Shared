@@ -13,18 +13,11 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         where V : unmanaged
         where T : unmanaged
     {
-        private readonly int _count = (int)typeof(V).GetProperty("Count").GetValue(new V());
-
-        private readonly ThreadLocal<Writers> _writers = new(() => new());
-
-        private readonly byte[] _arrayStart = Encoding.UTF8.GetBytes("[");
-        private readonly byte[] _arrayEnd = Encoding.UTF8.GetBytes("]");
-        private readonly byte[] _comma = Encoding.UTF8.GetBytes(",");
-
-        public VectorConverter()
-        {
-            //_jsonWriter = new(_bufferWriter, new() { Indented = false });
-        }
+        private static readonly ThreadLocal<Writers> _writers = new(() => new());
+        private static readonly int _count = (int)typeof(V).GetProperty("Count").GetValue(new V());
+        private static readonly byte[] _arrayStart = Encoding.UTF8.GetBytes("[");
+        private static readonly byte[] _arrayEnd = Encoding.UTF8.GetBytes("]");
+        private static readonly byte[] _comma = Encoding.UTF8.GetBytes(",");
 
         public override V Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
