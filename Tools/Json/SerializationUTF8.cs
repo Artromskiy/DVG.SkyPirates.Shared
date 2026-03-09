@@ -15,9 +15,9 @@ namespace DVG.SkyPirates.Shared.Tools.Json
     {
         private static readonly ThreadLocal<Writers> _writers = new(() => new());
         public static readonly JsonSerializerOptions Options;
+        public static readonly JsonSerializerOptions OptionsFast;
         static SerializationUTF8()
         {
-
             Options = new(JsonSerializerDefaults.Strict)
             {
                 IncludeFields = true,
@@ -55,6 +55,11 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             Options.Converters.Add(new VectorConverter<double, double2>());
             Options.Converters.Add(new VectorConverter<double, double3>());
             Options.Converters.Add(new VectorConverter<double, double4>());
+
+            OptionsFast = new(Options)
+            {
+                WriteIndented = false,
+            };
         }
 
         public static string Serialize<T>(T data)
@@ -77,10 +82,10 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             return Deserialize<T>(buffer.WrittenMemory);
         }
 
-        public static void Serialize<T>(T data, IBufferWriter<byte> buffer)
+        public static void Serialize<T>(T data, IBufferWriter<byte> to)
         {
             var writer = _writers.Value.Writer;
-            writer.Reset(buffer);
+            writer.Reset(to);
             JsonSerializer.Serialize(writer, data, Options);
         }
 
@@ -103,7 +108,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             return Deserialize<T>(buffer.WrittenMemory);
         }
 
-        public static void SerializeCompressed<T>(IBufferWriter<byte> to, T data)
+        public static void SerializeCompressed<T>(T data, IBufferWriter<byte> to)
         {
             var buffer = _writers.Value.Buffer;
             buffer.Clear();
@@ -132,31 +137,44 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             writer.Flush();
         }
 
-        public static void Compress(ReadOnlyMemory<byte> from, IBufferWriter<byte> to)
+        public static ulong GetHashSum<T>(T data)
         {
-            using var output = to.AsStream();
-            using var input = from.AsStream();
-            using DeflateStream dstream = new(output, CompressionLevel.Fastest);
-            dstream.Write(from.Span);
+            var buffer = _writers.Value.Buffer;
+            var writer = _writers.Value.FastWriter;
+            buffer.Clear();
+            writer.Reset(buffer);
+            JsonSerializer.Serialize(writer, data, OptionsFast);
+            return JsonHash.GetHash(buffer.WrittenMemory);
         }
 
-        public static void Decompress(ReadOnlyMemory<byte> from, IBufferWriter<byte> to)
+        public static void Compress(ReadOnlyMemory<byte> data, IBufferWriter<byte> to)
         {
-            using var input = from.AsStream();
+            using var output = to.AsStream();
+            using var input = data.AsStream();
+            using DeflateStream dstream = new(output, CompressionLevel.Fastest);
+            dstream.Write(data.Span);
+        }
+
+        public static void Decompress(ReadOnlyMemory<byte> data, IBufferWriter<byte> to)
+        {
+            using var input = data.AsStream();
             using var output = to.AsStream();
             using DeflateStream dstream = new(input, CompressionMode.Decompress);
             dstream.CopyTo(output);
         }
 
+
         private class Writers
         {
             public readonly Utf8JsonWriter Writer;
+            public readonly Utf8JsonWriter FastWriter;
             public readonly ArrayBufferWriter<byte> Buffer;
 
             public Writers()
             {
                 Buffer = new ArrayBufferWriter<byte>();
                 Writer = new(Buffer, new JsonWriterOptions() { Indented = true });
+                FastWriter = new(Buffer, new JsonWriterOptions() { Indented = false, SkipValidation = true });
             }
         }
     }
