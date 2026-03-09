@@ -9,9 +9,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 {
     internal class DisposeSystem : IDisposeSystem
     {
-        private class Description<T>
+        private class Description<T> where T : struct
         {
             public readonly QueryDescription Desc = new QueryDescription().WithAll<T, Temp>();
+            public readonly QueryDescription HistoryDesc = new QueryDescription().WithAll<History<T>, Temp>();
         }
 
         private readonly QueryDescription _disposingDesc = new QueryDescription().
@@ -35,18 +36,20 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             foreach (var entity in _entitiesCache)
                 _world.Add<Temp>(entity);
 
-            var disposeCallAction = new DisposeCallAction(_world, _disposeDesc);
-            DisposableComponentsRegistry.ForEachData(ref disposeCallAction);
+            var componentsDispose = new ComponentsDisposeCallAction(_world, _disposeDesc);
+            DisposableComponentsRegistry.ForEachData(ref componentsDispose);
+            var historyDispose = new HistoryDisposeCallAction(_world, _disposeDesc);
+            HistoryComponentsRegistry.ForEachData(ref historyDispose);
 
             _world.Destroy(new QueryDescription().WithAll<Temp>());
         }
 
-        private readonly struct DisposeCallAction : IStructGenericAction<IDisposable>
+        private readonly struct ComponentsDisposeCallAction : IStructGenericAction<IDisposable>
         {
             private readonly World _world;
             private readonly GenericCreator _desc;
 
-            public DisposeCallAction(World world, GenericCreator desc)
+            public ComponentsDisposeCallAction(World world, GenericCreator desc)
             {
                 _world = world;
                 _desc = desc;
@@ -62,6 +65,30 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             private readonly struct DisposeQuery<T> : IForEach<T> where T : struct, IDisposable
             {
                 public readonly void Update(ref T component) => component.Dispose();
+            }
+        }
+
+        private readonly struct HistoryDisposeCallAction : IStructGenericAction
+        {
+            private readonly World _world;
+            private readonly GenericCreator _desc;
+
+            public HistoryDisposeCallAction(World world, GenericCreator desc)
+            {
+                _world = world;
+                _desc = desc;
+            }
+
+            public void Invoke<T>() where T : struct
+            {
+                var query = new DisposeQuery<T>();
+                var desc = _desc.Get<Description<T>>().HistoryDesc;
+                _world.InlineQuery<DisposeQuery<T>, History<T>>(in desc, ref query);
+            }
+
+            private readonly struct DisposeQuery<T> : IForEach<History<T>> where T : struct
+            {
+                public readonly void Update(ref History<T> history) => history.Dispose();
             }
         }
 
