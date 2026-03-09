@@ -96,10 +96,18 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 public void Update(ref History<T> history, ref History<SyncId> id, ref History<Alive> alive)
                 {
                     var historyComponent = history[_tick];
+                    if (!historyComponent.HasValue)
+                        return;
+
+                    var isAlive = alive[_tick].HasValue;
+                    if (!isAlive)
+                        return;
+
                     var idComponent = id[_tick];
-                    var aliveComponent = alive[_tick].HasValue;
-                    if (historyComponent.HasValue && idComponent.HasValue && aliveComponent)
-                        _components[idComponent.Value] = historyComponent.Value;
+                    if (!idComponent.HasValue)
+                        return;
+
+                    _components[idComponent.Value] = historyComponent.Value;
                 }
             }
         }
