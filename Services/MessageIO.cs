@@ -71,26 +71,21 @@ namespace DVG.SkyPirates.Shared.Services
         public List<Message> GetMessages<T>(Command<T> data, List<Message> messages)
         {
             _buffer.Clear();
-            SerializationUTF8.SerializeCompressed(_buffer, data);
-            var written = _buffer.WrittenSpan;
+            SerializationUTF8.SerializeCompressed(data, _buffer);
+            var written = _buffer.WrittenMemory;
             //Console.WriteLine($"Message size: {written.Length} bytes");
             if (written.Length >= SplitSize) // need to split
-            {
-                Console.WriteLine(written.Length);
                 return GetSplitted<T>(written, messages);
-            }
             else
-            {
                 return GetSingle<T>(written, messages);
-            }
         }
 
-        private List<Message> GetSplitted<T>(ReadOnlySpan<byte> written, List<Message> messages)
+        private List<Message> GetSplitted<T>(ReadOnlyMemory<byte> written, List<Message> messages)
         {
             // write true if splitted
-            // write true if last split index
-            // write split index // 2^16 max
             // write uid // 2^16 max
+            // write split index // 2^16 max
+            // write true if last split index
 
             int splitCount = written.Length / SplitSize +
                 (written.Length % SplitSize == 0 ? 0 : 1);
@@ -114,7 +109,7 @@ namespace DVG.SkyPirates.Shared.Services
             return messages;
         }
 
-        private List<Message> GetSingle<T>(ReadOnlySpan<byte> written, List<Message> messages)
+        private List<Message> GetSingle<T>(ReadOnlyMemory<byte> written, List<Message> messages)
         {
             var commandId = CommandsRegistry.GetId<T>();
             var message = Message.Create(MessageSendMode.Reliable, (ushort)commandId);
@@ -124,7 +119,7 @@ namespace DVG.SkyPirates.Shared.Services
             return messages;
         }
 
-        private void WriteToMessage(ReadOnlySpan<byte> write, Message message)
+        private void WriteToMessage(ReadOnlyMemory<byte> write, Message message)
         {
             int length = write.Length;
             if (length > _tempBytes.Length)
