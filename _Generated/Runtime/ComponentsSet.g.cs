@@ -22,7 +22,7 @@ using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    public sealed class ComponentsSet: IStructGenericCaller
+    public sealed class ComponentsSet: IStructGenericCallerArg
     {
 
         public ActivityRange? ActivityRange;
@@ -542,97 +542,97 @@ namespace DVG.SkyPirates.Shared.Data
         }
 
         public void ForEach<T>(ref T action)
-            where T: IStructGenericAction
+            where T: IStructGenericActionArg
         {
 
             if(ActivityRange.HasValue)
-                action.Invoke<ActivityRange>();
+                action.Invoke<ActivityRange>(ActivityRange.Value);
             if(Alive.HasValue)
-                action.Invoke<Alive>();
+                action.Invoke<Alive>(Alive.Value);
             if(AutoHeal.HasValue)
-                action.Invoke<AutoHeal>();
+                action.Invoke<AutoHeal>(AutoHeal.Value);
             if(BehaviourConfig.HasValue)
-                action.Invoke<BehaviourConfig>();
+                action.Invoke<BehaviourConfig>(BehaviourConfig.Value);
             if(BehaviourState.HasValue)
-                action.Invoke<BehaviourState>();
+                action.Invoke<BehaviourState>(BehaviourState.Value);
             if(CachePosition.HasValue)
-                action.Invoke<CachePosition>();
+                action.Invoke<CachePosition>(CachePosition.Value);
             if(CactusId.HasValue)
-                action.Invoke<CactusId>();
+                action.Invoke<CactusId>(CactusId.Value);
             if(ClientId.HasValue)
-                action.Invoke<ClientId>();
+                action.Invoke<ClientId>(ClientId.Value);
             if(Collide.HasValue)
-                action.Invoke<Collide>();
+                action.Invoke<Collide>(Collide.Value);
             if(Damage.HasValue)
-                action.Invoke<Damage>();
+                action.Invoke<Damage>(Damage.Value);
             if(Destination.HasValue)
-                action.Invoke<Destination>();
+                action.Invoke<Destination>(Destination.Value);
             if(Direction.HasValue)
-                action.Invoke<Direction>();
+                action.Invoke<Direction>(Direction.Value);
             if(Fixation.HasValue)
-                action.Invoke<Fixation>();
+                action.Invoke<Fixation>(Fixation.Value);
             if(FlyDestination.HasValue)
-                action.Invoke<FlyDestination>();
+                action.Invoke<FlyDestination>(FlyDestination.Value);
             if(GoodsAmount.HasValue)
-                action.Invoke<GoodsAmount>();
+                action.Invoke<GoodsAmount>(GoodsAmount.Value);
             if(GoodsCollectorRadius.HasValue)
-                action.Invoke<GoodsCollectorRadius>();
+                action.Invoke<GoodsCollectorRadius>(GoodsCollectorRadius.Value);
             if(GoodsDrop.HasValue)
-                action.Invoke<GoodsDrop>();
+                action.Invoke<GoodsDrop>(GoodsDrop.Value);
             if(GoodsId.HasValue)
-                action.Invoke<GoodsId>();
+                action.Invoke<GoodsId>(GoodsId.Value);
             if(Health.HasValue)
-                action.Invoke<Health>();
+                action.Invoke<Health>(Health.Value);
             if(HexMap.HasValue)
-                action.Invoke<HexMap>();
+                action.Invoke<HexMap>(HexMap.Value);
             if(ImpactDistance.HasValue)
-                action.Invoke<ImpactDistance>();
+                action.Invoke<ImpactDistance>(ImpactDistance.Value);
             if(Level.HasValue)
-                action.Invoke<Level>();
+                action.Invoke<Level>(Level.Value);
             if(MaxHealth.HasValue)
-                action.Invoke<MaxHealth>();
+                action.Invoke<MaxHealth>(MaxHealth.Value);
             if(MaxSpeed.HasValue)
-                action.Invoke<MaxSpeed>();
+                action.Invoke<MaxSpeed>(MaxSpeed.Value);
             if(Position.HasValue)
-                action.Invoke<Position>();
+                action.Invoke<Position>(Position.Value);
             if(Radius.HasValue)
-                action.Invoke<Radius>();
+                action.Invoke<Radius>(Radius.Value);
             if(RandomSeed.HasValue)
-                action.Invoke<RandomSeed>();
+                action.Invoke<RandomSeed>(RandomSeed.Value);
             if(RecivedDamage.HasValue)
-                action.Invoke<RecivedDamage>();
+                action.Invoke<RecivedDamage>(RecivedDamage.Value);
             if(RockId.HasValue)
-                action.Invoke<RockId>();
+                action.Invoke<RockId>(RockId.Value);
             if(Rotation.HasValue)
-                action.Invoke<Rotation>();
+                action.Invoke<Rotation>(Rotation.Value);
             if(Separation.HasValue)
-                action.Invoke<Separation>();
+                action.Invoke<Separation>(Separation.Value);
             if(Separator.HasValue)
-                action.Invoke<Separator>();
+                action.Invoke<Separator>(Separator.Value);
             if(Squad.HasValue)
-                action.Invoke<Squad>();
+                action.Invoke<Squad>(Squad.Value);
             if(SquadMember.HasValue)
-                action.Invoke<SquadMember>();
+                action.Invoke<SquadMember>(SquadMember.Value);
             if(SquadMemberCount.HasValue)
-                action.Invoke<SquadMemberCount>();
+                action.Invoke<SquadMemberCount>(SquadMemberCount.Value);
             if(SyncId.HasValue)
-                action.Invoke<SyncId>();
+                action.Invoke<SyncId>(SyncId.Value);
             if(SyncIdReserve.HasValue)
-                action.Invoke<SyncIdReserve>();
+                action.Invoke<SyncIdReserve>(SyncIdReserve.Value);
             if(Target.HasValue)
-                action.Invoke<Target>();
+                action.Invoke<Target>(Target.Value);
             if(Targets.HasValue)
-                action.Invoke<Targets>();
+                action.Invoke<Targets>(Targets.Value);
             if(TargetSearchDistance.HasValue)
-                action.Invoke<TargetSearchDistance>();
+                action.Invoke<TargetSearchDistance>(TargetSearchDistance.Value);
             if(TargetSearchPosition.HasValue)
-                action.Invoke<TargetSearchPosition>();
+                action.Invoke<TargetSearchPosition>(TargetSearchPosition.Value);
             if(TeamId.HasValue)
-                action.Invoke<TeamId>();
+                action.Invoke<TeamId>(TeamId.Value);
             if(TreeId.HasValue)
-                action.Invoke<TreeId>();
+                action.Invoke<TreeId>(TreeId.Value);
             if(UnitId.HasValue)
-                action.Invoke<UnitId>();
+                action.Invoke<UnitId>(UnitId.Value);
         }
     }
 }

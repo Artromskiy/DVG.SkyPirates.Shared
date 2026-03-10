@@ -41,7 +41,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
             while (reader.Read() && reader.TokenType != JsonTokenType.EndObject)
             {
-                string key = reader.GetString();
+                string? key = reader.GetString();
                 ulong valueHash = ReadValue(ref reader);
                 ulong pairHash = HashString(key) ^ valueHash;
                 hash ^= pairHash;
@@ -64,12 +64,12 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         }
 
 
-        private static ulong HashString(string str)
+        private static ulong HashString(string? str)
         {
             ulong hash = 0;
-
-            foreach (char c in str)
-                hash = (hash << 5) - hash + c;
+            if (!string.IsNullOrWhiteSpace(str))
+                foreach (char c in str)
+                    hash = (hash << 5) - hash + c;
 
             return hash;
         }

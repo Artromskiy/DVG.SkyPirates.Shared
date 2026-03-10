@@ -7,6 +7,6 @@ namespace DVG.SkyPirates.Shared.Data
     public class PackedCirclesData
     {
         public fix Radius;
-        public fix2[] Points;
+        public fix2[] Points = default!;
     }
 }

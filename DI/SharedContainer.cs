@@ -111,7 +111,7 @@ namespace DVG.SkyPirates.Shared.DI
             where TService : class, IFactory<TInstance>
         {
             RegisterSingleton<TService, TImplementation>();
-            RegisterSingleton(typeof(TInstance), () => GetInstance<TService>().Create());
+            RegisterSingleton(typeof(TInstance), () => GetInstance<TService>().Create()!);
         }
     }
 }

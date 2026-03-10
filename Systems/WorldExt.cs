@@ -64,7 +64,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public static void SetEntityData(this World world, Entity entity, ComponentsSet components)
         {
-            var action = new ApplyEntityData(entity, world, components);
+            var action = new ApplyEntityData(entity, world);
             components.ForEach(ref action);
         }
 
@@ -85,22 +85,20 @@ namespace DVG.SkyPirates.Shared.Systems
             }
         }
 
-        private readonly struct ApplyEntityData : IStructGenericAction
+        private readonly struct ApplyEntityData : IStructGenericActionArg
         {
             private readonly Entity _entity;
             private readonly World _world;
-            private readonly ComponentsSet _config;
 
-            public ApplyEntityData(Entity entity, World world, ComponentsSet config)
+            public ApplyEntityData(Entity entity, World world)
             {
                 _entity = entity;
                 _world = world;
-                _config = config;
             }
 
-            public void Invoke<T>() where T : struct
+            public void Invoke<T>(T component) where T : struct
             {
-                _world.AddOrGet<T>(_entity) = _config.Get<T>().Value;
+                _world.AddOrGet<T>(_entity) = component;
             }
         }
     }
