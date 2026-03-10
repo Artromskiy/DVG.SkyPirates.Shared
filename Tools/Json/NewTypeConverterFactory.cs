@@ -26,7 +26,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var newType = Activator.CreateInstance<T>();
-            newType.Value = JsonSerializer.Deserialize<V>(ref reader, options);
+            newType.Value = JsonSerializer.Deserialize<V>(ref reader, options)!;
             return newType;
         }
 
