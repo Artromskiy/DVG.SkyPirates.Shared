@@ -4,16 +4,19 @@ using DVG.Components;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices;
+using DVG.SkyPirates.Shared.Systems;
 using DVG.SkyPirates.Shared.Tools.Extensions;
-using System;
+using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    [Obsolete("Should handle if squad is empty")]
     public class JoystickCommandExecutor : ICommandExecutor<JoystickCommand>
     {
         private readonly IEntityRegistry _entityRegistryService;
         private readonly World _world;
+
+        private readonly QueryDescription _desc = new QueryDescription().
+            WithAll<SquadMember>().NotDisabled().Alive();
 
         public JoystickCommandExecutor(IEntityRegistry entityRegistryService, World world)
         {
@@ -23,25 +26,40 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<JoystickCommand> cmd)
         {
-            _entityRegistryService.TryGet(cmd.Data.Target, out var entity);
+            _entityRegistryService.TryGet(cmd.Data.Target, out var squad);
 
-            if (entity == Entity.Null ||
-                !_world.IsAlive(entity) ||
-                !_world.Has<Alive>(entity))
+            if (squad == Entity.Null ||
+                !_world.IsAlive(squad) ||
+                !_world.Has<Alive>(squad))
             {
                 Trace.TraceWarning($"Attempt to use command for entity {cmd.Data.Target}, which is not created");
                 return;
             }
 
-            ref var dir = ref _world.Get<Direction>(entity);
-            ref var rot = ref _world.Get<Rotation>(entity);
-            ref var fix = ref _world.Get<Fixation>(entity);
+            if (!CanMove(squad))
+                return;
+
+            ref var dir = ref _world.Get<Direction>(squad);
+            ref var rot = ref _world.Get<Rotation>(squad);
+            ref var fix = ref _world.Get<Fixation>(squad);
             dir = cmd.Data.Direction;
             fix = cmd.Data.Fixation;
 
             if (fix2.SqrLength(dir) == 0)
                 return;
             rot = Maths.Degrees(MathsExtensions.GetRotation(dir));
+        }
+
+        private bool CanMove(Entity squad)
+        {
+            var squadId = _world.Get<SyncId>(squad);
+            int count = 0;
+            _world.Query(in _desc, (ref SquadMember member) =>
+            {
+                if (member.SquadId == squadId)
+                    count++;
+            });
+            return count > 0;
         }
     }
 }
