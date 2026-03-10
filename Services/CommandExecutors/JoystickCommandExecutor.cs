@@ -29,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 !_world.IsAlive(entity) ||
                 !_world.Has<Alive>(entity))
             {
-                Console.WriteLine($"Attempt to use command for entity {cmd.Data.Target}, which is not created");
+                Trace.TraceWarning($"Attempt to use command for entity {cmd.Data.Target}, which is not created");
                 return;
             }
 

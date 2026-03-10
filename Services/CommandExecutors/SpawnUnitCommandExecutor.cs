@@ -9,9 +9,9 @@ using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Systems;
-using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
@@ -43,7 +43,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 !_world.Has<Position, Squad>(squad) ||
                 !_world.Has<Alive>(squad))
             {
-                Console.WriteLine($"Attempt to use command for entity {cmd.Data.SquadId}, which is not created");
+                Trace.TraceWarning($"Attempt to use command for entity {cmd.Data.SquadId}, which is not created");
                 return;
             }
 
