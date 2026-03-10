@@ -6,6 +6,7 @@ using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Systems;
 using DVG.SkyPirates.Shared.Tools.Extensions;
+using DVG.SkyPirates.Shared.Tools.TraceHelpers;
 using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
@@ -32,7 +33,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 !_world.IsAlive(squad) ||
                 !_world.Has<Alive>(squad))
             {
-                Trace.TraceWarning($"Attempt to use command for entity {cmd.Data.Target}, which is not created");
+                Trace.TraceWarning(Tracing.NotCreatedEntityCommand(cmd.Data.Target));
                 return;
             }
 

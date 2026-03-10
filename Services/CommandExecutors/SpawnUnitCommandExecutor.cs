@@ -9,6 +9,7 @@ using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.Systems;
+using DVG.SkyPirates.Shared.Tools.TraceHelpers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics;
@@ -37,13 +38,17 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<SpawnUnitCommand> cmd)
         {
-            _entityRegistryService.TryGet(new SyncId() { Value = cmd.Data.SquadId }, out var squad);
+            if (!_entityRegistryService.TryGet(cmd.Data.SquadId, out var squad))
+            {
+                Trace.TraceWarning(Tracing.NotCreatedEntityCommand(cmd.Data.SquadId));
+                return;
+            }
+
             if (squad == Entity.Null ||
                 !_world.IsAlive(squad) ||
-                !_world.Has<Position, Squad>(squad) ||
                 !_world.Has<Alive>(squad))
             {
-                Trace.TraceWarning($"Attempt to use command for entity {cmd.Data.SquadId}, which is not created");
+                Trace.TraceWarning(Tracing.NotCreatedEntityCommand(cmd.Data.SquadId));
                 return;
             }
 
