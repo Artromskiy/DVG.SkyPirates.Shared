@@ -62,10 +62,10 @@ namespace DVG.SkyPirates.Shared.Systems
             world.Remove<Temp>(in queryDesc);
         }
 
-        public static void SetEntityData(this World world, Entity entity, ComponentsSet config)
+        public static void SetEntityData(this World world, Entity entity, ComponentsSet components)
         {
-            var action = new ApplyEntityData(entity, world, config);
-            config.ForEach(ref action);
+            var action = new ApplyEntityData(entity, world, components);
+            components.ForEach(ref action);
         }
 
         private struct FirstOrDefaultQuery<T> : IForEachWithEntity<T>

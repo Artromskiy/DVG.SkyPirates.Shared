@@ -25,6 +25,7 @@ namespace DVG.Commands
             action.Invoke<InvalidateCommand>();
             action.Invoke<JoystickCommand>();
             action.Invoke<LoadWorldCommand>();
+            action.Invoke<SetEntityDataCommand>();
             action.Invoke<SpawnSquadCommand>();
             action.Invoke<SpawnUnitCommand>();
             action.Invoke<TickSyncCommand>();
@@ -40,12 +41,14 @@ namespace DVG.Commands
                 return 2;
             if (type == typeof(LoadWorldCommand))
                 return 3;
-            if (type == typeof(SpawnSquadCommand))
+            if (type == typeof(SetEntityDataCommand))
                 return 4;
-            if (type == typeof(SpawnUnitCommand))
+            if (type == typeof(SpawnSquadCommand))
                 return 5;
-            if (type == typeof(TickSyncCommand))
+            if (type == typeof(SpawnUnitCommand))
                 return 6;
+            if (type == typeof(TickSyncCommand))
+                return 7;
 
             throw new NotSupportedException(type.Name);
         }
@@ -60,6 +63,8 @@ namespace DVG.Commands
                 return true;
             if(type == typeof(LoadWorldCommand))
                 return false;
+            if(type == typeof(SetEntityDataCommand))
+                return true;
             if(type == typeof(SpawnSquadCommand))
                 return false;
             if(type == typeof(SpawnUnitCommand))
@@ -80,10 +85,12 @@ namespace DVG.Commands
             if(id == 3)
                 action.Invoke<LoadWorldCommand>();
             if(id == 4)
-                action.Invoke<SpawnSquadCommand>();
+                action.Invoke<SetEntityDataCommand>();
             if(id == 5)
-                action.Invoke<SpawnUnitCommand>();
+                action.Invoke<SpawnSquadCommand>();
             if(id == 6)
+                action.Invoke<SpawnUnitCommand>();
+            if(id == 7)
                 action.Invoke<TickSyncCommand>();
         }
     }
