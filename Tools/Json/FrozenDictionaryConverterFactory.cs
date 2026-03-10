@@ -32,8 +32,8 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         JsonConverter<FrozenDictionary<TKey, TValue>>
         where TKey : notnull
     {
-        private JsonConverter<TKey> _keyConverter;
-        private JsonConverter<TValue> _valueConverter;
+        private JsonConverter<TKey>? _keyConverter;
+        private JsonConverter<TValue>? _valueConverter;
 
         public override FrozenDictionary<TKey, TValue>? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -47,8 +47,8 @@ namespace DVG.SkyPirates.Shared.Tools.Json
 
         public override void Write(Utf8JsonWriter writer, FrozenDictionary<TKey, TValue> dictionary, JsonSerializerOptions options)
         {
-            _keyConverter ??= (options.GetConverter(typeof(TKey)) as JsonConverter<TKey>);
-            _valueConverter ??= (options.GetConverter(typeof(TValue)) as JsonConverter<TValue>);
+            _keyConverter ??= (options.GetConverter(typeof(TKey)) as JsonConverter<TKey>)!;
+            _valueConverter ??= (options.GetConverter(typeof(TValue)) as JsonConverter<TValue>)!;
 
             writer.WriteStartObject();
             foreach (var (key, value) in dictionary)

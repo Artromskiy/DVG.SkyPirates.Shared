@@ -7,7 +7,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace DVG.SkyPirates.Shared.Tools.Json
 {
@@ -92,12 +91,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         public static T Deserialize<T>(ReadOnlyMemory<byte> data)
         {
             var reader = new Utf8JsonReader(data.Span);
-            return JsonSerializer.Deserialize<T>(ref reader, Options);
-        }
-
-        public static ValueTask<T> DeserializeAsync<T>(ReadOnlyMemory<byte> data)
-        {
-            return JsonSerializer.DeserializeAsync<T>(data.AsStream(), Options);
+            return JsonSerializer.Deserialize<T>(ref reader, Options)!;
         }
 
         public static T DeserializeCompressed<T>(ReadOnlyMemory<byte> data)

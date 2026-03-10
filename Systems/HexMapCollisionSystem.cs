@@ -15,7 +15,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly QueryDescription _desc = new QueryDescription().
             WithAll<Position, CachePosition, Radius, Collide>().Alive().NotDisabled();
 
-        public static event Action<Segment[], fix2, fix2, fix> OnFailedToSolve;
+        public static event Action<Segment[], fix2, fix2, fix>? OnFailedToSolve;
         private readonly ThreadLocal<List<Segment>> _segmentsCache = new(() => new List<Segment>());
         private readonly Dictionary<int3, bool> _walkabilityCache = new();
         private readonly World _world;

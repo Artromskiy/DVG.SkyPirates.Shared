@@ -23,8 +23,8 @@ namespace DVG.SkyPirates.Shared.Tools.Json
     {
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            string parameter = reader.GetString();
-            parameter = string.IsNullOrEmpty(parameter) ? "None" : parameter;
+            string? parameter = reader.GetString();
+            parameter = string.IsNullOrWhiteSpace(parameter) ? "None" : parameter;
             return (T)Activator.CreateInstance(typeof(T), parameter);
         }
 
