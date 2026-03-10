@@ -20,7 +20,7 @@ namespace DVG.SkyPirates.Shared.Services
         {
             foreach (var item in _componentDefaultsConfig)
             {
-                var setAction = new SetDefaultAction(_world, entity, item.Default);
+                var setAction = new SetDefaultAction(_world, entity);
                 item.Default.ForEach(ref setAction);
             }
             foreach (var item in _componentDefaultsConfig)
@@ -30,25 +30,22 @@ namespace DVG.SkyPirates.Shared.Services
             }
         }
 
-        private readonly struct SetDefaultAction : IStructGenericAction
+        private readonly struct SetDefaultAction : IStructGenericActionArg
         {
             private readonly World _world;
             private readonly Entity _entity;
-            private readonly ComponentsSet _set;
 
-            public SetDefaultAction(World world, Entity entity, ComponentsSet set)
+            public SetDefaultAction(World world, Entity entity)
             {
                 _world = world;
                 _entity = entity;
-                _set = set;
             }
 
-            public readonly void Invoke<T>() where T : struct
+            public readonly void Invoke<T>(T component) where T : struct
             {
                 if (_world.Has<T>(_entity))
                 {
-                    var cmp = _set.Get<T>().Value;
-                    _world.Set(_entity, cmp);
+                    _world.Set(_entity, component);
                 }
             }
         }
