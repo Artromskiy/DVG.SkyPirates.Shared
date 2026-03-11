@@ -50,6 +50,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Update(ref Position position, ref CachePosition cachePosition, ref Radius radius)
             {
+                _segmentsCache.Value.Clear();
                 FindSegments(cachePosition);
                 Solvers.Segments = _segmentsCache.Value.ToArray();
                 fix2 solvedPos = fix2.zero;
@@ -71,7 +72,6 @@ namespace DVG.SkyPirates.Shared.Systems
 
             private void FindSegments(fix3 from)
             {
-                _segmentsCache.Value.Clear();
                 var axialFrom = Hex.WorldToAxial(from);
 
                 foreach (var item in Hex.AxialNear)
@@ -95,8 +95,8 @@ namespace DVG.SkyPirates.Shared.Systems
 
             private bool Walkable(int3 axial)
             {
-                if (_walkabilityCache.TryGetValue(axial, out var walkable))
-                    return walkable;
+                //if (_walkabilityCache.TryGetValue(axial, out var walkable))
+                //    return walkable;
 
                 bool zero = _hexMap.Data.ContainsKey(axial);
                 var up = new int3(0, 1, 0);
@@ -104,7 +104,8 @@ namespace DVG.SkyPirates.Shared.Systems
                 bool p2 = _hexMap.Data.ContainsKey(axial + up * 2);
                 bool p3 = _hexMap.Data.ContainsKey(axial + up * 3);
                 bool m1 = _hexMap.Data.ContainsKey(axial - up);
-                return _walkabilityCache[axial] =
+                //return _walkabilityCache[axial] =
+                return
                     (zero && !p1 && !p2) ||
                     (p1 && !p2 && !p3) ||
                     (m1 && !zero && !p1);
