@@ -3,7 +3,8 @@
     "Default": {
       "AutoHeal": {
         "HealPerSecond": 20,
-        "HealDelay": 10
+        "HealDelay": 10,
+        "HealLoadPercent": 1
       }
     },
     "CopyFrom": {
