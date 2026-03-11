@@ -31,6 +31,7 @@ namespace DVG.SkyPirates.Shared.Data
         public Dictionary<int, BehaviourState> BehaviourState;
         public Dictionary<int, CactusId> CactusId;
         public Dictionary<int, ClientId> ClientId;
+        public Dictionary<int, Collide> Collide;
         public Dictionary<int, Damage> Damage;
         public Dictionary<int, Direction> Direction;
         public Dictionary<int, Fixation> Fixation;
@@ -71,6 +72,7 @@ namespace DVG.SkyPirates.Shared.Data
             BehaviourState = new();
             CactusId = new();
             ClientId = new();
+            Collide = new();
             Damage = new();
             Direction = new();
             Fixation = new();
@@ -120,6 +122,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return CactusId as Dictionary<int, T>;
             if (typeof(T) == typeof(ClientId))
                 return ClientId as Dictionary<int, T>;
+            if (typeof(T) == typeof(Collide))
+                return Collide as Dictionary<int, T>;
             if (typeof(T) == typeof(Damage))
                 return Damage as Dictionary<int, T>;
             if (typeof(T) == typeof(Direction))
@@ -219,6 +223,11 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(ClientId))
             {
                 ClientId = data as Dictionary<int, ClientId>;
+                return;
+            }
+            if (typeof(T) == typeof(Collide))
+            {
+                Collide = data as Dictionary<int, Collide>;
                 return;
             }
             if (typeof(T) == typeof(Damage))

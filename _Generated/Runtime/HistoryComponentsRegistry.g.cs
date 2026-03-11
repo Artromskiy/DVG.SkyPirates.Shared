@@ -32,6 +32,7 @@ namespace DVG.Components
             action.Invoke<BehaviourState>();
             action.Invoke<CactusId>();
             action.Invoke<ClientId>();
+            action.Invoke<Collide>();
             action.Invoke<Damage>();
             action.Invoke<Direction>();
             action.Invoke<Fixation>();

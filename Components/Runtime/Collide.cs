@@ -1,7 +1,7 @@
 ﻿using DVG.Components.Attributes;
 
-namespace DVG.SkyPirates.Shared.Components.Framed
+namespace DVG.SkyPirates.Shared.Components.Runtime
 {
-    [Component(false)]
+    [Component(true)]
     public readonly struct Collide { }
 }
