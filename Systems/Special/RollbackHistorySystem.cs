@@ -33,6 +33,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             HistoryComponentsRegistry.ForEachData(ref action);
         }
 
+        // TODO can optimize to destroy first and apply then
         public void RollBack(int tick)
         {
             var action = new SetHistoryAction(_creator, _entitiesCache, _world, tick);

@@ -31,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public void Tick(int tick)
         {
             _entitiesCache.Clear();
-            var selectToDispose = new SelectToDispose(_entitiesCache);
+            var selectToDispose = new SelectToDispose(_entitiesCache, tick);
             _world.InlineEntityQuery<SelectToDispose, History<Alive>>(in _disposingDesc, ref selectToDispose);
             foreach (var entity in _entitiesCache)
                 _world.Add<Temp>(entity);
@@ -96,22 +96,18 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         private readonly struct SelectToDispose : IForEachWithEntity<History<Alive>>
         {
             private readonly List<Entity> _entities;
+            private readonly int _tick;
 
-            public SelectToDispose(List<Entity> entities)
+            public SelectToDispose(List<Entity> entities, int tick)
             {
                 _entities = entities;
+                _tick = tick;
             }
 
             public void Update(Entity entity, ref History<Alive> aliveHistory)
             {
-                if (aliveHistory.Count != Constants.MaxHistoryTicks)
-                    return;
-
-                for (int i = 0; i < Constants.MaxHistoryTicks; i++)
-                    if (aliveHistory._values[i].HasValue)
-                        return;
-
-                _entities.Add(entity);
+                if ((aliveHistory.GetLast(out var tick) == null && tick <= _tick - Constants.MaxHistoryTicks))
+                    _entities.Add(entity);
             }
         }
     }

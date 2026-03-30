@@ -3,6 +3,7 @@ using DVG.Collections;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Data;
+using System;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -51,6 +52,7 @@ namespace DVG.SkyPirates.Shared.Systems
             return query.Entity;
         }
 
+        [Obsolete("Impressive amount of garbage produced")]
         public static void AddQuery<Has, Add>(this World world, ForEach<Has, Add> forEach)
         {
             var addDesc = _desc.Get<WithAllWithNone<Has, Add>>().Desc;
