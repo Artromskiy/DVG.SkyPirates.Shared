@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.HighPerformance;
+﻿using Delta;
+using CommunityToolkit.HighPerformance;
 using System;
 using System.Buffers;
 using System.IO.Compression;

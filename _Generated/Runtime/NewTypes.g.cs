@@ -15,15 +15,15 @@ using DVG.NewType;
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    partial struct ActivityRange : INewType<DVG.fix>
+    partial struct ActivityRange : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator ActivityRange(DVG.fix value)
+        public static implicit operator ActivityRange(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(ActivityRange newType)
+        public static implicit operator Delta.fix(ActivityRange newType)
             => newType.Value;
     }
 }
@@ -31,15 +31,15 @@ namespace DVG.SkyPirates.Shared.Components.Config
 
 namespace DVG.SkyPirates.Shared.Components.Framed
 {
-    partial struct CachePosition : INewType<DVG.fix3>
+    partial struct CachePosition : INewType<Delta.fix3>
     {
         
-        DVG.fix3 INewType<DVG.fix3>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix3 INewType<Delta.fix3>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator CachePosition(DVG.fix3 value)
+        public static implicit operator CachePosition(Delta.fix3 value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix3(CachePosition newType)
+        public static implicit operator Delta.fix3(CachePosition newType)
             => newType.Value;
     }
 }
@@ -47,15 +47,15 @@ namespace DVG.SkyPirates.Shared.Components.Framed
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    partial struct Damage : INewType<DVG.fix>
+    partial struct Damage : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator Damage(DVG.fix value)
+        public static implicit operator Damage(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(Damage newType)
+        public static implicit operator Delta.fix(Damage newType)
             => newType.Value;
     }
 }
@@ -63,15 +63,15 @@ namespace DVG.SkyPirates.Shared.Components.Config
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
-    partial struct Direction : INewType<DVG.fix2>
+    partial struct Direction : INewType<Delta.fix2>
     {
         
-        DVG.fix2 INewType<DVG.fix2>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix2 INewType<Delta.fix2>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator Direction(DVG.fix2 value)
+        public static implicit operator Direction(Delta.fix2 value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix2(Direction newType)
+        public static implicit operator Delta.fix2(Direction newType)
             => newType.Value;
     }
 }
@@ -111,15 +111,15 @@ namespace DVG.SkyPirates.Shared.Components.Config
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
-    partial struct GoodsCollectorRadius : INewType<DVG.fix>
+    partial struct GoodsCollectorRadius : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator GoodsCollectorRadius(DVG.fix value)
+        public static implicit operator GoodsCollectorRadius(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(GoodsCollectorRadius newType)
+        public static implicit operator Delta.fix(GoodsCollectorRadius newType)
             => newType.Value;
     }
 }
@@ -127,15 +127,15 @@ namespace DVG.SkyPirates.Shared.Components.Runtime
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
-    partial struct Health : INewType<DVG.fix>
+    partial struct Health : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator Health(DVG.fix value)
+        public static implicit operator Health(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(Health newType)
+        public static implicit operator Delta.fix(Health newType)
             => newType.Value;
     }
 }
@@ -143,15 +143,15 @@ namespace DVG.SkyPirates.Shared.Components.Runtime
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    partial struct ImpactDistance : INewType<DVG.fix>
+    partial struct ImpactDistance : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator ImpactDistance(DVG.fix value)
+        public static implicit operator ImpactDistance(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(ImpactDistance newType)
+        public static implicit operator Delta.fix(ImpactDistance newType)
             => newType.Value;
     }
 }
@@ -175,15 +175,15 @@ namespace DVG.SkyPirates.Shared.Components.Config
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    partial struct MaxHealth : INewType<DVG.fix>
+    partial struct MaxHealth : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator MaxHealth(DVG.fix value)
+        public static implicit operator MaxHealth(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(MaxHealth newType)
+        public static implicit operator Delta.fix(MaxHealth newType)
             => newType.Value;
     }
 }
@@ -191,15 +191,15 @@ namespace DVG.SkyPirates.Shared.Components.Config
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    partial struct MaxSpeed : INewType<DVG.fix>
+    partial struct MaxSpeed : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator MaxSpeed(DVG.fix value)
+        public static implicit operator MaxSpeed(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(MaxSpeed newType)
+        public static implicit operator Delta.fix(MaxSpeed newType)
             => newType.Value;
     }
 }
@@ -207,15 +207,15 @@ namespace DVG.SkyPirates.Shared.Components.Config
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
-    partial struct Position : INewType<DVG.fix3>
+    partial struct Position : INewType<Delta.fix3>
     {
         
-        DVG.fix3 INewType<DVG.fix3>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix3 INewType<Delta.fix3>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator Position(DVG.fix3 value)
+        public static implicit operator Position(Delta.fix3 value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix3(Position newType)
+        public static implicit operator Delta.fix3(Position newType)
             => newType.Value;
     }
 }
@@ -223,15 +223,15 @@ namespace DVG.SkyPirates.Shared.Components.Runtime
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    partial struct Radius : INewType<DVG.fix>
+    partial struct Radius : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator Radius(DVG.fix value)
+        public static implicit operator Radius(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(Radius newType)
+        public static implicit operator Delta.fix(Radius newType)
             => newType.Value;
     }
 }
@@ -239,15 +239,15 @@ namespace DVG.SkyPirates.Shared.Components.Config
 
 namespace DVG.SkyPirates.Shared.Components.Framed
 {
-    partial struct RecivedDamage : INewType<DVG.fix>
+    partial struct RecivedDamage : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator RecivedDamage(DVG.fix value)
+        public static implicit operator RecivedDamage(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(RecivedDamage newType)
+        public static implicit operator Delta.fix(RecivedDamage newType)
             => newType.Value;
     }
 }
@@ -255,15 +255,15 @@ namespace DVG.SkyPirates.Shared.Components.Framed
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
-    partial struct Rotation : INewType<DVG.fix>
+    partial struct Rotation : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator Rotation(DVG.fix value)
+        public static implicit operator Rotation(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(Rotation newType)
+        public static implicit operator Delta.fix(Rotation newType)
             => newType.Value;
     }
 }
@@ -271,15 +271,15 @@ namespace DVG.SkyPirates.Shared.Components.Runtime
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    partial struct Separation : INewType<DVG.fix>
+    partial struct Separation : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator Separation(DVG.fix value)
+        public static implicit operator Separation(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(Separation newType)
+        public static implicit operator Delta.fix(Separation newType)
             => newType.Value;
     }
 }
@@ -303,15 +303,15 @@ namespace DVG.SkyPirates.Shared.Components.Framed
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
-    partial struct TargetSearchDistance : INewType<DVG.fix>
+    partial struct TargetSearchDistance : INewType<Delta.fix>
     {
         
-        DVG.fix INewType<DVG.fix>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix INewType<Delta.fix>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator TargetSearchDistance(DVG.fix value)
+        public static implicit operator TargetSearchDistance(Delta.fix value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix(TargetSearchDistance newType)
+        public static implicit operator Delta.fix(TargetSearchDistance newType)
             => newType.Value;
     }
 }
@@ -319,15 +319,15 @@ namespace DVG.SkyPirates.Shared.Components.Config
 
 namespace DVG.SkyPirates.Shared.Components.Framed
 {
-    partial struct TargetSearchPosition : INewType<DVG.fix3>
+    partial struct TargetSearchPosition : INewType<Delta.fix3>
     {
         
-        DVG.fix3 INewType<DVG.fix3>.Value { readonly get => Value; set => Value = value; }
+        Delta.fix3 INewType<Delta.fix3>.Value { readonly get => Value; set => Value = value; }
 
-        public static implicit operator TargetSearchPosition(DVG.fix3 value)
+        public static implicit operator TargetSearchPosition(Delta.fix3 value)
             => new() { Value = value };
 
-        public static implicit operator DVG.fix3(TargetSearchPosition newType)
+        public static implicit operator Delta.fix3(TargetSearchPosition newType)
             => newType.Value;
     }
 }

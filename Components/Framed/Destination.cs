@@ -1,4 +1,5 @@
-﻿using DVG.Components.Attributes;
+﻿using Delta;
+using DVG.Components.Attributes;
 
 namespace DVG.SkyPirates.Shared.Components.Framed
 {

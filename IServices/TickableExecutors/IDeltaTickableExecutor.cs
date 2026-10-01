@@ -1,4 +1,5 @@
-﻿namespace DVG.SkyPirates.Shared.IServices.TickableExecutors
+﻿using Delta;
+namespace DVG.SkyPirates.Shared.IServices.TickableExecutors
 {
     public interface IDeltaTickable
     {

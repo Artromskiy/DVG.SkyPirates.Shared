@@ -19,6 +19,8 @@
   
   <ItemGroup>
     <PackageReference Include="Arch-PureECS" Version="2.1.0" />
+    <PackageReference Include="DeltaECS" Version="0.0.33" />
+    <PackageReference Include="DeltaMaths" Version="0.0.14" />
     <PackageReference Include="RiptideNetworking.Riptide" Version="2.2.1" />
     <PackageReference Include="SimpleInjector" Version="5.5.0" />
     <PackageReference Include="System.Collections.Immutable" Version="10.0.3" />
@@ -29,7 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj" />
-    <ProjectReference Include="..\..\GLSH\Core\GLSH.csproj" />
   </ItemGroup>
 
 </Project>

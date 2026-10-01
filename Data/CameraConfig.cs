@@ -1,3 +1,4 @@
+using Delta;
 namespace DVG.SkyPirates.Shared.Data
 {
     public class CameraConfig

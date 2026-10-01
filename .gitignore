@@ -57,3 +57,5 @@ nunit-*.xml
 # Unity
 *.meta
 *.asmdef
+!SkyPirates.Shared.asmdef
+!SkyPirates.Shared.asmdef.meta
