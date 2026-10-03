@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
@@ -22,11 +23,13 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly Dictionary<int, SortedList<GoodsId, int>> _goodsPerUnit = new();
         private readonly Dictionary<int, List<SyncId>> _unitsPerSquad = new();
 
-        private readonly QueryDescription _unitsDesc = new QueryDescription().
-            WithAll<SquadMember, SyncId, GoodsDrop>().Alive().NotDisabled();
+        private Query? _unitsDescCache;
+        private Query _unitsDesc => _unitsDescCache ??= _world.
+            WhereAll<SquadMember, SyncId, GoodsDrop>().Alive().NotDisabled();
 
-        private readonly QueryDescription _squadDesc = new QueryDescription().
-            WithAll<Squad, SyncId, GoodsDrop, SquadMemberCount>().Alive().NotDisabled();
+        private Query? _squadDescCache;
+        private Query _squadDesc => _squadDescCache ??= _world.
+            WhereAll<Squad, SyncId, GoodsDrop, SquadMemberCount>().Alive().NotDisabled();
 
         public SquadGoodsDistributionSystem(World world)
         {
@@ -42,11 +45,52 @@ namespace DVG.SkyPirates.Shared.Systems
             foreach (var item in _goodsPerUnit)
                 item.Value.Clear();
 
-            var squadMembersQuery = new SquadMembersCollectQuery(_goodsPerSquad, _unitsPerSquad);
-            _world.InlineQuery<SquadMembersCollectQuery, SquadMember, GoodsDrop, SyncId>(_unitsDesc, ref squadMembersQuery);
+            (Dictionary<int, Dictionary<GoodsId, int>> GoodsPerSquad, Dictionary<int, List<SyncId>> UnitsPerSquad) collectState = (_goodsPerSquad, _unitsPerSquad);
+            var unitsDesc = _unitsDesc;
+            _world.ForEach<(Dictionary<int, Dictionary<GoodsId, int>> GoodsPerSquad, Dictionary<int, List<SyncId>> UnitsPerSquad), SquadMember, GoodsDrop, SyncId>(in unitsDesc, ref collectState,
+                static (ref (Dictionary<int, Dictionary<GoodsId, int>> GoodsPerSquad, Dictionary<int, List<SyncId>> UnitsPerSquad) state, ref SquadMember member, ref GoodsDrop drop, ref SyncId syncId) =>
+                {
+                    if (drop.Values != null)
+                    {
+                        if (!state.GoodsPerSquad.TryGetValue(member.SquadId, out var squadGoods))
+                            state.GoodsPerSquad[member.SquadId] = squadGoods = new();
+
+                        foreach (var item in drop.Values)
+                        {
+                            if (item.Value <= 0)
+                                continue;
+
+                            if (!squadGoods.TryAdd(item.Key, item.Value))
+                                squadGoods[item.Key] += item.Value;
+                        }
+                    }
+
+                    if (!state.UnitsPerSquad.TryGetValue(member.SquadId, out var units))
+                        state.UnitsPerSquad[member.SquadId] = units = new();
+                    units.Add(syncId);
+                });
             // will redistribute only if there's members
-            var squadGoodsQuery = new SquadGoodsCollectQuery(_goodsPerSquad);
-            _world.InlineQuery<SquadGoodsCollectQuery, GoodsDrop, SyncId, SquadMemberCount>(_squadDesc, ref squadGoodsQuery);
+            var goodsPerSquad = _goodsPerSquad;
+            var squadDesc = _squadDesc;
+            _world.ForEach<Dictionary<int, Dictionary<GoodsId, int>>, GoodsDrop, SyncId, SquadMemberCount>(in squadDesc, ref goodsPerSquad,
+                static (ref Dictionary<int, Dictionary<GoodsId, int>> goodsPerSquad, ref GoodsDrop goods, ref SyncId syncId, ref SquadMemberCount memberCount) =>
+                {
+                    if (memberCount.Value == 0)
+                        return;
+
+                    if (!goodsPerSquad.TryGetValue(syncId, out var squadGoods))
+                        goodsPerSquad[syncId] = squadGoods = new();
+
+                    foreach (var item in goods.Values)
+                    {
+                        if (item.Value <= 0)
+                            continue;
+
+                        if (!squadGoods.TryAdd(item.Key, item.Value))
+                            squadGoods[item.Key] += item.Value;
+                    }
+                    goods = new() { Values = ImmutableSortedDictionary<GoodsId, int>.Empty };
+                });
 
             foreach (var item in _unitsPerSquad)
                 item.Value.Sort((u1, u2) => u1.Value.CompareTo(u2.Value));
@@ -85,96 +129,21 @@ namespace DVG.SkyPirates.Shared.Systems
                 }
             }
 
-            var distributeQuery = new SquadMembersDistributeQuery(_goodsPerUnit);
-            _world.InlineQuery<SquadMembersDistributeQuery, SyncId, GoodsDrop>(_unitsDesc, ref distributeQuery);
-        }
-
-        private readonly struct SquadMembersDistributeQuery : IForEach<SyncId, GoodsDrop>
-        {
-            private readonly Dictionary<int, SortedList<GoodsId, int>> _goodsPerUnit;
-
-            public SquadMembersDistributeQuery(Dictionary<int, SortedList<GoodsId, int>> goodsPerUnit)
-            {
-                _goodsPerUnit = goodsPerUnit;
-            }
-
-            public void Update(ref SyncId syncId, ref GoodsDrop drop)
-            {
-                if (!_goodsPerUnit.TryGetValue(syncId, out var distributedDrop) ||
-                    distributedDrop.Count == 0)
+            var goodsPerUnit = _goodsPerUnit;
+            _world.ForEach<Dictionary<int, SortedList<GoodsId, int>>, SyncId, GoodsDrop>(in unitsDesc, ref goodsPerUnit,
+                static (ref Dictionary<int, SortedList<GoodsId, int>> goodsPerUnit, ref SyncId syncId, ref GoodsDrop drop) =>
                 {
-                    drop = new() { Values = ImmutableSortedDictionary<GoodsId, int>.Empty };
-                    return;
-                }
-
-                if (drop.Values?.SequenceEqual(distributedDrop, KeyValuePairComparer<GoodsId, int>.Default) ?? false)
-                    return;
-
-                drop = new() { Values = distributedDrop.ToImmutableSortedDictionary() };
-            }
-        }
-
-        private readonly struct SquadGoodsCollectQuery : IForEach<GoodsDrop, SyncId, SquadMemberCount>
-        {
-            private readonly Dictionary<int, Dictionary<GoodsId, int>> _goodsPerSquad;
-
-            public SquadGoodsCollectQuery(Dictionary<int, Dictionary<GoodsId, int>> goodsPerSquad)
-            {
-                _goodsPerSquad = goodsPerSquad;
-            }
-
-            public void Update(ref GoodsDrop goods, ref SyncId syncId, ref SquadMemberCount memberCount)
-            {
-                if (memberCount.Value == 0)
-                    return;
-
-                if (!_goodsPerSquad.TryGetValue(syncId, out var squadGoods))
-                    _goodsPerSquad[syncId] = squadGoods = new();
-
-                foreach (var item in goods.Values)
-                {
-                    if (item.Value <= 0)
-                        continue;
-
-                    if (!squadGoods.TryAdd(item.Key, item.Value))
-                        squadGoods[item.Key] += item.Value;
-                }
-                goods = new() { Values = ImmutableSortedDictionary<GoodsId, int>.Empty };
-            }
-        }
-
-        private readonly struct SquadMembersCollectQuery : IForEach<SquadMember, GoodsDrop, SyncId>
-        {
-            private readonly Dictionary<int, Dictionary<GoodsId, int>> _goodsPerSquad;
-            private readonly Dictionary<int, List<SyncId>> _unitsPerSquad;
-
-            public SquadMembersCollectQuery(Dictionary<int, Dictionary<GoodsId, int>> goodsPerSquad, Dictionary<int, List<SyncId>> unitsPerSquad)
-            {
-                _goodsPerSquad = goodsPerSquad;
-                _unitsPerSquad = unitsPerSquad;
-            }
-
-            public void Update(ref SquadMember member, ref GoodsDrop drop, ref SyncId syncId)
-            {
-                if (drop.Values != null)
-                {
-                    if (!_goodsPerSquad.TryGetValue(member.SquadId, out var squadGoods))
-                        _goodsPerSquad[member.SquadId] = squadGoods = new();
-
-                    foreach (var item in drop.Values)
+                    if (!goodsPerUnit.TryGetValue(syncId, out var distributedDrop) || distributedDrop.Count == 0)
                     {
-                        if (item.Value <= 0)
-                            continue;
-
-                        if (!squadGoods.TryAdd(item.Key, item.Value))
-                            squadGoods[item.Key] += item.Value;
+                        drop = new() { Values = ImmutableSortedDictionary<GoodsId, int>.Empty };
+                        return;
                     }
-                }
 
-                if (!_unitsPerSquad.TryGetValue(member.SquadId, out var list))
-                    _unitsPerSquad[member.SquadId] = list = new();
-                list.Add(syncId);
-            }
+                    if (drop.Values?.SequenceEqual(distributedDrop, KeyValuePairComparer<GoodsId, int>.Default) ?? false)
+                        return;
+
+                    drop = new() { Values = distributedDrop.ToImmutableSortedDictionary() };
+                });
         }
     }
 }

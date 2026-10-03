@@ -1,30 +1,43 @@
-﻿using Arch.Core;
-using DVG.Collections;
+﻿using System;
+using System.Collections.Generic;
+using Delta.ECS;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
-using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
     public class SnapshotHistorySystem
     {
-        private class Description<T> where T : struct
-        {
-            public QueryDescription Desc = new QueryDescription().
-                WithAll<History<T>, History<SyncId>, History<Alive>>();
-        }
-
-        private readonly GenericCreator _desc = new();
-
+        private readonly List<Entity> _entitiesCache = new();
+        private readonly List<Entity> _snapshotEntitiesCache = new();
         private readonly World _world;
+        private readonly WorldComponentIds _componentIds;
+        private readonly HistoryComponentIds _aliveIds;
+        private readonly HistoryComponentIds _syncIdIds;
+        private readonly Query[] _packQueries;
         private readonly IEntityFactory _entityFactory;
         private readonly IEntityRegistry _entityRegistry;
 
         public SnapshotHistorySystem(World world, IEntityFactory entityFactory, IEntityRegistry entityRegistry)
         {
             _world = world;
+            _componentIds = WorldComponentIds.For(world);
+            _aliveIds = _componentIds.GetHistory(world.Layouts.GetPrimary(typeof(Alive)));
+            _syncIdIds = _componentIds.GetHistory(world.Layouts.GetPrimary(typeof(SyncId)));
+            var historyComponents = _componentIds.History;
+            _packQueries = new Query[historyComponents.Length];
+            Span<ComponentId> identityComponents = stackalloc ComponentId[2] { _aliveIds.History, _syncIdIds.History };
+            var identityQuery = _world.WhereAll(identityComponents);
+            for (var i = 0; i < historyComponents.Length; i++)
+            {
+                var component = historyComponents[i];
+                _packQueries[i] = component.Component == _aliveIds.Component || component.Component == _syncIdIds.Component
+                    ? identityQuery
+                    : CreateComponentPackQuery(component);
+            }
             _entityFactory = entityFactory;
             _entityRegistry = entityRegistry;
         }
@@ -32,8 +45,21 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public WorldData GetSnapshot(int tick)
         {
             var worldData = new WorldData();
-            var getAction = new GetAction(_world, worldData, _desc, tick);
-            HistoryComponentsRegistry.ForEachData(ref getAction);
+            var context = new PackState { Components = worldData, Tick = tick };
+            var historyComponents = _componentIds.History;
+
+            for (var i = 0; i < historyComponents.Length; i++)
+            {
+                var component = historyComponents[i];
+                var query = _packQueries[i];
+                var functor = component.Component == _aliveIds.Component
+                    ? typeof(PackAliveHistory<>)
+                    : component.Component == _syncIdIds.Component
+                        ? typeof(PackSyncIdHistory<>)
+                        : typeof(PackComponentHistory<>);
+                _world.ForEach(in query, ref context, component.Component, functor);
+            }
+
             return worldData;
         }
 
@@ -45,95 +71,137 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             foreach (var syncIdReserve in snapshot.Get<SyncIdReserve>().Values)
                 _entityRegistry.Reserve(syncIdReserve);
 
+            _entitiesCache.Clear();
+            _snapshotEntitiesCache.Clear();
+            var alive = snapshot.Get<Alive>();
+            Span<ComponentId> aliveComponent = stackalloc ComponentId[1] { _aliveIds.Component };
             foreach (var syncId in snapshot.Get<SyncId>().Values)
             {
-                _entityFactory.Create(new()
+                var entity = _entityFactory.Create(new()
                 {
                     SyncId = syncId,
                     RandomSeed = default,
                     SyncIdReserve = default,
                 });
+
+                _snapshotEntitiesCache.Add(entity);
+                if (!alive.ContainsKey(syncId.Value))
+                    _world.Remove(entity, aliveComponent);
             }
-            var unpackAction = new ApplyAction(_entityRegistry, snapshot, _world);
-            HistoryComponentsRegistry.ForEachData(ref unpackAction);
-            _world.TrimExcess();
+
+            var snapshotEntities = _snapshotEntitiesCache.ToArray();
+            var historyComponents = _componentIds.History;
+            for (var i = 0; i < historyComponents.Length; i++)
+                ApplyComponentSnapshot(snapshot, historyComponents[i], snapshotEntities);
+
         }
 
-        private readonly struct GetAction : IStructGenericAction
+        private void ApplyComponentSnapshot(WorldData snapshot, HistoryComponentIds component, Entity[] snapshotEntities)
         {
-            private readonly GenericCreator _desc;
-            private readonly WorldData _worldData;
-            private readonly World _world;
-            private readonly int _tick;
+            _entitiesCache.Clear();
+            var state = new ApplySnapshotState(_world, component.Component, snapshot, _entitiesCache);
+            _world.ForEachEntity(snapshotEntities, ref state, component.Component, typeof(SelectSnapshotEntities<>));
 
-            public GetAction(World world, WorldData entities, GenericCreator desc, int tick)
-            {
-                _world = world;
-                _worldData = entities;
-                _desc = desc;
-                _tick = tick;
-            }
+            if (_entitiesCache.Count == 0)
+                return;
 
-            public readonly void Invoke<T>() where T : struct
-            {
-                var components = _worldData.Get<T>();
-                var query = new PackQuery<T>(components, _tick);
-                var desc = _desc.Get<Description<T>>().Desc;
-                _world.InlineQuery<PackQuery<T>, History<T>, History<SyncId>, History<Alive>>(desc, ref query);
-            }
-
-            private readonly struct PackQuery<T> : IForEach<History<T>, History<SyncId>, History<Alive>> where T : struct
-            {
-                private readonly Dictionary<int, T> _components;
-                private readonly int _tick;
-
-                public PackQuery(Dictionary<int, T> components, int tick)
-                {
-                    _components = components;
-                    _tick = tick;
-                }
-
-                public void Update(ref History<T> history, ref History<SyncId> id, ref History<Alive> alive)
-                {
-                    var historyComponent = history[_tick];
-                    if (!historyComponent.HasValue)
-                        return;
-
-                    var isAlive = alive[_tick].HasValue;
-                    if (!isAlive)
-                        return;
-
-                    var idComponent = id[_tick];
-                    if (!idComponent.HasValue)
-                        return;
-
-                    _components[idComponent.Value] = historyComponent.Value;
-                }
-            }
+            Entity[] entities = _entitiesCache.ToArray();
+            _world.Add(entities, component.Component);
+            _world.ForEachEntity(entities, ref state, component.Component, typeof(ApplySnapshotComponent<>));
         }
 
-        private readonly struct ApplyAction : IStructGenericAction
+        private Query CreateComponentPackQuery(HistoryComponentIds component)
         {
-            private readonly IEntityRegistry _entityRegistryService;
-            private readonly WorldData _worldData;
-            private readonly World _world;
-
-            public ApplyAction(IEntityRegistry entityRegistryService, WorldData worldData, World world)
+            Span<ComponentId> all = stackalloc ComponentId[3]
             {
-                _entityRegistryService = entityRegistryService;
-                _worldData = worldData;
-                _world = world;
-            }
+                component.History,
+                _syncIdIds.History,
+                _aliveIds.History,
+            };
+            return _world.WhereAll(all);
+        }
 
-            public void Invoke<T>() where T : struct
+        internal struct PackState
+        {
+            public WorldData Components;
+            public int Tick;
+        }
+
+        internal struct PackAliveHistory<T> : IForEachContext<PackState> where T : struct
+        {
+            public void Invoke(ref PackState state, ref History<Alive> alive, ref History<SyncId> syncId)
             {
-                foreach (var (id, data) in _worldData.Get<T>())
-                {
-                    _entityRegistryService.TryGet(new() { Value = id }, out var entity);
-                    _world.AddOrGet<T>(entity) = data;
-                }
+                var aliveComponent = alive[state.Tick];
+                if (!aliveComponent.HasValue)
+                    return;
+
+                var idComponent = syncId[state.Tick];
+                if (idComponent.HasValue)
+                    state.Components.Get<T>()[idComponent.Value.Value] = (T)(object)aliveComponent.Value;
             }
         }
+
+        internal struct PackSyncIdHistory<T> : IForEachContext<PackState> where T : struct
+        {
+            public void Invoke(ref PackState state, ref History<SyncId> syncId, ref History<Alive> alive)
+            {
+                var aliveComponent = alive[state.Tick];
+                if (!aliveComponent.HasValue)
+                    return;
+
+                var idComponent = syncId[state.Tick];
+                if (idComponent.HasValue)
+                    state.Components.Get<T>()[idComponent.Value.Value] = (T)(object)idComponent.Value;
+            }
+        }
+
+        internal struct PackComponentHistory<T> : IForEachContext<PackState> where T : struct
+        {
+            public void Invoke(ref PackState state, ref History<T> history, ref History<SyncId> id, ref History<Alive> alive)
+            {
+                var historyComponent = history[state.Tick];
+                if (!historyComponent.HasValue || !alive[state.Tick].HasValue)
+                    return;
+
+                var idComponent = id[state.Tick];
+                if (idComponent.HasValue)
+                    state.Components.Get<T>()[idComponent.Value.Value] = historyComponent.Value;
+            }
+        }
+
+        internal struct ApplySnapshotState
+        {
+            public readonly World World;
+            public readonly ComponentId Component;
+            public readonly WorldData Snapshot;
+            public readonly List<Entity> Entities;
+
+            public ApplySnapshotState(World world, ComponentId component, WorldData snapshot, List<Entity> entities)
+            {
+                World = world;
+                Component = component;
+                Snapshot = snapshot;
+                Entities = entities;
+            }
+        }
+
+        internal struct SelectSnapshotEntities<T> : IForEachContextEntity<ApplySnapshotState> where T : struct
+        {
+            public void Invoke(ref ApplySnapshotState state, Entity entity)
+            {
+                if (state.Snapshot.Get<T>().ContainsKey(state.World.GetRef<SyncId>(entity).Value))
+                    state.Entities.Add(entity);
+            }
+        }
+
+        internal struct ApplySnapshotComponent<T> : IForEachContextEntity<ApplySnapshotState> where T : struct
+        {
+            public void Invoke(ref ApplySnapshotState state, Entity entity)
+            {
+                var syncId = state.World.GetRef<SyncId>(entity).Value;
+                state.World.GetRef<T>(entity, state.Component) = state.Snapshot.Get<T>()[syncId];
+            }
+        }
+
     }
-
 }

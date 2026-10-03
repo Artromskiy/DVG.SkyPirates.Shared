@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -8,8 +9,9 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class DirectionMoveSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Direction, MaxSpeed>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<Position, Direction, MaxSpeed>().Alive().NotDisabled();
 
         private readonly World _world;
         public DirectionMoveSystem(World world)
@@ -19,24 +21,14 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new MoveQuery(deltaTime);
-            _world.InlineQuery<MoveQuery, Position, Direction, MaxSpeed>(_desc, ref query);
-        }
-
-        private readonly struct MoveQuery : IForEach<Position, Direction, MaxSpeed>
-        {
-            private readonly fix _deltaTime;
-
-            public MoveQuery(fix deltaTime)
-            {
-                _deltaTime = deltaTime;
-            }
-
-            public readonly void Update(ref Position position, ref Direction direction, ref MaxSpeed maxSpeed)
-            {
-                var deltaMove = ((fix2)direction * maxSpeed * _deltaTime).x_y;
-                position += deltaMove;
-            }
+            var delta = deltaTime;
+            var desc = _desc;
+            _world.ForEach<fix, Position, Direction, MaxSpeed>(in desc, ref delta,
+                static (ref fix deltaTime, ref Position position, ref Direction direction, ref MaxSpeed maxSpeed) =>
+                {
+                    var deltaMove = ((fix2)direction * maxSpeed * deltaTime).x_y;
+                    position += deltaMove;
+                });
         }
     }
 }

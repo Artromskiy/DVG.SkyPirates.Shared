@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Components;
 using DVG.Core.Collections;
 using DVG.SkyPirates.Shared.Components.Framed;
@@ -12,11 +13,13 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class SquadMemberDestinationSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _unitsDesc = new QueryDescription().
-            WithAll<SquadMember, Destination>().Alive().NotDisabled();
+        private Query? _unitsDescCache;
+        private Query _unitsDesc => _unitsDescCache ??= _world.
+            WhereAll<SquadMember, SyncId, Destination>().Alive().NotDisabled();
 
-        private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad>().Alive().NotDisabled();
+        private Query? _squadsDescCache;
+        private Query _squadsDesc => _squadsDescCache ??= _world.
+            WhereAll<Squad, SyncId, Position, Rotation, SquadMemberCount>().Alive().NotDisabled();
 
         private readonly World _world;
         private readonly PackedCirclesConfig _circlesConfig;
@@ -44,11 +47,21 @@ namespace DVG.SkyPirates.Shared.Systems
             _dataPerSquad.Clear();
             _unitsPerSquad.Clear();
 
-            var collectSquadsQuery = new CollectDataPerSquadQuery(_dataPerSquad);
-            _world.InlineQuery<CollectDataPerSquadQuery, SyncId, Position, Rotation, SquadMemberCount>(_squadsDesc, ref collectSquadsQuery);
+            var dataPerSquad = _dataPerSquad;
+            var squadsDesc = _squadsDesc;
+            _world.ForEach<Lookup<SquadData>, SyncId, Position, Rotation, SquadMemberCount>(in squadsDesc, ref dataPerSquad,
+                static (ref Lookup<SquadData> data, ref SyncId syncId, ref Position position, ref Rotation rotation, ref SquadMemberCount memberCount) =>
+                    data[syncId.Value] = new(position, rotation, memberCount));
 
-            var collectUnitsQuery = new CollectUnitsPerSquadQuery(_unitsPerSquad, _unitsCache);
-            _world.InlineQuery<CollectUnitsPerSquadQuery, SquadMember, SyncId>(_unitsDesc, ref collectUnitsQuery);
+            (Dictionary<int, List<SyncId>> UnitsPerSquad, Queue<List<SyncId>> UnitsCache) collectUnitsState = (_unitsPerSquad, _unitsCache);
+            var unitsDesc = _unitsDesc;
+            _world.ForEach<(Dictionary<int, List<SyncId>> UnitsPerSquad, Queue<List<SyncId>> UnitsCache), SquadMember, SyncId>(in unitsDesc, ref collectUnitsState,
+                static (ref (Dictionary<int, List<SyncId>> UnitsPerSquad, Queue<List<SyncId>> UnitsCache) state, ref SquadMember member, ref SyncId syncId) =>
+                {
+                    if (!state.UnitsPerSquad.TryGetValue(member.SquadId, out var list))
+                        state.UnitsPerSquad[member.SquadId] = state.UnitsCache.TryDequeue(out list) ? list : list = new(8); // really wtf?
+                    list.Add(syncId);
+                });
 
             foreach (var item in _unitsPerSquad)
             {
@@ -59,76 +72,20 @@ namespace DVG.SkyPirates.Shared.Systems
                 }
             }
 
-            var applyQuery = new ApplySquadMembersDestinationQuery(_orderPerUnit, _dataPerSquad, _circlesConfig);
-            _world.InlineQuery<ApplySquadMembersDestinationQuery, SyncId, SquadMember, Destination>
-                (_unitsDesc, ref applyQuery);
+            (Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig) applyState = (_orderPerUnit, _dataPerSquad, _circlesConfig);
+            _world.ForEach<(Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig), SyncId, SquadMember, Destination>(in unitsDesc, ref applyState,
+                static (ref (Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig) state, ref SyncId syncId, ref SquadMember member, ref Destination destination) =>
+                {
+                    var squad = state.DataPerSquad[member.SquadId];
+                    var circles = state.CirclesConfig[squad.MemberCount];
+                    var order = state.OrderPerUnit[syncId.Value];
+                    var local = circles.Points[order];
+                    destination.Position = squad.Position + local.x_y;
+                    destination.Rotation = squad.Rotation;
+                });
         }
 
-        private readonly struct CollectDataPerSquadQuery : IForEach<SyncId, Position, Rotation, SquadMemberCount>
-        {
-            private readonly Lookup<SquadData> _map;
-
-            public CollectDataPerSquadQuery(Lookup<SquadData> map)
-            {
-                _map = map;
-            }
-
-            public void Update(ref SyncId syncId, ref Position position, ref Rotation rotation, ref SquadMemberCount memberCount)
-            {
-                _map[syncId.Value] = new(position, rotation, memberCount);
-            }
-        }
-
-        private readonly struct CollectUnitsPerSquadQuery : IForEach<SquadMember, SyncId>
-        {
-            private readonly Dictionary<int, List<SyncId>> _map;
-            private readonly Queue<List<SyncId>> _unitsCache;
-
-            public CollectUnitsPerSquadQuery(Dictionary<int, List<SyncId>> map, Queue<List<SyncId>> unitsCache)
-            {
-                _map = map;
-                _unitsCache = unitsCache;
-            }
-
-            public void Update(ref SquadMember member, ref SyncId syncId)
-            {
-                if (!_map.TryGetValue(member.SquadId, out var list))
-                    _map[member.SquadId] = _unitsCache.TryDequeue(out list) ? list : list = new(8); // really wtf?
-
-                list.Add(syncId);
-            }
-        }
-
-        private readonly struct ApplySquadMembersDestinationQuery
-            : IForEach<SyncId, SquadMember, Destination>
-        {
-            private readonly Lookup<int> _orderPerUnit;
-            private readonly Lookup<SquadData> _dataPerSquad;
-            private readonly PackedCirclesConfig _circlesConfig;
-
-            public ApplySquadMembersDestinationQuery(Lookup<int> orderPerUnit, Lookup<SquadData> dataPerSquad, PackedCirclesConfig circlesConfig)
-            {
-                _orderPerUnit = orderPerUnit;
-                _dataPerSquad = dataPerSquad;
-                _circlesConfig = circlesConfig;
-            }
-
-            // Get squad position, offset from it, set as destination
-            public void Update(
-                ref SyncId syncId,
-                ref SquadMember member,
-                ref Destination destination)
-            {
-                var unitsCount = _dataPerSquad[member.SquadId].MemberCount;
-                var circles = _circlesConfig[unitsCount];
-                var order = _orderPerUnit[syncId.Value];
-                var local = circles.Points[order];
-                destination.Position = _dataPerSquad[member.SquadId].Position + local.x_y;
-                destination.Rotation = _dataPerSquad[member.SquadId].Rotation;
-            }
-        }
-
-        private readonly struct SquadData
+        internal readonly struct SquadData
         {
             public readonly Position Position;
             public readonly Rotation Rotation;

@@ -1,4 +1,4 @@
-﻿using Arch.Core;
+﻿using Delta.ECS;
 using DVG.Components;
 
 namespace DVG.SkyPirates.Shared.IServices

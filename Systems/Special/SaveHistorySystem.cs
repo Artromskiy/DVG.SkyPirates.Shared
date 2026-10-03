@@ -1,154 +1,155 @@
-﻿using Arch.Core;
-using DVG.Collections;
+﻿using System;
+using Delta;
+using Delta.ECS;
 using DVG.Components;
+using DVG.SkyPirates.Shared.Ecs;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
     internal sealed class SaveHistorySystem
     {
-        private sealed class Description<T> where T : struct
-        {
-            public readonly QueryDescription saveHasCmpDesc = new QueryDescription().
-                WithAll<History<T>, T>().NotDisabled().Alive();
-            public readonly QueryDescription saveNoCmpDesc = new QueryDescription().
-                WithAll<History<T>>().WithNone<T>().NotDisabled().Alive();
-
-            public readonly QueryDescription saveBaselineDesc = new QueryDescription().
-                WithAll<History<T>, T>().Alive();
-        }
-
-        private readonly QueryDescription _setHasAliveDesc = new QueryDescription().
-            WithAll<History<Alive>, Alive>();
-        private readonly QueryDescription _setNoAliveDesc = new QueryDescription().
-            WithAll<History<Alive>>().WithNone<Alive>();
-
-        private readonly GenericCreator _desc = new();
         private readonly World _world;
+        private readonly WorldComponentIds _componentIds;
+        private readonly HistoryComponentIds _aliveIds;
+        private readonly QuerySet[] _queries;
+
+        private Query? _hasAliveCache;
+        private Query _hasAlive => _hasAliveCache ??= CreateHasAliveQuery();
+        private Query? _noAliveCache;
+        private Query _noAlive => _noAliveCache ??= CreateNoAliveQuery();
 
         public SaveHistorySystem(World world)
         {
             _world = world;
+            _componentIds = WorldComponentIds.For(world);
+            _aliveIds = _componentIds.GetHistory(world.Layouts.GetPrimary(typeof(Alive)));
+            _queries = Array.ConvertAll(_componentIds.History, component => new QuerySet(world, component));
         }
 
         public void Save(int tick)
         {
-            var addAction = new AddHistoryAction(_world);
-            HistoryComponentsRegistry.ForEachData(ref addAction);
+            var historyComponents = _componentIds.History;
+            for (var i = 0; i < historyComponents.Length; i++)
+                AddHistory(historyComponents[i], _queries[i]);
 
-            var saveAction = new SaveHistoryAction(_desc, _world, tick);
-            HistoryComponentsRegistry.ForEachData(ref saveAction);
+            for (var i = 0; i < historyComponents.Length; i++)
+            {
+                var component = historyComponents[i];
+                if (component.Component != _aliveIds.Component)
+                    SaveComponentHistory(component, _queries[i], tick);
+            }
 
-            var setHasDisposing = new SetHasHistoryQuery<Alive>(tick);
-            var setNoDisposing = new SetNoHistoryQuery<Alive>(tick);
-
-            _world.InlineQuery<SetHasHistoryQuery<Alive>, History<Alive>, Alive>
-                (_setHasAliveDesc, ref setHasDisposing);
-            _world.InlineQuery<SetNoHistoryQuery<Alive>, History<Alive>>
-                (_setNoAliveDesc, ref setNoDisposing);
+            var hasAlive = _hasAlive;
+            var noAlive = _noAlive;
+            var aliveId = _aliveIds.Component;
+            _world.ForEach(in hasAlive, ref tick, aliveId, typeof(SaveHistory<>));
+            _world.ForEach(in noAlive, ref tick, aliveId, typeof(SaveMissingHistory<>));
         }
 
         public void SaveBaseline()
         {
-            var addAction = new AddHistoryAction(_world);
-            HistoryComponentsRegistry.ForEachData(ref addAction);
+            var historyComponents = _componentIds.History;
+            for (var i = 0; i < historyComponents.Length; i++)
+                AddHistory(historyComponents[i], _queries[i]);
 
-            var saveAction = new SaveBaselineHistoryAction(_desc, _world);
-            HistoryComponentsRegistry.ForEachData(ref saveAction);
-        }
-
-        private readonly struct AddHistoryAction : IStructGenericAction
-        {
-            private readonly World _world;
-
-            public AddHistoryAction(World world)
+            for (var i = 0; i < historyComponents.Length; i++)
             {
-                _world = world;
-            }
-
-            public void Invoke<T>() where T : struct
-            {
-                _world.AddQuery((ref T has, ref History<T> history) =>
-                    history = new History<T>(4, Constants.MaxHistoryTicks));
+                var component = historyComponents[i];
+                if (component.Component != _aliveIds.Component)
+                    SaveBaseline(component, _queries[i]);
             }
         }
 
-        private readonly struct SaveHistoryAction : IStructGenericAction
+        private void AddHistory(HistoryComponentIds component, QuerySet queries)
         {
-            private readonly GenericCreator _descriptions;
-            private readonly World _world;
-            private readonly int _tick;
+            var missingHistory = queries.MissingHistory;
+            Span<ComponentId> historyComponent = stackalloc ComponentId[1] { component.History };
+            _world.Add(in missingHistory, historyComponent);
 
-            public SaveHistoryAction(GenericCreator descriptions, World world, int tick)
-            {
-                _descriptions = descriptions;
-                _world = world;
-                _tick = tick;
-            }
-
-            public void Invoke<T>() where T : struct
-            {
-                if (typeof(T) == typeof(Alive))
-                    return;
-                var desc = _descriptions.Get<Description<T>>();
-                var saveHasQuery = new SetHasHistoryQuery<T>(_tick);
-                var saveNoQuery = new SetNoHistoryQuery<T>(_tick);
-                var saveHasCmpDesc = desc.saveHasCmpDesc;
-                var saveNoCmpDesc = desc.saveNoCmpDesc;
-                _world.InlineQuery<SetHasHistoryQuery<T>, History<T>, T>(in saveHasCmpDesc, ref saveHasQuery);
-                _world.InlineQuery<SetNoHistoryQuery<T>, History<T>>(in saveNoCmpDesc, ref saveNoQuery);
-            }
+            var withHistory = queries.WithHistory;
+            _world.ForEach(in withHistory, component.Component, typeof(InitializeHistory<>));
         }
 
-        private readonly struct SetHasHistoryQuery<T> : IForEach<History<T>, T>
-            where T : struct
+        private void SaveComponentHistory(HistoryComponentIds component, QuerySet queries, int currentTick)
         {
-            private readonly int _tick;
-            public SetHasHistoryQuery(int tick) => _tick = tick;
+            var saveHas = queries.SaveHas;
+            var saveMissing = queries.SaveMissing;
+            var tick = currentTick;
 
-            public readonly void Update(ref History<T> history, ref T component) =>
-                history[_tick] = component;
+            _world.ForEach(in saveHas, ref tick, component.Component, typeof(SaveHistory<>));
+            _world.ForEach(in saveMissing, ref tick, component.Component, typeof(SaveMissingHistory<>));
         }
 
-        private readonly struct SetNoHistoryQuery<T> : IForEach<History<T>>
-            where T : struct
+        private void SaveBaseline(HistoryComponentIds component, QuerySet queries)
         {
-            private readonly int _tick;
-            public SetNoHistoryQuery(int tick) => _tick = tick;
+            var saveHas = queries.BaselineHas;
+            var tick = int.MinValue;
 
-            public void Update(ref History<T> history) =>
-                history[_tick] = null;
+            _world.ForEach(in saveHas, ref tick, component.Component, typeof(SaveBaselineHistory<>));
         }
 
-
-        private readonly struct SaveBaselineHistoryAction : IStructGenericAction
+        private Query CreateHasAliveQuery()
         {
-            private readonly GenericCreator _descriptions;
-            private readonly World _world;
+            Span<ComponentId> components = stackalloc ComponentId[2] { _aliveIds.History, _aliveIds.Component };
+            return _world.WhereAll(components);
+        }
 
-            public SaveBaselineHistoryAction(GenericCreator descriptions, World world)
-            {
-                _descriptions = descriptions;
-                _world = world;
-            }
+        private Query CreateNoAliveQuery()
+        {
+            return _world.WhereAll(_aliveIds.History).WhereNone(_aliveIds.Component);
+        }
 
-            public void Invoke<T>() where T : struct
+        private static Query CreateAllQuery(World world, ComponentId first, ComponentId second)
+        {
+            Span<ComponentId> components = stackalloc ComponentId[2] { first, second };
+            return world.WhereAll(components);
+        }
+
+        internal sealed class QuerySet
+        {
+            public readonly Query MissingHistory;
+            public readonly Query WithHistory;
+            public readonly Query SaveHas;
+            public readonly Query SaveMissing;
+            public readonly Query BaselineHas;
+
+            public QuerySet(World world, HistoryComponentIds component)
             {
-                if (typeof(T) == typeof(Alive))
-                    return;
-                var desc = _descriptions.Get<Description<T>>();
-                var saveQuery = new SetBaselineHistoryQuery<T>();
-                var saveDesc = desc.saveBaselineDesc;
-                _world.InlineQuery<SetBaselineHistoryQuery<T>, History<T>, T>(in saveDesc, ref saveQuery);
+                MissingHistory = world.WhereAll(component.Component).WhereNone(component.History);
+                WithHistory = CreateAllQuery(world, component.History, component.Component);
+                SaveHas = CreateAllQuery(world, component.History, component.Component).NotDisabled().Alive();
+                SaveMissing = world.WhereAll(component.History).WhereNone(component.Component).NotDisabled().Alive();
+                BaselineHas = CreateAllQuery(world, component.History, component.Component).Alive();
             }
         }
 
-        private readonly struct SetBaselineHistoryQuery<T> : IForEach<History<T>, T>
-            where T : struct
+        internal struct InitializeHistory<T> : IForEach where T : struct
         {
-            public readonly void Update(ref History<T> history, ref T component)
+            public void Invoke(ref History<T> history)
             {
-                history.Rollback(int.MinValue);
-                history[int.MinValue] = component;
+                if (history.Capacity == 0)
+                    history = new History<T>(4, Constants.MaxHistoryTicks);
+            }
+        }
+
+        internal struct SaveHistory<T> : IForEachContext<int> where T : struct
+        {
+            public void Invoke(ref int tick, ref History<T> history, in T component)
+                => history[tick] = component;
+        }
+
+        internal struct SaveMissingHistory<T> : IForEachContext<int> where T : struct
+        {
+            public void Invoke(ref int tick, ref History<T> history)
+                => history[tick] = null;
+        }
+
+        internal struct SaveBaselineHistory<T> : IForEachContext<int> where T : struct
+        {
+            public void Invoke(ref int tick, ref History<T> history, in T component)
+            {
+                history.Rollback(tick);
+                history[tick] = component;
             }
         }
 

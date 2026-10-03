@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Physics;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
@@ -13,12 +14,12 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class HexMapCollisionSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, CachePosition, Radius, Collide>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<Position, CachePosition, Radius, Collide>().Alive().NotDisabled();
 
         public static event Action<Segment[], fix2, fix2, fix>? OnFailedToSolve;
         private readonly ThreadLocal<List<Segment>> _segmentsCache = new(() => new List<Segment>());
-        private readonly Dictionary<int3, bool> _walkabilityCache = new();
         private readonly World _world;
 
         public HexMapCollisionSystem(World world)
@@ -32,85 +33,62 @@ namespace DVG.SkyPirates.Shared.Systems
             if (hexMap.Data == null)
                 return;
 
-            var query = new SolveCollsionQuery(hexMap, _segmentsCache, _walkabilityCache);
-            _world.InlineQuery<SolveCollsionQuery, Position, CachePosition, Radius>(_desc, ref query);
+            (HexMap HexMap, ThreadLocal<List<Segment>> SegmentsCache) state = (hexMap, _segmentsCache);
+            var desc = _desc;
+            _world.ForEach<(HexMap HexMap, ThreadLocal<List<Segment>> SegmentsCache), Position, CachePosition, Radius>(in desc, ref state,
+                static (ref (HexMap HexMap, ThreadLocal<List<Segment>> SegmentsCache) state, ref Position position, ref CachePosition cachePosition, ref Radius radius) =>
+                {
+                    var segments = state.SegmentsCache.Value;
+                    segments.Clear();
+                    FindSegments(state.HexMap, segments, cachePosition);
+                    Solvers.Segments = segments.ToArray();
+                    fix2 solvedPos = fix2.zero;
+                    bool failed = false;
+                    try
+                    {
+                        solvedPos = Solvers.CircleSlide(cachePosition.Value.xz, position.Value.xz - cachePosition.Value.xz, radius);
+                    }
+                    catch { failed = true; }
+                    position.Value.xz = solvedPos;
+                    failed |= !Walkable(state.HexMap, Hex.WorldToAxial(position.Value));
+                    if (failed)
+                    {
+                        position.Value = cachePosition;
+                        OnFailedToSolve?.Invoke(Solvers.Segments.ToArray(), cachePosition.Value.xz, position.Value.xz, radius);
+                    }
+                    //Trace.Assert(!failed, "Failed to solve collision");
+                });
         }
 
-        private readonly struct SolveCollsionQuery : IForEach<Position, CachePosition, Radius>
+        private static void FindSegments(HexMap hexMap, List<Segment> segments, fix3 from)
         {
-            private readonly HexMap _hexMap;
-            private readonly ThreadLocal<List<Segment>> _segmentsCache;
-            private readonly Dictionary<int3, bool> _walkabilityCache;
+            var axialFrom = Hex.WorldToAxial(from);
 
-            public SolveCollsionQuery(HexMap hexMap, ThreadLocal<List<Segment>> segmentsCache, Dictionary<int3, bool> walkabilityCache)
+            foreach (var item in Hex.AxialNear)
             {
-                _hexMap = hexMap;
-                _segmentsCache = segmentsCache;
-                _walkabilityCache = walkabilityCache;
-            }
+                var offsetted = item.x_y + axialFrom;
+                if (Walkable(hexMap, offsetted))
+                    continue;
 
-            public void Update(ref Position position, ref CachePosition cachePosition, ref Radius radius)
-            {
-                _segmentsCache.Value.Clear();
-                FindSegments(cachePosition);
-                Solvers.Segments = _segmentsCache.Value.ToArray();
-                fix2 solvedPos = fix2.zero;
-                bool failed = false;
-                try
+                var worldFloor = Hex.AxialToWorld(offsetted.xz);
+                for (int i = 0; i < Hex.Points.Length; i++)
                 {
-                    solvedPos = Solvers.CircleSlide(cachePosition.Value.xz, position.Value.xz - cachePosition.Value.xz, radius);
-                }
-                catch { failed = true; }
-                position.Value.xz = solvedPos;
-                failed |= !Walkable(Hex.WorldToAxial(position.Value));
-                if (failed)
-                {
-                    position.Value = cachePosition;
-                    OnFailedToSolve?.Invoke(Solvers.Segments.ToArray(), cachePosition.Value.xz, position.Value.xz, radius);
-                }
-                //Trace.Assert(!failed, "Failed to solve collision");
-            }
-
-            private void FindSegments(fix3 from)
-            {
-                var axialFrom = Hex.WorldToAxial(from);
-
-                foreach (var item in Hex.AxialNear)
-                {
-                    var offsetted = item.x_y + axialFrom;
-
-                    if (Walkable(offsetted))
-                    {
-                        continue;
-                    }
-
-                    var worldFloor = Hex.AxialToWorld(offsetted.xz);
-                    for (int i = 0; i < Hex.Points.Length; i++)
-                    {
-                        var s = worldFloor + Hex.Points[i];
-                        var e = worldFloor + Hex.Points[(i + 1) % Hex.Points.Length];
-                        _segmentsCache.Value.Add(new(s, e));
-                    }
+                    var s = worldFloor + Hex.Points[i];
+                    var e = worldFloor + Hex.Points[(i + 1) % Hex.Points.Length];
+                    segments.Add(new(s, e));
                 }
             }
+        }
 
-            private bool Walkable(int3 axial)
-            {
-                //if (_walkabilityCache.TryGetValue(axial, out var walkable))
-                //    return walkable;
-
-                bool zero = _hexMap.Data.ContainsKey(axial);
-                var up = new int3(0, 1, 0);
-                bool p1 = _hexMap.Data.ContainsKey(axial + up);
-                bool p2 = _hexMap.Data.ContainsKey(axial + up * 2);
-                bool p3 = _hexMap.Data.ContainsKey(axial + up * 3);
-                bool m1 = _hexMap.Data.ContainsKey(axial - up);
-                //return _walkabilityCache[axial] =
-                return
-                    (zero && !p1 && !p2) ||
-                    (p1 && !p2 && !p3) ||
-                    (m1 && !zero && !p1);
-            }
+        private static bool Walkable(HexMap hexMap, int3 axial)
+        {
+            bool zero = hexMap.Data.ContainsKey(axial);
+            var up = new int3(0, 1, 0);
+            bool p1 = hexMap.Data.ContainsKey(axial + up);
+            bool p2 = hexMap.Data.ContainsKey(axial + up * 2);
+            bool p3 = hexMap.Data.ContainsKey(axial + up * 3);
+            bool m1 = hexMap.Data.ContainsKey(axial - up);
+            return (zero && !p1 && !p2) || (p1 && !p2 && !p3) || (m1 && !zero && !p1);
         }
     }
 }

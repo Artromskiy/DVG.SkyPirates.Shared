@@ -1,4 +1,5 @@
-﻿using Arch.Core;
+﻿using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices;
 using System.Runtime.CompilerServices;
@@ -44,9 +45,7 @@ namespace DVG.SkyPirates.Shared.Services
             public readonly void Invoke<T>(T component) where T : struct
             {
                 if (_world.Has<T>(_entity))
-                {
-                    _world.Set(_entity, component);
-                }
+                    _world.GetRef<T>(_entity) = component;
             }
         }
 
@@ -87,12 +86,12 @@ namespace DVG.SkyPirates.Shared.Services
 
                 public void Invoke<To>() where To : struct
                 {
-                    if (_world.Has<To>(_entity))
-                    {
-                        var cmpFrom = _from;
-                        var cmpTo = Unsafe.As<From, To>(ref cmpFrom);
-                        _world.Set(_entity, cmpTo);
-                    }
+                    if (!_world.Has<To>(_entity))
+                        return;
+
+                    var cmpFrom = _from;
+                    var cmpTo = Unsafe.As<From, To>(ref cmpFrom);
+                    _world.GetRef<To>(_entity) = cmpTo;
                 }
             }
         }

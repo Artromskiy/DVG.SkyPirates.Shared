@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Components;
 using DVG.Core.Collections;
 using DVG.SkyPirates.Shared.Components.Framed;
@@ -10,11 +11,13 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class SquadMemberCounterSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _unitsDesc = new QueryDescription().
-            WithAll<SquadMember>().Alive().NotDisabled();
+        private Query? _unitsDescCache;
+        private Query _unitsDesc => _unitsDescCache ??= _world.
+            WhereAll<SquadMember>().Alive().NotDisabled();
 
-        private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SyncId>().Alive().NotDisabled();
+        private Query? _squadsDescCache;
+        private Query _squadsDesc => _squadsDescCache ??= _world.
+            WhereAll<Squad, SyncId, SquadMemberCount>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -29,48 +32,25 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             _unitCountPerSquad.Clear();
 
-            var countQuery = new CountUnitsQuery(_unitCountPerSquad);
-            _world.InlineQuery<CountUnitsQuery, SquadMember>(_unitsDesc, ref countQuery);
+            var unitCounts = _unitCountPerSquad;
+            var unitsDesc = _unitsDesc;
+            _world.ForEach<Lookup<int>, SquadMember>(in unitsDesc, ref unitCounts,
+                static (ref Lookup<int> counts, ref SquadMember member) =>
+                {
+                    if (!counts.ContainsKey(member.SquadId))
+                        counts[member.SquadId] = 0;
 
-            var squadQuery = new ApplyCountQuery(_unitCountPerSquad);
-            _world.InlineQuery<ApplyCountQuery, SyncId, SquadMemberCount>(
-                _squadsDesc, ref squadQuery);
-        }
+                    counts[member.SquadId]++;
+                });
 
-        private readonly struct CountUnitsQuery : IForEach<SquadMember>
-        {
-            private readonly Lookup<int> _map;
-
-            public CountUnitsQuery(Lookup<int> map)
-            {
-                _map = map;
-            }
-
-            public void Update(ref SquadMember member)
-            {
-                if (!_map.ContainsKey(member.SquadId))
-                    _map[member.SquadId] = 0;
-
-                _map[member.SquadId]++;
-            }
-        }
-
-        private readonly struct ApplyCountQuery : IForEach<SyncId, SquadMemberCount>
-        {
-            private readonly Lookup<int> _unitCounts;
-
-            public ApplyCountQuery(Lookup<int> unitCounts)
-            {
-                _unitCounts = unitCounts;
-            }
-
-            public void Update(
-                ref SyncId syncId,
-                ref SquadMemberCount memberCount)
-            {
-                _unitCounts.TryGetValue(syncId.Value, out var count);
-                memberCount = count;
-            }
+            var counts = _unitCountPerSquad;
+            var squadsDesc = _squadsDesc;
+            _world.ForEach<Lookup<int>, SyncId, SquadMemberCount>(in squadsDesc, ref counts,
+                static (ref Lookup<int> unitCounts, ref SyncId syncId, ref SquadMemberCount memberCount) =>
+                {
+                    unitCounts.TryGetValue(syncId.Value, out var count);
+                    memberCount = count;
+                });
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -15,8 +16,9 @@ namespace DVG.SkyPirates.Shared.Systems
     public class GoodsDropSystem : IDeltaTickableExecutor
     {
         private static readonly fix DropRange = fix.One * 5 / 2;
-        private readonly QueryDescription _createDesc = new QueryDescription().
-            WithAll<Health, GoodsDrop>().Alive().NotDisabled();
+        private Query? _createDescCache;
+        private Query _createDesc => _createDescCache ??= _world.
+            WhereAll<Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>().Alive().NotDisabled();
 
         private readonly World _world;
         private readonly IConfigedEntityFactory<GoodsId> _configedEntityFactory;
@@ -33,8 +35,57 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             _dropInfos.Clear();
 
-            var createQuery = new CreateGoodsQuery(_dropInfos);
-            _world.InlineQuery<CreateGoodsQuery, Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>(_createDesc, ref createQuery);
+            var dropInfos = _dropInfos;
+            var desc = _createDesc;
+            _world.ForEach<List<DropInfo>, Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>(in desc, ref dropInfos,
+                static (ref List<DropInfo> dropInfos, ref Health health, ref GoodsDrop goods, ref Position position, ref SyncIdReserve syncIdReserve, ref RandomSeed seed) =>
+                {
+                    if (health > fix.Zero)
+                        return;
+
+                    int remainingIds = syncIdReserve.RemainingCount();
+                    int typesCount = goods.Values.Count;
+                    if (typesCount == 0)
+                        return;
+
+                    Debug.Assert(remainingIds >= typesCount);
+                    if (remainingIds < typesCount)
+                        return;
+
+                    int dropsCount = remainingIds;
+                    int baseSlots = dropsCount / typesCount;
+                    int remainderSlots = dropsCount % typesCount;
+                    int i = 0;
+                    foreach (var (goodsId, totalAmount) in goods.Values)
+                    {
+                        int slots = baseSlots + (i < remainderSlots ? 1 : 0);
+                        int baseAmount = totalAmount / slots;
+                        int remainderAmount = totalAmount % slots;
+
+                        for (int j = 0; j < slots; j++)
+                        {
+                            int amount = baseAmount + (j < remainderAmount ? 1 : 0);
+                            if (amount == 0)
+                                continue;
+
+                            var drop = new DropInfo
+                            {
+                                Position = position,
+                                GoodsId = goodsId,
+                                Amount = amount,
+                                SyncId = syncIdReserve.GetNext(),
+                                Direction =
+                                {
+                                    x = seed.NextFixRange(-DropRange, DropRange),
+                                    y = seed.NextFixRange(-DropRange, DropRange),
+                                },
+                                Rotation = seed.NextFixRange(0, 360)
+                            };
+                            dropInfos.Add(drop);
+                        }
+                        i++;
+                    }
+                });
             foreach (var item in _dropInfos)
             {
                 EntityParameters parameters = new()
@@ -45,11 +96,11 @@ namespace DVG.SkyPirates.Shared.Systems
                 };
 
                 var drop = _configedEntityFactory.Create((item.GoodsId, parameters));
-                _world.Get<Position>(drop) = item.Position;
-                _world.Get<Rotation>(drop) = item.Rotation;
-                _world.AddOrGet<GoodsAmount>(drop) = item.Amount;
+                _world.GetRef<Position>(drop) = item.Position;
+                _world.GetRef<Rotation>(drop) = item.Rotation;
+                _world.GetOrAdd<GoodsAmount>(drop) = item.Amount;
 
-                _world.AddOrGet<FlyDestination>(drop) = new()
+                _world.GetOrAdd<FlyDestination>(drop) = new()
                 {
                     StartPosition = item.Position,
                     EndPosition = item.Position + item.Direction.x_y,
@@ -57,74 +108,7 @@ namespace DVG.SkyPirates.Shared.Systems
             }
         }
 
-        private readonly struct CreateGoodsQuery : IForEach<Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>
-        {
-            private readonly List<DropInfo> _dropInfos;
-
-            public CreateGoodsQuery(List<DropInfo> dropInfos)
-            {
-                _dropInfos = dropInfos;
-            }
-
-            public void Update(ref Health health, ref GoodsDrop goods, ref Position position, ref SyncIdReserve syncIdReserve, ref RandomSeed seed)
-            {
-                if (health > fix.Zero)
-                    return;
-
-                int remainingIds = syncIdReserve.RemainingCount();
-
-                int typesCount = goods.Values.Count;
-
-                if (typesCount == 0)
-                    return;
-
-                Debug.Assert(remainingIds >= typesCount);
-                if (remainingIds < typesCount)
-                    return;
-
-                int dropsCount = remainingIds;
-
-                int baseSlots = dropsCount / typesCount;
-                int remainderSlots = dropsCount % typesCount;
-
-
-                int i = 0;
-                foreach (var (goodsId, totalAmount) in goods.Values)
-                {
-                    int slots = baseSlots + (i < remainderSlots ? 1 : 0);
-
-                    int baseAmount = totalAmount / slots;
-                    int remainderAmount = totalAmount % slots;
-
-                    for (int j = 0; j < slots; j++)
-                    {
-                        int amount = baseAmount + (j < remainderAmount ? 1 : 0);
-                        if (amount == 0)
-                            continue;
-
-                        var drop = new DropInfo
-                        {
-                            Position = position,
-                            GoodsId = goodsId,
-                            Amount = amount,
-                            SyncId = syncIdReserve.GetNext(),
-                            Direction =
-                            {
-                                x = seed.NextFixRange(-DropRange, DropRange),
-                                y = seed.NextFixRange(-DropRange, DropRange),
-                            },
-                            Rotation = seed.NextFixRange(0, 360)
-                        };
-
-                        _dropInfos.Add(drop);
-                    }
-                    i++;
-                }
-            }
-
-        }
-
-        private struct DropInfo
+        internal struct DropInfo
         {
             public Position Position;
             public Rotation Rotation;

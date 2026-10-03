@@ -1,4 +1,5 @@
-﻿using Arch.Core;
+﻿using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices;
 
@@ -61,7 +62,7 @@ namespace DVG.SkyPirates.Shared.Services
 
             public void Invoke<T>() where T : struct
             {
-                _world.AddOrGet<T>(_entity) = default;
+                _world.Add<T>(_entity);
             }
         }
     }

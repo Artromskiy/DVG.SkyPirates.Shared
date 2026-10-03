@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -13,8 +14,9 @@ namespace DVG.SkyPirates.Shared.Systems
     /// </summary>
     public sealed class SetSingleTargetSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Target, TeamId>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<Position, TargetSearchDistance, TargetSearchPosition, Target, TeamId>().Alive().NotDisabled();
 
         private readonly World _world;
         private readonly ITargetSearchSystem _targetSearch;
@@ -26,24 +28,11 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new SetTargetQuery(_targetSearch);
-            _world.InlineQuery<SetTargetQuery, Position, TargetSearchDistance, TargetSearchPosition, Target, TeamId>(_desc, ref query);
-        }
-
-        private readonly struct SetTargetQuery :
-            IForEach<Position, TargetSearchDistance, TargetSearchPosition, Target, TeamId>
-        {
-            private readonly ITargetSearchSystem _targetSearch;
-
-            public SetTargetQuery(ITargetSearchSystem targetSearch)
-            {
-                _targetSearch = targetSearch;
-            }
-
-            public void Update(ref Position position, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Target target, ref TeamId team)
-            {
-                target.Entity = _targetSearch.FindTarget(ref position, ref searchDistance, ref searchPosition, ref team);
-            }
+            var targetSearch = _targetSearch;
+            var desc = _desc;
+            _world.ForEach<ITargetSearchSystem, Position, TargetSearchDistance, TargetSearchPosition, Target, TeamId>(in desc, ref targetSearch,
+                static (ref ITargetSearchSystem targetSearch, ref Position position, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Target target, ref TeamId team) =>
+                target.Entity = targetSearch.FindTarget(ref position, ref searchDistance, ref searchPosition, ref team));
         }
     }
 }

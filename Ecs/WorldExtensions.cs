@@ -1,0 +1,187 @@
+﻿using Delta.ECS;
+using DVG.Components;
+using DVG.SkyPirates.Shared.Components.Framed;
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+namespace DVG.SkyPirates.Shared.Ecs
+{
+    internal static class WorldExtensions
+    {
+        public static Query Alive(this Query query) => query.WhereAll<Alive>();
+
+        public static Query NotDisabled(this Query query) => query.WhereNone<Disabled>();
+
+        public static ref T GetOrAdd<T>(this World world, Entity entity) where T : struct
+        {
+            if (!world.Has<T>(entity))
+            {
+                world.Add<T>(entity);
+            }
+
+            return ref world.GetRef<T>(entity);
+        }
+
+    }
+
+    internal readonly struct HistoryComponentIds
+    {
+        public readonly ComponentId Component;
+        public readonly ComponentId History;
+
+        public HistoryComponentIds(ComponentId component, ComponentId history)
+        {
+            Component = component;
+            History = history;
+        }
+    }
+
+    internal sealed class WorldComponentIds
+    {
+        private static readonly ConditionalWeakTable<World, WorldComponentIds> Cache = new();
+
+        public readonly HistoryComponentIds[] History;
+        public readonly ComponentId[] Framed;
+        public readonly DisposableComponentIds[] Disposable;
+
+        private WorldComponentIds(World world)
+        {
+            var history = new List<HistoryComponentIds>();
+            var historyAction = new CollectHistoryIds(world, history);
+            HistoryComponentsRegistry.ForEachData(ref historyAction);
+            History = history.ToArray();
+
+            var framed = new List<ComponentId>();
+            var framedAction = new CollectComponentIds(world, framed);
+            FramedComponentsRegistry.ForEachData(ref framedAction);
+            Framed = framed.ToArray();
+
+            var disposable = new List<DisposableComponentIds>();
+            var disposableAction = new CollectDisposableIds(world, disposable);
+            DisposableComponentsRegistry.ForEachData(ref disposableAction);
+            Disposable = disposable.ToArray();
+        }
+
+        public static WorldComponentIds For(World world)
+            => Cache.GetValue(world, static owner => new WorldComponentIds(owner));
+
+        public HistoryComponentIds GetHistory(ComponentId component)
+        {
+            for (var i = 0; i < History.Length; i++)
+            {
+                if (History[i].Component == component)
+                    return History[i];
+            }
+
+            throw new KeyNotFoundException($"Component {component} is not registered for history.");
+        }
+
+        private readonly struct CollectHistoryIds : IStructGenericAction
+        {
+            private readonly World _world;
+            private readonly List<HistoryComponentIds> _entries;
+
+            public CollectHistoryIds(World world, List<HistoryComponentIds> entries)
+            {
+                _world = world;
+                _entries = entries;
+            }
+
+            public void Invoke<T>() where T : struct
+            {
+                var component = _world.Layouts.GetPrimary<T>();
+                var history = _world.Layouts.GetPrimary<History<T>>();
+                _entries.Add(new HistoryComponentIds(component, history));
+            }
+        }
+
+        private readonly struct CollectComponentIds : IStructGenericAction
+        {
+            private readonly World _world;
+            private readonly List<ComponentId> _entries;
+
+            public CollectComponentIds(World world, List<ComponentId> entries)
+            {
+                _world = world;
+                _entries = entries;
+            }
+
+            public void Invoke<T>() where T : struct
+                => _entries.Add(_world.Layouts.GetPrimary<T>());
+        }
+
+        private readonly struct CollectDisposableIds : IStructGenericAction<IDisposable>
+        {
+            private readonly World _world;
+            private readonly List<DisposableComponentIds> _entries;
+
+            public CollectDisposableIds(World world, List<DisposableComponentIds> entries)
+            {
+                _world = world;
+                _entries = entries;
+            }
+
+            public void Invoke<T>() where T : struct, IDisposable
+                => _entries.Add(new DisposableComponentIds(_world.Layouts.GetPrimary<T>(), new ComponentDisposer<T>(_world)));
+        }
+    }
+
+    internal readonly struct DisposableComponentIds
+    {
+        public readonly ComponentId Component;
+        private readonly IComponentDisposer _disposer;
+
+        public DisposableComponentIds(ComponentId component, IComponentDisposer disposer)
+        {
+            Component = component;
+            _disposer = disposer;
+        }
+
+        public void Dispose(in Query filter) => _disposer.Dispose(in filter);
+    }
+
+    internal interface IComponentDisposer
+    {
+        void Dispose(in Query filter);
+    }
+
+    internal sealed class ComponentDisposer<T> : IComponentDisposer where T : struct, IDisposable
+    {
+        private readonly World _world;
+        private readonly ForEachEntityAction _disposeEntity;
+
+        public ComponentDisposer(World world)
+        {
+            _world = world;
+            _disposeEntity = DisposeEntity;
+        }
+
+        public void Dispose(in Query filter) => _world.ForEachEntity(in filter, _disposeEntity);
+
+        private void DisposeEntity(Entity entity) => _world.GetRef<T>(entity).Dispose();
+    }
+
+    internal sealed class ComponentQueryCache<TQueries> where TQueries : class, new()
+    {
+        private readonly Dictionary<Type, TQueries> _queries = new();
+        private readonly Dictionary<ComponentId, TQueries> _queriesById = new();
+
+        public TQueries Get<T>() where T : struct
+        {
+            var componentType = typeof(T);
+            if (!_queries.TryGetValue(componentType, out var queries))
+                _queries.Add(componentType, queries = new TQueries());
+
+            return queries;
+        }
+
+        public TQueries Get(ComponentId componentId)
+        {
+            if (!_queriesById.TryGetValue(componentId, out var queries))
+                _queriesById.Add(componentId, queries = new TQueries());
+
+            return queries;
+        }
+    }
+}

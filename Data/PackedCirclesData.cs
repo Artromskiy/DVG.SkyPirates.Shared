@@ -1,4 +1,4 @@
-using Delta;
+﻿using Delta;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Data

@@ -1,67 +1,32 @@
-﻿using Arch.Core;
+﻿using System;
+using System.Runtime.CompilerServices;
+using Delta.ECS;
 using DVG.Collections;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Data;
-using System;
+using DVG.SkyPirates.Shared.Ecs;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
     public static class WorldExt
     {
-        private class WithAll<T>
-        {
-            public QueryDescription Desc = new QueryDescription().WithAll<T>();
-        }
-        private class WithAll<T0, T1>
-        {
-            public QueryDescription Desc = new QueryDescription().WithAll<T0, T1>();
-        }
-        private class WithAllWithNone<All, None>
-        {
-            public QueryDescription Desc = new QueryDescription().WithAll<All>().WithNone<None>();
-        }
-
-        private static readonly GenericCreator _desc = new();
-
-        public static QueryDescription Alive(this in QueryDescription desc)
-        {
-            var all = Signature.Add(desc.All, Component<Alive>.Signature);
-            return new QueryDescription(all, desc.Any, desc.None, desc.Exclusive);
-        }
-
-        public static QueryDescription NotDisabled(this in QueryDescription desc)
-        {
-            var none = Signature.Add(desc.None, Component<Disabled>.Signature);
-            return new QueryDescription(desc.All, desc.Any, none, desc.Exclusive);
-        }
-
         public static T FirstOrDefault<T>(this World world) where T : struct
         {
-            var query = new FirstOrDefaultQuery<T>();
-            var desc = _desc.Get<WithAll<T>>().Desc;
-            world.InlineEntityQuery<FirstOrDefaultQuery<T>, T>(in desc, ref query);
-            return query.Value;
+            var state = default(FirstOrDefaultState<T>);
+            var queries = ComponentQueryCache<T>.Get(world);
+            var filter = queries.Filter;
+            world.ForEachEntity(in filter, ref state, queries.Component, typeof(FirstOrDefaultAction<>));
+            return state.Value;
         }
 
         public static Entity FirstOrDefaultEntity<T>(this World world) where T : struct
         {
-            var query = new FirstOrDefaultQuery<T>();
-            var desc = _desc.Get<WithAll<T>>().Desc;
-            world.InlineEntityQuery<FirstOrDefaultQuery<T>, T>(in desc, ref query);
-            return query.Entity;
-        }
-
-        [Obsolete("Impressive amount of garbage produced")]
-        public static void AddQuery<Has, Add>(this World world, ForEach<Has, Add> forEach)
-        {
-            var addDesc = _desc.Get<WithAllWithNone<Has, Add>>().Desc;
-            if (world.CountEntities(in addDesc) == 0)
-                return;
-            var queryDesc = _desc.Get<WithAll<Add, Temp>>().Desc;
-            world.Add<Add, Temp>(in addDesc);
-            world.Query(in queryDesc, forEach);
-            world.Remove<Temp>(in queryDesc);
+            var state = default(FirstOrDefaultState<T>);
+            var queries = ComponentQueryCache<T>.Get(world);
+            var filter = queries.Filter;
+            world.ForEachEntity(in filter, ref state, queries.Component, typeof(FirstOrDefaultAction<>));
+            return state.Entity;
         }
 
         public static void SetEntityData(this World world, Entity entity, ComponentsSet components)
@@ -70,24 +35,51 @@ namespace DVG.SkyPirates.Shared.Systems
             components.ForEach(ref action);
         }
 
-        private struct FirstOrDefaultQuery<T> : IForEachWithEntity<T>
+        internal struct FirstOrDefaultState<T> where T : struct
         {
             public T Value;
             public Entity Entity;
+            public bool ValueSet;
+        }
 
-            private bool _valueSet;
-            public void Update(Entity e, ref T t)
+        internal struct FirstOrDefaultAction<T> : IForEachContextEntity<FirstOrDefaultState<T>> where T : struct
+        {
+            public void Invoke(ref FirstOrDefaultState<T> state, Entity entity, in T component)
             {
-                if (_valueSet)
+                if (state.ValueSet)
                     return;
 
-                _valueSet = true;
-                Value = t;
-                Entity = e;
+                state.ValueSet = true;
+                state.Value = component;
+                state.Entity = entity;
             }
         }
 
-        private readonly struct ApplyEntityData : IStructGenericActionArg
+        private static class ComponentQueryCache<T> where T : struct
+        {
+            private static readonly ConditionalWeakTable<World, Lazy<QuerySet>> _queries = new();
+
+            public static QuerySet Get(World world)
+                => _queries.GetValue(world, static owner => new Lazy<QuerySet>(() =>
+                {
+                    var component = owner.Layouts.GetPrimary<T>();
+                    return new QuerySet(component, owner.WhereAll(component));
+                })).Value;
+
+            internal sealed class QuerySet
+            {
+                public QuerySet(ComponentId component, Query filter)
+                {
+                    Component = component;
+                    Filter = filter;
+                }
+
+                public ComponentId Component { get; }
+                public Query Filter { get; }
+            }
+        }
+
+        internal readonly struct ApplyEntityData : IStructGenericActionArg
         {
             private readonly Entity _entity;
             private readonly World _world;
@@ -100,7 +92,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             public void Invoke<T>(T component) where T : struct
             {
-                _world.AddOrGet<T>(_entity) = component;
+                _world.GetOrAdd<T>(_entity) = component;
             }
         }
     }

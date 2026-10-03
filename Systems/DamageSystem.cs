@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -8,8 +9,9 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class DamageSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Health, RecivedDamage>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<Health, RecivedDamage>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -20,19 +22,13 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new ReciveDamageQuery();
-            _world.InlineQuery<ReciveDamageQuery, Health, RecivedDamage>(_desc, ref query);
-        }
-
-        private readonly struct ReciveDamageQuery :
-            IForEach<Health, RecivedDamage>
-        {
-
-            public void Update(ref Health health, ref RecivedDamage recivedDamage)
-            {
-                health -= (fix)recivedDamage;
-                recivedDamage = fix.Zero;
-            }
+            var desc = _desc;
+            _world.ForEach<Health, RecivedDamage>(in desc,
+                static (ref Health health, ref RecivedDamage recivedDamage) =>
+                {
+                    health -= (fix)recivedDamage;
+                    recivedDamage = fix.Zero;
+                });
         }
     }
 }

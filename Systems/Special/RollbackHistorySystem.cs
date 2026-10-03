@@ -1,184 +1,156 @@
-﻿using Arch.Core;
+﻿using System;
+using System.Collections.Generic;
+using Delta.ECS;
 using DVG.Collections;
 using DVG.Components;
-using System;
-using System.Collections.Generic;
+using DVG.SkyPirates.Shared.Ecs;
 
 namespace DVG.SkyPirates.Shared.Systems.Special
 {
     internal sealed class RollbackHistorySystem
     {
-        private sealed class Description<T> where T : struct
-        {
-            public readonly QueryDescription removeDesc = new QueryDescription().WithAll<History<T>, T>();
-            public readonly QueryDescription addDesc = new QueryDescription().WithAll<History<T>>().WithNone<T>();
-            public readonly QueryDescription applyDesc = new QueryDescription().WithAll<History<T>, T>();
+        private readonly List<Entity> _entitiesCache = new();
+        private readonly ComponentQueryCache<QuerySet> _queryCache = new();
+        private readonly World _world;
+        private readonly WorldComponentIds _componentIds;
 
-            public readonly QueryDescription historyDesc = new QueryDescription().WithAll<History<T>>();
+        internal struct ClearHistory<T> : IForEachContext<int> where T : struct
+        {
+            public void Invoke(ref int tick, ref History<T> history)
+                => history.Rollback(tick);
         }
 
-        private readonly GenericCreator _creator = new();
-        private readonly List<Entity> _entitiesCache = new();
-        private readonly World _world;
+        internal struct SelectComponentsToRemove<T> : IForEachContextEntity<EntitySelectionState> where T : struct
+        {
+            public void Invoke(ref EntitySelectionState selection, Entity entity, ref History<T> history)
+            {
+                if (history.Count == 0 || !history[selection.Tick].HasValue)
+                    selection.Entities.Add(entity);
+            }
+        }
+
+        internal struct SelectComponentsToAdd<T> : IForEachContextEntity<EntitySelectionState> where T : struct
+        {
+            public void Invoke(ref EntitySelectionState selection, Entity entity, ref History<T> history)
+            {
+                if (history.Count > 0 && history[selection.Tick].HasValue)
+                    selection.Entities.Add(entity);
+            }
+        }
+
+        internal struct ApplyHistory<T> : IForEachContext<int> where T : struct
+        {
+            public void Invoke(ref int tick, ref History<T> history, ref T component)
+            {
+                var value = history[tick];
+                if (!value.HasValue)
+                    throw new InvalidOperationException();
+
+                component = value.Value;
+            }
+        }
 
         public RollbackHistorySystem(World world)
         {
             _world = world;
+            _componentIds = WorldComponentIds.For(world);
         }
-
 
         public void GoTo(int tick)
         {
-            var action = new SetHistoryAction(_creator, _entitiesCache, _world, tick);
-            HistoryComponentsRegistry.ForEachData(ref action);
+            var histories = _componentIds.History;
+            for (var i = 0; i < histories.Length; i++)
+                SetHistory(histories[i], tick);
         }
 
         // TODO can optimize to destroy first and apply then
         public void RollBack(int tick)
         {
-            var action = new SetHistoryAction(_creator, _entitiesCache, _world, tick);
-            HistoryComponentsRegistry.ForEachData(ref action);
-            var clearAction = new ClearHistoryAction(_world, tick, _creator);
-            HistoryComponentsRegistry.ForEachData(ref clearAction);
+            var histories = _componentIds.History;
+            for (var i = 0; i < histories.Length; i++)
+                SetHistory(histories[i], tick);
+
+            for (var i = 0; i < histories.Length; i++)
+                ClearHistories(histories[i], tick);
         }
 
-        private readonly struct ClearHistoryAction : IStructGenericAction
+        private void ClearHistories(HistoryComponentIds component, int targetTick)
         {
-            private readonly World _world;
-            private readonly int _tick;
-            private readonly GenericCreator _creator;
-
-            public ClearHistoryAction(World world, int tick, GenericCreator creator)
-            {
-                _world = world;
-                _tick = tick;
-                _creator = creator;
-            }
-
-            public void Invoke<T>() where T : struct
-            {
-                ClearHistoryQuery<T> clearQuery = new(_tick);
-                var desc = _creator.Get<Description<T>>().historyDesc;
-                _world.InlineQuery<ClearHistoryQuery<T>, History<T>>(in desc, ref clearQuery);
-            }
-
-            private readonly struct ClearHistoryQuery<T> : IForEach<History<T>> where T : struct
-            {
-                private readonly int _tick;
-                public ClearHistoryQuery(int tick) => _tick = tick;
-
-                public readonly void Update(ref History<T> history) =>
-                    history.Rollback(_tick);
-            }
+            var queries = _queryCache.Get(component.Component);
+            var filter = queries.Clear ??= CreateHistoryQuery(component);
+            var tick = targetTick;
+            _world.ForEach(in filter, ref tick, component.Component, typeof(ClearHistory<>));
         }
 
-        private readonly struct SetHistoryAction : IStructGenericAction
+        private void SetHistory(HistoryComponentIds component, int targetTick)
         {
-            private readonly GenericCreator _creator;
-            private readonly List<Entity> _entities;
-            private readonly World _world;
-            private readonly int _tick;
+            var queries = _queryCache.Get(component.Component);
+            var withComponent = queries.WithComponent ??= CreateWithComponentQuery(component);
+            var withoutComponent = queries.WithoutComponent ??= CreateWithoutComponentQuery(component);
 
-            public SetHistoryAction(GenericCreator creator, List<Entity> entities, World world, int tick)
-            {
-                _creator = creator;
-                _entities = entities;
-                _world = world;
-                _tick = tick;
-            }
+            RemoveComponents(withComponent, component, targetTick);
+            AddComponents(withoutComponent, component, targetTick);
 
-            public void Invoke<T>() where T : struct
-            {
-                var desc = _creator.Get<Description<T>>();
-                RemoveComponents<T>(desc.removeDesc);
-                AddComponents<T>(desc.addDesc);
-                SetHistory<T>(desc.applyDesc);
-            }
-
-            private void RemoveComponents<T>(QueryDescription desc) where T : struct
-            {
-                _entities.Clear();
-                var query = new SelectToRemove<T>(_entities, _tick);
-                _world.InlineEntityQuery<SelectToRemove<T>, History<T>>(desc, ref query);
-
-                foreach (var item in _entities)
-                    _world.Remove<T>(item);
-            }
-
-            private void AddComponents<T>(QueryDescription desc) where T : struct
-            {
-                _entities.Clear();
-                var query = new SelectToAdd<T>(_entities, _tick);
-                _world.InlineEntityQuery<SelectToAdd<T>, History<T>>(desc, ref query);
-
-                foreach (var item in _entities)
-                    _world.Add<T>(item);
-            }
-
-            private void SetHistory<T>(QueryDescription desc) where T : struct
-            {
-                var query = new SetHistoryQuery<T>(_tick);
-                _world.InlineQuery<SetHistoryQuery<T>, History<T>, T>
-                    (desc, ref query);
-            }
+            var tick = targetTick;
+            _world.ForEach(in withComponent, ref tick, component.Component, typeof(ApplyHistory<>));
         }
 
-        private readonly struct SelectToAdd<T> : IForEachWithEntity<History<T>>
-            where T : struct
+        private void RemoveComponents(Query filter, HistoryComponentIds component, int targetTick)
         {
-            private readonly List<Entity> _entities;
-            private readonly int _tick;
+            _entitiesCache.Clear();
+            var state = new EntitySelectionState(_entitiesCache, targetTick);
+            _world.ForEachEntity(in filter, ref state, component.Component, typeof(SelectComponentsToRemove<>));
 
-            public SelectToAdd(List<Entity> entities, int tick)
-            {
-                _entities = entities;
-                _tick = tick;
-            }
-
-            public readonly void Update(Entity entity, ref History<T> history)
-            {
-                if (history[_tick].HasValue)
-                    _entities.Add(entity);
-            }
+            Span<ComponentId> componentIds = stackalloc ComponentId[1] { component.Component };
+            foreach (var entity in _entitiesCache)
+                _world.Remove(entity, componentIds);
         }
 
-        private readonly struct SelectToRemove<T> : IForEachWithEntity<History<T>>
-            where T : struct
+        private void AddComponents(Query filter, HistoryComponentIds component, int targetTick)
         {
-            private readonly List<Entity> _entities;
-            private readonly int _tick;
+            _entitiesCache.Clear();
+            var state = new EntitySelectionState(_entitiesCache, targetTick);
+            _world.ForEachEntity(in filter, ref state, component.Component, typeof(SelectComponentsToAdd<>));
 
-            public SelectToRemove(List<Entity> entities, int tick)
-            {
-                _entities = entities;
-                _tick = tick;
-            }
-
-            public readonly void Update(Entity entity, ref History<T> history)
-            {
-                if (!history[_tick].HasValue)
-                    _entities.Add(entity);
-            }
+            Span<ComponentId> componentIds = stackalloc ComponentId[1] { component.Component };
+            foreach (var entity in _entitiesCache)
+                _world.Add(entity, componentIds);
         }
 
-        private readonly struct SetHistoryQuery<T> : IForEach<History<T>, T>
-            where T : struct
+        private Query CreateHistoryQuery(HistoryComponentIds component)
         {
-            private readonly int _tick;
+            return _world.WhereAll(component.History);
+        }
 
-            public SetHistoryQuery(int tick)
+        private Query CreateWithComponentQuery(HistoryComponentIds component)
+        {
+            Span<ComponentId> all = stackalloc ComponentId[2] { component.History, component.Component };
+            return _world.WhereAll(all);
+        }
+
+        private Query CreateWithoutComponentQuery(HistoryComponentIds component)
+        {
+            return _world.WhereAll(component.History).WhereNone(component.Component);
+        }
+
+        internal sealed class QuerySet
+        {
+            public QuerySet() { }
+
+            public Query? Clear;
+            public Query? WithComponent;
+            public Query? WithoutComponent;
+        }
+
+        internal struct EntitySelectionState
+        {
+            public readonly List<Entity> Entities;
+            public readonly int Tick;
+
+            public EntitySelectionState(List<Entity> entities, int tick)
             {
-                _tick = tick;
-            }
-
-            public readonly void Update(ref History<T> history, ref T component)
-            {
-                var cmp = history[_tick];
-
-                if (!cmp.HasValue)
-                    throw new InvalidOperationException();
-
-                component = cmp.Value;
+                Entities = entities;
+                Tick = tick;
             }
         }
     }

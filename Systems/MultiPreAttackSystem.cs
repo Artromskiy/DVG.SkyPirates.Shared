@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -10,8 +11,9 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class MultiPreAttackSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<BehaviourState, ImpactDistance, Position, Targets>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<BehaviourState, ImpactDistance, Position, Targets>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -22,22 +24,11 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new PreAttackQuery(_world);
-            _world.InlineQuery<PreAttackQuery, BehaviourState, ImpactDistance, Position, Targets>(_desc, ref query);
-        }
-
-        private readonly struct PreAttackQuery :
-            IForEach<BehaviourState, ImpactDistance, Position, Targets>
-        {
-            private readonly World _world;
-
-            public PreAttackQuery(World world)
-            {
-                _world = world;
-            }
-
-            public void Update(ref BehaviourState behaviour, ref ImpactDistance impactDistance, ref Position position, ref Targets targets)
-            {
+            var world = _world;
+            var desc = _desc;
+            _world.ForEach<World, BehaviourState, ImpactDistance, Position, Targets>(in desc, ref world,
+                static (ref World world, ref BehaviourState behaviour, ref ImpactDistance impactDistance, ref Position position, ref Targets targets) =>
+                {
                 if (behaviour.State != StateId.None)
                     return;
 
@@ -48,7 +39,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
                 for (int i = 0; i < targets.Entities.Count; i++)
                 {
-                    var targetPos = _world.Get<Position>(targets.Entities[i]);
+                    var targetPos = world.Get<Position>(targets.Entities[i]);
                     var sqrDistance = fix3.SqrDistance(targetPos, position);
                     if (sqrDistance <= impactSqrDistance)
                     {
@@ -56,7 +47,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         return;
                     }
                 }
-            }
+                });
         }
     }
 }

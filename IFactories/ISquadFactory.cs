@@ -1,4 +1,4 @@
-﻿using Arch.Core;
+﻿using Delta.ECS;
 using DVG.Core;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Data;

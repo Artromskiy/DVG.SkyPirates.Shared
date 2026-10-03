@@ -1,6 +1,10 @@
-﻿using Arch.Core;
+﻿using Delta.ECS;
+using DVG;
+using DVG.Components;
 using DVG.Core;
+using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Data;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Factories;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
@@ -9,7 +13,6 @@ using DVG.SkyPirates.Shared.Services;
 using DVG.SkyPirates.Shared.Services.CommandExecutors;
 using DVG.SkyPirates.Shared.Systems;
 using DVG.SkyPirates.Shared.Systems.Special;
-using Schedulers;
 using SimpleInjector;
 using System;
 using System.Diagnostics;
@@ -21,12 +24,7 @@ namespace DVG.SkyPirates.Shared.DI
         public SharedContainer()
         {
             Debug.WriteLine("[DI] SharedContainer Start");
-            RegisterSingleton(() =>
-            {
-                var world = World.Create();
-                World.SharedJobScheduler = new JobScheduler(new JobScheduler.Config());
-                return world;
-            });
+            RegisterSingleton(CreateWorld);
 
             RegisterSingleton<TimelineWriter>();
 
@@ -105,6 +103,72 @@ namespace DVG.SkyPirates.Shared.DI
             typeof(JoystickCommandExecutor)
             //typeof(CommandLogger)
         };
+
+        private static World CreateWorld()
+        {
+            var layouts = new ComponentLayoutRegistry();
+
+            var registerComponents = new RegisterComponentLayouts(layouts);
+            ComponentsRegistry.ForEachData(ref registerComponents);
+
+            var registerHistory = new RegisterHistoryLayouts(layouts);
+            HistoryComponentsRegistry.ForEachData(ref registerHistory);
+
+            layouts.Register<Disabled>(GetSchemaId(typeof(Disabled).FullName));
+            layouts.Register<Temp>(GetSchemaId(typeof(Temp).FullName));
+
+            var world = new World(layouts, 1024);
+            _ = WorldComponentIds.For(world);
+            return world;
+        }
+
+        private static SchemaId GetSchemaId(string schemaName)
+        {
+            // Keep ids stable across worlds and independent of generated registry order.
+            const ulong offsetBasis = 14695981039346656037UL;
+            const ulong prime = 1099511628211UL;
+
+            var hash = offsetBasis;
+            foreach (var character in schemaName)
+            {
+                hash ^= character;
+                hash *= prime;
+            }
+
+            return new SchemaId(hash);
+        }
+
+        private readonly struct RegisterComponentLayouts : IStructGenericAction
+        {
+            private readonly ComponentLayoutRegistry _layouts;
+
+            public RegisterComponentLayouts(ComponentLayoutRegistry layouts)
+            {
+                _layouts = layouts;
+            }
+
+            public readonly void Invoke<T>() where T : struct
+            {
+                _layouts.Register<T>(GetSchemaId(typeof(T).FullName));
+            }
+        }
+
+        private readonly struct RegisterHistoryLayouts : IStructGenericAction
+        {
+            private readonly ComponentLayoutRegistry _layouts;
+
+            public RegisterHistoryLayouts(ComponentLayoutRegistry layouts)
+            {
+                _layouts = layouts;
+            }
+
+            public readonly void Invoke<T>() where T : struct
+            {
+                var schemaName = typeof(History<>).FullName + "<" + typeof(T).FullName + ">";
+                var componentId = _layouts.GetPrimary<T>();
+                _layouts.Register(typeof(History<>), componentId, GetSchemaId(schemaName));
+            }
+        }
 
         protected void RegisterFactorySingleton<TService, TImplementation, TInstance>()
             where TImplementation : class, TService

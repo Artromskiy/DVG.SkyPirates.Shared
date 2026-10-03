@@ -1,4 +1,5 @@
-﻿using Arch.Core;
+﻿using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
@@ -31,7 +32,7 @@ namespace DVG.SkyPirates.Shared.Factories
             _world.SetEntityData(entity, _squadStats[0]);
             _entityDependencyService.AddDependencies(entity);
             _componentDefaultsService.SetDefaults(entity);
-            _world.Get<TeamId>(entity) = parameters.team;
+            _world.GetRef<TeamId>(entity) = parameters.team;
             return entity;
         }
     }

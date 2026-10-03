@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <!-- Keep generated C# files outside Assets, where Unity would compile them as scripts. -->
+        <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)../../../../Temp/obj/SkyPirates.Shared/</BaseIntermediateOutputPath>
+        <MSBuildProjectExtensionsPath>$(MSBuildThisFileDirectory)../../../../Temp/obj/SkyPirates.Shared/</MSBuildProjectExtensionsPath>
+        <BaseOutputPath>$(MSBuildThisFileDirectory)../../../../Temp/bin/SkyPirates.Shared/</BaseOutputPath>
+    </PropertyGroup>
+</Project>

@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -11,8 +12,9 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class SetMultiTargetSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, TeamId>().
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<Position, Targets, TargetSearchDistance, TargetSearchPosition, TeamId>().
             Alive().NotDisabled();
 
         private readonly World _world;
@@ -28,31 +30,16 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new SetTargetQuery(_targetSearch, _targetsCache);
-            _world.InlineQuery<SetTargetQuery, TargetSearchDistance, TargetSearchPosition, Targets, TeamId>(_desc, ref query);
-        }
-
-        private readonly struct SetTargetQuery :
-            IForEach<TargetSearchDistance, TargetSearchPosition, Targets, TeamId>
-        {
-            private readonly ITargetSearchSystem _targetSearch;
-            private readonly List<Entity> _targetsCache;
-
-            public SetTargetQuery(ITargetSearchSystem targetSearch, List<Entity> targetsCache)
-            {
-                _targetSearch = targetSearch;
-                _targetsCache = targetsCache;
-            }
-
-            public void Update(ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Targets target, ref TeamId team)
-            {
-                _targetsCache.Clear();
-                _targetSearch.FindTargets(ref searchDistance, ref searchPosition, ref team, _targetsCache);
-                if (_targetsCache.Count > 0)
+            (ITargetSearchSystem TargetSearch, List<Entity> TargetsCache) state = (_targetSearch, _targetsCache);
+            var desc = _desc;
+            _world.ForEach<(ITargetSearchSystem TargetSearch, List<Entity> TargetsCache), TargetSearchDistance, TargetSearchPosition, Targets, TeamId>(in desc, ref state,
+                static (ref (ITargetSearchSystem TargetSearch, List<Entity> TargetsCache) state, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Targets target, ref TeamId team) =>
                 {
-                    target.Entities = new(_targetsCache);
-                }
-            }
+                    state.TargetsCache.Clear();
+                    state.TargetSearch.FindTargets(ref searchDistance, ref searchPosition, ref team, state.TargetsCache);
+                    if (state.TargetsCache.Count > 0)
+                        target.Entities = new(state.TargetsCache);
+                });
         }
     }
 }

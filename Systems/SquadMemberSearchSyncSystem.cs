@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Components;
 using DVG.Core.Collections;
 using DVG.SkyPirates.Shared.Components.Config;
@@ -11,12 +12,14 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class SquadMemberSearchSyncSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _unitsDesc = new QueryDescription().
-            WithAll<SquadMember, TargetSearchDistance, TargetSearchPosition>().
+        private Query? _unitsDescCache;
+        private Query _unitsDesc => _unitsDescCache ??= _world.
+            WhereAll<SquadMember, TargetSearchDistance, TargetSearchPosition>().
             Alive().NotDisabled();
 
-        private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SyncId, TargetSearchDistance, TargetSearchPosition, Fixation>().
+        private Query? _squadsDescCache;
+        private Query _squadsDesc => _squadsDescCache ??= _world.
+            WhereAll<Squad, SyncId, TargetSearchDistance, TargetSearchPosition, Fixation>().
             Alive().NotDisabled();
 
         private readonly World _world;
@@ -32,48 +35,26 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             _searchDataPerSquad.Clear();
 
-            var cacheQuery = new CacheSquadSearchQuery(_searchDataPerSquad);
-            _world.InlineQuery<CacheSquadSearchQuery, SyncId, TargetSearchPosition, TargetSearchDistance, Fixation>
-                (in _squadsDesc, ref cacheQuery);
+            var searchData = _searchDataPerSquad;
+            var squadsDesc = _squadsDesc;
+            _world.ForEach<Lookup<TargetSearchData>, SyncId, TargetSearchPosition, TargetSearchDistance, Fixation>(in squadsDesc, ref searchData,
+                static (ref Lookup<TargetSearchData> dataPerSquad, ref SyncId syncId, ref TargetSearchPosition searchPosition, ref TargetSearchDistance searchDistance, ref Fixation fixation) =>
+                {
+                    TargetSearchDistance distance = fixation ? fix.Zero : searchDistance;
+                    dataPerSquad[syncId.Value] = new(searchPosition, distance);
+                });
 
-            var setDataQuery = new SetMembersTargetSearchDataQuery(_searchDataPerSquad);
-            _world.InlineQuery<SetMembersTargetSearchDataQuery, SquadMember, TargetSearchPosition, TargetSearchDistance>
-                (_unitsDesc, ref setDataQuery);
+            var unitsDesc = _unitsDesc;
+            _world.ForEach<Lookup<TargetSearchData>, SquadMember, TargetSearchPosition, TargetSearchDistance>(in unitsDesc, ref searchData,
+                static (ref Lookup<TargetSearchData> dataPerSquad, ref SquadMember squadMember, ref TargetSearchPosition searchPosition, ref TargetSearchDistance searchDistance) =>
+                {
+                    dataPerSquad.TryGetValue(squadMember.SquadId, out var data);
+                    searchPosition = data.TargetSearchPosition;
+                    searchDistance = data.TargetSearchDistance;
+                });
         }
 
-        private readonly struct CacheSquadSearchQuery : IForEach<SyncId, TargetSearchPosition, TargetSearchDistance, Fixation>
-        {
-            private readonly Lookup<TargetSearchData> _searchDataPerSquad;
-            public CacheSquadSearchQuery(Lookup<TargetSearchData> searchDataPerSquad)
-            {
-                _searchDataPerSquad = searchDataPerSquad;
-            }
-
-            public void Update(ref SyncId syncId, ref TargetSearchPosition searchPosition, ref TargetSearchDistance searchDistance, ref Fixation fixation)
-            {
-                TargetSearchDistance distance = fixation ? fix.Zero : searchDistance;
-                _searchDataPerSquad[syncId.Value] = new(searchPosition, distance);
-            }
-        }
-
-        private readonly struct SetMembersTargetSearchDataQuery : IForEach<SquadMember, TargetSearchPosition, TargetSearchDistance>
-        {
-            private readonly Lookup<TargetSearchData> _searchDataPerSquad;
-
-            public SetMembersTargetSearchDataQuery(Lookup<TargetSearchData> searchDataPerSquad)
-            {
-                _searchDataPerSquad = searchDataPerSquad;
-            }
-
-            public void Update(ref SquadMember squadMember, ref TargetSearchPosition searchPosition, ref TargetSearchDistance searchDistance)
-            {
-                _searchDataPerSquad.TryGetValue(squadMember.SquadId, out var searchData);
-                searchPosition = searchData.TargetSearchPosition;
-                searchDistance = searchData.TargetSearchDistance;
-            }
-        }
-
-        private readonly struct TargetSearchData
+        internal readonly struct TargetSearchData
         {
             public readonly TargetSearchPosition TargetSearchPosition;
             public readonly TargetSearchDistance TargetSearchDistance;

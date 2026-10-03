@@ -1,5 +1,5 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
 using DVG.Components;
 using DVG.Core.Collections;
 using DVG.SkyPirates.Shared.IServices;
@@ -19,19 +19,19 @@ namespace DVG.SkyPirates.Shared.Services
         public void Reserve(SyncId syncId)
         {
             _entityIdCounter = Maths.Max(_entityIdCounter, syncId.Value + 1);
-            _idToEntity[syncId.Value] = Entity.Null;
+            _idToEntity[syncId.Value] = default;
         }
 
         public void Reserve(SyncIdReserve syncIdReserve)
         {
             for (int i = syncIdReserve.First; i < syncIdReserve.Count; i++)
-                _idToEntity[i] = Entity.Null;
+                _idToEntity[i] = default;
             _entityIdCounter = Maths.Max(_entityIdCounter, syncIdReserve.First + syncIdReserve.Count);
         }
 
         public SyncId Reserve()
         {
-            _idToEntity[_entityIdCounter] = Entity.Null;
+            _idToEntity[_entityIdCounter] = default;
             return new() { Value = _entityIdCounter++ };
         }
 
@@ -40,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Services
             int first = _entityIdCounter;
             _entityIdCounter += count;
             for (int i = first; i < count; i++)
-                _idToEntity[i] = Entity.Null;
+                _idToEntity[i] = default;
             return new() { First = first, Count = count, Current = first };
         }
 

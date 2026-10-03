@@ -1,4 +1,4 @@
-﻿using Arch.Core;
+﻿using Delta.ECS;
 using DVG.Components.Attributes;
 
 namespace DVG.SkyPirates.Shared.Components.Framed

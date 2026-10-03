@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -14,8 +15,9 @@ namespace DVG.SkyPirates.Shared.Systems
     /// </summary>
     public sealed class MoveSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Position, Rotation, Destination, MaxSpeed>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<Position, Rotation, Destination, MaxSpeed>().Alive().NotDisabled();
 
         private readonly World _world;
         private const int RotateSpeed = 720;
@@ -26,46 +28,20 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new MoveQuery(deltaTime);
-            _world.InlineQuery<MoveQuery, Position, Rotation, Destination, MaxSpeed>(_desc, ref query);
-        }
+            var delta = deltaTime;
+            var desc = _desc;
+            _world.ForEach<fix, Position, Rotation, Destination, MaxSpeed>(in desc, ref delta,
+                static (ref fix deltaTime, ref Position position, ref Rotation rotation, ref Destination destination, ref MaxSpeed moveSpeed) =>
+                {
+                    position = fix3.MoveTowards(position, destination.Position, moveSpeed * deltaTime);
 
-        private readonly struct MoveQuery :
-            IForEach<Position, Rotation, Destination, MaxSpeed>
-        {
-            private readonly fix _deltaTime;
+                    var dir = destination.Position.xz - ((fix3)position).xz;
+                    var rotateTo = fix2.SqrLength(dir) != 0
+                        ? Maths.Degrees(MathsExtensions.GetRotation(dir))
+                        : destination.Rotation;
 
-            public MoveQuery(fix deltaTime)
-            {
-                _deltaTime = deltaTime;
-            }
-
-            public void Update(ref Position position, ref Rotation rotation, ref Destination destination, ref MaxSpeed moveSpeed)
-            {
-                MoveTowardsDestination(ref position, destination, moveSpeed);
-                RotateTowardsDestination(ref rotation, position, destination);
-            }
-
-            private void MoveTowardsDestination(ref Position position, Destination destination, MaxSpeed moveSpeed)
-            {
-                position = fix3.MoveTowards(
-                    position,
-                    destination.Position,
-                    moveSpeed * _deltaTime);
-            }
-
-            private void RotateTowardsDestination(ref Rotation rotation, Position position, Destination destination)
-            {
-                var dir = destination.Position.xz - ((fix3)position).xz;
-                var rotateTo = fix2.SqrLength(dir) != 0
-                    ? Maths.Degrees(MathsExtensions.GetRotation(dir))
-                    : destination.Rotation;
-
-                rotation = Maths.RotateTowards(
-                    rotation,
-                    rotateTo,
-                    RotateSpeed * _deltaTime);
-            }
+                    rotation = Maths.RotateTowards(rotation, rotateTo, RotateSpeed * deltaTime);
+                });
         }
     }
 }

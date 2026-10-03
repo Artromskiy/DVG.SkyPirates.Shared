@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -14,8 +15,9 @@ namespace DVG.SkyPirates.Shared.Systems
     public sealed class SetTargetDestinationSystem : IDeltaTickableExecutor
     {
         private static readonly fix _reduceImpactDistance = fix.One / 2;
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<Destination, Position, ImpactDistance, Target>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<Destination, Position, Rotation, ImpactDistance, Target>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -26,21 +28,11 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new SetTargetDestinationQuery(_world);
-            _world.InlineQuery<SetTargetDestinationQuery, Position, Rotation, Destination, ImpactDistance, Target>(_desc, ref query);
-        }
-
-        private readonly struct SetTargetDestinationQuery : IForEach<Position, Rotation, Destination, ImpactDistance, Target>
-        {
-            private readonly World _world;
-
-            public SetTargetDestinationQuery(World world)
-            {
-                _world = world;
-            }
-
-            public void Update(ref Position position, ref Rotation rotation, ref Destination destination, ref ImpactDistance impactDistance, ref Target target)
-            {
+            var world = _world;
+            var desc = _desc;
+            _world.ForEach<World, Position, Rotation, Destination, ImpactDistance, Target>(in desc, ref world,
+                static (ref World world, ref Position position, ref Rotation rotation, ref Destination destination, ref ImpactDistance impactDistance, ref Target target) =>
+                {
                 if (!target.Entity.HasValue)
                 {
                     return;
@@ -49,7 +41,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 destination.Position = position;
                 destination.Rotation = rotation;
 
-                fix3 targetPos = _world.Get<Position>(target.Entity.Value);
+                fix3 targetPos = world.Get<Position>(target.Entity.Value);
                 var impactReduced = impactDistance - _reduceImpactDistance;
                 var impactSqrDistance = impactReduced * impactReduced;
 
@@ -65,7 +57,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     destination.Position = fix3.MoveTowards(targetPos, position, impactReduced);
                 }
-            }
+                });
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Arch.Core;
+﻿using Delta.ECS;
 using DVG.Core;
 
 namespace DVG.SkyPirates.Shared.IFactories

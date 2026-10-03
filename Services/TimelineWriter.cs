@@ -1,12 +1,15 @@
-﻿using DVG.Components;
+﻿using DVG.Collections;
+using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Services
 {
     public class TimelineWriter : ITickableExecutor
     {
+        private static readonly Action<WorldData>[] TrimActions = CreateTrimActions();
         private readonly IHistorySystem _historySystem;
         private readonly Dictionary<int, WorldData> _timeline = new();
 
@@ -19,26 +22,35 @@ namespace DVG.SkyPirates.Shared.Services
         {
             var snapshotTick = tick - Constants.MaxHistoryTicks + 1;
             var snapshot = _historySystem.GetSnapshot(snapshotTick);
-            var trim = new TrimWorldData(snapshot);
-            HistoryComponentsRegistry.ForEachData(ref trim);
+            for (var i = 0; i < TrimActions.Length; i++)
+                TrimActions[i](snapshot);
             _timeline[snapshotTick] = snapshot;
         }
 
         public Dictionary<int, WorldData> GetSnapshots() => _timeline;
 
-        private readonly struct TrimWorldData : IStructGenericAction
+        private static Action<WorldData>[] CreateTrimActions()
         {
-            private readonly WorldData _data;
+            var actions = new List<Action<WorldData>>();
+            var collectActions = new CollectTrimActions(actions);
+            HistoryComponentsRegistry.ForEachData(ref collectActions);
+            return actions.ToArray();
+        }
 
-            public TrimWorldData(WorldData data)
+        private static void TrimExcess<T>(WorldData data) where T : struct
+            => data.Get<T>().TrimExcess();
+
+        private readonly struct CollectTrimActions : IStructGenericAction
+        {
+            private readonly List<Action<WorldData>> _actions;
+
+            public CollectTrimActions(List<Action<WorldData>> actions)
             {
-                _data = data;
+                _actions = actions;
             }
 
-            public readonly void Invoke<T>() where T : struct
-            {
-                _data.Get<T>().TrimExcess();
-            }
+            public void Invoke<T>() where T : struct
+                => _actions.Add(TrimExcess<T>);
         }
     }
 }

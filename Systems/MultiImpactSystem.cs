@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -10,8 +11,9 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class MultiImpactSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<BehaviourState, Damage, ImpactDistance, Position, Targets>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<BehaviourState, Damage, ImpactDistance, Position, Targets>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -22,41 +24,36 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new ImpactQuery(_world);
-            _world.InlineQuery<ImpactQuery, BehaviourState, Damage, ImpactDistance, Position, Targets>(_desc, ref query);
-        }
-
-        private readonly struct ImpactQuery :
-            IForEach<BehaviourState, Damage, ImpactDistance, Position, Targets>
-        {
-            private readonly World _world;
-
-            public ImpactQuery(World world)
-            {
-                _world = world;
-            }
-
-            public void Update(ref BehaviourState behaviour, ref Damage damage, ref ImpactDistance impactDistance, ref Position position, ref Targets targets)
-            {
-                if (behaviour.State != StateId.Constants.PreAttack || behaviour.Percent != 1)
-                    return;
-
-                if (targets.Entities == null || targets.Entities.Count == 0)
-                    return;
-
-                var impactSqrDistance = (fix)impactDistance * impactDistance;
-                for (int i = 0; i < targets.Entities.Count; i++)
+            var world = _world;
+            var desc = _desc;
+            _world.ForEach(in desc, ref world,
+                static (ref World world, ref BehaviourState behaviour, ref Damage damage, ref ImpactDistance impactDistance, ref Position position, ref Targets targets) =>
                 {
+                    if (behaviour.State != StateId.Constants.PreAttack || behaviour.Percent != 1)
+                    {
+                        return;
+                    }
 
-                    var targetPos = _world.Get<Position>(targets.Entities[i]);
-                    var sqrDistance = fix3.SqrDistance(targetPos, position);
+                    if (targets.Entities == null || targets.Entities.Count == 0)
+                    {
+                        return;
+                    }
 
-                    if (sqrDistance > impactSqrDistance)
-                        continue;
+                    var impactSqrDistance = (fix)impactDistance * impactDistance;
+                    for (int i = 0; i < targets.Entities.Count; i++)
+                    {
+                        var targetPos = world.Get<Position>(targets.Entities[i]);
+                        var sqrDistance = fix3.SqrDistance(targetPos, position);
 
-                    _world.Get<RecivedDamage>(targets.Entities[i]) += (fix)damage;
-                }
-            }
+                        if (sqrDistance > impactSqrDistance)
+                        {
+                            continue;
+                        }
+
+                        world.GetRef<RecivedDamage>(targets.Entities[i]) += (fix)damage;
+                    }
+                });
         }
     }
+
 }

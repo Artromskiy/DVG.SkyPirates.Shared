@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Ids;
@@ -9,11 +10,13 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class SimpleBehaviourSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _descSwitch = new QueryDescription().
-            WithAll<BehaviourState, BehaviourConfig>().Alive().NotDisabled();
+        private Query? _descSwitchCache;
+        private Query _descSwitch => _descSwitchCache ??= _world.
+            WhereAll<BehaviourState, BehaviourConfig>().Alive().NotDisabled();
 
-        private readonly QueryDescription _descTick = new QueryDescription().
-            WithAll<BehaviourState>().Alive().NotDisabled();
+        private Query? _descTickCache;
+        private Query _descTick => _descTickCache ??= _world.
+            WhereAll<BehaviourState>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -24,25 +27,10 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new BehaviourQuery(deltaTime);
-            _world.InlineQuery<BehaviourQuery, BehaviourState, BehaviourConfig>(_descSwitch, ref query);
-            _world.InlineQuery<BehaviourQuery, BehaviourState>(_descTick, ref query);
-
-        }
-
-        private readonly struct BehaviourQuery :
-            IForEach<BehaviourState, BehaviourConfig>,
-            IForEach<BehaviourState>
-        {
-            private readonly fix _deltaTime;
-
-            public BehaviourQuery(fix deltaTime)
-            {
-                _deltaTime = deltaTime;
-            }
-
-            public void Update(ref BehaviourState behaviour, ref BehaviourConfig behaviourConfig)
-            {
+            var switchDesc = _descSwitch;
+            _world.ForEach<BehaviourState, BehaviourConfig>(in switchDesc,
+                static (ref BehaviourState behaviour, ref BehaviourConfig behaviourConfig) =>
+                {
                 // skip if no force state and we are at none
                 if (behaviour.ForceState == null && (
                     behaviour.Percent != 1 || behaviour.State.IsNone))
@@ -55,13 +43,16 @@ namespace DVG.SkyPirates.Shared.Systems
                 behaviour.State = targetState;
                 behaviour.Duration = behaviourConfig.Durations[behaviour.State];
                 behaviour.Percent = 0;
-            }
+                });
 
-            public void Update(ref BehaviourState behaviour)
-            {
-                fix step = behaviour.Duration == 0 ? 1 : _deltaTime / behaviour.Duration;
-                behaviour.Percent = Maths.MoveTowards(behaviour.Percent, 1, step);
-            }
+            var delta = deltaTime;
+            var tickDesc = _descTick;
+            _world.ForEach<fix, BehaviourState>(in tickDesc, ref delta,
+                static (ref fix deltaTime, ref BehaviourState behaviour) =>
+                {
+                    fix step = behaviour.Duration == 0 ? 1 : deltaTime / behaviour.Duration;
+                    behaviour.Percent = Maths.MoveTowards(behaviour.Percent, 1, step);
+                });
         }
     }
 }

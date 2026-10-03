@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
@@ -14,11 +15,13 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private static readonly fix _baseRange = 1;
 
-        private readonly QueryDescription _squadsMembers = new QueryDescription().
-            WithAll<SquadMember, ImpactDistance>().Alive().NotDisabled();
+        private Query? _squadsMembersCache;
+        private Query _squadsMembers => _squadsMembersCache ??= _world.
+            WhereAll<SquadMember, ImpactDistance>().Alive().NotDisabled();
 
-        private readonly QueryDescription _squadsDesc = new QueryDescription().
-            WithAll<Squad, SquadMemberCount, TargetSearchDistance>().Alive().NotDisabled();
+        private Query? _squadsDescCache;
+        private Query _squadsDesc => _squadsDescCache ??= _world.
+            WhereAll<Squad, SyncId, SquadMemberCount, TargetSearchDistance>().Alive().NotDisabled();
 
         private readonly Dictionary<int, fix> _maxImpactDistancePerSquad = new();
         private readonly PackedCirclesConfig _circlesConfig;
@@ -34,52 +37,24 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             _maxImpactDistancePerSquad.Clear();
-            var impactQuery = new CollectImpactDistancesQuery(_maxImpactDistancePerSquad);
-            _world.InlineQuery<CollectImpactDistancesQuery, SquadMember, ImpactDistance>(in _squadsMembers, ref impactQuery);
+            var maxDistances = _maxImpactDistancePerSquad;
+            var members = _squadsMembers;
+            _world.ForEach<Dictionary<int, fix>, SquadMember, ImpactDistance>(in members, ref maxDistances,
+                static (ref Dictionary<int, fix> distances, ref SquadMember member, ref ImpactDistance impactDistance) =>
+                {
+                    var currentImpactDistance = distances.GetValueOrDefault(member.SquadId);
+                    distances[member.SquadId] = Maths.Max(currentImpactDistance, impactDistance);
+                });
 
-            var squadQuery = new ApplyRangeQuery(_circlesConfig, _maxImpactDistancePerSquad);
-            _world.InlineQuery<ApplyRangeQuery, SyncId, SquadMemberCount, TargetSearchDistance>(
-                _squadsDesc, ref squadQuery);
-        }
-
-        private readonly struct CollectImpactDistancesQuery : IForEach<SquadMember, ImpactDistance>
-        {
-            private readonly Dictionary<int, fix> _maxImpactDistancePerSquad;
-
-            public CollectImpactDistancesQuery(Dictionary<int, fix> maxImpactDistancePerSquad)
-            {
-                _maxImpactDistancePerSquad = maxImpactDistancePerSquad;
-            }
-
-            public void Update(ref SquadMember member, ref ImpactDistance impactDistance)
-            {
-                var currentImpactDistance = _maxImpactDistancePerSquad.GetValueOrDefault(member.SquadId);
-                _maxImpactDistancePerSquad[member.SquadId] =
-                    Maths.Max(currentImpactDistance, impactDistance);
-            }
-        }
-
-        private readonly struct ApplyRangeQuery
-            : IForEach<SyncId, SquadMemberCount, TargetSearchDistance>
-        {
-            private readonly PackedCirclesConfig _circlesConfig;
-            private readonly Dictionary<int, fix> _maxImpactDistancePerSquad;
-
-            public ApplyRangeQuery(PackedCirclesConfig circlesConfig, Dictionary<int, fix> maxImpactDistancePerSquad)
-            {
-                _circlesConfig = circlesConfig;
-                _maxImpactDistancePerSquad = maxImpactDistancePerSquad;
-            }
-
-            public void Update(
-                ref SyncId syncId,
-                ref SquadMemberCount memberCount,
-                ref TargetSearchDistance searchDistance)
-            {
-                fix squadRadius = memberCount == 0 ? 0 : _circlesConfig[memberCount].Radius;
-                var maxImpactDistance = _maxImpactDistancePerSquad.GetValueOrDefault(syncId);
-                searchDistance = maxImpactDistance + _baseRange + squadRadius;
-            }
+            (PackedCirclesConfig Config, Dictionary<int, fix> MaxImpactDistancePerSquad) applyState = (_circlesConfig, _maxImpactDistancePerSquad);
+            var squads = _squadsDesc;
+            _world.ForEach<(PackedCirclesConfig Config, Dictionary<int, fix> MaxImpactDistancePerSquad), SyncId, SquadMemberCount, TargetSearchDistance>(in squads, ref applyState,
+                static (ref (PackedCirclesConfig Config, Dictionary<int, fix> MaxImpactDistancePerSquad) state, ref SyncId syncId, ref SquadMemberCount memberCount, ref TargetSearchDistance searchDistance) =>
+                {
+                    fix squadRadius = memberCount == 0 ? 0 : state.Config[memberCount].Radius;
+                    var maxImpactDistance = state.MaxImpactDistancePerSquad.GetValueOrDefault(syncId);
+                    searchDistance = maxImpactDistance + _baseRange + squadRadius;
+                });
         }
     }
 }

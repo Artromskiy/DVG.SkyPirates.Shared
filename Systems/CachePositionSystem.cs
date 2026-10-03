@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -8,8 +9,9 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class CachePositionSystem : IDeltaTickableExecutor
     {
-        private QueryDescription _desc = new QueryDescription().
-            WithAll<Position, CachePosition>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<Position, CachePosition>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -20,16 +22,9 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new CachePositionQuery();
-            _world.InlineQuery<CachePositionQuery, Position, CachePosition>(_desc, ref query);
-        }
-
-        private readonly struct CachePositionQuery : IForEach<Position, CachePosition>
-        {
-            public void Update(ref Position position, ref CachePosition cachePosition)
-            {
-                cachePosition = (fix3)position;
-            }
+            var desc = _desc;
+            _world.ForEach<Position, CachePosition>(in desc,
+                static (ref Position position, ref CachePosition cachePosition) => cachePosition = (fix3)position);
         }
     }
 }

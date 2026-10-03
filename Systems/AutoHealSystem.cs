@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -9,11 +10,13 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class AutoHealSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _healLoadDesc = new QueryDescription().
-            WithAll<Health, MaxHealth, AutoHeal, RecivedDamage>().Alive().NotDisabled();
+        private Query? _healLoadDescCache;
+        private Query _healLoadDesc => _healLoadDescCache ??= _world.
+            WhereAll<Health, MaxHealth, AutoHeal, RecivedDamage>().Alive().NotDisabled();
 
-        private readonly QueryDescription _healDesc = new QueryDescription().
-            WithAll<Health, MaxHealth, AutoHeal>().Alive().NotDisabled();
+        private Query? _healDescCache;
+        private Query _healDesc => _healDescCache ??= _world.
+            WhereAll<Health, MaxHealth, AutoHeal>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -24,44 +27,22 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var healLoadQuery = new HealLoadQuery(deltaTime);
-            _world.InlineQuery<HealLoadQuery, AutoHeal, RecivedDamage>(_healLoadDesc, ref healLoadQuery);
+            var delta = deltaTime;
+            var healLoadDesc = _healLoadDesc;
+            _world.ForEach<fix, AutoHeal, RecivedDamage>(in healLoadDesc, ref delta,
+                static (ref fix deltaTime, ref AutoHeal autoHeal, ref RecivedDamage recivedDamage) =>
+                {
+                    autoHeal.HealLoadPercent = recivedDamage > fix.Zero ? 0 :
+                        Maths.MoveTowards(autoHeal.HealLoadPercent, 1, deltaTime / autoHeal.HealDelay);
+                });
 
-            var healQuery = new HealQuery(deltaTime);
-            _world.InlineQuery<HealQuery, Health, MaxHealth, AutoHeal>(_healDesc, ref healQuery);
-        }
-
-        private readonly struct HealLoadQuery :
-            IForEach<AutoHeal, RecivedDamage>
-        {
-            private readonly fix _deltaTime;
-
-            public HealLoadQuery(fix deltaTime)
-            {
-                _deltaTime = deltaTime;
-            }
-
-            public void Update(ref AutoHeal autoHeal, ref RecivedDamage recivedDamage)
-            {
-                autoHeal.HealLoadPercent = recivedDamage > fix.Zero ? 0 :
-                    Maths.MoveTowards(autoHeal.HealLoadPercent, 1, _deltaTime / autoHeal.HealDelay);
-            }
-        }
-
-        private readonly struct HealQuery : IForEach<Health, MaxHealth, AutoHeal>
-        {
-            private readonly fix _deltaTime;
-
-            public HealQuery(fix deltaTime)
-            {
-                _deltaTime = deltaTime;
-            }
-
-            public void Update(ref Health health, ref MaxHealth maxHealth, ref AutoHeal autoHeal)
-            {
-                health = autoHeal.HealLoadPercent != 1 ? health :
-                    Maths.MoveTowards(health, maxHealth, autoHeal.HealPerSecond * _deltaTime);
-            }
+            var healDesc = _healDesc;
+            _world.ForEach<fix, Health, MaxHealth, AutoHeal>(in healDesc, ref delta,
+                static (ref fix deltaTime, ref Health health, ref MaxHealth maxHealth, ref AutoHeal autoHeal) =>
+                {
+                    health = autoHeal.HealLoadPercent != 1 ? health :
+                        Maths.MoveTowards(health, maxHealth, autoHeal.HealPerSecond * deltaTime);
+                });
         }
     }
 }

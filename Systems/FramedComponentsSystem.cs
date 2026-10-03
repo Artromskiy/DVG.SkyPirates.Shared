@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Collections;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
@@ -11,94 +12,89 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public class FramedComponentsSystem : IDeltaTickableExecutor
     {
-        private class Description<T>
-        {
-            public QueryDescription RemoveDesc = new QueryDescription().WithAll<T>();
-            public QueryDescription? AddDesc;
-        }
-        private readonly GenericCreator _creator = new();
-
         private readonly World _world;
         private readonly DependencyData[] _dependencies;
+        private readonly ComponentId[] _framedComponentIds;
+        private readonly Query[] _clearQueries;
 
         public FramedComponentsSystem(FramedComponentDependenciesConfig componentDependencies, World world)
         {
             _world = world;
-            _dependencies = componentDependencies.ConvertAll(dependency =>
-            {
-                HashSet<Type> allComponents = new();
-                Signature allSignature = new(Array.ConvertAll(dependency.Has.GetTypes(), Component.GetComponentType));
-                var allAlive = Signature.Add(allSignature, Component<Alive>.Signature);
-                return new DependencyData(allAlive, dependency.Add, new());
-            }).ToArray();
+            _framedComponentIds = WorldComponentIds.For(world).Framed;
+            _clearQueries = Array.ConvertAll(_framedComponentIds, id => world.WhereAll(id));
+            _dependencies = componentDependencies.ConvertAll(dependency => CreateDependency(world, dependency)).ToArray();
         }
 
         public void Tick(int tick, fix deltaTime)
         {
-            var removeFramedAction = new ClearFramedAction(_world, _creator);
-            FramedComponentsRegistry.ForEachData(ref removeFramedAction);
+            for (var i = 0; i < _framedComponentIds.Length; i++)
+            {
+                var query = _clearQueries[i];
+                _world.ForEach(in query, _framedComponentIds[i], typeof(ClearFramedComponent<>));
+            }
+
+            Span<ComponentId> component = stackalloc ComponentId[1];
             foreach (var data in _dependencies)
             {
-                var ensureAction = new AddComponentAction(_world, data.HasComponentSignature, data.SignatureCache);
-                data.AddComponentData.ForEach(ref ensureAction);
+                for (var i = 0; i < data.AddComponentIds.Length; i++)
+                {
+                    var query = data.AddQueries[i];
+                    component[0] = data.AddComponentIds[i];
+                    _world.Add(in query, component);
+                }
             }
-            _world.TrimExcess();
         }
 
-        private readonly struct ClearFramedAction : IStructGenericAction
+        internal struct ClearFramedComponent<T> : IForEach where T : struct
+        {
+            public void Invoke(ref T component) => component = default;
+        }
+
+        private static DependencyData CreateDependency(World world, ComponentDependenciesData dependency)
+        {
+            var types = dependency.Has.GetTypes();
+            var has = new ComponentId[types.Length + 1];
+            for (var i = 0; i < types.Length; i++)
+                has[i] = world.Layouts.GetPrimary(types[i]);
+            has[types.Length] = world.Layouts.GetPrimary<Alive>();
+
+            var add = new List<ComponentId>();
+            var collect = new CollectComponentIds(world, add);
+            dependency.Add.ForEach(ref collect);
+
+            var addIds = add.ToArray();
+            var queries = new Query[addIds.Length];
+            var filter = world.WhereAll(has);
+            for (var i = 0; i < addIds.Length; i++)
+                queries[i] = filter.WhereNone(addIds[i]);
+
+            return new DependencyData(addIds, queries);
+        }
+
+        private readonly struct CollectComponentIds : IStructGenericAction
         {
             private readonly World _world;
-            private readonly GenericCreator _creator;
+            private readonly List<ComponentId> _componentIds;
 
-            public ClearFramedAction(World world, GenericCreator creator)
+            public CollectComponentIds(World world, List<ComponentId> componentIds)
             {
                 _world = world;
-                _creator = creator;
+                _componentIds = componentIds;
             }
 
             public void Invoke<T>() where T : struct
-            {
-                var desc = _creator.Get<Description<T>>().RemoveDesc;
-                _world.Set<T>(desc, default);
-            }
+                => _componentIds.Add(_world.Layouts.GetPrimary<T>());
         }
 
-
-        private readonly struct AddComponentAction : IStructGenericAction
+        internal readonly struct DependencyData
         {
-            private readonly World _world;
-            private readonly Signature _signature;
-            private readonly GenericCreator _signatureCache;
+            public readonly ComponentId[] AddComponentIds;
+            public readonly Query[] AddQueries;
 
-            public AddComponentAction(World world, Signature signature, GenericCreator signatureCache)
+            public DependencyData(ComponentId[] addComponentIds, Query[] addQueries)
             {
-                _world = world;
-                _signature = signature;
-                _signatureCache = signatureCache;
-            }
-
-            public void Invoke<T>() where T : struct
-            {
-                var descContainer = _signatureCache.Get<Description<T>>();
-                descContainer.AddDesc ??= new QueryDescription(all: _signature, none: Component<T>.Signature);
-
-                var desc = descContainer.AddDesc.Value;
-                if (_world.CountEntities(in desc) > 0)
-                    _world.Add<T>(in desc);
-            }
-        }
-
-        private readonly struct DependencyData
-        {
-            public readonly Signature HasComponentSignature;
-            public readonly ComponentsMask AddComponentData;
-            public readonly GenericCreator SignatureCache;
-
-            public DependencyData(Signature hasComponentSignature, ComponentsMask addComponentData, GenericCreator signatureCache)
-            {
-                HasComponentSignature = hasComponentSignature;
-                AddComponentData = addComponentData;
-                SignatureCache = signatureCache;
+                AddComponentIds = addComponentIds;
+                AddQueries = addQueries;
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Commands;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Commands;
@@ -9,6 +10,7 @@ using DVG.SkyPirates.Shared.Systems;
 using DVG.SkyPirates.Shared.Tools.Extensions;
 using DVG.SkyPirates.Shared.Tools.TraceHelpers;
 using System.Diagnostics;
+using System;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
@@ -17,8 +19,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         private readonly IEntityRegistry _entityRegistryService;
         private readonly World _world;
 
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<SquadMember>().NotDisabled().Alive();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<SquadMember>().NotDisabled().Alive();
 
         public JoystickCommandExecutor(IEntityRegistry entityRegistryService, World world)
         {
@@ -30,7 +33,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         {
             _entityRegistryService.TryGet(cmd.Data.Target, out var squad);
 
-            if (squad == Entity.Null ||
+            if (squad == default ||
                 !_world.IsAlive(squad) ||
                 !_world.Has<Alive>(squad))
             {
@@ -41,9 +44,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             if (!CanMove(squad))
                 return;
 
-            ref var dir = ref _world.Get<Direction>(squad);
-            ref var rot = ref _world.Get<Rotation>(squad);
-            ref var fix = ref _world.Get<Fixation>(squad);
+            ref var dir = ref _world.GetRef<Direction>(squad);
+            ref var rot = ref _world.GetRef<Rotation>(squad);
+            ref var fix = ref _world.GetRef<Fixation>(squad);
             dir = cmd.Data.Direction;
             fix = cmd.Data.Fixation;
 
@@ -55,13 +58,14 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         private bool CanMove(Entity squad)
         {
             var squadId = _world.Get<SyncId>(squad);
-            int count = 0;
-            _world.Query(in _desc, (ref SquadMember member) =>
+            (SyncId SquadId, int Count) state = (squadId, 0);
+            var query = _desc;
+            _world.ForEach<(SyncId SquadId, int Count), SquadMember>(in query, ref state, static (ref (SyncId SquadId, int Count) context, ref SquadMember member) =>
             {
-                if (member.SquadId == squadId)
-                    count++;
+                if (member.SquadId == context.SquadId)
+                    context.Count++;
             });
-            return count > 0;
+            return state.Count > 0;
         }
     }
 }

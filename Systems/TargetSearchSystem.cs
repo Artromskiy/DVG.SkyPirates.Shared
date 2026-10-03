@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Components;
 using DVG.Core.Collections;
 using DVG.SkyPirates.Shared.Components.Config;
@@ -16,8 +17,9 @@ namespace DVG.SkyPirates.Shared.Systems
     /// </summary>
     public sealed class TargetSearchSystem : ITargetSearchSystem // Should be used before any Position/Team writes for accurate search
     {
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<RecivedDamage, Position, TeamId>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<RecivedDamage, Position, TeamId>().Alive().NotDisabled();
 
         private const int SquareSize = 5;
 
@@ -100,13 +102,13 @@ namespace DVG.SkyPirates.Shared.Systems
 
                         for (int i = 0; i < list.Count; i++)
                         {
-                            if (_entitiesLookup.Has(list[i].Id))
+                            if (_entitiesLookup.Has(list[i].Index))
                                 continue;
 
                             if (fix2.SqrDistance(((fix3)_world.Get<Position>(list[i])).xz, searchPositionXZ) < sqrSearchDistance)
                             {
                                 targets.Add(list[i]);
-                                _entitiesLookup.Add(list[i].Id);
+                                _entitiesLookup.Add(list[i].Index);
                             }
                         }
                     }
@@ -119,31 +121,21 @@ namespace DVG.SkyPirates.Shared.Systems
             foreach (var team in _targets.Values)
                 team.Clear();
 
-            var query = new PartitionQuery(_targets);
-            _world.InlineEntityQuery<PartitionQuery, Position, TeamId>(_desc, ref query);
-        }
+            var targets = _targets;
+            var desc = _desc;
+            _world.ForEachEntity<Dictionary<int, Lookup2D<List<Entity>>>, Position, TeamId>(in desc, ref targets,
+                static (ref Dictionary<int, Lookup2D<List<Entity>>> targets, Entity entity, ref Position position, ref TeamId teamId) =>
+                {
+                    var quad = GetQuantizedSquare(position.Value.xz);
 
-        private readonly struct PartitionQuery : IForEachWithEntity<Position, TeamId>
-        {
-            private readonly Dictionary<int, Lookup2D<List<Entity>>> _targets;
+                    if (!targets.TryGetValue(teamId, out var team))
+                        targets[teamId] = team = new();
 
-            public PartitionQuery(Dictionary<int, Lookup2D<List<Entity>>> targets)
-            {
-                _targets = targets;
-            }
+                    if (!team.TryGetValue(quad.x, quad.y, out var list))
+                        team[quad.x, quad.y] = list = new List<Entity>(8);
 
-            public void Update(Entity entity, ref Position position, ref TeamId teamId)
-            {
-                var quad = GetQuantizedSquare(position.Value.xz);
-
-                if (!_targets.TryGetValue(teamId, out var team))
-                    _targets[teamId] = team = new();
-
-                if (!team.TryGetValue(quad.x, quad.y, out var list))
-                    team[quad.x, quad.y] = list = new List<Entity>(8);
-
-                list.Add(entity);
-            }
+                    list.Add(entity);
+                });
         }
 
         private static int2 GetQuantizedSquare(fix2 position)

@@ -1,5 +1,5 @@
-﻿using Arch.Core;
-using DVG.Collections;
+﻿using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Components;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
@@ -9,106 +9,86 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 {
     internal class DisposeSystem : IDisposeSystem
     {
-        private class Description<T> where T : struct
-        {
-            public readonly QueryDescription Desc = new QueryDescription().WithAll<T, Temp>();
-            public readonly QueryDescription HistoryDesc = new QueryDescription().WithAll<History<T>, Temp>();
-        }
-
-        private readonly QueryDescription _disposingDesc = new QueryDescription().
-            WithAll<History<Alive>>().WithNone<Alive>();
-
+        private readonly ComponentQueryCache<QuerySet> _queryCache = new();
+        private Query? _disposingDescCache;
+        private Query _disposingDesc => _disposingDescCache ??= _world.WhereAll<History<Alive>>().WhereNone<Alive>();
+        private Query? _toDestroyCache;
+        private Query _toDestroy => _toDestroyCache ??= _world.WhereAll<Temp>();
         private readonly List<Entity> _entitiesCache = new();
-        private readonly GenericCreator _disposeDesc = new();
-
         private readonly World _world;
+        private readonly WorldComponentIds _componentIds;
+        private readonly ComponentId _tempComponentId;
+
+        internal struct DisposeHistory<T> : IForEach where T : struct
+        {
+            public void Invoke(ref History<T> history) => history.Dispose();
+        }
 
         public DisposeSystem(World world)
         {
             _world = world;
+            _componentIds = WorldComponentIds.For(world);
+            _tempComponentId = world.Layouts.GetPrimary<Temp>();
         }
 
         public void Tick(int tick)
         {
             _entitiesCache.Clear();
-            var selectToDispose = new SelectToDispose(_entitiesCache, tick);
-            _world.InlineEntityQuery<SelectToDispose, History<Alive>>(in _disposingDesc, ref selectToDispose);
+            (List<Entity> Entities, int CurrentTick) state = (_entitiesCache, tick);
+            var disposingDesc = _disposingDesc;
+            _world.ForEachEntity<(List<Entity> Entities, int CurrentTick), History<Alive>>(in disposingDesc, ref state,
+                static (ref (List<Entity> Entities, int CurrentTick) state, Entity entity, ref History<Alive> aliveHistory) =>
+                {
+                    if (aliveHistory.GetLast(out var tick) == null && tick <= state.CurrentTick - Constants.MaxHistoryTicks)
+                        state.Entities.Add(entity);
+                });
             foreach (var entity in _entitiesCache)
                 _world.Add<Temp>(entity);
 
-            var componentsDispose = new ComponentsDisposeCallAction(_world, _disposeDesc);
-            DisposableComponentsRegistry.ForEachData(ref componentsDispose);
-            var historyDispose = new HistoryDisposeCallAction(_world, _disposeDesc);
-            HistoryComponentsRegistry.ForEachData(ref historyDispose);
+            var disposableComponents = _componentIds.Disposable;
+            for (var i = 0; i < disposableComponents.Length; i++)
+                DisposeComponents(disposableComponents[i]);
 
-            _world.Destroy(new QueryDescription().WithAll<Temp>());
+            var historyComponents = _componentIds.History;
+            for (var i = 0; i < historyComponents.Length; i++)
+                DisposeHistoryComponents(historyComponents[i]);
+
+            var toDestroy = _toDestroy;
+            _world.Destroy(in toDestroy);
         }
 
-        private readonly struct ComponentsDisposeCallAction : IStructGenericAction<IDisposable>
+        private void DisposeComponents(DisposableComponentIds component)
         {
-            private readonly World _world;
-            private readonly GenericCreator _desc;
-
-            public ComponentsDisposeCallAction(World world, GenericCreator desc)
-            {
-                _world = world;
-                _desc = desc;
-            }
-
-            public void Invoke<T>() where T : struct, IDisposable
-            {
-                var query = new DisposeQuery<T>();
-                var desc = _desc.Get<Description<T>>().Desc;
-                _world.InlineQuery<DisposeQuery<T>, T>(in desc, ref query);
-            }
-
-            private readonly struct DisposeQuery<T> : IForEach<T> where T : struct, IDisposable
-            {
-                public readonly void Update(ref T component) => component.Dispose();
-            }
+            var queries = _queryCache.Get(component.Component);
+            var filter = queries.Components ??= CreateComponentQuery(component.Component);
+            component.Dispose(in filter);
         }
 
-        private readonly struct HistoryDisposeCallAction : IStructGenericAction
+        private void DisposeHistoryComponents(HistoryComponentIds component)
         {
-            private readonly World _world;
-            private readonly GenericCreator _desc;
-
-            public HistoryDisposeCallAction(World world, GenericCreator desc)
-            {
-                _world = world;
-                _desc = desc;
-            }
-
-            public void Invoke<T>() where T : struct
-            {
-                var query = new DisposeQuery<T>();
-                var desc = _desc.Get<Description<T>>().HistoryDesc;
-                _world.InlineQuery<DisposeQuery<T>, History<T>>(in desc, ref query);
-            }
-
-            private readonly struct DisposeQuery<T> : IForEach<History<T>> where T : struct
-            {
-                public readonly void Update(ref History<T> history) => history.Dispose();
-            }
+            var queries = _queryCache.Get(component.Component);
+            var filter = queries.History ??= CreateHistoryQuery(component.History);
+            _world.ForEach(in filter, component.Component, typeof(DisposeHistory<>));
         }
 
-
-        private readonly struct SelectToDispose : IForEachWithEntity<History<Alive>>
+        private Query CreateComponentQuery(ComponentId componentId)
         {
-            private readonly List<Entity> _entities;
-            private readonly int _tick;
+            Span<ComponentId> all = stackalloc ComponentId[2] { componentId, _tempComponentId };
+            return _world.WhereAll(all);
+        }
 
-            public SelectToDispose(List<Entity> entities, int tick)
-            {
-                _entities = entities;
-                _tick = tick;
-            }
+        private Query CreateHistoryQuery(ComponentId historyComponentId)
+        {
+            Span<ComponentId> all = stackalloc ComponentId[2] { historyComponentId, _tempComponentId };
+            return _world.WhereAll(all);
+        }
 
-            public void Update(Entity entity, ref History<Alive> aliveHistory)
-            {
-                if ((aliveHistory.GetLast(out var tick) == null && tick <= _tick - Constants.MaxHistoryTicks))
-                    _entities.Add(entity);
-            }
+        internal sealed class QuerySet
+        {
+            public QuerySet() { }
+
+            public Query? Components;
+            public Query? History;
         }
     }
 }

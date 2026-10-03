@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.Commands;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Commands;
@@ -15,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
+using System;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
@@ -26,8 +28,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         private readonly World _world;
 
         private static readonly GoodsId _rum = "Rum";
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<SquadMember, GoodsDrop>().NotDisabled().Alive();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<SquadMember, GoodsDrop, SyncId>().NotDisabled().Alive();
 
         public SpawnUnitCommandExecutor(UnitsInfoConfig unitsInfoConfig, IEntityRegistry entityRegistryService, IConfigedEntityFactory<UnitId> unitFactory, World world)
         {
@@ -45,7 +48,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 return;
             }
 
-            if (squad == Entity.Null ||
+            if (squad == default ||
                 !_world.IsAlive(squad) ||
                 !_world.Has<Alive>(squad))
             {
@@ -59,10 +62,10 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             var pos = _world.Get<Position>(squad);
             var unit = _unitFactory.Create((cmd.Data.UnitId, cmd.Data.CreationData));
 
-            _world.Get<TeamId>(unit) = cmd.ClientId.Value;
-            _world.Get<Position>(unit) = pos;
-            _world.Get<GoodsDrop>(unit) = new() { Values = ImmutableSortedDictionary.Create<GoodsId, int>() };
-            _world.AddOrGet<SquadMember>(unit).SquadId = _world.Get<SyncId>(squad).Value;
+            _world.GetRef<TeamId>(unit) = cmd.ClientId.Value;
+            _world.GetRef<Position>(unit) = pos;
+            _world.GetRef<GoodsDrop>(unit) = new() { Values = ImmutableSortedDictionary.Create<GoodsId, int>() };
+            _world.GetOrAdd<SquadMember>(unit).SquadId = _world.Get<SyncId>(squad).Value;
         }
 
 
@@ -78,7 +81,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             if (!_unitsInfoConfig.TryGetValue(unitId, out var info))
                 return false;
             var price = info.RumPrice;
-            ref var drop = ref _world.Get<GoodsDrop>(squad);
+            ref var drop = ref _world.GetRef<GoodsDrop>(squad);
             var squadRum = drop.Values.GetValueOrDefault(_rum);
             if (squadRum >= price)
             {
@@ -88,21 +91,24 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 return true;
             }
 
-            var totalRum = squadRum;
-            _world.Query(in _desc, (ref SquadMember member, ref GoodsDrop drop) =>
+            (SyncId SquadId, int TotalRum) totalRumState = (squadId, squadRum);
+            var query = _desc;
+            _world.ForEach<(SyncId SquadId, int TotalRum), SquadMember, GoodsDrop>(in query, ref totalRumState, static (ref (SyncId SquadId, int TotalRum) context, ref SquadMember member, ref GoodsDrop goodsDrop) =>
             {
-                if (member.SquadId == squadId)
-                    totalRum += drop.Values.GetValueOrDefault(_rum);
+                if (member.SquadId == context.SquadId)
+                    context.TotalRum += goodsDrop.Values.GetValueOrDefault(_rum);
             });
+            var totalRum = totalRumState.TotalRum;
 
             if (totalRum < price)
                 return false;
 
             List<(Entity entity, GoodsDrop drop, SyncId syncId)> units = new();
-            _world.Query(in _desc, (Entity entity, ref SquadMember member, ref GoodsDrop drop, ref SyncId syncId) =>
+            (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units) collectState = (squadId, units);
+            _world.ForEachEntity<(SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units), SquadMember, GoodsDrop, SyncId>(in query, ref collectState, static (ref (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units) context, Entity entity, ref SquadMember member, ref GoodsDrop goodsDrop, ref SyncId syncId) =>
             {
-                if (member.SquadId == squadId)
-                    units.Add((entity, drop, syncId));
+                if (member.SquadId == context.SquadId)
+                    context.Units.Add((entity, goodsDrop, syncId));
             });
 
             int leftPrice = price;
@@ -127,11 +133,12 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 var newDrop = unit.drop.Values.ToBuilder();
                 newDrop[_rum] -= remove;
                 leftPrice -= remove;
-                _world.Get<GoodsDrop>(unit.entity) = new() { Values = newDrop.ToImmutable() };
+                _world.GetRef<GoodsDrop>(unit.entity) = new() { Values = newDrop.ToImmutable() };
                 if (leftPrice == 0)
                     break;
             }
             return true;
         }
+
     }
 }

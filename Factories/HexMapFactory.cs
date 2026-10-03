@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IFactories;
@@ -27,8 +28,7 @@ namespace DVG.SkyPirates.Shared.Factories
                 SyncIdReserve = default,
             };
             var entity = _commandEntityFactory.Create(entityParameters);
-            _world.AddOrGet<HexMap>(entity).Data = FrozenDictionary<int3, Ids.TileId>.Empty;
-            //_world.AddOrGet<HexMap>(entity).Data = new();
+            _world.Add<HexMap>(entity, new() { Data = FrozenDictionary<int3, Ids.TileId>.Empty });
             return entity;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -10,8 +11,9 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     public sealed class SingleImpactSystem : IDeltaTickableExecutor
     {
-        private readonly QueryDescription _desc = new QueryDescription().
-            WithAll<BehaviourState, Damage, ImpactDistance, Position, Target>().Alive().NotDisabled();
+        private Query? _descCache;
+        private Query _desc => _descCache ??= _world.
+            WhereAll<BehaviourState, Damage, ImpactDistance, Position, Target>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -22,37 +24,26 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var query = new ImpactQuery(_world);
-            _world.InlineQuery<ImpactQuery, BehaviourState, Damage, ImpactDistance, Position, Target>(_desc, ref query);
-        }
-
-        private readonly struct ImpactQuery :
-            IForEach<BehaviourState, Damage, ImpactDistance, Position, Target>
-        {
-            private readonly World _world;
-
-            public ImpactQuery(World world)
-            {
-                _world = world;
-            }
-
-            public void Update(ref BehaviourState behaviour, ref Damage damage, ref ImpactDistance impactDistance, ref Position position, ref Target target)
-            {
+            var world = _world;
+            var desc = _desc;
+            _world.ForEach<World, BehaviourState, Damage, ImpactDistance, Position, Target>(in desc, ref world,
+                static (ref World world, ref BehaviourState behaviour, ref Damage damage, ref ImpactDistance impactDistance, ref Position position, ref Target target) =>
+                {
                 if (behaviour.State != StateId.Constants.PreAttack || behaviour.Percent != 1)
                     return;
 
                 if (!target.Entity.HasValue)
                     return;
 
-                var targetPos = _world.Get<Position>(target.Entity.Value);
+                var targetPos = world.Get<Position>(target.Entity.Value);
                 var sqrDistance = fix3.SqrDistance(targetPos, position);
                 var impactSqrDistance = (fix)impactDistance * impactDistance;
 
                 if (sqrDistance > impactSqrDistance)
                     return;
 
-                _world.Get<RecivedDamage>(target.Entity.Value) += (fix)damage;
-            }
+                world.GetRef<RecivedDamage>(target.Entity.Value) += (fix)damage;
+                });
         }
     }
 }

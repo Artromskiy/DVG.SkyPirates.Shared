@@ -1,102 +1,88 @@
 ﻿using Delta;
-using Arch.Core;
+using Delta.ECS;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public class FlagDisabledSystem : IDeltaTickableExecutor
-    {
-        private readonly World _world;
-        private readonly List<Entity> _toDisable = new();
-        private readonly List<Entity> _toEnable = new();
-        private readonly List<fix4> _activeQuads = new();
+	public class FlagDisabledSystem : IDeltaTickableExecutor
+	{
+		private readonly World _world;
+		private readonly List<Entity> _toDisable = new();
+		private readonly List<Entity> _toEnable = new();
+		private readonly List<fix4> _activeQuads = new();
 
-        private readonly QueryDescription _activityRanges = new QueryDescription().WithAll<ActivityRange, Position>().Alive();
+        private Query? _activityRangesCache;
+        private Query _activityRanges => _activityRangesCache ??= _world.WhereAll<ActivityRange, Position>().Alive();
 
-        private readonly QueryDescription _enabled = new QueryDescription().WithAll<Position>().WithNone<Disabled>().Alive();
-        private readonly QueryDescription _disabled = new QueryDescription().WithAll<Position, Disabled>().Alive();
+        private Query? _enabledCache;
+        private Query _enabled => _enabledCache ??= _world.WhereAll<Position>().WhereNone<Disabled>().Alive();
+        private Query? _disabledCache;
+        private Query _disabled => _disabledCache ??= _world.WhereAll<Position, Disabled>().Alive();
 
-        public FlagDisabledSystem(World world)
-        {
-            _world = world;
-        }
+		public FlagDisabledSystem(World world)
+		{
+			_world = world;
+		}
 
-        public void Tick(int tick, fix deltaTime)
-        {
-            _toDisable.Clear();
-            _toEnable.Clear();
-            _activeQuads.Clear();
+		public void Tick(int tick, fix deltaTime)
+		{
+			_toDisable.Clear();
+			_toEnable.Clear();
+			_activeQuads.Clear();
 
-            _world.Query(in _activityRanges, (ref ActivityRange range, ref Position position) =>
-            {
-                var pos = position.Value.xz;
-                fix4 minMax = default;
-                minMax.xy = pos - new fix2(range.Value);
-                minMax.zw = pos + new fix2(range.Value);
-                _activeQuads.Add(minMax);
-            });
+			var activeQuads = _activeQuads;
+			var activityRanges = _activityRanges;
+			_world.ForEach<List<fix4>, ActivityRange, Position>(in activityRanges, ref activeQuads, static (ref List<fix4> quads, ref ActivityRange range, ref Position position) =>
+			{
+				var pos = position.Value.xz;
+				fix4 minMax = default;
+				minMax.xy = pos - new fix2(range.Value);
+				minMax.zw = pos + new fix2(range.Value);
+				quads.Add(minMax);
+			});
 
-            var selectToDisable = new SelectToDisableQuery(_activeQuads, _toDisable);
-            var selectToEnable = new SelectToEnableQuery(_activeQuads, _toEnable);
-            _world.InlineEntityQuery<SelectToDisableQuery, Position>(in _enabled, ref selectToDisable);
-            _world.InlineEntityQuery<SelectToEnableQuery, Position>(in _disabled, ref selectToEnable);
+			var activeRegions = _activeQuads;
+			var toDisable = _toDisable;
+			var enabled = _enabled;
+			(List<fix4> Regions, List<Entity> Entities) disableState = (activeRegions, toDisable);
+			_world.ForEachEntity<(List<fix4> Regions, List<Entity> Entities), Position>(in enabled,
+				ref disableState,
+				static (ref (List<fix4> Regions, List<Entity> Entities) state, Entity entity, ref Position position) =>
+				{
+					var xz = position.Value.xz;
+					for (int i = 0; i < state.Regions.Count; i++)
+						if (Inside(xz, state.Regions[i]))
+							return;
+					state.Entities.Add(entity);
+				});
 
-            foreach (var item in _toEnable)
-                _world.Remove<Disabled>(item);
-            foreach (var item in _toDisable)
-                _world.Add<Disabled>(item);
-        }
+			var toEnable = _toEnable;
+			var disabled = _disabled;
+			(List<fix4> Regions, List<Entity> Entities) enableState = (activeRegions, toEnable);
+			_world.ForEachEntity<(List<fix4> Regions, List<Entity> Entities), Position>(in disabled, ref enableState,
+				static (ref (List<fix4> Regions, List<Entity> Entities) state, Entity entity, ref Position position) =>
+				{
+					var xz = position.Value.xz;
+					for (int i = 0; i < state.Regions.Count; i++)
+						if (Inside(xz, state.Regions[i]))
+							state.Entities.Add(entity);
+				});
 
-        private readonly struct SelectToDisableQuery : IForEachWithEntity<Position>
-        {
-            private readonly List<fix4> _minMaxs;
-            private readonly List<Entity> _selection;
+			foreach (var item in _toEnable)
+				_world.Remove<Disabled>(item);
+			foreach (var item in _toDisable)
+				_world.Add<Disabled>(item);
+		}
 
-            public SelectToDisableQuery(List<fix4> minMaxs, List<Entity> mark)
-            {
-                _minMaxs = minMaxs;
-                _selection = mark;
-            }
-
-            public readonly void Update(Entity entity, ref Position position)
-            {
-                var xz = position.Value.xz;
-
-                for (int i = 0; i < _minMaxs.Count; i++)
-                    if (Inside(xz, _minMaxs[i]))
-                        return;
-
-                _selection.Add(entity);
-            }
-        }
-
-        private readonly struct SelectToEnableQuery : IForEachWithEntity<Position>
-        {
-            private readonly List<fix4> _minMaxs;
-            private readonly List<Entity> _selection;
-
-            public SelectToEnableQuery(List<fix4> minMaxs, List<Entity> unmark)
-            {
-                _minMaxs = minMaxs;
-                _selection = unmark;
-            }
-
-            public readonly void Update(Entity entity, ref Position position)
-            {
-                var xz = position.Value.xz;
-                for (int i = 0; i < _minMaxs.Count; i++)
-                    if (Inside(xz, _minMaxs[i]))
-                        _selection.Add(entity); return;
-            }
-        }
-
-        private static bool Inside(fix2 point, fix4 minMax)
-        {
-            return point.x >= minMax.x && point.y >= minMax.y && point.x <= minMax.z && point.y <= minMax.w;
-        }
-    }
+		private static bool Inside(fix2 point, fix4 minMax)
+		{
+			return point.x >= minMax.x && point.y >= minMax.y && point.x <= minMax.z && point.y <= minMax.w;
+		}
+	}
 }
