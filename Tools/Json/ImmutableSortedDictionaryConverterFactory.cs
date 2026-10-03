@@ -11,7 +11,9 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         public override bool CanConvert(Type typeToConvert)
         {
             if (!typeToConvert.IsGenericType)
+            {
                 return false;
+            }
 
             return typeToConvert.GetGenericTypeDefinition() == typeof(ImmutableSortedDictionary<,>);
         }
@@ -42,7 +44,9 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             var dict = JsonSerializer.Deserialize<Dictionary<TKey, TValue>>(ref reader, options);
 
             if (dict == null)
+            {
                 return null;
+            }
 
             return dict.ToImmutableSortedDictionary();
         }

@@ -14,17 +14,24 @@ namespace DVG.SkyPirates.Shared.Services
         public T Get<T>() where T : new()
         {
             if (_genericPool.TryGet<Queue<T>>(out var pool) && pool.TryDequeue(out var pooled))
+            {
                 return pooled;
+            }
+
             return new();
         }
 
         public void Return<T>(T value) where T : new()
         {
             if (!_genericPool.TryGet<Queue<T>>(out var pool))
+            {
                 _genericPool.Add(pool = new());
+            }
 
             if (pool.Count < MaxCount)
+            {
                 pool.Enqueue(value);
+            }
         }
     }
 }

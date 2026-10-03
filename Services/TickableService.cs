@@ -17,7 +17,9 @@ namespace DVG.SkyPirates.Shared.Services
         public void Tick(int tick)
         {
             foreach (var item in _executors)
+            {
                 item.Tick(tick);
+            }
         }
     }
 }

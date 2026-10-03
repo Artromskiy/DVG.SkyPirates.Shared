@@ -26,7 +26,9 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             var hexMap = _world.FirstOrDefault<HexMap>();
             if (hexMap.Data == null)
+            {
                 return;
+            }
 
             var desc = _desc;
             _world.ForEach<HexMap, Position>(in desc, ref hexMap,

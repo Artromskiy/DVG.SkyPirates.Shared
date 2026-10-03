@@ -30,10 +30,14 @@ namespace DVG.SkyPirates.Shared.Systems
                 static (ref World world, ref BehaviourState behaviour, ref ImpactDistance impactDistance, ref Position position, ref Targets targets) =>
                 {
                 if (behaviour.State != StateId.None)
+                {
                     return;
+                }
 
                 if (targets.Entities == null || targets.Entities.Count == 0)
+                {
                     return;
+                }
 
                 var impactSqrDistance = (fix)impactDistance * impactDistance;
 

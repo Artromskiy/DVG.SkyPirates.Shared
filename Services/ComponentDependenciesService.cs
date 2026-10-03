@@ -23,7 +23,9 @@ namespace DVG.SkyPirates.Shared.Services
                 var hasAll = new HasAllAction(_world, entity);
                 config.Has.ForEach(ref hasAll);
                 if (!hasAll.Value)
+                {
                     continue;
+                }
 
                 var add = new AddAction(_world, entity);
                 config.Add.ForEach(ref add);

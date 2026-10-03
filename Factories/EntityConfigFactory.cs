@@ -13,22 +13,38 @@ namespace DVG.SkyPirates.Shared.Factories
         public EntityConfigFactory(GlobalConfig config)
         {
             foreach (var item in config.UnitsStats)
+            {
                 TryAdd(item.Value);
+            }
+
             foreach (var item in config.CactusesStats)
+            {
                 TryAdd(item.Value);
+            }
+
             foreach (var item in config.TreesStats)
+            {
                 TryAdd(item.Value);
+            }
+
             foreach (var item in config.RocksStats)
+            {
                 TryAdd(item.Value);
+            }
+
             foreach (var item in config.GoodsStats)
+            {
                 TryAdd(item.Value);
+            }
         }
 
         private void TryAdd(ComponentsSet data)
         {
             var key = data.Get<T>();
             if (key != null)
+            {
                 _entities.Add(key.Value, data);
+            }
         }
 
         public ComponentsSet Create(T parameters)

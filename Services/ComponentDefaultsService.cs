@@ -45,7 +45,9 @@ namespace DVG.SkyPirates.Shared.Services
             public readonly void Invoke<T>(T component) where T : struct
             {
                 if (_world.Has<T>(_entity))
+                {
                     _world.GetRef<T>(_entity) = component;
+                }
             }
         }
 
@@ -87,7 +89,9 @@ namespace DVG.SkyPirates.Shared.Services
                 public void Invoke<To>() where To : struct
                 {
                     if (!_world.Has<To>(_entity))
+                    {
                         return;
+                    }
 
                     var cmpFrom = _from;
                     var cmpTo = Unsafe.As<From, To>(ref cmpFrom);

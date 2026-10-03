@@ -33,9 +33,11 @@ namespace DVG.SkyPirates.Shared.Services
 
             if (!splitted)
             {
-                var length = (int)message.GetVarULong();
+                int length = (int)message.GetVarULong();
                 if (_tempBytes.Length < length)
+                {
                     Array.Resize(ref _tempBytes, length);
+                }
 
                 var writeMemory = _buffer.GetMemory(length);
                 message.GetBytes(length, _tempBytes);
@@ -51,8 +53,10 @@ namespace DVG.SkyPirates.Shared.Services
 
                 var key = checked(((ushort)client, uid));
                 if (!_splitMessages.TryGetValue(key, out var storage))
+                {
                     _splitMessages[key] = storage =
                         _queue.TryDequeue(out storage) ? storage : new(this);
+                }
 
                 storage.Write(message);
 
@@ -76,9 +80,13 @@ namespace DVG.SkyPirates.Shared.Services
             var written = _buffer.WrittenMemory;
             //Console.WriteLine($"Message size: {written.Length} bytes");
             if (written.Length >= SplitSize) // need to split
+            {
                 return GetSplitted<T>(written, messages);
+            }
             else
+            {
                 return GetSingle<T>(written, messages);
+            }
         }
 
         private List<Message> GetSplitted<T>(ReadOnlyMemory<byte> written, List<Message> messages)
@@ -91,8 +99,11 @@ namespace DVG.SkyPirates.Shared.Services
             int splitCount = written.Length / SplitSize +
                 (written.Length % SplitSize == 0 ? 0 : 1);
             if (splitCount > ushort.MaxValue)
+            {
                 throw new NotSupportedException();
-            var commandId = CommandsRegistry.GetId<T>();
+            }
+
+            int commandId = CommandsRegistry.GetId<T>();
             ushort uid = _splitMessageId++;
             for (int i = 0; i < splitCount; i++)
             {
@@ -112,7 +123,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         private List<Message> GetSingle<T>(ReadOnlyMemory<byte> written, List<Message> messages)
         {
-            var commandId = CommandsRegistry.GetId<T>();
+            int commandId = CommandsRegistry.GetId<T>();
             var message = Message.Create(MessageSendMode.Reliable, (ushort)commandId);
             message.AddBool(false);
             WriteToMessage(written, message);
@@ -124,7 +135,10 @@ namespace DVG.SkyPirates.Shared.Services
         {
             int length = write.Length;
             if (length > _tempBytes.Length)
+            {
                 Array.Resize(ref _tempBytes, length);
+            }
+
             write.CopyTo(_tempBytes);
             message.AddBytes(_tempBytes, 0, length);
         }
@@ -175,9 +189,12 @@ namespace DVG.SkyPirates.Shared.Services
                 {
                     _lastIndex = index;
                 }
-                var length = (int)message.GetVarULong();
+                int length = (int)message.GetVarULong();
                 if (_owner._tempBytes.Length < length)
+                {
                     Array.Resize(ref _owner._tempBytes, length);
+                }
+
                 message.GetBytes(length, _owner._tempBytes);
                 var memory = _allocator.GetMemory(length);
                 _splitMessageData[index] = memory[..length];

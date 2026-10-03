@@ -57,7 +57,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             }
 
             if (!TrySpawn(squad, cmd.Data.UnitId))
+            {
                 return;
+            }
 
             var pos = _world.Get<Position>(squad);
             var unit = _unitFactory.Create((cmd.Data.UnitId, cmd.Data.CreationData));
@@ -79,10 +81,13 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
             var squadId = _world.Get<SyncId>(squad);
             if (!_unitsInfoConfig.TryGetValue(unitId, out var info))
+            {
                 return false;
-            var price = info.RumPrice;
+            }
+
+            int price = info.RumPrice;
             ref var drop = ref _world.GetRef<GoodsDrop>(squad);
-            var squadRum = drop.Values.GetValueOrDefault(_rum);
+            int squadRum = drop.Values.GetValueOrDefault(_rum);
             if (squadRum >= price)
             {
                 var newDrop = drop.Values.ToBuilder();
@@ -96,26 +101,32 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _world.ForEach<(SyncId SquadId, int TotalRum), SquadMember, GoodsDrop>(in query, ref totalRumState, static (ref (SyncId SquadId, int TotalRum) context, ref SquadMember member, ref GoodsDrop goodsDrop) =>
             {
                 if (member.SquadId == context.SquadId)
+                {
                     context.TotalRum += goodsDrop.Values.GetValueOrDefault(_rum);
+                }
             });
-            var totalRum = totalRumState.TotalRum;
+            int totalRum = totalRumState.TotalRum;
 
             if (totalRum < price)
+            {
                 return false;
+            }
 
             List<(Entity entity, GoodsDrop drop, SyncId syncId)> units = new();
             (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units) collectState = (squadId, units);
             _world.ForEachEntity<(SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units), SquadMember, GoodsDrop, SyncId>(in query, ref collectState, static (ref (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units) context, Entity entity, ref SquadMember member, ref GoodsDrop goodsDrop, ref SyncId syncId) =>
             {
                 if (member.SquadId == context.SquadId)
+                {
                     context.Units.Add((entity, goodsDrop, syncId));
+                }
             });
 
             int leftPrice = price;
 
             // remove from squad
             var squadNewDrop = drop.Values.ToBuilder();
-            var removeSquad = Maths.Min(squadRum, price);
+            int removeSquad = Maths.Min(squadRum, price);
             if (squadRum > 0)
             {
                 squadNewDrop[_rum] -= removeSquad;
@@ -127,15 +138,20 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             foreach (var unit in units.OrderBy(u => u.syncId.Value))
             {
                 int count = unit.drop.Values.GetValueOrDefault(_rum);
-                var remove = Maths.Min(count, leftPrice);
+                int remove = Maths.Min(count, leftPrice);
                 if (remove == 0)
+                {
                     continue;
+                }
+
                 var newDrop = unit.drop.Values.ToBuilder();
                 newDrop[_rum] -= remove;
                 leftPrice -= remove;
                 _world.GetRef<GoodsDrop>(unit.entity) = new() { Values = newDrop.ToImmutable() };
                 if (leftPrice == 0)
+                {
                     break;
+                }
             }
             return true;
         }

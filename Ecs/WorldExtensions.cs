@@ -68,10 +68,12 @@ namespace DVG.SkyPirates.Shared.Ecs
 
         public HistoryComponentIds GetHistory(ComponentId component)
         {
-            for (var i = 0; i < History.Length; i++)
+            for (int i = 0; i < History.Length; i++)
             {
                 if (History[i].Component == component)
+                {
                     return History[i];
+                }
             }
 
             throw new KeyNotFoundException($"Component {component} is not registered for history.");
@@ -171,7 +173,9 @@ namespace DVG.SkyPirates.Shared.Ecs
         {
             var componentType = typeof(T);
             if (!_queries.TryGetValue(componentType, out var queries))
+            {
                 _queries.Add(componentType, queries = new TQueries());
+            }
 
             return queries;
         }
@@ -179,7 +183,9 @@ namespace DVG.SkyPirates.Shared.Ecs
         public TQueries Get(ComponentId componentId)
         {
             if (!_queriesById.TryGetValue(componentId, out var queries))
+            {
                 _queriesById.Add(componentId, queries = new TQueries());
+            }
 
             return queries;
         }

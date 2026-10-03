@@ -42,7 +42,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             }
 
             if (!CanMove(squad))
+            {
                 return;
+            }
 
             ref var dir = ref _world.GetRef<Direction>(squad);
             ref var rot = ref _world.GetRef<Rotation>(squad);
@@ -51,7 +53,10 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             fix = cmd.Data.Fixation;
 
             if (fix2.SqrLength(dir) == 0)
+            {
                 return;
+            }
+
             rot = Maths.Degrees(MathsExtensions.GetRotation(dir));
         }
 
@@ -63,7 +68,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _world.ForEach<(SyncId SquadId, int Count), SquadMember>(in query, ref state, static (ref (SyncId SquadId, int Count) context, ref SquadMember member) =>
             {
                 if (member.SquadId == context.SquadId)
+                {
                     context.Count++;
+                }
             });
             return state.Count > 0;
         }

@@ -72,7 +72,9 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                 JsonSerializer.Serialize(jsonWriter, span[i], options);
                 bufferCache.Write(bufferWriter.WrittenSpan);
                 if (i != _count - 1)
+                {
                     bufferCache.Write(_comma);
+                }
             }
             bufferCache.Write(_arrayEnd);
             writer.WriteRawValue(bufferCache.WrittenSpan);
@@ -94,7 +96,9 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                 JsonSerializer.Serialize(jsonWriter, span[i], options);
                 bufferCache.Write(bufferWriter.WrittenSpan);
                 if (i != _count - 1)
+                {
                     bufferCache.Write(_comma);
+                }
             }
             writer.WritePropertyName(bufferCache.WrittenSpan);
         }

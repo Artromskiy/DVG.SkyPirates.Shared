@@ -30,14 +30,14 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public (int sum, string info) GetHashSum()
         {
             _stringBuilder.Clear();
-            var hash = 0;
+            int hash = 0;
             var historyComponents = _componentIds.History;
-            for (var i = 0; i < historyComponents.Length; i++)
+            for (int i = 0; i < historyComponents.Length; i++)
             {
                 var component = historyComponents[i];
                 var queries = _queryCache.Get(component.Component);
                 var filter = queries.Filter ??= _world.WhereAll(component.Component);
-                var componentHash = 0;
+                int componentHash = 0;
                 _world.ForEach(in filter, ref componentHash, component.Component, typeof(HashComponent<>));
                 _stringBuilder.AppendLine($"Hash of {_world.Layouts.GetComponentType(component.Component).Name}: {componentHash}");
                 hash += componentHash;

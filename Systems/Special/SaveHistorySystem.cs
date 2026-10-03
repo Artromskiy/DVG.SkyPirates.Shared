@@ -13,50 +13,43 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         private readonly HistoryComponentIds _aliveIds;
         private readonly QuerySet[] _queries;
 
-        private Query? _hasAliveCache;
-        private Query _hasAlive => _hasAliveCache ??= CreateHasAliveQuery();
-        private Query? _noAliveCache;
-        private Query _noAlive => _noAliveCache ??= CreateNoAliveQuery();
-
         public SaveHistorySystem(World world)
         {
             _world = world;
             _componentIds = WorldComponentIds.For(world);
             _aliveIds = _componentIds.GetHistory(world.Layouts.GetPrimary(typeof(Alive)));
-            _queries = Array.ConvertAll(_componentIds.History, component => new QuerySet(world, component));
+            _queries = Array.ConvertAll(_componentIds.History, component => new QuerySet(world, component, _aliveIds.Component));
         }
 
         public void Save(int tick)
         {
             var historyComponents = _componentIds.History;
-            for (var i = 0; i < historyComponents.Length; i++)
-                AddHistory(historyComponents[i], _queries[i]);
-
-            for (var i = 0; i < historyComponents.Length; i++)
+            for (int i = 0; i < historyComponents.Length; i++)
             {
-                var component = historyComponents[i];
-                if (component.Component != _aliveIds.Component)
-                    SaveComponentHistory(component, _queries[i], tick);
+                AddHistory(historyComponents[i], _queries[i]);
             }
 
-            var hasAlive = _hasAlive;
-            var noAlive = _noAlive;
-            var aliveId = _aliveIds.Component;
-            _world.ForEach(in hasAlive, ref tick, aliveId, typeof(SaveHistory<>));
-            _world.ForEach(in noAlive, ref tick, aliveId, typeof(SaveMissingHistory<>));
+            for (int i = 0; i < historyComponents.Length; i++)
+            {
+                SaveComponentHistory(historyComponents[i], _queries[i], tick);
+            }
         }
 
         public void SaveBaseline()
         {
             var historyComponents = _componentIds.History;
-            for (var i = 0; i < historyComponents.Length; i++)
+            for (int i = 0; i < historyComponents.Length; i++)
+            {
                 AddHistory(historyComponents[i], _queries[i]);
+            }
 
-            for (var i = 0; i < historyComponents.Length; i++)
+            for (int i = 0; i < historyComponents.Length; i++)
             {
                 var component = historyComponents[i];
                 if (component.Component != _aliveIds.Component)
+                {
                     SaveBaseline(component, _queries[i]);
+                }
             }
         }
 
@@ -72,31 +65,17 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         private void SaveComponentHistory(HistoryComponentIds component, QuerySet queries, int currentTick)
         {
-            var saveHas = queries.SaveHas;
-            var saveMissing = queries.SaveMissing;
-            var tick = currentTick;
-
-            _world.ForEach(in saveHas, ref tick, component.Component, typeof(SaveHistory<>));
-            _world.ForEach(in saveMissing, ref tick, component.Component, typeof(SaveMissingHistory<>));
+            var query = queries.Save;
+            var context = new SaveContext(_world, component.History, currentTick);
+            _world.ForEachEntity(in query, ref context, component.Component, typeof(SaveHistory<>));
         }
 
         private void SaveBaseline(HistoryComponentIds component, QuerySet queries)
         {
             var saveHas = queries.BaselineHas;
-            var tick = int.MinValue;
+            int tick = int.MinValue;
 
             _world.ForEach(in saveHas, ref tick, component.Component, typeof(SaveBaselineHistory<>));
-        }
-
-        private Query CreateHasAliveQuery()
-        {
-            Span<ComponentId> components = stackalloc ComponentId[2] { _aliveIds.History, _aliveIds.Component };
-            return _world.WhereAll(components);
-        }
-
-        private Query CreateNoAliveQuery()
-        {
-            return _world.WhereAll(_aliveIds.History).WhereNone(_aliveIds.Component);
         }
 
         private static Query CreateAllQuery(World world, ComponentId first, ComponentId second)
@@ -107,18 +86,18 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         internal sealed class QuerySet
         {
+            public readonly Query Save;
             public readonly Query MissingHistory;
             public readonly Query WithHistory;
-            public readonly Query SaveHas;
-            public readonly Query SaveMissing;
             public readonly Query BaselineHas;
 
-            public QuerySet(World world, HistoryComponentIds component)
+            public QuerySet(World world, HistoryComponentIds component, ComponentId aliveComponent)
             {
+                Save = component.Component == aliveComponent
+                    ? world.WhereAll(component.History)
+                    : world.WhereAll(component.History).NotDisabled().Alive();
                 MissingHistory = world.WhereAll(component.Component).WhereNone(component.History);
                 WithHistory = CreateAllQuery(world, component.History, component.Component);
-                SaveHas = CreateAllQuery(world, component.History, component.Component).NotDisabled().Alive();
-                SaveMissing = world.WhereAll(component.History).WhereNone(component.Component).NotDisabled().Alive();
                 BaselineHas = CreateAllQuery(world, component.History, component.Component).Alive();
             }
         }
@@ -128,20 +107,35 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             public void Invoke(ref History<T> history)
             {
                 if (history.Capacity == 0)
+                {
                     history = new History<T>(4, Constants.MaxHistoryTicks);
+                }
             }
         }
 
-        internal struct SaveHistory<T> : IForEachContext<int> where T : struct
+        internal struct SaveContext
         {
-            public void Invoke(ref int tick, ref History<T> history, in T component)
-                => history[tick] = component;
+            public readonly World World;
+            public readonly ComponentId History;
+            public readonly int Tick;
+
+            public SaveContext(World world, ComponentId history, int tick)
+            {
+                World = world;
+                History = history;
+                Tick = tick;
+            }
         }
 
-        internal struct SaveMissingHistory<T> : IForEachContext<int> where T : struct
+        internal struct SaveHistory<T> : IForEachContextEntity<SaveContext> where T : struct
         {
-            public void Invoke(ref int tick, ref History<T> history)
-                => history[tick] = null;
+            public void Invoke(ref SaveContext context, Entity entity)
+            {
+                ref var history = ref context.World.GetRef<History<T>>(entity, context.History);
+                history[context.Tick] = context.World.Has<T>(entity)
+                    ? context.World.GetRef<T>(entity)
+                    : null;
+            }
         }
 
         internal struct SaveBaselineHistory<T> : IForEachContext<int> where T : struct

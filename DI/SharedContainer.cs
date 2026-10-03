@@ -56,7 +56,9 @@ namespace DVG.SkyPirates.Shared.DI
 
             var globalConfigType = typeof(GlobalConfig);
             foreach (var item in globalConfigType.GetFields())
+            {
                 RegisterSingleton(item.FieldType, () => item.GetValue(GetInstance<GlobalConfig>()));
+            }
         }
 
         private static Type[] TickableExecutors => new Type[]
@@ -128,8 +130,8 @@ namespace DVG.SkyPirates.Shared.DI
             const ulong offsetBasis = 14695981039346656037UL;
             const ulong prime = 1099511628211UL;
 
-            var hash = offsetBasis;
-            foreach (var character in schemaName)
+            ulong hash = offsetBasis;
+            foreach (char character in schemaName)
             {
                 hash ^= character;
                 hash *= prime;
@@ -164,7 +166,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             public readonly void Invoke<T>() where T : struct
             {
-                var schemaName = typeof(History<>).FullName + "<" + typeof(T).FullName + ">";
+                string schemaName = typeof(History<>).FullName + "<" + typeof(T).FullName + ">";
                 var componentId = _layouts.GetPrimary<T>();
                 _layouts.Register(typeof(History<>), componentId, GetSchemaId(schemaName));
             }

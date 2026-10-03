@@ -12,11 +12,14 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         {
             if (element.ValueKind is JsonValueKind.Object)
             {
-                var count = element.GetPropertyCount();
-                var i = count;
+                int count = element.GetPropertyCount();
+                int i = count;
                 var array = ArrayPool<JsonProperty>.Shared.Rent(count);
                 foreach (var item in element.EnumerateObject())
+                {
                     array[--i] = item;
+                }
+
                 Array.Sort(array, 0, count, JsonPropertyComparer.Default);
 
                 jsonWriter.WriteStartObject();
@@ -33,7 +36,10 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             {
                 jsonWriter.WriteStartArray();
                 foreach (var item in element.EnumerateArray())
+                {
                     WriteOrdered(jsonWriter, item);
+                }
+
                 jsonWriter.WriteEndArray();
             }
 

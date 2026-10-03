@@ -68,8 +68,12 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         {
             ulong hash = 0;
             if (!string.IsNullOrWhiteSpace(str))
+            {
                 foreach (char c in str)
+                {
                     hash = (hash << 5) - hash + c;
+                }
+            }
 
             return hash;
         }
@@ -79,7 +83,10 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             int[] bits = decimal.GetBits(value); // god why unity uses old dotnet
             ulong hash = 0;
             foreach (int part in bits)
+            {
                 hash ^= (ulong)part;
+            }
+
             return hash;
         }
     }

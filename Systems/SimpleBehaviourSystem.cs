@@ -34,7 +34,9 @@ namespace DVG.SkyPirates.Shared.Systems
                 // skip if no force state and we are at none
                 if (behaviour.ForceState == null && (
                     behaviour.Percent != 1 || behaviour.State.IsNone))
+                {
                     return;
+                }
 
                 StateId targetState = behaviour.ForceState ??=
                     behaviourConfig.Scenario[behaviour.State];

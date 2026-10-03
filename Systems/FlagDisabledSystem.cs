@@ -57,9 +57,14 @@ namespace DVG.SkyPirates.Shared.Systems
 				{
 					var xz = position.Value.xz;
 					for (int i = 0; i < state.Regions.Count; i++)
-						if (Inside(xz, state.Regions[i]))
-							return;
-					state.Entities.Add(entity);
+                    {
+                        if (Inside(xz, state.Regions[i]))
+                        {
+                            return;
+                        }
+                    }
+
+                    state.Entities.Add(entity);
 				});
 
 			var toEnable = _toEnable;
@@ -70,15 +75,24 @@ namespace DVG.SkyPirates.Shared.Systems
 				{
 					var xz = position.Value.xz;
 					for (int i = 0; i < state.Regions.Count; i++)
-						if (Inside(xz, state.Regions[i]))
-							state.Entities.Add(entity);
-				});
+                    {
+                        if (Inside(xz, state.Regions[i]))
+                        {
+                            state.Entities.Add(entity);
+                        }
+                    }
+                });
 
 			foreach (var item in _toEnable)
-				_world.Remove<Disabled>(item);
-			foreach (var item in _toDisable)
-				_world.Add<Disabled>(item);
-		}
+            {
+                _world.Remove<Disabled>(item);
+            }
+
+            foreach (var item in _toDisable)
+            {
+                _world.Add<Disabled>(item);
+            }
+        }
 
 		private static bool Inside(fix2 point, fix4 minMax)
 		{

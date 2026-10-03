@@ -47,7 +47,9 @@ namespace DVG.SkyPirates.Shared.Systems
             public void Invoke(ref FirstOrDefaultState<T> state, Entity entity, in T component)
             {
                 if (state.ValueSet)
+                {
                     return;
+                }
 
                 state.ValueSet = true;
                 state.Value = component;

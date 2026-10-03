@@ -27,7 +27,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            for (var i = 0; i < _framedComponentIds.Length; i++)
+            for (int i = 0; i < _framedComponentIds.Length; i++)
             {
                 var query = _clearQueries[i];
                 _world.ForEach(in query, _framedComponentIds[i], typeof(ClearFramedComponent<>));
@@ -36,7 +36,7 @@ namespace DVG.SkyPirates.Shared.Systems
             Span<ComponentId> component = stackalloc ComponentId[1];
             foreach (var data in _dependencies)
             {
-                for (var i = 0; i < data.AddComponentIds.Length; i++)
+                for (int i = 0; i < data.AddComponentIds.Length; i++)
                 {
                     var query = data.AddQueries[i];
                     component[0] = data.AddComponentIds[i];
@@ -54,8 +54,11 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             var types = dependency.Has.GetTypes();
             var has = new ComponentId[types.Length + 1];
-            for (var i = 0; i < types.Length; i++)
+            for (int i = 0; i < types.Length; i++)
+            {
                 has[i] = world.Layouts.GetPrimary(types[i]);
+            }
+
             has[types.Length] = world.Layouts.GetPrimary<Alive>();
 
             var add = new List<ComponentId>();
@@ -65,8 +68,10 @@ namespace DVG.SkyPirates.Shared.Systems
             var addIds = add.ToArray();
             var queries = new Query[addIds.Length];
             var filter = world.WhereAll(has);
-            for (var i = 0; i < addIds.Length; i++)
+            for (int i = 0; i < addIds.Length; i++)
+            {
                 queries[i] = filter.WhereNone(addIds[i]);
+            }
 
             return new DependencyData(addIds, queries);
         }

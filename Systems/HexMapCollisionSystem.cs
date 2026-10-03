@@ -31,7 +31,9 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             var hexMap = _world.FirstOrDefault<HexMap>();
             if (hexMap.Data == null)
+            {
                 return;
+            }
 
             (HexMap HexMap, ThreadLocal<List<Segment>> SegmentsCache) state = (hexMap, _segmentsCache);
             var desc = _desc;
@@ -68,7 +70,9 @@ namespace DVG.SkyPirates.Shared.Systems
             {
                 var offsetted = item.x_y + axialFrom;
                 if (Walkable(hexMap, offsetted))
+                {
                     continue;
+                }
 
                 var worldFloor = Hex.AxialToWorld(offsetted.xz);
                 for (int i = 0; i < Hex.Points.Length; i++)

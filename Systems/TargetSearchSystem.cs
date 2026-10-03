@@ -54,7 +54,7 @@ namespace DVG.SkyPirates.Shared.Systems
             foreach (var entity in _targetsCache)
             {
                 var targetPosXZ = ((fix3)_world.Get<Position>(entity)).xz;
-                var syncId = _world.Get<SyncId>(entity).Value;
+                int syncId = _world.Get<SyncId>(entity).Value;
                 var dist = fix2.SqrDistance(targetPosXZ, origin);
 
                 if (best == null ||
@@ -89,7 +89,9 @@ namespace DVG.SkyPirates.Shared.Systems
             foreach (var kv in _targets)
             {
                 if (kv.Key == team)
+                {
                     continue;
+                }
 
                 var grid = kv.Value;
 
@@ -98,12 +100,16 @@ namespace DVG.SkyPirates.Shared.Systems
                     for (int x = min.x; x <= max.x; x++)
                     {
                         if (!grid.TryGetValue(x, y, out var list))
+                        {
                             continue;
+                        }
 
                         for (int i = 0; i < list.Count; i++)
                         {
                             if (_entitiesLookup.Has(list[i].Index))
+                            {
                                 continue;
+                            }
 
                             if (fix2.SqrDistance(((fix3)_world.Get<Position>(list[i])).xz, searchPositionXZ) < sqrSearchDistance)
                             {
@@ -119,7 +125,9 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             foreach (var team in _targets.Values)
+            {
                 team.Clear();
+            }
 
             var targets = _targets;
             var desc = _desc;
@@ -129,10 +137,14 @@ namespace DVG.SkyPirates.Shared.Systems
                     var quad = GetQuantizedSquare(position.Value.xz);
 
                     if (!targets.TryGetValue(teamId, out var team))
+                    {
                         targets[teamId] = team = new();
+                    }
 
                     if (!team.TryGetValue(quad.x, quad.y, out var list))
+                    {
                         team[quad.x, quad.y] = list = new List<Entity>(8);
+                    }
 
                     list.Add(entity);
                 });

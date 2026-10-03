@@ -39,11 +39,19 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             foreach (var item in _unitsPerSquad)
+            {
                 item.Value.Clear();
+            }
+
             foreach (var item in _goodsPerSquad)
+            {
                 item.Value.Clear();
+            }
+
             foreach (var item in _goodsPerUnit)
+            {
                 item.Value.Clear();
+            }
 
             (Dictionary<int, Dictionary<GoodsId, int>> GoodsPerSquad, Dictionary<int, List<SyncId>> UnitsPerSquad) collectState = (_goodsPerSquad, _unitsPerSquad);
             var unitsDesc = _unitsDesc;
@@ -53,20 +61,29 @@ namespace DVG.SkyPirates.Shared.Systems
                     if (drop.Values != null)
                     {
                         if (!state.GoodsPerSquad.TryGetValue(member.SquadId, out var squadGoods))
+                        {
                             state.GoodsPerSquad[member.SquadId] = squadGoods = new();
+                        }
 
                         foreach (var item in drop.Values)
                         {
                             if (item.Value <= 0)
+                            {
                                 continue;
+                            }
 
                             if (!squadGoods.TryAdd(item.Key, item.Value))
+                            {
                                 squadGoods[item.Key] += item.Value;
+                            }
                         }
                     }
 
                     if (!state.UnitsPerSquad.TryGetValue(member.SquadId, out var units))
+                    {
                         state.UnitsPerSquad[member.SquadId] = units = new();
+                    }
+
                     units.Add(syncId);
                 });
             // will redistribute only if there's members
@@ -76,33 +93,47 @@ namespace DVG.SkyPirates.Shared.Systems
                 static (ref Dictionary<int, Dictionary<GoodsId, int>> goodsPerSquad, ref GoodsDrop goods, ref SyncId syncId, ref SquadMemberCount memberCount) =>
                 {
                     if (memberCount.Value == 0)
+                    {
                         return;
+                    }
 
                     if (!goodsPerSquad.TryGetValue(syncId, out var squadGoods))
+                    {
                         goodsPerSquad[syncId] = squadGoods = new();
+                    }
 
                     foreach (var item in goods.Values)
                     {
                         if (item.Value <= 0)
+                        {
                             continue;
+                        }
 
                         if (!squadGoods.TryAdd(item.Key, item.Value))
+                        {
                             squadGoods[item.Key] += item.Value;
+                        }
                     }
                     goods = new() { Values = ImmutableSortedDictionary<GoodsId, int>.Empty };
                 });
 
             foreach (var item in _unitsPerSquad)
+            {
                 item.Value.Sort((u1, u2) => u1.Value.CompareTo(u2.Value));
+            }
 
-            foreach (var (squadId, units) in _unitsPerSquad)
+            foreach ((int squadId, var units) in _unitsPerSquad)
             {
                 if (!_goodsPerSquad.TryGetValue(squadId, out var squadGoods))
+                {
                     continue;
+                }
 
                 int membersCount = units.Count;
                 if (membersCount == 0)
+                {
                     continue;
+                }
 
                 foreach (var goodsId in squadGoods.Keys.OrderBy(k => k))
                 {
@@ -115,15 +146,22 @@ namespace DVG.SkyPirates.Shared.Systems
                     {
                         int amount = baseAmount + (i < remainder ? 1 : 0);
                         if (amount <= 0)
+                        {
                             continue;
+                        }
 
                         var syncId = units[i];
 
                         if (!_goodsPerUnit.TryGetValue(syncId, out var unitGoods))
+                        {
                             _goodsPerUnit[syncId] = unitGoods = new();
+                        }
 
                         if (!unitGoods.ContainsKey(goodsId))
+                        {
                             unitGoods[goodsId] = 0;
+                        }
+
                         unitGoods[goodsId] += amount;
                     }
                 }
@@ -140,7 +178,9 @@ namespace DVG.SkyPirates.Shared.Systems
                     }
 
                     if (drop.Values?.SequenceEqual(distributedDrop, KeyValuePairComparer<GoodsId, int>.Default) ?? false)
+                    {
                         return;
+                    }
 
                     drop = new() { Values = distributedDrop.ToImmutableSortedDictionary() };
                 });

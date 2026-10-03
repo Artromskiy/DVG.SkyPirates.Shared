@@ -52,7 +52,10 @@ namespace DVG.SkyPirates.Shared.Systems
                     for (int x = minQ.x; x <= maxQ.x; x++)
                     {
                         if (!grid.TryGetValue(x, y, out var list))
+                        {
                             grid[x, y] = list = new List<SeparatorEntry>(8);
+                        }
+
                         list.Add(new SeparatorEntry(syncId, position, separator, radius.Value));
                     }
                 });
@@ -68,24 +71,32 @@ namespace DVG.SkyPirates.Shared.Systems
                     fix2 totalForce = fix2.zero;
                     int forcesCount = 0;
                     if (!state.Grid.TryGetValue(q.x, q.y, out var list))
+                    {
                         return;
+                    }
 
                     int count = list.Count;
                     for (int i = 0; i < count; i++)
                     {
                         var other = list[i];
                         if (!state.Written.Add(other.SyncId))
+                        {
                             continue;
+                        }
 
                         var dir = pos - other.Position;
                         var sqrDistance = fix2.SqrLength(dir);
                         if (sqrDistance == 0)
+                        {
                             continue;
+                        }
 
                         var maxDistance = other.Radius + other.SeparatorRadius;
                         var maxSqrDistance = maxDistance * maxDistance;
                         if (sqrDistance > maxSqrDistance)
+                        {
                             continue;
+                        }
 
                         var distance = Maths.Sqrt(sqrDistance);
                         dir /= distance;

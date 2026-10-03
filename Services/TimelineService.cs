@@ -33,7 +33,7 @@ namespace DVG.SkyPirates.Shared.Services
                 _historySystem.Rollback(DirtyTick - 1);
                 CurrentTick = DirtyTick - 1;
             }
-            var fromTick = CurrentTick + 1;
+            int fromTick = CurrentTick + 1;
             for (int i = fromTick; i <= tick; i++)
             {
                 CurrentTick = i;

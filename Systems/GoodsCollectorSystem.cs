@@ -54,7 +54,10 @@ namespace DVG.SkyPirates.Shared.Systems
                     var posXZ = ((fix3)position).xz;
                     var quad = GetQuantizedSquare(posXZ);
                     if (!grid.TryGetValue(quad.x, quad.y, out var list))
+                    {
                         grid[quad.x, quad.y] = list = new List<DropRef>(8);
+                    }
+
                     list.Add(new DropRef { SyncId = syncId.Value, PositionXZ = posXZ });
                 });
 
@@ -74,13 +77,18 @@ namespace DVG.SkyPirates.Shared.Systems
                     for (int x = min.x; x <= max.x; x++)
                     {
                         if (!state.Grid.TryGetValue(x, y, out var drops))
+                        {
                             continue;
+                        }
+
                         for (int i = 0; i < drops.Count; i++)
                         {
                             var drop = drops[i];
                             var sqrDist = fix2.SqrDistance(drop.PositionXZ, center);
                             if (sqrDist > sqrSearchRadius)
+                            {
                                 continue;
+                            }
 
                             int dropId = drop.SyncId;
                             if (!state.Best.TryGetValue(dropId, out var current) ||
@@ -103,15 +111,22 @@ namespace DVG.SkyPirates.Shared.Systems
                 static (ref (Lookup<BestCollector> Best, Lookup<List<GoodsData>> CollectorsDrops, List<Entity> RemoveDrops) state, Entity entity, ref SyncId dropId, ref GoodsId goodsId, ref GoodsAmount goodsAmount, ref Position position, ref MaxSpeed maxSpeed) =>
                 {
                     if (!state.Best.TryGetValue(dropId.Value, out var best))
+                    {
                         return;
+                    }
 
                     position = fix3.MoveTowards(position, best.Position, maxSpeed);
                     if (fix3.SqrDistance(position, best.Position) >= fix.One / 10)
+                    {
                         return;
+                    }
 
                     state.RemoveDrops.Add(entity);
                     if (!state.CollectorsDrops.TryGetValue(best.CollectorSyncId.Value, out var collected))
+                    {
                         state.CollectorsDrops[best.CollectorSyncId.Value] = collected = new List<GoodsData>();
+                    }
+
                     collected.Add(new() { GoodsId = goodsId, GoodsAmount = goodsAmount });
                 });
 
@@ -120,20 +135,27 @@ namespace DVG.SkyPirates.Shared.Systems
                 static (ref Lookup<List<GoodsData>> collectedDrops, ref SyncId collectorId, ref GoodsDrop drop) =>
                 {
                     if (!collectedDrops.TryGetValue(collectorId.Value, out var toCollect))
+                    {
                         return;
+                    }
 
                     var values = drop.Values.ToBuilder();
                     foreach (var item in toCollect)
                     {
                         if (!values.ContainsKey(item.GoodsId))
+                        {
                             values[item.GoodsId] = 0;
+                        }
+
                         values[item.GoodsId] += item.GoodsAmount;
                     }
                     drop = new() { Values = values.ToImmutable() };
                 });
 
             foreach (var item in _removeDrops)
+            {
                 _world.Remove<Alive>(item);
+            }
         }
 
         private static int2 GetQuantizedSquare(fix2 position)

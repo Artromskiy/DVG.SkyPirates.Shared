@@ -39,7 +39,10 @@ namespace DVG.SkyPirates.Shared.Services
             CommandsData commandsData = new();
             var packCommandAction = new PackCommand(commandsData, _commands);
             foreach (ICommandExecutor executor in _executors)
+            {
                 executor.Call(ref packCommandAction);
+            }
+
             return commandsData;
         }
 
@@ -74,15 +77,22 @@ namespace DVG.SkyPirates.Shared.Services
             public void Invoke<T>()
             {
                 if (!_commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
+                {
                     return;
+                }
+
                 if (!typedCommands.TryGetValue(_tick, out var tickCommands))
+                {
                     return;
+                }
 
                 var executor = _executor as ICommandExecutor<T>;
                 Debug.Assert(executor is not null);
 
                 foreach (var cmd in tickCommands)
+                {
                     executor.Execute(cmd);
+                }
             }
         }
 
@@ -102,11 +112,16 @@ namespace DVG.SkyPirates.Shared.Services
             public void Invoke<T>()
             {
                 if (!_commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
+                {
                     return;
-                if (!typedCommands.TryGetValue(_tick, out var tickCommands))
-                    return;
+                }
 
-                var match = tickCommands.FindIndex(Match);
+                if (!typedCommands.TryGetValue(_tick, out var tickCommands))
+                {
+                    return;
+                }
+
+                int match = tickCommands.FindIndex(Match);
                 tickCommands.RemoveAt(match);
             }
             private bool Match<T>(Command<T> c) => c.ClientId == _clientId;
@@ -132,9 +147,15 @@ namespace DVG.SkyPirates.Shared.Services
             private readonly void Recieve<T>(Command<T> command)
             {
                 if (!_commands.TryGet<Dictionary<int, List<Command<T>>>>(out var typedCommands))
+                {
                     _commands.Add(typedCommands = new());
+                }
+
                 if (!typedCommands.TryGetValue(command.Tick, out var tickCommands))
+                {
                     typedCommands[command.Tick] = tickCommands = new();
+                }
+
                 tickCommands.Add(command);
             }
         }
@@ -153,7 +174,9 @@ namespace DVG.SkyPirates.Shared.Services
             public readonly void Invoke<T>()
             {
                 if (_commands.TryGet<Dictionary<int, List<Command<T>>>>(out var commands))
+                {
                     _commandsData.Set(commands);
+                }
             }
         }
     }

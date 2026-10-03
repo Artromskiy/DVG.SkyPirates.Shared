@@ -41,22 +41,28 @@ namespace DVG.SkyPirates.Shared.Systems
                 static (ref List<DropInfo> dropInfos, ref Health health, ref GoodsDrop goods, ref Position position, ref SyncIdReserve syncIdReserve, ref RandomSeed seed) =>
                 {
                     if (health > fix.Zero)
+                    {
                         return;
+                    }
 
                     int remainingIds = syncIdReserve.RemainingCount();
                     int typesCount = goods.Values.Count;
                     if (typesCount == 0)
+                    {
                         return;
+                    }
 
                     Debug.Assert(remainingIds >= typesCount);
                     if (remainingIds < typesCount)
+                    {
                         return;
+                    }
 
                     int dropsCount = remainingIds;
                     int baseSlots = dropsCount / typesCount;
                     int remainderSlots = dropsCount % typesCount;
                     int i = 0;
-                    foreach (var (goodsId, totalAmount) in goods.Values)
+                    foreach ((var goodsId, int totalAmount) in goods.Values)
                     {
                         int slots = baseSlots + (i < remainderSlots ? 1 : 0);
                         int baseAmount = totalAmount / slots;
@@ -66,7 +72,9 @@ namespace DVG.SkyPirates.Shared.Systems
                         {
                             int amount = baseAmount + (j < remainderAmount ? 1 : 0);
                             if (amount == 0)
+                            {
                                 continue;
+                            }
 
                             var drop = new DropInfo
                             {

@@ -20,10 +20,13 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Tick(int tick)
         {
-            var snapshotTick = tick - Constants.MaxHistoryTicks + 1;
+            int snapshotTick = tick - Constants.MaxHistoryTicks + 1;
             var snapshot = _historySystem.GetSnapshot(snapshotTick);
-            for (var i = 0; i < TrimActions.Length; i++)
+            for (int i = 0; i < TrimActions.Length; i++)
+            {
                 TrimActions[i](snapshot);
+            }
+
             _timeline[snapshotTick] = snapshot;
         }
 

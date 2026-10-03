@@ -25,7 +25,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             public void Invoke(ref EntitySelectionState selection, Entity entity, ref History<T> history)
             {
                 if (history.Count == 0 || !history[selection.Tick].HasValue)
+                {
                     selection.Entities.Add(entity);
+                }
             }
         }
 
@@ -34,7 +36,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             public void Invoke(ref EntitySelectionState selection, Entity entity, ref History<T> history)
             {
                 if (history.Count > 0 && history[selection.Tick].HasValue)
+                {
                     selection.Entities.Add(entity);
+                }
             }
         }
 
@@ -44,7 +48,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             {
                 var value = history[tick];
                 if (!value.HasValue)
+                {
                     throw new InvalidOperationException();
+                }
 
                 component = value.Value;
             }
@@ -59,26 +65,32 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public void GoTo(int tick)
         {
             var histories = _componentIds.History;
-            for (var i = 0; i < histories.Length; i++)
+            for (int i = 0; i < histories.Length; i++)
+            {
                 SetHistory(histories[i], tick);
+            }
         }
 
         // TODO can optimize to destroy first and apply then
         public void RollBack(int tick)
         {
             var histories = _componentIds.History;
-            for (var i = 0; i < histories.Length; i++)
+            for (int i = 0; i < histories.Length; i++)
+            {
                 SetHistory(histories[i], tick);
+            }
 
-            for (var i = 0; i < histories.Length; i++)
+            for (int i = 0; i < histories.Length; i++)
+            {
                 ClearHistories(histories[i], tick);
+            }
         }
 
         private void ClearHistories(HistoryComponentIds component, int targetTick)
         {
             var queries = _queryCache.Get(component.Component);
             var filter = queries.Clear ??= CreateHistoryQuery(component);
-            var tick = targetTick;
+            int tick = targetTick;
             _world.ForEach(in filter, ref tick, component.Component, typeof(ClearHistory<>));
         }
 
@@ -91,7 +103,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             RemoveComponents(withComponent, component, targetTick);
             AddComponents(withoutComponent, component, targetTick);
 
-            var tick = targetTick;
+            int tick = targetTick;
             _world.ForEach(in withComponent, ref tick, component.Component, typeof(ApplyHistory<>));
         }
 
@@ -103,7 +115,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             Span<ComponentId> componentIds = stackalloc ComponentId[1] { component.Component };
             foreach (var entity in _entitiesCache)
+            {
                 _world.Remove(entity, componentIds);
+            }
         }
 
         private void AddComponents(Query filter, HistoryComponentIds component, int targetTick)
@@ -114,7 +128,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             Span<ComponentId> componentIds = stackalloc ComponentId[1] { component.Component };
             foreach (var entity in _entitiesCache)
+            {
                 _world.Add(entity, componentIds);
+            }
         }
 
         private Query CreateHistoryQuery(HistoryComponentIds component)

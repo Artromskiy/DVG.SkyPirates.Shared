@@ -52,10 +52,14 @@ namespace DVG.SkyPirates.Shared.Systems
                 static (ref List<Entity> entities, Entity entity, ref Position position, ref FlyDestination fly, ref MaxSpeed maxSpeed) =>
                 {
                     if (position == fly.EndPosition)
+                    {
                         entities.Add(entity);
+                    }
                 });
             foreach (var item in _finished)
+            {
                 _world.Remove<FlyDestination>(item);
+            }
         }
     }
 }

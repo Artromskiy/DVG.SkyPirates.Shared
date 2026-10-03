@@ -10,7 +10,9 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             foreach (var item in typeInfo.Properties)
             {
                 if (!(item.AttributeProvider?.IsDefined(typeof(IgnoreDataMemberAttribute), true) ?? false))
+                {
                     continue;
+                }
 
                 item.Get = null;
                 item.Set = null;

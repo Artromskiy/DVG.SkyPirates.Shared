@@ -31,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             _packQueries = new Query[historyComponents.Length];
             Span<ComponentId> identityComponents = stackalloc ComponentId[2] { _aliveIds.History, _syncIdIds.History };
             var identityQuery = _world.WhereAll(identityComponents);
-            for (var i = 0; i < historyComponents.Length; i++)
+            for (int i = 0; i < historyComponents.Length; i++)
             {
                 var component = historyComponents[i];
                 _packQueries[i] = component.Component == _aliveIds.Component || component.Component == _syncIdIds.Component
@@ -48,7 +48,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             var context = new PackState { Components = worldData, Tick = tick };
             var historyComponents = _componentIds.History;
 
-            for (var i = 0; i < historyComponents.Length; i++)
+            for (int i = 0; i < historyComponents.Length; i++)
             {
                 var component = historyComponents[i];
                 var query = _packQueries[i];
@@ -66,10 +66,14 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         public void ApplySnapshot(WorldData snapshot)
         {
             foreach (var syncId in snapshot.Get<SyncId>().Values)
+            {
                 _entityRegistry.Reserve(syncId);
+            }
 
             foreach (var syncIdReserve in snapshot.Get<SyncIdReserve>().Values)
+            {
                 _entityRegistry.Reserve(syncIdReserve);
+            }
 
             _entitiesCache.Clear();
             _snapshotEntitiesCache.Clear();
@@ -86,14 +90,17 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
                 _snapshotEntitiesCache.Add(entity);
                 if (!alive.ContainsKey(syncId.Value))
+                {
                     _world.Remove(entity, aliveComponent);
+                }
             }
 
             var snapshotEntities = _snapshotEntitiesCache.ToArray();
             var historyComponents = _componentIds.History;
-            for (var i = 0; i < historyComponents.Length; i++)
+            for (int i = 0; i < historyComponents.Length; i++)
+            {
                 ApplyComponentSnapshot(snapshot, historyComponents[i], snapshotEntities);
-
+            }
         }
 
         private void ApplyComponentSnapshot(WorldData snapshot, HistoryComponentIds component, Entity[] snapshotEntities)
@@ -103,7 +110,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             _world.ForEachEntity(snapshotEntities, ref state, component.Component, typeof(SelectSnapshotEntities<>));
 
             if (_entitiesCache.Count == 0)
+            {
                 return;
+            }
 
             Entity[] entities = _entitiesCache.ToArray();
             _world.Add(entities, component.Component);
@@ -133,11 +142,15 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             {
                 var aliveComponent = alive[state.Tick];
                 if (!aliveComponent.HasValue)
+                {
                     return;
+                }
 
                 var idComponent = syncId[state.Tick];
                 if (idComponent.HasValue)
+                {
                     state.Components.Get<T>()[idComponent.Value.Value] = (T)(object)aliveComponent.Value;
+                }
             }
         }
 
@@ -147,11 +160,15 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             {
                 var aliveComponent = alive[state.Tick];
                 if (!aliveComponent.HasValue)
+                {
                     return;
+                }
 
                 var idComponent = syncId[state.Tick];
                 if (idComponent.HasValue)
+                {
                     state.Components.Get<T>()[idComponent.Value.Value] = (T)(object)idComponent.Value;
+                }
             }
         }
 
@@ -161,11 +178,15 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             {
                 var historyComponent = history[state.Tick];
                 if (!historyComponent.HasValue || !alive[state.Tick].HasValue)
+                {
                     return;
+                }
 
                 var idComponent = id[state.Tick];
                 if (idComponent.HasValue)
+                {
                     state.Components.Get<T>()[idComponent.Value.Value] = historyComponent.Value;
+                }
             }
         }
 
@@ -190,7 +211,9 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             public void Invoke(ref ApplySnapshotState state, Entity entity)
             {
                 if (state.Snapshot.Get<T>().ContainsKey(state.World.GetRef<SyncId>(entity).Value))
+                {
                     state.Entities.Add(entity);
+                }
             }
         }
 
@@ -198,7 +221,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             public void Invoke(ref ApplySnapshotState state, Entity entity)
             {
-                var syncId = state.World.GetRef<SyncId>(entity).Value;
+                int syncId = state.World.GetRef<SyncId>(entity).Value;
                 state.World.GetRef<T>(entity, state.Component) = state.Snapshot.Get<T>()[syncId];
             }
         }

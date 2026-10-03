@@ -33,7 +33,9 @@ namespace DVG.SkyPirates.Shared.Systems
                 static (ref List<Entity> entities, Entity entity, ref Health health) =>
                 {
                     if (health <= fix.Zero)
+                    {
                         entities.Add(entity);
+                    }
                 });
             foreach (var item in _dead)
             {

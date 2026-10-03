@@ -12,8 +12,10 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                 ThenBy(p => p.Name).
                 Select((e, i) => (e, i));
 
-            foreach (var (item, order) in ordered)
+            foreach ((var item, int order) in ordered)
+            {
                 item.Order = order;
+            }
         }
     }
 }

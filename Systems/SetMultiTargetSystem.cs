@@ -38,7 +38,9 @@ namespace DVG.SkyPirates.Shared.Systems
                     state.TargetsCache.Clear();
                     state.TargetSearch.FindTargets(ref searchDistance, ref searchPosition, ref team, state.TargetsCache);
                     if (state.TargetsCache.Count > 0)
+                    {
                         target.Entities = new(state.TargetsCache);
+                    }
                 });
         }
     }

@@ -39,19 +39,27 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             _world.ForEachEntity<(List<Entity> Entities, int CurrentTick), History<Alive>>(in disposingDesc, ref state,
                 static (ref (List<Entity> Entities, int CurrentTick) state, Entity entity, ref History<Alive> aliveHistory) =>
                 {
-                    if (aliveHistory.GetLast(out var tick) == null && tick <= state.CurrentTick - Constants.MaxHistoryTicks)
+                    if (aliveHistory.GetLast(out int tick) == null && tick <= state.CurrentTick - Constants.MaxHistoryTicks)
+                    {
                         state.Entities.Add(entity);
+                    }
                 });
             foreach (var entity in _entitiesCache)
+            {
                 _world.Add<Temp>(entity);
+            }
 
             var disposableComponents = _componentIds.Disposable;
-            for (var i = 0; i < disposableComponents.Length; i++)
+            for (int i = 0; i < disposableComponents.Length; i++)
+            {
                 DisposeComponents(disposableComponents[i]);
+            }
 
             var historyComponents = _componentIds.History;
-            for (var i = 0; i < historyComponents.Length; i++)
+            for (int i = 0; i < historyComponents.Length; i++)
+            {
                 DisposeHistoryComponents(historyComponents[i]);
+            }
 
             var toDestroy = _toDestroy;
             _world.Destroy(in toDestroy);

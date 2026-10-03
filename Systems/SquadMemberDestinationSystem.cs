@@ -59,14 +59,17 @@ namespace DVG.SkyPirates.Shared.Systems
                 static (ref (Dictionary<int, List<SyncId>> UnitsPerSquad, Queue<List<SyncId>> UnitsCache) state, ref SquadMember member, ref SyncId syncId) =>
                 {
                     if (!state.UnitsPerSquad.TryGetValue(member.SquadId, out var list))
+                    {
                         state.UnitsPerSquad[member.SquadId] = state.UnitsCache.TryDequeue(out list) ? list : list = new(8); // really wtf?
+                    }
+
                     list.Add(syncId);
                 });
 
             foreach (var item in _unitsPerSquad)
             {
                 item.Value.Sort((u1, u2) => u1.Value.CompareTo(u2.Value));
-                for (var i = 0; i < item.Value.Count; i++)
+                for (int i = 0; i < item.Value.Count; i++)
                 {
                     _orderPerUnit[item.Value[i].Value] = i;
                 }
@@ -78,7 +81,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     var squad = state.DataPerSquad[member.SquadId];
                     var circles = state.CirclesConfig[squad.MemberCount];
-                    var order = state.OrderPerUnit[syncId.Value];
+                    int order = state.OrderPerUnit[syncId.Value];
                     var local = circles.Points[order];
                     destination.Position = squad.Position + local.x_y;
                     destination.Rotation = squad.Rotation;
