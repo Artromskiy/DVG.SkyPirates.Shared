@@ -44,7 +44,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         {
             if (!_entityRegistryService.TryGet(cmd.Data.SquadId, out var squad))
             {
-                Trace.TraceWarning(Tracing.NotCreatedEntityCommand(cmd.Data.SquadId));
+                DVG.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Data.SquadId));
                 return;
             }
 
@@ -52,7 +52,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 !_world.IsAlive(squad) ||
                 !_world.Has<Alive>(squad))
             {
-                Trace.TraceWarning(Tracing.NotCreatedEntityCommand(cmd.Data.SquadId));
+                DVG.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Data.SquadId));
                 return;
             }
 

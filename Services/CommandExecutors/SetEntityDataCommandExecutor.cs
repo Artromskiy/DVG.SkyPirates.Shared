@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
         {
             if (!_entityRegistryService.TryGet(cmd.Data.Target, out var entity))
             {
-                Trace.TraceWarning(Tracing.NotCreatedEntityCommand(cmd.Data.Target));
+                DVG.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Data.Target));
                 return;
             }
             var removeAction = new RemoveAllComponentsAction(_world, entity);

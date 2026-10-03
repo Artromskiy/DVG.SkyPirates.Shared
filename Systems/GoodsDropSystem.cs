@@ -52,7 +52,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         return;
                     }
 
-                    Debug.Assert(remainingIds >= typesCount);
+                    DVG.Debug.Assert(remainingIds >= typesCount);
                     if (remainingIds < typesCount)
                     {
                         return;

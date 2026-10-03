@@ -5,7 +5,6 @@ using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -58,7 +57,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         return;
                     }
 
-                    Debug.Assert(false, "Wrong height behaviour detected");
+                    DVG.Debug.Assert(false, context: "Wrong height behaviour detected");
                 });
         }
     }

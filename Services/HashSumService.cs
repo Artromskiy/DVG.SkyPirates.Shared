@@ -18,7 +18,7 @@ namespace DVG.SkyPirates.Shared.Services
         public void Tick(int tick)
         {
             var worldData = _historySystem.GetSnapshot(tick);
-            Task.Run(() => Console.WriteLine(SerializationUTF8.GetHashSum(worldData)));
+            Task.Run(() => DVG.Trace.Info(SerializationUTF8.GetHashSum(worldData).ToString()));
         }
     }
 }

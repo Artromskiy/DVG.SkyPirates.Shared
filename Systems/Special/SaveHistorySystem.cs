@@ -65,9 +65,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         private void SaveComponentHistory(HistoryComponentIds component, QuerySet queries, int currentTick)
         {
-            var query = queries.Save;
             var context = new SaveContext(_world, component.History, currentTick);
-            _world.ForEachEntity(in query, ref context, component.Component, typeof(SaveHistory<>));
+            var withComponent = queries.SaveWithComponent;
+            _world.ForEach(in withComponent, ref context, component.Component, typeof(SaveHistoryWithComponent<>));
+
+            var withoutComponent = queries.SaveWithoutComponent;
+            _world.ForEach(in withoutComponent, ref context, component.Component, typeof(SaveHistoryWithoutComponent<>));
         }
 
         private void SaveBaseline(HistoryComponentIds component, QuerySet queries)
@@ -86,16 +89,20 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         internal sealed class QuerySet
         {
-            public readonly Query Save;
+            public readonly Query SaveWithComponent;
+            public readonly Query SaveWithoutComponent;
             public readonly Query MissingHistory;
             public readonly Query WithHistory;
             public readonly Query BaselineHas;
 
             public QuerySet(World world, HistoryComponentIds component, ComponentId aliveComponent)
             {
-                Save = component.Component == aliveComponent
-                    ? world.WhereAll(component.History)
-                    : world.WhereAll(component.History).NotDisabled().Alive();
+                SaveWithComponent = component.Component == aliveComponent
+                    ? CreateAllQuery(world, component.History, component.Component)
+                    : CreateAllQuery(world, component.History, component.Component).NotDisabled().Alive();
+                SaveWithoutComponent = component.Component == aliveComponent
+                    ? world.WhereAll(component.History).WhereNone(component.Component)
+                    : world.WhereAll(component.History).WhereNone(component.Component).NotDisabled().Alive();
                 MissingHistory = world.WhereAll(component.Component).WhereNone(component.History);
                 WithHistory = CreateAllQuery(world, component.History, component.Component);
                 BaselineHas = CreateAllQuery(world, component.History, component.Component).Alive();
@@ -127,15 +134,14 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             }
         }
 
-        internal struct SaveHistory<T> : IForEachContextEntity<SaveContext> where T : struct
+        internal struct SaveHistoryWithComponent<T> : IForEachContext<SaveContext> where T : struct
         {
-            public void Invoke(ref SaveContext context, Entity entity)
-            {
-                ref var history = ref context.World.GetRef<History<T>>(entity, context.History);
-                history[context.Tick] = context.World.Has<T>(entity)
-                    ? context.World.GetRef<T>(entity)
-                    : null;
-            }
+            public void Invoke(ref SaveContext context, ref History<T> history, in T component) => history[context.Tick] = component;
+        }
+
+        internal struct SaveHistoryWithoutComponent<T> : IForEachContext<SaveContext> where T : struct
+        {
+            public void Invoke(ref SaveContext context, ref History<T> history) => history[context.Tick] = null;
         }
 
         internal struct SaveBaselineHistory<T> : IForEachContext<int> where T : struct

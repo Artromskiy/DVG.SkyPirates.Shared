@@ -37,7 +37,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 !_world.IsAlive(squad) ||
                 !_world.Has<Alive>(squad))
             {
-                Trace.TraceWarning(Tracing.NotCreatedEntityCommand(cmd.Data.Target));
+                Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Data.Target));
                 return;
             }
 

@@ -15,7 +15,6 @@ using DVG.SkyPirates.Shared.Systems;
 using DVG.SkyPirates.Shared.Systems.Special;
 using SimpleInjector;
 using System;
-using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.DI
 {
@@ -23,7 +22,7 @@ namespace DVG.SkyPirates.Shared.DI
     {
         public SharedContainer()
         {
-            Debug.WriteLine("[DI] SharedContainer Start");
+            DVG.Trace.Info("[DI] SharedContainer Start");
             RegisterSingleton(CreateWorld);
 
             RegisterSingleton<TimelineWriter>();
