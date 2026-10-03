@@ -36,6 +36,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             Options.Converters.Add(new NewTypeConverterFactory());
             Options.Converters.Add(new FrozenDictionaryConverterFactory());
             Options.Converters.Add(new ImmutableSortedDictionaryConverterFactory());
+            Options.Converters.Add(new ReadOnlyCollectionConverterFactory());
 
             Options.Converters.Add(new VectorConverter<fix, fix2>());
             Options.Converters.Add(new VectorConverter<fix, fix3>());
