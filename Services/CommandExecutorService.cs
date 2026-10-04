@@ -87,7 +87,7 @@ namespace DVG.SkyPirates.Shared.Services
                 }
 
                 var executor = _executor as ICommandExecutor<T>;
-                DVG.Debug.Assert(executor is not null);
+                Delta.Diagnostics.Debug.Assert(executor is not null);
 
                 foreach (var cmd in tickCommands)
                 {

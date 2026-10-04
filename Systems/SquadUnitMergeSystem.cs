@@ -1,0 +1,141 @@
+using Delta;
+using Delta.ECS;
+using DVG.Components;
+using DVG.SkyPirates.Shared.Components.Config;
+using DVG.SkyPirates.Shared.Components.Runtime;
+using DVG.SkyPirates.Shared.Ecs;
+using DVG.SkyPirates.Shared.Ids;
+using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using System.Collections.Generic;
+
+namespace DVG.SkyPirates.Shared.Systems
+{
+    public sealed class SquadUnitMergeSystem : IDeltaTickableExecutor
+    {
+        private static readonly fix Two = fix.One + fix.One;
+
+        private readonly World _world;
+        private readonly Dictionary<(int SquadId, UnitId UnitId), List<Unit>> _unitsPerGroup = new();
+
+        private Query? _unitsQueryCache;
+        private Query _unitsQuery => _unitsQueryCache ??= _world.
+            WhereAll<SquadMember, UnitId, SyncId, Health, MaxHealth, Damage>().Alive();
+
+        public SquadUnitMergeSystem(World world)
+        {
+            _world = world;
+        }
+
+        public void Tick(int tick, fix deltaTime)
+        {
+            foreach (var units in _unitsPerGroup.Values)
+                units.Clear();
+
+            var state = (_world, _unitsPerGroup);
+            var query = _unitsQuery;
+            _world.ForEachEntity<(World World, Dictionary<(int SquadId, UnitId UnitId), List<Unit>> UnitsPerGroup), SquadMember, UnitId, SyncId, Health, MaxHealth, Damage>(
+                in query,
+                ref state,
+                static (ref (World World, Dictionary<(int SquadId, UnitId UnitId), List<Unit>> UnitsPerGroup) state,
+                    Entity entity,
+                    ref SquadMember member,
+                    ref UnitId unitId,
+                    ref SyncId syncId,
+                    ref Health health,
+                    ref MaxHealth maxHealth,
+                    ref Damage damage) =>
+                {
+                    var groupId = (member.SquadId, unitId);
+                    if (!state.UnitsPerGroup.TryGetValue(groupId, out var units))
+                        state.UnitsPerGroup.Add(groupId, units = new List<Unit>());
+
+                    var level = state.World.Has<Level>(entity)
+                        ? state.World.Get<Level>(entity).Value
+                        : 1;
+                    units.Add(new Unit(entity, syncId.Value, level, maxHealth.Value, damage.Value));
+                });
+
+            foreach (var units in _unitsPerGroup.Values)
+            {
+                units.Sort(static (left, right) => left.SyncId.CompareTo(right.SyncId));
+                while (units.Count >= 3)
+                {
+                    var strongest = units[0];
+                    if (IsStronger(units[1], strongest))
+                        strongest = units[1];
+                    if (IsStronger(units[2], strongest))
+                        strongest = units[2];
+
+                    var first = units[0];
+                    var second = units[1];
+                    var third = units[2];
+                    strongest = Merge(strongest, first, second, third);
+
+                    units.RemoveRange(0, 3);
+                    units.Add(strongest);
+                    units.Sort(static (left, right) => left.SyncId.CompareTo(right.SyncId));
+                }
+            }
+        }
+
+        private Unit Merge(Unit strongest, Unit first, Unit second, Unit third)
+        {
+            ref var level = ref _world.GetOrAdd<Level>(strongest.Entity);
+            level.Value = strongest.Level + 1;
+
+            ref var health = ref _world.GetRef<Health>(strongest.Entity);
+            health.Value *= Two;
+            ref var maxHealth = ref _world.GetRef<MaxHealth>(strongest.Entity);
+            maxHealth.Value *= Two;
+            ref var damage = ref _world.GetRef<Damage>(strongest.Entity);
+            damage.Value *= Two;
+
+            var merged = new Unit(
+                strongest.Entity,
+                strongest.SyncId,
+                level.Value,
+                maxHealth.Value,
+                damage.Value);
+
+            if (first.SyncId != strongest.SyncId)
+                _world.Remove<Alive>(first.Entity);
+            if (second.SyncId != strongest.SyncId)
+                _world.Remove<Alive>(second.Entity);
+            if (third.SyncId != strongest.SyncId)
+                _world.Remove<Alive>(third.Entity);
+
+            return merged;
+        }
+
+        private static bool IsStronger(Unit candidate, Unit current)
+        {
+            if (candidate.Level != current.Level)
+                return candidate.Level > current.Level;
+
+            var candidatePower = candidate.MaxHealth + candidate.Damage;
+            var currentPower = current.MaxHealth + current.Damage;
+            if (candidatePower != currentPower)
+                return candidatePower > currentPower;
+
+            return candidate.SyncId < current.SyncId;
+        }
+
+        private readonly struct Unit
+        {
+            public readonly Entity Entity;
+            public readonly int SyncId;
+            public readonly int Level;
+            public readonly fix MaxHealth;
+            public readonly fix Damage;
+
+            public Unit(Entity entity, int syncId, int level, fix maxHealth, fix damage)
+            {
+                Entity = entity;
+                SyncId = syncId;
+                Level = level;
+                MaxHealth = maxHealth;
+                Damage = damage;
+            }
+        }
+    }
+}

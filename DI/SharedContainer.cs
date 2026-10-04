@@ -22,7 +22,7 @@ namespace DVG.SkyPirates.Shared.DI
     {
         public SharedContainer()
         {
-            DVG.Trace.Info("[DI] SharedContainer Start");
+            Delta.Diagnostics.Trace.Info("[DI] SharedContainer Start");
             RegisterSingleton(CreateWorld);
 
             RegisterSingleton<TimelineWriter>();
@@ -64,6 +64,7 @@ namespace DVG.SkyPirates.Shared.DI
         {
             typeof(FramedComponentsSystem), // cleanups
             typeof(FlagDisabledSystem),
+            typeof(SquadUnitMergeSystem), // merge groups of three units
             typeof(CachePositionSystem),
             typeof(SetDestinationSystem),
             typeof(TargetSearchSystem), // cache target search

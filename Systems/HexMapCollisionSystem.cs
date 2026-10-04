@@ -58,7 +58,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         position.Value = cachePosition;
                         OnFailedToSolve?.Invoke(Solvers.Segments.ToArray(), cachePosition.Value.xz, position.Value.xz, radius);
                     }
-                    //Trace.Assert(!failed, "Failed to solve collision");
+                    //Delta.Diagnostics.Trace.Assert(!failed, "Failed to solve collision");
                 });
         }
 
