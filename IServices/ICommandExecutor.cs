@@ -1,4 +1,4 @@
-﻿using DVG.Commands;
+using Delta.Netcode;
 
 namespace DVG.SkyPirates.Shared.IServices
 {

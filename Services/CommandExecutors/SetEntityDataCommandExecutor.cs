@@ -1,5 +1,5 @@
-﻿using Delta.ECS;
-using DVG.Commands;
+using Delta.ECS;
+using Delta.Netcode;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IServices;
@@ -22,14 +22,14 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<SetEntityDataCommand> cmd)
         {
-            if (!_entityRegistryService.TryGet(cmd.Data.Target, out var entity))
+            if (!_entityRegistryService.TryGet(cmd.Payload.Target, out var entity))
             {
-                Delta.Diagnostics.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Data.Target));
+                Delta.Diagnostics.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Payload.Target));
                 return;
             }
             var removeAction = new RemoveAllComponentsAction(_world, entity);
             ComponentsRegistry.ForEachData(ref removeAction);
-            _world.SetEntityData(entity, cmd.Data.Components);
+            _world.SetEntityData(entity, cmd.Payload.Components);
         }
 
         private readonly struct RemoveAllComponentsAction : IStructGenericAction

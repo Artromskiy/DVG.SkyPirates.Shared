@@ -1,10 +1,10 @@
-﻿using DVG.Commands.Attributes;
+using Delta.Netcode;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
-    [Command(true)]
+    [NetCommand(Id = 4, Predicted = true)]
     public struct SetEntityDataCommand
     {
         public SyncId Target;

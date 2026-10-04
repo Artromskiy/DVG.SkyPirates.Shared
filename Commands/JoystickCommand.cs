@@ -1,10 +1,10 @@
-﻿using Delta;
-using DVG.Commands.Attributes;
+using Delta;
+using Delta.Netcode;
 using DVG.Components;
 
 namespace DVG.SkyPirates.Shared.Commands
 {
-    [Command(true)]
+    [NetCommand(Id = 2, Predicted = true)]
     public struct JoystickCommand
     {
         public SyncId Target;

@@ -1,7 +1,7 @@
-﻿using Delta;
+using Delta;
 using Delta.ECS;
 using DVG.SkyPirates.Shared.Ecs;
-using DVG.Commands;
+using Delta.Netcode;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components.Config;
@@ -42,9 +42,9 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<SpawnUnitCommand> cmd)
         {
-            if (!_entityRegistryService.TryGet(cmd.Data.SquadId, out var squad))
+            if (!_entityRegistryService.TryGet(cmd.Payload.SquadId, out var squad))
             {
-                Delta.Diagnostics.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Data.SquadId));
+                Delta.Diagnostics.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Payload.SquadId));
                 return;
             }
 
@@ -52,19 +52,19 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 !_world.IsAlive(squad) ||
                 !_world.Has<Alive>(squad))
             {
-                Delta.Diagnostics.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Data.SquadId));
+                Delta.Diagnostics.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Payload.SquadId));
                 return;
             }
 
-            if (!TrySpawn(squad, cmd.Data.UnitId))
+            if (!TrySpawn(squad, cmd.Payload.UnitId))
             {
                 return;
             }
 
             var pos = _world.Get<Position>(squad);
-            var unit = _unitFactory.Create((cmd.Data.UnitId, cmd.Data.CreationData));
+            var unit = _unitFactory.Create((cmd.Payload.UnitId, cmd.Payload.CreationData));
 
-            _world.GetRef<TeamId>(unit) = cmd.ClientId.Value;
+            _world.GetRef<TeamId>(unit) = SkyPiratesCommand.GetClientId(cmd);
             _world.GetRef<Position>(unit) = pos;
             _world.GetRef<GoodsDrop>(unit) = new() { Values = ImmutableSortedDictionary.Create<GoodsId, int>() };
             _world.GetOrAdd<SquadMember>(unit).SquadId = _world.Get<SyncId>(squad).Value;

@@ -1,10 +1,12 @@
-﻿using DVG.Collections;
-using DVG.Commands;
+using DVG.Collections;
+using Delta.Netcode;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using CommandsRegistry = DVG.Commands.CommandsRegistry;
+using IGenericAction = DVG.Commands.IGenericAction;
 
 namespace DVG.SkyPirates.Shared.Services
 {
@@ -57,8 +59,8 @@ namespace DVG.SkyPirates.Shared.Services
 
         private void Invalidate(Command<InvalidateCommand> invalid)
         {
-            var invalidateAction = new InvalidateAction(_commands, invalid.Tick, invalid.ClientId);
-            CommandsRegistry.Call(invalid.Data.CommandId, ref invalidateAction);
+            var invalidateAction = new InvalidateAction(_commands, SkyPiratesCommand.GetTick(invalid), SkyPiratesCommand.GetClientId(invalid));
+            CommandsRegistry.Call(invalid.Payload.CommandId, ref invalidateAction);
         }
 
         private readonly struct ExecuteCommandAction : IGenericAction
@@ -124,7 +126,7 @@ namespace DVG.SkyPirates.Shared.Services
                 int match = tickCommands.FindIndex(Match);
                 tickCommands.RemoveAt(match);
             }
-            private bool Match<T>(Command<T> c) => c.ClientId == _clientId;
+            private bool Match<T>(Command<T> c) => SkyPiratesCommand.GetClientId(c) == _clientId;
         }
 
         private readonly struct RegisterRecieverAction : IGenericAction
@@ -151,9 +153,9 @@ namespace DVG.SkyPirates.Shared.Services
                     _commands.Add(typedCommands = new());
                 }
 
-                if (!typedCommands.TryGetValue(command.Tick, out var tickCommands))
+                if (!typedCommands.TryGetValue(SkyPiratesCommand.GetTick(command), out var tickCommands))
                 {
-                    typedCommands[command.Tick] = tickCommands = new();
+                    typedCommands[SkyPiratesCommand.GetTick(command)] = tickCommands = new();
                 }
 
                 tickCommands.Add(command);

@@ -1,4 +1,4 @@
-﻿using DVG.Commands;
+using Delta.Netcode;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -16,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<LoadWorldCommand> cmd)
         {
-            _historySystem.ApplySnapshot(cmd.Data.WorldData);
+            _historySystem.ApplySnapshot(cmd.Payload.WorldData);
             _historySystem.SaveBaseline();
         }
     }

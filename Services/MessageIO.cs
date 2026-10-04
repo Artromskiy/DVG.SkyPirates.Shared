@@ -1,5 +1,5 @@
-﻿using Delta;
-using DVG.Commands;
+using Delta;
+using Delta.Netcode;
 using DVG.SkyPirates.Shared.Tools.Json;
 using Riptide;
 using System;
@@ -103,7 +103,7 @@ namespace DVG.SkyPirates.Shared.Services
                 throw new NotSupportedException();
             }
 
-            int commandId = CommandsRegistry.GetId<T>();
+            int commandId = checked((int)GeneratedCommands.GetRegistration<T>().Id);
             ushort uid = _splitMessageId++;
             for (int i = 0; i < splitCount; i++)
             {
@@ -123,7 +123,7 @@ namespace DVG.SkyPirates.Shared.Services
 
         private List<Message> GetSingle<T>(ReadOnlyMemory<byte> written, List<Message> messages)
         {
-            int commandId = CommandsRegistry.GetId<T>();
+            int commandId = checked((int)GeneratedCommands.GetRegistration<T>().Id);
             var message = Message.Create(MessageSendMode.Reliable, (ushort)commandId);
             message.AddBool(false);
             WriteToMessage(written, message);

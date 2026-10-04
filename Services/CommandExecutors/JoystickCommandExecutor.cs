@@ -1,7 +1,7 @@
-﻿using Delta;
+using Delta;
 using Delta.ECS;
 using DVG.SkyPirates.Shared.Ecs;
-using DVG.Commands;
+using Delta.Netcode;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components.Runtime;
@@ -31,13 +31,13 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<JoystickCommand> cmd)
         {
-            _entityRegistryService.TryGet(cmd.Data.Target, out var squad);
+            _entityRegistryService.TryGet(cmd.Payload.Target, out var squad);
 
             if (squad == default ||
                 !_world.IsAlive(squad) ||
                 !_world.Has<Alive>(squad))
             {
-                Delta.Diagnostics.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Data.Target));
+                Delta.Diagnostics.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Payload.Target));
                 return;
             }
 
@@ -49,8 +49,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             ref var dir = ref _world.GetRef<Direction>(squad);
             ref var rot = ref _world.GetRef<Rotation>(squad);
             ref var fix = ref _world.GetRef<Fixation>(squad);
-            dir = cmd.Data.Direction;
-            fix = cmd.Data.Fixation;
+            dir = cmd.Payload.Direction;
+            fix = cmd.Payload.Fixation;
 
             if (fix2.SqrLength(dir) == 0)
             {

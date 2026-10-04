@@ -1,4 +1,4 @@
-﻿using DVG.Commands;
+using Delta.Netcode;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.IFactories;
@@ -18,8 +18,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(Command<SpawnSquadCommand> cmd)
         {
-            TeamId team = cmd.ClientId.Value;
-            var squad = _squadFactory.Create((cmd.Data.CreationData, team));
+            TeamId team = SkyPiratesCommand.GetClientId(cmd);
+            var squad = _squadFactory.Create((cmd.Payload.CreationData, team));
         }
     }
 }
