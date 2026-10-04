@@ -84,11 +84,11 @@ namespace DVG.SkyPirates.Shared.Systems
             level.Value = strongest.Level + 1;
 
             ref var health = ref _world.GetRef<Health>(strongest.Entity);
-            health.Value *= Two;
+            health.Value = DoubleStat(health.Value);
             ref var maxHealth = ref _world.GetRef<MaxHealth>(strongest.Entity);
-            maxHealth.Value *= Two;
+            maxHealth.Value = DoubleStat(maxHealth.Value);
             ref var damage = ref _world.GetRef<Damage>(strongest.Entity);
-            damage.Value *= Two;
+            damage.Value = DoubleStat(damage.Value);
 
             var merged = new Unit(
                 strongest.Entity,
@@ -112,12 +112,22 @@ namespace DVG.SkyPirates.Shared.Systems
             if (candidate.Level != current.Level)
                 return candidate.Level > current.Level;
 
-            var candidatePower = candidate.MaxHealth + candidate.Damage;
-            var currentPower = current.MaxHealth + current.Damage;
+            var candidatePower = (long)candidate.MaxHealth.raw + candidate.Damage.raw;
+            var currentPower = (long)current.MaxHealth.raw + current.Damage.raw;
             if (candidatePower != currentPower)
                 return candidatePower > currentPower;
 
             return candidate.SyncId < current.SyncId;
+        }
+
+        private static fix DoubleStat(fix value)
+        {
+            if (value.raw > fix.MaxValue.raw / 2)
+                return fix.MaxValue;
+            if (value.raw < fix.MinValue.raw / 2)
+                return fix.MinValue;
+
+            return value * Two;
         }
 
         private readonly struct Unit
