@@ -14,16 +14,18 @@ using DVG.SkyPirates.Shared.Services;
 using DVG.SkyPirates.Shared.Services.CommandExecutors;
 using DVG.SkyPirates.Shared.Services.CommandMutators;
 using DVG.SkyPirates.Shared.Services.CommandValidators;
+using DVG.SkyPirates.Shared.Services.Netcode;
 using DVG.SkyPirates.Shared.Systems;
 using DVG.SkyPirates.Shared.Systems.Special;
 using SimpleInjector;
 using System;
+using Delta.Netcode;
 
 namespace DVG.SkyPirates.Shared.DI
 {
     public class SharedContainer : Container
     {
-        public SharedContainer()
+        public SharedContainer(SessionMode sessionMode = SessionMode.Local, bool registerCommandReceiver = true)
         {
             Delta.Diagnostics.Trace.Info("[DI] SharedContainer Start");
             RegisterSingleton(CreateWorld);
@@ -45,11 +47,17 @@ namespace DVG.SkyPirates.Shared.DI
             RegisterSingleton<IPooledItemsProvider, PooledItemsProvider>();
             RegisterSingleton<ITargetSearchSystem, TargetSearchSystem>();
 
-            RegisterSingleton<ITimelineService, TimelineService>();
-            RegisterSingleton<ICommandExecutorService, CommandExecutorService>();
-            RegisterSingleton<ICommandAcceptanceService, CommandAcceptanceService>();
             RegisterSingleton<IHistorySystem, HistorySystem>();
             RegisterSingleton<IDisposeSystem, DisposeSystem>();
+            if (registerCommandReceiver)
+                RegisterSingleton<ICommandReciever, CommandReceiver>();
+            RegisterSingleton<SkyPiratesSessionSetup>();
+            RegisterSingleton<ISessionTransport>(() => CreateSessionTransport(sessionMode));
+            RegisterSingleton(() => new SkyPiratesSessionProvider(
+                GetInstance<SkyPiratesSessionSetup>(),
+                sessionMode,
+                GetInstance<ISessionTransport>(),
+                GetInstance<ICommandReciever>()));
 
             RegisterSingleton(typeof(IDeltaTickableService<>), typeof(DeltaTickableService<>));
             RegisterSingleton(typeof(ITickableService<>), typeof(TickableService<>));
@@ -108,6 +116,7 @@ namespace DVG.SkyPirates.Shared.DI
             typeof(LoadWorldCommandExecutor),
             typeof(SpawnSquadCommandExecutor),
             typeof(SpawnUnitCommandExecutor),
+            typeof(SetEntityDataCommandExecutor),
             typeof(JoystickCommandExecutor)
             //typeof(CommandLogger)
         };
@@ -144,6 +153,19 @@ namespace DVG.SkyPirates.Shared.DI
             var world = new World(layouts, 1024);
             _ = WorldComponentIds.For(world);
             return world;
+        }
+
+        private ISessionTransport CreateSessionTransport(SessionMode mode)
+        {
+            switch (mode)
+            {
+                case SessionMode.Client:
+                    return new RiptideClientSessionTransport(GetInstance<Riptide.Client>());
+                case SessionMode.Server:
+                    return new RiptideServerSessionTransport(GetInstance<Riptide.Server>());
+                default:
+                    return new NullSessionTransport();
+            }
         }
 
         private static SchemaId GetSchemaId(string schemaName)

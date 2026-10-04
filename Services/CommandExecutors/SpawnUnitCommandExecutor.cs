@@ -64,7 +64,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             var pos = _world.Get<Position>(squad);
             var unit = _unitFactory.Create((cmd.Payload.UnitId, cmd.Payload.CreationData));
 
-            _world.GetRef<TeamId>(unit) = SkyPiratesCommand.GetClientId(cmd);
+            _world.GetRef<TeamId>(unit) = unchecked((int)cmd.Header.Key.AuthorId.Value);
             _world.GetRef<Position>(unit) = pos;
             _world.GetRef<GoodsDrop>(unit) = new() { Values = ImmutableSortedDictionary.Create<GoodsId, int>() };
             _world.GetOrAdd<SquadMember>(unit).SquadId = _world.Get<SyncId>(squad).Value;

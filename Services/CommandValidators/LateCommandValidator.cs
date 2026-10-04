@@ -1,6 +1,5 @@
 using Delta.Netcode;
 using DVG.Core;
-using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
@@ -17,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandValidators
 
         public bool Validate(in Command<T> command)
         {
-            return SkyPiratesCommand.GetTick(command) > _tickCounter.TickCounter - Constants.ValidTicksCount;
+            return command.Header.Step > _tickCounter.TickCounter - Constants.ValidTicksCount;
         }
     }
 }
