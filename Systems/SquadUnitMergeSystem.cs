@@ -15,7 +15,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private static readonly fix Two = fix.One + fix.One;
 
         private readonly World _world;
-        private readonly Dictionary<(int SquadId, UnitId UnitId), List<Unit>> _unitsPerGroup = new();
+        private readonly Dictionary<(int SquadId, UnitId UnitId, int Level), List<Unit>> _unitsPerGroup = new();
 
         private Query? _unitsQueryCache;
         private Query _unitsQuery => _unitsQueryCache ??= _world.
@@ -33,10 +33,10 @@ namespace DVG.SkyPirates.Shared.Systems
 
             var state = (_world, _unitsPerGroup);
             var query = _unitsQuery;
-            _world.ForEachEntity<(World World, Dictionary<(int SquadId, UnitId UnitId), List<Unit>> UnitsPerGroup), SquadMember, UnitId, SyncId, Health, MaxHealth, Damage>(
+            _world.ForEachEntity<(World World, Dictionary<(int SquadId, UnitId UnitId, int Level), List<Unit>> UnitsPerGroup), SquadMember, UnitId, SyncId, Health, MaxHealth, Damage>(
                 in query,
                 ref state,
-                static (ref (World World, Dictionary<(int SquadId, UnitId UnitId), List<Unit>> UnitsPerGroup) state,
+                static (ref (World World, Dictionary<(int SquadId, UnitId UnitId, int Level), List<Unit>> UnitsPerGroup) state,
                     Entity entity,
                     ref SquadMember member,
                     ref UnitId unitId,
@@ -45,13 +45,13 @@ namespace DVG.SkyPirates.Shared.Systems
                     ref MaxHealth maxHealth,
                     ref Damage damage) =>
                 {
-                    var groupId = (member.SquadId, unitId);
-                    if (!state.UnitsPerGroup.TryGetValue(groupId, out var units))
-                        state.UnitsPerGroup.Add(groupId, units = new List<Unit>());
-
                     var level = state.World.Has<Level>(entity)
                         ? state.World.Get<Level>(entity).Value
                         : 1;
+                    var groupId = (member.SquadId, unitId, level);
+                    if (!state.UnitsPerGroup.TryGetValue(groupId, out var units))
+                        state.UnitsPerGroup.Add(groupId, units = new List<Unit>());
+
                     units.Add(new Unit(entity, syncId.Value, level, maxHealth.Value, damage.Value));
                 });
 
