@@ -41,13 +41,13 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             _mutators = mutators.ToArray();
         }
 
-        public SkyPiratesSession Create(SessionMode mode, AuthorId authorId, ISessionTransport transport, long startStep = 0)
+        public SessionHost Create(SessionMode mode, AuthorId authorId, ISessionTransport transport, long startStep = 0)
         {
             var start = new SessionStart(new SessionId(1), authorId, new ProtocolId(1), startStep, 0xA0761D6478BD642FUL);
             return Create(start, mode, transport);
         }
 
-        public SkyPiratesSession Create(SessionStart start, SessionMode mode, ISessionTransport transport)
+        public SessionHost Create(SessionStart start, SessionMode mode, ISessionTransport transport)
         {
             var commandRegistry = new CommandRegistry();
             foreach (ICommandRegistration registration in GeneratedCommands.Registrations)
@@ -73,7 +73,7 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
                 _mutators,
                 _commandReciever);
             policies.Register();
-            return new SkyPiratesSession(host, model, commandRegistry, journal);
+            return host;
         }
     }
 }

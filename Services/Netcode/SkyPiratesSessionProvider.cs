@@ -27,11 +27,11 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
 
         public event Action Ready;
 
-        public SkyPiratesSession Session { get; private set; }
+        public SessionHost Session { get; private set; }
 
         public bool IsReady { get; private set; }
 
-        public long CurrentStep => Session == null ? -1 : Session.Model.CurrentStep;
+        public long CurrentStep => Session == null ? -1 : Session.CurrentStep;
 
         public void Start(AuthorId authorId)
         {
@@ -45,7 +45,7 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             if (_mode == SessionMode.Server)
             {
                 Server = new SessionServer(_transport);
-                Server.Add(Session.Host);
+                Server.Add(Session);
                 IsReady = true;
                 Ready?.Invoke();
             }
@@ -56,7 +56,7 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             }
             else
             {
-                Session.Host.AttachConnection(0);
+                Session.AttachConnection(0);
             }
         }
 
@@ -67,7 +67,7 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             if (_mode != SessionMode.Server || Server == null || Session == null)
                 throw new InvalidOperationException("Only a started server session can bind a client.");
 
-            Server.Bind(connectionId, Session.Host, authorId);
+            Server.Bind(connectionId, Session, authorId);
             SendSnapshot(connectionId);
         }
 
@@ -75,13 +75,13 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         {
             if (!IsReady || Session == null)
                 throw new InvalidOperationException("The session is not ready to send commands.");
-            return Session.Host.Send(payload, simulationStep);
+            return Session.Send(payload, simulationStep);
         }
 
         public void Tick(long simulationStep)
         {
             if (IsReady)
-                Session.Host.Tick(simulationStep);
+                Session.Tick(simulationStep);
         }
 
         private void OnMessage(ulong connectionId, byte[] message)
@@ -100,7 +100,7 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
 
             if (CommandProtocol.TryReadSnapshot(message, out SessionSnapshot snapshot))
             {
-                Session.Host.Restore(snapshot);
+                Session.Restore(snapshot);
                 IsReady = true;
                 Ready?.Invoke();
                 return;
@@ -108,23 +108,23 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
 
             if (CommandProtocol.TryReadOutcome(message, out CommandOutcome outcome, out ReadOnlySpan<byte> finalPayload))
             {
-                Session.Host.ApplyOutcome(outcome, finalPayload);
+                Session.ApplyOutcome(outcome, finalPayload);
                 if (outcome.Result == CommandResult.Accepted)
                 {
                     var notify = new NotifyCommand(_receiver, finalPayload.ToArray(), outcome.Header);
-                    Session.Commands.Visit(outcome.Header.TypeId, ref notify);
+                    Session.VisitCommandType(outcome.Header.TypeId, ref notify);
                 }
             }
         }
 
         private void SendSnapshot(ulong connectionId)
         {
-            SessionSnapshot snapshot = Session.Host.CaptureSnapshot();
+            SessionSnapshot snapshot = Session.CaptureSnapshot();
             var output = new ArrayBufferWriter<byte>();
             CommandProtocol.WriteSnapshot(snapshot, output);
             _transport.Send(connectionId, output.WrittenSpan);
 
-            foreach (JournalRecord record in Session.Journal.ReadAcceptedAfter(snapshot.Cursor))
+            foreach (JournalRecord record in Session.ReadAcceptedAfter(snapshot.Cursor))
             {
                 var outcome = new CommandOutcome(record.Result, record.Header);
                 byte[] frame = CommandProtocol.EncodeOutcome(outcome, record.FinalPayload.Span);
