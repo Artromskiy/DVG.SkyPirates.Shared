@@ -20,7 +20,7 @@ using System;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    public class SpawnUnitCommandExecutor : ICommandExecutor<SpawnUnitCommand>
+    public class SpawnUnitCommandExecutor : ICommandExecutorRegistration, ICommandExecutor<SpawnUnitCommand>
     {
         private readonly UnitsInfoConfig _unitsInfoConfig;
         private readonly IEntityRegistry _entityRegistryService;
@@ -40,7 +40,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _world = world;
         }
 
-        public void Execute(Command<SpawnUnitCommand> cmd)
+        public void Execute(in Command<SpawnUnitCommand> cmd)
         {
             if (!_entityRegistryService.TryGet(cmd.Payload.SquadId, out var squad))
             {

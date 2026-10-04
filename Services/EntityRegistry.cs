@@ -10,6 +10,9 @@ namespace DVG.SkyPirates.Shared.Services
     {
         private readonly Lookup<Entity> _idToEntity = new();
         private int _entityIdCounter = 1;
+
+        public int NextId => _entityIdCounter;
+
         public void Register(Entity entity, SyncId syncId)
         {
             _entityIdCounter = Maths.Max(_entityIdCounter, syncId.Value + 1);
@@ -24,7 +27,8 @@ namespace DVG.SkyPirates.Shared.Services
 
         public void Reserve(SyncIdReserve syncIdReserve)
         {
-            for (int i = syncIdReserve.First; i < syncIdReserve.Count; i++)
+            int end = checked(syncIdReserve.First + syncIdReserve.Count);
+            for (int i = syncIdReserve.First; i < end; i++)
             {
                 _idToEntity[i] = default;
             }

@@ -6,7 +6,7 @@ using DVG.SkyPirates.Shared.IServices;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    public class SpawnSquadCommandExecutor : ICommandExecutor<SpawnSquadCommand>
+    public class SpawnSquadCommandExecutor : ICommandExecutorRegistration, ICommandExecutor<SpawnSquadCommand>
     {
         private readonly ISquadFactory _squadFactory;
 
@@ -16,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _squadFactory = squadFactory;
         }
 
-        public void Execute(Command<SpawnSquadCommand> cmd)
+        public void Execute(in Command<SpawnSquadCommand> cmd)
         {
             TeamId team = SkyPiratesCommand.GetClientId(cmd);
             var squad = _squadFactory.Create((cmd.Payload.CreationData, team));

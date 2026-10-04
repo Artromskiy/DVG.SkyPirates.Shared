@@ -5,6 +5,7 @@ namespace DVG.SkyPirates.Shared.IServices
 {
     public interface IEntityRegistry
     {
+        int NextId { get; }
         void Reserve(SyncId syncId);
         void Register(Entity entity, SyncId syncId);
         void Reserve(SyncIdReserve syncIdReserve);

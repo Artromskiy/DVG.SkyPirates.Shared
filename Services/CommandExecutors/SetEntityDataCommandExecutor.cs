@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    public class SetEntityDataCommandExecutor : ICommandExecutor<SetEntityDataCommand>
+    public class SetEntityDataCommandExecutor : ICommandExecutorRegistration, ICommandExecutor<SetEntityDataCommand>
     {
         private readonly IEntityRegistry _entityRegistryService;
         private readonly World _world;
@@ -20,7 +20,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _world = world;
         }
 
-        public void Execute(Command<SetEntityDataCommand> cmd)
+        public void Execute(in Command<SetEntityDataCommand> cmd)
         {
             if (!_entityRegistryService.TryGet(cmd.Payload.Target, out var entity))
             {

@@ -14,7 +14,7 @@ using System;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    public class JoystickCommandExecutor : ICommandExecutor<JoystickCommand>
+    public class JoystickCommandExecutor : ICommandExecutorRegistration, ICommandExecutor<JoystickCommand>
     {
         private readonly IEntityRegistry _entityRegistryService;
         private readonly World _world;
@@ -29,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _world = world;
         }
 
-        public void Execute(Command<JoystickCommand> cmd)
+        public void Execute(in Command<JoystickCommand> cmd)
         {
             _entityRegistryService.TryGet(cmd.Payload.Target, out var squad);
 

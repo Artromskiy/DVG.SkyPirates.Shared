@@ -5,7 +5,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    public class LoadWorldCommandExecutor : ICommandExecutor<LoadWorldCommand>
+    public class LoadWorldCommandExecutor : ICommandExecutorRegistration, ICommandExecutor<LoadWorldCommand>
     {
         private readonly IHistorySystem _historySystem;
 
@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             _historySystem = historySystem;
         }
 
-        public void Execute(Command<LoadWorldCommand> cmd)
+        public void Execute(in Command<LoadWorldCommand> cmd)
         {
             _historySystem.ApplySnapshot(cmd.Payload.WorldData);
             _historySystem.SaveBaseline();

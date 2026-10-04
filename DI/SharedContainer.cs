@@ -3,6 +3,7 @@ using DVG;
 using DVG.Components;
 using DVG.Core;
 using DVG.SkyPirates.Shared.Components.Framed;
+using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Factories;
@@ -11,6 +12,8 @@ using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using DVG.SkyPirates.Shared.Services;
 using DVG.SkyPirates.Shared.Services.CommandExecutors;
+using DVG.SkyPirates.Shared.Services.CommandMutators;
+using DVG.SkyPirates.Shared.Services.CommandValidators;
 using DVG.SkyPirates.Shared.Systems;
 using DVG.SkyPirates.Shared.Systems.Special;
 using SimpleInjector;
@@ -44,6 +47,7 @@ namespace DVG.SkyPirates.Shared.DI
 
             RegisterSingleton<ITimelineService, TimelineService>();
             RegisterSingleton<ICommandExecutorService, CommandExecutorService>();
+            RegisterSingleton<ICommandAcceptanceService, CommandAcceptanceService>();
             RegisterSingleton<IHistorySystem, HistorySystem>();
             RegisterSingleton<IDisposeSystem, DisposeSystem>();
 
@@ -51,7 +55,9 @@ namespace DVG.SkyPirates.Shared.DI
             RegisterSingleton(typeof(ITickableService<>), typeof(TickableService<>));
 
             Collection.Register<IDeltaTickableExecutor>(TickableExecutors, Lifestyle.Singleton);
-            Collection.Register<ICommandExecutor>(CommandExecutors, Lifestyle.Singleton);
+            Collection.Register<ICommandExecutorRegistration>(CommandExecutors, Lifestyle.Singleton);
+            Collection.Register<ICommandValidatorRegistration>(CommandValidators, Lifestyle.Singleton);
+            Collection.Register<ICommandMutatorRegistration>(CommandMutators, Lifestyle.Singleton);
 
             var globalConfigType = typeof(GlobalConfig);
             foreach (var item in globalConfigType.GetFields())
@@ -104,6 +110,22 @@ namespace DVG.SkyPirates.Shared.DI
             typeof(SpawnUnitCommandExecutor),
             typeof(JoystickCommandExecutor)
             //typeof(CommandLogger)
+        };
+
+        private static Type[] CommandValidators => new Type[]
+        {
+            typeof(FutureCommandValidator<InvalidateCommand>), typeof(LateCommandValidator<InvalidateCommand>), typeof(ZeroTickCommandValidator<InvalidateCommand>),
+            typeof(FutureCommandValidator<JoystickCommand>), typeof(LateCommandValidator<JoystickCommand>), typeof(ZeroTickCommandValidator<JoystickCommand>),
+            typeof(FutureCommandValidator<LoadWorldCommand>), typeof(LateCommandValidator<LoadWorldCommand>), typeof(ZeroTickCommandValidator<LoadWorldCommand>),
+            typeof(FutureCommandValidator<SetEntityDataCommand>), typeof(LateCommandValidator<SetEntityDataCommand>), typeof(ZeroTickCommandValidator<SetEntityDataCommand>),
+            typeof(FutureCommandValidator<SpawnSquadCommand>), typeof(LateCommandValidator<SpawnSquadCommand>), typeof(ZeroTickCommandValidator<SpawnSquadCommand>),
+            typeof(FutureCommandValidator<SpawnUnitCommand>), typeof(LateCommandValidator<SpawnUnitCommand>), typeof(ZeroTickCommandValidator<SpawnUnitCommand>),
+            typeof(FutureCommandValidator<TickSyncCommand>), typeof(LateCommandValidator<TickSyncCommand>), typeof(ZeroTickCommandValidator<TickSyncCommand>),
+        };
+
+        private static Type[] CommandMutators => new Type[]
+        {
+            typeof(SpawnCommandMutator),
         };
 
         private static World CreateWorld()
