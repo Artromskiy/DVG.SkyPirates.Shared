@@ -39,7 +39,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandMutators
                 Count = (int)ReservedIdCount,
                 Current = reserveFirst,
             };
-            var randomSeed = new RandomSeed { Value = unchecked((int)preparation.NextSeed()) };
+            var randomSeed = new RandomSeed { Value = (int)preparation.NextSeed() };
 
             _entityRegistry.Reserve(syncId);
             _entityRegistry.Reserve(syncIdReserve);
