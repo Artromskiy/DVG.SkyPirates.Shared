@@ -18,6 +18,8 @@
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="Delta.Diagnostics" Version="0.0.7" />
+    <PackageReference Include="DeltaNetcode" Version="0.0.2" />
     <PackageReference Include="DeltaECS" Version="0.0.37" />
     <PackageReference Include="DeltaECS.Generators" Version="0.0.37" PrivateAssets="all" />
     <PackageReference Include="DeltaMaths" Version="0.0.14" />
