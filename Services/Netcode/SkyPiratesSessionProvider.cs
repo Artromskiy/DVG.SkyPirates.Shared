@@ -1,5 +1,6 @@
 using Delta.Netcode;
 using DVG.SkyPirates.Shared.IServices;
+using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Buffers;
 
@@ -150,6 +151,35 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
                 var payload = new SkyPiratesCommandPayloadHandler().Read<T>(_payload);
                 _receiver.InvokeCommand(new Command<T>(_header, payload));
             }
+        }
+    }
+
+    public sealed class SkyPiratesSessionTickLoop
+    {
+        private readonly SkyPiratesSessionProvider _session;
+        private readonly ITickableService<IPreTickable> _preTickables;
+        private readonly ITickableService<IPostTickable> _postTickables;
+
+        public SkyPiratesSessionTickLoop(
+            SkyPiratesSessionProvider session,
+            ITickableService<IPreTickable> preTickables,
+            ITickableService<IPostTickable> postTickables)
+        {
+            _session = session;
+            _preTickables = preTickables;
+            _postTickables = postTickables;
+        }
+
+        public bool Tick(long targetStep)
+        {
+            if (!_session.IsReady || _session.CurrentStep == targetStep)
+                return false;
+
+            int tick = checked((int)targetStep);
+            _preTickables.Tick(tick);
+            _session.Tick(targetStep);
+            _postTickables.Tick(tick);
+            return true;
         }
     }
 }

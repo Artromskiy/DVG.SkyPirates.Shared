@@ -52,6 +52,7 @@ namespace DVG.SkyPirates.Shared.DI
             if (registerCommandReceiver)
                 RegisterSingleton<ICommandReciever, CommandReceiver>();
             RegisterSingleton<SkyPiratesSessionSetup>();
+            RegisterSingleton<SkyPiratesSessionTickLoop>();
             RegisterSingleton<ISessionTransport>(() => CreateSessionTransport(sessionMode));
             RegisterSingleton(() => new SkyPiratesSessionProvider(
                 GetInstance<SkyPiratesSessionSetup>(),
