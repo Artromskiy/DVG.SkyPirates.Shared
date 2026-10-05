@@ -1,8 +1,7 @@
 using Delta.Netcode;
+using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using System.Linq;
-using IGenericAction = DVG.IGenericAction;
-using CommandsRegistry = DVG.Commands.CommandsRegistry;
 
 namespace DVG.SkyPirates.Shared.Services.Netcode
 {
@@ -33,8 +32,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
 
         public void Register()
         {
-            var register = new RegisterPolicies(this);
-            CommandsRegistry.ForEach(ref register);
+            var visitor = new RegisterPolicies(this);
+            foreach (ICommandRegistration registration in GeneratedCommands.Registrations)
+                registration.Visit(ref visitor);
         }
 
         private void Register<T>()
@@ -53,7 +53,7 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
                 _host.Register<T>(new CompositeExecutor<T>(executors, receiver));
         }
 
-        private readonly struct RegisterPolicies : IGenericAction
+        private readonly struct RegisterPolicies : ICommandVisitor
         {
             private readonly SkyPiratesCommandPolicyRegistrar _registrar;
 
@@ -62,7 +62,7 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
                 _registrar = registrar;
             }
 
-            public void Invoke<T>() => _registrar.Register<T>();
+            public void Visit<T>() => _registrar.Register<T>();
         }
 
         private sealed class CompositeValidator<T> : ICommandValidator<T>
