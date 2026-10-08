@@ -93,7 +93,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         }
                         i++;
                     }
-                });
+                }).Invoke(ref dropInfos);
             foreach (var item in _dropInfos)
             {
                 EntityParameters parameters = new()

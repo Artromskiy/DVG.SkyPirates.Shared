@@ -51,7 +51,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         return;
                     }
                 }
-                });
+                }).Invoke(ref world);
         }
     }
 }

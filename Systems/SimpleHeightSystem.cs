@@ -58,7 +58,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     }
 
                     Delta.Diagnostics.Debug.Assert(false, context: "Wrong height behaviour detected");
-                });
+                }).Invoke(ref hexMap);
         }
     }
 }

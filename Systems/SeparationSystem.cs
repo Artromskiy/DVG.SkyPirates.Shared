@@ -58,7 +58,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
                         list.Add(new SeparatorEntry(syncId, position, separator, radius.Value));
                     }
-                });
+                }).Invoke(ref partitioning);
 
             (HashSet<int> Written, Lookup2D<List<SeparatorEntry>> Grid) state = (_syncIdCache, _partitioning);
             var separationDesc = _separationDesc;
@@ -112,7 +112,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         var offset = separation.Value / forcesCount * totalForce;
                         position += offset.x_y;
                     }
-                });
+                }).Invoke(ref state);
         }
 
         private static int2 GetQuantizedSquare(fix2 position)

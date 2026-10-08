@@ -43,7 +43,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     }
 
                     counts[member.SquadId]++;
-                });
+                }).Invoke(ref unitCounts);
 
             var counts = _unitCountPerSquad;
             var squadsDesc = _squadsDesc;
@@ -52,7 +52,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     unitCounts.TryGetValue(syncId.Value, out int count);
                     memberCount = count;
-                });
+                }).Invoke(ref counts);
         }
     }
 }

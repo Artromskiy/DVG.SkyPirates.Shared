@@ -28,7 +28,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     var deltaMove = ((fix2)direction * maxSpeed * deltaTime).x_y;
                     position += deltaMove;
-                });
+                }).Invoke(ref delta);
         }
     }
 }

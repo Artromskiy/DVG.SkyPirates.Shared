@@ -28,8 +28,8 @@ namespace DVG.SkyPirates.Shared.Systems
             _finished.Clear();
             var desc = _desc;
             var delta = deltaTime;
-            _world.ForEachEntity<fix, Position, FlyDestination, MaxSpeed>(in desc, ref delta,
-                static (ref fix deltaTime, Entity entity, ref Position position, ref FlyDestination fly, ref MaxSpeed maxSpeed) =>
+            _world.ForEach<fix, Position, FlyDestination, MaxSpeed>(in desc, ref delta,
+                static (ref fix deltaTime, ref Position position, ref FlyDestination fly, ref MaxSpeed maxSpeed) =>
                 {
                     const int ArcHeight = 4;
 
@@ -45,17 +45,17 @@ namespace DVG.SkyPirates.Shared.Systems
 
                     var arc = 4 * percent * (1 - percent);
                     position = new fix3(currentXZ.x, currentY + arc * ArcHeight, currentXZ.y);
-                });
+                }).Invoke(ref delta);
 
             var finished = _finished;
             _world.ForEachEntity<List<Entity>, Position, FlyDestination, MaxSpeed>(in desc, ref finished,
-                static (ref List<Entity> entities, Entity entity, ref Position position, ref FlyDestination fly, ref MaxSpeed maxSpeed) =>
+                static (ref List<Entity> entities, EntityRef entity, ref Position position, ref FlyDestination fly, ref MaxSpeed maxSpeed) =>
                 {
                     if (position == fly.EndPosition)
                     {
-                        entities.Add(entity);
+                        entities.Add(entity.Handle);
                     }
-                });
+                }).Invoke(ref finished);
             foreach (var item in _finished)
             {
                 _world.Remove<FlyDestination>(item);

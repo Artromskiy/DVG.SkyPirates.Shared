@@ -60,17 +60,17 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             _world.Add(in missingHistory, historyComponent);
 
             var withHistory = queries.WithHistory;
-            _world.ForEach(in withHistory, component.Component, typeof(InitializeHistory<>));
+            _world.ForEach(in withHistory, component.Component, typeof(InitializeHistory<>)).Invoke();
         }
 
         private void SaveComponentHistory(HistoryComponentIds component, QuerySet queries, int currentTick)
         {
             var context = new SaveContext(_world, component.History, currentTick);
             var withComponent = queries.SaveWithComponent;
-            _world.ForEach(in withComponent, ref context, component.Component, typeof(SaveHistoryWithComponent<>));
+            _world.ForEach(in withComponent, ref context, component.Component, typeof(SaveHistoryWithComponent<>)).Invoke(ref context);
 
             var withoutComponent = queries.SaveWithoutComponent;
-            _world.ForEach(in withoutComponent, ref context, component.Component, typeof(SaveHistoryWithoutComponent<>));
+            _world.ForEach(in withoutComponent, ref context, component.Component, typeof(SaveHistoryWithoutComponent<>)).Invoke(ref context);
         }
 
         private void SaveBaseline(HistoryComponentIds component, QuerySet queries)
@@ -78,7 +78,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             var saveHas = queries.BaselineHas;
             int tick = int.MinValue;
 
-            _world.ForEach(in saveHas, ref tick, component.Component, typeof(SaveBaselineHistory<>));
+            _world.ForEach(in saveHas, ref tick, component.Component, typeof(SaveBaselineHistory<>)).Invoke(ref tick);
         }
 
         private static Query CreateAllQuery(World world, ComponentId first, ComponentId second)

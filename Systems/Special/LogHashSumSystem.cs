@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 var queries = _queryCache.Get(component.Component);
                 var filter = queries.Filter ??= _world.WhereAll(component.Component);
                 int componentHash = 0;
-                _world.ForEach(in filter, ref componentHash, component.Component, typeof(HashComponent<>));
+                _world.ForEach(in filter, ref componentHash, component.Component, typeof(HashComponent<>)).Invoke(ref componentHash);
                 _stringBuilder.AppendLine($"Hash of {_world.Layouts.GetComponentType(component.Component).Name}: {componentHash}");
                 hash += componentHash;
             }

@@ -37,13 +37,13 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             (List<Entity> Entities, int CurrentTick) state = (_entitiesCache, tick);
             var disposingDesc = _disposingDesc;
             _world.ForEachEntity<(List<Entity> Entities, int CurrentTick), History<Alive>>(in disposingDesc, ref state,
-                static (ref (List<Entity> Entities, int CurrentTick) state, Entity entity, ref History<Alive> aliveHistory) =>
+                static (ref (List<Entity> Entities, int CurrentTick) state, EntityRef entity, ref History<Alive> aliveHistory) =>
                 {
                     if (aliveHistory.GetLast(out int tick) == null && tick <= state.CurrentTick - Constants.MaxHistoryTicks)
                     {
-                        state.Entities.Add(entity);
+                        state.Entities.Add(entity.Handle);
                     }
-                });
+                }).Invoke(ref state);
             foreach (var entity in _entitiesCache)
             {
                 _world.Add<Temp>(entity);
@@ -76,7 +76,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             var queries = _queryCache.Get(component.Component);
             var filter = queries.History ??= CreateHistoryQuery(component.History);
-            _world.ForEach(in filter, component.Component, typeof(DisposeHistory<>));
+            _world.ForEach(in filter, component.Component, typeof(DisposeHistory<>)).Invoke();
         }
 
         private Query CreateComponentQuery(ComponentId componentId)

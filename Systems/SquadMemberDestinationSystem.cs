@@ -7,7 +7,6 @@ using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
-using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -16,6 +15,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private Query? _unitsDescCache;
         private Query _unitsDesc => _unitsDescCache ??= _world.
             WhereAll<SquadMember, SyncId, Destination>().Alive().NotDisabled();
+        private readonly OrderedQuery _orderedUnitsDesc;
 
         private Query? _squadsDescCache;
         private Query _squadsDesc => _squadsDescCache ??= _world.
@@ -26,56 +26,46 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly Lookup<int> _orderPerUnit = new();
         private readonly Lookup<SquadData> _dataPerSquad = new();
-        private readonly Dictionary<int, List<SyncId>> _unitsPerSquad = new();
-
-        private readonly Queue<List<SyncId>> _unitsCache = new();
 
         public SquadMemberDestinationSystem(World world, PackedCirclesConfig circlesConfig)
         {
             _world = world;
             _circlesConfig = circlesConfig;
+            var units = _unitsDesc;
+            var squadIdComparer = default(SquadIdComparer);
+            var syncIdComparer = default(SyncIdComparer);
+            _orderedUnitsDesc = units
+                .OrderBy(ref squadIdComparer)
+                .ThenBy(ref syncIdComparer);
         }
 
         public void Tick(int tick, fix deltaTime)
         {
-            foreach (var item in _unitsPerSquad)
-            {
-                item.Value.Clear();
-                _unitsCache.Enqueue(item.Value);
-            }
             _orderPerUnit.Clear();
             _dataPerSquad.Clear();
-            _unitsPerSquad.Clear();
 
             var dataPerSquad = _dataPerSquad;
             var squadsDesc = _squadsDesc;
             _world.ForEach<Lookup<SquadData>, SyncId, Position, Rotation, SquadMemberCount>(in squadsDesc, ref dataPerSquad,
                 static (ref Lookup<SquadData> data, ref SyncId syncId, ref Position position, ref Rotation rotation, ref SquadMemberCount memberCount) =>
-                    data[syncId.Value] = new(position, rotation, memberCount));
+                    data[syncId.Value] = new(position, rotation, memberCount)).Invoke(ref dataPerSquad);
 
-            (Dictionary<int, List<SyncId>> UnitsPerSquad, Queue<List<SyncId>> UnitsCache) collectUnitsState = (_unitsPerSquad, _unitsCache);
-            var unitsDesc = _unitsDesc;
-            _world.ForEach<(Dictionary<int, List<SyncId>> UnitsPerSquad, Queue<List<SyncId>> UnitsCache), SquadMember, SyncId>(in unitsDesc, ref collectUnitsState,
-                static (ref (Dictionary<int, List<SyncId>> UnitsPerSquad, Queue<List<SyncId>> UnitsCache) state, ref SquadMember member, ref SyncId syncId) =>
+            var orderState = new SquadMemberOrderState { OrderPerUnit = _orderPerUnit };
+            _orderedUnitsDesc.ForEach(ref orderState,
+                static (ref SquadMemberOrderState state, in SquadMember member, in SyncId syncId) =>
                 {
-                    if (!state.UnitsPerSquad.TryGetValue(member.SquadId, out var list))
+                    if (!state.HasCurrentSquad || state.CurrentSquadId != member.SquadId)
                     {
-                        state.UnitsPerSquad[member.SquadId] = state.UnitsCache.TryDequeue(out list) ? list : list = new(8); // really wtf?
+                        state.CurrentSquadId = member.SquadId;
+                        state.CurrentSquadOrder = 0;
+                        state.HasCurrentSquad = true;
                     }
 
-                    list.Add(syncId);
-                });
-
-            foreach (var item in _unitsPerSquad)
-            {
-                item.Value.Sort((u1, u2) => u1.Value.CompareTo(u2.Value));
-                for (int i = 0; i < item.Value.Count; i++)
-                {
-                    _orderPerUnit[item.Value[i].Value] = i;
-                }
-            }
+                    state.OrderPerUnit[syncId.Value] = state.CurrentSquadOrder++;
+                }).Invoke(ref orderState);
 
             (Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig) applyState = (_orderPerUnit, _dataPerSquad, _circlesConfig);
+            var unitsDesc = _unitsDesc;
             _world.ForEach<(Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig), SyncId, SquadMember, Destination>(in unitsDesc, ref applyState,
                 static (ref (Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig) state, ref SyncId syncId, ref SquadMember member, ref Destination destination) =>
                 {
@@ -85,7 +75,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     var local = circles.Points[order];
                     destination.Position = squad.Position + local.x_y;
                     destination.Rotation = squad.Rotation;
-                });
+                }).Invoke(ref applyState);
         }
 
         internal readonly struct SquadData
@@ -101,5 +91,14 @@ namespace DVG.SkyPirates.Shared.Systems
                 MemberCount = memberCount;
             }
         }
+
+    }
+
+    internal struct SquadMemberOrderState
+    {
+        public Lookup<int> OrderPerUnit;
+        public int CurrentSquadId;
+        public int CurrentSquadOrder;
+        public bool HasCurrentSquad;
     }
 }

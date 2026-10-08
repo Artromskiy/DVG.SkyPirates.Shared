@@ -26,6 +26,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private Query? _unitsDescCache;
         private Query _unitsDesc => _unitsDescCache ??= _world.
             WhereAll<SquadMember, SyncId, GoodsDrop>().Alive().NotDisabled();
+        private readonly OrderedQuery _orderedUnitsDesc;
 
         private Query? _squadDescCache;
         private Query _squadDesc => _squadDescCache ??= _world.
@@ -34,6 +35,12 @@ namespace DVG.SkyPirates.Shared.Systems
         public SquadGoodsDistributionSystem(World world)
         {
             _world = world;
+            var units = _unitsDesc;
+            var squadIdComparer = default(SquadIdComparer);
+            var syncIdComparer = default(SyncIdComparer);
+            _orderedUnitsDesc = units
+                .OrderBy(ref squadIdComparer)
+                .ThenBy(ref syncIdComparer);
         }
 
         public void Tick(int tick, fix deltaTime)
@@ -54,9 +61,8 @@ namespace DVG.SkyPirates.Shared.Systems
             }
 
             (Dictionary<int, Dictionary<GoodsId, int>> GoodsPerSquad, Dictionary<int, List<SyncId>> UnitsPerSquad) collectState = (_goodsPerSquad, _unitsPerSquad);
-            var unitsDesc = _unitsDesc;
-            _world.ForEach<(Dictionary<int, Dictionary<GoodsId, int>> GoodsPerSquad, Dictionary<int, List<SyncId>> UnitsPerSquad), SquadMember, GoodsDrop, SyncId>(in unitsDesc, ref collectState,
-                static (ref (Dictionary<int, Dictionary<GoodsId, int>> GoodsPerSquad, Dictionary<int, List<SyncId>> UnitsPerSquad) state, ref SquadMember member, ref GoodsDrop drop, ref SyncId syncId) =>
+            _orderedUnitsDesc.ForEach(ref collectState,
+                static (ref (Dictionary<int, Dictionary<GoodsId, int>> GoodsPerSquad, Dictionary<int, List<SyncId>> UnitsPerSquad) state, in SquadMember member, in GoodsDrop drop, in SyncId syncId) =>
                 {
                     if (drop.Values != null)
                     {
@@ -85,7 +91,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     }
 
                     units.Add(syncId);
-                });
+                }).Invoke(ref collectState);
             // will redistribute only if there's members
             var goodsPerSquad = _goodsPerSquad;
             var squadDesc = _squadDesc;
@@ -115,12 +121,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         }
                     }
                     goods = new() { Values = ImmutableSortedDictionary<GoodsId, int>.Empty };
-                });
-
-            foreach (var item in _unitsPerSquad)
-            {
-                item.Value.Sort((u1, u2) => u1.Value.CompareTo(u2.Value));
-            }
+                }).Invoke(ref goodsPerSquad);
 
             foreach ((int squadId, var units) in _unitsPerSquad)
             {
@@ -168,6 +169,7 @@ namespace DVG.SkyPirates.Shared.Systems
             }
 
             var goodsPerUnit = _goodsPerUnit;
+            var unitsDesc = _unitsDesc;
             _world.ForEach<Dictionary<int, SortedList<GoodsId, int>>, SyncId, GoodsDrop>(in unitsDesc, ref goodsPerUnit,
                 static (ref Dictionary<int, SortedList<GoodsId, int>> goodsPerUnit, ref SyncId syncId, ref GoodsDrop drop) =>
                 {
@@ -183,7 +185,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     }
 
                     drop = new() { Values = distributedDrop.ToImmutableSortedDictionary() };
-                });
+                }).Invoke(ref goodsPerUnit);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var desc = _desc;
             _world.ForEach<ITargetSearchSystem, Position, TargetSearchDistance, TargetSearchPosition, Target, TeamId>(in desc, ref targetSearch,
                 static (ref ITargetSearchSystem targetSearch, ref Position position, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Target target, ref TeamId team) =>
-                target.Entity = targetSearch.FindTarget(ref position, ref searchDistance, ref searchPosition, ref team));
+                target.Entity = targetSearch.FindTarget(ref position, ref searchDistance, ref searchPosition, ref team)).Invoke(ref targetSearch);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var state = default(FirstOrDefaultState<T>);
             var queries = ComponentQueryCache<T>.Get(world);
             var filter = queries.Filter;
-            world.ForEachEntity(in filter, ref state, queries.Component, typeof(FirstOrDefaultAction<>));
+            world.ForEachEntity(in filter, ref state, queries.Component, typeof(FirstOrDefaultAction<>)).Invoke(ref state);
             return state.Value;
         }
 
@@ -25,7 +25,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var state = default(FirstOrDefaultState<T>);
             var queries = ComponentQueryCache<T>.Get(world);
             var filter = queries.Filter;
-            world.ForEachEntity(in filter, ref state, queries.Component, typeof(FirstOrDefaultAction<>));
+            world.ForEachEntity(in filter, ref state, queries.Component, typeof(FirstOrDefaultAction<>)).Invoke(ref state);
             return state.Entity;
         }
 
@@ -44,7 +44,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
         internal struct FirstOrDefaultAction<T> : IForEachContextEntity<FirstOrDefaultState<T>> where T : struct
         {
-            public void Invoke(ref FirstOrDefaultState<T> state, Entity entity, in T component)
+            public void Invoke(ref FirstOrDefaultState<T> state, EntityRef entity, in T component)
             {
                 if (state.ValueSet)
                 {
@@ -53,7 +53,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
                 state.ValueSet = true;
                 state.Value = component;
-                state.Entity = entity;
+                state.Entity = entity.Handle;
             }
         }
 

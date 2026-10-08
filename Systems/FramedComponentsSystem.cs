@@ -30,7 +30,7 @@ namespace DVG.SkyPirates.Shared.Systems
             for (int i = 0; i < _framedComponentIds.Length; i++)
             {
                 var query = _clearQueries[i];
-                _world.ForEach(in query, _framedComponentIds[i], typeof(ClearFramedComponent<>));
+                _world.ForEach(in query, _framedComponentIds[i], typeof(ClearFramedComponent<>)).Invoke();
             }
 
             Span<ComponentId> component = stackalloc ComponentId[1];

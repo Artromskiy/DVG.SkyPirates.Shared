@@ -41,7 +41,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         : destination.Rotation;
 
                     rotation = Maths.RotateTowards(rotation, rotateTo, RotateSpeed * deltaTime);
-                });
+                }).Invoke(ref delta);
         }
     }
 }

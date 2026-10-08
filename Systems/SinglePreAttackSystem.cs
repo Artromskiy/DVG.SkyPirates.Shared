@@ -52,7 +52,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 }
 
                 behaviour.ForceState = StateId.Constants.PreAttack;
-                });
+                }).Invoke(ref world);
         }
     }
 }

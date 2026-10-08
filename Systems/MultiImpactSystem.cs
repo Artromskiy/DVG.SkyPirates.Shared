@@ -52,7 +52,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
                         world.GetRef<RecivedDamage>(targets.Entities[i]) += (fix)damage;
                     }
-                });
+                }).Invoke(ref world);
         }
     }
 

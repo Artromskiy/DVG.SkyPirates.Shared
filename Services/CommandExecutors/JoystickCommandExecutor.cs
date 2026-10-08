@@ -71,7 +71,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 {
                     context.Count++;
                 }
-            });
+            }).Invoke(ref state);
             return state.Count > 0;
         }
     }

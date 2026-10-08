@@ -30,13 +30,13 @@ namespace DVG.SkyPirates.Shared.Systems
             var dead = _dead;
             var desc = _desc;
             _world.ForEachEntity<List<Entity>, Health>(in desc, ref dead,
-                static (ref List<Entity> entities, Entity entity, ref Health health) =>
+                static (ref List<Entity> entities, EntityRef entity, ref Health health) =>
                 {
                     if (health <= fix.Zero)
                     {
-                        entities.Add(entity);
+                        entities.Add(entity.Handle);
                     }
-                });
+                }).Invoke(ref dead);
             foreach (var item in _dead)
             {
                 _world.Remove<Alive>(item);

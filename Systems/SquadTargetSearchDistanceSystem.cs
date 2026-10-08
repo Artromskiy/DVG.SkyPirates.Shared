@@ -44,7 +44,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     var currentImpactDistance = distances.GetValueOrDefault(member.SquadId);
                     distances[member.SquadId] = Maths.Max(currentImpactDistance, impactDistance);
-                });
+                }).Invoke(ref maxDistances);
 
             (PackedCirclesConfig Config, Dictionary<int, fix> MaxImpactDistancePerSquad) applyState = (_circlesConfig, _maxImpactDistancePerSquad);
             var squads = _squadsDesc;
@@ -54,7 +54,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     fix squadRadius = memberCount == 0 ? 0 : state.Config[memberCount].Radius;
                     var maxImpactDistance = state.MaxImpactDistancePerSquad.GetValueOrDefault(syncId);
                     searchDistance = maxImpactDistance + _baseRange + squadRadius;
-                });
+                }).Invoke(ref applyState);
         }
     }
 }

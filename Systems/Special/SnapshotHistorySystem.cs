@@ -52,12 +52,18 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             {
                 var component = historyComponents[i];
                 var query = _packQueries[i];
-                var functor = component.Component == _aliveIds.Component
-                    ? typeof(PackAliveHistory<>)
-                    : component.Component == _syncIdIds.Component
-                        ? typeof(PackSyncIdHistory<>)
-                        : typeof(PackComponentHistory<>);
-                _world.ForEach(in query, ref context, component.Component, functor);
+                if (component.Component == _aliveIds.Component)
+                {
+                    _world.ForEach(in query, ref context, component.Component, typeof(PackAliveHistory<>)).Invoke(ref context);
+                }
+                else if (component.Component == _syncIdIds.Component)
+                {
+                    _world.ForEach(in query, ref context, component.Component, typeof(PackSyncIdHistory<>)).Invoke(ref context);
+                }
+                else
+                {
+                    _world.ForEach(in query, ref context, component.Component, typeof(PackComponentHistory<>)).Invoke(ref context);
+                }
             }
 
             return worldData;
@@ -107,7 +113,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             _entitiesCache.Clear();
             var state = new ApplySnapshotState(_world, component.Component, snapshot, _entitiesCache);
-            _world.ForEachEntity(snapshotEntities, ref state, component.Component, typeof(SelectSnapshotEntities<>));
+            _world.ForEachEntity(snapshotEntities, ref state, component.Component, typeof(SelectSnapshotEntities<>)).Invoke(ref state);
 
             if (_entitiesCache.Count == 0)
             {
@@ -116,7 +122,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
             Entity[] entities = _entitiesCache.ToArray();
             _world.Add(entities, component.Component);
-            _world.ForEachEntity(entities, ref state, component.Component, typeof(ApplySnapshotComponent<>));
+            _world.ForEachEntity(entities, ref state, component.Component, typeof(ApplySnapshotComponent<>)).Invoke(ref state);
         }
 
         private Query CreateComponentPackQuery(HistoryComponentIds component)
@@ -208,21 +214,21 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         internal struct SelectSnapshotEntities<T> : IForEachContextEntity<ApplySnapshotState> where T : struct
         {
-            public void Invoke(ref ApplySnapshotState state, Entity entity)
+            public void Invoke(ref ApplySnapshotState state, EntityRef entity)
             {
-                if (state.Snapshot.Get<T>().ContainsKey(state.World.GetRef<SyncId>(entity).Value))
+                if (state.Snapshot.Get<T>().ContainsKey(state.World.GetRef<SyncId>(entity.Handle).Value))
                 {
-                    state.Entities.Add(entity);
+                    state.Entities.Add(entity.Handle);
                 }
             }
         }
 
         internal struct ApplySnapshotComponent<T> : IForEachContextEntity<ApplySnapshotState> where T : struct
         {
-            public void Invoke(ref ApplySnapshotState state, Entity entity)
+            public void Invoke(ref ApplySnapshotState state, EntityRef entity)
             {
-                int syncId = state.World.GetRef<SyncId>(entity).Value;
-                state.World.GetRef<T>(entity, state.Component) = state.Snapshot.Get<T>()[syncId];
+                int syncId = state.World.GetRef<SyncId>(entity.Handle).Value;
+                state.World.GetRef<T>(entity.Handle, state.Component) = state.Snapshot.Get<T>()[syncId];
             }
         }
 

@@ -59,7 +59,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         OnFailedToSolve?.Invoke(Solvers.Segments.ToArray(), cachePosition.Value.xz, position.Value.xz, radius);
                     }
                     //Delta.Diagnostics.Trace.Assert(!failed, "Failed to solve collision");
-                });
+                }).Invoke(ref state);
         }
 
         private static void FindSegments(HexMap hexMap, List<Segment> segments, fix3 from)

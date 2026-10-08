@@ -42,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     TargetSearchDistance distance = fixation ? fix.Zero : searchDistance;
                     dataPerSquad[syncId.Value] = new(searchPosition, distance);
-                });
+                }).Invoke(ref searchData);
 
             var unitsDesc = _unitsDesc;
             _world.ForEach<Lookup<TargetSearchData>, SquadMember, TargetSearchPosition, TargetSearchDistance>(in unitsDesc, ref searchData,
@@ -51,7 +51,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     dataPerSquad.TryGetValue(squadMember.SquadId, out var data);
                     searchPosition = data.TargetSearchPosition;
                     searchDistance = data.TargetSearchDistance;
-                });
+                }).Invoke(ref searchData);
         }
 
         internal readonly struct TargetSearchData

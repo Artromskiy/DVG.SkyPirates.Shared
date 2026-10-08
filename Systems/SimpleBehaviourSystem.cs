@@ -45,7 +45,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 behaviour.State = targetState;
                 behaviour.Duration = behaviourConfig.Durations[behaviour.State];
                 behaviour.Percent = 0;
-                });
+                }).Invoke();
 
             var delta = deltaTime;
             var tickDesc = _descTick;
@@ -54,7 +54,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     fix step = behaviour.Duration == 0 ? 1 : deltaTime / behaviour.Duration;
                     behaviour.Percent = Maths.MoveTowards(behaviour.Percent, 1, step);
-                });
+                }).Invoke(ref delta);
         }
     }
 }

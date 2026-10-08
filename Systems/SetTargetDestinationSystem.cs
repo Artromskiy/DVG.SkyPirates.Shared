@@ -57,7 +57,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     destination.Position = fix3.MoveTowards(targetPos, position, impactReduced);
                 }
-                });
+                }).Invoke(ref world);
         }
     }
 }

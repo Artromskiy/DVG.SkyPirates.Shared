@@ -45,7 +45,7 @@ namespace DVG.SkyPirates.Shared.Systems
 				minMax.xy = pos - new fix2(range.Value);
 				minMax.zw = pos + new fix2(range.Value);
 				quads.Add(minMax);
-			});
+			}).Invoke(ref activeQuads);
 
 			var activeRegions = _activeQuads;
 			var toDisable = _toDisable;
@@ -53,7 +53,7 @@ namespace DVG.SkyPirates.Shared.Systems
 			(List<fix4> Regions, List<Entity> Entities) disableState = (activeRegions, toDisable);
 			_world.ForEachEntity<(List<fix4> Regions, List<Entity> Entities), Position>(in enabled,
 				ref disableState,
-				static (ref (List<fix4> Regions, List<Entity> Entities) state, Entity entity, ref Position position) =>
+				static (ref (List<fix4> Regions, List<Entity> Entities) state, EntityRef entity, ref Position position) =>
 				{
 					var xz = position.Value.xz;
 					for (int i = 0; i < state.Regions.Count; i++)
@@ -64,24 +64,24 @@ namespace DVG.SkyPirates.Shared.Systems
                         }
                     }
 
-                    state.Entities.Add(entity);
-				});
+                    state.Entities.Add(entity.Handle);
+				}).Invoke(ref disableState);
 
 			var toEnable = _toEnable;
 			var disabled = _disabled;
 			(List<fix4> Regions, List<Entity> Entities) enableState = (activeRegions, toEnable);
 			_world.ForEachEntity<(List<fix4> Regions, List<Entity> Entities), Position>(in disabled, ref enableState,
-				static (ref (List<fix4> Regions, List<Entity> Entities) state, Entity entity, ref Position position) =>
+				static (ref (List<fix4> Regions, List<Entity> Entities) state, EntityRef entity, ref Position position) =>
 				{
 					var xz = position.Value.xz;
 					for (int i = 0; i < state.Regions.Count; i++)
                     {
                         if (Inside(xz, state.Regions[i]))
                         {
-                            state.Entities.Add(entity);
+                            state.Entities.Add(entity.Handle);
                         }
                     }
-                });
+                }).Invoke(ref enableState);
 
 			foreach (var item in _toEnable)
             {

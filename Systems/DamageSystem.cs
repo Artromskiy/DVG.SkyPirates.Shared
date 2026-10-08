@@ -28,7 +28,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     health -= (fix)recivedDamage;
                     recivedDamage = fix.Zero;
-                });
+                }).Invoke();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     autoHeal.HealLoadPercent = recivedDamage > fix.Zero ? 0 :
                         Maths.MoveTowards(autoHeal.HealLoadPercent, 1, deltaTime / autoHeal.HealDelay);
-                });
+                }).Invoke(ref delta);
 
             var healDesc = _healDesc;
             _world.ForEach<fix, Health, MaxHealth, AutoHeal>(in healDesc, ref delta,
@@ -42,7 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     health = autoHeal.HealLoadPercent != 1 ? health :
                         Maths.MoveTowards(health, maxHealth, autoHeal.HealPerSecond * deltaTime);
-                });
+                }).Invoke(ref delta);
         }
     }
 }

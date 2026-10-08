@@ -41,7 +41,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     {
                         target.Entities = new(state.TargetsCache);
                     }
-                });
+                }).Invoke(ref state);
         }
     }
 }

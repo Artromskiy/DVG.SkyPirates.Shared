@@ -22,22 +22,22 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         internal struct SelectComponentsToRemove<T> : IForEachContextEntity<EntitySelectionState> where T : struct
         {
-            public void Invoke(ref EntitySelectionState selection, Entity entity, ref History<T> history)
+            public void Invoke(ref EntitySelectionState selection, EntityRef entity, ref History<T> history)
             {
                 if (history.Count == 0 || !history[selection.Tick].HasValue)
                 {
-                    selection.Entities.Add(entity);
+                    selection.Entities.Add(entity.Handle);
                 }
             }
         }
 
         internal struct SelectComponentsToAdd<T> : IForEachContextEntity<EntitySelectionState> where T : struct
         {
-            public void Invoke(ref EntitySelectionState selection, Entity entity, ref History<T> history)
+            public void Invoke(ref EntitySelectionState selection, EntityRef entity, ref History<T> history)
             {
                 if (history.Count > 0 && history[selection.Tick].HasValue)
                 {
-                    selection.Entities.Add(entity);
+                    selection.Entities.Add(entity.Handle);
                 }
             }
         }
@@ -91,7 +91,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             var queries = _queryCache.Get(component.Component);
             var filter = queries.Clear ??= CreateHistoryQuery(component);
             int tick = targetTick;
-            _world.ForEach(in filter, ref tick, component.Component, typeof(ClearHistory<>));
+            _world.ForEach(in filter, ref tick, component.Component, typeof(ClearHistory<>)).Invoke(ref tick);
         }
 
         private void SetHistory(HistoryComponentIds component, int targetTick)
@@ -104,14 +104,14 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             AddComponents(withoutComponent, component, targetTick);
 
             int tick = targetTick;
-            _world.ForEach(in withComponent, ref tick, component.Component, typeof(ApplyHistory<>));
+            _world.ForEach(in withComponent, ref tick, component.Component, typeof(ApplyHistory<>)).Invoke(ref tick);
         }
 
         private void RemoveComponents(Query filter, HistoryComponentIds component, int targetTick)
         {
             _entitiesCache.Clear();
             var state = new EntitySelectionState(_entitiesCache, targetTick);
-            _world.ForEachEntity(in filter, ref state, component.Component, typeof(SelectComponentsToRemove<>));
+            _world.ForEachEntity(in filter, ref state, component.Component, typeof(SelectComponentsToRemove<>)).Invoke(ref state);
 
             Span<ComponentId> componentIds = stackalloc ComponentId[1] { component.Component };
             foreach (var entity in _entitiesCache)
@@ -124,7 +124,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             _entitiesCache.Clear();
             var state = new EntitySelectionState(_entitiesCache, targetTick);
-            _world.ForEachEntity(in filter, ref state, component.Component, typeof(SelectComponentsToAdd<>));
+            _world.ForEachEntity(in filter, ref state, component.Component, typeof(SelectComponentsToAdd<>)).Invoke(ref state);
 
             Span<ComponentId> componentIds = stackalloc ComponentId[1] { component.Component };
             foreach (var entity in _entitiesCache)

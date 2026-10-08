@@ -15,11 +15,11 @@ namespace DVG.SkyPirates.Shared.Systems
     /// Caches Entities with their position quantized by <see cref="SquareSize"/>.
     /// Use for fast nearest search
     /// </summary>
-    public sealed class TargetSearchSystem : ITargetSearchSystem // Should be used before any Position/Team writes for accurate search
+    public sealed class
+        TargetSearchSystem : ITargetSearchSystem // Should be used before any Position/Team writes for accurate search
     {
         private Query? _descCache;
-        private Query _desc => _descCache ??= _world.
-            WhereAll<RecivedDamage, Position, TeamId>().Alive().NotDisabled();
+        private Query _desc => _descCache ??= _world.WhereAll<RecivedDamage, Position, TeamId>().Alive().NotDisabled();
 
         private const int SquareSize = 5;
 
@@ -111,7 +111,8 @@ namespace DVG.SkyPirates.Shared.Systems
                                 continue;
                             }
 
-                            if (fix2.SqrDistance(((fix3)_world.Get<Position>(list[i])).xz, searchPositionXZ) < sqrSearchDistance)
+                            if (fix2.SqrDistance(((fix3)_world.Get<Position>(list[i])).xz, searchPositionXZ) <
+                                sqrSearchDistance)
                             {
                                 targets.Add(list[i]);
                                 _entitiesLookup.Add(list[i].Index);
@@ -132,7 +133,8 @@ namespace DVG.SkyPirates.Shared.Systems
             var targets = _targets;
             var desc = _desc;
             _world.ForEachEntity<Dictionary<int, Lookup2D<List<Entity>>>, Position, TeamId>(in desc, ref targets,
-                static (ref Dictionary<int, Lookup2D<List<Entity>>> targets, Entity entity, ref Position position, ref TeamId teamId) =>
+                static (ref Dictionary<int, Lookup2D<List<Entity>>> targets, EntityRef entity, ref Position position,
+                    ref TeamId teamId) =>
                 {
                     var quad = GetQuantizedSquare(position.Value.xz);
 
@@ -146,8 +148,8 @@ namespace DVG.SkyPirates.Shared.Systems
                         team[quad.x, quad.y] = list = new List<Entity>(8);
                     }
 
-                    list.Add(entity);
-                });
+                    list.Add(entity.Handle);
+                }).Invoke(ref targets);
         }
 
         private static int2 GetQuantizedSquare(fix2 position)

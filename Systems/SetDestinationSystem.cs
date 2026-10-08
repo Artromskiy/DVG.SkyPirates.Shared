@@ -28,7 +28,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     destination.Position = position;
                     destination.Rotation = rotation;
-                });
+                }).Invoke();
         }
     }
 }

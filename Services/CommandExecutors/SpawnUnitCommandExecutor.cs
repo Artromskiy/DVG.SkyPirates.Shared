@@ -29,10 +29,10 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         private static readonly GoodsId _rum = "Rum";
         private Query? _descCache;
-        private Query _desc => _descCache ??= _world.
-            WhereAll<SquadMember, GoodsDrop, SyncId>().NotDisabled().Alive();
+        private Query _desc => _descCache ??= _world.WhereAll<SquadMember, GoodsDrop, SyncId>().NotDisabled().Alive();
 
-        public SpawnUnitCommandExecutor(UnitsInfoConfig unitsInfoConfig, IEntityRegistry entityRegistryService, IConfigedEntityFactory<UnitId> unitFactory, World world)
+        public SpawnUnitCommandExecutor(UnitsInfoConfig unitsInfoConfig, IEntityRegistry entityRegistryService,
+            IConfigedEntityFactory<UnitId> unitFactory, World world)
         {
             _unitsInfoConfig = unitsInfoConfig;
             _entityRegistryService = entityRegistryService;
@@ -98,13 +98,14 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
             (SyncId SquadId, int TotalRum) totalRumState = (squadId, squadRum);
             var query = _desc;
-            _world.ForEach<(SyncId SquadId, int TotalRum), SquadMember, GoodsDrop>(in query, ref totalRumState, static (ref (SyncId SquadId, int TotalRum) context, ref SquadMember member, ref GoodsDrop goodsDrop) =>
-            {
-                if (member.SquadId == context.SquadId)
+            _world.ForEach<(SyncId SquadId, int TotalRum), SquadMember, GoodsDrop>(in query, ref totalRumState,
+                static (ref (SyncId SquadId, int TotalRum) context, ref SquadMember member, ref GoodsDrop goodsDrop) =>
                 {
-                    context.TotalRum += goodsDrop.Values.GetValueOrDefault(_rum);
-                }
-            });
+                    if (member.SquadId == context.SquadId)
+                    {
+                        context.TotalRum += goodsDrop.Values.GetValueOrDefault(_rum);
+                    }
+                }).Invoke(ref totalRumState);
             int totalRum = totalRumState.TotalRum;
 
             if (totalRum < price)
@@ -113,14 +114,19 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             }
 
             List<(Entity entity, GoodsDrop drop, SyncId syncId)> units = new();
-            (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units) collectState = (squadId, units);
-            _world.ForEachEntity<(SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units), SquadMember, GoodsDrop, SyncId>(in query, ref collectState, static (ref (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units) context, Entity entity, ref SquadMember member, ref GoodsDrop goodsDrop, ref SyncId syncId) =>
-            {
-                if (member.SquadId == context.SquadId)
-                {
-                    context.Units.Add((entity, goodsDrop, syncId));
-                }
-            });
+            (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units)
+                collectState = (squadId, units);
+            _world
+                .ForEachEntity<(SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units), SquadMember
+                    , GoodsDrop, SyncId>(in query, ref collectState,
+                    static (ref (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units) context,
+                        EntityRef entity, ref SquadMember member, ref GoodsDrop goodsDrop, ref SyncId syncId) =>
+                    {
+                        if (member.SquadId == context.SquadId)
+                        {
+                            context.Units.Add((entity.Handle, goodsDrop, syncId));
+                        }
+                    }).Invoke(ref collectState);
 
             int leftPrice = price;
 
@@ -153,8 +159,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                     break;
                 }
             }
+
             return true;
         }
-
     }
 }

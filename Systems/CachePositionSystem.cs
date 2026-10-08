@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             var desc = _desc;
             _world.ForEach<Position, CachePosition>(in desc,
-                static (ref Position position, ref CachePosition cachePosition) => cachePosition = (fix3)position);
+                static (ref Position position, ref CachePosition cachePosition) => cachePosition = (fix3)position).Invoke();
         }
     }
 }
