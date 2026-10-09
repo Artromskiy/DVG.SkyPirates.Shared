@@ -1,5 +1,6 @@
 ﻿using Delta.ECS;
 using DVG.SkyPirates.Shared.Data;
+using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -8,27 +9,44 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 {
     public sealed class HistorySystem : IHistorySystem
     {
-        private readonly SaveHistorySystem _save;
-        private readonly RollbackHistorySystem _rollBack;
+        private readonly WorldHistory _history;
         private readonly SnapshotHistorySystem _snapshot;
 
-        public HistorySystem(World world, IEntityFactory entityFactory, IEntityRegistry entityRegistry)
+        public HistorySystem(World world, WorldHistory history, IEntityFactory entityFactory, IEntityRegistry entityRegistry)
         {
-            _save = new SaveHistorySystem(world);
-            _rollBack = new RollbackHistorySystem(world);
-            _snapshot = new SnapshotHistorySystem(world, entityFactory, entityRegistry);
+            _history = history;
+            _snapshot = new SnapshotHistorySystem(world, history, entityFactory, entityRegistry);
         }
 
-        public void GoTo(int tick) => _rollBack.GoTo(tick);
+        public void GoTo(int tick)
+        {
+            _history.GoTo(tick);
+        }
 
-        public void Rollback(int tick) => _rollBack.RollBack(tick);
+        public void Rollback(int tick)
+        {
+            _history.Rollback(tick);
+        }
 
-        public void Save(int tick) => _save.Save(tick);
+        public void Save(int tick)
+        {
+            _history.Save(tick);
+        }
 
-        public void SaveBaseline() => _save.SaveBaseline();
+        public void SaveBaseline()
+        {
+            _history.SaveBaseline();
+        }
 
-        public void ApplySnapshot(WorldData snapshot) => _snapshot.ApplySnapshot(snapshot);
+        public void ApplySnapshot(WorldData snapshot)
+        {
+            _history.Clear();
+            _snapshot.ApplySnapshot(snapshot);
+        }
 
-        public WorldData GetSnapshot(int tick) => _snapshot.GetSnapshot(tick);
+        public WorldData GetSnapshot(int tick)
+        {
+            return _history.GetSnapshot(tick);
+        }
     }
 }

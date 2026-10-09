@@ -25,31 +25,21 @@ namespace DVG.SkyPirates.Shared.Ecs
 
     }
 
-    internal readonly struct HistoryComponentIds
-    {
-        public readonly ComponentId Component;
-        public readonly ComponentId History;
-
-        public HistoryComponentIds(ComponentId component, ComponentId history)
-        {
-            Component = component;
-            History = history;
-        }
-    }
-
     internal sealed class WorldComponentIds
     {
         private static readonly ConditionalWeakTable<World, WorldComponentIds> Cache = new();
 
-        public readonly HistoryComponentIds[] History;
+        public readonly ComponentId[] History;
         public readonly ComponentId[] Framed;
         public readonly DisposableComponentIds[] Disposable;
 
         private WorldComponentIds(World world)
         {
-            var history = new List<HistoryComponentIds>();
+            var history = new List<ComponentId>();
             var historyAction = new CollectHistoryIds(world, history);
             HistoryComponentsRegistry.ForEachData(ref historyAction);
+            AddHistoryComponent(history, world.Layouts.GetPrimary<Alive>());
+            AddHistoryComponent(history, world.Layouts.GetPrimary<SyncId>());
             History = history.ToArray();
 
             var framed = new List<ComponentId>();
@@ -66,36 +56,25 @@ namespace DVG.SkyPirates.Shared.Ecs
         public static WorldComponentIds For(World world)
             => Cache.GetValue(world, static owner => new WorldComponentIds(owner));
 
-        public HistoryComponentIds GetHistory(ComponentId component)
+        private static void AddHistoryComponent(List<ComponentId> history, ComponentId component)
         {
-            for (int i = 0; i < History.Length; i++)
-            {
-                if (History[i].Component == component)
-                {
-                    return History[i];
-                }
-            }
-
-            throw new KeyNotFoundException($"Component {component} is not registered for history.");
+            if (!history.Contains(component))
+                history.Add(component);
         }
 
         private readonly struct CollectHistoryIds : IStructGenericAction
         {
             private readonly World _world;
-            private readonly List<HistoryComponentIds> _entries;
+            private readonly List<ComponentId> _entries;
 
-            public CollectHistoryIds(World world, List<HistoryComponentIds> entries)
+            public CollectHistoryIds(World world, List<ComponentId> entries)
             {
                 _world = world;
                 _entries = entries;
             }
 
             public void Invoke<T>() where T : struct
-            {
-                var component = _world.Layouts.GetPrimary<T>();
-                var history = _world.Layouts.GetPrimary<History<T>>();
-                _entries.Add(new HistoryComponentIds(component, history));
-            }
+                => _entries.Add(_world.Layouts.GetPrimary<T>());
         }
 
         private readonly struct CollectComponentIds : IStructGenericAction

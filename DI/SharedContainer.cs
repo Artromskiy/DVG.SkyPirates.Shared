@@ -2,7 +2,9 @@
 using DVG;
 using DVG.Components;
 using DVG.Core;
+using DVG.SkyPirates.Shared.Components.Config;
 using DVG.SkyPirates.Shared.Components.Framed;
+using DVG.SkyPirates.Shared.Components.Runtime;
 using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.Ecs;
@@ -10,6 +12,7 @@ using DVG.SkyPirates.Shared.Factories;
 using DVG.SkyPirates.Shared.IFactories;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
+using DVG.SkyPirates.Shared.Ids;
 using DVG.SkyPirates.Shared.Services;
 using DVG.SkyPirates.Shared.Services.CommandExecutors;
 using DVG.SkyPirates.Shared.Services.CommandMutators;
@@ -29,6 +32,11 @@ namespace DVG.SkyPirates.Shared.DI
         {
             Delta.Diagnostics.Trace.Info("[DI] SharedContainer Start");
             RegisterSingleton(CreateWorld);
+            RegisterSingleton(() => new WorldHistory(
+                GetInstance<World>(),
+                WorldComponentIds.For(GetInstance<World>()).History,
+                4,
+                Constants.MaxHistoryTicks));
 
             RegisterSingleton<TimelineWriter>();
 
@@ -140,20 +148,61 @@ namespace DVG.SkyPirates.Shared.DI
 
         private static World CreateWorld()
         {
-            var layouts = new ComponentLayoutRegistry();
-
-            var registerComponents = new RegisterComponentLayouts(layouts);
-            ComponentsRegistry.ForEachData(ref registerComponents);
-
-            var registerHistory = new RegisterHistoryLayouts(layouts);
-            HistoryComponentsRegistry.ForEachData(ref registerHistory);
-
-            layouts.Register<Disabled>(GetSchemaId(typeof(Disabled).FullName));
-            layouts.Register<Temp>(GetSchemaId(typeof(Temp).FullName));
-
-            var world = new World(layouts, 1024);
+            var world = new World(initialEntityCapacity: 1024);
+            RegisterAll(world);
             _ = WorldComponentIds.For(world);
             return world;
+        }
+
+        private static void RegisterAll(World world)
+        {
+            var layouts = world.Layouts;
+            layouts.Register<ActivityRange>(GetSchemaId(typeof(ActivityRange).FullName));
+            layouts.Register<Alive>(GetSchemaId(typeof(Alive).FullName));
+            layouts.Register<AutoHeal>(GetSchemaId(typeof(AutoHeal).FullName));
+            layouts.Register<BehaviourConfig>(GetSchemaId(typeof(BehaviourConfig).FullName));
+            layouts.Register<BehaviourState>(GetSchemaId(typeof(BehaviourState).FullName));
+            layouts.Register<CachePosition>(GetSchemaId(typeof(CachePosition).FullName));
+            layouts.Register<CactusId>(GetSchemaId(typeof(CactusId).FullName));
+            layouts.Register<ClientId>(GetSchemaId(typeof(ClientId).FullName));
+            layouts.Register<Collide>(GetSchemaId(typeof(Collide).FullName));
+            layouts.Register<Damage>(GetSchemaId(typeof(Damage).FullName));
+            layouts.Register<Destination>(GetSchemaId(typeof(Destination).FullName));
+            layouts.Register<Direction>(GetSchemaId(typeof(Direction).FullName));
+            layouts.Register<Fixation>(GetSchemaId(typeof(Fixation).FullName));
+            layouts.Register<FlyDestination>(GetSchemaId(typeof(FlyDestination).FullName));
+            layouts.Register<GoodsAmount>(GetSchemaId(typeof(GoodsAmount).FullName));
+            layouts.Register<GoodsCollectorRadius>(GetSchemaId(typeof(GoodsCollectorRadius).FullName));
+            layouts.Register<GoodsDrop>(GetSchemaId(typeof(GoodsDrop).FullName));
+            layouts.Register<GoodsId>(GetSchemaId(typeof(GoodsId).FullName));
+            layouts.Register<Health>(GetSchemaId(typeof(Health).FullName));
+            layouts.Register<HexMap>(GetSchemaId(typeof(HexMap).FullName));
+            layouts.Register<ImpactDistance>(GetSchemaId(typeof(ImpactDistance).FullName));
+            layouts.Register<Level>(GetSchemaId(typeof(Level).FullName));
+            layouts.Register<MaxHealth>(GetSchemaId(typeof(MaxHealth).FullName));
+            layouts.Register<MaxSpeed>(GetSchemaId(typeof(MaxSpeed).FullName));
+            layouts.Register<Position>(GetSchemaId(typeof(Position).FullName));
+            layouts.Register<Radius>(GetSchemaId(typeof(Radius).FullName));
+            layouts.Register<RandomSeed>(GetSchemaId(typeof(RandomSeed).FullName));
+            layouts.Register<RecivedDamage>(GetSchemaId(typeof(RecivedDamage).FullName));
+            layouts.Register<RockId>(GetSchemaId(typeof(RockId).FullName));
+            layouts.Register<Rotation>(GetSchemaId(typeof(Rotation).FullName));
+            layouts.Register<Separation>(GetSchemaId(typeof(Separation).FullName));
+            layouts.Register<Separator>(GetSchemaId(typeof(Separator).FullName));
+            layouts.Register<Squad>(GetSchemaId(typeof(Squad).FullName));
+            layouts.Register<SquadMember>(GetSchemaId(typeof(SquadMember).FullName));
+            layouts.Register<SquadMemberCount>(GetSchemaId(typeof(SquadMemberCount).FullName));
+            layouts.Register<SyncId>(GetSchemaId(typeof(SyncId).FullName));
+            layouts.Register<SyncIdReserve>(GetSchemaId(typeof(SyncIdReserve).FullName));
+            layouts.Register<Target>(GetSchemaId(typeof(Target).FullName));
+            layouts.Register<Targets>(GetSchemaId(typeof(Targets).FullName));
+            layouts.Register<TargetSearchDistance>(GetSchemaId(typeof(TargetSearchDistance).FullName));
+            layouts.Register<TargetSearchPosition>(GetSchemaId(typeof(TargetSearchPosition).FullName));
+            layouts.Register<TeamId>(GetSchemaId(typeof(TeamId).FullName));
+            layouts.Register<TreeId>(GetSchemaId(typeof(TreeId).FullName));
+            layouts.Register<UnitId>(GetSchemaId(typeof(UnitId).FullName));
+            layouts.Register<Disabled>(GetSchemaId(typeof(Disabled).FullName));
+            layouts.Register<Temp>(GetSchemaId(typeof(Temp).FullName));
         }
 
         private ISessionTransport CreateSessionTransport(SessionMode mode)
@@ -183,38 +232,6 @@ namespace DVG.SkyPirates.Shared.DI
             }
 
             return new SchemaId(hash);
-        }
-
-        private readonly struct RegisterComponentLayouts : IStructGenericAction
-        {
-            private readonly ComponentLayoutRegistry _layouts;
-
-            public RegisterComponentLayouts(ComponentLayoutRegistry layouts)
-            {
-                _layouts = layouts;
-            }
-
-            public readonly void Invoke<T>() where T : struct
-            {
-                _layouts.Register<T>(GetSchemaId(typeof(T).FullName));
-            }
-        }
-
-        private readonly struct RegisterHistoryLayouts : IStructGenericAction
-        {
-            private readonly ComponentLayoutRegistry _layouts;
-
-            public RegisterHistoryLayouts(ComponentLayoutRegistry layouts)
-            {
-                _layouts = layouts;
-            }
-
-            public readonly void Invoke<T>() where T : struct
-            {
-                string schemaName = typeof(History<>).FullName + "<" + typeof(T).FullName + ">";
-                var componentId = _layouts.GetPrimary<T>();
-                _layouts.Register(typeof(History<>), componentId, GetSchemaId(schemaName));
-            }
         }
 
         protected void RegisterFactorySingleton<TService, TImplementation, TInstance>()

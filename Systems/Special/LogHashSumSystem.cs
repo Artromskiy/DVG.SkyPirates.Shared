@@ -35,11 +35,11 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             for (int i = 0; i < historyComponents.Length; i++)
             {
                 var component = historyComponents[i];
-                var queries = _queryCache.Get(component.Component);
-                var filter = queries.Filter ??= _world.WhereAll(component.Component);
+                var queries = _queryCache.Get(component);
+                var filter = queries.Filter ??= _world.WhereAll(component);
                 int componentHash = 0;
-                _world.ForEach(in filter, ref componentHash, component.Component, typeof(HashComponent<>)).Invoke(ref componentHash);
-                _stringBuilder.AppendLine($"Hash of {_world.Layouts.GetComponentType(component.Component).Name}: {componentHash}");
+                _world.ForEach(in filter, ref componentHash, component, typeof(HashComponent<>)).Invoke(ref componentHash);
+                _stringBuilder.AppendLine($"Hash of {_world.Layouts.GetComponentType(component).Name}: {componentHash}");
                 hash += componentHash;
             }
 

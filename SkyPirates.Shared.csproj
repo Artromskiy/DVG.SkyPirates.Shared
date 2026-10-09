@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -20,8 +20,8 @@
   <ItemGroup>
     <PackageReference Include="Delta.Diagnostics" Version="0.0.7" />
     <PackageReference Include="DeltaNetcode" Version="0.0.4" />
-    <PackageReference Include="DeltaECS" Version="0.0.42" />
-    <PackageReference Include="DeltaECS.Generators" Version="0.0.42" PrivateAssets="all" />
+    <PackageReference Include="DeltaECS" Version="0.0.45" />
+    <PackageReference Include="DeltaECS.Generators" Version="0.0.45" PrivateAssets="all" />
     <PackageReference Include="DeltaMaths" Version="0.0.14" />
     <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.2.2" />
     <PackageReference Include="RiptideNetworking.Riptide" Version="2.2.1" />
