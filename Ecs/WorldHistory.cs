@@ -1,5 +1,7 @@
 using System;
+using System.Buffers;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Delta.ECS;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
@@ -30,6 +32,9 @@ namespace DVG.SkyPirates.Shared.Ecs
                 throw new ArgumentOutOfRangeException(nameof(maxCapacity), "Maximum history capacity must be a power of two at least as large as the initial capacity.");
             }
 
+            ComponentId syncId = world.Layouts.GetPrimary<SyncId>();
+            _entityPresence = new EntityPresenceHistory(world, syncId, initialCapacity, maxCapacity);
+
             var histories = new List<ComponentHistory>(componentIds.Length);
             var visitor = new CreateHistoryVisitor(world, histories, initialCapacity, maxCapacity);
             for (int i = 0; i < componentIds.Length; i++)
@@ -42,9 +47,7 @@ namespace DVG.SkyPirates.Shared.Ecs
                 }
             }
 
-            ComponentId syncId = world.Layouts.GetPrimary<SyncId>();
             _syncIdHistory = GetOrCreateHistory<SyncId>(world, histories, syncId, initialCapacity, maxCapacity);
-            _entityPresence = new EntityPresenceHistory(world, syncId, initialCapacity, maxCapacity);
             _components = histories.ToArray();
         }
 
@@ -88,9 +91,11 @@ namespace DVG.SkyPirates.Shared.Ecs
         public WorldData GetSnapshot(int tick)
         {
             var snapshot = new WorldData();
+            Dictionary<Entity, int> syncIds = _syncIdHistory.GetSyncIdsAt(tick);
+            EntityPresenceFrame entities = _entityPresence.GetFrame(tick);
             for (int i = 0; i < _components.Length; i++)
             {
-                _components[i].PackSnapshot(snapshot, tick, _entityPresence, _syncIdHistory);
+                _components[i].PackSnapshot(snapshot, tick, entities, syncIds);
             }
 
             return snapshot;
@@ -182,7 +187,11 @@ namespace DVG.SkyPirates.Shared.Ecs
             private readonly int _initialCapacity;
             private readonly int _maxCapacity;
 
-            public CreateHistoryVisitor(World world, List<ComponentHistory> histories, int initialCapacity, int maxCapacity)
+            public CreateHistoryVisitor(
+                World world,
+                List<ComponentHistory> histories,
+                int initialCapacity,
+                int maxCapacity)
             {
                 _world = world;
                 _histories = histories;
@@ -198,49 +207,43 @@ namespace DVG.SkyPirates.Shared.Ecs
         {
             private const int NotRetired = int.MaxValue;
 
-            private readonly World _world;
-            private readonly IOperation<CaptureState> _saveOperation;
-            private readonly Dictionary<Entity, Entry> _entries = new();
+            private readonly IOperation<EntityPresenceCaptureState> _saveOperation;
+            private readonly Dictionary<Entity, Entry> _retirements = new();
             private readonly List<Entity> _staleEntities = new();
+            private readonly EntityPresenceFrameHistory _frames;
             private readonly int _initialCapacity;
             private readonly int _maxCapacity;
 
             public EntityPresenceHistory(World world, ComponentId syncId, int initialCapacity, int maxCapacity)
             {
-                _world = world;
                 var query = world.WhereAll(syncId);
                 _initialCapacity = initialCapacity;
                 _maxCapacity = maxCapacity;
-                ForEachContextEntityAction<CaptureState> captureAction = CaptureEntity;
-                var state = default(CaptureState);
-                _saveOperation = world.ForEachEntity(in query, ref state, captureAction);
+                _frames = new EntityPresenceFrameHistory(initialCapacity, maxCapacity);
+                var state = default(EntityPresenceCaptureState);
+                _saveOperation = world.ForEachEntity(in query, ref state, syncId, typeof(CaptureEntity<>));
             }
+
+            public EntityPresenceFrame GetFrame(int tick) => _frames.Get(tick);
 
             public void Save(int tick) => Capture(tick, false);
 
             public void SaveBaseline()
             {
-                foreach (var entry in _entries.Values)
+                foreach (var entry in _retirements.Values)
                 {
                     entry.Values.Rollback(int.MinValue);
-                    entry.Values[int.MinValue] = entry.RetirementPending
-                        ? new EntityState(false, NotRetired, true)
-                        : null;
                 }
 
                 Capture(int.MinValue, true);
             }
-
-            public bool ExistsAt(Entity entity, int tick) =>
-                _entries.TryGetValue(entity, out Entry entry)
-                && entry.Values[tick] is EntityState state
-                && state.Exists;
 
             public void MarkForDisposal(Entity entity, int tick)
             {
                 Entry entry = GetOrCreate(entity);
                 entry.RetiredAt = tick;
                 entry.RetirementPending = false;
+                entry.Values[tick] = new EntityState(true, tick, false);
             }
 
             public void RetireFromSnapshot(Entity entity)
@@ -252,7 +255,7 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public void CollectExpiredEntities(int tick, List<Entity> entities)
             {
-                foreach (var pair in _entries)
+                foreach (var pair in _retirements)
                 {
                     EntityState? state = pair.Value.Values.GetLast(out _);
                     if (state.HasValue && !state.Value.RetirementPending
@@ -266,7 +269,8 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public void Rollback(int tick)
             {
-                foreach (var entry in _entries.Values)
+                _frames.Rollback(tick);
+                foreach (var entry in _retirements.Values)
                 {
                     entry.Values.Rollback(tick);
                     RestoreCurrentState(entry, entry.Values.GetLast(out _));
@@ -275,7 +279,7 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public void GoTo(int tick)
             {
-                foreach (var entry in _entries.Values)
+                foreach (var entry in _retirements.Values)
                 {
                     RestoreCurrentState(entry, entry.Values[tick]);
                 }
@@ -283,47 +287,43 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public void DisposeEntity(Entity entity)
             {
-                if (_entries.TryGetValue(entity, out Entry entry))
+                if (_retirements.TryGetValue(entity, out Entry entry))
                 {
                     entry.Values.Dispose();
-                    _entries.Remove(entity);
+                    _retirements.Remove(entity);
                 }
             }
 
             public void Clear()
             {
-                foreach (var entry in _entries.Values)
+                foreach (var entry in _retirements.Values)
                 {
                     entry.Values.Dispose();
                 }
 
-                _entries.Clear();
+                _retirements.Clear();
+                _frames.ResetBaseline();
             }
 
-            public void Dispose() => Clear();
+            public void Dispose()
+            {
+                Clear();
+                _frames.Dispose();
+            }
 
             private void Capture(int tick, bool baseline)
             {
-                foreach (var entry in _entries.Values)
-                {
-                    entry.Seen = false;
-                }
-
-                var state = new CaptureState(this, tick, baseline);
+                EntityPresenceFrame frame = _frames.BeginWrite(tick);
+                var state = new EntityPresenceCaptureState(frame);
                 _saveOperation.Invoke(ref state);
 
                 _staleEntities.Clear();
-                foreach (var pair in _entries)
+                foreach (var pair in _retirements)
                 {
                     Entry entry = pair.Value;
-                    if (!_world.IsAlive(pair.Key))
+                    if (!frame.Contains(pair.Key))
                     {
                         _staleEntities.Add(pair.Key);
-                        continue;
-                    }
-
-                    if (entry.Seen)
-                    {
                         continue;
                     }
 
@@ -332,19 +332,8 @@ namespace DVG.SkyPirates.Shared.Ecs
                         entry.RetiredAt = tick;
                         entry.RetirementPending = false;
                     }
-                    else if (!entry.RetirementPending && entry.RetiredAt == NotRetired)
-                    {
-                        if (baseline)
-                        {
-                            entry.RetirementPending = true;
-                        }
-                        else
-                        {
-                            entry.RetiredAt = tick;
-                        }
-                    }
 
-                    entry.Values[tick] = new EntityState(false, entry.RetiredAt, entry.RetirementPending);
+                    entry.Values[tick] = new EntityState(true, entry.RetiredAt, entry.RetirementPending);
                 }
 
                 for (int i = 0; i < _staleEntities.Count; i++)
@@ -355,10 +344,10 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             private Entry GetOrCreate(Entity entity)
             {
-                if (!_entries.TryGetValue(entity, out Entry entry))
+                if (!_retirements.TryGetValue(entity, out Entry entry))
                 {
                     entry = new Entry(_initialCapacity, _maxCapacity);
-                    _entries.Add(entity, entry);
+                    _retirements.Add(entity, entry);
                 }
 
                 return entry;
@@ -370,38 +359,9 @@ namespace DVG.SkyPirates.Shared.Ecs
                 entry.RetirementPending = state.HasValue && state.Value.RetirementPending;
             }
 
-            private static void CaptureEntity(ref CaptureState state, EntityRef entity)
-            {
-                Entry entry = state.History.GetOrCreate(entity.Handle);
-                entry.Seen = true;
-
-                if (!state.Baseline && entry.RetirementPending)
-                {
-                    entry.RetiredAt = state.Tick;
-                    entry.RetirementPending = false;
-                }
-
-                entry.Values[state.Tick] = new EntityState(true, entry.RetiredAt, entry.RetirementPending);
-            }
-
-            private struct CaptureState
-            {
-                public readonly EntityPresenceHistory History;
-                public readonly int Tick;
-                public readonly bool Baseline;
-
-                public CaptureState(EntityPresenceHistory history, int tick, bool baseline)
-                {
-                    History = history;
-                    Tick = tick;
-                    Baseline = baseline;
-                }
-            }
-
             private sealed class Entry
             {
                 public History<EntityState> Values;
-                public bool Seen;
                 public int RetiredAt = NotRetired;
                 public bool RetirementPending;
 
@@ -426,13 +386,197 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
         }
 
+        internal struct EntityPresenceCaptureState
+        {
+            public readonly EntityPresenceFrame Frame;
+
+            public EntityPresenceCaptureState(EntityPresenceFrame frame) => Frame = frame;
+        }
+
+        internal sealed class EntityPresenceFrame
+        {
+            private Entity[] _entitiesByIndex = Array.Empty<Entity>();
+            private int[] _stampsByIndex = Array.Empty<int>();
+            private int _stamp;
+
+            public int Tick { get; private set; }
+
+            public void Begin(int tick)
+            {
+                if (_stamp == int.MaxValue)
+                {
+                    Array.Clear(_stampsByIndex, 0, _stampsByIndex.Length);
+                    _stamp = 1;
+                }
+                else
+                {
+                    _stamp++;
+                }
+
+                Tick = tick;
+            }
+
+            public void Mark(Entity entity)
+            {
+                EnsureCapacity(entity.Index);
+                _entitiesByIndex[entity.Index] = entity;
+                _stampsByIndex[entity.Index] = _stamp;
+            }
+
+            public bool Contains(Entity entity)
+            {
+                int index = entity.Index;
+                return (uint)index < (uint)_stampsByIndex.Length
+                    && _stampsByIndex[index] == _stamp
+                    && _entitiesByIndex[index] == entity;
+            }
+
+            public void Dispose()
+            {
+                _entitiesByIndex = Array.Empty<Entity>();
+                _stampsByIndex = Array.Empty<int>();
+                _stamp = 0;
+            }
+
+            private void EnsureCapacity(int entityIndex)
+            {
+                if (entityIndex < _stampsByIndex.Length)
+                    return;
+
+                int capacity = _stampsByIndex.Length == 0 ? 4 : _stampsByIndex.Length;
+                while (capacity <= entityIndex)
+                    capacity = checked(capacity * 2);
+
+                Array.Resize(ref _entitiesByIndex, capacity);
+                Array.Resize(ref _stampsByIndex, capacity);
+            }
+        }
+
+        private sealed class EntityPresenceFrameHistory : IDisposable
+        {
+            private EntityPresenceFrame?[] _frames;
+            private int _mask;
+            private int _head;
+            private int _count;
+            private readonly int _maxCapacity;
+
+            public EntityPresenceFrameHistory(int initialCapacity, int maxCapacity)
+            {
+                _frames = new EntityPresenceFrame?[initialCapacity];
+                _mask = initialCapacity - 1;
+                _maxCapacity = maxCapacity;
+                _frames[0] = new EntityPresenceFrame();
+                _frames[0]!.Begin(int.MinValue);
+                _count = 1;
+            }
+
+            public EntityPresenceFrame BeginWrite(int tick)
+            {
+                if (tick < Last.Tick)
+                    Rollback(tick);
+
+                if (Last.Tick == tick)
+                {
+                    Last.Begin(tick);
+                    return Last;
+                }
+
+                EnsureCapacity();
+                int index = (_head + _count) & _mask;
+                EntityPresenceFrame frame = _frames[index] ?? (_frames[index] = new EntityPresenceFrame());
+                frame.Begin(tick);
+                _count++;
+                return frame;
+            }
+
+            public EntityPresenceFrame Get(int tick)
+            {
+                if (_count == 0 || tick < At(0).Tick)
+                    throw new IndexOutOfRangeException($"Entity presence history does not contain tick {tick}");
+
+                int low = 0;
+                int high = _count - 1;
+                while (low <= high)
+                {
+                    int middle = (low + high) >> 1;
+                    EntityPresenceFrame candidate = At(middle);
+                    if (candidate.Tick == tick)
+                        return candidate;
+
+                    if (candidate.Tick < tick)
+                        low = middle + 1;
+                    else
+                        high = middle - 1;
+                }
+
+                return At(high);
+            }
+
+            public void Rollback(int tick)
+            {
+                while (_count > 0 && Last.Tick > tick)
+                    _count--;
+            }
+
+            public void ResetBaseline()
+            {
+                _head = 0;
+                _count = 1;
+                EntityPresenceFrame frame = _frames[0] ?? (_frames[0] = new EntityPresenceFrame());
+                frame.Begin(int.MinValue);
+            }
+
+            public void Dispose()
+            {
+                for (int i = 0; i < _frames.Length; i++)
+                {
+                    _frames[i]?.Dispose();
+                    _frames[i] = null;
+                }
+
+                _head = 0;
+                _count = 0;
+            }
+
+            private EntityPresenceFrame Last => At(_count - 1);
+
+            private EntityPresenceFrame At(int logicalIndex) => _frames[(_head + logicalIndex) & _mask]!;
+
+            private void EnsureCapacity()
+            {
+                if (_count < _frames.Length)
+                    return;
+
+                if (_frames.Length >= _maxCapacity)
+                {
+                    _head = (_head + 1) & _mask;
+                    _count--;
+                    return;
+                }
+
+                int capacity = Math.Min(_frames.Length << 1, _maxCapacity);
+                var expanded = new EntityPresenceFrame?[capacity];
+                for (int i = 0; i < _count; i++)
+                    expanded[i] = At(i);
+                _frames = expanded;
+                _head = 0;
+                _mask = capacity - 1;
+            }
+        }
+
+        internal struct CaptureEntity<T> : IForEachContextEntity<EntityPresenceCaptureState> where T : struct
+        {
+            public void Invoke(ref EntityPresenceCaptureState state, EntityRef entity, in T component)
+                => state.Frame.Mark(entity.Handle);
+        }
+
         private abstract class ComponentHistory
         {
             public abstract void Save(int tick);
             public abstract void SaveBaseline();
             public abstract void GoTo(int tick);
             public abstract void Rollback(int tick);
-            public abstract void PackSnapshot(WorldData snapshot, int tick, EntityPresenceHistory entityPresence, ComponentHistory<SyncId> syncId);
+            public abstract void PackSnapshot(WorldData snapshot, int tick, EntityPresenceFrame entityPresence, IReadOnlyDictionary<Entity, int> syncIds);
             public abstract void ApplySnapshot(WorldData snapshot, IReadOnlyDictionary<int, Entity> entitiesBySyncId);
             public abstract void RemoveFrom(Entity entity);
             public abstract void DisposeEntity(Entity entity);
@@ -440,177 +584,160 @@ namespace DVG.SkyPirates.Shared.Ecs
             public abstract void Dispose();
         }
 
-        internal struct MissingCaptureState
-        {
-            public readonly Action<Entity, int> RecordMissing;
-            public readonly int Tick;
-
-            public MissingCaptureState(Action<Entity, int> recordMissing, int tick)
-            {
-                RecordMissing = recordMissing;
-                Tick = tick;
-            }
-        }
-
-        internal delegate void ComponentCaptureAction<T>(Entity entity, in T value, int tick, bool baseline) where T : struct;
+        internal delegate void ComponentCaptureAction<T>(Entity entity, in T value) where T : struct;
 
         internal struct ComponentCaptureState<T> where T : struct
         {
             public readonly ComponentCaptureAction<T> Capture;
-            public readonly int Tick;
-            public readonly bool Baseline;
-
-            public ComponentCaptureState(ComponentCaptureAction<T> capture, int tick, bool baseline)
+            public ComponentCaptureState(ComponentCaptureAction<T> capture)
             {
                 Capture = capture;
-                Tick = tick;
-                Baseline = baseline;
             }
         }
 
         internal struct CaptureComponent<T> : IForEachContextEntity<ComponentCaptureState<T>> where T : struct
         {
             public void Invoke(ref ComponentCaptureState<T> state, EntityRef entity, in T component)
-                => state.Capture(entity.Handle, in component, state.Tick, state.Baseline);
+                => state.Capture(entity.Handle, in component);
+        }
+
+        internal struct ComponentRestoreState
+        {
+            public readonly Entity[] RestoredEntitiesByIndex;
+            public readonly int[] RestoreStampsByEntityIndex;
+            public readonly int RestoreStamp;
+            public readonly List<Entity> EntitiesToRemove;
+
+            public ComponentRestoreState(
+                Entity[] restoredEntitiesByIndex,
+                int[] restoreStampsByEntityIndex,
+                int restoreStamp,
+                List<Entity> entitiesToRemove)
+            {
+                RestoredEntitiesByIndex = restoredEntitiesByIndex;
+                RestoreStampsByEntityIndex = restoreStampsByEntityIndex;
+                RestoreStamp = restoreStamp;
+                EntitiesToRemove = entitiesToRemove;
+            }
+        }
+
+        internal struct RemoveUnrestoredComponent<T> : IForEachContextEntity<ComponentRestoreState> where T : struct
+        {
+            public void Invoke(ref ComponentRestoreState state, EntityRef entity, in T component)
+            {
+                Entity handle = entity.Handle;
+                int index = handle.Index;
+                if ((uint)index >= (uint)state.RestoreStampsByEntityIndex.Length
+                    || state.RestoreStampsByEntityIndex[index] != state.RestoreStamp
+                    || state.RestoredEntitiesByIndex[index] != handle)
+                {
+                    state.EntitiesToRemove.Add(handle);
+                }
+            }
         }
 
         private sealed class ComponentHistory<T> : ComponentHistory where T : struct
         {
             private readonly World _world;
             private readonly ComponentId _componentId;
-            private readonly Query _missingQuery;
             private readonly IOperation<ComponentCaptureState<T>> _saveOperation;
+            private readonly IOperation<ComponentRestoreState> _removeUnrestoredOperation;
             private readonly ComponentCaptureAction<T> _captureComponent;
-            private readonly Action<Entity, int> _recordMissing;
-            private Entry?[] _entriesByEntityIndex = Array.Empty<Entry?>();
-            private readonly List<int> _trackedEntityIndices = new();
-            private readonly List<Entity> _staleEntities = new();
-            private Entity[] _trackedEntities = Array.Empty<Entity>();
-            private int _trackedEntityCount;
+            private readonly ComponentFrameHistory<T> _frames;
+            private Entity[] _restoredEntityByIndex = Array.Empty<Entity>();
+            private int[] _restoreStampByEntityIndex = Array.Empty<int>();
+            private int _restoreStamp;
+            private readonly List<Entity> _entitiesToRemove = new();
+            private ComponentFrame<T>? _currentFrame;
 
-            public ComponentHistory(World world, ComponentId componentId, int initialCapacity, int maxCapacity)
+            public ComponentHistory(
+                World world,
+                ComponentId componentId,
+                int initialCapacity,
+                int maxCapacity)
             {
                 _world = world;
                 _componentId = componentId;
                 var saveQuery = CreateComponentQuery(world, componentId);
-                _missingQuery = world.WhereNone(componentId);
                 _captureComponent = CaptureComponent;
-                _recordMissing = RecordMissing;
-                var initialState = default(ComponentCaptureState<T>);
+                _frames = new ComponentFrameHistory<T>(initialCapacity, maxCapacity);
+                var initialState = new ComponentCaptureState<T>(_captureComponent);
                 _saveOperation = _world.ForEachEntity(
                     in saveQuery,
                     ref initialState,
                     _componentId,
                     typeof(CaptureComponent<>));
-                InitialCapacity = initialCapacity;
-                MaxCapacity = maxCapacity;
+
+                var initialRestoreState = default(ComponentRestoreState);
+                _removeUnrestoredOperation = _world.ForEachEntity(
+                    in saveQuery,
+                    ref initialRestoreState,
+                    _componentId,
+                    typeof(RemoveUnrestoredComponent<>));
             }
 
-            private int InitialCapacity { get; }
-            private int MaxCapacity { get; }
+            public Dictionary<Entity, int> GetSyncIdsAt(int tick) => _frames.GetSyncIdsAt(tick);
 
-            public override void Save(int tick)
-            {
-                PrepareTrackedEntities();
-
-                var context = new ComponentCaptureState<T>(_captureComponent, tick, false);
-                _saveOperation.Invoke(ref context);
-                CaptureMissingEntities(tick);
-
-                _staleEntities.Clear();
-                for (int i = 0; i < _trackedEntityIndices.Count; i++)
-                {
-                    Entry entry = _entriesByEntityIndex[_trackedEntityIndices[i]]!;
-                    if (!_world.IsAlive(entry.Entity))
-                    {
-                        _staleEntities.Add(entry.Entity);
-                    }
-                }
-
-                for (int i = 0; i < _staleEntities.Count; i++)
-                {
-                    DisposeEntity(_staleEntities[i]);
-                }
-            }
+            public override void Save(int tick) => CaptureFrame(tick);
 
             public override void SaveBaseline()
             {
-                for (int i = 0; i < _trackedEntityIndices.Count; i++)
-                {
-                    Entry entry = _entriesByEntityIndex[_trackedEntityIndices[i]]!;
-                    entry.Values.Rollback(int.MinValue);
-                    entry.Values[int.MinValue] = null;
-                }
-
-                var context = new ComponentCaptureState<T>(_captureComponent, int.MinValue, true);
-                PrepareTrackedEntities();
-                _saveOperation.Invoke(ref context);
-                CaptureMissingEntities(int.MinValue);
+                _frames.ResetBaseline();
+                CaptureFrame(int.MinValue);
             }
 
             public override void GoTo(int tick)
             {
-                for (int i = 0; i < _trackedEntityIndices.Count; i++)
+                ComponentFrame<T> frame = _frames.Get(tick);
+                MarkRestoredEntities(frame);
+
+                _entitiesToRemove.Clear();
+                var restoreState = new ComponentRestoreState(
+                    _restoredEntityByIndex,
+                    _restoreStampByEntityIndex,
+                    _restoreStamp,
+                    _entitiesToRemove);
+                _removeUnrestoredOperation.Invoke(ref restoreState);
+
+                for (int i = 0; i < _entitiesToRemove.Count; i++)
                 {
-                    Entry entry = _entriesByEntityIndex[_trackedEntityIndices[i]]!;
-                    Entity entity = entry.Entity;
+                    _world.Remove(_entitiesToRemove[i], _componentId);
+                }
+
+                for (int i = 0; i < frame.Count; i++)
+                {
+                    Entity entity = frame.Entities[i];
                     if (!_world.IsAlive(entity))
-                    {
                         continue;
-                    }
 
-                    T? historicalValue = entry.Values[tick];
-                    if (!historicalValue.HasValue)
-                    {
-                        _world.Remove(entity, _componentId);
-                        continue;
-                    }
-
-                    T value = historicalValue.Value;
-                    if (!_world.TryGet<T>(entity, _componentId, out _))
-                    {
-                        _world.Add(entity, in value);
-                    }
-                    else
-                    {
+                    T value = frame.Values[i];
+                    if (_world.Has(entity, _componentId))
                         _world.GetRef<T>(entity, _componentId) = value;
-                    }
+                    else
+                        _world.Add(entity, in value);
                 }
             }
 
             public override void Rollback(int tick)
             {
-                for (int i = 0; i < _trackedEntityIndices.Count; i++)
-                {
-                    _entriesByEntityIndex[_trackedEntityIndices[i]]!.Values.Rollback(tick);
-                }
+                _frames.Rollback(tick);
             }
 
-            private bool TryGetAt(Entity entity, int tick, out T? value)
+            public override void PackSnapshot(WorldData snapshot, int tick, EntityPresenceFrame entityPresence, IReadOnlyDictionary<Entity, int> syncIds)
             {
-                if (!TryGetEntry(entity, out Entry entry) || entry.Values.Count == 0)
-                {
-                    value = null;
-                    return false;
-                }
+                if (!_frames.TryGet(tick, out ComponentFrame<T> frame))
+                    return;
 
-                value = entry.Values[tick];
-                return true;
-            }
-
-            public override void PackSnapshot(WorldData snapshot, int tick, EntityPresenceHistory entityPresence, ComponentHistory<SyncId> syncId)
-            {
-                for (int i = 0; i < _trackedEntityIndices.Count; i++)
+                var output = snapshot.Get<T>();
+                for (int i = 0; i < frame.Count; i++)
                 {
-                    Entity entity = _entriesByEntityIndex[_trackedEntityIndices[i]]!.Entity;
-                    if (!TryGetAt(entity, tick, out T? value) || !value.HasValue
-                                                              || !entityPresence.ExistsAt(entity, tick)
-                                                              || !syncId.TryGetAt(entity, tick, out SyncId? id) || !id.HasValue)
+                    Entity entity = frame.Entities[i];
+                    if (!entityPresence.Contains(entity) || !syncIds.TryGetValue(entity, out int syncId))
                     {
                         continue;
                     }
 
-                    snapshot.Get<T>()[id.Value.Value] = value.Value;
+                    output[syncId] = frame.Values[i];
                 }
             }
 
@@ -638,162 +765,295 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public override void RemoveFrom(Entity entity)
             {
-                if (_world.IsAlive(entity) && _world.Has(entity, _componentId))
+                if (_world.Has(entity, _componentId))
                 {
                     _world.Remove(entity, _componentId);
                 }
             }
 
-            public override void DisposeEntity(Entity entity)
-            {
-                if (TryGetEntry(entity, out Entry entry))
-                {
-                    RemoveEntry(entity.Index, entry);
-                }
-            }
+            public override void DisposeEntity(Entity entity) { }
 
             public override void Clear()
             {
-                for (int i = 0; i < _trackedEntityIndices.Count; i++)
-                {
-                    int entityIndex = _trackedEntityIndices[i];
-                    _entriesByEntityIndex[entityIndex]!.Values.Dispose();
-                    _entriesByEntityIndex[entityIndex] = null;
-                }
-
-                _trackedEntityIndices.Clear();
+                _entitiesToRemove.Clear();
+                _frames.ResetBaseline();
             }
 
-            public override void Dispose() => Clear();
-
-            private Entry GetOrCreate(Entity entity)
+            public override void Dispose()
             {
-                EnsureEntityIndexCapacity(entity.Index);
-                Entry? entry = _entriesByEntityIndex[entity.Index];
-                if (entry != null && entry.Entity == entity)
-                {
-                    return entry;
-                }
-
-                if (entry != null)
-                {
-                    RemoveEntry(entity.Index, entry);
-                }
-
-                entry = new Entry(entity, InitialCapacity, MaxCapacity, _trackedEntityIndices.Count);
-                _entriesByEntityIndex[entity.Index] = entry;
-                _trackedEntityIndices.Add(entity.Index);
-                return entry;
+                Clear();
+                _frames.Dispose();
             }
 
-            private bool TryGetEntry(Entity entity, out Entry entry)
+            private void MarkRestoredEntities(ComponentFrame<T> frame)
             {
-                int entityIndex = entity.Index;
-                var candidate = _entriesByEntityIndex[entityIndex];
-                if ((uint)entityIndex < (uint)_entriesByEntityIndex.Length
-                    && candidate != null && candidate.Entity == entity)
+                if (_restoreStamp == int.MaxValue)
                 {
-                    entry = candidate;
-                    return true;
+                    Array.Clear(_restoreStampByEntityIndex, 0, _restoreStampByEntityIndex.Length);
+                    _restoreStamp = 1;
+                }
+                else
+                {
+                    _restoreStamp++;
                 }
 
-                entry = null!;
-                return false;
+                for (int i = 0; i < frame.Count; i++)
+                {
+                    Entity entity = frame.Entities[i];
+                    EnsureRestoreCapacity(entity.Index);
+                    _restoredEntityByIndex[entity.Index] = entity;
+                    _restoreStampByEntityIndex[entity.Index] = _restoreStamp;
+                }
             }
 
-            private void RemoveEntry(int entityIndex, Entry entry)
+            private void EnsureRestoreCapacity(int entityIndex)
             {
-                entry.Values.Dispose();
-                int trackedIndex = entry.TrackedIndex;
-                int lastTrackedIndex = _trackedEntityIndices.Count - 1;
-                int lastEntityIndex = _trackedEntityIndices[lastTrackedIndex];
-                _trackedEntityIndices[trackedIndex] = lastEntityIndex;
-                _entriesByEntityIndex[lastEntityIndex]!.TrackedIndex = trackedIndex;
-                _trackedEntityIndices.RemoveAt(lastTrackedIndex);
-                _entriesByEntityIndex[entityIndex] = null;
-            }
-
-            private void EnsureEntityIndexCapacity(int entityIndex)
-            {
-                if (entityIndex < _entriesByEntityIndex.Length)
+                if (entityIndex < _restoreStampByEntityIndex.Length)
                 {
                     return;
                 }
 
-                int capacity = _entriesByEntityIndex.Length == 0 ? 4 : _entriesByEntityIndex.Length;
+                int capacity = _restoreStampByEntityIndex.Length == 0 ? 4 : _restoreStampByEntityIndex.Length;
                 while (capacity <= entityIndex)
                 {
                     capacity = checked(capacity * 2);
                 }
 
-                Array.Resize(ref _entriesByEntityIndex, capacity);
+                Array.Resize(ref _restoredEntityByIndex, capacity);
+                Array.Resize(ref _restoreStampByEntityIndex, capacity);
             }
 
-            private void Record(Entity entity, T value, int tick, bool baseline)
+            private void CaptureFrame(int tick)
             {
-                Entry entry = GetOrCreate(entity);
-                if (baseline)
+                _currentFrame = _frames.BeginWrite(tick);
+                var context = new ComponentCaptureState<T>(_captureComponent);
+                try
                 {
-                    entry.Values[int.MinValue] = value;
+                    _saveOperation.Invoke(ref context);
                 }
-                else
+                finally
                 {
-                    entry.Values[tick] = value;
+                    _currentFrame = null;
                 }
+            }
+
+            private void CaptureComponent(Entity entity, in T component)
+            {
+                _currentFrame!.Add(entity, in component);
             }
 
             private static Query CreateComponentQuery(World world, ComponentId componentId)
                 => world.WhereAll(componentId);
 
-            private void PrepareTrackedEntities()
+        }
+
+        private sealed class ComponentFrameHistory<T> : IDisposable where T : struct
+        {
+            private ComponentFrame<T>?[] _frames;
+            private int _mask;
+            private int _head;
+            private int _count;
+            private readonly int _maxCapacity;
+
+            public ComponentFrameHistory(int initialCapacity, int maxCapacity)
             {
-                _trackedEntityCount = 0;
-                if (_trackedEntities.Length < _trackedEntityIndices.Count)
+                _frames = new ComponentFrame<T>?[initialCapacity];
+                _mask = initialCapacity - 1;
+                _maxCapacity = maxCapacity;
+                _frames[0] = new ComponentFrame<T>(int.MinValue);
+                _count = 1;
+            }
+
+            public ComponentFrame<T> BeginWrite(int tick)
+            {
+                if (tick < Last.Tick)
+                    Rollback(tick);
+
+                if (Last.Tick == tick)
                 {
-                    Array.Resize(ref _trackedEntities, Math.Max(_trackedEntityIndices.Count, _trackedEntities.Length * 2));
+                    Last.Clear();
+                    return Last;
                 }
 
-                for (int i = 0; i < _trackedEntityIndices.Count; i++)
+                EnsureCapacity();
+                int index = (_head + _count) & _mask;
+                ComponentFrame<T> frame = _frames[index] ?? (_frames[index] = new ComponentFrame<T>(tick));
+                frame.SetTick(tick);
+                _count++;
+                return frame;
+            }
+
+            public ComponentFrame<T> Get(int tick)
+            {
+                if (!TryGet(tick, out ComponentFrame<T> frame))
+                    throw new IndexOutOfRangeException($"History does not contain tick {tick}");
+                return frame;
+            }
+
+            public bool TryGet(int tick, out ComponentFrame<T> frame)
+            {
+                if (_count == 0 || tick < At(0).Tick)
                 {
-                    _trackedEntities[_trackedEntityCount++] = _entriesByEntityIndex[_trackedEntityIndices[i]]!.Entity;
+                    frame = null!;
+                    return false;
+                }
+
+                int low = 0;
+                int high = _count - 1;
+                while (low <= high)
+                {
+                    int mid = (low + high) >> 1;
+                    ComponentFrame<T> candidate = At(mid);
+                    if (candidate.Tick == tick)
+                    {
+                        frame = candidate;
+                        return true;
+                    }
+
+                    if (candidate.Tick < tick)
+                        low = mid + 1;
+                    else
+                        high = mid - 1;
+                }
+
+                frame = At(high);
+                return true;
+            }
+
+            public Dictionary<Entity, int> GetSyncIdsAt(int tick)
+            {
+                ComponentFrame<T> frame = Get(tick);
+                var result = new Dictionary<Entity, int>(frame.Count);
+                for (int i = 0; i < frame.Count; i++)
+                {
+                    if (frame.Values[i] is SyncId syncId)
+                        result[frame.Entities[i]] = syncId.Value;
+                }
+                return result;
+            }
+
+            public void Rollback(int tick)
+            {
+                while (_count > 0 && Last.Tick > tick)
+                {
+                    int index = (_head + _count - 1) & _mask;
+                    _frames[index]!.Clear();
+                    _count--;
                 }
             }
 
-            private void CaptureMissingEntities(int tick)
+            public void ResetBaseline()
             {
-                var context = new MissingCaptureState(_recordMissing, tick);
-                _world.ForEachEntity(
-                        _trackedEntities.AsSpan(0, _trackedEntityCount),
-                        in _missingQuery,
-                        ref context,
-                        static (ref MissingCaptureState state, EntityRef entity) =>
-                            state.RecordMissing(entity.Handle, state.Tick))
-                    .Invoke(ref context);
+                for (int i = 0; i < _count; i++)
+                    At(i).Clear();
+
+                _head = 0;
+                _count = 1;
+                ComponentFrame<T> baseline = _frames[0] ?? (_frames[0] = new ComponentFrame<T>(int.MinValue));
+                baseline.SetTick(int.MinValue);
             }
 
-            private void CaptureComponent(Entity entity, in T component, int tick, bool baseline)
-                => Record(entity, component, tick, baseline);
-
-            private void RecordMissing(Entity entity, int tick)
+            public void Dispose()
             {
-                if (TryGetEntry(entity, out Entry entry))
+                for (int i = 0; i < _frames.Length; i++)
                 {
-                    entry.Values[tick] = null;
+                    _frames[i]?.Dispose();
+                    _frames[i] = null;
                 }
+
+                _count = 0;
             }
 
-            private sealed class Entry
-            {
-                public readonly Entity Entity;
-                public History<T> Values;
-                public int TrackedIndex;
+            private ComponentFrame<T> Last => At(_count - 1);
 
-                public Entry(Entity entity, int initialCapacity, int maxCapacity, int trackedIndex)
+            private ComponentFrame<T> At(int logicalIndex) => _frames[(_head + logicalIndex) & _mask]!;
+
+            private void EnsureCapacity()
+            {
+                if (_count < _frames.Length)
+                    return;
+
+                if (_frames.Length >= _maxCapacity)
                 {
-                    Entity = entity;
-                    Values = new History<T>(initialCapacity, maxCapacity);
-                    TrackedIndex = trackedIndex;
+                    _frames[_head]!.Clear();
+                    _head = (_head + 1) & _mask;
+                    _count--;
+                    return;
                 }
+
+                int capacity = Math.Min(_frames.Length << 1, _maxCapacity);
+                var expanded = new ComponentFrame<T>?[capacity];
+                for (int i = 0; i < _count; i++)
+                    expanded[i] = At(i);
+                _frames = expanded;
+                _head = 0;
+                _mask = capacity - 1;
+            }
+        }
+
+        private sealed class ComponentFrame<T> : IDisposable where T : struct
+        {
+            private Entity[] _entities = Array.Empty<Entity>();
+            private T[] _values = Array.Empty<T>();
+
+            public int Tick { get; private set; }
+            public int Count { get; private set; }
+            public Entity[] Entities => _entities;
+            public T[] Values => _values;
+
+            public ComponentFrame(int tick) => Tick = tick;
+
+            public void Add(Entity entity, in T value)
+            {
+                EnsureCapacity(Count + 1);
+                _entities[Count] = entity;
+                _values[Count] = value;
+                Count++;
+            }
+
+            public void SetTick(int tick)
+            {
+                Clear();
+                Tick = tick;
+            }
+
+            public void Clear()
+            {
+                if (RuntimeHelpers.IsReferenceOrContainsReferences<T>() && Count > 0)
+                    Array.Clear(_values, 0, Count);
+                Count = 0;
+            }
+
+            public void Dispose()
+            {
+                Clear();
+                if (_entities.Length != 0)
+                    ArrayPool<Entity>.Shared.Return(_entities);
+                if (_values.Length != 0)
+                    ArrayPool<T>.Shared.Return(_values, RuntimeHelpers.IsReferenceOrContainsReferences<T>());
+                _entities = Array.Empty<Entity>();
+                _values = Array.Empty<T>();
+            }
+
+            private void EnsureCapacity(int required)
+            {
+                if (_entities.Length >= required)
+                    return;
+
+                int capacity = Math.Max(4, _entities.Length * 2);
+                while (capacity < required)
+                    capacity *= 2;
+
+                Entity[] entities = ArrayPool<Entity>.Shared.Rent(capacity);
+                T[] values = ArrayPool<T>.Shared.Rent(capacity);
+                Array.Copy(_entities, entities, Count);
+                Array.Copy(_values, values, Count);
+                if (_entities.Length != 0)
+                    ArrayPool<Entity>.Shared.Return(_entities);
+                if (_values.Length != 0)
+                    ArrayPool<T>.Shared.Return(_values, RuntimeHelpers.IsReferenceOrContainsReferences<T>());
+                _entities = entities;
+                _values = values;
             }
         }
     }
