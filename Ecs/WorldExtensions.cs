@@ -38,7 +38,6 @@ namespace DVG.SkyPirates.Shared.Ecs
             var history = new List<ComponentId>();
             var historyAction = new CollectHistoryIds(world, history);
             HistoryComponentsRegistry.ForEachData(ref historyAction);
-            AddHistoryComponent(history, world.Layouts.GetPrimary<Alive>());
             AddHistoryComponent(history, world.Layouts.GetPrimary<SyncId>());
             History = history.ToArray();
 
@@ -59,7 +58,9 @@ namespace DVG.SkyPirates.Shared.Ecs
         private static void AddHistoryComponent(List<ComponentId> history, ComponentId component)
         {
             if (!history.Contains(component))
+            {
                 history.Add(component);
+            }
         }
 
         private readonly struct CollectHistoryIds : IStructGenericAction

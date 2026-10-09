@@ -33,11 +33,15 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             _entitiesCache.Clear();
             _history.CollectExpiredEntities(tick, _entitiesCache);
             foreach (var entity in _entitiesCache)
+            {
                 _world.Add<Temp>(entity);
+            }
 
             var disposableComponents = _componentIds.Disposable;
             for (int i = 0; i < disposableComponents.Length; i++)
+            {
                 DisposeComponents(disposableComponents[i]);
+            }
 
             var toDestroy = _toDestroy;
             _world.ForEachEntity(in toDestroy, _disposeHistoryAction).Invoke();

@@ -51,7 +51,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         {
             var commandRegistry = new CommandRegistry();
             foreach (ICommandRegistration registration in GeneratedCommands.Registrations)
+            {
                 commandRegistry.Register(registration);
+            }
 
             var journal = new MemoryCommandJournal();
             var model = new SkyPiratesSessionModel(start.Step, _history, _systems, _inTickables, _disposeSystem);

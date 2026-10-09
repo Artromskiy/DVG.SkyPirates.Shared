@@ -22,6 +22,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly Lookup<List<GoodsData>> _collectorsDrops = new();
 
         private readonly List<Entity> _removeDrops = new();
+        private readonly WorldHistory _history;
 
         private Query? _dropsDescCache;
 
@@ -37,9 +38,10 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly World _world;
 
-        public GoodsCollectorSystem(World world)
+        public GoodsCollectorSystem(World world, WorldHistory history)
         {
             _world = world;
+            _history = history;
         }
 
         public void Tick(int tick, fix deltaTime)
@@ -168,6 +170,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             foreach (var item in _removeDrops)
             {
+                _history.MarkForDisposal(item, tick);
                 _world.Remove<Alive>(item);
             }
         }

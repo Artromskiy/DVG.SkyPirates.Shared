@@ -19,9 +19,12 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly List<Entity> _dead = new();
 
         private readonly World _world;
-        public MarkDeadSystem(World world)
+        private readonly WorldHistory _history;
+
+        public MarkDeadSystem(World world, WorldHistory history)
         {
             _world = world;
+            _history = history;
         }
 
         public void Tick(int tick, fix deltaTime)
@@ -39,6 +42,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 }).Invoke(ref dead);
             foreach (var item in _dead)
             {
+                _history.MarkForDisposal(item, tick);
                 _world.Remove<Alive>(item);
             }
         }

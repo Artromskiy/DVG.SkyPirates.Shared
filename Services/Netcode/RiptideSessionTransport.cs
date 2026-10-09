@@ -25,7 +25,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
 
             int count = (message.Length + chunkSize - 1) / chunkSize;
             if (count > ushort.MaxValue)
+            {
                 throw new ArgumentOutOfRangeException(nameof(message), "The session message exceeds the Riptide fragment limit.");
+            }
 
             ushort id = _nextMessageId++;
             for (int index = 0; index < count; index++)
@@ -74,11 +76,15 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         {
             var key = (connection, id);
             if (!_partial.TryGetValue(key, out var partial))
+            {
                 _partial.Add(key, partial = new PartialMessage());
+            }
 
             partial.Fragments[index] = fragment;
             if (isLast)
+            {
                 partial.LastIndex = index;
+            }
 
             if (!partial.LastIndex.HasValue || partial.Fragments.Count != partial.LastIndex.Value + 1)
             {
@@ -135,9 +141,14 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         private void OnMessageReceived(object sender, MessageReceivedEventArgs args)
         {
             if (args.MessageId != RiptideSessionMessages.MessageId)
+            {
                 return;
+            }
+
             if (RiptideSessionMessages.TryRead(args.Message, _assembler, 0, out var payload))
+            {
                 Received?.Invoke(0, payload);
+            }
         }
     }
 
@@ -160,10 +171,15 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         private void OnMessageReceived(object sender, MessageReceivedEventArgs args)
         {
             if (args.MessageId != RiptideSessionMessages.MessageId)
+            {
                 return;
+            }
+
             ulong connectionId = args.FromConnection.Id;
             if (RiptideSessionMessages.TryRead(args.Message, _assembler, connectionId, out var payload))
+            {
                 Received?.Invoke(connectionId, payload);
+            }
         }
     }
 }

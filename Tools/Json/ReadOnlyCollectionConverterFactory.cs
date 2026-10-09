@@ -12,7 +12,9 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         public override bool CanConvert(Type typeToConvert)
         {
             if (!typeToConvert.IsGenericType)
+            {
                 return false;
+            }
 
             var definition = typeToConvert.GetGenericTypeDefinition();
             return definition == typeof(IReadOnlyList<>)

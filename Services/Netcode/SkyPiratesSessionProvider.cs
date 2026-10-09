@@ -37,7 +37,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         public void Start(AuthorId authorId)
         {
             if (_started)
+            {
                 throw new InvalidOperationException("The SkyPirates session has already started.");
+            }
 
             _started = true;
             Session = _setup.Create(_mode, authorId, _transport);
@@ -66,7 +68,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         public void Bind(ulong connectionId, AuthorId authorId)
         {
             if (_mode != SessionMode.Server || Server == null || Session == null)
+            {
                 throw new InvalidOperationException("Only a started server session can bind a client.");
+            }
 
             Server.Bind(connectionId, Session, authorId);
             SendSnapshot(connectionId);
@@ -75,20 +79,27 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         public CommandKey Send<T>(in T payload, long simulationStep)
         {
             if (!IsReady || Session == null)
+            {
                 throw new InvalidOperationException("The session is not ready to send commands.");
+            }
+
             return Session.Send(payload, simulationStep);
         }
 
         public void Tick(long simulationStep)
         {
             if (IsReady)
+            {
                 Session.Tick(simulationStep);
+            }
         }
 
         private void OnMessage(ulong connectionId, byte[] message)
         {
             if (Session == null)
+            {
                 return;
+            }
 
             if (_mode == SessionMode.Server)
             {
@@ -97,7 +108,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             }
 
             if (_mode != SessionMode.Client)
+            {
                 return;
+            }
 
             if (CommandProtocol.TryReadSnapshot(message, out SessionSnapshot snapshot))
             {
@@ -173,7 +186,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         public bool Tick(long targetStep)
         {
             if (!_session.IsReady || _session.CurrentStep == targetStep)
+            {
                 return false;
+            }
 
             int tick = checked((int)targetStep);
             _preTickables.Tick(tick);

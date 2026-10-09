@@ -48,26 +48,38 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             RemoveExisting(command.Header.Key);
 
             if (!_commands.TryGetValue(command.Header.Step, out var commands))
+            {
                 _commands.Add(command.Header.Step, commands = new List<CommandEntry>());
+            }
 
             int index = commands.FindIndex(existing => existing.Header.Order > command.Header.Order);
             if (index < 0)
+            {
                 commands.Add(command);
+            }
             else
+            {
                 commands.Insert(index, command);
+            }
 
             _commandSteps[command.Header.Key] = command.Header.Step;
             if (command.Header.Step <= CurrentStep)
+            {
                 _dirtyStep = Math.Min(_dirtyStep, command.Header.Step);
+            }
         }
 
         public void Remove(CommandKey key)
         {
             if (!RemoveScheduledCommand(key, out long step))
+            {
                 return;
+            }
 
             if (step <= CurrentStep)
+            {
                 _dirtyStep = Math.Min(_dirtyStep, step);
+            }
         }
 
         public void Tick(long simulationStep)
@@ -81,7 +93,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             }
 
             while (CurrentStep < simulationStep)
+            {
                 Simulate(++CurrentStep);
+            }
         }
 
         public void Save(IBufferWriter<byte> output)
@@ -117,7 +131,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             if (_commands.TryGetValue(step, out var commands))
             {
                 for (int index = 0; index < commands.Count; index++)
+                {
                     commands[index].Execute();
+                }
             }
 
             int tick = checked((int)step);
@@ -130,22 +146,30 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         private void RemoveExisting(CommandKey key)
         {
             if (!RemoveScheduledCommand(key, out long oldStep))
+            {
                 return;
+            }
 
             if (oldStep <= CurrentStep)
+            {
                 _dirtyStep = Math.Min(_dirtyStep, oldStep);
+            }
         }
 
         private bool RemoveScheduledCommand(CommandKey key, out long step)
         {
             if (!_commandSteps.TryGetValue(key, out step))
+            {
                 return false;
+            }
 
             if (_commands.TryGetValue(step, out var commands))
             {
                 commands.RemoveAll(command => command.Header.Key.Equals(key));
                 if (commands.Count == 0)
+                {
                     _commands.Remove(step);
+                }
             }
 
             _commandSteps.Remove(key);

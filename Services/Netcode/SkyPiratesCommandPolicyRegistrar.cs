@@ -34,23 +34,31 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         {
             var visitor = new RegisterPolicies(this);
             foreach (ICommandRegistration registration in GeneratedCommands.Registrations)
+            {
                 registration.Visit(ref visitor);
+            }
         }
 
         private void Register<T>()
         {
             var validators = _validators.OfType<ICommandValidator<T>>().ToArray();
             if (validators.Length > 0)
+            {
                 _host.Register<T>(new CompositeValidator<T>(validators));
+            }
 
             var mutators = _mutators.OfType<ICommandMutator<T>>().ToArray();
             if (mutators.Length > 0)
+            {
                 _host.Register<T>(new CompositeMutator<T>(mutators));
+            }
 
             var executors = _executors.OfType<ICommandExecutor<T>>().ToArray();
             var receiver = _mode == SessionMode.Local ? _receiver : null;
             if (executors.Length > 0 || receiver != null)
+            {
                 _host.Register<T>(new CompositeExecutor<T>(executors, receiver));
+            }
         }
 
         private readonly struct RegisterPolicies : ICommandVisitor
@@ -76,7 +84,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
                 for (int index = 0; index < _validators.Length; index++)
                 {
                     if (!_validators[index].Validate(in command))
+                    {
                         return false;
+                    }
                 }
 
                 return true;
@@ -92,7 +102,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             public void Mutate(ref T payload, CommandPreparation preparation)
             {
                 for (int index = 0; index < _mutators.Length; index++)
+                {
                     _mutators[index].Mutate(ref payload, preparation);
+                }
             }
         }
 
@@ -110,7 +122,9 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             public void Execute(in Command<T> command)
             {
                 for (int index = 0; index < _executors.Length; index++)
+                {
                     _executors[index].Execute(in command);
+                }
 
                 _receiver?.InvokeCommand(command);
             }

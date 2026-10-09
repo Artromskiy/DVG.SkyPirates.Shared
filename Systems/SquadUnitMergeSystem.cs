@@ -15,21 +15,25 @@ namespace DVG.SkyPirates.Shared.Systems
         private static readonly fix Two = fix.One + fix.One;
 
         private readonly World _world;
+        private readonly WorldHistory _history;
         private readonly Dictionary<(int SquadId, UnitId UnitId, int Level), List<Unit>> _unitsPerGroup = new();
 
         private Query? _unitsQueryCache;
         private Query _unitsQuery => _unitsQueryCache ??= _world.
             WhereAll<SquadMember, UnitId, SyncId, Health, MaxHealth, Damage>().Alive();
 
-        public SquadUnitMergeSystem(World world)
+        public SquadUnitMergeSystem(World world, WorldHistory history)
         {
             _world = world;
+            _history = history;
         }
 
         public void Tick(int tick, fix deltaTime)
         {
             foreach (var units in _unitsPerGroup.Values)
+            {
                 units.Clear();
+            }
 
             var state = (_world, _unitsPerGroup);
             var query = _unitsQuery;
@@ -50,7 +54,9 @@ namespace DVG.SkyPirates.Shared.Systems
                         : 1;
                     var groupId = (member.SquadId, unitId, level);
                     if (!state.UnitsPerGroup.TryGetValue(groupId, out var units))
+                    {
                         state.UnitsPerGroup.Add(groupId, units = new List<Unit>());
+                    }
 
                     units.Add(new Unit(entity.Handle, syncId.Value, level, maxHealth.Value, damage.Value));
                 }).Invoke(ref state);
@@ -62,14 +68,19 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     var strongest = units[0];
                     if (IsStronger(units[1], strongest))
+                    {
                         strongest = units[1];
+                    }
+
                     if (IsStronger(units[2], strongest))
+                    {
                         strongest = units[2];
+                    }
 
                     var first = units[0];
                     var second = units[1];
                     var third = units[2];
-                    strongest = Merge(strongest, first, second, third);
+                    strongest = Merge(strongest, first, second, third, tick);
 
                     units.RemoveRange(0, 3);
                     units.Add(strongest);
@@ -78,7 +89,7 @@ namespace DVG.SkyPirates.Shared.Systems
             }
         }
 
-        private Unit Merge(Unit strongest, Unit first, Unit second, Unit third)
+        private Unit Merge(Unit strongest, Unit first, Unit second, Unit third, int tick)
         {
             ref var level = ref _world.GetOrAdd<Level>(strongest.Entity);
             level.Value = strongest.Level + 1;
@@ -98,11 +109,20 @@ namespace DVG.SkyPirates.Shared.Systems
                 damage.Value);
 
             if (first.SyncId != strongest.SyncId)
+            {
+                _history.MarkForDisposal(first.Entity, tick);
                 _world.Remove<Alive>(first.Entity);
+            }
             if (second.SyncId != strongest.SyncId)
+            {
+                _history.MarkForDisposal(second.Entity, tick);
                 _world.Remove<Alive>(second.Entity);
+            }
             if (third.SyncId != strongest.SyncId)
+            {
+                _history.MarkForDisposal(third.Entity, tick);
                 _world.Remove<Alive>(third.Entity);
+            }
 
             return merged;
         }
@@ -110,12 +130,16 @@ namespace DVG.SkyPirates.Shared.Systems
         private static bool IsStronger(Unit candidate, Unit current)
         {
             if (candidate.Level != current.Level)
+            {
                 return candidate.Level > current.Level;
+            }
 
             var candidatePower = (long)candidate.MaxHealth.raw + candidate.Damage.raw;
             var currentPower = (long)current.MaxHealth.raw + current.Damage.raw;
             if (candidatePower != currentPower)
+            {
                 return candidatePower > currentPower;
+            }
 
             return candidate.SyncId < current.SyncId;
         }
@@ -123,9 +147,14 @@ namespace DVG.SkyPirates.Shared.Systems
         private static fix DoubleStat(fix value)
         {
             if (value.raw > fix.MaxValue.raw / 2)
+            {
                 return fix.MaxValue;
+            }
+
             if (value.raw < fix.MinValue.raw / 2)
+            {
                 return fix.MinValue;
+            }
 
             return value * Two;
         }

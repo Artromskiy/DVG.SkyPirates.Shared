@@ -12,7 +12,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
     {
         private readonly World _world;
         private readonly WorldHistory _history;
-        private readonly ComponentId _aliveId;
+        private readonly ComponentId _syncIdId;
+        private readonly Query _syncIdQuery;
+        private readonly ForEachContextEntityAction<CollectState> _collectEntitiesAction;
+        private readonly IOperation<CollectState> _collectEntitiesOperation;
+        private readonly HashSet<int> _snapshotSyncIds = new();
+        private readonly List<Entity> _entitiesToRetire = new();
         private readonly IEntityFactory _entityFactory;
         private readonly IEntityRegistry _entityRegistry;
 
@@ -20,19 +25,41 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             _world = world;
             _history = history;
-            _aliveId = world.Layouts.GetPrimary<Alive>();
+            _syncIdId = world.Layouts.GetPrimary<SyncId>();
+            _syncIdQuery = world.WhereAll(_syncIdId);
+            _collectEntitiesAction = CollectEntity;
+            var initialState = default(CollectState);
+            _collectEntitiesOperation = world.ForEachEntity(in _syncIdQuery, ref initialState, _collectEntitiesAction);
             _entityFactory = entityFactory;
             _entityRegistry = entityRegistry;
         }
 
         public void ApplySnapshot(WorldData snapshot)
         {
+            _snapshotSyncIds.Clear();
             foreach (var syncId in snapshot.Get<SyncId>().Values)
-                _entityRegistry.Reserve(syncId);
-            foreach (var syncIdReserve in snapshot.Get<SyncIdReserve>().Values)
-                _entityRegistry.Reserve(syncIdReserve);
+            {
+                _snapshotSyncIds.Add(syncId.Value);
+            }
 
-            var alive = snapshot.Get<Alive>();
+            _entitiesToRetire.Clear();
+            var collectState = new CollectState(_world, _syncIdId, _snapshotSyncIds, _entitiesToRetire);
+            _collectEntitiesOperation.Invoke(ref collectState);
+            for (int i = 0; i < _entitiesToRetire.Count; i++)
+            {
+                _history.RetireEntityFromSnapshot(_entitiesToRetire[i]);
+            }
+
+            foreach (var syncId in snapshot.Get<SyncId>().Values)
+            {
+                _entityRegistry.Reserve(syncId);
+            }
+
+            foreach (var syncIdReserve in snapshot.Get<SyncIdReserve>().Values)
+            {
+                _entityRegistry.Reserve(syncIdReserve);
+            }
+
             var entitiesBySyncId = new Dictionary<int, Entity>();
             foreach (var syncId in snapshot.Get<SyncId>().Values)
             {
@@ -44,11 +71,34 @@ namespace DVG.SkyPirates.Shared.Systems.Special
                 });
 
                 entitiesBySyncId.Add(syncId.Value, entity);
-                if (!alive.ContainsKey(syncId.Value))
-                    _world.Remove(entity, _aliveId);
             }
 
             _history.ApplySnapshot(snapshot, entitiesBySyncId);
+        }
+
+        private static void CollectEntity(ref CollectState state, EntityRef entity)
+        {
+            if (state.World.TryGet<SyncId>(entity.Handle, state.SyncIdId, out SyncId syncId)
+                && !state.SnapshotSyncIds.Contains(syncId.Value))
+            {
+                state.EntitiesToRetire.Add(entity.Handle);
+            }
+        }
+
+        private struct CollectState
+        {
+            public readonly World World;
+            public readonly ComponentId SyncIdId;
+            public readonly HashSet<int> SnapshotSyncIds;
+            public readonly List<Entity> EntitiesToRetire;
+
+            public CollectState(World world, ComponentId syncIdId, HashSet<int> snapshotSyncIds, List<Entity> entitiesToRetire)
+            {
+                World = world;
+                SyncIdId = syncIdId;
+                SnapshotSyncIds = snapshotSyncIds;
+                EntitiesToRetire = entitiesToRetire;
+            }
         }
     }
 }
