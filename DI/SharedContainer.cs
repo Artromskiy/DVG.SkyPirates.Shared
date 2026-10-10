@@ -68,8 +68,7 @@ namespace DVG.SkyPirates.Shared.DI
             RegisterSingleton(() => new SkyPiratesSessionProvider(
                 GetInstance<SkyPiratesSessionSetup>(),
                 sessionMode,
-                GetInstance<ISessionTransport>(),
-                GetInstance<ICommandReciever>()));
+                GetInstance<ISessionTransport>()));
 
             RegisterSingleton(typeof(IDeltaTickableService<>), typeof(DeltaTickableService<>));
             RegisterSingleton(typeof(ITickableService<>), typeof(TickableService<>));

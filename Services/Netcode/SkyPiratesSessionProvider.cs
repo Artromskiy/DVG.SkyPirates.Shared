@@ -16,19 +16,17 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         private readonly SkyPiratesSessionSetup _setup;
         private readonly SessionMode _mode;
         private readonly ISessionTransport _transport;
-        private readonly ICommandReciever _receiver;
+        private SessionClient? _client;
         private bool _started;
 
         public SkyPiratesSessionProvider(
             SkyPiratesSessionSetup setup,
             SessionMode mode,
-            ISessionTransport transport,
-            ICommandReciever receiver)
+            ISessionTransport transport)
         {
             _setup = setup;
             _mode = mode;
             _transport = transport;
-            _receiver = receiver;
         }
 
         public event Action Ready;
@@ -43,6 +41,17 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
         {
             if (_started)
             {
+                if (_mode == SessionMode.Client)
+                {
+                    if (Session.Start.AuthorId != authorId)
+                    {
+                        throw new InvalidOperationException("A client must keep the same author ID when resuming a session.");
+                    }
+
+                    BeginJoin();
+                    return;
+                }
+
                 throw new InvalidOperationException("The SkyPirates session has already started.");
             }
 
@@ -64,7 +73,8 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             }
             else
             {
-                Session.AttachConnection(0);
+                _client = new SessionClient(Session);
+                BeginJoin();
             }
         }
 
@@ -78,7 +88,28 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             }
 
             Server.Bind(connectionId, Session, authorId);
-            SendSnapshot(connectionId);
+        }
+
+        public void Disconnect()
+        {
+            if (_client == null)
+            {
+                return;
+            }
+
+            _client.Disconnect();
+            IsReady = false;
+        }
+
+        private void BeginJoin()
+        {
+            if (_mode != SessionMode.Client || _client == null)
+            {
+                throw new InvalidOperationException("Only a started client session can join a server.");
+            }
+
+            IsReady = false;
+            _client.BeginJoin(_transport, 0);
         }
 
         public CommandKey Send<T>(in T payload, long simulationStep)
@@ -112,62 +143,17 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
                 return;
             }
 
-            if (_mode != SessionMode.Client)
+            if (_client == null)
             {
                 return;
             }
 
-            if (CommandProtocol.TryReadSnapshot(message, out SessionSnapshot snapshot))
+            bool wasReady = _client.IsReady;
+            _client.Receive(message);
+            IsReady = _client.IsReady;
+            if (!wasReady && IsReady)
             {
-                Session.Restore(snapshot);
-                IsReady = true;
                 Ready?.Invoke();
-                return;
-            }
-
-            if (CommandProtocol.TryReadOutcome(message, out CommandOutcome outcome, out ReadOnlySpan<byte> finalPayload))
-            {
-                Session.ApplyOutcome(outcome, finalPayload);
-                if (outcome.Result == CommandResult.Accepted)
-                {
-                    var notify = new NotifyCommand(_receiver, finalPayload.ToArray(), outcome.Header);
-                    Session.VisitCommandType(outcome.Header.TypeId, ref notify);
-                }
-            }
-        }
-
-        private void SendSnapshot(ulong connectionId)
-        {
-            SessionSnapshot snapshot = Session.CaptureSnapshot();
-            var output = new ArrayBufferWriter<byte>();
-            CommandProtocol.WriteSnapshot(snapshot, output);
-            _transport.Send(connectionId, output.WrittenSpan);
-
-            foreach (JournalRecord record in Session.ReadAcceptedAfter(snapshot.Cursor))
-            {
-                var outcome = new CommandOutcome(record.Result, record.Header);
-                byte[] frame = CommandProtocol.EncodeOutcome(outcome, record.FinalPayload.Span);
-                _transport.Send(connectionId, frame);
-            }
-        }
-
-        private struct NotifyCommand : ICommandVisitor
-        {
-            private readonly ICommandReciever _receiver;
-            private readonly byte[] _payload;
-            private readonly CommandHeader _header;
-
-            public NotifyCommand(ICommandReciever receiver, byte[] payload, CommandHeader header)
-            {
-                _receiver = receiver;
-                _payload = payload;
-                _header = header;
-            }
-
-            public void Visit<T>()
-            {
-                var payload = new SkyPiratesCommandPayloadHandler().Read<T>(_payload);
-                _receiver.InvokeCommand(new Command<T>(_header, payload));
             }
         }
     }
