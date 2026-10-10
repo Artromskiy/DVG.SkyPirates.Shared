@@ -53,7 +53,9 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     fix squadRadius = memberCount == 0 ? 0 : state.Config[memberCount].Radius;
                     var maxImpactDistance = state.MaxImpactDistancePerSquad.GetValueOrDefault(syncId);
-                    searchDistance = maxImpactDistance + _baseRange + squadRadius;
+                    searchDistance = memberCount == 0
+                        ? fix.Zero
+                        : maxImpactDistance + _baseRange + squadRadius;
                 }).Invoke(ref applyState);
         }
     }
