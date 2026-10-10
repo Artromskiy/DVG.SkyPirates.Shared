@@ -20,8 +20,14 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         private readonly List<Entity> _entitiesToRetire = new();
         private readonly IEntityFactory _entityFactory;
         private readonly IEntityRegistry _entityRegistry;
+        private readonly IComponentDependenciesService _componentDependencies;
 
-        public SnapshotHistorySystem(World world, WorldHistory history, IEntityFactory entityFactory, IEntityRegistry entityRegistry)
+        public SnapshotHistorySystem(
+            World world,
+            WorldHistory history,
+            IEntityFactory entityFactory,
+            IEntityRegistry entityRegistry,
+            IComponentDependenciesService componentDependencies)
         {
             _world = world;
             _history = history;
@@ -32,6 +38,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             _collectEntitiesOperation = world.ForEachEntity(in _syncIdQuery, ref initialState, _collectEntitiesAction);
             _entityFactory = entityFactory;
             _entityRegistry = entityRegistry;
+            _componentDependencies = componentDependencies;
         }
 
         public void ApplySnapshot(WorldData snapshot)
@@ -74,6 +81,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             }
 
             _history.ApplySnapshot(snapshot, entitiesBySyncId);
+            foreach (var entity in entitiesBySyncId.Values)
+            {
+                _componentDependencies.AddDependencies(entity);
+            }
         }
 
         private static void CollectEntity(ref CollectState state, EntityRef entity)

@@ -12,10 +12,15 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         private readonly WorldHistory _history;
         private readonly SnapshotHistorySystem _snapshot;
 
-        public HistorySystem(World world, WorldHistory history, IEntityFactory entityFactory, IEntityRegistry entityRegistry)
+        public HistorySystem(
+            World world,
+            WorldHistory history,
+            IEntityFactory entityFactory,
+            IEntityRegistry entityRegistry,
+            IComponentDependenciesService componentDependencies)
         {
             _history = history;
-            _snapshot = new SnapshotHistorySystem(world, history, entityFactory, entityRegistry);
+            _snapshot = new SnapshotHistorySystem(world, history, entityFactory, entityRegistry, componentDependencies);
         }
 
         public void GoTo(int tick)
