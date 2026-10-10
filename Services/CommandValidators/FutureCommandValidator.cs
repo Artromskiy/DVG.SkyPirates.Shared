@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandValidators
             _tickCounter = tickCounter;
         }
 
-        public bool Validate(in Command<T> command)
+        public bool Validate(in Command<T> command, in CommandValidationContext context)
         {
             return (long)_tickCounter.TickCounter + 1 >= command.Header.Step;
         }

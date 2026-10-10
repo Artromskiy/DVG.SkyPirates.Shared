@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandValidators
             _tickCounter = tickCounter;
         }
 
-        public bool Validate(in Command<T> command)
+        public bool Validate(in Command<T> command, in CommandValidationContext context)
         {
             return command.Header.Step > _tickCounter.TickCounter - Constants.ValidTicksCount;
         }

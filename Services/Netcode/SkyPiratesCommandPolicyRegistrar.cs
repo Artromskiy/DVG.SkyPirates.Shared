@@ -79,11 +79,11 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
 
             public CompositeValidator(ICommandValidator<T>[] validators) => _validators = validators;
 
-            public bool Validate(in Command<T> command)
+            public bool Validate(in Command<T> command, in CommandValidationContext context)
             {
                 for (int index = 0; index < _validators.Length; index++)
                 {
-                    if (!_validators[index].Validate(in command))
+                    if (!_validators[index].Validate(in command, in context))
                     {
                         return false;
                     }
