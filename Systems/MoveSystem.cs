@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
     /// Moves Entity's <see href="Position"/> and <see href="Rotation"/> 
     /// with speed <see href="MoveSpeed"/> towards <see href="Destination"/>
     /// </summary>
-    public sealed class MoveSystem : IDeltaTickableExecutor
+    public sealed class MoveSystem : ITransientDeltaTickableExecutor
     {
         private Query? _descCache;
         private Query _desc => _descCache ??= _world.

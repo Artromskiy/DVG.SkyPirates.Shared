@@ -1,8 +1,13 @@
+using Delta;
 using Delta.Netcode;
+using DVG.SkyPirates.Shared.Commands;
 using DVG.SkyPirates.Shared.IServices;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 using System;
 using System.Buffers;
+using System.Buffers.Binary;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DVG.SkyPirates.Shared.Services.Netcode
 {
@@ -196,5 +201,109 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             _postTickables.Tick(tick);
             return true;
         }
+    }
+
+    public sealed class SkyPiratesTransientSimulation : ITransientSimulation<JoystickCommand>
+    {
+        private readonly SkyPiratesSessionProvider _session;
+        private readonly SkyPiratesSessionTickLoop _tickLoop;
+        private readonly IHistorySystem _history;
+        private readonly IDeltaTickableService<ITransientDeltaTickableExecutor> _systems;
+        private readonly ITransientCommandInput<JoystickCommand> _joystickInput;
+        private JoystickCommand _lastInput;
+        private bool _hasAppliedInput;
+
+        public SkyPiratesTransientSimulation(
+            SkyPiratesSessionProvider session,
+            SkyPiratesSessionTickLoop tickLoop,
+            IHistorySystem history,
+            IDeltaTickableService<ITransientDeltaTickableExecutor> systems,
+            IEnumerable<ICommandExecutorRegistration> commandExecutors)
+        {
+            _session = session;
+            _tickLoop = tickLoop;
+            _history = history;
+            _systems = systems;
+            _joystickInput = commandExecutors.OfType<ITransientCommandInput<JoystickCommand>>().Single();
+        }
+
+        public void Tick(long simulationStep)
+        {
+            if (_tickLoop.Tick(simulationStep))
+            {
+                _hasAppliedInput = false;
+            }
+        }
+
+        public void Save(IBufferWriter<byte> output)
+        {
+            // WorldHistory already owns the complete fixed-step state; keep a cursor instead of copying it.
+            int historyTick = GetHistoryTick();
+            Span<byte> destination = output.GetSpan(sizeof(int));
+            BinaryPrimitives.WriteInt32LittleEndian(destination, historyTick);
+            output.Advance(sizeof(int));
+        }
+
+        public void Load(ReadOnlySpan<byte> state)
+        {
+            if (state.Length != sizeof(int))
+            {
+                throw new ArgumentException("A SkyPirates transient checkpoint must contain one history tick.", nameof(state));
+            }
+
+            int historyTick = BinaryPrimitives.ReadInt32LittleEndian(state);
+            // GoTo restores values without trimming the history needed by the next fixed tick or a rollback.
+            _history.GoTo(historyTick);
+            _hasAppliedInput = false;
+        }
+
+        public void TickTransient(in JoystickCommand input, double deltaTimeSeconds)
+        {
+            if (double.IsNaN(deltaTimeSeconds) || double.IsInfinity(deltaTimeSeconds) || deltaTimeSeconds < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(deltaTimeSeconds));
+            }
+
+            if (input.Target.Value != 0 && (!_hasAppliedInput || !SameInput(_lastInput, input)))
+            {
+                _joystickInput.ApplyTransient(in input);
+                _lastInput = input;
+                _hasAppliedInput = true;
+            }
+
+            if (deltaTimeSeconds == 0)
+            {
+                return;
+            }
+
+            _systems.Tick(GetTransientTick(), (fix)deltaTimeSeconds);
+        }
+
+        private int GetHistoryTick()
+        {
+            SessionHost session = _session.Session;
+            if (session == null || session.CurrentStep < session.Start.Step)
+            {
+                return int.MinValue;
+            }
+
+            return checked((int)session.CurrentStep);
+        }
+
+        private int GetTransientTick()
+        {
+            SessionHost session = _session.Session;
+            if (session.CurrentStep < session.Start.Step)
+            {
+                return checked((int)session.Start.Step);
+            }
+
+            return checked((int)(session.CurrentStep + 1));
+        }
+
+        private static bool SameInput(JoystickCommand left, JoystickCommand right) =>
+            left.Target.Value == right.Target.Value
+            && left.Direction.Equals(right.Direction)
+            && left.Fixation == right.Fixation;
     }
 }

@@ -7,7 +7,7 @@ using DVG.SkyPirates.Shared.IServices.TickableExecutors;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
-    public sealed class CachePositionSystem : IDeltaTickableExecutor
+    public sealed class CachePositionSystem : ITransientDeltaTickableExecutor
     {
         private Query? _descCache;
         private Query _desc => _descCache ??= _world.

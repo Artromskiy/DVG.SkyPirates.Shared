@@ -73,8 +73,19 @@ namespace DVG.SkyPirates.Shared.DI
 
             RegisterSingleton(typeof(IDeltaTickableService<>), typeof(DeltaTickableService<>));
             RegisterSingleton(typeof(ITickableService<>), typeof(TickableService<>));
+            RegisterSingleton<Delta.Netcode.ITransientSimulation<JoystickCommand>, SkyPiratesTransientSimulation>();
 
             Collection.Register<IDeltaTickableExecutor>(TickableExecutors, Lifestyle.Singleton);
+            Collection.Register<ITransientDeltaTickableExecutor>(new[]
+            {
+                typeof(CachePositionSystem),
+                typeof(DirectionMoveSystem),
+                typeof(SquadMemberDestinationSystem),
+                typeof(MoveSystem),
+                typeof(SeparationSystem),
+                typeof(HexMapCollisionSystem),
+                typeof(SimpleHeightSystem),
+            }, Lifestyle.Singleton);
             Collection.Register<ICommandExecutorRegistration>(CommandExecutors, Lifestyle.Singleton);
             Collection.Register<ICommandValidatorRegistration>(CommandValidators, Lifestyle.Singleton);
             Collection.Register<ICommandMutatorRegistration>(CommandMutators, Lifestyle.Singleton);

@@ -14,7 +14,7 @@ using System;
 
 namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 {
-    public class JoystickCommandExecutor : ICommandExecutorRegistration, ICommandExecutor<JoystickCommand>
+    public class JoystickCommandExecutor : ICommandExecutorRegistration, ICommandExecutor<JoystickCommand>, ITransientCommandInput<JoystickCommand>
     {
         private readonly IEntityRegistry _entityRegistryService;
         private readonly World _world;
@@ -31,13 +31,23 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
 
         public void Execute(in Command<JoystickCommand> cmd)
         {
-            _entityRegistryService.TryGet(cmd.Payload.Target, out var squad);
+            Apply(cmd.Payload);
+        }
+
+        public void ApplyTransient(in JoystickCommand input)
+        {
+            Apply(input);
+        }
+
+        private void Apply(JoystickCommand input)
+        {
+            _entityRegistryService.TryGet(input.Target, out var squad);
 
             if (squad == default ||
                 !_world.IsAlive(squad) ||
                 !_world.Has<Alive>(squad))
             {
-                Delta.Diagnostics.Trace.Warn(Tracing.NotCreatedEntityCommand(cmd.Payload.Target));
+                Delta.Diagnostics.Trace.Warn(Tracing.NotCreatedEntityCommand(input.Target));
                 return;
             }
 
@@ -49,8 +59,8 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             ref var dir = ref _world.GetRef<Direction>(squad);
             ref var rot = ref _world.GetRef<Rotation>(squad);
             ref var fix = ref _world.GetRef<Fixation>(squad);
-            dir = cmd.Payload.Direction;
-            fix = cmd.Payload.Fixation;
+            dir = input.Direction;
+            fix = input.Fixation;
 
             if (fix2.SqrLength(dir) == 0)
             {
