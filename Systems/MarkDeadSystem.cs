@@ -37,7 +37,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     if (health <= fix.Zero)
                     {
-                        entities.Add(entity.Handle);
+                        entities.Add(entity);
                     }
                 }).Invoke(ref dead);
             foreach (var item in _dead)

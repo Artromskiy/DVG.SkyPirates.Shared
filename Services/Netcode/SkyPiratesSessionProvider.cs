@@ -31,6 +31,8 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
 
         public event Action Ready;
 
+        public event Action<long>? ServerStepReceived;
+
         public SessionHost Session { get; private set; }
 
         public bool IsReady { get; private set; }
@@ -74,6 +76,7 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
             else
             {
                 _client = new SessionClient(Session);
+                _client.ServerStepReceived += OnServerStepReceived;
                 BeginJoin();
             }
         }
@@ -110,6 +113,11 @@ namespace DVG.SkyPirates.Shared.Services.Netcode
 
             IsReady = false;
             _client.BeginJoin(_transport, 0);
+        }
+
+        private void OnServerStepReceived(long serverStep)
+        {
+            ServerStepReceived?.Invoke(serverStep);
         }
 
         public CommandKey Send<T>(in T payload, long simulationStep)

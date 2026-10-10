@@ -49,8 +49,8 @@ namespace DVG.SkyPirates.Shared.Systems
                     ref MaxHealth maxHealth,
                     ref Damage damage) =>
                 {
-                    var level = state.World.Has<Level>(entity.Handle)
-                        ? state.World.Get<Level>(entity.Handle).Value
+                    var level = state.World.Has<Level>(entity)
+                        ? state.World.Get<Level>(entity).Value
                         : 1;
                     var groupId = (member.SquadId, unitId, level);
                     if (!state.UnitsPerGroup.TryGetValue(groupId, out var units))
@@ -58,7 +58,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         state.UnitsPerGroup.Add(groupId, units = new List<Unit>());
                     }
 
-                    units.Add(new Unit(entity.Handle, syncId.Value, level, maxHealth.Value, damage.Value));
+                    units.Add(new Unit(entity, syncId.Value, level, maxHealth.Value, damage.Value));
                 }).Invoke(ref state);
 
             foreach (var units in _unitsPerGroup.Values)

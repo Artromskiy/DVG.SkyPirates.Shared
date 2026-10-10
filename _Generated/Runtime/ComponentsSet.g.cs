@@ -69,6 +69,7 @@ namespace DVG.SkyPirates.Shared.Data
         public TeamId? TeamId;
         public TreeId? TreeId;
         public UnitId? UnitId;
+        public ViewId? ViewId;
 
         public T? Get<T>()
             where T : struct
@@ -163,6 +164,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return Unsafe.As<TreeId?, T?>(ref TreeId);
             if (type == typeof(UnitId))
                 return Unsafe.As<UnitId?, T?>(ref UnitId);
+            if (type == typeof(ViewId))
+                return Unsafe.As<ViewId?, T?>(ref ViewId);
 
             throw new NotSupportedException(type.Name);
         }
@@ -392,6 +395,11 @@ namespace DVG.SkyPirates.Shared.Data
                 UnitId = Unsafe.As<T?, UnitId?>(ref data);
                 return;
             }
+            if (type == typeof(ViewId))
+            {
+                ViewId = Unsafe.As<T?, ViewId?>(ref data);
+                return;
+            }
 
             throw new NotSupportedException(type.Name);
         }
@@ -443,7 +451,8 @@ namespace DVG.SkyPirates.Shared.Data
                 (TargetSearchPosition.HasValue? 1 : 0) + 
                 (TeamId.HasValue? 1 : 0) + 
                 (TreeId.HasValue? 1 : 0) + 
-                (UnitId.HasValue? 1 : 0);
+                (UnitId.HasValue? 1 : 0) +
+                (ViewId.HasValue? 1 : 0);
             
             Type[] types = new Type[typesCount];
             int i = 0;
@@ -537,6 +546,8 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(TreeId);
             if(UnitId.HasValue)
                 types[i++] = typeof(UnitId);
+            if(ViewId.HasValue)
+                types[i++] = typeof(ViewId);
             
             return types;
         }
@@ -633,6 +644,8 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<TreeId>(TreeId.Value);
             if(UnitId.HasValue)
                 action.Invoke<UnitId>(UnitId.Value);
+            if(ViewId.HasValue)
+                action.Invoke<ViewId>(ViewId.Value);
         }
     }
 }

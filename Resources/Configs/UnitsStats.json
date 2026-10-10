@@ -32,6 +32,9 @@
         "Gold": 5,
         "Rum": 2
       }
+    },
+    "ViewId": {
+      "Value": "unit"
     }
   },
   {
@@ -67,6 +70,9 @@
         "Gold": 5,
         "Rum": 2
       }
+    },
+    "ViewId": {
+      "Value": "unit"
     }
   },
   {
@@ -102,6 +108,9 @@
         "Gold": 5,
         "Rum": 2
       }
+    },
+    "ViewId": {
+      "Value": "unit"
     }
   },
   {
@@ -137,6 +146,9 @@
         "Gold": 5,
         "Rum": 2
       }
+    },
+    "ViewId": {
+      "Value": "unit"
     }
   },
   {
@@ -172,6 +184,9 @@
         "Gold": 5,
         "Rum": 2
       }
+    },
+    "ViewId": {
+      "Value": "unit"
     }
   },
   {
@@ -207,6 +222,9 @@
         "Gold": 5,
         "Rum": 2
       }
+    },
+    "ViewId": {
+      "Value": "unit"
     }
   },
   {
@@ -242,6 +260,9 @@
         "Gold": 5,
         "Rum": 2
       }
+    },
+    "ViewId": {
+      "Value": "unit"
     }
   },
   {
@@ -277,6 +298,9 @@
         "Gold": 5,
         "Rum": 2
       }
+    },
+    "ViewId": {
+      "Value": "unit"
     }
   },
   {
@@ -312,6 +336,9 @@
         "Gold": 5,
         "Rum": 2
       }
+    },
+    "ViewId": {
+      "Value": "unit"
     }
   }
 ]

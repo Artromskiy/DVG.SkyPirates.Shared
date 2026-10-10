@@ -116,17 +116,18 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             List<(Entity entity, GoodsDrop drop, SyncId syncId)> units = new();
             (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units)
                 collectState = (squadId, units);
-            _world
-                .ForEachEntity<(SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units), SquadMember
-                    , GoodsDrop, SyncId>(in query, ref collectState,
-                    static (ref (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units) context,
-                        EntityRef entity, ref SquadMember member, ref GoodsDrop goodsDrop, ref SyncId syncId) =>
+            _world.ForEachEntity(in query, ref collectState,
+                static (ref (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units) context,
+                    EntityRef entityRef, ref SquadMember member, ref GoodsDrop goodsDrop, ref SyncId syncId) =>
+                {
+                    if (member.SquadId != context.SquadId)
                     {
-                        if (member.SquadId == context.SquadId)
-                        {
-                            context.Units.Add((entity.Handle, goodsDrop, syncId));
-                        }
-                    }).Invoke(ref collectState);
+                        return;
+                    }
+
+                    Entity entity = entityRef;
+                    context.Units.Add((entity, goodsDrop, syncId));
+                }).Invoke(ref collectState);
 
             int leftPrice = price;
 

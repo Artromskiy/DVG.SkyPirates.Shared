@@ -148,7 +148,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         team[quad.x, quad.y] = list = new List<Entity>(8);
                     }
 
-                    list.Add(entity.Handle);
+                    list.Add(entity);
                 }).Invoke(ref targets);
         }
 

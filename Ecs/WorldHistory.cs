@@ -567,7 +567,7 @@ namespace DVG.SkyPirates.Shared.Ecs
         internal struct CaptureEntity<T> : IForEachContextEntity<EntityPresenceCaptureState> where T : struct
         {
             public void Invoke(ref EntityPresenceCaptureState state, EntityRef entity, in T component)
-                => state.Frame.Mark(entity.Handle);
+                => state.Frame.Mark(entity);
         }
 
         private abstract class ComponentHistory
@@ -597,7 +597,7 @@ namespace DVG.SkyPirates.Shared.Ecs
         internal struct CaptureComponent<T> : IForEachContextEntity<ComponentCaptureState<T>> where T : struct
         {
             public void Invoke(ref ComponentCaptureState<T> state, EntityRef entity, in T component)
-                => state.Frame.Add(entity.Handle, in component);
+                => state.Frame.Add(entity, in component);
         }
 
         internal struct ComponentRestoreState
@@ -624,7 +624,7 @@ namespace DVG.SkyPirates.Shared.Ecs
         {
             public void Invoke(ref ComponentRestoreState state, EntityRef entity, in T component)
             {
-                Entity handle = entity.Handle;
+                Entity handle = entity;
                 int index = handle.Index;
                 if ((uint)index >= (uint)state.RestoreStampsByEntityIndex.Length
                     || state.RestoreStampsByEntityIndex[index] != state.RestoreStamp

@@ -1,38 +1,65 @@
 [
   {
     "GoodsId": "Gold",
-    "MaxSpeed": 5
+    "MaxSpeed": 5,
+    "ViewId": {
+      "Value": "goods"
+    }
   },
   {
     "GoodsId": "Wood",
-    "MaxSpeed": 5
+    "MaxSpeed": 5,
+    "ViewId": {
+      "Value": "goods"
+    }
   },
   {
     "GoodsId": "Spice",
-    "MaxSpeed": 5
+    "MaxSpeed": 5,
+    "ViewId": {
+      "Value": "goods"
+    }
   },
   {
     "GoodsId": "Sugar",
-    "MaxSpeed": 5
+    "MaxSpeed": 5,
+    "ViewId": {
+      "Value": "goods"
+    }
   },
   {
     "GoodsId": "Tea",
-    "MaxSpeed": 5
+    "MaxSpeed": 5,
+    "ViewId": {
+      "Value": "goods"
+    }
   },
   {
     "GoodsId": "Coffee",
-    "MaxSpeed": 5
+    "MaxSpeed": 5,
+    "ViewId": {
+      "Value": "goods"
+    }
   },
   {
     "GoodsId": "Sail",
-    "MaxSpeed": 5
+    "MaxSpeed": 5,
+    "ViewId": {
+      "Value": "goods"
+    }
   },
   {
     "GoodsId": "Rope",
-    "MaxSpeed": 5
+    "MaxSpeed": 5,
+    "ViewId": {
+      "Value": "goods"
+    }
   },
   {
     "GoodsId": "Rum",
-    "MaxSpeed": 5
+    "MaxSpeed": 5,
+    "ViewId": {
+      "Value": "goods"
+    }
   }
 ]

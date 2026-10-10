@@ -136,7 +136,7 @@ namespace DVG.SkyPirates.Shared.Systems
                             return;
                         }
 
-                        state.RemoveDrops.Add(entity.Handle);
+                        state.RemoveDrops.Add(entity);
                         if (!state.CollectorsDrops.TryGetValue(best.CollectorSyncId.Value, out var collected))
                         {
                             state.CollectorsDrops[best.CollectorSyncId.Value] = collected = new List<GoodsData>();

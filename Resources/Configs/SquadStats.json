@@ -7,6 +7,9 @@
         "Rum": 3
       }
     },
-    "ActivityRange": 15
+    "ActivityRange": 15,
+    "ViewId": {
+      "Value": "squad"
+    }
   }
 ]

@@ -61,6 +61,7 @@ namespace DVG.SkyPirates.Shared.Data
         public Dictionary<int, TeamId> TeamId;
         public Dictionary<int, TreeId> TreeId;
         public Dictionary<int, UnitId> UnitId;
+        public Dictionary<int, ViewId> ViewId;
 
         public WorldData()
         {
@@ -102,6 +103,7 @@ namespace DVG.SkyPirates.Shared.Data
             TeamId = new();
             TreeId = new();
             UnitId = new();
+            ViewId = new();
         }
 
         public Dictionary<int, T> Get<T>()
@@ -182,6 +184,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return TreeId as Dictionary<int, T>;
             if (typeof(T) == typeof(UnitId))
                 return UnitId as Dictionary<int, T>;
+            if (typeof(T) == typeof(ViewId))
+                return ViewId as Dictionary<int, T>;
 
             throw new NotSupportedException(typeof(T).Name);
         }
@@ -373,6 +377,11 @@ namespace DVG.SkyPirates.Shared.Data
             if (typeof(T) == typeof(UnitId))
             {
                 UnitId = data as Dictionary<int, UnitId>;
+                return;
+            }
+            if (typeof(T) == typeof(ViewId))
+            {
+                ViewId = data as Dictionary<int, ViewId>;
                 return;
             }
 

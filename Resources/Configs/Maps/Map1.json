@@ -5095,5 +5095,280 @@
     "541": "Sailor",
     "530": "Sailor",
     "519": "Sailor"
+  },
+  "ViewId": {
+    "981": {
+      "Value": "unit"
+    },
+    "970": {
+      "Value": "unit"
+    },
+    "959": {
+      "Value": "unit"
+    },
+    "948": {
+      "Value": "unit"
+    },
+    "937": {
+      "Value": "unit"
+    },
+    "926": {
+      "Value": "unit"
+    },
+    "915": {
+      "Value": "unit"
+    },
+    "904": {
+      "Value": "unit"
+    },
+    "893": {
+      "Value": "unit"
+    },
+    "882": {
+      "Value": "unit"
+    },
+    "871": {
+      "Value": "unit"
+    },
+    "860": {
+      "Value": "unit"
+    },
+    "849": {
+      "Value": "unit"
+    },
+    "838": {
+      "Value": "unit"
+    },
+    "827": {
+      "Value": "unit"
+    },
+    "816": {
+      "Value": "unit"
+    },
+    "805": {
+      "Value": "unit"
+    },
+    "794": {
+      "Value": "unit"
+    },
+    "783": {
+      "Value": "unit"
+    },
+    "772": {
+      "Value": "unit"
+    },
+    "761": {
+      "Value": "unit"
+    },
+    "750": {
+      "Value": "unit"
+    },
+    "739": {
+      "Value": "unit"
+    },
+    "728": {
+      "Value": "unit"
+    },
+    "717": {
+      "Value": "unit"
+    },
+    "706": {
+      "Value": "unit"
+    },
+    "695": {
+      "Value": "unit"
+    },
+    "684": {
+      "Value": "unit"
+    },
+    "673": {
+      "Value": "unit"
+    },
+    "662": {
+      "Value": "unit"
+    },
+    "651": {
+      "Value": "unit"
+    },
+    "640": {
+      "Value": "unit"
+    },
+    "629": {
+      "Value": "unit"
+    },
+    "618": {
+      "Value": "unit"
+    },
+    "607": {
+      "Value": "unit"
+    },
+    "596": {
+      "Value": "unit"
+    },
+    "585": {
+      "Value": "unit"
+    },
+    "574": {
+      "Value": "unit"
+    },
+    "563": {
+      "Value": "unit"
+    },
+    "552": {
+      "Value": "unit"
+    },
+    "541": {
+      "Value": "unit"
+    },
+    "530": {
+      "Value": "unit"
+    },
+    "519": {
+      "Value": "unit"
+    },
+    "508": {
+      "Value": "tree"
+    },
+    "497": {
+      "Value": "tree"
+    },
+    "486": {
+      "Value": "tree"
+    },
+    "475": {
+      "Value": "tree"
+    },
+    "464": {
+      "Value": "tree"
+    },
+    "453": {
+      "Value": "tree"
+    },
+    "442": {
+      "Value": "tree"
+    },
+    "431": {
+      "Value": "tree"
+    },
+    "420": {
+      "Value": "tree"
+    },
+    "409": {
+      "Value": "tree"
+    },
+    "398": {
+      "Value": "tree"
+    },
+    "387": {
+      "Value": "tree"
+    },
+    "376": {
+      "Value": "tree"
+    },
+    "365": {
+      "Value": "tree"
+    },
+    "354": {
+      "Value": "tree"
+    },
+    "343": {
+      "Value": "tree"
+    },
+    "332": {
+      "Value": "tree"
+    },
+    "321": {
+      "Value": "tree"
+    },
+    "310": {
+      "Value": "tree"
+    },
+    "299": {
+      "Value": "tree"
+    },
+    "288": {
+      "Value": "tree"
+    },
+    "277": {
+      "Value": "tree"
+    },
+    "266": {
+      "Value": "tree"
+    },
+    "255": {
+      "Value": "tree"
+    },
+    "244": {
+      "Value": "tree"
+    },
+    "233": {
+      "Value": "tree"
+    },
+    "222": {
+      "Value": "tree"
+    },
+    "211": {
+      "Value": "tree"
+    },
+    "200": {
+      "Value": "tree"
+    },
+    "189": {
+      "Value": "tree"
+    },
+    "178": {
+      "Value": "tree"
+    },
+    "167": {
+      "Value": "tree"
+    },
+    "156": {
+      "Value": "tree"
+    },
+    "145": {
+      "Value": "tree"
+    },
+    "134": {
+      "Value": "tree"
+    },
+    "123": {
+      "Value": "tree"
+    },
+    "112": {
+      "Value": "tree"
+    },
+    "101": {
+      "Value": "tree"
+    },
+    "90": {
+      "Value": "tree"
+    },
+    "79": {
+      "Value": "tree"
+    },
+    "68": {
+      "Value": "tree"
+    },
+    "57": {
+      "Value": "tree"
+    },
+    "46": {
+      "Value": "tree"
+    },
+    "35": {
+      "Value": "tree"
+    },
+    "24": {
+      "Value": "tree"
+    },
+    "13": {
+      "Value": "tree"
+    },
+    "2": {
+      "Value": "tree"
+    },
+    "1": {
+      "Value": "hex-map"
+    }
   }
 }

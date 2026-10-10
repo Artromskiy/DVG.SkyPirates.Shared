@@ -78,10 +78,10 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         private static void CollectEntity(ref CollectState state, EntityRef entity)
         {
-            if (state.World.TryGet<SyncId>(entity.Handle, state.SyncIdId, out SyncId syncId)
+            if (state.World.TryGet<SyncId>(entity, state.SyncIdId, out SyncId syncId)
                 && !state.SnapshotSyncIds.Contains(syncId.Value))
             {
-                state.EntitiesToRetire.Add(entity.Handle);
+                state.EntitiesToRetire.Add(entity);
             }
         }
 

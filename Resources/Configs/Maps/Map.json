@@ -1156,5 +1156,19 @@
     "2": "Tree_01_Fall",
     "4": "Tree_01_Fall"
   },
-  "UnitId": {}
+  "UnitId": {},
+  "ViewId": {
+    "3": {
+      "Value": "tree"
+    },
+    "2": {
+      "Value": "tree"
+    },
+    "4": {
+      "Value": "tree"
+    },
+    "0": {
+      "Value": "hex-map"
+    }
+  }
 }

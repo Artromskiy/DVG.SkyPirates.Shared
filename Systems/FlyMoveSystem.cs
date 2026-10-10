@@ -53,7 +53,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 {
                     if (position == fly.EndPosition)
                     {
-                        entities.Add(entity.Handle);
+                        entities.Add(entity);
                     }
                 }).Invoke(ref finished);
             foreach (var item in _finished)

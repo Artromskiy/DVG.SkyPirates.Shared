@@ -55,7 +55,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             component.Dispose(in filter);
         }
 
-        private void DisposeHistory(EntityRef entity) => _history.DisposeEntity(entity.Handle);
+        private void DisposeHistory(EntityRef entity) => _history.DisposeEntity(entity);
 
         private Query CreateComponentQuery(ComponentId componentId)
         {

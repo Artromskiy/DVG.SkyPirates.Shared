@@ -141,7 +141,7 @@ namespace DVG.SkyPirates.Shared.Ecs
 
         public void Dispose(in Query filter) => _world.ForEachEntity(in filter, _disposeEntity).Invoke();
 
-        private void DisposeEntity(EntityRef entity) => _world.GetRef<T>(entity.Handle).Dispose();
+        private void DisposeEntity(EntityRef entity) => _world.GetRef<T>(entity).Dispose();
     }
 
     internal sealed class ComponentQueryCache<TQueries> where TQueries : class, new()

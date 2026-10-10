@@ -53,7 +53,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
                 state.ValueSet = true;
                 state.Value = component;
-                state.Entity = entity.Handle;
+                state.Entity = entity;
             }
         }
 

@@ -28,10 +28,16 @@ namespace DVG.SkyPirates.Shared.DI
 {
     public class SharedContainer : Container
     {
-        public SharedContainer(SessionMode sessionMode = SessionMode.Local, bool registerCommandReceiver = true)
+        public SharedContainer(SessionMode sessionMode = SessionMode.Local, bool registerCommandReceiver = true, World world = null)
         {
             Delta.Diagnostics.Trace.Info("[DI] SharedContainer Start");
-            RegisterSingleton(CreateWorld);
+            RegisterSingleton(() =>
+            {
+                var currentWorld = world ?? new World(initialEntityCapacity: 1024);
+                RegisterAll(currentWorld);
+                _ = WorldComponentIds.For(currentWorld);
+                return currentWorld;
+            });
             RegisterSingleton(() => new WorldHistory(
                 GetInstance<World>(),
                 WorldComponentIds.For(GetInstance<World>()).History,
@@ -151,7 +157,6 @@ namespace DVG.SkyPirates.Shared.DI
             typeof(FutureCommandValidator<SetEntityDataCommand>), typeof(LateCommandValidator<SetEntityDataCommand>), typeof(ZeroTickCommandValidator<SetEntityDataCommand>),
             typeof(FutureCommandValidator<SpawnSquadCommand>), typeof(LateCommandValidator<SpawnSquadCommand>), typeof(ZeroTickCommandValidator<SpawnSquadCommand>),
             typeof(FutureCommandValidator<SpawnUnitCommand>), typeof(LateCommandValidator<SpawnUnitCommand>), typeof(ZeroTickCommandValidator<SpawnUnitCommand>),
-            typeof(FutureCommandValidator<TickSyncCommand>), typeof(LateCommandValidator<TickSyncCommand>), typeof(ZeroTickCommandValidator<TickSyncCommand>),
         };
 
         private static Type[] CommandMutators => new Type[]
@@ -159,63 +164,64 @@ namespace DVG.SkyPirates.Shared.DI
             typeof(SpawnCommandMutator),
         };
 
-        private static World CreateWorld()
-        {
-            var world = new World(initialEntityCapacity: 1024);
-            RegisterAll(world);
-            _ = WorldComponentIds.For(world);
-            return world;
-        }
-
         private static void RegisterAll(World world)
         {
             var layouts = world.Layouts;
-            layouts.Register<ActivityRange>(GetSchemaId(typeof(ActivityRange).FullName));
-            layouts.Register<Alive>(GetSchemaId(typeof(Alive).FullName));
-            layouts.Register<AutoHeal>(GetSchemaId(typeof(AutoHeal).FullName));
-            layouts.Register<BehaviourConfig>(GetSchemaId(typeof(BehaviourConfig).FullName));
-            layouts.Register<BehaviourState>(GetSchemaId(typeof(BehaviourState).FullName));
-            layouts.Register<CachePosition>(GetSchemaId(typeof(CachePosition).FullName));
-            layouts.Register<CactusId>(GetSchemaId(typeof(CactusId).FullName));
-            layouts.Register<ClientId>(GetSchemaId(typeof(ClientId).FullName));
-            layouts.Register<Collide>(GetSchemaId(typeof(Collide).FullName));
-            layouts.Register<Damage>(GetSchemaId(typeof(Damage).FullName));
-            layouts.Register<Destination>(GetSchemaId(typeof(Destination).FullName));
-            layouts.Register<Direction>(GetSchemaId(typeof(Direction).FullName));
-            layouts.Register<Fixation>(GetSchemaId(typeof(Fixation).FullName));
-            layouts.Register<FlyDestination>(GetSchemaId(typeof(FlyDestination).FullName));
-            layouts.Register<GoodsAmount>(GetSchemaId(typeof(GoodsAmount).FullName));
-            layouts.Register<GoodsCollectorRadius>(GetSchemaId(typeof(GoodsCollectorRadius).FullName));
-            layouts.Register<GoodsDrop>(GetSchemaId(typeof(GoodsDrop).FullName));
-            layouts.Register<GoodsId>(GetSchemaId(typeof(GoodsId).FullName));
-            layouts.Register<Health>(GetSchemaId(typeof(Health).FullName));
-            layouts.Register<HexMap>(GetSchemaId(typeof(HexMap).FullName));
-            layouts.Register<ImpactDistance>(GetSchemaId(typeof(ImpactDistance).FullName));
-            layouts.Register<Level>(GetSchemaId(typeof(Level).FullName));
-            layouts.Register<MaxHealth>(GetSchemaId(typeof(MaxHealth).FullName));
-            layouts.Register<MaxSpeed>(GetSchemaId(typeof(MaxSpeed).FullName));
-            layouts.Register<Position>(GetSchemaId(typeof(Position).FullName));
-            layouts.Register<Radius>(GetSchemaId(typeof(Radius).FullName));
-            layouts.Register<RandomSeed>(GetSchemaId(typeof(RandomSeed).FullName));
-            layouts.Register<RecivedDamage>(GetSchemaId(typeof(RecivedDamage).FullName));
-            layouts.Register<RockId>(GetSchemaId(typeof(RockId).FullName));
-            layouts.Register<Rotation>(GetSchemaId(typeof(Rotation).FullName));
-            layouts.Register<Separation>(GetSchemaId(typeof(Separation).FullName));
-            layouts.Register<Separator>(GetSchemaId(typeof(Separator).FullName));
-            layouts.Register<Squad>(GetSchemaId(typeof(Squad).FullName));
-            layouts.Register<SquadMember>(GetSchemaId(typeof(SquadMember).FullName));
-            layouts.Register<SquadMemberCount>(GetSchemaId(typeof(SquadMemberCount).FullName));
-            layouts.Register<SyncId>(GetSchemaId(typeof(SyncId).FullName));
-            layouts.Register<SyncIdReserve>(GetSchemaId(typeof(SyncIdReserve).FullName));
-            layouts.Register<Target>(GetSchemaId(typeof(Target).FullName));
-            layouts.Register<Targets>(GetSchemaId(typeof(Targets).FullName));
-            layouts.Register<TargetSearchDistance>(GetSchemaId(typeof(TargetSearchDistance).FullName));
-            layouts.Register<TargetSearchPosition>(GetSchemaId(typeof(TargetSearchPosition).FullName));
-            layouts.Register<TeamId>(GetSchemaId(typeof(TeamId).FullName));
-            layouts.Register<TreeId>(GetSchemaId(typeof(TreeId).FullName));
-            layouts.Register<UnitId>(GetSchemaId(typeof(UnitId).FullName));
-            layouts.Register<Disabled>(GetSchemaId(typeof(Disabled).FullName));
-            layouts.Register<Temp>(GetSchemaId(typeof(Temp).FullName));
+            Register<ActivityRange>(layouts);
+            Register<Alive>(layouts);
+            Register<AutoHeal>(layouts);
+            Register<BehaviourConfig>(layouts);
+            Register<BehaviourState>(layouts);
+            Register<CachePosition>(layouts);
+            Register<CactusId>(layouts);
+            Register<ClientId>(layouts);
+            Register<Collide>(layouts);
+            Register<Damage>(layouts);
+            Register<Destination>(layouts);
+            Register<Direction>(layouts);
+            Register<Fixation>(layouts);
+            Register<FlyDestination>(layouts);
+            Register<GoodsAmount>(layouts);
+            Register<GoodsCollectorRadius>(layouts);
+            Register<GoodsDrop>(layouts);
+            Register<GoodsId>(layouts);
+            Register<Health>(layouts);
+            Register<HexMap>(layouts);
+            Register<ImpactDistance>(layouts);
+            Register<Level>(layouts);
+            Register<MaxHealth>(layouts);
+            Register<MaxSpeed>(layouts);
+            Register<Position>(layouts);
+            Register<Radius>(layouts);
+            Register<RandomSeed>(layouts);
+            Register<RecivedDamage>(layouts);
+            Register<RockId>(layouts);
+            Register<Rotation>(layouts);
+            Register<Separation>(layouts);
+            Register<Separator>(layouts);
+            Register<Squad>(layouts);
+            Register<SquadMember>(layouts);
+            Register<SquadMemberCount>(layouts);
+            Register<SyncId>(layouts);
+            Register<SyncIdReserve>(layouts);
+            Register<Target>(layouts);
+            Register<Targets>(layouts);
+            Register<TargetSearchDistance>(layouts);
+            Register<TargetSearchPosition>(layouts);
+            Register<TeamId>(layouts);
+            Register<TreeId>(layouts);
+            Register<UnitId>(layouts);
+            Register<ViewId>(layouts);
+            Register<Disabled>(layouts);
+            Register<Temp>(layouts);
+        }
+
+        private static void Register<T>(ComponentLayoutRegistry layouts) where T : struct
+        {
+            if (!layouts.TryGetPrimary<T>(out _))
+            {
+                layouts.Register<T>(GetSchemaId(typeof(T).FullName));
+            }
         }
 
         private ISessionTransport CreateSessionTransport(SessionMode mode)

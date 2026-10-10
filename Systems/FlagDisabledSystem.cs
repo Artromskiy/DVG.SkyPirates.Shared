@@ -64,7 +64,7 @@ namespace DVG.SkyPirates.Shared.Systems
                         }
                     }
 
-                    state.Entities.Add(entity.Handle);
+                    state.Entities.Add(entity);
 				}).Invoke(ref disableState);
 
 			var toEnable = _toEnable;
@@ -78,7 +78,7 @@ namespace DVG.SkyPirates.Shared.Systems
                     {
                         if (Inside(xz, state.Regions[i]))
                         {
-                            state.Entities.Add(entity.Handle);
+                            state.Entities.Add(entity);
                         }
                     }
                 }).Invoke(ref enableState);

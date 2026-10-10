@@ -28,7 +28,6 @@ namespace DVG.SkyPirates.Shared.Commands
         public Dictionary<int, List<Command<SetEntityDataCommand>>> SetEntityDataCommand;
         public Dictionary<int, List<Command<SpawnSquadCommand>>> SpawnSquadCommand;
         public Dictionary<int, List<Command<SpawnUnitCommand>>> SpawnUnitCommand;
-        public Dictionary<int, List<Command<TickSyncCommand>>> TickSyncCommand;
 
         public CommandsData()
         {
@@ -39,7 +38,6 @@ namespace DVG.SkyPirates.Shared.Commands
             SetEntityDataCommand = new();
             SpawnSquadCommand = new();
             SpawnUnitCommand = new();
-            TickSyncCommand = new();
         }
 
         public Dictionary<int, List<Command<T>>> Get<T>()
@@ -57,8 +55,6 @@ namespace DVG.SkyPirates.Shared.Commands
                 return SpawnSquadCommand as Dictionary<int, List<Command<T>>>;
             if (typeof(T) == typeof(SpawnUnitCommand))
                 return SpawnUnitCommand as Dictionary<int, List<Command<T>>>;
-            if (typeof(T) == typeof(TickSyncCommand))
-                return TickSyncCommand as Dictionary<int, List<Command<T>>>;
 
             throw new NotSupportedException(typeof(T).Name);
         }
@@ -94,11 +90,6 @@ namespace DVG.SkyPirates.Shared.Commands
             if (typeof(T) == typeof(SpawnUnitCommand))
             {
                 SpawnUnitCommand = data as Dictionary<int, List<Command<SpawnUnitCommand>>>;
-                return;
-            }
-            if (typeof(T) == typeof(TickSyncCommand))
-            {
-                TickSyncCommand = data as Dictionary<int, List<Command<TickSyncCommand>>>;
                 return;
             }
 
