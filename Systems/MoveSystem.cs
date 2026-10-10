@@ -33,7 +33,9 @@ namespace DVG.SkyPirates.Shared.Systems
             _world.ForEach<fix, Position, Rotation, Destination, MaxSpeed>(in desc, ref delta,
                 static (ref fix deltaTime, ref Position position, ref Rotation rotation, ref Destination destination, ref MaxSpeed moveSpeed) =>
                 {
-                    position = fix3.MoveTowards(position, destination.Position, moveSpeed * deltaTime);
+                    var currentPosition = (fix3)position;
+                    var nextPositionXZ = fix2.MoveTowards(currentPosition.xz, destination.Position.xz, moveSpeed * deltaTime);
+                    position = new fix3(nextPositionXZ.x, currentPosition.y, nextPositionXZ.y);
 
                     var dir = destination.Position.xz - ((fix3)position).xz;
                     var rotateTo = fix2.SqrLength(dir) != 0
