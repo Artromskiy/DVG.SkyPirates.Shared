@@ -584,21 +584,20 @@ namespace DVG.SkyPirates.Shared.Ecs
             public abstract void Dispose();
         }
 
-        internal delegate void ComponentCaptureAction<T>(Entity entity, in T value) where T : struct;
-
         internal struct ComponentCaptureState<T> where T : struct
         {
-            public readonly ComponentCaptureAction<T> Capture;
-            public ComponentCaptureState(ComponentCaptureAction<T> capture)
+            public readonly ComponentFrame<T> Frame;
+
+            public ComponentCaptureState(ComponentFrame<T> frame)
             {
-                Capture = capture;
+                Frame = frame;
             }
         }
 
         internal struct CaptureComponent<T> : IForEachContextEntity<ComponentCaptureState<T>> where T : struct
         {
             public void Invoke(ref ComponentCaptureState<T> state, EntityRef entity, in T component)
-                => state.Capture(entity.Handle, in component);
+                => state.Frame.Add(entity.Handle, in component);
         }
 
         internal struct ComponentRestoreState
@@ -642,13 +641,11 @@ namespace DVG.SkyPirates.Shared.Ecs
             private readonly ComponentId _componentId;
             private readonly IOperation<ComponentCaptureState<T>> _saveOperation;
             private readonly IOperation<ComponentRestoreState> _removeUnrestoredOperation;
-            private readonly ComponentCaptureAction<T> _captureComponent;
             private readonly ComponentFrameHistory<T> _frames;
             private Entity[] _restoredEntityByIndex = Array.Empty<Entity>();
             private int[] _restoreStampByEntityIndex = Array.Empty<int>();
             private int _restoreStamp;
             private readonly List<Entity> _entitiesToRemove = new();
-            private ComponentFrame<T>? _currentFrame;
 
             public ComponentHistory(
                 World world,
@@ -659,9 +656,8 @@ namespace DVG.SkyPirates.Shared.Ecs
                 _world = world;
                 _componentId = componentId;
                 var saveQuery = CreateComponentQuery(world, componentId);
-                _captureComponent = CaptureComponent;
                 _frames = new ComponentFrameHistory<T>(initialCapacity, maxCapacity);
-                var initialState = new ComponentCaptureState<T>(_captureComponent);
+                var initialState = new ComponentCaptureState<T>(_frames.Get(int.MinValue));
                 _saveOperation = _world.ForEachEntity(
                     in saveQuery,
                     ref initialState,
@@ -825,21 +821,8 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             private void CaptureFrame(int tick)
             {
-                _currentFrame = _frames.BeginWrite(tick);
-                var context = new ComponentCaptureState<T>(_captureComponent);
-                try
-                {
-                    _saveOperation.Invoke(ref context);
-                }
-                finally
-                {
-                    _currentFrame = null;
-                }
-            }
-
-            private void CaptureComponent(Entity entity, in T component)
-            {
-                _currentFrame!.Add(entity, in component);
+                var context = new ComponentCaptureState<T>(_frames.BeginWrite(tick));
+                _saveOperation.Invoke(ref context);
             }
 
             private static Query CreateComponentQuery(World world, ComponentId componentId)
@@ -991,7 +974,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
         }
 
-        private sealed class ComponentFrame<T> : IDisposable where T : struct
+        internal sealed class ComponentFrame<T> : IDisposable where T : struct
         {
             private Entity[] _entities = Array.Empty<Entity>();
             private T[] _values = Array.Empty<T>();
