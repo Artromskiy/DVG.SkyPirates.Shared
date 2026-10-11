@@ -106,7 +106,7 @@ namespace DVG.SkyPirates.Shared.DI
         {
             typeof(FramedComponentsSystem), // cleanups
             typeof(FlagDisabledSystem),
-            typeof(SquadUnitMergeSystem), // merge groups of three units
+            // typeof(SquadUnitMergeSystem), // TEMP: disabled while collecting history benchmark data.
             typeof(CachePositionSystem),
             typeof(SetDestinationSystem),
             typeof(TargetSearchSystem), // cache target search
@@ -211,7 +211,7 @@ namespace DVG.SkyPirates.Shared.DI
             Register<TeamId>(layouts);
             Register<TreeId>(layouts);
             Register<UnitId>(layouts);
-            Register<ViewId>(layouts);
+            Register<ViewToken>(layouts);
             Register<Disabled>(layouts);
             Register<Temp>(layouts);
         }

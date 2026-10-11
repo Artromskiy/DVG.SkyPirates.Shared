@@ -62,7 +62,7 @@ namespace DVG.Components
             action.Invoke<TeamId>();
             action.Invoke<TreeId>();
             action.Invoke<UnitId>();
-            action.Invoke<ViewId>();
+            action.Invoke<ViewToken>();
         }
     }
 }

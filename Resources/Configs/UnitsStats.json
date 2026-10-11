@@ -33,7 +33,7 @@
         "Rum": 2
       }
     },
-    "ViewId": {
+    "ViewToken": {
       "Value": "unit"
     }
   },
@@ -71,7 +71,7 @@
         "Rum": 2
       }
     },
-    "ViewId": {
+    "ViewToken": {
       "Value": "unit"
     }
   },
@@ -109,7 +109,7 @@
         "Rum": 2
       }
     },
-    "ViewId": {
+    "ViewToken": {
       "Value": "unit"
     }
   },
@@ -147,7 +147,7 @@
         "Rum": 2
       }
     },
-    "ViewId": {
+    "ViewToken": {
       "Value": "unit"
     }
   },
@@ -185,7 +185,7 @@
         "Rum": 2
       }
     },
-    "ViewId": {
+    "ViewToken": {
       "Value": "unit"
     }
   },
@@ -223,7 +223,7 @@
         "Rum": 2
       }
     },
-    "ViewId": {
+    "ViewToken": {
       "Value": "unit"
     }
   },
@@ -261,7 +261,7 @@
         "Rum": 2
       }
     },
-    "ViewId": {
+    "ViewToken": {
       "Value": "unit"
     }
   },
@@ -299,7 +299,7 @@
         "Rum": 2
       }
     },
-    "ViewId": {
+    "ViewToken": {
       "Value": "unit"
     }
   },
@@ -337,7 +337,7 @@
         "Rum": 2
       }
     },
-    "ViewId": {
+    "ViewToken": {
       "Value": "unit"
     }
   }

@@ -85,7 +85,13 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 return false;
             }
 
-            int price = info.RumPrice;
+            // TEMP: free summons while collecting history benchmark data.
+            int price = 0;
+            if (price == 0)
+            {
+                return true;
+            }
+
             ref var drop = ref _world.GetRef<GoodsDrop>(squad);
             int squadRum = drop.Values.GetValueOrDefault(_rum);
             if (squadRum >= price)

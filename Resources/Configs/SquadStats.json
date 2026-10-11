@@ -8,7 +8,7 @@
       }
     },
     "ActivityRange": 15,
-    "ViewId": {
+    "ViewToken": {
       "Value": "squad"
     }
   }

@@ -69,7 +69,7 @@ namespace DVG.SkyPirates.Shared.Data
         public bool TeamId;
         public bool TreeId;
         public bool UnitId;
-        public bool ViewId;
+        public bool ViewToken;
 
         public bool Get<T>()
             where T : struct
@@ -164,8 +164,8 @@ namespace DVG.SkyPirates.Shared.Data
                 return TreeId;
             if (type == typeof(UnitId))
                 return UnitId;
-            if (type == typeof(ViewId))
-                return ViewId;
+            if (type == typeof(ViewToken))
+                return ViewToken;
 
             throw new NotSupportedException(type.Name);
         }
@@ -395,9 +395,9 @@ namespace DVG.SkyPirates.Shared.Data
                 UnitId = data;
                 return;
             }
-            if (type == typeof(ViewId))
+            if (type == typeof(ViewToken))
             {
-                ViewId = data;
+                ViewToken = data;
                 return;
             }
 
@@ -452,7 +452,7 @@ namespace DVG.SkyPirates.Shared.Data
                 (TeamId? 1 : 0) + 
                 (TreeId? 1 : 0) + 
                 (UnitId? 1 : 0) +
-                (ViewId? 1 : 0);
+                (ViewToken? 1 : 0);
             
             Type[] types = new Type[typesCount];
             int i = 0;
@@ -546,8 +546,8 @@ namespace DVG.SkyPirates.Shared.Data
                 types[i++] = typeof(TreeId);
             if(UnitId)
                 types[i++] = typeof(UnitId);
-            if(ViewId)
-                types[i++] = typeof(ViewId);
+            if(ViewToken)
+                types[i++] = typeof(ViewToken);
             
             return types;
         }
@@ -644,8 +644,8 @@ namespace DVG.SkyPirates.Shared.Data
                 action.Invoke<TreeId>();
             if(UnitId)
                 action.Invoke<UnitId>();
-            if(ViewId)
-                action.Invoke<ViewId>();
+            if(ViewToken)
+                action.Invoke<ViewToken>();
         }
     }
 }

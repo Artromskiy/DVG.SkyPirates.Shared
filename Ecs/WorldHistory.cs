@@ -600,35 +600,49 @@ namespace DVG.SkyPirates.Shared.Ecs
                 => state.Frame.Add(entity, in component);
         }
 
-        internal struct ComponentRestoreState
+        internal struct ComponentRestoreState<T> where T : struct
         {
+            public readonly ComponentFrame<T> Frame;
             public readonly Entity[] RestoredEntitiesByIndex;
+            public readonly int[] FrameValueIndicesByEntityIndex;
             public readonly int[] RestoreStampsByEntityIndex;
+            public readonly int[] SeenStampsByEntityIndex;
             public readonly int RestoreStamp;
             public readonly List<Entity> EntitiesToRemove;
 
             public ComponentRestoreState(
+                ComponentFrame<T> frame,
                 Entity[] restoredEntitiesByIndex,
+                int[] frameValueIndicesByEntityIndex,
                 int[] restoreStampsByEntityIndex,
+                int[] seenStampsByEntityIndex,
                 int restoreStamp,
                 List<Entity> entitiesToRemove)
             {
+                Frame = frame;
                 RestoredEntitiesByIndex = restoredEntitiesByIndex;
+                FrameValueIndicesByEntityIndex = frameValueIndicesByEntityIndex;
                 RestoreStampsByEntityIndex = restoreStampsByEntityIndex;
+                SeenStampsByEntityIndex = seenStampsByEntityIndex;
                 RestoreStamp = restoreStamp;
                 EntitiesToRemove = entitiesToRemove;
             }
         }
 
-        internal struct RemoveUnrestoredComponent<T> : IForEachContextEntity<ComponentRestoreState> where T : struct
+        internal struct RestoreComponent<T> : IForEachContextEntity<ComponentRestoreState<T>> where T : struct
         {
-            public void Invoke(ref ComponentRestoreState state, EntityRef entity, in T component)
+            public void Invoke(ref ComponentRestoreState<T> state, EntityRef entity, ref T component)
             {
                 Entity handle = entity;
                 int index = handle.Index;
-                if ((uint)index >= (uint)state.RestoreStampsByEntityIndex.Length
-                    || state.RestoreStampsByEntityIndex[index] != state.RestoreStamp
-                    || state.RestoredEntitiesByIndex[index] != handle)
+                if ((uint)index < (uint)state.RestoreStampsByEntityIndex.Length
+                    && state.RestoreStampsByEntityIndex[index] == state.RestoreStamp
+                    && state.RestoredEntitiesByIndex[index] == handle)
+                {
+                    component = state.Frame.Values[state.FrameValueIndicesByEntityIndex[index]];
+                    state.SeenStampsByEntityIndex[index] = state.RestoreStamp;
+                }
+                else
                 {
                     state.EntitiesToRemove.Add(handle);
                 }
@@ -640,10 +654,12 @@ namespace DVG.SkyPirates.Shared.Ecs
             private readonly World _world;
             private readonly ComponentId _componentId;
             private readonly IOperation<ComponentCaptureState<T>> _saveOperation;
-            private readonly IOperation<ComponentRestoreState> _removeUnrestoredOperation;
+            private readonly IOperation<ComponentRestoreState<T>> _restoreOperation;
             private readonly ComponentFrameHistory<T> _frames;
             private Entity[] _restoredEntityByIndex = Array.Empty<Entity>();
+            private int[] _frameValueIndexByEntityIndex = Array.Empty<int>();
             private int[] _restoreStampByEntityIndex = Array.Empty<int>();
+            private int[] _seenRestoreStampByEntityIndex = Array.Empty<int>();
             private int _restoreStamp;
             private readonly List<Entity> _entitiesToRemove = new();
 
@@ -664,12 +680,12 @@ namespace DVG.SkyPirates.Shared.Ecs
                     _componentId,
                     typeof(CaptureComponent<>));
 
-                var initialRestoreState = default(ComponentRestoreState);
-                _removeUnrestoredOperation = _world.ForEachEntity(
+                var initialRestoreState = default(ComponentRestoreState<T>);
+                _restoreOperation = _world.ForEachEntity(
                     in saveQuery,
                     ref initialRestoreState,
                     _componentId,
-                    typeof(RemoveUnrestoredComponent<>));
+                    typeof(RestoreComponent<>));
             }
 
             public Dictionary<Entity, int> GetSyncIdsAt(int tick) => _frames.GetSyncIdsAt(tick);
@@ -688,12 +704,15 @@ namespace DVG.SkyPirates.Shared.Ecs
                 MarkRestoredEntities(frame);
 
                 _entitiesToRemove.Clear();
-                var restoreState = new ComponentRestoreState(
+                var restoreState = new ComponentRestoreState<T>(
+                    frame,
                     _restoredEntityByIndex,
+                    _frameValueIndexByEntityIndex,
                     _restoreStampByEntityIndex,
+                    _seenRestoreStampByEntityIndex,
                     _restoreStamp,
                     _entitiesToRemove);
-                _removeUnrestoredOperation.Invoke(ref restoreState);
+                _restoreOperation.Invoke(ref restoreState);
 
                 for (int i = 0; i < _entitiesToRemove.Count; i++)
                 {
@@ -703,14 +722,14 @@ namespace DVG.SkyPirates.Shared.Ecs
                 for (int i = 0; i < frame.Count; i++)
                 {
                     Entity entity = frame.Entities[i];
+                    if (_seenRestoreStampByEntityIndex[entity.Index] == _restoreStamp)
+                        continue;
+
                     if (!_world.IsAlive(entity))
                         continue;
 
                     T value = frame.Values[i];
-                    if (_world.Has(entity, _componentId))
-                        _world.GetRef<T>(entity, _componentId) = value;
-                    else
-                        _world.Add(entity, in value);
+                    _world.Add(entity, in value);
                 }
             }
 
@@ -786,6 +805,7 @@ namespace DVG.SkyPirates.Shared.Ecs
                 if (_restoreStamp == int.MaxValue)
                 {
                     Array.Clear(_restoreStampByEntityIndex, 0, _restoreStampByEntityIndex.Length);
+                    Array.Clear(_seenRestoreStampByEntityIndex, 0, _seenRestoreStampByEntityIndex.Length);
                     _restoreStamp = 1;
                 }
                 else
@@ -798,6 +818,7 @@ namespace DVG.SkyPirates.Shared.Ecs
                     Entity entity = frame.Entities[i];
                     EnsureRestoreCapacity(entity.Index);
                     _restoredEntityByIndex[entity.Index] = entity;
+                    _frameValueIndexByEntityIndex[entity.Index] = i;
                     _restoreStampByEntityIndex[entity.Index] = _restoreStamp;
                 }
             }
@@ -816,7 +837,9 @@ namespace DVG.SkyPirates.Shared.Ecs
                 }
 
                 Array.Resize(ref _restoredEntityByIndex, capacity);
+                Array.Resize(ref _frameValueIndexByEntityIndex, capacity);
                 Array.Resize(ref _restoreStampByEntityIndex, capacity);
+                Array.Resize(ref _seenRestoreStampByEntityIndex, capacity);
             }
 
             private void CaptureFrame(int tick)
