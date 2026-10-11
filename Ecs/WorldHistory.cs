@@ -14,6 +14,7 @@ namespace DVG.SkyPirates.Shared.Ecs
         private readonly ComponentHistory[] _components;
         private readonly ComponentHistory<SyncId> _syncIdHistory;
         private readonly EntityPresenceHistory _entityPresence;
+        private readonly ArchetypeForEachOperation<WorldHistoryCaptureContext> _captureOperation;
 
         public WorldHistory(World world, ReadOnlySpan<ComponentId> componentIds, int initialCapacity, int maxCapacity)
         {
@@ -33,10 +34,11 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
 
             ComponentId syncId = world.Layouts.GetPrimary<SyncId>();
-            _entityPresence = new EntityPresenceHistory(world, syncId, initialCapacity, maxCapacity);
+            _entityPresence = new EntityPresenceHistory(initialCapacity, maxCapacity);
+            _captureOperation = world.ForEachArchetype(default(WorldHistoryCaptureContext));
 
             var histories = new List<ComponentHistory>(componentIds.Length);
-            var visitor = new CreateHistoryVisitor(world, histories, initialCapacity, maxCapacity);
+            var visitor = new CreateHistoryVisitor(world, _entityPresence, histories, initialCapacity, maxCapacity);
             for (int i = 0; i < componentIds.Length; i++)
             {
                 if (!world.Layouts.TryVisit(componentIds[i], visitor))
@@ -47,26 +49,40 @@ namespace DVG.SkyPirates.Shared.Ecs
                 }
             }
 
-            _syncIdHistory = GetOrCreateHistory<SyncId>(world, histories, syncId, initialCapacity, maxCapacity);
+            _syncIdHistory = GetOrCreateHistory<SyncId>(world, _entityPresence, histories, syncId, initialCapacity, maxCapacity);
             _components = histories.ToArray();
+            for (int i = 0; i < _components.Length; i++)
+            {
+                _components[i].RegisterCaptureCase(_captureOperation);
+            }
         }
 
         public void Save(int tick)
         {
-            _entityPresence.Save(tick);
+            CaptureFrame(tick, false);
+        }
+
+        private void CaptureFrame(int tick, bool baseline)
+        {
+            _entityPresence.BeginCapture(tick, baseline);
             for (int i = 0; i < _components.Length; i++)
             {
-                _components[i].Save(tick);
+                _components[i].PrepareCaptureFrame(tick);
             }
+
+            var context = default(WorldHistoryCaptureContext);
+            _captureOperation.Invoke(ref context);
+            _entityPresence.CompleteCapture(tick, baseline);
         }
 
         public void SaveBaseline()
         {
-            _entityPresence.SaveBaseline();
             for (int i = 0; i < _components.Length; i++)
             {
-                _components[i].SaveBaseline();
+                _components[i].ResetBaseline();
             }
+
+            CaptureFrame(int.MinValue, true);
         }
 
         public void GoTo(int tick)
@@ -162,6 +178,7 @@ namespace DVG.SkyPirates.Shared.Ecs
 
         private static ComponentHistory<T> GetOrCreateHistory<T>(
             World world,
+            EntityPresenceHistory entityPresence,
             List<ComponentHistory> histories,
             ComponentId componentId,
             int initialCapacity,
@@ -175,7 +192,7 @@ namespace DVG.SkyPirates.Shared.Ecs
                 }
             }
 
-            var history = new ComponentHistory<T>(world, componentId, initialCapacity, maxCapacity);
+            var history = new ComponentHistory<T>(world, entityPresence, componentId, initialCapacity, maxCapacity);
             histories.Add(history);
             return history;
         }
@@ -183,59 +200,92 @@ namespace DVG.SkyPirates.Shared.Ecs
         private sealed class CreateHistoryVisitor : IStructVisitor
         {
             private readonly World _world;
+            private readonly EntityPresenceHistory _entityPresence;
             private readonly List<ComponentHistory> _histories;
             private readonly int _initialCapacity;
             private readonly int _maxCapacity;
 
             public CreateHistoryVisitor(
                 World world,
+                EntityPresenceHistory entityPresence,
                 List<ComponentHistory> histories,
                 int initialCapacity,
                 int maxCapacity)
             {
                 _world = world;
+                _entityPresence = entityPresence;
                 _histories = histories;
                 _initialCapacity = initialCapacity;
                 _maxCapacity = maxCapacity;
             }
 
             public void Visit<T>(ComponentId componentId) where T : struct
-                => _histories.Add(new ComponentHistory<T>(_world, componentId, _initialCapacity, _maxCapacity));
+                => _histories.Add(new ComponentHistory<T>(_world, _entityPresence, componentId, _initialCapacity, _maxCapacity));
         }
 
         private sealed class EntityPresenceHistory : IDisposable
         {
             private const int NotRetired = int.MaxValue;
 
-            private readonly IOperation<EntityPresenceCaptureState> _saveOperation;
             private readonly Dictionary<Entity, Entry> _retirements = new();
             private readonly List<Entity> _staleEntities = new();
             private readonly EntityPresenceFrameHistory _frames;
             private readonly int _initialCapacity;
             private readonly int _maxCapacity;
+            private EntityPresenceFrame _captureFrame = null!;
 
-            public EntityPresenceHistory(World world, ComponentId syncId, int initialCapacity, int maxCapacity)
+            public EntityPresenceHistory(int initialCapacity, int maxCapacity)
             {
-                var query = world.WhereAll(syncId);
                 _initialCapacity = initialCapacity;
                 _maxCapacity = maxCapacity;
                 _frames = new EntityPresenceFrameHistory(initialCapacity, maxCapacity);
-                var state = default(EntityPresenceCaptureState);
-                _saveOperation = world.ForEachEntity(in query, ref state, syncId, typeof(CaptureEntity<>));
             }
 
             public EntityPresenceFrame GetFrame(int tick) => _frames.Get(tick);
 
-            public void Save(int tick) => Capture(tick, false);
-
-            public void SaveBaseline()
+            public void BeginCapture(int tick, bool baseline)
             {
-                foreach (var entry in _retirements.Values)
+                if (baseline)
                 {
-                    entry.Values.Rollback(int.MinValue);
+                    foreach (var entry in _retirements.Values)
+                    {
+                        entry.Values.Rollback(int.MinValue);
+                    }
                 }
 
-                Capture(int.MinValue, true);
+                _captureFrame = _frames.BeginWrite(tick);
+            }
+
+            public void Capture(Entity entity) => _captureFrame.Mark(entity);
+
+            public void CompleteCapture(int tick, bool baseline)
+            {
+                EntityPresenceFrame frame = _captureFrame;
+                _captureFrame = null!;
+
+                _staleEntities.Clear();
+                foreach (var pair in _retirements)
+                {
+                    Entry entry = pair.Value;
+                    if (!frame.Contains(pair.Key))
+                    {
+                        _staleEntities.Add(pair.Key);
+                        continue;
+                    }
+
+                    if (!baseline && entry.RetirementPending)
+                    {
+                        entry.RetiredAt = tick;
+                        entry.RetirementPending = false;
+                    }
+
+                    entry.Values[tick] = new EntityState(true, entry.RetiredAt, entry.RetirementPending);
+                }
+
+                for (int i = 0; i < _staleEntities.Count; i++)
+                {
+                    DisposeEntity(_staleEntities[i]);
+                }
             }
 
             public void MarkForDisposal(Entity entity, int tick)
@@ -303,43 +353,13 @@ namespace DVG.SkyPirates.Shared.Ecs
 
                 _retirements.Clear();
                 _frames.ResetBaseline();
+                _captureFrame = null!;
             }
 
             public void Dispose()
             {
                 Clear();
                 _frames.Dispose();
-            }
-
-            private void Capture(int tick, bool baseline)
-            {
-                EntityPresenceFrame frame = _frames.BeginWrite(tick);
-                var state = new EntityPresenceCaptureState(frame);
-                _saveOperation.Invoke(ref state);
-
-                _staleEntities.Clear();
-                foreach (var pair in _retirements)
-                {
-                    Entry entry = pair.Value;
-                    if (!frame.Contains(pair.Key))
-                    {
-                        _staleEntities.Add(pair.Key);
-                        continue;
-                    }
-
-                    if (!baseline && entry.RetirementPending)
-                    {
-                        entry.RetiredAt = tick;
-                        entry.RetirementPending = false;
-                    }
-
-                    entry.Values[tick] = new EntityState(true, entry.RetiredAt, entry.RetirementPending);
-                }
-
-                for (int i = 0; i < _staleEntities.Count; i++)
-                {
-                    DisposeEntity(_staleEntities[i]);
-                }
             }
 
             private Entry GetOrCreate(Entity entity)
@@ -386,12 +406,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
         }
 
-        internal struct EntityPresenceCaptureState
-        {
-            public readonly EntityPresenceFrame Frame;
-
-            public EntityPresenceCaptureState(EntityPresenceFrame frame) => Frame = frame;
-        }
+        private struct WorldHistoryCaptureContext { }
 
         internal sealed class EntityPresenceFrame
         {
@@ -564,16 +579,11 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
         }
 
-        internal struct CaptureEntity<T> : IForEachContextEntity<EntityPresenceCaptureState> where T : struct
-        {
-            public void Invoke(ref EntityPresenceCaptureState state, EntityRef entity, in T component)
-                => state.Frame.Mark(entity);
-        }
-
         private abstract class ComponentHistory
         {
-            public abstract void Save(int tick);
-            public abstract void SaveBaseline();
+            public abstract void PrepareCaptureFrame(int tick);
+            public abstract void RegisterCaptureCase(ArchetypeForEachOperation<WorldHistoryCaptureContext> operation);
+            public abstract void ResetBaseline();
             public abstract void GoTo(int tick);
             public abstract void Rollback(int tick);
             public abstract void PackSnapshot(WorldData snapshot, int tick, EntityPresenceFrame entityPresence, IReadOnlyDictionary<Entity, int> syncIds);
@@ -582,22 +592,6 @@ namespace DVG.SkyPirates.Shared.Ecs
             public abstract void DisposeEntity(Entity entity);
             public abstract void Clear();
             public abstract void Dispose();
-        }
-
-        internal struct ComponentCaptureState<T> where T : struct
-        {
-            public readonly ComponentFrame<T> Frame;
-
-            public ComponentCaptureState(ComponentFrame<T> frame)
-            {
-                Frame = frame;
-            }
-        }
-
-        internal struct CaptureComponent<T> : IForEachContextEntity<ComponentCaptureState<T>> where T : struct
-        {
-            public void Invoke(ref ComponentCaptureState<T> state, EntityRef entity, in T component)
-                => state.Frame.Add(entity, in component);
         }
 
         internal struct ComponentRestoreState<T> where T : struct
@@ -653,9 +647,11 @@ namespace DVG.SkyPirates.Shared.Ecs
         {
             private readonly World _world;
             private readonly ComponentId _componentId;
-            private readonly IOperation<ComponentCaptureState<T>> _saveOperation;
+            private readonly EntityPresenceHistory _entityPresence;
+            private readonly bool _capturesPresence;
             private readonly IOperation<ComponentRestoreState<T>> _restoreOperation;
             private readonly ComponentFrameHistory<T> _frames;
+            private ComponentFrame<T> _captureFrame = null!;
             private Entity[] _restoredEntityByIndex = Array.Empty<Entity>();
             private int[] _frameValueIndexByEntityIndex = Array.Empty<int>();
             private int[] _restoreStampByEntityIndex = Array.Empty<int>();
@@ -665,21 +661,18 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public ComponentHistory(
                 World world,
+                EntityPresenceHistory entityPresence,
                 ComponentId componentId,
                 int initialCapacity,
                 int maxCapacity)
             {
                 _world = world;
                 _componentId = componentId;
+                _entityPresence = entityPresence;
+                _capturesPresence = typeof(T) == typeof(SyncId);
+
                 var saveQuery = CreateComponentQuery(world, componentId);
                 _frames = new ComponentFrameHistory<T>(initialCapacity, maxCapacity);
-                var initialState = new ComponentCaptureState<T>(_frames.Get(int.MinValue));
-                _saveOperation = _world.ForEachEntity(
-                    in saveQuery,
-                    ref initialState,
-                    _componentId,
-                    typeof(CaptureComponent<>));
-
                 var initialRestoreState = default(ComponentRestoreState<T>);
                 _restoreOperation = _world.ForEachEntity(
                     in saveQuery,
@@ -690,12 +683,24 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public Dictionary<Entity, int> GetSyncIdsAt(int tick) => _frames.GetSyncIdsAt(tick);
 
-            public override void Save(int tick) => CaptureFrame(tick);
+            public override void PrepareCaptureFrame(int tick)
+                => _captureFrame = _frames.BeginWrite(tick);
 
-            public override void SaveBaseline()
+            public override void RegisterCaptureCase(ArchetypeForEachOperation<WorldHistoryCaptureContext> operation)
             {
-                _frames.ResetBaseline();
-                CaptureFrame(int.MinValue);
+                var query = CreateComponentQuery(_world, _componentId);
+                operation.Process<T, CaptureProcessor>(in query, _componentId, new CaptureProcessor(this));
+            }
+
+            public override void ResetBaseline() => _frames.ResetBaseline();
+
+            public void Capture(Entity entity, in T component)
+            {
+                _captureFrame.Add(entity, in component);
+                if (_capturesPresence)
+                {
+                    _entityPresence.Capture(entity);
+                }
             }
 
             public override void GoTo(int tick)
@@ -792,6 +797,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             {
                 _entitiesToRemove.Clear();
                 _frames.ResetBaseline();
+                _captureFrame = null!;
             }
 
             public override void Dispose()
@@ -842,10 +848,14 @@ namespace DVG.SkyPirates.Shared.Ecs
                 Array.Resize(ref _seenRestoreStampByEntityIndex, capacity);
             }
 
-            private void CaptureFrame(int tick)
+            private struct CaptureProcessor : IArchetypeForEachComponent<WorldHistoryCaptureContext, T>
             {
-                var context = new ComponentCaptureState<T>(_frames.BeginWrite(tick));
-                _saveOperation.Invoke(ref context);
+                private readonly ComponentHistory<T> _history;
+
+                public CaptureProcessor(ComponentHistory<T> history) => _history = history;
+
+                public void Invoke(ref WorldHistoryCaptureContext context, EntityRef entity, ref T component)
+                    => _history.Capture((Entity)entity, in component);
             }
 
             private static Query CreateComponentQuery(World world, ComponentId componentId)
@@ -1011,10 +1021,11 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public void Add(Entity entity, in T value)
             {
-                EnsureCapacity(Count + 1);
-                _entities[Count] = entity;
-                _values[Count] = value;
-                Count++;
+                var count = Count;
+                EnsureCapacity(count + 1);
+                _entities[count] = entity;
+                _values[count] = value;
+                Count = count + 1;
             }
 
             public void SetTick(int tick)
