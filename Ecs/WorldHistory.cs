@@ -57,10 +57,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
         }
 
-        public void Save(int tick)
-        {
-            CaptureFrame(tick, false);
-        }
+        public void Save(int tick) => CaptureFrame(tick, false);
 
         private void CaptureFrame(int tick, bool baseline)
         {
@@ -408,7 +405,7 @@ namespace DVG.SkyPirates.Shared.Ecs
 
         private struct WorldHistoryCaptureContext { }
 
-        internal sealed class EntityPresenceFrame
+        private sealed class EntityPresenceFrame
         {
             private Entity[] _entitiesByIndex = Array.Empty<Entity>();
             private int[] _stampsByIndex = Array.Empty<int>();
@@ -456,11 +453,15 @@ namespace DVG.SkyPirates.Shared.Ecs
             private void EnsureCapacity(int entityIndex)
             {
                 if (entityIndex < _stampsByIndex.Length)
+                {
                     return;
+                }
 
                 int capacity = _stampsByIndex.Length == 0 ? 4 : _stampsByIndex.Length;
                 while (capacity <= entityIndex)
+                {
                     capacity = checked(capacity * 2);
+                }
 
                 Array.Resize(ref _entitiesByIndex, capacity);
                 Array.Resize(ref _stampsByIndex, capacity);
@@ -488,7 +489,9 @@ namespace DVG.SkyPirates.Shared.Ecs
             public EntityPresenceFrame BeginWrite(int tick)
             {
                 if (tick < Last.Tick)
+                {
                     Rollback(tick);
+                }
 
                 if (Last.Tick == tick)
                 {
@@ -507,7 +510,9 @@ namespace DVG.SkyPirates.Shared.Ecs
             public EntityPresenceFrame Get(int tick)
             {
                 if (_count == 0 || tick < At(0).Tick)
+                {
                     throw new IndexOutOfRangeException($"Entity presence history does not contain tick {tick}");
+                }
 
                 int low = 0;
                 int high = _count - 1;
@@ -516,12 +521,18 @@ namespace DVG.SkyPirates.Shared.Ecs
                     int middle = (low + high) >> 1;
                     EntityPresenceFrame candidate = At(middle);
                     if (candidate.Tick == tick)
+                    {
                         return candidate;
+                    }
 
                     if (candidate.Tick < tick)
+                    {
                         low = middle + 1;
+                    }
                     else
+                    {
                         high = middle - 1;
+                    }
                 }
 
                 return At(high);
@@ -530,7 +541,9 @@ namespace DVG.SkyPirates.Shared.Ecs
             public void Rollback(int tick)
             {
                 while (_count > 0 && Last.Tick > tick)
+                {
                     _count--;
+                }
             }
 
             public void ResetBaseline()
@@ -560,7 +573,9 @@ namespace DVG.SkyPirates.Shared.Ecs
             private void EnsureCapacity()
             {
                 if (_count < _frames.Length)
+                {
                     return;
+                }
 
                 if (_frames.Length >= _maxCapacity)
                 {
@@ -572,7 +587,10 @@ namespace DVG.SkyPirates.Shared.Ecs
                 int capacity = Math.Min(_frames.Length << 1, _maxCapacity);
                 var expanded = new EntityPresenceFrame?[capacity];
                 for (int i = 0; i < _count; i++)
+                {
                     expanded[i] = At(i);
+                }
+
                 _frames = expanded;
                 _head = 0;
                 _mask = capacity - 1;
@@ -689,12 +707,12 @@ namespace DVG.SkyPirates.Shared.Ecs
             public override void RegisterCaptureCase(ArchetypeForEachOperation<WorldHistoryCaptureContext> operation)
             {
                 var query = CreateComponentQuery(_world, _componentId);
-                operation.Process<T, CaptureProcessor>(in query, _componentId, new CaptureProcessor(this));
+                operation.ProcessIn<T, CaptureProcessor>(in query, _componentId, new CaptureProcessor(this));
             }
 
             public override void ResetBaseline() => _frames.ResetBaseline();
 
-            public void Capture(Entity entity, in T component)
+            private void Capture(Entity entity, in T component)
             {
                 _captureFrame.Add(entity, in component);
                 if (_capturesPresence)
@@ -728,25 +746,28 @@ namespace DVG.SkyPirates.Shared.Ecs
                 {
                     Entity entity = frame.Entities[i];
                     if (_seenRestoreStampByEntityIndex[entity.Index] == _restoreStamp)
+                    {
                         continue;
+                    }
 
                     if (!_world.IsAlive(entity))
+                    {
                         continue;
+                    }
 
                     T value = frame.Values[i];
                     _world.Add(entity, in value);
                 }
             }
 
-            public override void Rollback(int tick)
-            {
-                _frames.Rollback(tick);
-            }
+            public override void Rollback(int tick) => _frames.Rollback(tick);
 
             public override void PackSnapshot(WorldData snapshot, int tick, EntityPresenceFrame entityPresence, IReadOnlyDictionary<Entity, int> syncIds)
             {
                 if (!_frames.TryGet(tick, out ComponentFrame<T> frame))
+                {
                     return;
+                }
 
                 var output = snapshot.Get<T>();
                 for (int i = 0; i < frame.Count; i++)
@@ -848,14 +869,17 @@ namespace DVG.SkyPirates.Shared.Ecs
                 Array.Resize(ref _seenRestoreStampByEntityIndex, capacity);
             }
 
-            private struct CaptureProcessor : IArchetypeForEachComponent<WorldHistoryCaptureContext, T>
+            private readonly struct CaptureProcessor : IArchetypeForEachComponentIn<WorldHistoryCaptureContext, T>
             {
                 private readonly ComponentHistory<T> _history;
 
-                public CaptureProcessor(ComponentHistory<T> history) => _history = history;
+                public CaptureProcessor(ComponentHistory<T> history)
+                {
+                    _history = history;
+                }
 
-                public void Invoke(ref WorldHistoryCaptureContext context, EntityRef entity, ref T component)
-                    => _history.Capture((Entity)entity, in component);
+                public void Invoke(ref WorldHistoryCaptureContext context, EntityRef entity, in T component)
+                    => _history.Capture(entity, in component);
             }
 
             private static Query CreateComponentQuery(World world, ComponentId componentId)
@@ -883,7 +907,9 @@ namespace DVG.SkyPirates.Shared.Ecs
             public ComponentFrame<T> BeginWrite(int tick)
             {
                 if (tick < Last.Tick)
+                {
                     Rollback(tick);
+                }
 
                 if (Last.Tick == tick)
                 {
@@ -902,7 +928,10 @@ namespace DVG.SkyPirates.Shared.Ecs
             public ComponentFrame<T> Get(int tick)
             {
                 if (!TryGet(tick, out ComponentFrame<T> frame))
+                {
                     throw new IndexOutOfRangeException($"History does not contain tick {tick}");
+                }
+
                 return frame;
             }
 
@@ -927,9 +956,13 @@ namespace DVG.SkyPirates.Shared.Ecs
                     }
 
                     if (candidate.Tick < tick)
+                    {
                         low = mid + 1;
+                    }
                     else
+                    {
                         high = mid - 1;
+                    }
                 }
 
                 frame = At(high);
@@ -943,7 +976,9 @@ namespace DVG.SkyPirates.Shared.Ecs
                 for (int i = 0; i < frame.Count; i++)
                 {
                     if (frame.Values[i] is SyncId syncId)
+                    {
                         result[frame.Entities[i]] = syncId.Value;
+                    }
                 }
                 return result;
             }
@@ -961,7 +996,9 @@ namespace DVG.SkyPirates.Shared.Ecs
             public void ResetBaseline()
             {
                 for (int i = 0; i < _count; i++)
+                {
                     At(i).Clear();
+                }
 
                 _head = 0;
                 _count = 1;
@@ -987,7 +1024,9 @@ namespace DVG.SkyPirates.Shared.Ecs
             private void EnsureCapacity()
             {
                 if (_count < _frames.Length)
+                {
                     return;
+                }
 
                 if (_frames.Length >= _maxCapacity)
                 {
@@ -1000,7 +1039,10 @@ namespace DVG.SkyPirates.Shared.Ecs
                 int capacity = Math.Min(_frames.Length << 1, _maxCapacity);
                 var expanded = new ComponentFrame<T>?[capacity];
                 for (int i = 0; i < _count; i++)
+                {
                     expanded[i] = At(i);
+                }
+
                 _frames = expanded;
                 _head = 0;
                 _mask = capacity - 1;
@@ -1017,11 +1059,14 @@ namespace DVG.SkyPirates.Shared.Ecs
             public Entity[] Entities => _entities;
             public T[] Values => _values;
 
-            public ComponentFrame(int tick) => Tick = tick;
+            public ComponentFrame(int tick)
+            {
+                Tick = tick;
+            }
 
             public void Add(Entity entity, in T value)
             {
-                var count = Count;
+                int count = Count;
                 EnsureCapacity(count + 1);
                 _entities[count] = entity;
                 _values[count] = value;
@@ -1037,7 +1082,10 @@ namespace DVG.SkyPirates.Shared.Ecs
             public void Clear()
             {
                 if (RuntimeHelpers.IsReferenceOrContainsReferences<T>() && Count > 0)
+                {
                     Array.Clear(_values, 0, Count);
+                }
+
                 Count = 0;
             }
 
@@ -1045,9 +1093,15 @@ namespace DVG.SkyPirates.Shared.Ecs
             {
                 Clear();
                 if (_entities.Length != 0)
+                {
                     ArrayPool<Entity>.Shared.Return(_entities);
+                }
+
                 if (_values.Length != 0)
+                {
                     ArrayPool<T>.Shared.Return(_values, RuntimeHelpers.IsReferenceOrContainsReferences<T>());
+                }
+
                 _entities = Array.Empty<Entity>();
                 _values = Array.Empty<T>();
             }
@@ -1055,20 +1109,30 @@ namespace DVG.SkyPirates.Shared.Ecs
             private void EnsureCapacity(int required)
             {
                 if (_entities.Length >= required)
+                {
                     return;
+                }
 
                 int capacity = Math.Max(4, _entities.Length * 2);
                 while (capacity < required)
+                {
                     capacity *= 2;
+                }
 
                 Entity[] entities = ArrayPool<Entity>.Shared.Rent(capacity);
                 T[] values = ArrayPool<T>.Shared.Rent(capacity);
                 Array.Copy(_entities, entities, Count);
                 Array.Copy(_values, values, Count);
                 if (_entities.Length != 0)
+                {
                     ArrayPool<Entity>.Shared.Return(_entities);
+                }
+
                 if (_values.Length != 0)
+                {
                     ArrayPool<T>.Shared.Return(_values, RuntimeHelpers.IsReferenceOrContainsReferences<T>());
+                }
+
                 _entities = entities;
                 _values = values;
             }
