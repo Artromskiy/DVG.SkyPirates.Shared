@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using DVG.SkyPirates.Shared.Components.Config;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Components.Runtime;
+using DVG.SkyPirates.Shared.Components.Framed;
 using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.Components
@@ -34,6 +35,8 @@ namespace DVG.Components
             action.Invoke<ClientId>();
             action.Invoke<Collide>();
             action.Invoke<Damage>();
+            action.Invoke<DesiredPosition>();
+            action.Invoke<DesiredRotation>();
             action.Invoke<Direction>();
             action.Invoke<Fixation>();
             action.Invoke<FlyDestination>();
@@ -48,16 +51,21 @@ namespace DVG.Components
             action.Invoke<MaxHealth>();
             action.Invoke<MaxSpeed>();
             action.Invoke<Position>();
+            action.Invoke<Projectile>();
             action.Invoke<Radius>();
             action.Invoke<RandomSeed>();
+            action.Invoke<Ranged>();
             action.Invoke<RockId>();
             action.Invoke<Rotation>();
             action.Invoke<Separation>();
             action.Invoke<Separator>();
+            action.Invoke<Source>();
+            action.Invoke<Speed>();
             action.Invoke<Squad>();
             action.Invoke<SquadMember>();
             action.Invoke<SyncId>();
             action.Invoke<SyncIdReserve>();
+            action.Invoke<Target>();
             action.Invoke<TargetSearchDistance>();
             action.Invoke<TeamId>();
             action.Invoke<TreeId>();

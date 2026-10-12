@@ -5,7 +5,8 @@
     },
     "Add": {
       "Target": true,
-      "Destination": true
+      "DesiredPosition": true,
+      "DesiredRotation": true
     }
   },
   {

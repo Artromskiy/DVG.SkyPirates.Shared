@@ -1,9 +1,11 @@
-﻿using Delta;
+﻿using Delta.ECS;
+using Delta;
 using DVG.Components.Attributes;
 using DVG.SkyPirates.Shared.Ids;
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
+    [DeltaEcsComponent]
     [Component(true)]
     public struct BehaviourState
     {

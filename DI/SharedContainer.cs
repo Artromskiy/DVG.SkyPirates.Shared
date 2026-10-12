@@ -106,7 +106,7 @@ namespace DVG.SkyPirates.Shared.DI
         {
             typeof(FramedComponentsSystem), // cleanups
             typeof(FlagDisabledSystem),
-            // typeof(SquadUnitMergeSystem), // TEMP: disabled while collecting history benchmark data.
+            typeof(SquadUnitMergeSystem),
             typeof(CachePositionSystem),
             typeof(SetDestinationSystem),
             typeof(TargetSearchSystem), // cache target search
@@ -129,6 +129,8 @@ namespace DVG.SkyPirates.Shared.DI
             typeof(SinglePreAttackSystem),
             typeof(MultiPreAttackSystem),
             typeof(SingleImpactSystem),
+            typeof(RangedImpactSystem),
+            typeof(ProjectileSystem),
             typeof(MultiImpactSystem),
             typeof(AutoHealSystem),
             typeof(DamageSystem),
@@ -177,7 +179,8 @@ namespace DVG.SkyPirates.Shared.DI
             Register<ClientId>(layouts);
             Register<Collide>(layouts);
             Register<Damage>(layouts);
-            Register<Destination>(layouts);
+            Register<DesiredPosition>(layouts);
+            Register<DesiredRotation>(layouts);
             Register<Direction>(layouts);
             Register<Fixation>(layouts);
             Register<FlyDestination>(layouts);
@@ -197,11 +200,14 @@ namespace DVG.SkyPirates.Shared.DI
             Register<RecivedDamage>(layouts);
             Register<RockId>(layouts);
             Register<Rotation>(layouts);
+            Register<Ranged>(layouts);
             Register<Separation>(layouts);
             Register<Separator>(layouts);
+            Register<Source>(layouts);
             Register<Squad>(layouts);
             Register<SquadMember>(layouts);
             Register<SquadMemberCount>(layouts);
+            Register<Speed>(layouts);
             Register<SyncId>(layouts);
             Register<SyncIdReserve>(layouts);
             Register<Target>(layouts);
@@ -212,6 +218,7 @@ namespace DVG.SkyPirates.Shared.DI
             Register<TreeId>(layouts);
             Register<UnitId>(layouts);
             Register<ViewToken>(layouts);
+            Register<Projectile>(layouts);
             Register<Disabled>(layouts);
             Register<Temp>(layouts);
         }

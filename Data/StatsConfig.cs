@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    public sealed class UnitsStatsConfig : Dictionary<UnitId, ComponentsSet> { }
-    public sealed class RocksStatsConfig : Dictionary<RockId, ComponentsSet> { }
-    public sealed class TreesStatsConfig : Dictionary<TreeId, ComponentsSet> { }
-    public sealed class GoodsStatsConfig : Dictionary<GoodsId, ComponentsSet> { }
-    public sealed class CactusesStatsConfig : Dictionary<CactusId, ComponentsSet> { }
+    public sealed class UnitsStatsConfig : Dictionary<UnitId, ComponentDataSet> { }
+    public sealed class RocksStatsConfig : Dictionary<RockId, ComponentDataSet> { }
+    public sealed class TreesStatsConfig : Dictionary<TreeId, ComponentDataSet> { }
+    public sealed class GoodsStatsConfig : Dictionary<GoodsId, ComponentDataSet> { }
+    public sealed class CactusesStatsConfig : Dictionary<CactusId, ComponentDataSet> { }
 }

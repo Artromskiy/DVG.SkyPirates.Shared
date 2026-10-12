@@ -8,7 +8,7 @@ namespace DVG.SkyPirates.Shared.Factories
 {
     public class EntityConfigFactory<T> : IEntityConfigFactory<T> where T : struct, IId, IEquatable<T>
     {
-        private readonly Dictionary<T, ComponentsSet> _entities = new();
+        private readonly Dictionary<T, ComponentDataSet> _entities = new();
 
         public EntityConfigFactory(GlobalConfig config)
         {
@@ -38,16 +38,15 @@ namespace DVG.SkyPirates.Shared.Factories
             }
         }
 
-        private void TryAdd(ComponentsSet data)
+        private void TryAdd(ComponentDataSet data)
         {
-            var key = data.Get<T>();
-            if (key != null)
+            if (data.TryGet<T>(out var key))
             {
-                _entities.Add(key.Value, data);
+                _entities.Add(key, data);
             }
         }
 
-        public ComponentsSet Create(T parameters)
+        public ComponentDataSet Create(T parameters)
         {
             _entities.TryGetValue(parameters, out var entityData);
             return entityData;

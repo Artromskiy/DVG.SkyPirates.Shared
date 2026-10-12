@@ -23,7 +23,6 @@ namespace DVG.Components
             where T: IStructGenericAction
         {
             action.Invoke<CachePosition>();
-            action.Invoke<Destination>();
             action.Invoke<RecivedDamage>();
             action.Invoke<SquadMemberCount>();
             action.Invoke<Target>();

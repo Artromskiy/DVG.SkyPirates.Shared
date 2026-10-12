@@ -8,6 +8,6 @@ namespace DVG.SkyPirates.Shared.Commands
     public struct SetEntityDataCommand
     {
         public SyncId Target;
-        public ComponentsSet Components;
+        public ComponentDataSet Components;
     }
 }

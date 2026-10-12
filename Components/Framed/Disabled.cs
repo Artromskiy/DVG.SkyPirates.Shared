@@ -1,4 +1,9 @@
-﻿namespace DVG.SkyPirates.Shared.Components.Framed
+﻿using Delta.ECS;
+namespace DVG.SkyPirates.Shared.Components.Framed
 {
-    public struct Disabled { }
+    [DeltaEcsComponent]
+    public struct Disabled
+    {
+        private bool _hidden;
+    }
 }

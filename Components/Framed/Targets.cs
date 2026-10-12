@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Components.Framed
 {
+    [DeltaEcsComponent]
     [Component(false)]
     public struct Targets
     {

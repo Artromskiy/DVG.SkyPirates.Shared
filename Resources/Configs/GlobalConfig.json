@@ -1986,7 +1986,8 @@
   "FramedComponentDependencies": [
     {
       "Add": {
-        "Destination": true,
+        "DesiredPosition": true,
+        "DesiredRotation": true,
         "Target": true
       },
       "Has": {
@@ -6828,6 +6829,10 @@
       }
     },
     "Buccaneer": {
+      "Ranged": {
+        "ProjectileSpeed": 22,
+        "ProjectileViewToken": "projectile"
+      },
       "BehaviourConfig": {
         "Durations": {
           "PreAttack": 0.3000030517578125,

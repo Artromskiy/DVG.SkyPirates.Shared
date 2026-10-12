@@ -7,7 +7,7 @@ namespace DVG.SkyPirates.Shared.Data
 
     public class ComponentDependenciesData
     {
-        public ComponentsMask Has = default!;
-        public ComponentsMask Add = default!;
+        public ComponentIdList Has = default!;
+        public ComponentIdList Add = default!;
     }
 }

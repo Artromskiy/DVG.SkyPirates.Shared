@@ -1,10 +1,12 @@
-﻿using Delta;
+﻿using Delta.ECS;
+using Delta;
 using DVG.Components.Attributes;
 using DVG.SkyPirates.Shared.Ids;
 using System.Collections.Frozen;
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
+    [DeltaEcsComponent]
     [Component(true)]
     public struct BehaviourConfig
     {

@@ -1,9 +1,11 @@
-﻿using DVG.Components.Attributes;
+﻿using Delta.ECS;
+using DVG.Components.Attributes;
 using DVG.SkyPirates.Shared.Ids;
 using System.Collections.Immutable;
 
 namespace DVG.SkyPirates.Shared.Components.Config
 {
+    [DeltaEcsComponent]
     [Component(true)]
     public readonly struct GoodsDrop
     {

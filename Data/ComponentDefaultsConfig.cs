@@ -6,8 +6,8 @@ namespace DVG.SkyPirates.Shared.Data
 
     public class ComponentDefaultsData
     {
-        public ComponentsSet Default = default!;
-        public ComponentsMask CopyFrom = default!;
-        public ComponentsMask CopyTo = default!;
+        public ComponentDataSet Default = default!;
+        public ComponentIdList CopyFrom = default!;
+        public ComponentIdList CopyTo = default!;
     }
 }

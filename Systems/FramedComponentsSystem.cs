@@ -52,20 +52,12 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private static DependencyData CreateDependency(World world, ComponentDependenciesData dependency)
         {
-            var types = dependency.Has.GetTypes();
-            var has = new ComponentId[types.Length + 1];
-            for (int i = 0; i < types.Length; i++)
-            {
-                has[i] = world.Layouts.GetPrimary(types[i]);
-            }
+            var configuredHas = dependency.Has.GetIds();
+            var has = new ComponentId[configuredHas.Length + 1];
+            configuredHas.CopyTo(has, 0);
+            has[configuredHas.Length] = world.Layouts.GetPrimary<Alive>();
 
-            has[types.Length] = world.Layouts.GetPrimary<Alive>();
-
-            var add = new List<ComponentId>();
-            var collect = new CollectComponentIds(world, add);
-            dependency.Add.ForEach(ref collect);
-
-            var addIds = add.ToArray();
+            var addIds = dependency.Add.GetIds();
             var queries = new Query[addIds.Length];
             var filter = world.WhereAll(has);
             for (int i = 0; i < addIds.Length; i++)
@@ -74,21 +66,6 @@ namespace DVG.SkyPirates.Shared.Systems
             }
 
             return new DependencyData(addIds, queries);
-        }
-
-        private readonly struct CollectComponentIds : IStructGenericAction
-        {
-            private readonly World _world;
-            private readonly List<ComponentId> _componentIds;
-
-            public CollectComponentIds(World world, List<ComponentId> componentIds)
-            {
-                _world = world;
-                _componentIds = componentIds;
-            }
-
-            public void Invoke<T>() where T : struct
-                => _componentIds.Add(_world.Layouts.GetPrimary<T>());
         }
 
         internal readonly struct DependencyData

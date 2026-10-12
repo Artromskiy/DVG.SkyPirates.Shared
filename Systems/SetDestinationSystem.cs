@@ -11,7 +11,7 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private Query? _descCache;
         private Query _desc => _descCache ??= _world.
-            WhereAll<Position, Rotation, Destination>().Alive().NotDisabled();
+            WhereAll<Position, Rotation, DesiredPosition, DesiredRotation>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -23,11 +23,11 @@ namespace DVG.SkyPirates.Shared.Systems
         public void Tick(int tick, fix deltaTime)
         {
             var desc = _desc;
-            _world.ForEach<Position, Rotation, Destination>(in desc,
-                static (ref Position position, ref Rotation rotation, ref Destination destination) =>
+            _world.ForEach<Position, Rotation, DesiredPosition, DesiredRotation>(in desc,
+                static (ref Position position, ref Rotation rotation, ref DesiredPosition desiredPosition, ref DesiredRotation desiredRotation) =>
                 {
-                    destination.Position = position;
-                    destination.Rotation = rotation;
+                    desiredPosition.Value = position;
+                    desiredRotation.Value = rotation;
                 }).Invoke();
         }
     }

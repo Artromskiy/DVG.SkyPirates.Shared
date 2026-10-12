@@ -11,7 +11,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandMutators
         ICommandMutator<SpawnUnitCommand>,
         ICommandMutatorRegistration
     {
-        private const uint ReservedIdCount = 10;
+        private const uint ReservedIdCount = 64;
         private readonly IEntityRegistry _entityRegistry;
 
         public SpawnCommandMutator(IEntityRegistry entityRegistry)

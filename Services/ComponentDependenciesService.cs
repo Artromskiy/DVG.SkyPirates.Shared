@@ -1,5 +1,4 @@
 ﻿using Delta.ECS;
-using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices;
 
@@ -20,51 +19,12 @@ namespace DVG.SkyPirates.Shared.Services
         {
             foreach (var config in _dependencies)
             {
-                var hasAll = new HasAllAction(_world, entity);
-                config.Has.ForEach(ref hasAll);
-                if (!hasAll.Value)
-                {
-                    continue;
-                }
-
-                var add = new AddAction(_world, entity);
-                config.Add.ForEach(ref add);
-            }
-        }
-
-        private struct HasAllAction : IStructGenericAction
-        {
-            public bool Value { get; private set; }
-            private readonly World _world;
-            private readonly Entity _entity;
-
-            public HasAllAction(World world, Entity entity) : this()
-            {
-                Value = true;
-                _world = world;
-                _entity = entity;
-            }
-
-            public void Invoke<T>() where T : struct
-            {
-                Value &= _world.Has<T>(_entity);
-            }
-        }
-
-        private readonly struct AddAction : IStructGenericAction
-        {
-            private readonly World _world;
-            private readonly Entity _entity;
-
-            public AddAction(World world, Entity entity)
-            {
-                _world = world;
-                _entity = entity;
-            }
-
-            public void Invoke<T>() where T : struct
-            {
-                _world.Add<T>(_entity);
+                bool hasAll = true;
+                foreach (var required in config.Has)
+                    hasAll &= _world.Has(entity, required.ComponentId);
+                if (!hasAll) continue;
+                foreach (var added in config.Add)
+                    _world.Add(entity, added.ComponentId);
             }
         }
     }

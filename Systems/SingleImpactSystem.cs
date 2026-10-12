@@ -1,4 +1,4 @@
-﻿using Delta;
+using Delta;
 using Delta.ECS;
 using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Components.Config;
@@ -13,7 +13,7 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private Query? _descCache;
         private Query _desc => _descCache ??= _world.
-            WhereAll<BehaviourState, Damage, ImpactDistance, Position, Target>().Alive().NotDisabled();
+            WhereAll<BehaviourState, Damage, ImpactDistance, Position, Target>().WhereNone<Ranged>().Alive().NotDisabled();
 
         private readonly World _world;
 
@@ -27,28 +27,16 @@ namespace DVG.SkyPirates.Shared.Systems
             var world = _world;
             var desc = _desc;
             _world.ForEach<World, BehaviourState, Damage, ImpactDistance, Position, Target>(in desc, ref world,
-                static (ref World world, ref BehaviourState behaviour, ref Damage damage, ref ImpactDistance impactDistance, ref Position position, ref Target target) =>
+                static (ref World world, ref BehaviourState behaviour, ref Damage damage, ref ImpactDistance impactDistance,
+                    ref Position position, ref Target target) =>
                 {
-                if (behaviour.State != StateId.Constants.PreAttack || behaviour.Percent != 1)
-                {
-                    return;
-                }
+                    if (behaviour.State != StateId.Constants.PreAttack || behaviour.Percent != 1 || !target.Entity.HasValue)
+                        return;
 
-                if (!target.Entity.HasValue)
-                {
-                    return;
-                }
-
-                var targetPos = world.Get<Position>(target.Entity.Value);
-                var sqrDistance = fix3.SqrDistance(targetPos, position);
-                var impactSqrDistance = (fix)impactDistance * impactDistance;
-
-                if (sqrDistance > impactSqrDistance)
-                {
-                    return;
-                }
-
-                world.GetRef<RecivedDamage>(target.Entity.Value) += (fix)damage;
+                    var targetPosition = world.Get<Position>(target.Entity.Value);
+                    fix distance = (fix)impactDistance;
+                    if (fix3.SqrDistance(targetPosition, position) <= distance * distance)
+                        world.GetRef<RecivedDamage>(target.Entity.Value) += (fix)damage;
                 }).Invoke(ref world);
         }
     }

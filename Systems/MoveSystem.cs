@@ -11,13 +11,13 @@ namespace DVG.SkyPirates.Shared.Systems
 {
     /// <summary>
     /// Moves Entity's <see href="Position"/> and <see href="Rotation"/> 
-    /// with speed <see href="MoveSpeed"/> towards <see href="Destination"/>
+    /// with speed <see href="MaxSpeed"/> towards the desired position.
     /// </summary>
     public sealed class MoveSystem : ITransientDeltaTickableExecutor
     {
         private Query? _descCache;
         private Query _desc => _descCache ??= _world.
-            WhereAll<Position, Rotation, Destination, MaxSpeed>().Alive().NotDisabled();
+            WhereAll<Position, Rotation, DesiredPosition, DesiredRotation, MaxSpeed, Target>().Alive().NotDisabled();
 
         private readonly World _world;
         private const int RotateSpeed = 720;
@@ -30,17 +30,19 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             var delta = deltaTime;
             var desc = _desc;
-            _world.ForEach<fix, Position, Rotation, Destination, MaxSpeed>(in desc, ref delta,
-                static (ref fix deltaTime, ref Position position, ref Rotation rotation, ref Destination destination, ref MaxSpeed moveSpeed) =>
+            _world.ForEach<fix, Position, Rotation, DesiredPosition, DesiredRotation, MaxSpeed, Target>(in desc, ref delta,
+                static (ref fix deltaTime, ref Position position, ref Rotation rotation, ref DesiredPosition desiredPosition, ref DesiredRotation desiredRotation, ref MaxSpeed moveSpeed, ref Target target) =>
                 {
                     var currentPosition = (fix3)position;
-                    var nextPositionXZ = fix2.MoveTowards(currentPosition.xz, destination.Position.xz, moveSpeed * deltaTime);
+                    var nextPositionXZ = fix2.MoveTowards(currentPosition.xz, desiredPosition.Value.xz, moveSpeed * deltaTime);
                     position = new fix3(nextPositionXZ.x, currentPosition.y, nextPositionXZ.y);
 
-                    var dir = destination.Position.xz - ((fix3)position).xz;
-                    var rotateTo = fix2.SqrLength(dir) != 0
+                    var dir = desiredPosition.Value.xz - ((fix3)position).xz;
+                    var rotateTo = target.Entity.HasValue
+                        ? desiredRotation.Value
+                        : fix2.SqrLength(dir) != 0
                         ? Maths.Degrees(MathsExtensions.GetRotation(dir))
-                        : destination.Rotation;
+                        : desiredRotation.Value;
 
                     rotation = Maths.RotateTowards(rotation, rotateTo, RotateSpeed * deltaTime);
                 }).Invoke(ref delta);

@@ -1,5 +1,4 @@
 ﻿using Delta.ECS;
-using DVG.SkyPirates.Shared.Ecs;
 using DVG.SkyPirates.Shared.Data;
 using DVG.SkyPirates.Shared.IServices;
 using System.Runtime.CompilerServices;
@@ -21,17 +20,17 @@ namespace DVG.SkyPirates.Shared.Services
         {
             foreach (var item in _componentDefaultsConfig)
             {
-                var setAction = new SetDefaultAction(_world, entity);
-                item.Default.ForEach(ref setAction);
+                foreach (var entry in item.Default)
+                    entry.Visit(new SetDefaultAction(_world, entity));
             }
             foreach (var item in _componentDefaultsConfig)
             {
-                var copyAction = new CopyAction(_world, entity, item.CopyTo);
-                item.CopyFrom.ForEach(ref copyAction);
+                foreach (var from in item.CopyFrom)
+                    item.CopyFrom.Visit(from, new CopyAction(_world, entity, item.CopyTo));
             }
         }
 
-        private readonly struct SetDefaultAction : IStructGenericActionArg
+        private readonly struct SetDefaultAction : IComponentDataVisitor
         {
             private readonly World _world;
             private readonly Entity _entity;
@@ -42,38 +41,38 @@ namespace DVG.SkyPirates.Shared.Services
                 _entity = entity;
             }
 
-            public readonly void Invoke<T>(T component) where T : struct
+            public readonly void Visit<T>(string name, ComponentId componentId, in T value) where T : struct
             {
                 if (_world.Has<T>(_entity))
                 {
-                    _world.GetRef<T>(_entity) = component;
+                    _world.GetRef<T>(_entity) = value;
                 }
             }
         }
 
-        private readonly struct CopyAction : IStructGenericAction
+        private readonly struct CopyAction : IStructVisitor
         {
             private readonly World _world;
             private readonly Entity _entity;
-            private readonly ComponentsMask _to;
+            private readonly ComponentIdList _to;
 
-            public CopyAction(World world, Entity entity, ComponentsMask to)
+            public CopyAction(World world, Entity entity, ComponentIdList to)
             {
                 _world = world;
                 _entity = entity;
                 _to = to;
             }
 
-            public readonly void Invoke<From>() where From : struct
+            public readonly void Visit<From>(ComponentId fromId) where From : struct
             {
                 if (_world.TryGet(_entity, out From cmp))
                 {
-                    var setAction = new SetAction<From>(_world, _entity, cmp);
-                    _to.ForEach(ref setAction);
+                    foreach (var target in _to)
+                        _to.Visit(target, new SetAction<From>(_world, _entity, cmp));
                 }
             }
 
-            private readonly struct SetAction<From> : IStructGenericAction
+            private readonly struct SetAction<From> : IStructVisitor
             {
                 private readonly World _world;
                 private readonly Entity _entity;
@@ -86,7 +85,7 @@ namespace DVG.SkyPirates.Shared.Services
                     _from = from;
                 }
 
-                public void Invoke<To>() where To : struct
+                public void Visit<To>(ComponentId toId) where To : struct
                 {
                     if (!_world.Has<To>(_entity))
                     {

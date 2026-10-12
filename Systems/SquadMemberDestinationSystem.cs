@@ -14,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Systems
     {
         private Query? _unitsDescCache;
         private Query _unitsDesc => _unitsDescCache ??= _world.
-            WhereAll<SquadMember, SyncId, Destination>().Alive().NotDisabled();
+            WhereAll<SquadMember, SyncId, DesiredPosition, DesiredRotation>().Alive().NotDisabled();
         private readonly OrderedQuery _orderedUnitsDesc;
 
         private Query? _squadsDescCache;
@@ -66,15 +66,15 @@ namespace DVG.SkyPirates.Shared.Systems
 
             (Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig) applyState = (_orderPerUnit, _dataPerSquad, _circlesConfig);
             var unitsDesc = _unitsDesc;
-            _world.ForEach<(Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig), SyncId, SquadMember, Destination>(in unitsDesc, ref applyState,
-                static (ref (Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig) state, ref SyncId syncId, ref SquadMember member, ref Destination destination) =>
+            _world.ForEach<(Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig), SyncId, SquadMember, DesiredPosition, DesiredRotation>(in unitsDesc, ref applyState,
+                static (ref (Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig) state, ref SyncId syncId, ref SquadMember member, ref DesiredPosition desiredPosition, ref DesiredRotation desiredRotation) =>
                 {
                     var squad = state.DataPerSquad[member.SquadId];
                     var circles = state.CirclesConfig[squad.MemberCount];
                     int order = state.OrderPerUnit[syncId.Value];
                     var local = circles.Points[order];
-                    destination.Position = squad.Position + local.x_y;
-                    destination.Rotation = squad.Rotation;
+                    desiredPosition.Value = squad.Position + local.x_y;
+                    desiredRotation.Value = squad.Rotation;
                 }).Invoke(ref applyState);
         }
 

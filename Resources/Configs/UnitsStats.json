@@ -267,6 +267,10 @@
   },
   {
     "UnitId": "Buccaneer",
+    "Ranged": {
+      "ProjectileSpeed": 22,
+      "ProjectileViewToken": "projectile"
+    },
     "MaxHealth": 10,
     "Damage": 15,
     "ImpactDistance": 5,
