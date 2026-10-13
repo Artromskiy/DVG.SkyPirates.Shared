@@ -324,6 +324,40 @@ namespace DVG.SkyPirates.Shared.Ecs
                 => _histories.Add(new ComponentHistory<T>(_owner, componentId, _owner._initialCapacity, _owner._maxCapacity));
         }
 
+        internal struct ComponentRestoreState<T> where T : struct
+        {
+            public readonly Dictionary<Entity, T> Values;
+            public readonly HashSet<Entity> PresentEntities;
+            public readonly List<Entity> EntitiesToRemove;
+
+            public ComponentRestoreState(
+                Dictionary<Entity, T> values,
+                HashSet<Entity> presentEntities,
+                List<Entity> entitiesToRemove)
+            {
+                Values = values;
+                PresentEntities = presentEntities;
+                EntitiesToRemove = entitiesToRemove;
+            }
+        }
+
+        internal struct RestoreExistingComponent<T> : IForEachContextEntity<ComponentRestoreState<T>> where T : struct
+        {
+            public void Invoke(ref ComponentRestoreState<T> state, EntityRef entity, ref T component)
+            {
+                Entity handle = entity;
+                state.PresentEntities.Add(handle);
+                if (state.Values.TryGetValue(handle, out T value))
+                {
+                    component = value;
+                }
+                else
+                {
+                    state.EntitiesToRemove.Add(handle);
+                }
+            }
+        }
+
         private abstract class ComponentHistory : IDisposable
         {
             protected ComponentHistory(ComponentId componentId)
@@ -348,8 +382,11 @@ namespace DVG.SkyPirates.Shared.Ecs
             private readonly ChangeWorldHistory _owner;
             private readonly ComponentId _componentId;
             private readonly ComponentChangeOperation<T> _operation;
+            private readonly Query _restoreQuery;
+            private readonly IOperation<ComponentRestoreState<T>> _restoreOperation;
             private readonly ChangeFrameHistory<T> _frames;
-            private readonly HashSet<Entity> _knownEntities = new();
+            private readonly HashSet<Entity> _presentEntities = new();
+            private readonly List<Entity> _entitiesToRemove = new();
             private ChangeFrame<T> _captureFrame = null!;
 
             public ComponentHistory(ChangeWorldHistory owner, ComponentId componentId, int initialCapacity, int maxCapacity)
@@ -359,6 +396,13 @@ namespace DVG.SkyPirates.Shared.Ecs
                 _componentId = componentId;
                 _frames = new ChangeFrameHistory<T>(initialCapacity, maxCapacity);
                 _operation = owner._world.ForEachChange<T>(componentId, OnChange);
+                _restoreQuery = owner._world.WhereAll(componentId);
+                var initialRestoreState = default(ComponentRestoreState<T>);
+                _restoreOperation = owner._world.ForEachEntity(
+                    in _restoreQuery,
+                    ref initialRestoreState,
+                    componentId,
+                    typeof(RestoreExistingComponent<>));
             }
 
             public override void BeginCapture(int tick) => _captureFrame = _frames.BeginWrite(tick);
@@ -368,30 +412,25 @@ namespace DVG.SkyPirates.Shared.Ecs
             public override void GoTo(int tick)
             {
                 Dictionary<Entity, T> state = _frames.GetState(tick);
-                foreach (Entity entity in _knownEntities)
+                _presentEntities.Clear();
+                _entitiesToRemove.Clear();
+                var restoreState = new ComponentRestoreState<T>(state, _presentEntities, _entitiesToRemove);
+                _restoreOperation.Invoke(ref restoreState);
+
+                for (int i = 0; i < _entitiesToRemove.Count; i++)
                 {
-                    if (!_owner._world.IsAlive(entity))
+                    _owner._world.Remove(_entitiesToRemove[i], _componentId);
+                }
+
+                foreach (KeyValuePair<Entity, T> pair in state)
+                {
+                    if (_presentEntities.Contains(pair.Key) || !_owner._world.IsAlive(pair.Key))
                     {
                         continue;
                     }
 
-                    bool shouldExist = state.TryGetValue(entity, out T value);
-                    bool exists = _owner._world.Has(entity, _componentId);
-                    if (shouldExist)
-                    {
-                        if (exists)
-                        {
-                            _owner._world.GetRef<T>(entity, _componentId) = value;
-                        }
-                        else
-                        {
-                            _owner._world.Add(entity, in value);
-                        }
-                    }
-                    else if (exists)
-                    {
-                        _owner._world.Remove(entity, _componentId);
-                    }
+                    T value = pair.Value;
+                    _owner._world.Add(pair.Key, in value);
                 }
             }
 
@@ -442,7 +481,6 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public override void Forget(Entity entity)
             {
-                _knownEntities.Remove(entity);
                 _frames.Forget(entity);
             }
 
@@ -461,7 +499,6 @@ namespace DVG.SkyPirates.Shared.Ecs
                     return;
                 }
 
-                _knownEntities.Add(entity);
                 _captureFrame.Add(entity, change, in component);
             }
 
@@ -484,9 +521,12 @@ namespace DVG.SkyPirates.Shared.Ecs
         {
             private ChangeFrame<T>[] _frames;
             private readonly Dictionary<Entity, T> _baseline = new();
+            private readonly Dictionary<Entity, T> _stateCache = new();
             private int _mask;
             private int _head;
             private int _count;
+            private int _cachedStateTick;
+            private bool _hasCachedState;
             private readonly int _maxCapacity;
 
             public ChangeFrameHistory(int initialCapacity, int maxCapacity)
@@ -503,6 +543,11 @@ namespace DVG.SkyPirates.Shared.Ecs
                 if (tick < Last.Tick)
                 {
                     Rollback(tick);
+                }
+
+                if (_hasCachedState && tick <= _cachedStateTick)
+                {
+                    _hasCachedState = false;
                 }
 
                 if (Last.Tick == tick)
@@ -525,23 +570,61 @@ namespace DVG.SkyPirates.Shared.Ecs
                     throw new IndexOutOfRangeException($"History does not contain tick {tick}");
                 }
 
-                var state = new Dictionary<Entity, T>(_baseline);
-                for (int i = 0; i < _count; i++)
+                if (_hasCachedState && _cachedStateTick == tick)
                 {
-                    ChangeFrame<T> frame = At(i);
-                    if (frame.Tick > tick)
-                    {
-                        break;
-                    }
-
-                    frame.ApplyTo(state);
+                    return _stateCache;
                 }
 
-                return state;
+                if (!_hasCachedState || tick < _cachedStateTick)
+                {
+                    _stateCache.Clear();
+                    foreach (KeyValuePair<Entity, T> pair in _baseline)
+                    {
+                        _stateCache.Add(pair.Key, pair.Value);
+                    }
+
+                    for (int i = 0; i < _count; i++)
+                    {
+                        ChangeFrame<T> frame = At(i);
+                        if (frame.Tick > tick)
+                        {
+                            break;
+                        }
+
+                        frame.ApplyTo(_stateCache);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < _count; i++)
+                    {
+                        ChangeFrame<T> frame = At(i);
+                        if (frame.Tick <= _cachedStateTick)
+                        {
+                            continue;
+                        }
+
+                        if (frame.Tick > tick)
+                        {
+                            break;
+                        }
+
+                        frame.ApplyTo(_stateCache);
+                    }
+                }
+
+                _cachedStateTick = tick;
+                _hasCachedState = true;
+                return _stateCache;
             }
 
             public void Rollback(int tick)
             {
+                if (_hasCachedState && tick < _cachedStateTick)
+                {
+                    _hasCachedState = false;
+                }
+
                 if (_count == 0 || tick < First.Tick)
                 {
                     throw new IndexOutOfRangeException($"History does not contain tick {tick}");
@@ -556,6 +639,7 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public void Forget(Entity entity)
             {
+                _hasCachedState = false;
                 _baseline.Remove(entity);
                 for (int i = 0; i < _count; i++)
                 {
@@ -565,6 +649,8 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public void Dispose()
             {
+                _hasCachedState = false;
+                _stateCache.Clear();
                 for (int i = 0; i < _frames.Length; i++)
                 {
                     _frames[i]?.Clear();

@@ -29,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             var switchDesc = _descSwitch;
             _world.ForEach<BehaviourState, BehaviourConfig>(in switchDesc,
-                static (ref BehaviourState behaviour, ref BehaviourConfig behaviourConfig) =>
+                static (ref BehaviourState behaviour, in BehaviourConfig behaviourConfig) =>
                 {
                 // skip if no force state and we are at none
                 if (behaviour.ForceState == null && (

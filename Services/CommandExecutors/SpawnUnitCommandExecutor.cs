@@ -105,7 +105,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             (SyncId SquadId, int TotalRum) totalRumState = (squadId, squadRum);
             var query = _desc;
             _world.ForEach<(SyncId SquadId, int TotalRum), SquadMember, GoodsDrop>(in query, ref totalRumState,
-                static (ref (SyncId SquadId, int TotalRum) context, ref SquadMember member, ref GoodsDrop goodsDrop) =>
+                static (ref (SyncId SquadId, int TotalRum) context, in SquadMember member, in GoodsDrop goodsDrop) =>
                 {
                     if (member.SquadId == context.SquadId)
                     {
@@ -124,7 +124,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
                 collectState = (squadId, units);
             _world.ForEachEntity(in query, ref collectState,
                 static (ref (SyncId SquadId, List<(Entity entity, GoodsDrop drop, SyncId syncId)> Units) context,
-                    EntityRef entityRef, ref SquadMember member, ref GoodsDrop goodsDrop, ref SyncId syncId) =>
+                    EntityRef entityRef, in SquadMember member, in GoodsDrop goodsDrop, in SyncId syncId) =>
                 {
                     if (member.SquadId != context.SquadId)
                     {

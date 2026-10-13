@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var dropInfos = _dropInfos;
             var desc = _createDesc;
             _world.ForEach<List<DropInfo>, Health, GoodsDrop, Position, SyncIdReserve, RandomSeed>(in desc, ref dropInfos,
-                static (ref List<DropInfo> dropInfos, ref Health health, ref GoodsDrop goods, ref Position position, ref SyncIdReserve syncIdReserve, ref RandomSeed seed) =>
+                static (ref List<DropInfo> dropInfos, in Health health, in GoodsDrop goods, in Position position, ref SyncIdReserve syncIdReserve, ref RandomSeed seed) =>
                 {
                     if (health > fix.Zero)
                     {

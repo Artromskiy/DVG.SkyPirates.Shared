@@ -10,15 +10,15 @@ namespace DVG.SkyPirates.Shared.IServices
     public interface ITargetSearchSystem : IDeltaTickableExecutor
     {
         Entity? FindTarget(
-            ref Position position,
-            ref TargetSearchDistance searchDistance,
-            ref TargetSearchPosition searchPosition,
-            ref TeamId team);
+            in Position position,
+            in TargetSearchDistance searchDistance,
+            in TargetSearchPosition searchPosition,
+            in TeamId team);
 
         void FindTargets(
-            ref TargetSearchDistance searchDistance,
-            ref TargetSearchPosition searchPosition,
-            ref TeamId team,
+            in TargetSearchDistance searchDistance,
+            in TargetSearchPosition searchPosition,
+            in TeamId team,
             List<Entity> targets);
     }
 }

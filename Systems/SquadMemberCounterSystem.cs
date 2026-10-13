@@ -35,7 +35,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var unitCounts = _unitCountPerSquad;
             var unitsDesc = _unitsDesc;
             _world.ForEach<Lookup<int>, SquadMember>(in unitsDesc, ref unitCounts,
-                static (ref Lookup<int> counts, ref SquadMember member) =>
+                static (ref Lookup<int> counts, in SquadMember member) =>
                 {
                     if (!counts.ContainsKey(member.SquadId))
                     {
@@ -48,7 +48,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var counts = _unitCountPerSquad;
             var squadsDesc = _squadsDesc;
             _world.ForEach<Lookup<int>, SyncId, SquadMemberCount>(in squadsDesc, ref counts,
-                static (ref Lookup<int> unitCounts, ref SyncId syncId, ref SquadMemberCount memberCount) =>
+                static (ref Lookup<int> unitCounts, in SyncId syncId, ref SquadMemberCount memberCount) =>
                 {
                     unitCounts.TryGetValue(syncId.Value, out int count);
                     memberCount = count;

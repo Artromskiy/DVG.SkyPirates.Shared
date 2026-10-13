@@ -41,7 +41,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var partitioning = _partitioning;
             var separatorDesc = _separatorDesc;
             _world.ForEach<Lookup2D<List<SeparatorEntry>>, SyncId, Position, Separator, Radius>(in separatorDesc, ref partitioning,
-                static (ref Lookup2D<List<SeparatorEntry>> grid, ref SyncId syncId, ref Position position, ref Separator separator, ref Radius radius) =>
+                static (ref Lookup2D<List<SeparatorEntry>> grid, in SyncId syncId, in Position position, in Separator separator, in Radius radius) =>
                 {
                     var pos = ((fix3)position).xz;
                     var range = new fix2(radius.Value);

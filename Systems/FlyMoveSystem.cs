@@ -29,7 +29,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var desc = _desc;
             var delta = deltaTime;
             _world.ForEach<fix, Position, FlyDestination, MaxSpeed>(in desc, ref delta,
-                static (ref fix deltaTime, ref Position position, ref FlyDestination fly, ref MaxSpeed maxSpeed) =>
+                static (ref fix deltaTime, ref Position position, in FlyDestination fly, in MaxSpeed maxSpeed) =>
                 {
                     const int ArcHeight = 4;
 
@@ -49,7 +49,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             var finished = _finished;
             _world.ForEachEntity<List<Entity>, Position, FlyDestination, MaxSpeed>(in desc, ref finished,
-                static (ref List<Entity> entities, EntityRef entity, ref Position position, ref FlyDestination fly, ref MaxSpeed maxSpeed) =>
+                static (ref List<Entity> entities, EntityRef entity, in Position position, in FlyDestination fly, in MaxSpeed maxSpeed) =>
                 {
                     if (position == fly.EndPosition)
                     {

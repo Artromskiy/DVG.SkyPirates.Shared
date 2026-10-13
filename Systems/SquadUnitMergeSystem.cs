@@ -42,12 +42,12 @@ namespace DVG.SkyPirates.Shared.Systems
                 ref state,
                 static (ref (World World, Dictionary<(int SquadId, UnitId UnitId, int Level), List<Unit>> UnitsPerGroup) state,
                     EntityRef entity,
-                    ref SquadMember member,
-                    ref UnitId unitId,
-                    ref SyncId syncId,
-                    ref Health health,
-                    ref MaxHealth maxHealth,
-                    ref Damage damage) =>
+                    in SquadMember member,
+                    in UnitId unitId,
+                    in SyncId syncId,
+                    in Health health,
+                    in MaxHealth maxHealth,
+                    in Damage damage) =>
                 {
                     var level = state.World.Has<Level>(entity)
                         ? state.World.Get<Level>(entity).Value

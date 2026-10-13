@@ -46,7 +46,7 @@ namespace DVG.SkyPirates.Shared.Systems
             (HexMap HexMap, ThreadLocal<List<Segment>> SegmentsCache) state = (hexMap, _segmentsCache);
             var desc = _desc;
             _world.ForEach<(HexMap HexMap, ThreadLocal<List<Segment>> SegmentsCache), Position, CachePosition, Radius>(in desc, ref state,
-                static (ref (HexMap HexMap, ThreadLocal<List<Segment>> SegmentsCache) state, ref Position position, ref CachePosition cachePosition, ref Radius radius) =>
+                static (ref (HexMap HexMap, ThreadLocal<List<Segment>> SegmentsCache) state, ref Position position, ref CachePosition cachePosition, in Radius radius) =>
                 {
                     var segments = state.SegmentsCache.Value;
                     segments.Clear();

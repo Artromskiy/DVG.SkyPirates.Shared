@@ -96,7 +96,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var goodsPerSquad = _goodsPerSquad;
             var squadDesc = _squadDesc;
             _world.ForEach<Dictionary<int, Dictionary<GoodsId, int>>, GoodsDrop, SyncId, SquadMemberCount>(in squadDesc, ref goodsPerSquad,
-                static (ref Dictionary<int, Dictionary<GoodsId, int>> goodsPerSquad, ref GoodsDrop goods, ref SyncId syncId, ref SquadMemberCount memberCount) =>
+                static (ref Dictionary<int, Dictionary<GoodsId, int>> goodsPerSquad, ref GoodsDrop goods, in SyncId syncId, in SquadMemberCount memberCount) =>
                 {
                     if (memberCount.Value == 0)
                     {
@@ -171,7 +171,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var goodsPerUnit = _goodsPerUnit;
             var unitsDesc = _unitsDesc;
             _world.ForEach<Dictionary<int, SortedList<GoodsId, int>>, SyncId, GoodsDrop>(in unitsDesc, ref goodsPerUnit,
-                static (ref Dictionary<int, SortedList<GoodsId, int>> goodsPerUnit, ref SyncId syncId, ref GoodsDrop drop) =>
+                static (ref Dictionary<int, SortedList<GoodsId, int>> goodsPerUnit, in SyncId syncId, ref GoodsDrop drop) =>
                 {
                     if (!goodsPerUnit.TryGetValue(syncId, out var distributedDrop) || distributedDrop.Count == 0)
                     {

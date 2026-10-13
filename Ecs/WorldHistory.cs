@@ -649,13 +649,21 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
         }
 
-        private struct CaptureState<T> where T : struct
-        {
-            public readonly ComponentHistory<T> History;
+        internal delegate void CaptureAction<T>(Entity entity, in T component) where T : struct;
 
-            public CaptureState(ComponentHistory<T> history)
+        internal struct CaptureState<T> where T : struct
+        {
+            private readonly CaptureAction<T> _capture;
+
+            public CaptureState(CaptureAction<T> capture)
             {
-                History = history;
+                _capture = capture;
+            }
+
+            public void Capture(EntityRef entity, in T component)
+            {
+                Entity handle = entity;
+                _capture(handle, in component);
             }
         }
 
@@ -697,8 +705,8 @@ namespace DVG.SkyPirates.Shared.Ecs
                     ref initialRestoreState,
                     _componentId,
                     typeof(RestoreComponent<>));
-                _captureState = new CaptureState<T>(this);
-                _captureOperation = _world.ForEach(
+                _captureState = new CaptureState<T>(Capture);
+                _captureOperation = _world.ForEachEntity(
                     in saveQuery,
                     ref _captureState,
                     _componentId,
@@ -876,10 +884,10 @@ namespace DVG.SkyPirates.Shared.Ecs
 
         }
 
-        private struct CaptureComponent<T> : IForEachContextEntity<CaptureState<T>> where T : struct
+        internal struct CaptureComponent<T> : IForEachContextEntity<CaptureState<T>> where T : struct
         {
             public void Invoke(ref CaptureState<T> state, EntityRef entity, in T component)
-                => state.History.Capture(entity, in component);
+                => state.Capture(entity, in component);
         }
 
         private sealed class ComponentFrameHistory<T> : IDisposable where T : struct

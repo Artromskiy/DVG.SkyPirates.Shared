@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var searchData = _searchDataPerSquad;
             var squadsDesc = _squadsDesc;
             _world.ForEach<Lookup<TargetSearchData>, SyncId, TargetSearchPosition, TargetSearchDistance, Fixation>(in squadsDesc, ref searchData,
-                static (ref Lookup<TargetSearchData> dataPerSquad, ref SyncId syncId, ref TargetSearchPosition searchPosition, ref TargetSearchDistance searchDistance, ref Fixation fixation) =>
+                static (ref Lookup<TargetSearchData> dataPerSquad, in SyncId syncId, in TargetSearchPosition searchPosition, in TargetSearchDistance searchDistance, in Fixation fixation) =>
                 {
                     TargetSearchDistance distance = fixation ? fix.Zero : searchDistance;
                     dataPerSquad[syncId.Value] = new(searchPosition, distance);
@@ -46,7 +46,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             var unitsDesc = _unitsDesc;
             _world.ForEach<Lookup<TargetSearchData>, SquadMember, TargetSearchPosition, TargetSearchDistance>(in unitsDesc, ref searchData,
-                static (ref Lookup<TargetSearchData> dataPerSquad, ref SquadMember squadMember, ref TargetSearchPosition searchPosition, ref TargetSearchDistance searchDistance) =>
+                static (ref Lookup<TargetSearchData> dataPerSquad, in SquadMember squadMember, ref TargetSearchPosition searchPosition, ref TargetSearchDistance searchDistance) =>
                 {
                     dataPerSquad.TryGetValue(squadMember.SquadId, out var data);
                     searchPosition = data.TargetSearchPosition;

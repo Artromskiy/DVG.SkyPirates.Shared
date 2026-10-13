@@ -31,8 +31,8 @@ namespace DVG.SkyPirates.Shared.Systems
             var targetSearch = _targetSearch;
             var desc = _desc;
             _world.ForEach<ITargetSearchSystem, Position, TargetSearchDistance, TargetSearchPosition, Target, TeamId>(in desc, ref targetSearch,
-                static (ref ITargetSearchSystem targetSearch, ref Position position, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Target target, ref TeamId team) =>
-                target.Entity = targetSearch.FindTarget(ref position, ref searchDistance, ref searchPosition, ref team)).Invoke(ref targetSearch);
+                static (ref ITargetSearchSystem targetSearch, in Position position, in TargetSearchDistance searchDistance, in TargetSearchPosition searchPosition, ref Target target, in TeamId team) =>
+                target.Entity = targetSearch.FindTarget(in position, in searchDistance, in searchPosition, in team)).Invoke(ref targetSearch);
         }
     }
 }

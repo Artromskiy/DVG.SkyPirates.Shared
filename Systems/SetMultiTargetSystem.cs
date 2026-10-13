@@ -33,10 +33,10 @@ namespace DVG.SkyPirates.Shared.Systems
             (ITargetSearchSystem TargetSearch, List<Entity> TargetsCache) state = (_targetSearch, _targetsCache);
             var desc = _desc;
             _world.ForEach<(ITargetSearchSystem TargetSearch, List<Entity> TargetsCache), TargetSearchDistance, TargetSearchPosition, Targets, TeamId>(in desc, ref state,
-                static (ref (ITargetSearchSystem TargetSearch, List<Entity> TargetsCache) state, ref TargetSearchDistance searchDistance, ref TargetSearchPosition searchPosition, ref Targets target, ref TeamId team) =>
+                static (ref (ITargetSearchSystem TargetSearch, List<Entity> TargetsCache) state, in TargetSearchDistance searchDistance, in TargetSearchPosition searchPosition, ref Targets target, in TeamId team) =>
                 {
                     state.TargetsCache.Clear();
-                    state.TargetSearch.FindTargets(ref searchDistance, ref searchPosition, ref team, state.TargetsCache);
+                    state.TargetSearch.FindTargets(in searchDistance, in searchPosition, in team, state.TargetsCache);
                     if (state.TargetsCache.Count > 0)
                     {
                         target.Entities = new(state.TargetsCache);

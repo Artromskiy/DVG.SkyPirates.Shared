@@ -27,8 +27,8 @@ namespace DVG.SkyPirates.Shared.Systems
             var world = _world;
             var desc = _desc;
             _world.ForEach<World, BehaviourState, Damage, ImpactDistance, Position, Target>(in desc, ref world,
-                static (ref World world, ref BehaviourState behaviour, ref Damage damage, ref ImpactDistance impactDistance,
-                    ref Position position, ref Target target) =>
+                static (ref World world, in BehaviourState behaviour, in Damage damage, in ImpactDistance impactDistance,
+                    in Position position, in Target target) =>
                 {
                     if (behaviour.State != StateId.Constants.PreAttack || behaviour.Percent != 1 || !target.Entity.HasValue)
                         return;

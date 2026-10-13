@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Systems
         {
             var desc = _desc;
             _world.ForEach<Position, Rotation, DesiredPosition, DesiredRotation>(in desc,
-                static (ref Position position, ref Rotation rotation, ref DesiredPosition desiredPosition, ref DesiredRotation desiredRotation) =>
+                static (in Position position, in Rotation rotation, ref DesiredPosition desiredPosition, ref DesiredRotation desiredRotation) =>
                 {
                     desiredPosition.Value = position;
                     desiredRotation.Value = rotation;

@@ -47,7 +47,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var dataPerSquad = _dataPerSquad;
             var squadsDesc = _squadsDesc;
             _world.ForEach<Lookup<SquadData>, SyncId, Position, Rotation, SquadMemberCount>(in squadsDesc, ref dataPerSquad,
-                static (ref Lookup<SquadData> data, ref SyncId syncId, ref Position position, ref Rotation rotation, ref SquadMemberCount memberCount) =>
+                static (ref Lookup<SquadData> data, in SyncId syncId, in Position position, in Rotation rotation, in SquadMemberCount memberCount) =>
                     data[syncId.Value] = new(position, rotation, memberCount)).Invoke(ref dataPerSquad);
 
             var orderState = new SquadMemberOrderState { OrderPerUnit = _orderPerUnit };
@@ -67,7 +67,7 @@ namespace DVG.SkyPirates.Shared.Systems
             (Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig) applyState = (_orderPerUnit, _dataPerSquad, _circlesConfig);
             var unitsDesc = _unitsDesc;
             _world.ForEach<(Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig), SyncId, SquadMember, DesiredPosition, DesiredRotation>(in unitsDesc, ref applyState,
-                static (ref (Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig) state, ref SyncId syncId, ref SquadMember member, ref DesiredPosition desiredPosition, ref DesiredRotation desiredRotation) =>
+                static (ref (Lookup<int> OrderPerUnit, Lookup<SquadData> DataPerSquad, PackedCirclesConfig CirclesConfig) state, in SyncId syncId, in SquadMember member, ref DesiredPosition desiredPosition, ref DesiredRotation desiredRotation) =>
                 {
                     var squad = state.DataPerSquad[member.SquadId];
                     var circles = state.CirclesConfig[squad.MemberCount];

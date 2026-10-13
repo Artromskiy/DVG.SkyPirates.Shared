@@ -27,7 +27,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var world = _world;
             var desc = _desc;
             _world.ForEach<World, BehaviourState, ImpactDistance, Position, Targets>(in desc, ref world,
-                static (ref World world, ref BehaviourState behaviour, ref ImpactDistance impactDistance, ref Position position, ref Targets targets) =>
+                static (ref World world, ref BehaviourState behaviour, in ImpactDistance impactDistance, in Position position, in Targets targets) =>
                 {
                 if (behaviour.State != StateId.None)
                 {

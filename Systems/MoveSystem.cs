@@ -31,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var delta = deltaTime;
             var desc = _desc;
             _world.ForEach<fix, Position, Rotation, DesiredPosition, DesiredRotation, MaxSpeed, Target>(in desc, ref delta,
-                static (ref fix deltaTime, ref Position position, ref Rotation rotation, ref DesiredPosition desiredPosition, ref DesiredRotation desiredRotation, ref MaxSpeed moveSpeed, ref Target target) =>
+                static (ref fix deltaTime, ref Position position, ref Rotation rotation, in DesiredPosition desiredPosition, in DesiredRotation desiredRotation, in MaxSpeed moveSpeed, in Target target) =>
                 {
                     var currentPosition = (fix3)position;
                     var nextPositionXZ = fix2.MoveTowards(currentPosition.xz, desiredPosition.Value.xz, moveSpeed * deltaTime);

@@ -35,9 +35,9 @@ namespace DVG.SkyPirates.Shared.Systems
             var desc = _desc;
             _world.ForEachEntity<(fix DeltaTime, List<Impact> Impacts), Projectile, Position, DesiredPosition, Speed, Damage>(
                 in desc, ref state,
-                static (ref (fix DeltaTime, List<Impact> Impacts) state, EntityRef entity, ref Projectile projectile,
-                    ref Position position, ref DesiredPosition desiredPosition, ref Speed speed,
-                    ref Damage damage) =>
+                static (ref (fix DeltaTime, List<Impact> Impacts) state, EntityRef entity, in Projectile projectile,
+                    ref Position position, in DesiredPosition desiredPosition, in Speed speed,
+                    in Damage damage) =>
                 {
                     fix3 destination = desiredPosition.Value;
                     fix3 current = position.Value;

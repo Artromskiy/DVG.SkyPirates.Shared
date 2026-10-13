@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var delta = deltaTime;
             var desc = _desc;
             _world.ForEach<fix, Position, Direction, MaxSpeed>(in desc, ref delta,
-                static (ref fix deltaTime, ref Position position, ref Direction direction, ref MaxSpeed maxSpeed) =>
+                static (ref fix deltaTime, ref Position position, in Direction direction, in MaxSpeed maxSpeed) =>
                 {
                     var deltaMove = ((fix2)direction * maxSpeed * deltaTime).x_y;
                     position += deltaMove;

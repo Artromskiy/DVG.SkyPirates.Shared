@@ -33,7 +33,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var dead = _dead;
             var desc = _desc;
             _world.ForEachEntity<List<Entity>, Health>(in desc, ref dead,
-                static (ref List<Entity> entities, EntityRef entity, ref Health health) =>
+                static (ref List<Entity> entities, EntityRef entity, in Health health) =>
                 {
                     if (health <= fix.Zero)
                     {

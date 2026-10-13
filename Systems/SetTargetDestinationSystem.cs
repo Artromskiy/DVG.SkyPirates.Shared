@@ -31,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var world = _world;
             var desc = _desc;
             _world.ForEach<World, Position, Rotation, DesiredPosition, DesiredRotation, ImpactDistance, Target>(in desc, ref world,
-                static (ref World world, ref Position position, ref Rotation rotation, ref DesiredPosition desiredPosition, ref DesiredRotation desiredRotation, ref ImpactDistance impactDistance, ref Target target) =>
+                static (ref World world, in Position position, in Rotation rotation, ref DesiredPosition desiredPosition, ref DesiredRotation desiredRotation, in ImpactDistance impactDistance, in Target target) =>
                 {
                 if (!target.Entity.HasValue)
                 {

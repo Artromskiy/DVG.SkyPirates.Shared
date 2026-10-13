@@ -75,7 +75,7 @@ namespace DVG.SkyPirates.Shared.Services.CommandExecutors
             var squadId = _world.Get<SyncId>(squad);
             (SyncId SquadId, int Count) state = (squadId, 0);
             var query = _desc;
-            _world.ForEach<(SyncId SquadId, int Count), SquadMember>(in query, ref state, static (ref (SyncId SquadId, int Count) context, ref SquadMember member) =>
+            _world.ForEach<(SyncId SquadId, int Count), SquadMember>(in query, ref state, static (ref (SyncId SquadId, int Count) context, in SquadMember member) =>
             {
                 if (member.SquadId == context.SquadId)
                 {

@@ -54,7 +54,7 @@ namespace DVG.SkyPirates.Shared.Systems
             var partitioning = _partitioning;
             var dropsDesc = _dropsDesc;
             _world.ForEach<Lookup2D<List<DropRef>>, SyncId, Position>(in dropsDesc, ref partitioning,
-                static (ref Lookup2D<List<DropRef>> grid, ref SyncId syncId, ref Position position) =>
+                static (ref Lookup2D<List<DropRef>> grid, in SyncId syncId, in Position position) =>
                 {
                     var posXZ = ((fix3)position).xz;
                     var quad = GetQuantizedSquare(posXZ);
@@ -72,7 +72,7 @@ namespace DVG.SkyPirates.Shared.Systems
                 .ForEach<(Lookup2D<List<DropRef>> Grid, Lookup<BestCollector> Best), SyncId, Position,
                     GoodsCollectorRadius>(in collectorsDesc, ref bestState,
                     static (ref (Lookup2D<List<DropRef>> Grid, Lookup<BestCollector> Best) state,
-                        ref SyncId collectorId, ref Position collectorPos, ref GoodsCollectorRadius radius) =>
+                        in SyncId collectorId, in Position collectorPos, in GoodsCollectorRadius radius) =>
                     {
                         fix2 center = ((fix3)collectorPos).xz;
                         fix searchRadius = radius;
@@ -122,8 +122,8 @@ namespace DVG.SkyPirates.Shared.Systems
                     RemoveDrops), SyncId, GoodsId, GoodsAmount, Position, MaxSpeed>(in dropsDesc, ref applyState,
                     static (
                         ref (Lookup<BestCollector> Best, Lookup<List<GoodsData>> CollectorsDrops, List<Entity>
-                            RemoveDrops) state, EntityRef entity, ref SyncId dropId, ref GoodsId goodsId,
-                        ref GoodsAmount goodsAmount, ref Position position, ref MaxSpeed maxSpeed) =>
+                            RemoveDrops) state, EntityRef entity, in SyncId dropId, in GoodsId goodsId,
+                        in GoodsAmount goodsAmount, ref Position position, in MaxSpeed maxSpeed) =>
                     {
                         if (!state.Best.TryGetValue(dropId.Value, out var best))
                         {
@@ -147,7 +147,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
             var collectorsDrops = _collectorsDrops;
             _world.ForEach<Lookup<List<GoodsData>>, SyncId, GoodsDrop>(in collectorsDesc, ref collectorsDrops,
-                static (ref Lookup<List<GoodsData>> collectedDrops, ref SyncId collectorId, ref GoodsDrop drop) =>
+                static (ref Lookup<List<GoodsData>> collectedDrops, in SyncId collectorId, ref GoodsDrop drop) =>
                 {
                     if (!collectedDrops.TryGetValue(collectorId.Value, out var toCollect))
                     {

@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
 			var activeQuads = _activeQuads;
 			var activityRanges = _activityRanges;
-			_world.ForEach<List<fix4>, ActivityRange, Position>(in activityRanges, ref activeQuads, static (ref List<fix4> quads, ref ActivityRange range, ref Position position) =>
+			_world.ForEach<List<fix4>, ActivityRange, Position>(in activityRanges, ref activeQuads, static (ref List<fix4> quads, in ActivityRange range, in Position position) =>
 			{
 				var pos = position.Value.xz;
 				fix4 minMax = default;
@@ -53,7 +53,7 @@ namespace DVG.SkyPirates.Shared.Systems
 			(List<fix4> Regions, List<Entity> Entities) disableState = (activeRegions, toDisable);
 			_world.ForEachEntity<(List<fix4> Regions, List<Entity> Entities), Position>(in enabled,
 				ref disableState,
-				static (ref (List<fix4> Regions, List<Entity> Entities) state, EntityRef entity, ref Position position) =>
+				static (ref (List<fix4> Regions, List<Entity> Entities) state, EntityRef entity, in Position position) =>
 				{
 					var xz = position.Value.xz;
 					for (int i = 0; i < state.Regions.Count; i++)
@@ -71,7 +71,7 @@ namespace DVG.SkyPirates.Shared.Systems
 			var disabled = _disabled;
 			(List<fix4> Regions, List<Entity> Entities) enableState = (activeRegions, toEnable);
 			_world.ForEachEntity<(List<fix4> Regions, List<Entity> Entities), Position>(in disabled, ref enableState,
-				static (ref (List<fix4> Regions, List<Entity> Entities) state, EntityRef entity, ref Position position) =>
+				static (ref (List<fix4> Regions, List<Entity> Entities) state, EntityRef entity, in Position position) =>
 				{
 					var xz = position.Value.xz;
 					for (int i = 0; i < state.Regions.Count; i++)

@@ -37,13 +37,13 @@ namespace DVG.SkyPirates.Shared.Systems
         }
 
         public Entity? FindTarget(
-            ref Position position,
-            ref TargetSearchDistance searchDistance,
-            ref TargetSearchPosition searchPosition,
-            ref TeamId team)
+            in Position position,
+            in TargetSearchDistance searchDistance,
+            in TargetSearchPosition searchPosition,
+            in TeamId team)
         {
             _targetsCache.Clear();
-            FindTargets(ref searchDistance, ref searchPosition, ref team, _targetsCache);
+            FindTargets(in searchDistance, in searchPosition, in team, _targetsCache);
 
             var origin = ((fix3)position).xz;
 
@@ -71,9 +71,9 @@ namespace DVG.SkyPirates.Shared.Systems
         }
 
         public void FindTargets(
-            ref TargetSearchDistance searchDistance,
-            ref TargetSearchPosition searchPosition,
-            ref TeamId team,
+            in TargetSearchDistance searchDistance,
+            in TargetSearchPosition searchPosition,
+            in TeamId team,
             List<Entity> targets)
         {
             _entitiesLookup.Clear();
@@ -133,8 +133,8 @@ namespace DVG.SkyPirates.Shared.Systems
             var targets = _targets;
             var desc = _desc;
             _world.ForEachEntity<Dictionary<int, Lookup2D<List<Entity>>>, Position, TeamId>(in desc, ref targets,
-                static (ref Dictionary<int, Lookup2D<List<Entity>>> targets, EntityRef entity, ref Position position,
-                    ref TeamId teamId) =>
+                static (ref Dictionary<int, Lookup2D<List<Entity>>> targets, EntityRef entity, in Position position,
+                    in TeamId teamId) =>
                 {
                     var quad = GetQuantizedSquare(position.Value.xz);
 
