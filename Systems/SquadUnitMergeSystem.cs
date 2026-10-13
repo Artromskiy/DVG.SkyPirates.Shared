@@ -15,14 +15,14 @@ namespace DVG.SkyPirates.Shared.Systems
         private static readonly fix Two = fix.One + fix.One;
 
         private readonly World _world;
-        private readonly WorldHistory _history;
+        private readonly IWorldHistory _history;
         private readonly Dictionary<(int SquadId, UnitId UnitId, int Level), List<Unit>> _unitsPerGroup = new();
 
         private Query? _unitsQueryCache;
         private Query _unitsQuery => _unitsQueryCache ??= _world.
             WhereAll<SquadMember, UnitId, SyncId, Health, MaxHealth, Damage>().Alive();
 
-        public SquadUnitMergeSystem(World world, WorldHistory history)
+        public SquadUnitMergeSystem(World world, IWorldHistory history)
         {
             _world = world;
             _history = history;

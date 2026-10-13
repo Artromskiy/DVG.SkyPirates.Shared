@@ -22,7 +22,7 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly Lookup<List<GoodsData>> _collectorsDrops = new();
 
         private readonly List<Entity> _removeDrops = new();
-        private readonly WorldHistory _history;
+        private readonly IWorldHistory _history;
 
         private Query? _dropsDescCache;
 
@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private readonly World _world;
 
-        public GoodsCollectorSystem(World world, WorldHistory history)
+        public GoodsCollectorSystem(World world, IWorldHistory history)
         {
             _world = world;
             _history = history;

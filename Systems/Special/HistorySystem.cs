@@ -9,12 +9,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 {
     public sealed class HistorySystem : IHistorySystem
     {
-        private readonly WorldHistory _history;
+        private readonly IWorldHistory _history;
         private readonly SnapshotHistorySystem _snapshot;
 
         public HistorySystem(
             World world,
-            WorldHistory history,
+            IWorldHistory history,
             IEntityFactory entityFactory,
             IEntityRegistry entityRegistry,
             IComponentDependenciesService componentDependencies)

@@ -9,7 +9,7 @@ using DVG.SkyPirates.Shared.Data;
 namespace DVG.SkyPirates.Shared.Ecs
 {
     /// <summary>Stores component history outside the ECS world.</summary>
-    public sealed class WorldHistory : IDisposable
+    public sealed class WorldHistory : IWorldHistory
     {
         private readonly ComponentHistory[] _components;
         private readonly ComponentHistory<SyncId> _syncIdHistory;

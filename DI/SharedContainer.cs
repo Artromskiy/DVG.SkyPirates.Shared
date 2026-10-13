@@ -34,7 +34,7 @@ namespace DVG.SkyPirates.Shared.DI
             var currentWorld = world ?? new World(initialEntityCapacity: 1024);
             RegisterAllComponents(currentWorld);
             RegisterSingleton(() => currentWorld);
-            RegisterSingleton(() => new WorldHistory(
+            RegisterSingleton<IWorldHistory>(() => new WorldHistory(
                 GetInstance<World>(),
                 WorldComponentIds.For(GetInstance<World>()).History,
                 4,

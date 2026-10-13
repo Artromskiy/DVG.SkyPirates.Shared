@@ -11,7 +11,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
     internal sealed class SnapshotHistorySystem
     {
         private readonly World _world;
-        private readonly WorldHistory _history;
+        private readonly IWorldHistory _history;
         private readonly ComponentId _syncIdId;
         private readonly Query _syncIdQuery;
         private readonly ForEachContextEntityAction<CollectState> _collectEntitiesAction;
@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
 
         public SnapshotHistorySystem(
             World world,
-            WorldHistory history,
+            IWorldHistory history,
             IEntityFactory entityFactory,
             IEntityRegistry entityRegistry,
             IComponentDependenciesService componentDependencies)

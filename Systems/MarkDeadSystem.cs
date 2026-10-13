@@ -19,9 +19,9 @@ namespace DVG.SkyPirates.Shared.Systems
         private readonly List<Entity> _dead = new();
 
         private readonly World _world;
-        private readonly WorldHistory _history;
+        private readonly IWorldHistory _history;
 
-        public MarkDeadSystem(World world, WorldHistory history)
+        public MarkDeadSystem(World world, IWorldHistory history)
         {
             _world = world;
             _history = history;

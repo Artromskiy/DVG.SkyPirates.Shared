@@ -1,5 +1,6 @@
 ﻿using Delta.ECS;
 using DVG.SkyPirates.Shared.Data;
+using DVG.SkyPirates.Shared.Ecs;
 
 namespace DVG.SkyPirates.Shared.Systems
 {
@@ -13,7 +14,7 @@ namespace DVG.SkyPirates.Shared.Systems
             }
         }
 
-        internal readonly struct ApplyEntityData : IComponentDataVisitor
+        private readonly struct ApplyEntityData : IComponentDataVisitor
         {
             private readonly Entity _entity;
             private readonly World _world;
@@ -24,10 +25,8 @@ namespace DVG.SkyPirates.Shared.Systems
                 _world = world;
             }
 
-            public void Visit<T>(string name, in T value) where T : struct
-            {
+            public void Visit<T>(string name, in T value) where T : struct =>
                 _world.GetOrAdd<T>(_entity) = value;
-            }
         }
     }
 }

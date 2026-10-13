@@ -14,12 +14,12 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         private Query _toDestroy => _toDestroyCache ??= _world.WhereAll<Temp>();
         private readonly List<Entity> _entitiesCache = new();
         private readonly World _world;
-        private readonly WorldHistory _history;
+        private readonly IWorldHistory _history;
         private readonly WorldComponentIds _componentIds;
         private readonly ComponentId _tempComponentId;
         private readonly ForEachEntityAction _disposeHistoryAction;
 
-        public DisposeSystem(World world, WorldHistory history)
+        public DisposeSystem(World world, IWorldHistory history)
         {
             _world = world;
             _history = history;

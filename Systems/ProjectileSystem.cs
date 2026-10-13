@@ -19,10 +19,10 @@ namespace DVG.SkyPirates.Shared.Systems
             WhereAll<Projectile, Position, DesiredPosition, Speed, Damage>().Alive().NotDisabled();
 
         private readonly World _world;
-        private readonly WorldHistory _history;
+        private readonly IWorldHistory _history;
         private readonly List<Impact> _impacts = new();
 
-        public ProjectileSystem(World world, WorldHistory history)
+        public ProjectileSystem(World world, IWorldHistory history)
         {
             _world = world;
             _history = history;
