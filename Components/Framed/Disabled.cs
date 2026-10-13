@@ -1,7 +1,8 @@
 ﻿using Delta.ECS;
 namespace DVG.SkyPirates.Shared.Components.Framed
 {
-    [DeltaEcsComponent]
+    [ComponentSchema]
+    [ComponentAlias("Disabled")]
     public struct Disabled
     {
         private bool _hidden;

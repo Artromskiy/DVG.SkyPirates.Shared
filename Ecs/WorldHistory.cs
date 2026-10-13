@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -14,7 +14,6 @@ namespace DVG.SkyPirates.Shared.Ecs
         private readonly ComponentHistory[] _components;
         private readonly ComponentHistory<SyncId> _syncIdHistory;
         private readonly EntityPresenceHistory _entityPresence;
-        private readonly ArchetypeForEachOperation<WorldHistoryCaptureContext> _captureOperation;
 
         public WorldHistory(World world, ReadOnlySpan<ComponentId> componentIds, int initialCapacity, int maxCapacity)
         {
@@ -33,28 +32,17 @@ namespace DVG.SkyPirates.Shared.Ecs
                 throw new ArgumentOutOfRangeException(nameof(maxCapacity), "Maximum history capacity must be a power of two at least as large as the initial capacity.");
             }
 
-            ComponentId syncId = world.Layouts.GetPrimary<SyncId>();
+            ComponentId syncId = world.Components.GetPrimary<SyncId>();
             _entityPresence = new EntityPresenceHistory(initialCapacity, maxCapacity);
-            _captureOperation = world.ForEachArchetype(default(WorldHistoryCaptureContext));
-
             var histories = new List<ComponentHistory>(componentIds.Length);
             var visitor = new CreateHistoryVisitor(world, _entityPresence, histories, initialCapacity, maxCapacity);
             for (int i = 0; i < componentIds.Length; i++)
             {
-                if (!world.Layouts.TryVisit(componentIds[i], visitor))
-                {
-                    Type componentType = world.Layouts.GetComponentType(componentIds[i]);
-                    throw new InvalidOperationException(
-                        $"Could not create history for registered component {componentType.FullName} (id {componentIds[i].Value}).");
-                }
+                world.Components.Visit(componentIds[i], visitor);
             }
 
             _syncIdHistory = GetOrCreateHistory<SyncId>(world, _entityPresence, histories, syncId, initialCapacity, maxCapacity);
             _components = histories.ToArray();
-            for (int i = 0; i < _components.Length; i++)
-            {
-                _components[i].RegisterCaptureCase(_captureOperation);
-            }
         }
 
         public void Save(int tick) => CaptureFrame(tick, false);
@@ -67,8 +55,10 @@ namespace DVG.SkyPirates.Shared.Ecs
                 _components[i].PrepareCaptureFrame(tick);
             }
 
-            var context = default(WorldHistoryCaptureContext);
-            _captureOperation.Invoke(ref context);
+            for (int i = 0; i < _components.Length; i++)
+            {
+                _components[i].CapturePreparedFrame();
+            }
             _entityPresence.CompleteCapture(tick, baseline);
         }
 
@@ -403,8 +393,6 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
         }
 
-        private struct WorldHistoryCaptureContext { }
-
         private sealed class EntityPresenceFrame
         {
             private Entity[] _entitiesByIndex = Array.Empty<Entity>();
@@ -600,7 +588,7 @@ namespace DVG.SkyPirates.Shared.Ecs
         private abstract class ComponentHistory
         {
             public abstract void PrepareCaptureFrame(int tick);
-            public abstract void RegisterCaptureCase(ArchetypeForEachOperation<WorldHistoryCaptureContext> operation);
+            public abstract void CapturePreparedFrame();
             public abstract void ResetBaseline();
             public abstract void GoTo(int tick);
             public abstract void Rollback(int tick);
@@ -661,6 +649,16 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
         }
 
+        private struct CaptureState<T> where T : struct
+        {
+            public readonly ComponentHistory<T> History;
+
+            public CaptureState(ComponentHistory<T> history)
+            {
+                History = history;
+            }
+        }
+
         private sealed class ComponentHistory<T> : ComponentHistory where T : struct
         {
             private readonly World _world;
@@ -668,6 +666,8 @@ namespace DVG.SkyPirates.Shared.Ecs
             private readonly EntityPresenceHistory _entityPresence;
             private readonly bool _capturesPresence;
             private readonly IOperation<ComponentRestoreState<T>> _restoreOperation;
+            private readonly IOperation<CaptureState<T>> _captureOperation;
+            private CaptureState<T> _captureState;
             private readonly ComponentFrameHistory<T> _frames;
             private ComponentFrame<T> _captureFrame = null!;
             private Entity[] _restoredEntityByIndex = Array.Empty<Entity>();
@@ -697,6 +697,12 @@ namespace DVG.SkyPirates.Shared.Ecs
                     ref initialRestoreState,
                     _componentId,
                     typeof(RestoreComponent<>));
+                _captureState = new CaptureState<T>(this);
+                _captureOperation = _world.ForEach(
+                    in saveQuery,
+                    ref _captureState,
+                    _componentId,
+                    typeof(CaptureComponent<>));
             }
 
             public Dictionary<Entity, int> GetSyncIdsAt(int tick) => _frames.GetSyncIdsAt(tick);
@@ -704,15 +710,11 @@ namespace DVG.SkyPirates.Shared.Ecs
             public override void PrepareCaptureFrame(int tick)
                 => _captureFrame = _frames.BeginWrite(tick);
 
-            public override void RegisterCaptureCase(ArchetypeForEachOperation<WorldHistoryCaptureContext> operation)
-            {
-                var query = CreateComponentQuery(_world, _componentId);
-                operation.ProcessIn<T, CaptureProcessor>(in query, _componentId, new CaptureProcessor(this));
-            }
+            public override void CapturePreparedFrame() => _captureOperation.Invoke(ref _captureState);
 
             public override void ResetBaseline() => _frames.ResetBaseline();
 
-            private void Capture(Entity entity, in T component)
+            public void Capture(Entity entity, in T component)
             {
                 _captureFrame.Add(entity, in component);
                 if (_capturesPresence)
@@ -869,22 +871,15 @@ namespace DVG.SkyPirates.Shared.Ecs
                 Array.Resize(ref _seenRestoreStampByEntityIndex, capacity);
             }
 
-            private readonly struct CaptureProcessor : IArchetypeForEachComponentIn<WorldHistoryCaptureContext, T>
-            {
-                private readonly ComponentHistory<T> _history;
-
-                public CaptureProcessor(ComponentHistory<T> history)
-                {
-                    _history = history;
-                }
-
-                public void Invoke(ref WorldHistoryCaptureContext context, EntityRef entity, in T component)
-                    => _history.Capture(entity, in component);
-            }
-
             private static Query CreateComponentQuery(World world, ComponentId componentId)
                 => world.WhereAll(componentId);
 
+        }
+
+        private struct CaptureComponent<T> : IForEachContextEntity<CaptureState<T>> where T : struct
+        {
+            public void Invoke(ref CaptureState<T> state, EntityRef entity, in T component)
+                => state.History.Capture(entity, in component);
         }
 
         private sealed class ComponentFrameHistory<T> : IDisposable where T : struct

@@ -1,34 +1,28 @@
 using Delta.ECS;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace DVG.SkyPirates.Shared.Data
 {
-    public sealed class ComponentIdList : IReadOnlyList<ComponentIdEntry>
+    public sealed class ComponentIdList : IReadOnlyList<string>
     {
-        private readonly List<ComponentIdEntry> _items = new();
-        private ComponentSchemaCatalog _catalog = null!;
+        private readonly List<string> _items = new();
         public int Count => _items.Count;
-        public ComponentIdEntry this[int index] => _items[index];
-        public IEnumerator<ComponentIdEntry> GetEnumerator() => _items.GetEnumerator();
+        public string this[int index] => _items[index];
+        public IEnumerator<string> GetEnumerator() => _items.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        internal void Add(ComponentIdEntry entry) => _items.Add(entry);
-        internal void Bind(ComponentSchemaCatalog catalog) => _catalog = catalog;
-        internal void Visit(ComponentIdEntry entry, IStructVisitor visitor) => _catalog.Visit(entry.ComponentId, visitor);
-        public ComponentId[] GetIds()
+        internal void Add(string name) => _items.Add(name);
+        internal void Visit(World world, string name, IStructVisitor visitor)
+        {
+            ComponentId componentId = world.GetAlias(name);
+            world.Components.Visit(componentId, visitor);
+        }
+        public ComponentId[] GetIds(World world)
         {
             var ids = new ComponentId[_items.Count];
-            for (int i = 0; i < ids.Length; i++) ids[i] = _items[i].ComponentId;
+            for (int i = 0; i < ids.Length; i++) ids[i] = world.GetAlias(_items[i]);
             return ids;
         }
-    }
-
-    public sealed class ComponentIdEntry
-    {
-        public string Name { get; }
-        public ComponentId ComponentId { get; internal set; } = ComponentId.Invalid;
-        public ComponentIdEntry(string name) => Name = name;
     }
 
 }

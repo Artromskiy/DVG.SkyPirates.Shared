@@ -1,4 +1,4 @@
-using Delta.ECS;
+﻿using Delta.ECS;
 using DVG.SkyPirates.Shared.Ecs;
 using DVG.Components;
 using DVG.SkyPirates.Shared.IServices.TickableExecutors;
@@ -24,7 +24,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             _world = world;
             _history = history;
             _componentIds = WorldComponentIds.For(world);
-            _tempComponentId = world.Layouts.GetPrimary<Temp>();
+            _tempComponentId = world.Components.GetPrimary<Temp>();
             _disposeHistoryAction = DisposeHistory;
         }
 

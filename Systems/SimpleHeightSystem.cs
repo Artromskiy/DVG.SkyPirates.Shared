@@ -23,7 +23,15 @@ namespace DVG.SkyPirates.Shared.Systems
 
         public void Tick(int tick, fix deltaTime)
         {
-            var hexMap = _world.FirstOrDefault<HexMap>();
+            var hexMapEntity = _world.WhereAll<HexMap>()
+                .First()
+                .Invoke();
+            if (!hexMapEntity.IsValid)
+            {
+                return;
+            }
+
+            var hexMap = _world.Get<HexMap>(hexMapEntity);
             if (hexMap.Data == null)
             {
                 return;

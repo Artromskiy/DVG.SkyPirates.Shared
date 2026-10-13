@@ -52,12 +52,12 @@ namespace DVG.SkyPirates.Shared.Systems
 
         private static DependencyData CreateDependency(World world, ComponentDependenciesData dependency)
         {
-            var configuredHas = dependency.Has.GetIds();
+            var configuredHas = dependency.Has.GetIds(world);
             var has = new ComponentId[configuredHas.Length + 1];
             configuredHas.CopyTo(has, 0);
-            has[configuredHas.Length] = world.Layouts.GetPrimary<Alive>();
+            has[configuredHas.Length] = world.Components.GetPrimary<Alive>();
 
-            var addIds = dependency.Add.GetIds();
+            var addIds = dependency.Add.GetIds(world);
             var queries = new Query[addIds.Length];
             var filter = world.WhereAll(has);
             for (int i = 0; i < addIds.Length; i++)

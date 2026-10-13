@@ -1,10 +1,13 @@
 ﻿using Delta.ECS;
 using Delta;
 using DVG.Components.Attributes;
+using DVG.SkyPirates.Shared.Components;
 
 namespace DVG.SkyPirates.Shared.Components.Runtime
 {
-    [DeltaEcsComponent]
+    [ComponentSchema]
+    [ComponentAlias("AutoHeal")]
+    [ComponentGroup(Group.History)]
     [Component(true)]
     public struct AutoHeal
     {

@@ -34,10 +34,11 @@ namespace DVG.SkyPirates.Shared.Data
     public abstract class ComponentDataEntry
     {
         public string Name { get; }
-        public ComponentId ComponentId { get; internal set; } = ComponentId.Invalid;
 
         protected ComponentDataEntry(string name) => Name = name;
         public abstract void Visit(IComponentDataVisitor visitor);
+        public abstract void Write(IComponentDataWriter writer);
+        internal abstract void Visit(World world, IComponentDataVisitor visitor);
     }
 
     public sealed class ComponentDataEntry<T> : ComponentDataEntry where T : struct
@@ -49,12 +50,38 @@ namespace DVG.SkyPirates.Shared.Data
         public override void Visit(IComponentDataVisitor visitor)
         {
             var value = Value;
-            visitor.Visit(Name, ComponentId, in value);
+            visitor.Visit(Name, in value);
+        }
+
+        public override void Write(IComponentDataWriter writer)
+        {
+            var value = Value;
+            writer.Write(Name, in value);
+        }
+
+        internal override void Visit(World world, IComponentDataVisitor visitor)
+        {
+            ComponentId componentId = world.GetAlias(Name);
+            world.Components.Visit(componentId, new ComponentVisit());
+
+            Visit(visitor);
+        }
+
+        private readonly struct ComponentVisit : IStructVisitor
+        {
+            public void Visit<TRegistered>(ComponentId componentId) where TRegistered : struct
+            {
+            }
         }
     }
 
     public interface IComponentDataVisitor
     {
-        void Visit<T>(string name, ComponentId componentId, in T value) where T : struct;
+        void Visit<T>(string name, in T value) where T : struct;
+    }
+
+    public interface IComponentDataWriter
+    {
+        void Write<T>(string name, in T value);
     }
 }

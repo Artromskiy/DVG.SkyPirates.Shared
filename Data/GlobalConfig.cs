@@ -1,5 +1,4 @@
-﻿
-namespace DVG.SkyPirates.Shared.Data
+﻿namespace DVG.SkyPirates.Shared.Data
 {
     public class GlobalConfig
     {

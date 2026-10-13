@@ -38,7 +38,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             var history = new List<ComponentId>();
             var historyAction = new CollectHistoryIds(world, history);
             HistoryComponentsRegistry.ForEachData(ref historyAction);
-            AddHistoryComponent(history, world.Layouts.GetPrimary<SyncId>());
+            AddHistoryComponent(history, world.Components.GetPrimary<SyncId>());
             History = history.ToArray();
 
             var framed = new List<ComponentId>();
@@ -75,7 +75,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
 
             public void Invoke<T>() where T : struct
-                => _entries.Add(_world.Layouts.GetPrimary<T>());
+                => _entries.Add(_world.Components.GetPrimary<T>());
         }
 
         private readonly struct CollectComponentIds : IStructGenericAction
@@ -90,7 +90,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
 
             public void Invoke<T>() where T : struct
-                => _entries.Add(_world.Layouts.GetPrimary<T>());
+                => _entries.Add(_world.Components.GetPrimary<T>());
         }
 
         private readonly struct CollectDisposableIds : IStructGenericAction<IDisposable>
@@ -105,7 +105,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
 
             public void Invoke<T>() where T : struct, IDisposable
-                => _entries.Add(new DisposableComponentIds(_world.Layouts.GetPrimary<T>(), new ComponentDisposer<T>(_world)));
+                => _entries.Add(new DisposableComponentIds(_world.Components.GetPrimary<T>(), new ComponentDisposer<T>(_world)));
         }
     }
 

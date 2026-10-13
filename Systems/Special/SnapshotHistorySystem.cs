@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Delta.ECS;
 using DVG.Components;
 using DVG.SkyPirates.Shared.Data;
@@ -31,7 +31,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
         {
             _world = world;
             _history = history;
-            _syncIdId = world.Layouts.GetPrimary<SyncId>();
+            _syncIdId = world.Components.GetPrimary<SyncId>();
             _syncIdQuery = world.WhereAll(_syncIdId);
             _collectEntitiesAction = CollectEntity;
             var initialState = default(CollectState);

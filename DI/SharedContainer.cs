@@ -31,13 +31,9 @@ namespace DVG.SkyPirates.Shared.DI
         public SharedContainer(SessionMode sessionMode = SessionMode.Local, bool registerCommandReceiver = true, World world = null)
         {
             Delta.Diagnostics.Trace.Info("[DI] SharedContainer Start");
-            RegisterSingleton(() =>
-            {
-                var currentWorld = world ?? new World(initialEntityCapacity: 1024);
-                RegisterAll(currentWorld);
-                _ = WorldComponentIds.For(currentWorld);
-                return currentWorld;
-            });
+            var currentWorld = world ?? new World(initialEntityCapacity: 1024);
+            RegisterAllComponents(currentWorld);
+            RegisterSingleton(() => currentWorld);
             RegisterSingleton(() => new WorldHistory(
                 GetInstance<World>(),
                 WorldComponentIds.For(GetInstance<World>()).History,
@@ -166,69 +162,14 @@ namespace DVG.SkyPirates.Shared.DI
             typeof(SpawnCommandMutator),
         };
 
-        private static void RegisterAll(World world)
+        private static void RegisterAllComponents(World world)
         {
-            var layouts = world.Layouts;
-            Register<ActivityRange>(layouts);
-            Register<Alive>(layouts);
-            Register<AutoHeal>(layouts);
-            Register<BehaviourConfig>(layouts);
-            Register<BehaviourState>(layouts);
-            Register<CachePosition>(layouts);
-            Register<CactusId>(layouts);
-            Register<ClientId>(layouts);
-            Register<Collide>(layouts);
-            Register<Damage>(layouts);
-            Register<DesiredPosition>(layouts);
-            Register<DesiredRotation>(layouts);
-            Register<Direction>(layouts);
-            Register<Fixation>(layouts);
-            Register<FlyDestination>(layouts);
-            Register<GoodsAmount>(layouts);
-            Register<GoodsCollectorRadius>(layouts);
-            Register<GoodsDrop>(layouts);
-            Register<GoodsId>(layouts);
-            Register<Health>(layouts);
-            Register<HexMap>(layouts);
-            Register<ImpactDistance>(layouts);
-            Register<Level>(layouts);
-            Register<MaxHealth>(layouts);
-            Register<MaxSpeed>(layouts);
-            Register<Position>(layouts);
-            Register<Radius>(layouts);
-            Register<RandomSeed>(layouts);
-            Register<RecivedDamage>(layouts);
-            Register<RockId>(layouts);
-            Register<Rotation>(layouts);
-            Register<Ranged>(layouts);
-            Register<Separation>(layouts);
-            Register<Separator>(layouts);
-            Register<Source>(layouts);
-            Register<Squad>(layouts);
-            Register<SquadMember>(layouts);
-            Register<SquadMemberCount>(layouts);
-            Register<Speed>(layouts);
-            Register<SyncId>(layouts);
-            Register<SyncIdReserve>(layouts);
-            Register<Target>(layouts);
-            Register<Targets>(layouts);
-            Register<TargetSearchDistance>(layouts);
-            Register<TargetSearchPosition>(layouts);
-            Register<TeamId>(layouts);
-            Register<TreeId>(layouts);
-            Register<UnitId>(layouts);
-            Register<ViewToken>(layouts);
-            Register<Projectile>(layouts);
-            Register<Disabled>(layouts);
-            Register<Temp>(layouts);
-        }
-
-        private static void Register<T>(ComponentLayoutRegistry layouts) where T : struct
-        {
-            if (!layouts.TryGetPrimary<T>(out _))
+            ComponentRegistry layouts = world.Components;
+            foreach (var registration in GeneratedComponentCatalog.GetRegistrations())
             {
-                layouts.Register<T>(GetSchemaId(typeof(T).FullName));
+                layouts.Register(registration);
             }
+            _ = WorldComponentIds.For(world);
         }
 
         private ISessionTransport CreateSessionTransport(SessionMode mode)
@@ -242,22 +183,6 @@ namespace DVG.SkyPirates.Shared.DI
                 default:
                     return new NullSessionTransport();
             }
-        }
-
-        private static SchemaId GetSchemaId(string schemaName)
-        {
-            // Keep ids stable across worlds and independent of generated registry order.
-            const ulong offsetBasis = 14695981039346656037UL;
-            const ulong prime = 1099511628211UL;
-
-            ulong hash = offsetBasis;
-            foreach (char character in schemaName)
-            {
-                hash ^= character;
-                hash *= prime;
-            }
-
-            return new SchemaId(hash);
         }
 
         protected void RegisterFactorySingleton<TService, TImplementation, TInstance>()

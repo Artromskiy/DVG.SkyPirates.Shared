@@ -7,12 +7,17 @@ namespace DVG.SkyPirates.Shared.Services
     public class ComponentDependenciesService : IComponentDependenciesService
     {
         private readonly World _world;
-        private readonly ComponentDependenciesConfig _dependencies;
+        private readonly RuntimeDependency[] _dependencies;
 
         public ComponentDependenciesService(World world, ComponentDependenciesConfig dependencies)
         {
             _world = world;
-            _dependencies = dependencies;
+            _dependencies = new RuntimeDependency[dependencies.Count];
+            for (int i = 0; i < _dependencies.Length; i++)
+            {
+                var dependency = dependencies[i];
+                _dependencies[i] = new RuntimeDependency(dependency.Has.GetIds(world), dependency.Add.GetIds(world));
+            }
         }
 
         public void AddDependencies(Entity entity)
@@ -20,11 +25,25 @@ namespace DVG.SkyPirates.Shared.Services
             foreach (var config in _dependencies)
             {
                 bool hasAll = true;
-                foreach (var required in config.Has)
-                    hasAll &= _world.Has(entity, required.ComponentId);
+                var required = config.Has;
+                for (int i = 0; i < required.Length; i++)
+                    hasAll &= _world.Has(entity, required[i]);
                 if (!hasAll) continue;
-                foreach (var added in config.Add)
-                    _world.Add(entity, added.ComponentId);
+                var added = config.Add;
+                for (int i = 0; i < added.Length; i++)
+                    _world.Add(entity, added[i]);
+            }
+        }
+
+        private readonly struct RuntimeDependency
+        {
+            public readonly ComponentId[] Has;
+            public readonly ComponentId[] Add;
+
+            public RuntimeDependency(ComponentId[] has, ComponentId[] add)
+            {
+                Has = has;
+                Add = add;
             }
         }
     }

@@ -21,12 +21,12 @@ namespace DVG.SkyPirates.Shared.Services
             foreach (var item in _componentDefaultsConfig)
             {
                 foreach (var entry in item.Default)
-                    entry.Visit(new SetDefaultAction(_world, entity));
+                    entry.Visit(_world, new SetDefaultAction(_world, entity));
             }
             foreach (var item in _componentDefaultsConfig)
             {
                 foreach (var from in item.CopyFrom)
-                    item.CopyFrom.Visit(from, new CopyAction(_world, entity, item.CopyTo));
+                    item.CopyFrom.Visit(_world, from, new CopyAction(_world, entity, item.CopyTo));
             }
         }
 
@@ -41,7 +41,7 @@ namespace DVG.SkyPirates.Shared.Services
                 _entity = entity;
             }
 
-            public readonly void Visit<T>(string name, ComponentId componentId, in T value) where T : struct
+            public readonly void Visit<T>(string name, in T value) where T : struct
             {
                 if (_world.Has<T>(_entity))
                 {
@@ -68,7 +68,7 @@ namespace DVG.SkyPirates.Shared.Services
                 if (_world.TryGet(_entity, out From cmp))
                 {
                     foreach (var target in _to)
-                        _to.Visit(target, new SetAction<From>(_world, _entity, cmp));
+                        _to.Visit(_world, target, new SetAction<From>(_world, _entity, cmp));
                 }
             }
 

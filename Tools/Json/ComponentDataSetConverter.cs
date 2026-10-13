@@ -44,7 +44,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             foreach (var entry in value)
             {
                 writer.WritePropertyName(entry.Name);
-                entry.Visit(visitor);
+                entry.Write(visitor);
             }
             writer.WriteEndObject();
         }
@@ -101,7 +101,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
             }
         }
 
-        private readonly struct WriteComponentVisitor : IComponentDataVisitor
+        private readonly struct WriteComponentVisitor : IComponentDataWriter
         {
             private readonly Utf8JsonWriter _writer;
             private readonly JsonSerializerOptions _options;
@@ -112,7 +112,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                 _options = options;
             }
 
-            public void Visit<T>(string name, ComponentId componentId, in T value) where T : struct
+            public void Write<T>(string name, in T value)
                 => JsonSerializer.Serialize(_writer, value, _options);
         }
     }

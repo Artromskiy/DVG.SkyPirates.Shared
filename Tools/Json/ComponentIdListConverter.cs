@@ -23,7 +23,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
                 if (!reader.Read() || (reader.TokenType != JsonTokenType.True && reader.TokenType != JsonTokenType.False))
                     throw new JsonException("Component list values must be booleans.");
                 if (reader.TokenType == JsonTokenType.True)
-                    result.Add(new ComponentIdEntry(name));
+                    result.Add(name);
             }
 
             return result;
@@ -33,7 +33,7 @@ namespace DVG.SkyPirates.Shared.Tools.Json
         {
             writer.WriteStartObject();
             foreach (var item in value)
-                writer.WriteBoolean(item.Name, true);
+                writer.WriteBoolean(item, true);
             writer.WriteEndObject();
         }
     }
