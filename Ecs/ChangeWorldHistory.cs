@@ -409,7 +409,9 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             public override void CaptureChanges() => _operation.Invoke();
 
-            public override void GoTo(int tick)
+            public override void GoTo(int tick) => RestoreFullState(tick);
+
+            private void RestoreFullState(int tick)
             {
                 Dictionary<Entity, T> state = _frames.GetState(tick);
                 _presentEntities.Clear();
@@ -424,13 +426,12 @@ namespace DVG.SkyPirates.Shared.Ecs
 
                 foreach (KeyValuePair<Entity, T> pair in state)
                 {
-                    if (_presentEntities.Contains(pair.Key) || !_owner._world.IsAlive(pair.Key))
+                    if (!_presentEntities.Contains(pair.Key) && _owner._world.IsAlive(pair.Key))
                     {
-                        continue;
+                        T value = pair.Value;
+                        _owner._world.Add(pair.Key, in value);
                     }
 
-                    T value = pair.Value;
-                    _owner._world.Add(pair.Key, in value);
                 }
             }
 
@@ -488,18 +489,13 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             private void OnChange(Entity entity, ChangeKind change, ref T component)
             {
-                if (change == ChangeKind.Removed)
+                bool hasNewValue = change != ChangeKind.Removed;
+                T newValue = hasNewValue ? component : default;
+                _frames.Add(_captureFrame, entity, hasNewValue, in newValue);
+                if (!hasNewValue && _componentId == _owner._syncIdId)
                 {
-                    _captureFrame.Add(entity, change, default);
-                    if (_componentId == _owner._syncIdId)
-                    {
-                        _owner.RemoveRetirement(entity);
-                    }
-
-                    return;
+                    _owner.RemoveRetirement(entity);
                 }
-
-                _captureFrame.Add(entity, change, in component);
             }
 
             public Dictionary<Entity, int> GetSyncIdsAt(int tick)
@@ -522,6 +518,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             private ChangeFrame<T>[] _frames;
             private readonly Dictionary<Entity, T> _baseline = new();
             private readonly Dictionary<Entity, T> _stateCache = new();
+            private readonly Dictionary<Entity, int> _captureIndices = new();
             private int _mask;
             private int _head;
             private int _count;
@@ -555,6 +552,7 @@ namespace DVG.SkyPirates.Shared.Ecs
                     return Last;
                 }
 
+                _captureIndices.Clear();
                 EnsureCapacity();
                 int index = (_head + _count) & _mask;
                 ChangeFrame<T> frame = _frames[index] ?? (_frames[index] = new ChangeFrame<T>(tick));
@@ -562,6 +560,13 @@ namespace DVG.SkyPirates.Shared.Ecs
                 _count++;
                 return frame;
             }
+
+            public void Add(
+                ChangeFrame<T> frame,
+                Entity entity,
+                bool hasNewValue,
+                in T newValue)
+                => frame.Add(entity, hasNewValue, in newValue, _captureIndices);
 
             public Dictionary<Entity, T> GetState(int tick)
             {
@@ -635,6 +640,8 @@ namespace DVG.SkyPirates.Shared.Ecs
                     Last.Clear();
                     _count--;
                 }
+
+                RebuildCaptureIndices();
             }
 
             public void Forget(Entity entity)
@@ -645,12 +652,15 @@ namespace DVG.SkyPirates.Shared.Ecs
                 {
                     At(i).Forget(entity);
                 }
+
+                RebuildCaptureIndices();
             }
 
             public void Dispose()
             {
                 _hasCachedState = false;
                 _stateCache.Clear();
+                _captureIndices.Clear();
                 for (int i = 0; i < _frames.Length; i++)
                 {
                     _frames[i]?.Clear();
@@ -693,6 +703,16 @@ namespace DVG.SkyPirates.Shared.Ecs
             private ChangeFrame<T> First => At(0);
             private ChangeFrame<T> Last => At(_count - 1);
             private ChangeFrame<T> At(int logicalIndex) => _frames[(_head + logicalIndex) & _mask];
+
+            private void RebuildCaptureIndices()
+            {
+                _captureIndices.Clear();
+                ChangeFrame<T> last = Last;
+                for (int i = 0; i < last.Count; i++)
+                {
+                    _captureIndices[last.GetEntity(i)] = i;
+                }
+            }
         }
 
         private sealed class ChangeFrame<T> where T : struct
@@ -700,6 +720,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             private readonly List<Change<T>> _changes = new();
 
             public int Tick { get; private set; }
+            public int Count => _changes.Count;
 
             public ChangeFrame(int tick)
             {
@@ -712,21 +733,36 @@ namespace DVG.SkyPirates.Shared.Ecs
                 Tick = tick;
             }
 
-            public void Add(Entity entity, ChangeKind kind, in T value)
-                => _changes.Add(new Change<T>(entity, kind, in value));
+            public void Add(
+                Entity entity,
+                bool hasNewValue,
+                in T newValue,
+                Dictionary<Entity, int> indices)
+            {
+                if (indices.TryGetValue(entity, out int index))
+                {
+                    _changes[index] = _changes[index].WithNewValue(hasNewValue, in newValue);
+                    return;
+                }
+
+                indices.Add(entity, _changes.Count);
+                _changes.Add(new Change<T>(entity, hasNewValue, in newValue));
+            }
+
+            public Entity GetEntity(int index) => _changes[index].Entity;
 
             public void ApplyTo(Dictionary<Entity, T> state)
             {
                 for (int i = 0; i < _changes.Count; i++)
                 {
                     Change<T> change = _changes[i];
-                    if (change.Kind == ChangeKind.Removed)
+                    if (!change.HasNewValue)
                     {
                         state.Remove(change.Entity);
                     }
                     else
                     {
-                        state[change.Entity] = change.Value;
+                        state[change.Entity] = change.NewValue;
                     }
                 }
             }
@@ -748,15 +784,18 @@ namespace DVG.SkyPirates.Shared.Ecs
         private readonly struct Change<T> where T : struct
         {
             public readonly Entity Entity;
-            public readonly ChangeKind Kind;
-            public readonly T Value;
+            public readonly bool HasNewValue;
+            public readonly T NewValue;
 
-            public Change(Entity entity, ChangeKind kind, in T value)
+            public Change(Entity entity, bool hasNewValue, in T newValue)
             {
                 Entity = entity;
-                Kind = kind;
-                Value = value;
+                HasNewValue = hasNewValue;
+                NewValue = newValue;
             }
+
+            public Change<T> WithNewValue(bool hasNewValue, in T newValue)
+                => new(Entity, hasNewValue, in newValue);
         }
 
         private sealed class RetirementHistory : IDisposable
