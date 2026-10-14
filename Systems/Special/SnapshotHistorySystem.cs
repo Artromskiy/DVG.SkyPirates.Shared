@@ -81,10 +81,7 @@ namespace DVG.SkyPirates.Shared.Systems.Special
             }
 
             _history.ApplySnapshot(snapshot, entitiesBySyncId);
-            foreach (var entity in entitiesBySyncId.Values)
-            {
-                _componentDependencies.AddDependencies(entity);
-            }
+            _componentDependencies.ProcessChanges();
         }
 
         private static void CollectEntity(ref CollectState state, EntityRef entity)

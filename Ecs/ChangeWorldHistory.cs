@@ -17,7 +17,7 @@ namespace DVG.SkyPirates.Shared.Ecs
         private readonly ComponentId _syncIdId;
         private readonly int _initialCapacity;
         private readonly int _maxCapacity;
-        private readonly Dictionary<Entity, RetirementHistory> _retirements = new();
+        private readonly EntityValueMap<RetirementHistory> _retirements = new();
         private ComponentHistory[] _components = Array.Empty<ComponentHistory>();
         private ComponentHistory<SyncId> _syncIdHistory = null!;
 
@@ -48,8 +48,9 @@ namespace DVG.SkyPirates.Shared.Ecs
         public void SaveBaseline()
         {
             ResetComponentHistories();
-            foreach (RetirementHistory retirement in _retirements.Values)
+            for (int i = 0; i < _retirements.Count; i++)
             {
+                RetirementHistory retirement = _retirements.GetValueAt(i);
                 retirement.Values.Rollback(int.MinValue);
                 retirement.Values[int.MinValue] = retirement.Current;
             }
@@ -59,8 +60,9 @@ namespace DVG.SkyPirates.Shared.Ecs
 
         public void GoTo(int tick)
         {
-            foreach (RetirementHistory retirement in _retirements.Values)
+            for (int i = 0; i < _retirements.Count; i++)
             {
+                RetirementHistory retirement = _retirements.GetValueAt(i);
                 retirement.Restore(retirement.Values[tick]);
             }
 
@@ -73,8 +75,9 @@ namespace DVG.SkyPirates.Shared.Ecs
         public void Rollback(int tick)
         {
             GoTo(tick);
-            foreach (RetirementHistory retirement in _retirements.Values)
+            for (int i = 0; i < _retirements.Count; i++)
             {
+                RetirementHistory retirement = _retirements.GetValueAt(i);
                 retirement.Values.Rollback(tick);
             }
 
@@ -87,7 +90,7 @@ namespace DVG.SkyPirates.Shared.Ecs
         public WorldData GetSnapshot(int tick)
         {
             var snapshot = new WorldData();
-            Dictionary<Entity, int> syncIds = _syncIdHistory.GetSyncIdsAt(tick);
+            EntityValueMap<int> syncIds = _syncIdHistory.GetSyncIdsAt(tick);
             for (int i = 0; i < _components.Length; i++)
             {
                 _components[i].PackSnapshot(snapshot, tick, syncIds);
@@ -131,11 +134,11 @@ namespace DVG.SkyPirates.Shared.Ecs
 
         public void CollectExpiredEntities(int tick, List<Entity> entities)
         {
-            foreach (var pair in _retirements)
+            for (int i = 0; i < _retirements.Count; i++)
             {
-                if (pair.Value.IsExpired(tick))
+                if (_retirements.GetValueAt(i).IsExpired(tick))
                 {
-                    entities.Add(pair.Key);
+                    entities.Add(_retirements.GetEntityAt(i));
                 }
             }
         }
@@ -151,9 +154,9 @@ namespace DVG.SkyPirates.Shared.Ecs
 
         public void Clear()
         {
-            foreach (RetirementHistory retirement in _retirements.Values)
+            for (int i = 0; i < _retirements.Count; i++)
             {
-                retirement.Dispose();
+                _retirements.GetValueAt(i).Dispose();
             }
 
             _retirements.Clear();
@@ -162,9 +165,9 @@ namespace DVG.SkyPirates.Shared.Ecs
 
         public void Dispose()
         {
-            foreach (RetirementHistory retirement in _retirements.Values)
+            for (int i = 0; i < _retirements.Count; i++)
             {
-                retirement.Dispose();
+                _retirements.GetValueAt(i).Dispose();
             }
 
             _retirements.Clear();
@@ -194,12 +197,13 @@ namespace DVG.SkyPirates.Shared.Ecs
         private void CompleteRetirements(int tick, bool baseline)
         {
             List<Entity> stale = null;
-            foreach (var pair in _retirements)
+            for (int i = 0; i < _retirements.Count; i++)
             {
-                RetirementHistory retirement = pair.Value;
-                if (!_world.Has(pair.Key, _syncIdId))
+                Entity entity = _retirements.GetEntityAt(i);
+                RetirementHistory retirement = _retirements.GetValueAt(i);
+                if (!_world.Has(entity, _syncIdId))
                 {
-                    (stale ??= new List<Entity>()).Add(pair.Key);
+                    (stale ??= new List<Entity>()).Add(entity);
                     continue;
                 }
 
@@ -255,7 +259,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
 
             retirement = new RetirementHistory(_initialCapacity, _maxCapacity);
-            _retirements.Add(entity, retirement);
+            _retirements.Set(entity, in retirement);
             return retirement;
         }
 
@@ -309,6 +313,10 @@ namespace DVG.SkyPirates.Shared.Ecs
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static bool SameEntity(Entity left, Entity right)
+            => left.Index == right.Index && left.Generation == right.Generation;
+
         private sealed class CreateHistoryVisitor : IStructVisitor
         {
             private readonly ChangeWorldHistory _owner;
@@ -326,17 +334,26 @@ namespace DVG.SkyPirates.Shared.Ecs
 
         internal struct ComponentRestoreState<T> where T : struct
         {
-            public readonly Dictionary<Entity, T> Values;
-            public readonly HashSet<Entity> PresentEntities;
+            public readonly T[] ValuesByEntityIndex;
+            public readonly Entity[] EntitiesByEntityIndex;
+            public readonly int[] RestoreStampsByEntityIndex;
+            public readonly int[] SeenStampsByEntityIndex;
+            public readonly int RestoreStamp;
             public readonly List<Entity> EntitiesToRemove;
 
             public ComponentRestoreState(
-                Dictionary<Entity, T> values,
-                HashSet<Entity> presentEntities,
+                T[] valuesByEntityIndex,
+                Entity[] entitiesByEntityIndex,
+                int[] restoreStampsByEntityIndex,
+                int[] seenStampsByEntityIndex,
+                int restoreStamp,
                 List<Entity> entitiesToRemove)
             {
-                Values = values;
-                PresentEntities = presentEntities;
+                ValuesByEntityIndex = valuesByEntityIndex;
+                EntitiesByEntityIndex = entitiesByEntityIndex;
+                RestoreStampsByEntityIndex = restoreStampsByEntityIndex;
+                SeenStampsByEntityIndex = seenStampsByEntityIndex;
+                RestoreStamp = restoreStamp;
                 EntitiesToRemove = entitiesToRemove;
             }
         }
@@ -346,10 +363,13 @@ namespace DVG.SkyPirates.Shared.Ecs
             public void Invoke(ref ComponentRestoreState<T> state, EntityRef entity, ref T component)
             {
                 Entity handle = entity;
-                state.PresentEntities.Add(handle);
-                if (state.Values.TryGetValue(handle, out T value))
+                int index = handle.Index;
+                if ((uint)index < (uint)state.RestoreStampsByEntityIndex.Length
+                    && state.RestoreStampsByEntityIndex[index] == state.RestoreStamp
+                    && SameEntity(state.EntitiesByEntityIndex[index], handle))
                 {
-                    component = value;
+                    component = state.ValuesByEntityIndex[index];
+                    state.SeenStampsByEntityIndex[index] = state.RestoreStamp;
                 }
                 else
                 {
@@ -370,7 +390,7 @@ namespace DVG.SkyPirates.Shared.Ecs
             public abstract void CaptureChanges();
             public abstract void GoTo(int tick);
             public abstract void Rollback(int tick);
-            public abstract void PackSnapshot(WorldData snapshot, int tick, IReadOnlyDictionary<Entity, int> syncIds);
+            public abstract void PackSnapshot(WorldData snapshot, int tick, EntityValueMap<int> syncIds);
             public abstract void ApplySnapshot(WorldData snapshot, IReadOnlyDictionary<int, Entity> entitiesBySyncId);
             public abstract void RemoveFrom(Entity entity);
             public abstract void Forget(Entity entity);
@@ -385,8 +405,13 @@ namespace DVG.SkyPirates.Shared.Ecs
             private readonly Query _restoreQuery;
             private readonly IOperation<ComponentRestoreState<T>> _restoreOperation;
             private readonly ChangeFrameHistory<T> _frames;
-            private readonly HashSet<Entity> _presentEntities = new();
             private readonly List<Entity> _entitiesToRemove = new();
+            private readonly List<Entity> _restoredEntities = new();
+            private T[] _restoreValuesByEntityIndex = Array.Empty<T>();
+            private Entity[] _restoreEntitiesByEntityIndex = Array.Empty<Entity>();
+            private int[] _restoreStampByEntityIndex = Array.Empty<int>();
+            private int[] _seenRestoreStampByEntityIndex = Array.Empty<int>();
+            private int _restoreStamp;
             private ChangeFrame<T> _captureFrame = null!;
 
             public ComponentHistory(ChangeWorldHistory owner, ComponentId componentId, int initialCapacity, int maxCapacity)
@@ -413,10 +438,16 @@ namespace DVG.SkyPirates.Shared.Ecs
 
             private void RestoreFullState(int tick)
             {
-                Dictionary<Entity, T> state = _frames.GetState(tick);
-                _presentEntities.Clear();
+                EntityValueMap<T> state = _frames.GetState(tick);
+                MarkRestoredEntities(state);
                 _entitiesToRemove.Clear();
-                var restoreState = new ComponentRestoreState<T>(state, _presentEntities, _entitiesToRemove);
+                var restoreState = new ComponentRestoreState<T>(
+                    _restoreValuesByEntityIndex,
+                    _restoreEntitiesByEntityIndex,
+                    _restoreStampByEntityIndex,
+                    _seenRestoreStampByEntityIndex,
+                    _restoreStamp,
+                    _entitiesToRemove);
                 _restoreOperation.Invoke(ref restoreState);
 
                 for (int i = 0; i < _entitiesToRemove.Count; i++)
@@ -424,28 +455,76 @@ namespace DVG.SkyPirates.Shared.Ecs
                     _owner._world.Remove(_entitiesToRemove[i], _componentId);
                 }
 
-                foreach (KeyValuePair<Entity, T> pair in state)
+                for (int i = 0; i < _restoredEntities.Count; i++)
                 {
-                    if (!_presentEntities.Contains(pair.Key) && _owner._world.IsAlive(pair.Key))
+                    Entity entity = _restoredEntities[i];
+                    int index = entity.Index;
+                    if (_seenRestoreStampByEntityIndex[index] != _restoreStamp
+                        && _owner._world.IsAlive(entity))
                     {
-                        T value = pair.Value;
-                        _owner._world.Add(pair.Key, in value);
+                        T value = _restoreValuesByEntityIndex[index];
+                        _owner._world.Add(entity, in value);
                     }
-
                 }
+            }
+
+            private void MarkRestoredEntities(EntityValueMap<T> state)
+            {
+                if (_restoreStamp == int.MaxValue)
+                {
+                    Array.Clear(_restoreStampByEntityIndex, 0, _restoreStampByEntityIndex.Length);
+                    Array.Clear(_seenRestoreStampByEntityIndex, 0, _seenRestoreStampByEntityIndex.Length);
+                    _restoreStamp = 1;
+                }
+                else
+                {
+                    _restoreStamp++;
+                }
+
+                _restoredEntities.Clear();
+                for (int i = 0; i < state.Count; i++)
+                {
+                    Entity entity = state.GetEntityAt(i);
+                    int index = entity.Index;
+                    EnsureRestoreCapacity(index);
+                    _restoredEntities.Add(entity);
+                    _restoreEntitiesByEntityIndex[index] = entity;
+                    _restoreValuesByEntityIndex[index] = state.GetValueAt(i);
+                    _restoreStampByEntityIndex[index] = _restoreStamp;
+                }
+            }
+
+            private void EnsureRestoreCapacity(int entityIndex)
+            {
+                if (entityIndex < _restoreStampByEntityIndex.Length)
+                {
+                    return;
+                }
+
+                int capacity = _restoreStampByEntityIndex.Length == 0 ? 4 : _restoreStampByEntityIndex.Length;
+                while (capacity <= entityIndex)
+                {
+                    capacity *= 2;
+                }
+
+                Array.Resize(ref _restoreValuesByEntityIndex, capacity);
+                Array.Resize(ref _restoreEntitiesByEntityIndex, capacity);
+                Array.Resize(ref _restoreStampByEntityIndex, capacity);
+                Array.Resize(ref _seenRestoreStampByEntityIndex, capacity);
             }
 
             public override void Rollback(int tick) => _frames.Rollback(tick);
 
-            public override void PackSnapshot(WorldData snapshot, int tick, IReadOnlyDictionary<Entity, int> syncIds)
+            public override void PackSnapshot(WorldData snapshot, int tick, EntityValueMap<int> syncIds)
             {
-                Dictionary<Entity, T> state = _frames.GetState(tick);
+                EntityValueMap<T> state = _frames.GetState(tick);
                 Dictionary<int, T> output = snapshot.Get<T>();
-                foreach (var pair in state)
+                for (int i = 0; i < state.Count; i++)
                 {
-                    if (syncIds.TryGetValue(pair.Key, out int syncId))
+                    Entity entity = state.GetEntityAt(i);
+                    if (syncIds.TryGetValue(entity, out int syncId))
                     {
-                        output[syncId] = pair.Value;
+                        output[syncId] = state.GetValueAt(i);
                     }
                 }
             }
@@ -498,15 +577,17 @@ namespace DVG.SkyPirates.Shared.Ecs
                 }
             }
 
-            public Dictionary<Entity, int> GetSyncIdsAt(int tick)
+            public EntityValueMap<int> GetSyncIdsAt(int tick)
             {
-                Dictionary<Entity, T> state = _frames.GetState(tick);
-                var result = new Dictionary<Entity, int>(state.Count);
-                foreach (var pair in state)
+                EntityValueMap<T> state = _frames.GetState(tick);
+                var result = new EntityValueMap<int>();
+                for (int i = 0; i < state.Count; i++)
                 {
-                    T value = pair.Value;
+                    Entity entity = state.GetEntityAt(i);
+                    T value = state.GetValueAt(i);
                     SyncId syncId = Unsafe.As<T, SyncId>(ref value);
-                    result.Add(pair.Key, syncId.Value);
+                    int id = syncId.Value;
+                    result.Set(entity, in id);
                 }
 
                 return result;
@@ -516,9 +597,9 @@ namespace DVG.SkyPirates.Shared.Ecs
         private sealed class ChangeFrameHistory<T> : IDisposable where T : struct
         {
             private ChangeFrame<T>[] _frames;
-            private readonly Dictionary<Entity, T> _baseline = new();
-            private readonly Dictionary<Entity, T> _stateCache = new();
-            private readonly Dictionary<Entity, int> _captureIndices = new();
+            private readonly EntityValueMap<T> _baseline = new();
+            private readonly EntityValueMap<T> _stateCache = new();
+            private readonly EntityValueMap<int> _captureIndices = new();
             private int _mask;
             private int _head;
             private int _count;
@@ -568,7 +649,7 @@ namespace DVG.SkyPirates.Shared.Ecs
                 in T newValue)
                 => frame.Add(entity, hasNewValue, in newValue, _captureIndices);
 
-            public Dictionary<Entity, T> GetState(int tick)
+            public EntityValueMap<T> GetState(int tick)
             {
                 if (tick < First.Tick)
                 {
@@ -583,9 +664,11 @@ namespace DVG.SkyPirates.Shared.Ecs
                 if (!_hasCachedState || tick < _cachedStateTick)
                 {
                     _stateCache.Clear();
-                    foreach (KeyValuePair<Entity, T> pair in _baseline)
+                    for (int i = 0; i < _baseline.Count; i++)
                     {
-                        _stateCache.Add(pair.Key, pair.Value);
+                        Entity entity = _baseline.GetEntityAt(i);
+                        T value = _baseline.GetValueAt(i);
+                        _stateCache.Set(entity, in value);
                     }
 
                     for (int i = 0; i < _count; i++)
@@ -648,12 +731,20 @@ namespace DVG.SkyPirates.Shared.Ecs
             {
                 _hasCachedState = false;
                 _baseline.Remove(entity);
+                bool lastFrameChanged = false;
                 for (int i = 0; i < _count; i++)
                 {
-                    At(i).Forget(entity);
+                    bool changed = At(i).Forget(entity);
+                    if (i == _count - 1)
+                    {
+                        lastFrameChanged = changed;
+                    }
                 }
 
-                RebuildCaptureIndices();
+                if (lastFrameChanged)
+                {
+                    RebuildCaptureIndices();
+                }
             }
 
             public void Dispose()
@@ -710,7 +801,8 @@ namespace DVG.SkyPirates.Shared.Ecs
                 ChangeFrame<T> last = Last;
                 for (int i = 0; i < last.Count; i++)
                 {
-                    _captureIndices[last.GetEntity(i)] = i;
+                    int index = i;
+                    _captureIndices.Set(last.GetEntity(i), in index);
                 }
             }
         }
@@ -737,7 +829,7 @@ namespace DVG.SkyPirates.Shared.Ecs
                 Entity entity,
                 bool hasNewValue,
                 in T newValue,
-                Dictionary<Entity, int> indices)
+                EntityValueMap<int> indices)
             {
                 if (indices.TryGetValue(entity, out int index))
                 {
@@ -745,13 +837,14 @@ namespace DVG.SkyPirates.Shared.Ecs
                     return;
                 }
 
-                indices.Add(entity, _changes.Count);
+                int nextIndex = _changes.Count;
+                indices.Set(entity, in nextIndex);
                 _changes.Add(new Change<T>(entity, hasNewValue, in newValue));
             }
 
             public Entity GetEntity(int index) => _changes[index].Entity;
 
-            public void ApplyTo(Dictionary<Entity, T> state)
+            public void ApplyTo(EntityValueMap<T> state)
             {
                 for (int i = 0; i < _changes.Count; i++)
                 {
@@ -762,23 +855,210 @@ namespace DVG.SkyPirates.Shared.Ecs
                     }
                     else
                     {
-                        state[change.Entity] = change.NewValue;
+                        state.Set(change.Entity, in change.NewValue);
                     }
                 }
             }
 
-            public void Forget(Entity entity)
+            public bool Forget(Entity entity)
             {
+                bool removed = false;
                 for (int i = _changes.Count - 1; i >= 0; i--)
                 {
-                    if (_changes[i].Entity == entity)
+                    if (SameEntity(_changes[i].Entity, entity))
                     {
                         _changes.RemoveAt(i);
+                        removed = true;
                     }
                 }
+
+                return removed;
             }
 
             public void Clear() => _changes.Clear();
+        }
+
+        private sealed class EntityValueMap<T>
+        {
+            private const int PageShift = 8;
+            private const int PageSize = 1 << PageShift;
+            private const int PageMask = PageSize - 1;
+            private const int DirectoryShift = 8;
+            private const int DirectorySize = 1 << DirectoryShift;
+            private const int DirectoryMask = DirectorySize - 1;
+            private const int RootSize = 1 << (31 - PageShift - DirectoryShift * 2);
+
+            private MiddleDirectory?[] _root = Array.Empty<MiddleDirectory?>();
+            private readonly List<Entity> _entities = new();
+
+            public int Count => _entities.Count;
+
+            public Entity GetEntityAt(int index) => _entities[index];
+
+            public T GetValueAt(int index)
+            {
+                Entity entity = _entities[index];
+                Page page = GetPage(entity.Index, false)!;
+                return page.Values[entity.Index & PageMask];
+            }
+
+            public bool TryGetValue(Entity entity, out T value)
+            {
+                Page? page = GetPage(entity.Index, false);
+                int slot = entity.Index & PageMask;
+                if (page != null && page.Present[slot] && SameEntity(page.Entities[slot], entity))
+                {
+                    value = page.Values[slot];
+                    return true;
+                }
+
+                value = default!;
+                return false;
+            }
+
+            public void Set(Entity entity, in T value)
+            {
+                Page page = GetPage(entity.Index, true)!;
+                int slot = entity.Index & PageMask;
+                if (page.Present[slot])
+                {
+                    if (SameEntity(page.Entities[slot], entity))
+                    {
+                        page.Values[slot] = value;
+                        return;
+                    }
+
+                    RemoveAt(page, slot);
+                }
+
+                page.Entities[slot] = entity;
+                page.Values[slot] = value;
+                page.DenseIndices[slot] = _entities.Count;
+                page.Present[slot] = true;
+                _entities.Add(entity);
+            }
+
+            public bool Remove(Entity entity)
+            {
+                Page? page = GetPage(entity.Index, false);
+                int slot = entity.Index & PageMask;
+                if (page == null || !page.Present[slot] || !SameEntity(page.Entities[slot], entity))
+                {
+                    return false;
+                }
+
+                RemoveAt(page, slot);
+                return true;
+            }
+
+            public void Clear()
+            {
+                for (int i = 0; i < _entities.Count; i++)
+                {
+                    Entity entity = _entities[i];
+                    Page page = GetPage(entity.Index, false)!;
+                    int slot = entity.Index & PageMask;
+                    page.Entities[slot] = default;
+                    page.Values[slot] = default!;
+                    page.DenseIndices[slot] = 0;
+                    page.Present[slot] = false;
+                }
+
+                _entities.Clear();
+            }
+
+            private void RemoveAt(Page page, int slot)
+            {
+                int removeIndex = page.DenseIndices[slot];
+                int lastIndex = _entities.Count - 1;
+                if (removeIndex != lastIndex)
+                {
+                    Entity moved = _entities[lastIndex];
+                    _entities[removeIndex] = moved;
+                    Page movedPage = GetPage(moved.Index, false)!;
+                    movedPage.DenseIndices[moved.Index & PageMask] = removeIndex;
+                }
+
+                _entities.RemoveAt(lastIndex);
+                page.Entities[slot] = default;
+                page.Values[slot] = default!;
+                page.DenseIndices[slot] = 0;
+                page.Present[slot] = false;
+            }
+
+            private Page? GetPage(int entityIndex, bool create)
+            {
+                if (entityIndex < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(entityIndex));
+                }
+
+                int pageIndex = entityIndex >> PageShift;
+                int rootIndex = pageIndex >> (DirectoryShift * 2);
+                int middleIndex = (pageIndex >> DirectoryShift) & DirectoryMask;
+                int leafIndex = pageIndex & DirectoryMask;
+
+                if (_root.Length == 0)
+                {
+                    if (!create)
+                    {
+                        return null;
+                    }
+
+                    _root = new MiddleDirectory?[RootSize];
+                }
+
+                MiddleDirectory? middle = _root[rootIndex];
+                if (middle == null)
+                {
+                    if (!create)
+                    {
+                        return null;
+                    }
+
+                    middle = new MiddleDirectory();
+                    _root[rootIndex] = middle;
+                }
+
+                LeafDirectory? leaf = middle.Children[middleIndex];
+                if (leaf == null)
+                {
+                    if (!create)
+                    {
+                        return null;
+                    }
+
+                    leaf = new LeafDirectory();
+                    middle.Children[middleIndex] = leaf;
+                }
+
+                Page? page = leaf.Pages[leafIndex];
+                if (page == null && create)
+                {
+                    page = new Page();
+                    leaf.Pages[leafIndex] = page;
+                }
+
+                return page;
+            }
+
+            private sealed class MiddleDirectory
+            {
+                public readonly LeafDirectory?[] Children = new LeafDirectory?[DirectorySize];
+            }
+
+            private sealed class LeafDirectory
+            {
+                public readonly Page?[] Pages = new Page?[DirectorySize];
+            }
+
+            private sealed class Page
+            {
+                public readonly Entity[] Entities = new Entity[PageSize];
+                public readonly T[] Values = new T[PageSize];
+                public readonly int[] DenseIndices = new int[PageSize];
+                public readonly bool[] Present = new bool[PageSize];
+            }
         }
 
         private readonly struct Change<T> where T : struct

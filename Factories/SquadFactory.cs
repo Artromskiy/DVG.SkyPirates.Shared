@@ -30,8 +30,8 @@ namespace DVG.SkyPirates.Shared.Factories
             var entity = _entityFactory.Create(parameters.entityParameters);
             _world.Add<Squad>(entity);
             _world.SetEntityData(entity, _squadStats[0]);
-            _entityDependencyService.AddDependencies(entity);
-            _componentDefaultsService.SetDefaults(entity);
+            _entityDependencyService.ProcessChanges();
+            _componentDefaultsService.ProcessChanges();
             _world.GetRef<TeamId>(entity) = parameters.team;
             return entity;
         }
